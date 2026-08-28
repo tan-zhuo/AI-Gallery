@@ -1,0 +1,5 @@
+{"id":"gemini-3-flash","name":"Gemini 3 Flash","aliases":["gemini-3-flash-preview"],"vendor":"Google","vendor_zh":"谷歌","family":"Gemini 3","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"preview","released_at":"2025-12-17","updated_at":"2025-12-20","modalities":["text","image","audio","video","tools"],"reasoning_mode":"default-on",
+"architecture":{"type":"unknown","undisclosed":true},"context":{"max_tokens":1048576,"display":"1M","max_output":65536},"memory":{"weight_gb":{},"estimated":false},
+"pricing":{"input_per_m":0.5,"output_per_m":3,"currency":"USD","source":"Google AI 定价页","as_of":"2025-12-20"},
+"links":{"official":"https://deepmind.google/models/gemini/flash/","pricing":"https://ai.google.dev/pricing"},
+"copy":{"one_liner":"Flash 价位跑出接近 3 Pro 的分数，2025 年底性价比最强闭源之一。","highlights":["GPQA 90.4%、SWE-bench 78%（官方）","$0.50 / $3","1M 上下文多模态"],"pitfalls":["preview 状态","长 agent 稳定性待验证","无自建"],"logic_ability":"考试型推理接近 Pro；工程型推理官方数字强，独立复测待补。","best_for":["高性价比通用 API","多模态批处理"],"not_for":["私有化"]},"capability_notes":{},"complete":false}

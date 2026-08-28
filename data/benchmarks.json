@@ -1,0 +1,13 @@
+[
+  {"key":"arena_text","name":"LMArena Text Elo","name_zh":"人类偏好 Elo","category":"arena","unit":"elo","higher_is_better":true,"description":"LMArena 文本盲测人类偏好，style control 版。"},
+  {"key":"aa_index","name":"Artificial Analysis Intelligence Index","name_zh":"AA 综合指数","category":"overall","unit":"index","higher_is_better":true,"description":"Artificial Analysis 第三方综合评测指数 v3（10 项基准聚合）。"},
+  {"key":"swe_verified","name":"SWE-bench Verified","name_zh":"真实仓库修 bug","category":"coding","unit":"percent","higher_is_better":true},
+  {"key":"livecodebench","name":"LiveCodeBench","name_zh":"竞赛编程","category":"coding","unit":"percent","higher_is_better":true},
+  {"key":"gpqa_diamond","name":"GPQA Diamond","name_zh":"研究生级科学问答","category":"reasoning","unit":"percent","higher_is_better":true},
+  {"key":"hle","name":"Humanity's Last Exam","name_zh":"人类最后考试","category":"reasoning","unit":"percent","higher_is_better":true,"description":"无工具版本除非标注。"},
+  {"key":"aime_2025","name":"AIME 2025","name_zh":"美国数学邀请赛","category":"math","unit":"percent","higher_is_better":true},
+  {"key":"tau2_bench","name":"τ²-bench","name_zh":"工具调用 agent","category":"agent","unit":"percent","higher_is_better":true},
+  {"key":"terminal_bench","name":"Terminal-Bench","name_zh":"终端 agent","category":"agent","unit":"percent","higher_is_better":true},
+  {"key":"mmmu","name":"MMMU","name_zh":"多模态理解","category":"multimodal","unit":"percent","higher_is_better":true},
+  {"key":"arena_zh","name":"LMArena Chinese Elo","name_zh":"中文人类偏好 Elo","category":"chinese","unit":"elo","higher_is_better":true}
+]

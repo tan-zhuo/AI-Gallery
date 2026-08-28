@@ -1,0 +1,62 @@
+{
+  "id": "kimi-k2-thinking",
+  "name": "Kimi K2 Thinking",
+  "name_zh": "月之暗面 K2 推理版",
+  "aliases": ["kimi-k2-thinking", "K2 Thinking"],
+  "vendor": "Moonshot AI",
+  "vendor_zh": "月之暗面",
+  "family": "Kimi K2",
+  "license": "Modified MIT",
+  "license_commercial": "restricted",
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/moonshotai/Kimi-K2-Thinking",
+  "status": "current",
+  "released_at": "2025-11-06",
+  "updated_at": "2025-12-20",
+  "modalities": ["text", "tools"],
+  "reasoning_mode": "default-on",
+  "architecture": {
+    "type": "moe", "total_params": "1T", "active_params": "32B", "total_params_b": 1000, "active_params_b": 32,
+    "experts": 384, "active_experts": 8, "shared_expert": true, "layers": 61, "hidden_size": 7168, "vocab_size": 160000,
+    "kv_heads": 1, "head_dim": 288, "attention": "MLA（64 头）",
+    "notes": "DeepSeek-V3 同构放大：384 专家 / 8 激活 + 1 共享，MLA。原生 INT4 QAT 发布（权重即 4 bit）。MuonClip 优化器。",
+    "undisclosed": false
+  },
+  "context": { "max_tokens": 262144, "display": "256K", "max_output": 65536 },
+  "memory": {
+    "weight_gb": { "q4": 594 },
+    "kv_per_token_kib": 70,
+    "kv_note": "MLA，与 DeepSeek-V3 同：≈ 70 KiB/token。",
+    "ref_hw_24gb": "不可行",
+    "ref_hw_80gb": "不可行",
+    "ref_hw_8x80gb": "INT4 权重 594 GB，8×H100 80GB 勉强（KV 余量小），推荐 8×H200",
+    "estimated": false
+  },
+  "pricing": { "input_per_m": 0.6, "output_per_m": 2.5, "currency": "USD", "source": "Moonshot 开放平台", "as_of": "2025-12-20", "note": "缓存命中 $0.15" },
+  "links": { "official": "https://moonshotai.github.io/Kimi-K2/thinking.html", "hf": "https://huggingface.co/moonshotai/Kimi-K2-Thinking", "github": "https://github.com/MoonshotAI/Kimi-K2", "paper": "https://arxiv.org/abs/2507.20534", "pricing": "https://platform.moonshot.ai/docs/pricing" },
+  "copy": {
+    "one_liner": "1T 参数、原生 INT4 的开源 agent 推理旗舰，HLE 开源第一。",
+    "highlights": ["HLE（带工具）44.9%，发布时超过所有闭源模型", "官方称可连续 200–300 次工具调用不漂移，agent 长任务稳定", "原生 INT4 QAT：权重 594 GB 即为「全精度」，推理速度翻倍"],
+    "pitfalls": ["Modified MIT：月活 > 1 亿或月收入 > 2000 万美元的产品须在界面标注「Kimi K2」", "1T 体量，8×H100 部署 KV 余量很小，实际要 H200", "思考模式 token 消耗大，简单任务性价比差（用 K2-0905 非思考版）"],
+    "logic_ability": "工程型与工具增强推理是核心：BrowseComp 60.2%、SWE-bench Verified 71.3%。考试型推理带工具时极强（AIME 99.1% with Python），无工具时略低于 GPT-5。思考链交错工具调用（interleaved thinking）是其特色。常见问题：无工具纯文本对话时偶尔过度冗长；数学题喜欢调 Python 而非心算。",
+    "best_for": ["深度搜索 / 研究型 agent", "长链工具调用", "自建高端推理服务"],
+    "not_for": ["任何单机部署", "简单对话（成本高）"]
+  },
+  "capability_notes": {
+    "coding": "SWE-bench Verified 71.3%、LiveCodeBench v6 83.1%（官方）。",
+    "reasoning": "HLE 44.9%（工具）、GPQA 84.5%（官方）。",
+    "math": "AIME 2025 99.1%（Python）、94.5%（无工具，官方）。",
+    "agent": "BrowseComp 60.2%、τ²-bench 74.3%（官方）。",
+    "chinese": "中文顶级，BrowseComp-ZH 62.3%。"
+  },
+  "sheet": {
+    "architecture_md": "**类型**：MoE，1.04T 总 / 32B 激活。\n\n- 61 层（含 1 层 Dense），隐藏维 7168，词表 160K\n- 专家：384 路由 + 1 共享，每 token 激活 8 个\n- 注意力：MLA，64 头，KV 潜向量 512 + RoPE 64\n- 与 DeepSeek-V3 同构但专家数 ×1.5、注意力头数减半（为降低长上下文推理开销）\n- 上下文 256K\n- 训练用 MuonClip 优化器解决 attention logit 爆炸\n- **原生 INT4 QAT**：后训练阶段做量化感知训练，MoE 部分权重以 INT4 发布\n\n参考：Kimi K2 技术报告（arXiv 2507.20534）。",
+    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| INT4（原生） | 594 GB | 8×H200 |\n\n无 BF16 发布版本（INT4 即官方精度）。\n\n**KV Cache**：≈ 70 KiB/token（MLA）。\n\n**参考配置**：\n- 24GB / 80GB：不可行\n- 8×H100 80GB：合计 640 GB，权重后仅剩 ~46 GB 给 KV，并发受限\n- 8×H200 141GB：舒适",
+    "training_md": "- 预训练 15.5T token（K2 base）\n- 后训练：大规模 agentic 数据合成 + 联合 RL，再加 QAT\n- 思考默认开启，不可关（非思考用 Kimi-K2-Instruct-0905）\n- 工具调用：原生，支持交错思考\n- 最大输出 64K",
+    "ecosystem_md": "- HF：moonshotai/Kimi-K2-Thinking\n- 引擎：vLLM、SGLang、KTransformers（官方部署指南）\n- 微调：体量过大，社区几乎无\n- 中文文档：有",
+    "versions_md": "- 同系列：Kimi-K2-Instruct（2025-07）、Kimi-K2-Instruct-0905（256K）\n- 视觉：Kimi-VL 系列另计\n- 上代：Kimi K1.5（闭源）"
+  },
+  "ecosystem": { "engines": ["vLLM", "SGLang", "KTransformers"], "finetune": "基本不可行", "zh_docs": "有" },
+  "complete": true
+}

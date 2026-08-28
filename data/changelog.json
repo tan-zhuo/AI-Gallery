@@ -1,0 +1,12 @@
+[
+  {"date":"2026-08-28","type":"doc","text":"站点 MVP 上线：总榜、模型库、详情、对比、显存计算器、方法论。"},
+  {"date":"2026-08-28","type":"new","model_id":"claude-fable-5","text":"收录 Claude 5 家族（Opus 5 / Sonnet 5 / Fable 5）速览条目，规格与分数待补。"},
+  {"date":"2025-12-20","type":"new","model_id":"gemini-3-flash","text":"新增 Gemini 3 Flash（preview）。"},
+  {"date":"2025-12-20","type":"new","model_id":"nemotron-3-nano-30b-a3b","text":"新增 Nemotron 3 Nano 30B-A3B。"},
+  {"date":"2025-12-20","type":"new","model_id":"devstral-small-2","text":"新增 Devstral Small 2。"},
+  {"date":"2025-12-01","type":"up","model_id":"deepseek-v3-2","text":"DeepSeek-V3.2 正式版发布，替代 V3.2-Exp，开源榜上升。"},
+  {"date":"2025-11-24","type":"new","model_id":"claude-opus-4-5","text":"新增 Claude Opus 4.5，SWE-bench Verified 80.9%。"},
+  {"date":"2025-11-18","type":"new","model_id":"gemini-3-pro","text":"新增 Gemini 3 Pro，LMArena 首破 1500。"},
+  {"date":"2025-11-06","type":"new","model_id":"kimi-k2-thinking","text":"新增 Kimi K2 Thinking。"},
+  {"date":"2025-08-05","type":"down","model_id":"claude-opus-4-1","text":"Claude Opus 4.1 标记为已被 Opus 4.5 替代。"}
+]

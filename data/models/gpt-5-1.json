@@ -1,0 +1,5 @@
+{"id":"gpt-5-1","name":"GPT-5.1","aliases":["gpt-5.1"],"vendor":"OpenAI","family":"GPT-5","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2025-11-13","updated_at":"2025-12-20","modalities":["text","image","tools"],"reasoning_mode":"optional",
+"architecture":{"type":"unknown","undisclosed":true,"notes":"新增 reasoning_effort=none 与自适应推理。"},"context":{"max_tokens":400000,"display":"400K","max_output":128000},"memory":{"weight_gb":{},"estimated":false},
+"pricing":{"input_per_m":1.25,"output_per_m":10,"currency":"USD","source":"OpenAI 定价页","as_of":"2025-12-20"},
+"links":{"official":"https://openai.com/index/gpt-5-1/","pricing":"https://openai.com/api/pricing"},
+"copy":{"one_liner":"GPT-5 的对话与自适应推理改版，价格不变。","highlights":["reasoning_effort=none 可完全关推理","自适应思考时长","与 GPT-5 同价"],"pitfalls":["榜单分数与 GPT-5 接近，升级收益在体验而非分数","无自建","本站独立评测数据待补"],"logic_ability":"与 GPT-5 同级，简单问题响应更快。","best_for":["对话产品","GPT-5 平替"],"not_for":["私有化"]},"capability_notes":{},"complete":false}

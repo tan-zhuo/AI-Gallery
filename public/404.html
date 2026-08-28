@@ -1,0 +1,6 @@
+<!doctype html><html><head><meta charset="utf-8"><title>模榜</title>
+<script>
+// GitHub Pages 等 SPA 回退：把当前路径保存后跳回 index
+sessionStorage.setItem('mb_redirect', location.pathname + location.search + location.hash);
+location.replace(location.pathname.split('/').slice(0, 1).join('/') + '/');
+</script></head><body></body></html>

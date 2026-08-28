@@ -1,0 +1,62 @@
+{
+  "id": "gemma-3-27b",
+  "name": "Gemma 3 27B",
+  "name_zh": "谷歌 Gemma 3 · 27B",
+  "aliases": ["gemma-3-27b-it", "Gemma3 27B"],
+  "vendor": "Google",
+  "vendor_zh": "谷歌",
+  "family": "Gemma 3",
+  "license": "Gemma Terms of Use",
+  "license_commercial": "restricted",
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/google/gemma-3-27b-it",
+  "status": "current",
+  "released_at": "2025-03-12",
+  "updated_at": "2025-12-20",
+  "modalities": ["text", "image", "tools"],
+  "reasoning_mode": "none",
+  "architecture": {
+    "type": "dense", "total_params": "27B", "total_params_b": 27,
+    "layers": 62, "kv_layers": 11, "hidden_size": 5376, "vocab_size": 262144, "kv_heads": 16, "head_dim": 128,
+    "attention": "GQA（32 Q 头 / 16 KV 头），5:1 局部滑窗(1024) : 全局",
+    "notes": "62 层中约 11 层全局注意力，其余为 1024 token 滑窗，KV 显著降低。SigLIP 400M 视觉编码器，图像 896×896 固定 256 token。",
+    "undisclosed": false
+  },
+  "context": { "max_tokens": 131072, "display": "128K", "max_output": 8192 },
+  "memory": {
+    "weight_gb": { "bf16": 54, "q8": 28.7, "q4": 16.5 },
+    "kv_per_token_kib": 44,
+    "kv_note": "全局层 11 × 16 KV 头 × 128 × 2 × 2 B ≈ 44 KiB/token；局部层 KV 上限 1024 token，可忽略。",
+    "ref_hw_24gb": "Q4_K_M 16.5 GB，KV 余量充足，32K+ 上下文可行",
+    "ref_hw_80gb": "BF16 54 GB 舒适",
+    "ref_hw_8x80gb": "过剩",
+    "estimated": false
+  },
+  "pricing": { "input_per_m": 0.09, "output_per_m": 0.16, "currency": "USD", "source": "第三方托管常见价", "as_of": "2025-12-20", "note": "开源权重，社区托管价" },
+  "links": { "official": "https://ai.google.dev/gemma", "hf": "https://huggingface.co/google/gemma-3-27b-it", "paper": "https://arxiv.org/abs/2503.19786" },
+  "copy": {
+    "one_liner": "单卡跑的多模态 Dense 模型，对话体验与多语言突出。",
+    "highlights": ["LMArena 1338，发布时单卡可跑模型里人类偏好最高", "原生视觉输入 + 140 语言，24GB 卡上 Q4 + 长上下文舒适", "滑窗 / 全局 5:1 设计，KV 只有同规模模型的 1/5"],
+    "pitfalls": ["Gemma 许可有使用限制条款（禁用用途、需传递条款），不是 Apache/MIT", "无思考模式，数学 / 代码推理明显弱于 Qwen3 同档", "最大输出 8K，长生成任务受限"],
+    "logic_ability": "非推理模型，考试型推理弱（AIME 2025 未官方公布，MATH 89%）。强项在多轮对话质量、格式遵循、多语言与视觉描述。工程型推理（代码修改）一般。适合做对话产品与视觉问答，不适合做复杂推理主力。",
+    "best_for": ["单卡多模态助手", "多语言对话产品", "视觉问答 / 文档 OCR"],
+    "not_for": ["数学 / 竞赛推理", "需要宽松许可的商业闭包"]
+  },
+  "capability_notes": {
+    "coding": "LiveCodeBench 29.7%（官方），代码偏弱。",
+    "reasoning": "GPQA Diamond 42.4%（官方）。",
+    "math": "MATH 89.0%（官方）。",
+    "multimodal": "MMMU 64.9%（官方）。",
+    "chinese": "多语言训练，中文可用但非重点。"
+  },
+  "sheet": {
+    "architecture_md": "**类型**：Dense，27B 参数。\n\n- 62 层，隐藏维 5376，词表 262,144\n- GQA：32 Q 头 / 16 KV 头，head_dim 128\n- 注意力交替：5 层局部滑窗（1024）→ 1 层全局，全局层用 RoPE base 1M\n- 视觉：SigLIP 400M 编码器，Pan & Scan 处理任意宽高比\n- 上下文 128K，输出 8K\n\n参考：Gemma 3 技术报告（arXiv 2503.19786）。",
+    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | 54 GB | 80GB |\n| Q8 | 28.7 GB | 48GB |\n| Q4 | 16.5 GB | 24GB |\n\n**KV Cache**：≈ 44 KiB/token（仅全局层）。128K 上下文 ≈ 5.5 GB，是 Qwen3-32B 的 1/6。\n\n**参考配置**：\n- 24GB：Q4_K_M + 视觉 + 32K 上下文舒适\n- 80GB：BF16 + 128K\n- 官方另有 QAT 版 int4，质量损失更小",
+    "training_md": "- 预训练 14T token，知识蒸馏\n- 后训练：SFT + RLHF + RLMF（数学）+ RLEF（代码）\n- 无思考模式\n- 函数调用：通过 prompt 格式支持\n- 最大输出 8,192",
+    "ecosystem_md": "- HF：google/gemma-3-27b-it（+ QAT GGUF 官方版）\n- 引擎：llama.cpp、Ollama、vLLM、MLX、Transformers 全支持\n- 微调：LoRA 生态成熟（Unsloth 等）\n- 中文文档：弱",
+    "versions_md": "- 同系列：Gemma 3 1B / 4B / 12B、Gemma 3n（端侧）\n- 上代：Gemma 2 27B\n- 后续：Gemma 4（2026）"
+  },
+  "ecosystem": { "engines": ["llama.cpp", "Ollama", "vLLM", "MLX"], "finetune": "LoRA 成熟", "zh_docs": "弱" },
+  "complete": true
+}

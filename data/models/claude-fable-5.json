@@ -1,0 +1,4 @@
+{"id":"claude-fable-5","name":"Claude Fable 5","aliases":["claude-fable-5","Mythos 5"],"vendor":"Anthropic","family":"Claude 5","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2026","updated_at":"2026-08-28","modalities":["text","image","tools","computer-use"],"reasoning_mode":"optional",
+"architecture":{"type":"unknown","undisclosed":true,"notes":"未披露。与 Claude Mythos 5 共享底层模型，Fable 5 为通用可用版本。"},"context":{"display":"未披露"},"memory":{"weight_gb":{},"estimated":false},
+"links":{"official":"https://www.anthropic.com/news/claude-fable-5-mythos-5","pricing":"https://www.anthropic.com/pricing"},
+"copy":{"one_liner":"Anthropic Mythos 级新档位，通用可用版本。分数与定价待补录。","highlights":["位于 Opus 之上的新能力档","与 Mythos 5 同底层模型","完善中"],"pitfalls":["本站尚无带来源的分数与定价","参数、架构未披露","完善中"],"logic_ability":"完善中。","best_for":[],"not_for":[]},"capability_notes":{},"complete":false}

@@ -1,0 +1,5 @@
+{"id":"claude-haiku-4-5","name":"Claude Haiku 4.5","name_zh":"Claude 4.5 轻量版","aliases":["claude-haiku-4-5-20251001"],"vendor":"Anthropic","family":"Claude 4.5","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2025-10-15","updated_at":"2025-12-20","modalities":["text","image","tools","computer-use"],"reasoning_mode":"optional",
+"architecture":{"type":"unknown","undisclosed":true},"context":{"max_tokens":200000,"display":"200K","max_output":64000},"memory":{"weight_gb":{},"estimated":false},
+"pricing":{"input_per_m":1,"output_per_m":5,"currency":"USD","source":"Anthropic 定价页","as_of":"2025-12-20"},
+"links":{"official":"https://www.anthropic.com/claude/haiku","pricing":"https://www.anthropic.com/pricing"},
+"copy":{"one_liner":"接近 Sonnet 4 的编程能力，1/3 价格、2 倍速度。","highlights":["SWE-bench Verified 73.3%，小模型里最强代码","$1 / $5，支持 extended thinking","延迟低，适合子 agent"],"pitfalls":["知识广度与复杂推理弱于 Sonnet 4.5","长任务规划能力有限","无自建"],"logic_ability":"工程型推理在同价位里领先；考试型推理中等。适合做多 agent 系统里的执行者。","best_for":["高频代码补全 / 小任务","多 agent 子任务"],"not_for":["复杂长任务"]},"capability_notes":{},"complete":false}

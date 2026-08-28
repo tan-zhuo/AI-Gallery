@@ -1,0 +1,4 @@
+{"id":"claude-opus-5","name":"Claude Opus 5","aliases":["claude-opus-5"],"vendor":"Anthropic","family":"Claude 5","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2026","updated_at":"2026-08-28","modalities":["text","image","tools","computer-use"],"reasoning_mode":"optional",
+"architecture":{"type":"unknown","undisclosed":true,"notes":"未披露。"},"context":{"display":"未披露"},"memory":{"weight_gb":{},"estimated":false},
+"links":{"official":"https://www.anthropic.com/","pricing":"https://www.anthropic.com/pricing"},
+"copy":{"one_liner":"Claude 5 家族旗舰。规格、定价、分数待维护者核对后补录。","highlights":["Claude 5 家族当前代","官方模型 ID claude-opus-5","完善中"],"pitfalls":["本站尚无带来源的分数与定价，请勿据此选型","参数、架构未披露","完善中"],"logic_ability":"完善中：待收录带来源的评测数据。","best_for":[],"not_for":[]},"capability_notes":{},"complete":false}

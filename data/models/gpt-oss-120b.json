@@ -1,0 +1,61 @@
+{
+  "id": "gpt-oss-120b",
+  "name": "gpt-oss-120b",
+  "name_zh": "OpenAI 开源 120B",
+  "aliases": ["gpt oss 120b", "openai/gpt-oss-120b"],
+  "vendor": "OpenAI",
+  "family": "gpt-oss",
+  "license": "Apache-2.0",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/openai/gpt-oss-120b",
+  "status": "current",
+  "released_at": "2025-08-05",
+  "updated_at": "2025-12-20",
+  "modalities": ["text", "tools"],
+  "reasoning_mode": "default-on",
+  "architecture": {
+    "type": "moe", "total_params": "117B", "active_params": "5.1B", "total_params_b": 117, "active_params_b": 5.1,
+    "experts": 128, "active_experts": 4, "shared_expert": false, "layers": 36, "hidden_size": 2880, "vocab_size": 201088,
+    "kv_heads": 8, "head_dim": 64, "attention": "GQA（64 Q 头 / 8 KV 头），交替稠密 / 滑窗 128",
+    "notes": "MoE 权重原生 MXFP4（4.25 bit）。交替全注意力与 128 滑窗层，带 attention sink。Harmony 对话格式，推理强度 low/medium/high。",
+    "undisclosed": false
+  },
+  "context": { "max_tokens": 131072, "display": "128K", "max_output": 131072 },
+  "memory": {
+    "weight_gb": { "q4": 63 },
+    "kv_per_token_kib": 72,
+    "kv_note": "8 KV 头 × 64 × 2 × 36 层 × 2 B = 72 KiB/token（滑窗层实际更小）。",
+    "ref_hw_24gb": "不可行（MXFP4 63 GB）",
+    "ref_hw_80gb": "MXFP4 63 GB 单卡 H100 可跑，官方目标配置",
+    "ref_hw_8x80gb": "高并发服务",
+    "estimated": false
+  },
+  "pricing": { "input_per_m": 0.1, "output_per_m": 0.5, "currency": "USD", "source": "第三方托管常见价（Groq / Cerebras / Together）", "as_of": "2025-12-20", "note": "开源权重，社区托管价" },
+  "links": { "official": "https://openai.com/index/introducing-gpt-oss/", "hf": "https://huggingface.co/openai/gpt-oss-120b", "github": "https://github.com/openai/gpt-oss", "paper": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf" },
+  "copy": {
+    "one_liner": "单卡 80GB 跑的 OpenAI 开源推理模型，5B 激活极快。",
+    "highlights": ["Apache-2.0，OpenAI 六年来首次开放权重", "MXFP4 原生 63 GB，单张 H100 / 双 4090 级别即可部署", "5.1B 激活，吞吐极高；推理强度三档可调"],
+    "pitfalls": ["Harmony 格式必须严格遵守，旧版 chat template 会显著降质", "知识广度与多语言弱（训练偏英文、STEM），中文明显不如 Qwen / GLM", "幻觉率偏高（官方 PersonQA 幻觉率 49%），事实问答慎用"],
+    "logic_ability": "考试型推理相对体量极强（AIME 2025 97.9% 带工具、GPQA 80.1%），得益于 o 系列同源的 RL 配方。工程型推理（SWE-bench 62.4%）中等。reasoning effort 是关键：low 时几乎不思考，high 时思考链可达数万 token。常见问题：英文之外语言的推理质量下降、幻觉多。",
+    "best_for": ["单卡高吞吐推理服务", "数学 / STEM 推理", "英文 agent 原型"],
+    "not_for": ["中文为主的产品", "知识问答 / 事实核查"]
+  },
+  "capability_notes": {
+    "coding": "SWE-bench Verified 62.4%、Codeforces 2622（工具，官方）。",
+    "reasoning": "GPQA Diamond 80.1%、HLE 19.0%（无工具，官方）。",
+    "math": "AIME 2025 97.9%（工具）、92.5%（无工具，官方）。",
+    "agent": "τ-bench Retail 67.8%（官方）。",
+    "chinese": "弱，中文非重点语言。"
+  },
+  "sheet": {
+    "architecture_md": "**类型**：MoE，116.8B 总 / 5.1B 激活。\n\n- 36 层，隐藏维 2880，词表 201,088（o200k_harmony）\n- 专家：128 个，每 token 激活 4 个，无共享专家\n- GQA：64 Q 头 / 8 KV 头，head_dim 64\n- 注意力交替：稠密全注意力层 ↔ 128 token 滑窗层；每头带 learned attention sink\n- RoPE + YaRN 到 128K\n- MoE 权重训练后量化为 MXFP4（每参数 4.25 bit）\n\n参考：gpt-oss 模型卡。",
+    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| MXFP4（原生） | 63 GB | 80GB 单卡 |\n| BF16（反量化） | ≈ 234 GB | 4×80GB，无必要 |\n\n**KV Cache**：≤ 72 KiB/token，128K 上下文 ≈ 9 GB。\n\n**参考配置**：\n- 24GB：不可行（用 gpt-oss-20b）\n- 80GB H100：MXFP4 + 128K 上下文，官方目标\n- 2×RTX 4090 48GB：社区可行，需 offload",
+    "training_md": "- 预训练规模未详细披露（以英文 STEM / 代码为主）\n- 后训练：与 o 系列相同的 SFT + 高算力 RL\n- 推理默认开启，system prompt 里 `Reasoning: low|medium|high`\n- 工具：内置浏览、Python、自定义函数（Harmony 格式）\n- 最大输出 131K",
+    "ecosystem_md": "- HF：openai/gpt-oss-120b\n- 引擎：vLLM、SGLang、llama.cpp、Ollama、LM Studio、TensorRT-LLM；Groq / Cerebras 提供超高速托管\n- 微调：OpenAI 官方给出 LoRA 示例；Unsloth 支持\n- 中文文档：无（官方英文）",
+    "versions_md": "- 小版：gpt-oss-20b（21B/3.6B，16GB 可跑）\n- 变体：gpt-oss-safeguard（安全分类）"
+  },
+  "ecosystem": { "engines": ["vLLM", "SGLang", "llama.cpp", "Ollama", "TensorRT-LLM"], "finetune": "LoRA（官方示例）", "zh_docs": "无" },
+  "complete": true
+}

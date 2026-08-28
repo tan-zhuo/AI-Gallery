@@ -1,0 +1,5 @@
+{"id":"gpt-5-mini","name":"GPT-5 mini","aliases":["gpt-5-mini"],"vendor":"OpenAI","family":"GPT-5","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2025-08-07","updated_at":"2025-12-20","modalities":["text","image","tools"],"reasoning_mode":"default-on",
+"architecture":{"type":"unknown","undisclosed":true},"context":{"max_tokens":400000,"display":"400K","max_output":128000},"memory":{"weight_gb":{},"estimated":false},
+"pricing":{"input_per_m":0.25,"output_per_m":2,"currency":"USD","source":"OpenAI 定价页","as_of":"2025-12-20"},
+"links":{"official":"https://openai.com/gpt-5","pricing":"https://openai.com/api/pricing"},
+"copy":{"one_liner":"GPT-5 的 1/5 价格，推理保留大半，性价比档。","highlights":["AIME 2025 91.1%","$0.25 / $2","400K 上下文"],"pitfalls":["代码 agent 能力明显弱于 GPT-5","知识广度下降","无自建"],"logic_ability":"考试型推理保留良好，工程型推理下降较多。","best_for":["批量分类 / 抽取","轻量推理"],"not_for":["复杂 agent"]},"capability_notes":{},"complete":false}

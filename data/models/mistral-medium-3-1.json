@@ -1,0 +1,5 @@
+{"id":"mistral-medium-3-1","name":"Mistral Medium 3.1","aliases":["mistral-medium-2508"],"vendor":"Mistral AI","family":"Mistral Medium","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2025-08-12","updated_at":"2025-12-20","modalities":["text","image","tools"],"reasoning_mode":"none",
+"architecture":{"type":"unknown","undisclosed":true,"notes":"未披露；可私有化授权部署（4 卡起），但权重不公开。"},"context":{"max_tokens":131072,"display":"128K"},"memory":{"weight_gb":{},"estimated":false},
+"pricing":{"input_per_m":0.4,"output_per_m":2,"currency":"USD","source":"Mistral 定价页","as_of":"2025-12-20"},
+"links":{"official":"https://mistral.ai/news/mistral-medium-3","pricing":"https://mistral.ai/pricing"},
+"copy":{"one_liner":"欧洲厂商的中档闭源，可签约私有化部署。","highlights":["$0.4 / $2","企业私有化选项（合同）","欧盟数据合规"],"pitfalls":["分数落后同价位美中模型","非推理模型","权重不公开"],"logic_ability":"非推理模型，中游。","best_for":["欧盟合规场景"],"not_for":["榜单分数优先"]},"capability_notes":{},"complete":false}

@@ -1,0 +1,63 @@
+{
+  "id": "deepseek-v3-2",
+  "name": "DeepSeek-V3.2",
+  "name_zh": "深度求索 V3.2",
+  "aliases": ["DeepSeek V3.2", "deepseek-chat", "deepseek-reasoner"],
+  "vendor": "DeepSeek",
+  "vendor_zh": "深度求索",
+  "family": "DeepSeek V3",
+  "license": "MIT",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2",
+  "status": "current",
+  "released_at": "2025-12-01",
+  "updated_at": "2025-12-20",
+  "modalities": ["text", "tools"],
+  "reasoning_mode": "optional",
+  "architecture": {
+    "type": "moe", "total_params": "685B", "active_params": "37B", "total_params_b": 685, "active_params_b": 37,
+    "experts": 256, "active_experts": 8, "shared_expert": true, "layers": 61, "hidden_size": 7168, "vocab_size": 129280,
+    "kv_heads": 1, "head_dim": 288,
+    "attention": "MLA + DSA（DeepSeek Sparse Attention）",
+    "notes": "在 V3.1-Terminus 基础上引入 DSA：lightning indexer 为每个 query 选 top-k 键，把注意力复杂度从 O(L²) 降到 O(L·k)。MLA 的 KV 压缩为 512 维潜向量 + 64 维 RoPE（表内 kv_heads=1、head_dim=288 为等效换算）。",
+    "undisclosed": false
+  },
+  "context": { "max_tokens": 131072, "display": "128K", "max_output": 65536 },
+  "memory": {
+    "weight_gb": { "fp8": 690, "q4": 380 },
+    "kv_per_token_kib": 70,
+    "kv_note": "MLA：每 token 每层约 576 维 × 2 B ≈ 1.1 KiB，61 层 ≈ 70 KiB/token（远低于同规模 GQA）。",
+    "ref_hw_24gb": "不可行",
+    "ref_hw_80gb": "不可行（单卡）",
+    "ref_hw_8x80gb": "FP8 权重 690 GB，8×H100/H200 可部署；官方推荐 H200 或 8×H100 + FP8",
+    "estimated": true
+  },
+  "pricing": { "input_per_m": 0.28, "output_per_m": 0.42, "currency": "USD", "source": "DeepSeek 官方 API 定价", "as_of": "2025-12-20", "note": "缓存命中输入 $0.028" },
+  "links": { "official": "https://www.deepseek.com/", "hf": "https://huggingface.co/deepseek-ai/DeepSeek-V3.2", "github": "https://github.com/deepseek-ai/DeepSeek-V3.2", "paper": "https://github.com/deepseek-ai/DeepSeek-V3.2/blob/main/DeepSeek_V3_2.pdf", "pricing": "https://api-docs.deepseek.com/quick_start/pricing" },
+  "copy": {
+    "one_liner": "MIT 许可的开源旗舰，稀疏注意力把长上下文成本压到闭源 1/10。",
+    "highlights": ["MIT 许可，685B MoE 权重可下，商用无附加条款", "DSA 稀疏注意力：128K 上下文推理成本大幅下降，API 价 $0.28 / $0.42", "思考 / 非思考双模式统一权重，工具调用与推理可交错"],
+    "pitfalls": ["685B 体量，自建门槛 8×80GB 起，不是「开源就能本地跑」", "DSA 为新算子，vLLM / SGLang 需较新版本，llama.cpp 支持滞后", "多模态缺失，纯文本模型"],
+    "logic_ability": "考试型与工程型均衡：AIME 2025 与 GPQA 接近闭源旗舰，SWE-bench Verified 73.1% 属开源第一梯队。思考模式下推理链较长但很少「过度思考」；非思考模式在复杂规划上明显下降。V3.2-Speciale 变体在竞赛题上更强但不适合日常。常见问题：长 agent 任务中工具调用格式偶尔漂移。",
+    "best_for": ["自建高吞吐推理服务", "低成本 API 替代闭源", "长上下文文档处理"],
+    "not_for": ["单卡 / 消费级部署", "需要视觉输入"]
+  },
+  "capability_notes": {
+    "coding": "SWE-bench Verified 73.1%、Codeforces 2386（官方）。",
+    "reasoning": "GPQA Diamond 82.4%、HLE 25.1%（官方）。",
+    "math": "AIME 2025 93.1%（官方）。",
+    "agent": "Terminal-bench 37.7%，τ²-bench 80.3%（官方）。",
+    "chinese": "中文能力顶级，训练语料中文占比高。"
+  },
+  "sheet": {
+    "architecture_md": "**类型**：MoE，685B 总参数 / 37B 激活。\n\n- 61 层，隐藏维 7168，词表 129,280\n- 专家：256 路由专家 + 1 共享专家，每 token 激活 8 个路由专家\n- 注意力：**MLA**（Multi-head Latent Attention）：KV 压缩到 512 维潜向量 + 64 维解耦 RoPE\n- **DSA**（DeepSeek Sparse Attention）：轻量 indexer 打分，每个 query 只对 top-2048 个键做注意力\n- 上下文 128K；RoPE 用 YaRN 扩展\n- MTP（多 token 预测）头可用于投机解码\n\n参考：DeepSeek-V3 技术报告、V3.2 技术报告（GitHub）。",
+    "memory_md": "| 精度 | 权重大小 | 说明 |\n|---|---|---|\n| FP8 | ≈ 690 GB | 官方原生发布精度 |\n| BF16 | ≈ 1.37 TB | 由 FP8 反量化，通常不这么跑 |\n| Q4 | ≈ 380 GB（估） | llama.cpp / AWQ 社区量化 |\n\n**KV Cache**：MLA 每 token 每层约 576 维 → 61 层 ≈ 70 KiB/token（BF16）。128K 上下文单请求 ≈ 8.8 GB，比同规模 GQA 小一个量级。\n\n**参考配置**：\n- 消费级 24GB：不可行\n- 单卡 80GB：不可行\n- 8×H100 80GB：FP8 可部署，剩余显存留给 KV，高并发建议 H200\n\n警示：能加载 ≠ 能高并发。DSA 的 indexer 也占算力。",
+    "training_md": "- 预训练语料：V3 为 14.8T token；V3.2 在 V3.1-Terminus 基础上继续训练并做 DSA 适配（约 1T token 稀疏注意力继续预训练）\n- 后训练：大规模 RL（GRPO），把推理、agent、对齐合并为单阶段\n- 思考模式：`deepseek-reasoner` 默认思考；`deepseek-chat` 非思考\n- 工具调用：思考模式下支持工具调用（V3.2 新增）\n- 最大输出 64K（reasoner）",
+    "ecosystem_md": "- HF：deepseek-ai/DeepSeek-V3.2\n- 推理引擎：SGLang（官方首推）、vLLM（较新版本）、TensorRT-LLM；llama.cpp 对 DSA 支持有限\n- 微调：全参微调需要多节点；LoRA 社区支持\n- 中文文档：有（官方文档中英双语）",
+    "versions_md": "- 上代：DeepSeek-V3.1 / V3.1-Terminus（2025-08/09）、V3.2-Exp（2025-09）\n- 变体：DeepSeek-V3.2-Speciale（竞赛向，思考更长）\n- 姊妹：DeepSeek-R1-0528（旧推理线，已被 V3.2 思考模式覆盖）"
+  },
+  "ecosystem": { "engines": ["SGLang", "vLLM", "TensorRT-LLM"], "finetune": "多节点全参 / LoRA", "zh_docs": "有" },
+  "complete": true
+}
