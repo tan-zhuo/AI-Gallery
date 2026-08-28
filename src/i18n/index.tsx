@@ -1,6 +1,14 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
-import { en } from './en'
-import { ja } from './ja'
+import { en as enCore } from './en'
+import { ja as jaCore } from './ja'
+import { en_a } from './en.a'
+import { en_b } from './en.b'
+import { en_c } from './en.c'
+import { ja_a } from './ja.a'
+import { ja_b } from './ja.b'
+import { ja_c } from './ja.c'
+const en = { ...enCore, ...en_a, ...en_b, ...en_c }
+const ja = { ...jaCore, ...ja_a, ...ja_b, ...ja_c }
 
 export type Lang = 'zh' | 'en' | 'ja'
 export const LANGS: Array<{ code: Lang; label: string; short: string }> = [

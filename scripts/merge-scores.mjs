@@ -1,6 +1,7 @@
 // 本地脚本：把紧凑的分数表展开为 data/scores.json。只在维护者电脑跑，不是线上服务。
 import { writeFileSync } from 'node:fs'
 import { AA, AA_TBV21, ZH } from './aa-2026-08.mjs'
+import { rowsHist } from './hist-scores.mjs'
 const AS_OLD = '2025-12-20'
 const AS_NEW = '2026-08-28'
 const SRC = {
@@ -89,7 +90,8 @@ const rowsNew = [
   ['command-a-plus', null, 23, null, null, null, null, null, null, null, null, 'Command A+ 模型卡', 'https://huggingface.co/CohereLabs/command-a-plus-05-2026'],
   ['granite-4-2-30b', null, 24, null, 75.8, 66.4, null, 89.2, null, null, null, 'Granite 4.2 30B 模型卡', 'https://huggingface.co/ibm-granite/granite-4.2-30b'],
 ]
-const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW }))]
+// ---- 历史模型（2023–2025-08）：每行第 14 个元素为 as_of ----
+const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
 const keys = ['arena_text', 'aa_index', 'swe_verified', 'livecodebench', 'gpqa_diamond', 'hle', 'aime_2025', 'tau2_bench', 'terminal_bench', 'mmmu']
 const units = { arena_text: 'elo', aa_index: 'index' }
 const out = []
