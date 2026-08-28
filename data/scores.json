@@ -3201,20 +3201,10 @@
  },
  {
   "model_id": "gpt-4o",
-  "key": "arena_text",
-  "value": 1287,
-  "unit": "elo",
-  "source": "LMArena Text (style control)",
-  "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2024-08-13",
-  "evidence": "independent"
- },
- {
-  "model_id": "gpt-4o",
   "key": "swe_verified",
   "value": 33.2,
   "unit": "percent",
-  "source": "OpenAI GPT-4o 发布公告 / SWE-bench Verified 博客",
+  "source": "OpenAI GPT-4o 发布公告 / SWE-bench Verified 博客（未核实项已移除）",
   "source_url": "https://openai.com/index/hello-gpt-4o/",
   "as_of": "2024-08-13",
   "evidence": "official"
@@ -3224,7 +3214,7 @@
   "key": "gpqa_diamond",
   "value": 53.6,
   "unit": "percent",
-  "source": "OpenAI GPT-4o 发布公告 / SWE-bench Verified 博客",
+  "source": "OpenAI GPT-4o 发布公告 / SWE-bench Verified 博客（未核实项已移除）",
   "source_url": "https://openai.com/index/hello-gpt-4o/",
   "as_of": "2024-08-13",
   "evidence": "official"
@@ -3234,7 +3224,7 @@
   "key": "mmmu",
   "value": 69.1,
   "unit": "percent",
-  "source": "OpenAI GPT-4o 发布公告 / SWE-bench Verified 博客",
+  "source": "OpenAI GPT-4o 发布公告 / SWE-bench Verified 博客（未核实项已移除）",
   "source_url": "https://openai.com/index/hello-gpt-4o/",
   "as_of": "2024-08-13",
   "evidence": "official"
@@ -3244,7 +3234,7 @@
   "key": "gpqa_diamond",
   "value": 40.2,
   "unit": "percent",
-  "source": "OpenAI GPT-4o mini 发布公告",
+  "source": "OpenAI GPT-4o mini 发布公告 / simple-evals（GPQA）",
   "source_url": "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
   "as_of": "2024-07-18",
   "evidence": "official"
@@ -3254,7 +3244,7 @@
   "key": "mmmu",
   "value": 59.4,
   "unit": "percent",
-  "source": "OpenAI GPT-4o mini 发布公告",
+  "source": "OpenAI GPT-4o mini 发布公告 / simple-evals（GPQA）",
   "source_url": "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
   "as_of": "2024-07-18",
   "evidence": "official"
@@ -3264,29 +3254,29 @@
   "key": "swe_verified",
   "value": 48.9,
   "unit": "percent",
-  "source": "OpenAI o1 / o3 预览图表",
-  "source_url": "https://openai.com/o1/",
-  "as_of": "2024-12-20",
+  "source": "OpenAI o1-2024-12-17 发布表（o1 and new tools for developers）",
+  "source_url": "https://openai.com/index/o1-and-new-tools-for-developers/",
+  "as_of": "2024-12-17",
   "evidence": "official"
  },
  {
   "model_id": "o1",
   "key": "gpqa_diamond",
-  "value": 78,
+  "value": 75.7,
   "unit": "percent",
-  "source": "OpenAI o1 / o3 预览图表",
-  "source_url": "https://openai.com/o1/",
-  "as_of": "2024-12-20",
+  "source": "OpenAI o1-2024-12-17 发布表（o1 and new tools for developers）",
+  "source_url": "https://openai.com/index/o1-and-new-tools-for-developers/",
+  "as_of": "2024-12-17",
   "evidence": "official"
  },
  {
   "model_id": "o1",
   "key": "mmmu",
-  "value": 78.2,
+  "value": 77.3,
   "unit": "percent",
-  "source": "OpenAI o1 / o3 预览图表",
-  "source_url": "https://openai.com/o1/",
-  "as_of": "2024-12-20",
+  "source": "OpenAI o1-2024-12-17 发布表（o1 and new tools for developers）",
+  "source_url": "https://openai.com/index/o1-and-new-tools-for-developers/",
+  "as_of": "2024-12-17",
   "evidence": "official"
  },
  {
@@ -3524,7 +3514,7 @@
   "key": "swe_verified",
   "value": 62.3,
   "unit": "percent",
-  "source": "Anthropic Claude 3.7 Sonnet 公告",
+  "source": "Anthropic Claude 3.7 Sonnet 公告（GPQA/MMMU 为 64K 扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-3-7-sonnet",
   "as_of": "2025-02-24",
   "evidence": "official"
@@ -3534,7 +3524,7 @@
   "key": "gpqa_diamond",
   "value": 78.2,
   "unit": "percent",
-  "source": "Anthropic Claude 3.7 Sonnet 公告",
+  "source": "Anthropic Claude 3.7 Sonnet 公告（GPQA/MMMU 为 64K 扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-3-7-sonnet",
   "as_of": "2025-02-24",
   "evidence": "official"
@@ -3544,7 +3534,7 @@
   "key": "mmmu",
   "value": 75,
   "unit": "percent",
-  "source": "Anthropic Claude 3.7 Sonnet 公告",
+  "source": "Anthropic Claude 3.7 Sonnet 公告（GPQA/MMMU 为 64K 扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-3-7-sonnet",
   "as_of": "2025-02-24",
   "evidence": "official"
@@ -3554,7 +3544,7 @@
   "key": "swe_verified",
   "value": 72.5,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3564,7 +3554,7 @@
   "key": "gpqa_diamond",
   "value": 79.6,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3574,7 +3564,7 @@
   "key": "aime_2025",
   "value": 75.5,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3584,7 +3574,7 @@
   "key": "terminal_bench",
   "value": 43.2,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3594,7 +3584,7 @@
   "key": "mmmu",
   "value": 76.5,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3604,7 +3594,7 @@
   "key": "swe_verified",
   "value": 72.7,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3614,7 +3604,7 @@
   "key": "gpqa_diamond",
   "value": 75.4,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3624,7 +3614,7 @@
   "key": "aime_2025",
   "value": 70.5,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3634,7 +3624,7 @@
   "key": "terminal_bench",
   "value": 35.5,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3644,7 +3634,7 @@
   "key": "mmmu",
   "value": 74.4,
   "unit": "percent",
-  "source": "Anthropic Claude 4 公告",
+  "source": "Anthropic Claude 4 公告（GPQA/AIME/MMMU 为扩展思考）",
   "source_url": "https://www.anthropic.com/news/claude-4",
   "as_of": "2025-05-22",
   "evidence": "official"
@@ -3654,8 +3644,8 @@
   "key": "mmmu",
   "value": 47.9,
   "unit": "percent",
-  "source": "Google Gemini 1.0 公告",
-  "source_url": "https://blog.google/technology/ai/google-gemini-ai/",
+  "source": "Gemini 1.0 技术报告（MMMU val, pass@1）",
+  "source_url": "https://arxiv.org/abs/2312.11805",
   "as_of": "2023-12-06",
   "evidence": "official"
  },
@@ -3704,8 +3694,8 @@
   "key": "swe_verified",
   "value": 51.8,
   "unit": "percent",
-  "source": "Google Gemini 2.0 Flash GA 表",
-  "source_url": "https://blog.google/technology/google-deepmind/gemini-model-updates-february-2025/",
+  "source": "Google Gemini 2.0 Flash GA 表（LiveCodeBench v5；SWE-bench 51.8 来自 2024-12 开发者博客，含代码执行工具）",
+  "source_url": "https://developers.googleblog.com/en/gemini-2-family-expands/",
   "as_of": "2025-02-05",
   "evidence": "official"
  },
@@ -3714,8 +3704,8 @@
   "key": "livecodebench",
   "value": 34.5,
   "unit": "percent",
-  "source": "Google Gemini 2.0 Flash GA 表",
-  "source_url": "https://blog.google/technology/google-deepmind/gemini-model-updates-february-2025/",
+  "source": "Google Gemini 2.0 Flash GA 表（LiveCodeBench v5；SWE-bench 51.8 来自 2024-12 开发者博客，含代码执行工具）",
+  "source_url": "https://developers.googleblog.com/en/gemini-2-family-expands/",
   "as_of": "2025-02-05",
   "evidence": "official"
  },
@@ -3724,8 +3714,8 @@
   "key": "gpqa_diamond",
   "value": 60.1,
   "unit": "percent",
-  "source": "Google Gemini 2.0 Flash GA 表",
-  "source_url": "https://blog.google/technology/google-deepmind/gemini-model-updates-february-2025/",
+  "source": "Google Gemini 2.0 Flash GA 表（LiveCodeBench v5；SWE-bench 51.8 来自 2024-12 开发者博客，含代码执行工具）",
+  "source_url": "https://developers.googleblog.com/en/gemini-2-family-expands/",
   "as_of": "2025-02-05",
   "evidence": "official"
  },
@@ -3734,8 +3724,8 @@
   "key": "mmmu",
   "value": 71.7,
   "unit": "percent",
-  "source": "Google Gemini 2.0 Flash GA 表",
-  "source_url": "https://blog.google/technology/google-deepmind/gemini-model-updates-february-2025/",
+  "source": "Google Gemini 2.0 Flash GA 表（LiveCodeBench v5；SWE-bench 51.8 来自 2024-12 开发者博客，含代码执行工具）",
+  "source_url": "https://developers.googleblog.com/en/gemini-2-family-expands/",
   "as_of": "2025-02-05",
   "evidence": "official"
  },
@@ -3744,7 +3734,7 @@
   "key": "gpqa_diamond",
   "value": 56,
   "unit": "percent",
-  "source": "xAI Grok-2 公告",
+  "source": "xAI Grok-2 公告（GPQA 未标注 Diamond）",
   "source_url": "https://x.ai/news/grok-2",
   "as_of": "2024-08-13",
   "evidence": "official"
@@ -3754,7 +3744,7 @@
   "key": "mmmu",
   "value": 66.1,
   "unit": "percent",
-  "source": "xAI Grok-2 公告",
+  "source": "xAI Grok-2 公告（GPQA 未标注 Diamond）",
   "source_url": "https://x.ai/news/grok-2",
   "as_of": "2024-08-13",
   "evidence": "official"
@@ -3774,7 +3764,7 @@
   "key": "livecodebench",
   "value": 57,
   "unit": "percent",
-  "source": "xAI Grok 3 公告（非推理 pass@1）",
+  "source": "xAI Grok 3 公告（非推理 pass@1；LCB 2024-10-01~2025-02-01）",
   "source_url": "https://x.ai/news/grok-3",
   "as_of": "2025-02-19",
   "evidence": "official"
@@ -3784,7 +3774,7 @@
   "key": "gpqa_diamond",
   "value": 75.4,
   "unit": "percent",
-  "source": "xAI Grok 3 公告（非推理 pass@1）",
+  "source": "xAI Grok 3 公告（非推理 pass@1；LCB 2024-10-01~2025-02-01）",
   "source_url": "https://x.ai/news/grok-3",
   "as_of": "2025-02-19",
   "evidence": "official"
@@ -3794,38 +3784,28 @@
   "key": "mmmu",
   "value": 73.2,
   "unit": "percent",
-  "source": "xAI Grok 3 公告（非推理 pass@1）",
+  "source": "xAI Grok 3 公告（非推理 pass@1；LCB 2024-10-01~2025-02-01）",
   "source_url": "https://x.ai/news/grok-3",
   "as_of": "2025-02-19",
   "evidence": "official"
  },
  {
-  "model_id": "llama-3-70b",
-  "key": "gpqa_diamond",
-  "value": 39.5,
-  "unit": "percent",
-  "source": "Llama 3.1 模型卡（Llama 3 70B 对照列）",
-  "source_url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
-  "as_of": "2024-07-23",
-  "evidence": "official"
- },
- {
   "model_id": "llama-3-1-405b",
   "key": "gpqa_diamond",
-  "value": 50.7,
+  "value": 49,
   "unit": "percent",
-  "source": "Llama 3.1 模型卡",
-  "source_url": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+  "source": "Llama 3.3 模型卡（GPQA Diamond CoT 对照列）",
+  "source_url": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
   "as_of": "2024-07-23",
   "evidence": "official"
  },
  {
   "model_id": "llama-3-1-8b",
   "key": "gpqa_diamond",
-  "value": 30.4,
+  "value": 31.8,
   "unit": "percent",
-  "source": "Llama 3.1 模型卡",
-  "source_url": "https://huggingface.co/meta-llama/Llama-3.1-8B-Instruct",
+  "source": "Llama 3.3 模型卡（GPQA Diamond CoT 对照列）",
+  "source_url": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
   "as_of": "2024-07-23",
   "evidence": "official"
  },
@@ -3874,8 +3854,8 @@
   "key": "livecodebench",
   "value": 55.5,
   "unit": "percent",
-  "source": "Qwen2.5 博客",
-  "source_url": "https://qwenlm.github.io/blog/qwen2.5/",
+  "source": "Qwen2.5 技术报告表6（LiveCodeBench 2305-2409；GPQA 未标注 Diamond）",
+  "source_url": "https://arxiv.org/abs/2412.15115",
   "as_of": "2024-09-19",
   "evidence": "official"
  },
@@ -3884,8 +3864,8 @@
   "key": "gpqa_diamond",
   "value": 49,
   "unit": "percent",
-  "source": "Qwen2.5 博客",
-  "source_url": "https://qwenlm.github.io/blog/qwen2.5/",
+  "source": "Qwen2.5 技术报告表6（LiveCodeBench 2305-2409；GPQA 未标注 Diamond）",
+  "source_url": "https://arxiv.org/abs/2412.15115",
   "as_of": "2024-09-19",
   "evidence": "official"
  },
@@ -3894,7 +3874,7 @@
   "key": "livecodebench",
   "value": 31.4,
   "unit": "percent",
-  "source": "Qwen2.5-Coder 博客",
+  "source": "Qwen2.5-Coder 博客（LiveCodeBench 2024.07-2024.11）",
   "source_url": "https://qwenlm.github.io/blog/qwen2.5-coder-family/",
   "as_of": "2024-11-12",
   "evidence": "official"
@@ -3904,7 +3884,7 @@
   "key": "livecodebench",
   "value": 63.4,
   "unit": "percent",
-  "source": "QwQ-32B 博客",
+  "source": "QwQ-32B 博客（LiveCodeBench 24.08-25.02）",
   "source_url": "https://qwenlm.github.io/blog/qwq-32b/",
   "as_of": "2025-03-05",
   "evidence": "official"
@@ -3914,7 +3894,7 @@
   "key": "livecodebench",
   "value": 70.7,
   "unit": "percent",
-  "source": "Qwen3 博客（思考模式）",
+  "source": "Qwen3 技术报告表11（思考模式，LiveCodeBench v5）",
   "source_url": "https://qwenlm.github.io/blog/qwen3/",
   "as_of": "2025-04-29",
   "evidence": "official"
@@ -3924,7 +3904,7 @@
   "key": "gpqa_diamond",
   "value": 71.1,
   "unit": "percent",
-  "source": "Qwen3 博客（思考模式）",
+  "source": "Qwen3 技术报告表11（思考模式，LiveCodeBench v5）",
   "source_url": "https://qwenlm.github.io/blog/qwen3/",
   "as_of": "2025-04-29",
   "evidence": "official"
@@ -3934,7 +3914,7 @@
   "key": "aime_2025",
   "value": 81.5,
   "unit": "percent",
-  "source": "Qwen3 博客（思考模式）",
+  "source": "Qwen3 技术报告表11（思考模式，LiveCodeBench v5）",
   "source_url": "https://qwenlm.github.io/blog/qwen3/",
   "as_of": "2025-04-29",
   "evidence": "official"
@@ -3944,7 +3924,7 @@
   "key": "livecodebench",
   "value": 57.5,
   "unit": "percent",
-  "source": "Qwen3 技术报告（思考模式）",
+  "source": "Qwen3 技术报告表17（思考模式，LiveCodeBench v5）",
   "source_url": "https://arxiv.org/abs/2505.09388",
   "as_of": "2025-05-14",
   "evidence": "official"
@@ -3954,7 +3934,7 @@
   "key": "gpqa_diamond",
   "value": 62,
   "unit": "percent",
-  "source": "Qwen3 技术报告（思考模式）",
+  "source": "Qwen3 技术报告表17（思考模式，LiveCodeBench v5）",
   "source_url": "https://arxiv.org/abs/2505.09388",
   "as_of": "2025-05-14",
   "evidence": "official"
@@ -3964,7 +3944,7 @@
   "key": "aime_2025",
   "value": 67.3,
   "unit": "percent",
-  "source": "Qwen3 技术报告（思考模式）",
+  "source": "Qwen3 技术报告表17（思考模式，LiveCodeBench v5）",
   "source_url": "https://arxiv.org/abs/2505.09388",
   "as_of": "2025-05-14",
   "evidence": "official"
@@ -3974,7 +3954,7 @@
   "key": "livecodebench",
   "value": 32.5,
   "unit": "percent",
-  "source": "DeepSeek-V2 模型卡",
+  "source": "DeepSeek-V2 模型卡（LiveCodeBench 0901-0401）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat",
   "as_of": "2024-05-06",
   "evidence": "official"
@@ -3984,8 +3964,8 @@
   "key": "livecodebench",
   "value": 43.4,
   "unit": "percent",
-  "source": "DeepSeek-Coder-V2 模型卡",
-  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct",
+  "source": "DeepSeek-Coder-V2 论文表4（LiveCodeBench 1201-0601）",
+  "source_url": "https://arxiv.org/abs/2406.11931",
   "as_of": "2024-06-17",
   "evidence": "official"
  },
@@ -3994,7 +3974,7 @@
   "key": "livecodebench",
   "value": 40.5,
   "unit": "percent",
-  "source": "DeepSeek-V3 模型卡",
+  "source": "DeepSeek-V3 模型卡（LiveCodeBench Pass@1-COT）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
   "as_of": "2024-12-26",
   "evidence": "official"
@@ -4004,7 +3984,7 @@
   "key": "gpqa_diamond",
   "value": 59.1,
   "unit": "percent",
-  "source": "DeepSeek-V3 模型卡",
+  "source": "DeepSeek-V3 模型卡（LiveCodeBench Pass@1-COT）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
   "as_of": "2024-12-26",
   "evidence": "official"
@@ -4014,7 +3994,7 @@
   "key": "swe_verified",
   "value": 49.2,
   "unit": "percent",
-  "source": "DeepSeek-R1 模型卡",
+  "source": "DeepSeek-R1 模型卡（LiveCodeBench Pass@1-COT）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
   "as_of": "2025-01-20",
   "evidence": "official"
@@ -4024,7 +4004,7 @@
   "key": "livecodebench",
   "value": 65.9,
   "unit": "percent",
-  "source": "DeepSeek-R1 模型卡",
+  "source": "DeepSeek-R1 模型卡（LiveCodeBench Pass@1-COT）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
   "as_of": "2025-01-20",
   "evidence": "official"
@@ -4034,7 +4014,7 @@
   "key": "gpqa_diamond",
   "value": 71.5,
   "unit": "percent",
-  "source": "DeepSeek-R1 模型卡",
+  "source": "DeepSeek-R1 模型卡（LiveCodeBench Pass@1-COT）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
   "as_of": "2025-01-20",
   "evidence": "official"
@@ -4084,7 +4064,7 @@
   "key": "swe_verified",
   "value": 66,
   "unit": "percent",
-  "source": "DeepSeek-V3.1 模型卡",
+  "source": "DeepSeek-V3.1 模型卡（思考模式；LiveCodeBench 2408-2505）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
   "as_of": "2025-08-21",
   "evidence": "official"
@@ -4094,7 +4074,7 @@
   "key": "livecodebench",
   "value": 74.8,
   "unit": "percent",
-  "source": "DeepSeek-V3.1 模型卡",
+  "source": "DeepSeek-V3.1 模型卡（思考模式；LiveCodeBench 2408-2505）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
   "as_of": "2025-08-21",
   "evidence": "official"
@@ -4104,7 +4084,7 @@
   "key": "gpqa_diamond",
   "value": 80.1,
   "unit": "percent",
-  "source": "DeepSeek-V3.1 模型卡",
+  "source": "DeepSeek-V3.1 模型卡（思考模式；LiveCodeBench 2408-2505）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
   "as_of": "2025-08-21",
   "evidence": "official"
@@ -4114,7 +4094,7 @@
   "key": "hle",
   "value": 15.9,
   "unit": "percent",
-  "source": "DeepSeek-V3.1 模型卡",
+  "source": "DeepSeek-V3.1 模型卡（思考模式；LiveCodeBench 2408-2505）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
   "as_of": "2025-08-21",
   "evidence": "official"
@@ -4124,7 +4104,7 @@
   "key": "aime_2025",
   "value": 88.4,
   "unit": "percent",
-  "source": "DeepSeek-V3.1 模型卡",
+  "source": "DeepSeek-V3.1 模型卡（思考模式；LiveCodeBench 2408-2505）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
   "as_of": "2025-08-21",
   "evidence": "official"
@@ -4134,7 +4114,7 @@
   "key": "terminal_bench",
   "value": 31.3,
   "unit": "percent",
-  "source": "DeepSeek-V3.1 模型卡",
+  "source": "DeepSeek-V3.1 模型卡（思考模式；LiveCodeBench 2408-2505）",
   "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
   "as_of": "2025-08-21",
   "evidence": "official"
@@ -4144,8 +4124,8 @@
   "key": "swe_verified",
   "value": 64.2,
   "unit": "percent",
-  "source": "Z.ai GLM-4.5 博客",
-  "source_url": "https://z.ai/blog/glm-4.5",
+  "source": "GLM-4.5 技术报告表4/5（LiveCodeBench 2407-2501；仅报告 AIME 24）（未核实项已移除）",
+  "source_url": "https://arxiv.org/abs/2508.06471",
   "as_of": "2025-07-28",
   "evidence": "official"
  },
@@ -4154,8 +4134,8 @@
   "key": "livecodebench",
   "value": 72.9,
   "unit": "percent",
-  "source": "Z.ai GLM-4.5 博客",
-  "source_url": "https://z.ai/blog/glm-4.5",
+  "source": "GLM-4.5 技术报告表4/5（LiveCodeBench 2407-2501；仅报告 AIME 24）（未核实项已移除）",
+  "source_url": "https://arxiv.org/abs/2508.06471",
   "as_of": "2025-07-28",
   "evidence": "official"
  },
@@ -4164,8 +4144,8 @@
   "key": "gpqa_diamond",
   "value": 79.1,
   "unit": "percent",
-  "source": "Z.ai GLM-4.5 博客",
-  "source_url": "https://z.ai/blog/glm-4.5",
+  "source": "GLM-4.5 技术报告表4/5（LiveCodeBench 2407-2501；仅报告 AIME 24）（未核实项已移除）",
+  "source_url": "https://arxiv.org/abs/2508.06471",
   "as_of": "2025-07-28",
   "evidence": "official"
  },
@@ -4174,18 +4154,8 @@
   "key": "hle",
   "value": 14.4,
   "unit": "percent",
-  "source": "Z.ai GLM-4.5 博客",
-  "source_url": "https://z.ai/blog/glm-4.5",
-  "as_of": "2025-07-28",
-  "evidence": "official"
- },
- {
-  "model_id": "glm-4-5",
-  "key": "aime_2025",
-  "value": 91,
-  "unit": "percent",
-  "source": "Z.ai GLM-4.5 博客",
-  "source_url": "https://z.ai/blog/glm-4.5",
+  "source": "GLM-4.5 技术报告表4/5（LiveCodeBench 2407-2501；仅报告 AIME 24）（未核实项已移除）",
+  "source_url": "https://arxiv.org/abs/2508.06471",
   "as_of": "2025-07-28",
   "evidence": "official"
  },
@@ -4194,8 +4164,8 @@
   "key": "terminal_bench",
   "value": 37.5,
   "unit": "percent",
-  "source": "Z.ai GLM-4.5 博客",
-  "source_url": "https://z.ai/blog/glm-4.5",
+  "source": "GLM-4.5 技术报告表4/5（LiveCodeBench 2407-2501；仅报告 AIME 24）（未核实项已移除）",
+  "source_url": "https://arxiv.org/abs/2508.06471",
   "as_of": "2025-07-28",
   "evidence": "official"
  },
@@ -4204,7 +4174,7 @@
   "key": "swe_verified",
   "value": 65.8,
   "unit": "percent",
-  "source": "Kimi K2 模型卡",
+  "source": "Kimi K2 模型卡（LiveCodeBench v6）",
   "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
   "as_of": "2025-07-11",
   "evidence": "official"
@@ -4214,7 +4184,7 @@
   "key": "livecodebench",
   "value": 53.7,
   "unit": "percent",
-  "source": "Kimi K2 模型卡",
+  "source": "Kimi K2 模型卡（LiveCodeBench v6）",
   "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
   "as_of": "2025-07-11",
   "evidence": "official"
@@ -4224,7 +4194,7 @@
   "key": "gpqa_diamond",
   "value": 75.1,
   "unit": "percent",
-  "source": "Kimi K2 模型卡",
+  "source": "Kimi K2 模型卡（LiveCodeBench v6）",
   "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
   "as_of": "2025-07-11",
   "evidence": "official"
@@ -4234,7 +4204,7 @@
   "key": "hle",
   "value": 4.7,
   "unit": "percent",
-  "source": "Kimi K2 模型卡",
+  "source": "Kimi K2 模型卡（LiveCodeBench v6）",
   "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
   "as_of": "2025-07-11",
   "evidence": "official"
@@ -4244,7 +4214,7 @@
   "key": "aime_2025",
   "value": 49.5,
   "unit": "percent",
-  "source": "Kimi K2 模型卡",
+  "source": "Kimi K2 模型卡（LiveCodeBench v6）",
   "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
   "as_of": "2025-07-11",
   "evidence": "official"
@@ -4254,7 +4224,7 @@
   "key": "terminal_bench",
   "value": 30,
   "unit": "percent",
-  "source": "Kimi K2 模型卡",
+  "source": "Kimi K2 模型卡（LiveCodeBench v6）",
   "source_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
   "as_of": "2025-07-11",
   "evidence": "official"
@@ -4284,7 +4254,7 @@
   "key": "swe_verified",
   "value": 56,
   "unit": "percent",
-  "source": "MiniMax-M1 模型卡（80k）",
+  "source": "MiniMax-M1 模型卡（80k；LiveCodeBench 24/8-25/5）",
   "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M1-80k",
   "as_of": "2025-06-16",
   "evidence": "official"
@@ -4294,7 +4264,7 @@
   "key": "livecodebench",
   "value": 65,
   "unit": "percent",
-  "source": "MiniMax-M1 模型卡（80k）",
+  "source": "MiniMax-M1 模型卡（80k；LiveCodeBench 24/8-25/5）",
   "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M1-80k",
   "as_of": "2025-06-16",
   "evidence": "official"
@@ -4304,7 +4274,7 @@
   "key": "gpqa_diamond",
   "value": 70,
   "unit": "percent",
-  "source": "MiniMax-M1 模型卡（80k）",
+  "source": "MiniMax-M1 模型卡（80k；LiveCodeBench 24/8-25/5）",
   "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M1-80k",
   "as_of": "2025-06-16",
   "evidence": "official"
@@ -4314,7 +4284,7 @@
   "key": "hle",
   "value": 8.4,
   "unit": "percent",
-  "source": "MiniMax-M1 模型卡（80k）",
+  "source": "MiniMax-M1 模型卡（80k；LiveCodeBench 24/8-25/5）",
   "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M1-80k",
   "as_of": "2025-06-16",
   "evidence": "official"
@@ -4324,7 +4294,7 @@
   "key": "aime_2025",
   "value": 76.9,
   "unit": "percent",
-  "source": "MiniMax-M1 模型卡（80k）",
+  "source": "MiniMax-M1 模型卡（80k；LiveCodeBench 24/8-25/5）",
   "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M1-80k",
   "as_of": "2025-06-16",
   "evidence": "official"
@@ -4364,7 +4334,7 @@
   "key": "livecodebench",
   "value": 57.8,
   "unit": "percent",
-  "source": "MiMo-7B-RL 模型卡",
+  "source": "MiMo-7B-RL 模型卡（LiveCodeBench v5）",
   "source_url": "https://huggingface.co/XiaomiMiMo/MiMo-7B-RL",
   "as_of": "2025-04-30",
   "evidence": "official"
@@ -4374,7 +4344,7 @@
   "key": "gpqa_diamond",
   "value": 54.4,
   "unit": "percent",
-  "source": "MiMo-7B-RL 模型卡",
+  "source": "MiMo-7B-RL 模型卡（LiveCodeBench v5）",
   "source_url": "https://huggingface.co/XiaomiMiMo/MiMo-7B-RL",
   "as_of": "2025-04-30",
   "evidence": "official"
@@ -4384,7 +4354,7 @@
   "key": "aime_2025",
   "value": 55.4,
   "unit": "percent",
-  "source": "MiMo-7B-RL 模型卡",
+  "source": "MiMo-7B-RL 模型卡（LiveCodeBench v5）",
   "source_url": "https://huggingface.co/XiaomiMiMo/MiMo-7B-RL",
   "as_of": "2025-04-30",
   "evidence": "official"
