@@ -48,11 +48,11 @@ function Vram() {
           </select>
         </L>
         <L label={t('精度')}>
-          <div className="seg seg-sm flex-wrap h-auto">{(Object.keys(QUANT_LABEL) as CalcQuant[]).map((q) => <button key={q} type="button" aria-pressed={quant === q} onClick={() => setQuant(q)} className="h-7">{QUANT_LABEL[q]}</button>)}</div>
+          <div className="grid grid-cols-3 gap-1.5">{(Object.keys(QUANT_LABEL) as CalcQuant[]).map((q) => <button key={q} type="button" aria-pressed={quant === q} onClick={() => setQuant(q)} className={cx('ctl ctl-sm justify-center num', quant === q && 'bg-text text-bg border-text hover:border-text')}>{QUANT_LABEL[q]}</button>)}</div>
         </L>
         <L label={t('上下文长度 · {n} token', { n: ctx.toLocaleString() })}>
           <input type="range" min={2048} max={Math.min(m.context.max_tokens ?? 262144, 1048576)} step={2048} value={ctx} onChange={(e) => setCtx(+e.target.value)} className="w-full" />
-          <div className="seg seg-sm mt-1">{[8192, 32768, 131072, 262144].filter((v) => v <= (m.context.max_tokens ?? 262144)).map((v) => <button key={v} type="button" aria-pressed={ctx === v} onClick={() => setCtx(v)} className="num">{v / 1024}K</button>)}</div>
+          <div className="grid grid-cols-4 gap-1.5 mt-2">{[8192, 32768, 131072, 262144].filter((v) => v <= (m.context.max_tokens ?? 262144)).map((v) => <button key={v} type="button" aria-pressed={ctx === v} onClick={() => setCtx(v)} className={cx('ctl ctl-sm justify-center num', ctx === v && 'bg-text text-bg border-text hover:border-text')}>{v / 1024}K</button>)}</div>
         </L>
         <L label={t('并发 batch · {n}', { n: batch })}><input type="range" min={1} max={64} value={batch} onChange={(e) => setBatch(+e.target.value)} className="w-full" /></L>
         <Link to={`/models/${m.id}`} className="link text-xs">{t('查看 {name} 说明书 →', { name: m.name })}</Link>

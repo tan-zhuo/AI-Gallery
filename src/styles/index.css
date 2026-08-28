@@ -135,3 +135,6 @@ input[type="number"].ctl { font-family: var(--mono); }
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }
 input[type="range"] { accent-color: var(--accent); height: 2.25rem; }
+/* 防止 grid 子项被内容（长 option、num）撑出容器 */
+.grid > * { min-width: 0; }
+select.ctl { max-width: 100%; }
