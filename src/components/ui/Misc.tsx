@@ -27,14 +27,14 @@ export function Empty({ text, action }: { text: string; action?: React.ReactNode
 export function Button({ children, onClick, variant = 'ghost', to, className, disabled, type = 'button' }: {
   children: React.ReactNode; onClick?: () => void; variant?: 'primary' | 'ghost' | 'outline'; to?: string; className?: string; disabled?: boolean; type?: 'button' | 'submit'
 }) {
-  const base = 'inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition disabled:opacity-40 disabled:pointer-events-none'
-  const v = variant === 'primary' ? 'bg-gradient-to-r from-accent to-accent-2 text-white shadow-[0_6px_20px_-8px_var(--accent)] hover:brightness-110' : variant === 'outline' ? 'border border-border hover:bg-surface-2' : 'hover:bg-surface-2'
+  const base = 'inline-flex h-9 items-center justify-center gap-1.5 rounded-lg px-3.5 text-sm font-medium whitespace-nowrap transition disabled:opacity-40 disabled:pointer-events-none'
+  const v = variant === 'primary' ? 'bg-gradient-to-r from-accent to-accent-2 text-white shadow-[0_6px_20px_-8px_var(--accent)] hover:brightness-110' : variant === 'outline' ? 'border border-border bg-surface hover:bg-surface-2' : 'hover:bg-surface-2'
   if (to) return <Link to={to} className={cx(base, v, className)}>{children}</Link>
   return <button type={type} onClick={onClick} disabled={disabled} className={cx(base, v, className)}>{children}</button>
 }
 
 export function Chip({ active, children, onClick, to }: { active?: boolean; children: React.ReactNode; onClick?: () => void; to?: string }) {
-  const cls = cx('inline-flex items-center rounded-full border px-3 py-1 text-xs font-medium transition', active ? 'bg-text text-bg border-text' : 'border-border hover:bg-surface-2')
+  const cls = cx('inline-flex h-8 items-center rounded-full border px-3 text-xs font-medium whitespace-nowrap transition', active ? 'bg-text text-bg border-text' : 'border-border bg-surface hover:bg-surface-2')
   if (to) return <Link to={to} className={cls}>{children}</Link>
   return <button type="button" onClick={onClick} className={cls} aria-pressed={active}>{children}</button>
 }

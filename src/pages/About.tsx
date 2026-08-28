@@ -1,3 +1,4 @@
+import { useSeo } from '@/hooks/useSeo'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { meta, models } from '@/lib/catalog'
@@ -33,11 +34,16 @@ const md = `
 2. 运行 \`npm run data\` 合并并校验，再 \`npm run build\`。
 3. 部署 \`dist/\` 到任意静态托管。
 
+## 作者与开源
+- 作者：[谭卓](https://tanzhuo.xyz)（博客 tanzhuo.xyz）
+- 开源地址：[github.com/tan-zhuo/AI-Gallery](https://github.com/tan-zhuo/AI-Gallery)，欢迎 issue / PR 补充模型与修正数据。
+
 ## 技术
 Vite + React + TypeScript + Tailwind，Recharts 画图，Fuse.js 浏览器内搜索，react-markdown 渲染说明书。构建产物为纯静态文件。
 `
 
 export default function About() {
+  useSeo({ title: '关于', description: 'AI-Gallery 是什么、数据来源声明、内容政策与贡献方式。作者谭卓。', path: '/about' })
   return (
     <article className="max-w-3xl space-y-4">
       <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">关于</h1>

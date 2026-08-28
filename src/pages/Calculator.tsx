@@ -5,17 +5,20 @@ import { formatGB, paramsB, cx } from '@/lib/format'
 import { Section, Stat } from '@/components/ui/Misc'
 import { Link } from 'react-router-dom'
 import { GPUS, estimatePerf, fmtTok } from '@/lib/perf'
+import { useSeo } from '@/hooks/useSeo'
+
 
 const openModels = models.filter((m) => m.weights_available && (m.architecture.total_params_b ?? paramsB(m.architecture.total_params)))
 const priced = models.filter((m) => m.pricing?.input_per_m != null && m.pricing.output_per_m != null)
 
 export default function Calculator() {
+  useSeo({ title: '显存与 API 成本计算器', description: '估算开源大模型在不同量化、上下文与并发下的显存占用与 tok/s，以及闭源 API 的日 / 月费用。', path: '/calculator' })
   const [tab, setTab] = useState<'vram' | 'api'>('vram')
   return (
     <div className="space-y-5">
       <div><h1 className="text-2xl font-semibold tracking-tight">计算器</h1><p className="text-xs text-muted mt-1">全部在浏览器内计算，纯函数，假设写在底部。</p></div>
-      <div className="inline-flex rounded-lg border border-border p-0.5" role="tablist">
-        {([['vram', '显存估算'], ['api', 'API 成本']] as const).map(([k, l]) => <button key={k} type="button" role="tab" aria-selected={tab === k} onClick={() => setTab(k)} className={cx('rounded-md px-3 py-1.5 text-sm', tab === k ? 'bg-text text-bg' : 'text-muted')}>{l}</button>)}
+      <div className="seg" role="tablist">
+        {([['vram', '显存估算'], ['api', 'API 成本']] as const).map(([k, l]) => <button key={k} type="button" role="tab" aria-selected={tab === k} onClick={() => setTab(k)}>{l}</button>)}
       </div>
       {tab === 'vram' ? <Vram /> : <Api />}
     </div>
@@ -37,16 +40,16 @@ function Vram() {
     <div className="grid gap-5 lg:grid-cols-[360px_1fr]">
       <div className="card p-4 space-y-4 text-sm">
         <L label="模型">
-          <select value={id} onChange={(e) => setId(e.target.value)} className="w-full rounded-md border border-border bg-surface px-2 py-1.5">
+          <select value={id} onChange={(e) => setId(e.target.value)} className="ctl ctl-block">
             {openModels.map((x) => <option key={x.id} value={x.id}>{x.name} · {x.architecture.total_params}{x.architecture.active_params ? ` / ${x.architecture.active_params}` : ''}</option>)}
           </select>
         </L>
         <L label="精度">
-          <div className="flex flex-wrap gap-1.5">{(Object.keys(QUANT_LABEL) as CalcQuant[]).map((q) => <button key={q} type="button" onClick={() => setQuant(q)} className={cx('rounded-md border px-2.5 py-1 text-xs', quant === q ? 'bg-text text-bg border-text' : 'border-border')}>{QUANT_LABEL[q]}</button>)}</div>
+          <div className="seg seg-sm flex-wrap h-auto">{(Object.keys(QUANT_LABEL) as CalcQuant[]).map((q) => <button key={q} type="button" aria-pressed={quant === q} onClick={() => setQuant(q)} className="h-7">{QUANT_LABEL[q]}</button>)}</div>
         </L>
         <L label={`上下文长度 · ${ctx.toLocaleString()} token`}>
           <input type="range" min={2048} max={Math.min(m.context.max_tokens ?? 262144, 1048576)} step={2048} value={ctx} onChange={(e) => setCtx(+e.target.value)} className="w-full" />
-          <div className="flex gap-1.5 mt-1">{[8192, 32768, 131072, 262144].filter((v) => v <= (m.context.max_tokens ?? 262144)).map((v) => <button key={v} type="button" onClick={() => setCtx(v)} className="rounded border border-border px-2 py-0.5 text-[11px] num">{v / 1024}K</button>)}</div>
+          <div className="seg seg-sm mt-1">{[8192, 32768, 131072, 262144].filter((v) => v <= (m.context.max_tokens ?? 262144)).map((v) => <button key={v} type="button" aria-pressed={ctx === v} onClick={() => setCtx(v)} className="num">{v / 1024}K</button>)}</div>
         </L>
         <L label={`并发 batch · ${batch}`}><input type="range" min={1} max={64} value={batch} onChange={(e) => setBatch(+e.target.value)} className="w-full" /></L>
         <Link to={`/models/${m.id}`} className="link text-xs">查看 {m.name} 说明书 →</Link>
@@ -61,8 +64,8 @@ function Vram() {
         <div className="card p-4 space-y-3">
           <div className="flex flex-wrap items-end gap-3">
             <label className="block flex-1 min-w-[200px]"><div className="mb-1 text-xs text-muted">在这张卡上跑（单流吞吐）</div>
-              <select value={gpuId} onChange={(e) => { setGpuId(e.target.value); setGpuN(1) }} className="w-full rounded-md border border-border bg-surface px-2 py-1.5 text-sm">{GPUS.map((g) => <option key={g.id} value={g.id}>{g.name} · {g.bandwidth_gbs} GB/s</option>)}</select></label>
-            <div className="flex gap-1">{[1, 2, 4, 8].filter((c) => c <= gpu.max_count).map((c) => <button key={c} type="button" onClick={() => setGpuN(c)} className={cx('rounded-md border px-3 py-1.5 text-sm num', gpuN === c ? 'bg-text text-bg border-text' : 'border-border')}>{c}×</button>)}</div>
+              <select value={gpuId} onChange={(e) => { setGpuId(e.target.value); setGpuN(1) }} className="ctl ctl-block">{GPUS.map((g) => <option key={g.id} value={g.id}>{g.name} · {g.bandwidth_gbs} GB/s</option>)}</select></label>
+            <div className="seg">{[1, 2, 4, 8].filter((c) => c <= gpu.max_count).map((c) => <button key={c} type="button" aria-pressed={gpuN === c} onClick={() => setGpuN(c)} className="num">{c}×</button>)}</div>
           </div>
           {perf && (
             <div className="grid grid-cols-3 gap-4">
@@ -109,13 +112,13 @@ function Api() {
     <div className="grid gap-5 lg:grid-cols-[360px_1fr]">
       <div className="card p-4 space-y-4 text-sm">
         <L label="模型（有公开价）">
-          <select value={m.id} onChange={(e) => setId(e.target.value)} className="w-full rounded-md border border-border bg-surface px-2 py-1.5">
+          <select value={m.id} onChange={(e) => setId(e.target.value)} className="ctl ctl-block">
             {priced.map((x) => <option key={x.id} value={x.id}>{x.name} · ${x.pricing!.input_per_m} / ${x.pricing!.output_per_m}</option>)}
           </select>
         </L>
-        <L label="日请求量"><input type="number" value={req} onChange={(e) => setReq(+e.target.value)} className="w-full rounded-md border border-border bg-surface px-2 py-1.5 num" /></L>
-        <L label="平均输入 token"><input type="number" value={inTok} onChange={(e) => setInTok(+e.target.value)} className="w-full rounded-md border border-border bg-surface px-2 py-1.5 num" /></L>
-        <L label="平均输出 token"><input type="number" value={outTok} onChange={(e) => setOutTok(+e.target.value)} className="w-full rounded-md border border-border bg-surface px-2 py-1.5 num" /></L>
+        <L label="日请求量"><input type="number" value={req} onChange={(e) => setReq(+e.target.value)} className="ctl ctl-block" /></L>
+        <L label="平均输入 token"><input type="number" value={inTok} onChange={(e) => setInTok(+e.target.value)} className="ctl ctl-block" /></L>
+        <L label="平均输出 token"><input type="number" value={outTok} onChange={(e) => setOutTok(+e.target.value)} className="ctl ctl-block" /></L>
       </div>
       <div className="space-y-4">
         <div className="card p-4 grid grid-cols-2 md:grid-cols-3 gap-4">

@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tan-zhuo.github.io/AI-Gallery/sitemap.xml

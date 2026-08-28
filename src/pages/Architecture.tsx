@@ -3,9 +3,13 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { TOPICS } from '@/content/architecture'
 import { Empty, Button } from '@/components/ui/Misc'
+import { useSeo } from '@/hooks/useSeo'
+
 
 export default function Architecture() {
   const { topic } = useParams()
+  const cur = TOPICS.find((x) => x.slug === topic)
+  useSeo({ title: cur ? cur.title : '架构图鉴', description: cur ? cur.summary : 'MoE、GQA / MLA、KV Cache、量化、推理模型、开源许可证——理解模型说明书里的术语。', path: cur ? `/architecture/${cur.slug}` : '/architecture' })
   if (topic) {
     const t = TOPICS.find((x) => x.slug === topic)
     if (!t) return <Empty text="没有这个概念页" action={<Button to="/architecture" variant="outline">返回图鉴</Button>} />

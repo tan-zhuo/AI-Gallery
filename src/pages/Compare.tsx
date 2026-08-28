@@ -13,6 +13,8 @@ import { radarFor } from '@/lib/capabilities'
 import type { Model } from '@/lib/types'
 import { Link } from 'react-router-dom'
 import { VendorLogo } from '@/components/ui/VendorLogo'
+import { useSeo } from '@/hooks/useSeo'
+
 
 const COLORS = ['var(--accent)', 'var(--open)', 'var(--community)', 'var(--down)']
 
@@ -21,6 +23,7 @@ export default function Compare() {
   const [q, setQ] = useState('')
   const [copied, setCopied] = useState(false)
   const sel = ids.map((id) => models.find((m) => m.id === id)).filter((m): m is Model => !!m)
+  useSeo({ title: sel.length ? `对比：${sel.map((m) => m.name).join(' vs ')}` : '模型对比台', description: '并排对比最多 4 个 AI 模型：许可证、参数、架构、上下文、显存、价格与评测分数。', path: '/compare' })
   const refs = useMemo(() => computeReferenceScores(models, scoreMap), [])
   const cands = q ? filterModels(models, q).filter((m) => !ids.includes(m.id)).slice(0, 6) : []
   const share = async () => { try { await navigator.clipboard.writeText(location.href); setCopied(true); setTimeout(() => setCopied(false), 1500) } catch { /* noop */ } }
@@ -37,9 +40,9 @@ export default function Compare() {
       </div>
       {sel.length < MAX_COMPARE && (
         <div className="relative max-w-md">
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="添加模型…" className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm outline-none" aria-label="添加模型" />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="添加模型…" className="ctl ctl-block" aria-label="添加模型" />
           {cands.length > 0 && (
-            <ul className="absolute z-20 mt-1 w-full card shadow-xl overflow-hidden">
+            <ul className="popover left-0 w-full p-1 overflow-hidden">
               {cands.map((m) => <li key={m.id}><button type="button" className="flex w-full items-center gap-2 px-3 py-2 text-left text-sm hover:bg-surface-2" onClick={() => { setIds([...ids, m.id]); setQ('') }}><OpennessBadge m={m} />{m.name}<span className="text-xs text-muted">{m.vendor}</span></button></li>)}
             </ul>
           )}

@@ -3,5 +3,9 @@
   "version": "0.2.0",
   "generated_at": "2026-08-28",
   "data_cutoff": "2026-08-28",
-  "note": "分数与价格为仓库内手工维护的静态快照，来源与日期见每条记录。2026 年当前代模型数据于 2026-08-28 联网核对；被替代的旧代模型保留 2025-12 快照供对照。AA 指数为 v4.x 口径，旧代模型的 v3 指数已移除以免混比；Terminal-Bench 列混合 2.0 / 2.1 版本，详情页来源处可见。"
+  "note": "分数与价格为仓库内手工维护的静态快照，来源与日期见每条记录。2026 年当前代模型数据于 2026-08-28 联网核对；被替代的旧代模型保留 2025-12 快照供对照。AA 指数为 v4.x 口径，旧代模型的 v3 指数已移除以免混比；Terminal-Bench 列混合 2.0 / 2.1 版本，详情页来源处可见。",
+  "site_url": "https://tan-zhuo.github.io/AI-Gallery",
+  "author": "谭卓",
+  "author_url": "https://tanzhuo.xyz",
+  "repo_url": "https://github.com/tan-zhuo/AI-Gallery"
 }

@@ -116,6 +116,10 @@ export interface Meta {
   site_name: string
   version: string
   note?: string
+  site_url: string
+  author: string
+  author_url: string
+  repo_url: string
 }
 
 export interface ChangeEntry {

@@ -9,6 +9,8 @@ import { Empty, Button, Disclaimer } from '@/components/ui/Misc'
 import { useCompareIds } from '@/hooks/useCompare'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import { CompareBar } from './Home'
+import { useSeo } from '@/hooks/useSeo'
+
 
 const TABS: Array<[Tab, string]> = [['all', '综合'], ['open', '开源'], ['closed', '闭源']]
 
@@ -30,6 +32,7 @@ export default function Leaderboard() {
     return rows.filter((r) => set.has(r.m.id))
   }, [rows, q])
   const sceneDef = SCENES.find((s) => s.key === scene)!
+  useSeo({ title: `${sceneDef.label}排行榜${tab === 'open' ? '（开源）' : tab === 'closed' ? '（闭源）' : ''}`, description: `AI 模型${sceneDef.label}排行榜：${sceneDef.desc}。带来源与证据等级。` })
   const setTab = (t: Tab) => { const n = new URLSearchParams(sp); n.set('tab', t); setSp(n, { replace: true }) }
   const toggle = (id: string) => setIds(ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id])
   const exportCsv = () => {
@@ -45,32 +48,30 @@ export default function Leaderboard() {
           <h1 className="text-2xl font-semibold tracking-tight">排行榜</h1>
           <p className="text-xs text-muted mt-1">{sceneDef.desc}。缺项权重按现有项重分配并标「部分」。</p>
         </div>
-        <div className="inline-flex rounded-lg border border-border p-0.5" role="tablist">
-          {TABS.map(([t, l]) => (
-            <button key={t} role="tab" aria-selected={tab === t} type="button" onClick={() => setTab(t)} className={cx('rounded-md px-3 py-1.5 text-sm', tab === t ? 'bg-text text-bg' : 'text-muted hover:text-text')}>{l}</button>
-          ))}
+        <div className="seg" role="tablist">
+          {TABS.map(([t, l]) => <button key={t} role="tab" aria-selected={tab === t} type="button" onClick={() => setTab(t)}>{l}</button>)}
         </div>
       </div>
 
       <div className="flex gap-2 overflow-x-auto pb-1 -mx-4 px-4 md:mx-0 md:px-0">
         {SCENES.map((s) => (
-          <button key={s.key} type="button" onClick={() => nav(s.key === 'overall' ? `/leaderboard?tab=${tab}` : `/leaderboard/${s.key}?tab=${tab}`)} className={cx('shrink-0 rounded-full border px-3 py-1 text-xs font-medium', scene === s.key ? 'bg-text text-bg border-text' : 'border-border hover:bg-surface-2')}>{s.label}</button>
+          <button key={s.key} type="button" onClick={() => nav(s.key === 'overall' ? `/leaderboard?tab=${tab}` : `/leaderboard/${s.key}?tab=${tab}`)} className={cx('shrink-0 inline-flex h-8 items-center rounded-full border px-3 text-xs font-medium transition', scene === s.key ? 'bg-text text-bg border-text' : 'border-border bg-surface hover:bg-surface-2')}>{s.label}</button>
         ))}
       </div>
 
       <div className="card flex flex-wrap items-center gap-2 p-2">
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="过滤当前表…" className="min-w-[160px] flex-1 rounded-md bg-surface-2 px-3 py-1.5 text-sm outline-none" aria-label="过滤" />
-        <label className="flex items-center gap-1.5 text-xs px-2"><input type="checkbox" checked={verified} onChange={(e) => setVerified(e.target.checked)} />只看有独立复测</label>
-        <label className="flex items-center gap-1.5 text-xs px-2"><input type="checkbox" checked={old} onChange={(e) => setOld(e.target.checked)} />包含已被替代的旧代</label>
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="过滤当前表…" className="ctl min-w-[160px] flex-1" aria-label="过滤" />
+        <label className="check"><input type="checkbox" checked={verified} onChange={(e) => setVerified(e.target.checked)} />只看有独立复测</label>
+        <label className="check"><input type="checkbox" checked={old} onChange={(e) => setOld(e.target.checked)} />包含旧代</label>
         <details className="relative">
-          <summary className="cursor-pointer select-none rounded-md border border-border px-2.5 py-1.5 text-xs">列 ({cols.length})</summary>
-          <div className="absolute right-0 z-20 mt-1 card p-2 grid grid-cols-2 gap-1 w-56 shadow-xl">
+          <summary className="ctl cursor-pointer select-none">列 <span className="num text-muted">({cols.length})</span><span className="text-muted text-[10px]">▾</span></summary>
+          <div className="popover grid grid-cols-2 gap-0.5 w-60">
             {OPTIONAL_COLS.map(([k, l]) => (
-              <label key={k} className="flex items-center gap-1.5 text-xs px-1 py-0.5"><input type="checkbox" checked={cols.includes(k)} onChange={(e) => setCols(e.target.checked ? [...cols, k] : cols.filter((c) => c !== k))} />{l}</label>
+              <label key={k} className="check h-8"><input type="checkbox" checked={cols.includes(k)} onChange={(e) => setCols(e.target.checked ? [...cols, k] : cols.filter((c) => c !== k))} />{l}</label>
             ))}
           </div>
         </details>
-        <Button variant="outline" onClick={exportCsv} className="text-xs">导出 CSV</Button>
+        <Button variant="outline" onClick={exportCsv}>导出 CSV</Button>
       </div>
 
       {shown.length === 0 ? <Empty text="没有匹配的模型" action={<Button variant="outline" onClick={() => { setQ(''); setVerified(false); setOld(false) }}>清空筛选</Button>} />

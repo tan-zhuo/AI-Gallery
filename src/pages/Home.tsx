@@ -13,6 +13,8 @@ import { VendorLogo } from '@/components/ui/VendorLogo'
 import { scores } from '@/lib/catalog'
 import { Section, Chip, Button, Disclaimer } from '@/components/ui/Misc'
 import { useCompareIds } from '@/hooks/useCompare'
+import { useSeo } from '@/hooks/useSeo'
+
 import type { Model } from '@/lib/types'
 
 function HeroCard({ title, m, reason, stat, statLabel, tone, index }: { title: string; m?: Model; reason: string; stat: string; statLabel: string; tone: 'open' | 'closed' | 'accent'; index: number }) {
@@ -42,6 +44,7 @@ function HeroCard({ title, m, reason, stat, statLabel, tone, index }: { title: s
 }
 
 export default function Home() {
+  useSeo({ title: 'AI-Gallery', description: `AI 模型排行榜与说明书：开源 / 闭源分栏、显存与价格、显卡配置与吞吐估算、带来源的评测分数。收录 ${models.length} 个模型。`, path: '/', jsonLd: { '@context': 'https://schema.org', '@type': 'WebSite', name: 'AI-Gallery', url: meta.site_url, description: 'AI 模型排行与说明书', author: { '@type': 'Person', name: meta.author, url: meta.author_url } } })
   const all = useMemo(() => buildRows('all', 'overall'), [])
   const [ids, setIds] = useCompareIds()
   const closed = all.find((r) => !isOpenWeights(r.m))

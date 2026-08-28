@@ -17,6 +17,8 @@ import { CapabilityRadar } from '@/components/charts/Radar'
 import { radarFor } from '@/lib/capabilities'
 import { useCompareIds, MAX_COMPARE } from '@/hooks/useCompare'
 import { pickConfigs, fmtTok } from '@/lib/perf'
+import { useSeo } from '@/hooks/useSeo'
+
 import { QUANT_LABEL } from '@/lib/vram'
 import type { CapabilityKey, Model } from '@/lib/types'
 
@@ -30,6 +32,7 @@ export default function ModelDetail() {
 }
 
 function Detail({ m }: { m: Model }) {
+  useSeo({ title: `${m.name}${m.name_zh ? ' ' + m.name_zh : ''}`, description: `${m.name}（${m.vendor}）说明书：${m.copy.one_liner} 参数 ${formatParams(m.architecture.total_params, m.architecture.active_params)}，上下文 ${m.context.display}，价格 ${priceLabel(m)}，架构、显存、显卡配置与评测分数。`, path: `/models/${m.id}`, jsonLd: { '@context': 'https://schema.org', '@type': 'SoftwareApplication', name: m.name, applicationCategory: 'AI Model', author: { '@type': 'Organization', name: m.vendor }, datePublished: m.released_at, license: m.license, url: m.links.official ?? m.links.hf, description: m.copy.one_liner } })
   const scores = getScores(m.id)
   const refs = useMemo(() => computeReferenceScores(models, scoreMap), [])
   const ref = refs.get(m.id)

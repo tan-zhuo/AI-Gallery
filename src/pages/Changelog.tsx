@@ -1,8 +1,10 @@
+import { useSeo } from '@/hooks/useSeo'
 import { Link } from 'react-router-dom'
 import { changelog } from '@/lib/catalog'
 import { cx } from '@/lib/format'
 
 export default function Changelog() {
+  useSeo({ title: '更新日志', description: 'AI-Gallery 新模型收录、分数变动与文档修订记录。', path: '/changelog' })
   const groups = changelog.reduce<Record<string, typeof changelog>>((acc, c) => { (acc[c.date] ??= []).push(c); return acc }, {})
   return (
     <div className="max-w-3xl space-y-6">

@@ -1,3 +1,4 @@
+import { useSeo } from '@/hooks/useSeo'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { meta, benchmarks } from '@/lib/catalog'
@@ -69,6 +70,7 @@ ${benchmarks.map((b) => `- **${b.name}**（${b.name_zh ?? ''}，${b.category}）
 `
 
 export default function Methodology() {
+  useSeo({ title: '方法论', description: '综合参考分算法、开源 / 闭源分列规则、证据等级、显存与吞吐估算假设、未披露政策。', path: '/methodology' })
   return (
     <article className="max-w-3xl space-y-4">
       <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">方法论</h1>

@@ -9,11 +9,14 @@ import { OpennessBadge, Badge } from '@/components/ui/Badge'
 import { ModelName } from '@/components/ui/ModelName'
 import { Empty, Button, Chip } from '@/components/ui/Misc'
 import type { Model } from '@/lib/types'
+import { useSeo } from '@/hooks/useSeo'
+
 
 type Sort = 'ref' | 'released' | 'updated' | 'params' | 'price' | 'elo' | 'name'
 const sizeBuckets = [['≤8B', 0, 8], ['8–32B', 8, 32], ['32–70B', 32, 70], ['70B+', 70, Infinity]] as const
 
 export default function Models() {
+  useSeo({ title: '模型库', description: `按开闭源、厂商、体量、许可证、硬件筛选 ${models.length} 个 AI 模型，含发布日期、参数、上下文、价格与 Q4 显存。`, path: '/models' })
   const [q, setQ] = useState('')
   const [open, setOpen] = useState<'all' | 'open' | 'closed' | 'weights' | 'api'>('all')
   const [vendor, setVendor] = useState<string[]>([])
@@ -70,14 +73,14 @@ export default function Models() {
         <div><h1 className="text-2xl font-semibold tracking-tight">模型库</h1><p className="text-xs text-muted mt-1">{list.length} / {models.length} 个模型</p></div>
         <div className="flex items-center gap-2 text-xs">
           <span className="text-muted">排序</span>
-          <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="rounded-md border border-border bg-surface px-2 py-1.5">
+          <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="ctl">
             <option value="ref">参考分</option><option value="released">发布日期</option><option value="updated">更新日期</option><option value="params">参数量</option><option value="price">价格</option><option value="elo">Elo</option><option value="name">名称</option>
           </select>
         </div>
       </div>
       <div className="grid gap-5 lg:grid-cols-[240px_1fr]">
         <aside className="card p-3 space-y-4 text-xs h-fit lg:sticky lg:top-20">
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="搜索…" className="w-full rounded-md bg-surface-2 px-3 py-1.5 text-sm outline-none" aria-label="搜索模型" />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="搜索…" className="ctl ctl-block" aria-label="搜索模型" />
           <F title="开放性">
             {([['all', '全部'], ['open', '开源'], ['closed', '闭源'], ['weights', '权重可下'], ['api', '仅 API']] as const).map(([k, l]) => <Chip key={k} active={open === k} onClick={() => setOpen(k)}>{l}</Chip>)}
           </F>
@@ -90,7 +93,7 @@ export default function Models() {
           <F title="硬件（开源 Q4）">{([16, 24, 80] as const).map((g) => <Chip key={g} active={hw === g} onClick={() => setHw(hw === g ? 0 : g)}>能进 {g}GB</Chip>)}</F>
           <F title="推理"><Chip active={think} onClick={() => setThink(!think)}>推理模型 (thinking)</Chip></F>
           <F title="代际"><Chip active={old} onClick={() => setOld(!old)}>包含已被替代的旧代</Chip></F>
-          <Button variant="outline" onClick={reset} className="w-full text-xs">清空筛选</Button>
+          <Button variant="outline" onClick={reset} className="w-full">清空筛选</Button>
         </aside>
         <div>
           {list.length === 0 ? <Empty text="没有匹配的模型" action={<Button variant="outline" onClick={reset}>清空筛选</Button>} /> : (

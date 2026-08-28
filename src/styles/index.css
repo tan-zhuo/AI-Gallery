@@ -108,3 +108,30 @@ table.tbl tbody tr:hover { background: color-mix(in srgb, var(--accent) 7%, tran
 .skeleton { background: var(--surface-2); border-radius: 6px; animation: shimmer 1.4s infinite; }
 .logo-mono { filter: none; }
 .dark .logo-mono { filter: invert(1) brightness(1.1); }
+
+/* ---------- 统一表单控件（高度 36px / 小号 32px） ---------- */
+.ctl { height: 2.25rem; display: inline-flex; align-items: center; gap: .375rem; border-radius: .5rem; border: 1px solid var(--border); background: var(--surface); padding: 0 .75rem; font-size: .875rem; color: var(--text); line-height: 1; transition: border-color .15s, background .15s; }
+.ctl:hover { border-color: color-mix(in srgb, var(--text) 25%, var(--border)); }
+.ctl:focus-within, .ctl:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent); }
+.ctl-sm { height: 2rem; font-size: .8125rem; padding: 0 .625rem; }
+.ctl-block { display: flex; width: 100%; }
+
+input.ctl::placeholder { color: var(--muted); }
+select.ctl { appearance: none; -webkit-appearance: none; padding-right: 2rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b93a5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .6rem center; cursor: pointer; }
+input[type="number"].ctl { font-family: var(--mono); }
+/* 分段切换 */
+.seg { display: inline-flex; height: 2.25rem; align-items: stretch; gap: 2px; border-radius: .5rem; border: 1px solid var(--border); background: var(--surface); padding: 2px; }
+.seg > button { display: inline-flex; align-items: center; justify-content: center; padding: 0 .75rem; border-radius: .375rem; font-size: .8125rem; font-weight: 500; color: var(--muted); white-space: nowrap; transition: background .15s, color .15s; }
+.seg > button:hover { color: var(--text); }
+.seg > button[aria-selected="true"], .seg > button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+.seg-sm { height: 2rem; }
+.seg-sm > button { padding: 0 .625rem; font-size: .75rem; }
+/* 复选标签 */
+.check { display: inline-flex; align-items: center; gap: .4rem; height: 2.25rem; padding: 0 .5rem; font-size: .8125rem; color: var(--muted); cursor: pointer; white-space: nowrap; }
+.check input { accent-color: var(--accent); width: .875rem; height: .875rem; }
+.check:hover { color: var(--text); }
+/* 下拉面板 */
+.popover { position: absolute; right: 0; z-index: 20; margin-top: .375rem; background: var(--surface); border: 1px solid var(--border); border-radius: .75rem; box-shadow: 0 16px 40px -12px rgba(0,0,0,.5); padding: .5rem; }
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+input[type="range"] { accent-color: var(--accent); height: 2.25rem; }

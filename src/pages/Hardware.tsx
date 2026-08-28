@@ -3,12 +3,15 @@ import { Link } from 'react-router-dom'
 import { models } from '@/lib/catalog'
 import { GPUS, TIER_LABEL, modelsForGpu, fmtTok, fmtCtx } from '@/lib/perf'
 import { QUANT_LABEL } from '@/lib/vram'
-import { formatGB, formatParams, cx } from '@/lib/format'
+import { formatGB, formatParams } from '@/lib/format'
 import { ModelName } from '@/components/ui/ModelName'
 import { Badge } from '@/components/ui/Badge'
 import { Empty, Section } from '@/components/ui/Misc'
+import { useSeo } from '@/hooks/useSeo'
+
 
 export default function Hardware() {
+  useSeo({ title: '我的显卡能跑哪些大模型', description: '选择 RTX 4090 / 5090 / A100 / H100 / Mac 等显卡与数量，列出能本地运行的开源大模型、最佳量化与预估 tok/s。', path: '/hardware' })
   const [gpuId, setGpuId] = useState('rtx4090')
   const [count, setCount] = useState(1)
   const [ctx, setCtx] = useState(8192)
@@ -24,14 +27,14 @@ export default function Hardware() {
       <div><h1 className="text-2xl font-semibold tracking-tight">我的显卡能跑谁</h1><p className="text-xs text-muted mt-1">选显卡与数量，列出能装下的开源模型、最佳量化与预估单流吞吐。所有数字为估算，见底部假设。</p></div>
       <div className="card p-4 grid gap-4 md:grid-cols-[1fr_auto_auto_auto] md:items-end">
         <label className="block"><div className="mb-1 text-xs text-muted">显卡</div>
-          <select value={gpuId} onChange={(e) => { setGpuId(e.target.value); setCount(1) }} className="w-full rounded-md border border-border bg-surface px-2 py-1.5 text-sm">
+          <select value={gpuId} onChange={(e) => { setGpuId(e.target.value); setCount(1) }} className="ctl ctl-block">
             {(['consumer', 'workstation', 'datacenter', 'mac'] as const).map((t) => <optgroup key={t} label={TIER_LABEL[t]}>{GPUS.filter((g) => g.tier === t).map((g) => <option key={g.id} value={g.id}>{g.name} · {g.bandwidth_gbs} GB/s · {g.price_hint}</option>)}</optgroup>)}
           </select></label>
         <label className="block"><div className="mb-1 text-xs text-muted">数量</div>
-          <div className="flex gap-1">{counts.map((c) => <button key={c} type="button" onClick={() => setCount(c)} className={cx('rounded-md border px-3 py-1.5 text-sm num', count === c ? 'bg-text text-bg border-text' : 'border-border')}>{c}</button>)}</div></label>
+          <div className="seg">{counts.map((c) => <button key={c} type="button" aria-pressed={count === c} onClick={() => setCount(c)} className="num">{c}</button>)}</div></label>
         <label className="block"><div className="mb-1 text-xs text-muted">上下文</div>
-          <div className="flex gap-1">{[8192, 32768, 131072].map((c) => <button key={c} type="button" onClick={() => setCtx(c)} className={cx('rounded-md border px-3 py-1.5 text-sm num', ctx === c ? 'bg-text text-bg border-text' : 'border-border')}>{c / 1024}K</button>)}</div></label>
-        <label className="flex items-center gap-1.5 text-xs pb-2"><input type="checkbox" checked={old} onChange={(e) => setOld(e.target.checked)} />含旧代</label>
+          <div className="seg">{[8192, 32768, 131072].map((c) => <button key={c} type="button" aria-pressed={ctx === c} onClick={() => setCtx(c)} className="num">{c / 1024}K</button>)}</div></label>
+        <label className="check"><input type="checkbox" checked={old} onChange={(e) => setOld(e.target.checked)} />含旧代</label>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm">
         <div className="card p-3"><div className="eyebrow">总显存</div><div className="num text-xl font-semibold">{gpu.vram_gb * count} GB</div></div>

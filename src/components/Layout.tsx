@@ -34,16 +34,16 @@ export default function Layout() {
             ))}
           </nav>
           <div className="ml-auto flex items-center gap-2">
-            <button type="button" onClick={() => setOpen(true)} className="flex items-center gap-2 rounded-lg border border-border bg-surface px-3 py-1.5 text-sm text-muted hover:text-text" aria-label="搜索模型">
+            <button type="button" onClick={() => setOpen(true)} className="ctl text-muted hover:text-text" aria-label="搜索模型">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
               <span className="hidden sm:inline">搜索模型</span>
               <kbd className="hidden sm:inline num text-[10px] rounded border border-border px-1">⌘K</kbd>
             </button>
-            <button type="button" onClick={toggle} aria-label={dark ? '切换到浅色' : '切换到深色'} className="grid h-8 w-8 place-items-center rounded-lg border border-border hover:bg-surface-2">
+            <button type="button" onClick={toggle} aria-label={dark ? '切换到浅色' : '切换到深色'} className="ctl w-9 justify-center px-0 hover:bg-surface-2">
               {dark ? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4" /></svg>
                 : <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>}
             </button>
-            <button type="button" onClick={() => setMenu((m) => !m)} className="md:hidden grid h-8 w-8 place-items-center rounded-lg border border-border" aria-label="菜单" aria-expanded={menu}>
+            <button type="button" onClick={() => setMenu((m) => !m)} className="md:hidden ctl w-9 justify-center px-0" aria-label="菜单" aria-expanded={menu}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
             </button>
           </div>
@@ -57,22 +57,52 @@ export default function Layout() {
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 md:py-8">
         <Outlet />
       </main>
-      <footer className="border-t border-border mt-10">
-        <div className="mx-auto max-w-7xl px-4 py-8 grid gap-6 md:grid-cols-[1fr_auto] md:items-start">
-          <div className="space-y-2">
-            <div className="flex items-center gap-2"><LogoMark size={22} /><Wordmark className="text-base" /></div>
-            <p className="text-xs text-muted max-w-md">给工程师和选型者的模型决策站：排行榜当入口，说明书当核心资产。纯静态站点，数据全部来自仓库内 JSON。</p>
+      <footer className="mt-16 border-t border-border bg-surface/40">
+        <div className="mx-auto max-w-7xl px-4 py-12 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+          <div className="space-y-4">
+            <div className="flex items-center gap-2.5"><LogoMark size={26} /><Wordmark className="text-lg" /></div>
+            <p className="text-sm text-muted leading-relaxed max-w-sm">给工程师和选型者的模型决策站。排行榜当入口，说明书当核心资产；显存、价格与证据等级是一等公民。</p>
+            <div className="flex items-center gap-3 text-xs text-muted">
+              <a href={meta.repo_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-text"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>GitHub</a>
+              <span aria-hidden>·</span>
+              <a href={meta.author_url} target="_blank" rel="noreferrer" className="hover:text-text">博客 tanzhuo.xyz</a>
+              <span aria-hidden>·</span>
+              <span>纯静态站 · 无后端</span>
+              <span aria-hidden>·</span>
+              <span className="num">v{meta.version}</span>
+            </div>
           </div>
-          <div className="text-xs text-muted flex flex-col gap-2 md:items-end">
-          <div>数据更新 <span className="num text-text">{meta.generated_at}</span> · 数据截止 <span className="num">{meta.data_cutoff}</span> · 价格 USD / 百万 token，不换算汇率</div>
-          <div className="flex gap-4">
-            <Link to="/methodology" className="hover:text-text">方法论</Link>
-            <Link to="/changelog" className="hover:text-text">更新日志</Link>
-            <Link to="/about" className="hover:text-text">关于 / 来源声明</Link>
+          <div>
+            <div className="eyebrow mb-3">浏览</div>
+            <ul className="space-y-2 text-sm">
+              {[['/leaderboard', '排行榜'], ['/models', '模型库'], ['/compare', '对比台'], ['/calculator', '显存 / 成本计算器'], ['/hardware', '我的显卡能跑谁']].map(([to, l]) => <li key={to}><Link to={to} className="text-muted hover:text-text">{l}</Link></li>)}
+            </ul>
           </div>
+          <div>
+            <div className="eyebrow mb-3">资料</div>
+            <ul className="space-y-2 text-sm">
+              {[['/architecture', '架构图鉴'], ['/methodology', '方法论'], ['/changelog', '更新日志'], ['/about', '关于 / 来源声明']].map(([to, l]) => <li key={to}><Link to={to} className="text-muted hover:text-text">{l}</Link></li>)}
+            </ul>
+          </div>
+          <div className="space-y-3">
+            <div className="eyebrow">数据</div>
+            <dl className="text-sm space-y-1.5">
+              <div className="flex justify-between gap-3"><dt className="text-muted">站点构建</dt><dd className="num">{meta.generated_at}</dd></div>
+              <div className="flex justify-between gap-3"><dt className="text-muted">数据截止</dt><dd className="num">{meta.data_cutoff}</dd></div>
+              <div className="flex justify-between gap-3"><dt className="text-muted">价格单位</dt><dd className="num">USD / 1M tok</dd></div>
+            </dl>
+            <div className="text-xs text-muted leading-relaxed">来源：官方模型卡与定价页、LMArena、Artificial Analysis、Hugging Face 配置文件。</div>
+            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
+              <span className="text-official">○ 厂商公布</span><span className="text-independent">● 独立复测</span><span className="text-community">◐ 社区 / 估计</span>
+            </div>
           </div>
         </div>
-        <div className="mx-auto max-w-7xl px-4 pb-6 text-[11px] text-muted border-t border-border/60 pt-4">排名供选型参考，基准会饱和、会泄漏、会过时。所有规格以官方来源为准；闭源参数量一律「未披露」。</div>
+        <div className="border-t border-border">
+          <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col md:flex-row gap-2 md:items-center justify-between text-[11px] text-muted">
+            <span>排名供选型参考，基准会饱和、会泄漏、会过时。所有规格以官方来源为准；闭源参数量一律「未披露」。</span>
+            <span>© 2026 <a href={meta.author_url} target="_blank" rel="noreferrer" className="hover:text-text">{meta.author}</a> · <a href={meta.repo_url} target="_blank" rel="noreferrer" className="hover:text-text">开源 MIT</a> · 模型名称与 logo 归各厂商所有</span>
+          </div>
+        </div>
       </footer>
       <SearchPalette open={open} onClose={() => setOpen(false)} />
     </div>
