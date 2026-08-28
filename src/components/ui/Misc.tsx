@@ -6,7 +6,7 @@ export function Section({ title, sub, children, right, className }: { title: str
     <section className={cx('space-y-3', className)}>
       <div className="flex items-end justify-between gap-3">
         <div>
-          <h2 className="text-base font-semibold tracking-tight">{title}</h2>
+          <h2 className="text-lg font-semibold tracking-tight">{title}</h2>
           {sub && <p className="text-xs text-muted mt-0.5">{sub}</p>}
         </div>
         {right}
@@ -28,7 +28,7 @@ export function Button({ children, onClick, variant = 'ghost', to, className, di
   children: React.ReactNode; onClick?: () => void; variant?: 'primary' | 'ghost' | 'outline'; to?: string; className?: string; disabled?: boolean; type?: 'button' | 'submit'
 }) {
   const base = 'inline-flex items-center justify-center gap-1.5 rounded-lg px-3 py-1.5 text-sm font-medium transition disabled:opacity-40 disabled:pointer-events-none'
-  const v = variant === 'primary' ? 'bg-text text-bg hover:opacity-90' : variant === 'outline' ? 'border border-border hover:bg-surface-2' : 'hover:bg-surface-2'
+  const v = variant === 'primary' ? 'bg-gradient-to-r from-accent to-accent-2 text-white shadow-[0_6px_20px_-8px_var(--accent)] hover:brightness-110' : variant === 'outline' ? 'border border-border hover:bg-surface-2' : 'hover:bg-surface-2'
   if (to) return <Link to={to} className={cx(base, v, className)}>{children}</Link>
   return <button type={type} onClick={onClick} disabled={disabled} className={cx(base, v, className)}>{children}</button>
 }

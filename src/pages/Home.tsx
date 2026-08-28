@@ -8,28 +8,30 @@ import { priceLabel, formatGB, cx } from '@/lib/format'
 import { PriceScatter } from '@/components/charts/PriceScatter'
 import { LeaderboardTable } from '@/components/leaderboard/LeaderboardTable'
 import { OpennessBadge } from '@/components/ui/Badge'
+import { LogoMark } from '@/components/ui/Logo'
+import { scores } from '@/lib/catalog'
 import { Section, Chip, Button, Disclaimer } from '@/components/ui/Misc'
 import { useCompareIds } from '@/hooks/useCompare'
 import type { Model } from '@/lib/types'
 
-function HeroCard({ title, m, reason, stat, statLabel, tone }: { title: string; m?: Model; reason: string; stat: string; statLabel: string; tone: 'open' | 'closed' | 'accent' }) {
-  if (!m) return <div className="card p-4 text-sm text-muted">{title}：暂无数据</div>
-  const bar = tone === 'open' ? 'bg-open' : tone === 'closed' ? 'bg-closed' : 'bg-accent'
+function HeroCard({ title, m, reason, stat, statLabel, tone, index }: { title: string; m?: Model; reason: string; stat: string; statLabel: string; tone: 'open' | 'closed' | 'accent'; index: number }) {
+  if (!m) return <div className="card p-5 text-sm text-muted">{title}：暂无数据</div>
+  const color = tone === 'open' ? 'var(--open)' : tone === 'closed' ? 'var(--closed)' : 'var(--accent)'
   return (
-    <Link to={`/models/${m.id}`} className="card group relative overflow-hidden p-4 md:p-5 hover:border-text/30 transition">
-      <span className={cx('absolute left-0 top-0 h-full w-1', bar)} />
-      <div className="text-[11px] uppercase tracking-wider text-muted">{title}</div>
-      <div className="mt-2 flex items-start justify-between gap-2">
-        <div className="min-w-0">
-          <div className="truncate text-lg font-semibold tracking-tight group-hover:underline">{m.name}</div>
-          <div className="truncate text-xs text-muted">{m.vendor_zh ? `${m.vendor} ${m.vendor_zh}` : m.vendor}</div>
-        </div>
+    <Link to={`/models/${m.id}`} className="card card-hover group relative overflow-hidden p-5 flex flex-col">
+      <span className="absolute -right-6 -top-8 num text-[96px] font-bold leading-none opacity-[0.045] select-none" style={{ color }}>0{index}</span>
+      <div className="flex items-center justify-between">
+        <span className="eyebrow inline-flex items-center gap-1.5"><i className="h-1.5 w-1.5 rounded-full" style={{ background: color }} />{title}</span>
         <OpennessBadge m={m} />
       </div>
-      <p className="mt-3 text-sm leading-relaxed line-clamp-2">{reason}</p>
-      <div className="mt-4 flex items-baseline gap-2">
-        <span className="num text-xl md:text-2xl font-semibold whitespace-nowrap">{stat}</span>
-        <span className="text-xs text-muted">{statLabel}</span>
+      <div className="mt-4 min-w-0">
+        <div className="truncate text-xl font-semibold tracking-tight group-hover:text-accent transition">{m.name}</div>
+        <div className="truncate text-xs text-muted mt-0.5">{m.vendor_zh ? `${m.vendor} ${m.vendor_zh}` : m.vendor}</div>
+      </div>
+      <p className="mt-3 text-[13px] leading-relaxed text-muted line-clamp-2 flex-1">{reason}</p>
+      <div className="mt-5 flex items-baseline gap-2 border-t border-border pt-4">
+        <span className="num text-2xl font-semibold whitespace-nowrap">{stat}</span>
+        <span className="text-[11px] text-muted">{statLabel}</span>
       </div>
     </Link>
   )
@@ -46,17 +48,33 @@ export default function Home() {
   const toggle = (id: string) => setIds(ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id])
   const currentCount = models.filter((m) => m.status === 'current' || m.status === 'preview').length
   return (
-    <div className="space-y-10">
-      <div className="space-y-3">
-        <h1 className="text-2xl md:text-4xl font-semibold tracking-tight">模型选型，先看能不能跑、再看分数。</h1>
-        <p className="text-muted max-w-2xl text-sm md:text-base">开源 / 闭源同场分栏、每个模型一份统一骨架的说明书、显存与价格是一等公民、所有数字带来源与日期。收录 {models.length} 个模型，其中 {currentCount} 个当前代。</p>
-      </div>
+    <div className="space-y-12">
+      <section className="relative -mx-4 -mt-6 md:-mt-8 px-4 pt-12 pb-10 md:pt-16 md:pb-14 hero-bg overflow-hidden">
+        <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden />
+        <div className="relative mx-auto max-w-7xl grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+          <div className="space-y-5">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3 py-1 text-xs text-muted backdrop-blur"><LogoMark size={16} />AI-Gallery · 数据快照 <span className="num text-text">{meta.data_cutoff}</span></div>
+            <h1 className="text-3xl md:text-5xl font-semibold tracking-tight leading-[1.15]">模型选型，<br className="hidden md:block" />先看<span className="gradient-text">能不能跑</span>，再看分数。</h1>
+            <p className="text-muted max-w-xl text-sm md:text-base leading-relaxed">开源 / 闭源同场分栏；每个模型一份统一骨架的说明书；显存与价格是一等公民；所有数字带来源、日期与证据等级。</p>
+            <div className="flex flex-wrap gap-2 pt-1">
+              <Button variant="primary" to="/leaderboard">查看排行榜</Button>
+              <Button variant="outline" to="/calculator">显存计算器</Button>
+              <Button variant="ghost" to="/methodology">方法论 →</Button>
+            </div>
+          </div>
+          <dl className="grid grid-cols-2 gap-px rounded-2xl border border-border bg-border overflow-hidden">
+            {[[models.length, '收录模型'], [currentCount, '当前代'], [models.filter((m) => m.complete).length, '完整说明书'], [scores.length, '带来源分数']].map(([v, l]) => (
+              <div key={l} className="bg-surface p-4"><dt className="eyebrow">{l}</dt><dd className="num text-2xl md:text-3xl font-semibold mt-1">{v}</dd></div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
-      <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-        <HeroCard title="闭源第一" m={closed?.m} reason={closed?.m.copy.one_liner ?? ''} stat={closed?.refScore?.toFixed(1) ?? '—'} statLabel="综合参考分" tone="closed" />
-        <HeroCard title="开源第一" m={open?.m} reason={open?.m.copy.one_liner ?? ''} stat={open?.refScore?.toFixed(1) ?? '—'} statLabel="综合参考分" tone="open" />
-        <HeroCard title="性价比第一" m={value?.m} reason={value?.m.copy.one_liner ?? ''} stat={value ? priceLabel(value.m) : '—'} statLabel="$ / 百万 token" tone="accent" />
-        <HeroCard title="单卡可跑第一" m={single?.m} reason={single?.m.copy.one_liner ?? ''} stat={single ? formatGB(single.m.memory.weight_gb.q4) : '—'} statLabel="Q4 权重" tone="open" />
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <HeroCard index={1} title="闭源第一" m={closed?.m} reason={closed?.m.copy.one_liner ?? ''} stat={closed?.refScore?.toFixed(1) ?? '—'} statLabel="综合参考分" tone="closed" />
+        <HeroCard index={2} title="开源第一" m={open?.m} reason={open?.m.copy.one_liner ?? ''} stat={open?.refScore?.toFixed(1) ?? '—'} statLabel="综合参考分" tone="open" />
+        <HeroCard index={3} title="性价比第一" m={value?.m} reason={value?.m.copy.one_liner ?? ''} stat={value ? priceLabel(value.m) : '—'} statLabel="$ / 百万 token" tone="accent" />
+        <HeroCard index={4} title="单卡可跑第一" m={single?.m} reason={single?.m.copy.one_liner ?? ''} stat={single ? formatGB(single.m.memory.weight_gb.q4) : '—'} statLabel="Q4 权重" tone="open" />
       </div>
 
       <Section title="能力 × 价格" sub="点可点进详情。开源模型若无官方 API 价，用第三方托管常见价并以空心点标注。">

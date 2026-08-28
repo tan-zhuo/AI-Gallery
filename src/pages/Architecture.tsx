@@ -23,7 +23,7 @@ export default function Architecture() {
     <div className="space-y-5">
       <div><h1 className="text-2xl font-semibold tracking-tight">架构图鉴</h1><p className="text-xs text-muted mt-1">解释详情页里出现的术语，统一图例：实线 = 已公开，虚线 = 未披露。</p></div>
       <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
-        {TOPICS.map((t, i) => <Link key={t.slug} to={`/architecture/${t.slug}`} className="card p-4 hover:border-text/30 transition"><div className="num text-[11px] text-muted">0{i + 1}</div><div className="font-semibold mt-1">{t.title}</div><p className="text-sm text-muted mt-2 leading-relaxed">{t.summary}</p></Link>)}
+        {TOPICS.map((t, i) => <Link key={t.slug} to={`/architecture/${t.slug}`} className="card card-hover p-5"><div className="num text-[11px] text-muted">0{i + 1}</div><div className="font-semibold mt-1">{t.title}</div><p className="text-sm text-muted mt-2 leading-relaxed">{t.summary}</p></Link>)}
       </div>
     </div>
   )

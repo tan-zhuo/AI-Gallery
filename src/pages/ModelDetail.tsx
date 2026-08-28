@@ -44,12 +44,12 @@ function Detail({ m }: { m: Model }) {
   return (
     <div className="space-y-8">
       {/* A. 顶栏卡片 */}
-      <div className="card p-5 md:p-6">
+      <div className="card glow p-5 md:p-7">
         <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
           <div className="space-y-4 min-w-0">
             <BadgeRow m={m} singleGpu={single} />
             <div>
-              <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">{m.name}</h1>
+              <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">{m.name}</h1>
               <p className="text-sm text-muted mt-1">
                 {m.name_zh && <>{m.name_zh} · </>}{m.vendor}{m.vendor_zh && ` ${m.vendor_zh}`} · 发布 <span className="num">{m.released_at ?? '—'}</span> · {m.status === 'current' ? '当前代' : m.status === 'preview' ? 'Preview' : m.status === 'superseded' ? <>已被替代{succ && <> → <Link className="link" to={`/models/${succ.id}`}>{succ.name}</Link></>}</> : '已停更'}
               </p>

@@ -35,7 +35,7 @@ export default function Leaderboard() {
     const head = ['rank', 'model', 'vendor', 'open', 'ref_score', 'elo', 'coding', 'reasoning', 'math', 'agent', 'context', 'price_in', 'price_out']
     const lines = shown.map((r) => [r.rank, r.m.name, r.m.vendor, r.m.weights_available, r.refScore?.toFixed(1) ?? '', r.elo ?? '', r.coding ?? '', r.reasoning ?? '', r.math ?? '', r.agent ?? '', r.m.context.display, r.m.pricing?.input_per_m ?? '', r.m.pricing?.output_per_m ?? ''].join(','))
     const blob = new Blob(['﻿' + [head.join(','), ...lines].join('\n')], { type: 'text/csv' })
-    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `modelboard-${tab}-${scene}.csv`; a.click()
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `ai-gallery-${tab}-${scene}.csv`; a.click()
   }
   return (
     <div className="space-y-5">

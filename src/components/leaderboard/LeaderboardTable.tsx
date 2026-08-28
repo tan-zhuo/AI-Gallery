@@ -27,26 +27,26 @@ export function LeaderboardTable({ rows, selected, onToggle, showValue, cols: co
     <>
       {/* 桌面表格 */}
       <div className="card hidden md:block overflow-x-auto">
-        <table className="w-full text-sm">
+        <table className="tbl w-full text-sm">
           <thead className="text-[11px] uppercase tracking-wide text-muted">
             <tr className="border-b border-border">
-              <th className="w-8 px-3 py-2"></th>
-              <th className="w-12 px-2 py-2 text-left">#</th>
-              <th className="px-2 py-2 text-left">模型</th>
-              <th className="px-2 py-2 text-left">开闭源</th>
-              <th className="px-2 py-2 text-right">{showValue ? '性价比' : '参考分'}</th>
-              {has.has('elo') && <th className="px-2 py-2 text-right">Elo</th>}
-              {has.has('coding') && <th className="px-2 py-2 text-right">代码</th>}
-              {has.has('reasoning') && <th className="px-2 py-2 text-right">推理</th>}
-              {has.has('math') && <th className="px-2 py-2 text-right">数学</th>}
-              {has.has('agent') && <th className="px-2 py-2 text-right">Agent</th>}
-              {has.has('mm') && <th className="px-2 py-2 text-right">多模态</th>}
-              <th className="px-2 py-2 text-right">上下文</th>
-              <th className="px-2 py-2 text-right">价格 in / out</th>
-              {has.has('q4') && <th className="px-2 py-2 text-right">Q4 显存</th>}
-              {has.has('license') && <th className="px-2 py-2 text-left">许可证</th>}
-              {has.has('tok') && <th className="px-2 py-2 text-right">tok/s</th>}
-              <th className="px-2 py-2 text-right">更新</th>
+              <th className="w-8 px-3 py-2.5"></th>
+              <th className="w-12 px-2 py-2.5 text-left">#</th>
+              <th className="px-2 py-2.5 text-left">模型</th>
+              <th className="px-2 py-2.5 text-left">开闭源</th>
+              <th className="px-2 py-2.5 text-right">{showValue ? '性价比' : '参考分'}</th>
+              {has.has('elo') && <th className="px-2 py-2.5 text-right">Elo</th>}
+              {has.has('coding') && <th className="px-2 py-2.5 text-right">代码</th>}
+              {has.has('reasoning') && <th className="px-2 py-2.5 text-right">推理</th>}
+              {has.has('math') && <th className="px-2 py-2.5 text-right">数学</th>}
+              {has.has('agent') && <th className="px-2 py-2.5 text-right">Agent</th>}
+              {has.has('mm') && <th className="px-2 py-2.5 text-right">多模态</th>}
+              <th className="px-2 py-2.5 text-right">上下文</th>
+              <th className="px-2 py-2.5 text-right">价格 in / out</th>
+              {has.has('q4') && <th className="px-2 py-2.5 text-right">Q4 显存</th>}
+              {has.has('license') && <th className="px-2 py-2.5 text-left">许可证</th>}
+              {has.has('tok') && <th className="px-2 py-2.5 text-right">tok/s</th>}
+              <th className="px-2 py-2.5 text-right">更新</th>
             </tr>
           </thead>
           <tbody>
@@ -56,35 +56,35 @@ export function LeaderboardTable({ rows, selected, onToggle, showValue, cols: co
               const isOpen = expanded === m.id
               return (
                 <Fragment key={m.id}>
-                  <tr className={cx('border-b border-border/60 hover:bg-surface-2/60 cursor-pointer', sel && 'bg-surface-2/40')} onClick={() => setExpanded(isOpen ? null : m.id)} aria-expanded={isOpen}>
-                    <td className="px-3 py-2" onClick={(e) => e.stopPropagation()}>
+                  <tr className={cx('border-b border-border/60 cursor-pointer', sel && 'bg-surface-2/40')} onClick={() => setExpanded(isOpen ? null : m.id)} aria-expanded={isOpen}>
+                    <td className="px-3 py-2.5" onClick={(e) => e.stopPropagation()}>
                       <input type="checkbox" checked={sel} disabled={!sel && selected.length >= MAX_COMPARE} onChange={() => onToggle(m.id)} aria-label={`选择 ${m.name} 加入对比`} className="accent-[var(--accent)]" />
                     </td>
-                    <td className="px-2 py-2 num text-muted">{r.rank}</td>
-                    <td className="px-2 py-2 min-w-[220px]"><ModelName m={m} /></td>
-                    <td className="px-2 py-2"><OpennessBadge m={m} /></td>
-                    <td className="px-2 py-2 text-right num">
+                    <td className="px-2 py-2.5"><span className={cx('num inline-grid h-6 w-6 place-items-center rounded-md text-xs font-semibold', r.rank <= 3 ? 'bg-gradient-to-br from-accent/25 to-accent-2/25 text-text' : 'text-muted')}>{r.rank}</span></td>
+                    <td className="px-2 py-2.5 min-w-[220px]"><ModelName m={m} /></td>
+                    <td className="px-2 py-2.5"><OpennessBadge m={m} /></td>
+                    <td className="px-2 py-2.5 text-right num">
                       {showValue ? num(r.value, 1) : num(r.refScore, 1)}
                       {r.ref.partial && <span className="ml-1 text-[10px] text-community" title={`缺 ${r.ref.missing.join(', ')}`}>部分</span>}
                     </td>
-                    {has.has('elo') && <td className="px-2 py-2 text-right num">{num(r.elo, 0)}</td>}
-                    {has.has('coding') && <td className="px-2 py-2 text-right num">{num(r.coding)}</td>}
-                    {has.has('reasoning') && <td className="px-2 py-2 text-right num">{num(r.reasoning)}</td>}
-                    {has.has('math') && <td className="px-2 py-2 text-right num">{num(r.math)}</td>}
-                    {has.has('agent') && <td className="px-2 py-2 text-right num">{num(r.agent)}</td>}
-                    {has.has('mm') && <td className="px-2 py-2 text-right num">{num(r.mm)}</td>}
-                    <td className="px-2 py-2 text-right num">{m.context.display}</td>
-                    <td className="px-2 py-2 text-right num whitespace-nowrap">
+                    {has.has('elo') && <td className="px-2 py-2.5 text-right num">{num(r.elo, 0)}</td>}
+                    {has.has('coding') && <td className="px-2 py-2.5 text-right num">{num(r.coding)}</td>}
+                    {has.has('reasoning') && <td className="px-2 py-2.5 text-right num">{num(r.reasoning)}</td>}
+                    {has.has('math') && <td className="px-2 py-2.5 text-right num">{num(r.math)}</td>}
+                    {has.has('agent') && <td className="px-2 py-2.5 text-right num">{num(r.agent)}</td>}
+                    {has.has('mm') && <td className="px-2 py-2.5 text-right num">{num(r.mm)}</td>}
+                    <td className="px-2 py-2.5 text-right num">{m.context.display}</td>
+                    <td className="px-2 py-2.5 text-right num whitespace-nowrap">
                       {priceLabel(m)}
                       {m.pricing?.source?.includes('第三方') && <span className="ml-1 text-[10px] text-muted" title={m.pricing.source}>托管</span>}
                     </td>
-                    {has.has('q4') && <td className="px-2 py-2 text-right num">{formatGB(m.memory.weight_gb.q4)}</td>}
-                    {has.has('license') && <td className="px-2 py-2 text-xs truncate max-w-[140px]" title={m.license}>{m.license}</td>}
-                    {has.has('tok') && <td className="px-2 py-2 text-right num">{m.runtime?.tok_s ?? '—'}</td>}
-                    <td className="px-2 py-2 text-right num text-muted text-xs">{m.updated_at}</td>
+                    {has.has('q4') && <td className="px-2 py-2.5 text-right num">{formatGB(m.memory.weight_gb.q4)}</td>}
+                    {has.has('license') && <td className="px-2 py-2.5 text-xs truncate max-w-[140px]" title={m.license}>{m.license}</td>}
+                    {has.has('tok') && <td className="px-2 py-2.5 text-right num">{m.runtime?.tok_s ?? '—'}</td>}
+                    <td className="px-2 py-2.5 text-right num text-muted text-xs">{m.updated_at}</td>
                   </tr>
                   {isOpen && (
-                    <tr className="border-b border-border bg-surface-2/30">
+                    <tr className="expand border-b border-border bg-surface-2/30">
                       <td colSpan={20} className="px-4 py-3">
                         <ExpandRow r={r} />
                       </td>

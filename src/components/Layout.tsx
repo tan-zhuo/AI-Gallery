@@ -4,6 +4,7 @@ import { useTheme } from '@/hooks/useLocalStorage'
 import { meta } from '@/lib/catalog'
 import { cx } from '@/lib/format'
 import { SearchPalette } from './SearchPalette'
+import { Logo, LogoMark, Wordmark } from './ui/Logo'
 
 const nav = [
   ['/leaderboard', '排行榜'], ['/models', '模型库'], ['/compare', '对比'], ['/calculator', '计算器'], ['/architecture', '架构图鉴'], ['/methodology', '方法论'],
@@ -24,15 +25,12 @@ export default function Layout() {
   }, [])
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 z-40 border-b border-border bg-bg/80 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-border bg-bg/75 backdrop-blur-md">
         <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4">
-          <Link to="/" className="flex items-center gap-2 font-semibold tracking-tight">
-            <span className="grid h-7 w-7 place-items-center rounded-md bg-text text-bg text-xs">模</span>
-            <span>模榜 <span className="text-muted font-normal hidden sm:inline">ModelBoard</span></span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-1 ml-2">
+          <Link to="/" className="flex items-center" aria-label="AI-Gallery 首页"><Logo /></Link>
+          <nav className="hidden md:flex items-center gap-0.5 ml-4">
             {nav.map(([to, label]) => (
-              <NavLink key={to} to={to} className={({ isActive }) => cx('rounded-md px-2.5 py-1.5 text-sm transition', isActive ? 'bg-surface-2 text-text' : 'text-muted hover:text-text')}>{label}</NavLink>
+              <NavLink key={to} to={to} className={({ isActive }) => cx('rounded-full px-3 py-1.5 text-[13px] font-medium transition', isActive ? 'bg-surface-2 text-text shadow-[inset_0_0_0_1px_var(--border)]' : 'text-muted hover:text-text hover:bg-surface-2/60')}>{label}</NavLink>
             ))}
           </nav>
           <div className="ml-auto flex items-center gap-2">
@@ -59,16 +57,22 @@ export default function Layout() {
       <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 md:py-8">
         <Outlet />
       </main>
-      <footer className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 py-6 flex flex-col md:flex-row gap-3 md:items-center justify-between text-xs text-muted">
+      <footer className="border-t border-border mt-10">
+        <div className="mx-auto max-w-7xl px-4 py-8 grid gap-6 md:grid-cols-[1fr_auto] md:items-start">
+          <div className="space-y-2">
+            <div className="flex items-center gap-2"><LogoMark size={22} /><Wordmark className="text-base" /></div>
+            <p className="text-xs text-muted max-w-md">给工程师和选型者的模型决策站：排行榜当入口，说明书当核心资产。纯静态站点，数据全部来自仓库内 JSON。</p>
+          </div>
+          <div className="text-xs text-muted flex flex-col gap-2 md:items-end">
           <div>数据更新 <span className="num text-text">{meta.generated_at}</span> · 数据截止 <span className="num">{meta.data_cutoff}</span> · 价格 USD / 百万 token，不换算汇率</div>
           <div className="flex gap-4">
             <Link to="/methodology" className="hover:text-text">方法论</Link>
             <Link to="/changelog" className="hover:text-text">更新日志</Link>
             <Link to="/about" className="hover:text-text">关于 / 来源声明</Link>
           </div>
+          </div>
         </div>
-        <div className="mx-auto max-w-7xl px-4 pb-6 text-xs text-muted">排名供选型参考，基准会饱和、会泄漏、会过时。所有规格以官方来源为准；闭源参数量一律「未披露」。</div>
+        <div className="mx-auto max-w-7xl px-4 pb-6 text-[11px] text-muted border-t border-border/60 pt-4">排名供选型参考，基准会饱和、会泄漏、会过时。所有规格以官方来源为准；闭源参数量一律「未披露」。</div>
       </footer>
       <SearchPalette open={open} onClose={() => setOpen(false)} />
     </div>

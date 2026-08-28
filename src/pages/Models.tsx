@@ -91,7 +91,7 @@ export default function Models() {
         <div>
           {list.length === 0 ? <Empty text="没有匹配的模型" action={<Button variant="outline" onClick={reset}>清空筛选</Button>} /> : (
             <div className="card overflow-x-auto">
-              <table className="w-full text-sm">
+              <table className="tbl w-full text-sm">
                 <thead className="text-[11px] uppercase tracking-wide text-muted"><tr className="border-b border-border">
                   <th className="px-3 py-2 text-left">模型</th><th className="px-2 py-2 text-left">开闭源</th><th className="px-2 py-2 text-right">参考分</th><th className="px-2 py-2 text-left hidden md:table-cell">参数</th><th className="px-2 py-2 text-right hidden sm:table-cell">上下文</th><th className="px-2 py-2 text-right">价格</th><th className="px-2 py-2 text-right hidden md:table-cell">Q4</th><th className="px-2 py-2 text-left hidden lg:table-cell">许可证</th>
                 </tr></thead>
