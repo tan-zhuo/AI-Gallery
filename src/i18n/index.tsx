@@ -24,6 +24,7 @@ export type T = (zh: string, vars?: Record<string, string | number>) => string
 const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void; t: T }>({ lang: 'zh', setLang: () => {}, t: (s) => s })
 
 function detect(): Lang {
+  if (typeof window === 'undefined') return 'zh'
   try {
     const q = new URLSearchParams(location.search).get('lang')
     if (q === 'en' || q === 'ja' || q === 'zh') return q

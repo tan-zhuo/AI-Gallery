@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/merge-scores.mjs && node scripts/merge-data.mjs && node scripts/gen-seo.mjs && tsc -b && vite build",
+    "build": "node scripts/merge-scores.mjs && node scripts/merge-data.mjs && node scripts/gen-seo.mjs && tsc -b && vite build && vite build --ssr src/entry-prerender.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "data": "node scripts/merge-scores.mjs && node scripts/merge-data.mjs",
     "lint": "oxlint",
     "preview": "vite preview"

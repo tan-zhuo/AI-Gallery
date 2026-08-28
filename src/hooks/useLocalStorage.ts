@@ -18,7 +18,7 @@ export function useLocalStorage<T>(key: string, initial: T): [T, (v: T | ((p: T)
 }
 
 export function useTheme(): [boolean, () => void] {
-  const [dark, setDark] = useState(() => document.documentElement.classList.contains('dark'))
+  const [dark, setDark] = useState(() => typeof document === 'undefined' ? true : document.documentElement.classList.contains('dark'))
   const toggle = useCallback(() => {
     setDark((d) => {
       const n = !d

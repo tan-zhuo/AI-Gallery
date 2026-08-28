@@ -8,13 +8,14 @@
 npm i
 npm run dev        # 本地开发
 npm run data       # 合并 data/models/*.json → data/models.json，生成 data/scores.json 并校验
-npm run build      # = data + tsc + vite build，产物在 dist/
+npm run build      # = data + seo + tsc + vite build + 预渲染（dist/<route>/index.html，167 个静态页），产物在 dist/
 npm run preview    # 本地预览 dist/
 ```
 
 部署：把 `dist/` 放到任意静态托管（GitHub Pages / Cloudflare Pages / Netlify / Vercel 静态）。
 - 子路径部署：`VITE_BASE=/repo/ npm run build`
-- SPA 回退：`public/404.html` 已处理 GitHub Pages；其它平台把所有路由重写到 `index.html`。
+- 每个路由都有真实 HTML（`dist/models/<id>/index.html` 等），静态托管直接可抓取；`public/404.html` 兜底未预渲染的路径（如 `/compare?ids=`）。
+- 换域名：改 `data/meta.json` 的 `site_url`（影响 canonical / sitemap / robots）。
 
 ## 更新数据（人，不是服务器）
 
