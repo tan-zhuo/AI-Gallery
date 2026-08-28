@@ -24,7 +24,7 @@ export default function Leaderboard() {
   const tab = ((['all', 'open', 'closed'] as Tab[]).includes(sp.get('tab') as Tab) ? sp.get('tab') : 'all') as Tab
   const [q, setQ] = useState('')
   const [verified, setVerified] = useState(false)
-  const [old, setOld] = useState(false)
+  const [old, setOld] = useState(true)
   const [cols, setCols] = useLocalStorage<OptCol[]>('mb_cols', ['coding', 'reasoning'])
   const [ids, setIds] = useCompareIds()
   const rows = useMemo(() => buildRows(tab, scene, verified, old), [tab, scene, verified, old])
@@ -64,7 +64,7 @@ export default function Leaderboard() {
       <div className="card flex flex-wrap items-center gap-2 p-2">
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('过滤当前表…')} className="ctl min-w-[160px] flex-1" aria-label={t('过滤')} />
         <label className="check"><input type="checkbox" checked={verified} onChange={(e) => setVerified(e.target.checked)} />{t('只看有独立复测')}</label>
-        <label className="check"><input type="checkbox" checked={old} onChange={(e) => setOld(e.target.checked)} />{t('包含旧代')}</label>
+        <label className="check"><input type="checkbox" checked={!old} onChange={(e) => setOld(!e.target.checked)} />{t('只看当前代')}</label>
         <details className="relative">
           <summary className="ctl cursor-pointer select-none">{t('列')} <span className="num text-muted">({cols.length})</span><span className="text-muted text-[10px]">▾</span></summary>
           <div className="popover grid grid-cols-2 gap-0.5 w-60">
@@ -76,7 +76,7 @@ export default function Leaderboard() {
         <Button variant="outline" onClick={exportCsv}>{t('导出 CSV')}</Button>
       </div>
 
-      {shown.length === 0 ? <Empty text={t('没有匹配的模型')} action={<Button variant="outline" onClick={() => { setQ(''); setVerified(false); setOld(false) }}>{t('清空筛选')}</Button>} />
+      {shown.length === 0 ? <Empty text={t('没有匹配的模型')} action={<Button variant="outline" onClick={() => { setQ(''); setVerified(false); setOld(true) }}>{t('清空筛选')}</Button>} />
         : <LeaderboardTable rows={shown} selected={ids} onToggle={toggle} showValue={scene === 'value'} cols={cols} />}
       <Disclaimer />
       {ids.length > 0 && <CompareBar ids={ids} onClear={() => setIds([])} />}

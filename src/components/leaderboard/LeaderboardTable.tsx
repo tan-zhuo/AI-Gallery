@@ -66,12 +66,12 @@ export function LeaderboardTable({ rows, selected, onToggle, showValue, cols: co
               const isOpen = expanded === m.id
               return (
                 <Fragment key={m.id}>
-                  <tr className={cx('border-b border-border/60 cursor-pointer', sel && 'bg-surface-2/40')} onClick={() => setExpanded(isOpen ? null : m.id)} aria-expanded={isOpen}>
+                  <tr className={cx('border-b border-border/60 cursor-pointer', sel && 'bg-surface-2/40', m.status === 'superseded' && 'opacity-60')} onClick={() => setExpanded(isOpen ? null : m.id)} aria-expanded={isOpen}>
                     <td className="px-3 py-2.5" onClick={(e) => e.stopPropagation()}>
                       <input type="checkbox" checked={sel} disabled={!sel && selected.length >= MAX_COMPARE} onChange={() => onToggle(m.id)} aria-label={t('选择 {name} 加入对比', { name: m.name })} className="accent-[var(--accent)]" />
                     </td>
                     <td className="px-2 py-2.5"><span className={cx('num inline-grid h-6 w-6 place-items-center rounded-md text-xs font-semibold', r.rank <= 3 ? 'bg-gradient-to-br from-accent/25 to-accent-2/25 text-text' : 'text-muted')}>{r.rank}</span></td>
-                    <td className="px-2 py-2.5 min-w-[220px]"><ModelName m={m} /></td>
+                    <td className="px-2 py-2.5 min-w-[220px]"><div className="flex items-center gap-2"><ModelName m={m} />{m.status === 'superseded' && <Badge tone="warn">{t('已被替代')}</Badge>}</div></td>
                     <td className="px-2 py-2.5"><OpennessBadge m={m} /></td>
                     <td className="px-2 py-2.5 text-right num">
                       {showValue ? num(r.value, 1) : num(r.refScore, 1)}

@@ -93,19 +93,26 @@ export function computeReferenceScores(
   weights: Partial<Record<Component, number>> = DEFAULT_WEIGHTS,
 ): Map<string, RefScore> {
   const comps = (Object.keys(weights) as Component[]).filter((c) => (weights[c] ?? 0) > 0)
-  const norms = new Map<Component, (v: number) => number>()
+  // 每个分量下、每个基准 key 各自 min-max：SWE-bench 与 SciCode 不同量表，不能直接混比
+  const norms = new Map<string, (v: number) => number>()
   for (const c of comps) {
-    const vals = peers.map((m) => componentRaw(sm, m.id, c)).filter((v): v is number => v != null)
-    if (vals.length >= 2) norms.set(c, minmax(vals))
+    for (const k of COMPONENT_KEYS[c]) {
+      const vals = peers.map((m) => getScore(sm, m.id, k)?.value).filter((v): v is number => v != null)
+      if (vals.length >= 2) norms.set(k, minmax(vals))
+    }
   }
   const out = new Map<string, RefScore>()
   for (const m of peers) {
     let wsum = 0, acc = 0
     const used: Component[] = [], missing: Component[] = []
     for (const c of comps) {
-      const raw = componentRaw(sm, m.id, c)
-      const n = norms.get(c)
-      if (raw != null && n) { acc += (weights[c] ?? 0) * n(raw); wsum += weights[c] ?? 0; used.push(c) }
+      let n: number | undefined
+      for (const k of COMPONENT_KEYS[c]) {
+        const r = getScore(sm, m.id, k)
+        const f = norms.get(k)
+        if (r && f) { n = f(r.value); break }
+      }
+      if (n != null) { acc += (weights[c] ?? 0) * n; wsum += weights[c] ?? 0; used.push(c) }
       else missing.push(c)
     }
     out.set(m.id, wsum >= MIN_WEIGHT ? { score: acc / wsum, partial: missing.length > 0, used, missing } : { partial: true, used, missing })
