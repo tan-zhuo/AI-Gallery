@@ -48,7 +48,8 @@
   "weight_gb": {
    "bf16": 1350,
    "fp8": 675,
-   "q4": 392
+   "q4": 392,
+   "q8": 715.7
   },
   "estimated": true,
   "ref_hw_80gb": "不可行",
@@ -66,6 +67,48 @@
   "hf": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
   "pricing": "https://docs.mistral.ai/inference/pricing"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "mistralai",
+   "repo": "mistralai/Mistral-Large-3-675B-Instruct-2512",
+   "url": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
+   "note": "官方发布版（FP8）"
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "mistralai",
+   "repo": "mistralai/Mistral-Large-3-675B-Instruct-2512-NVFP4",
+   "url": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512-NVFP4",
+   "note": "官方 NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Mistral-Large-3-675B-Instruct-2512-GGUF",
+   "url": "https://huggingface.co/unsloth/Mistral-Large-3-675B-Instruct-2512-GGUF",
+   "sizes": {
+    "q4": 407,
+    "q5": 478,
+    "q6": 553.3,
+    "q8": 715.7,
+    "bf16": 1347
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/mistralai_Mistral-Large-3-675B-Instruct-2512-GGUF",
+   "url": "https://huggingface.co/bartowski/mistralai_Mistral-Large-3-675B-Instruct-2512-GGUF",
+   "sizes": {
+    "q4": 411.4,
+    "q5": 480.8,
+    "q6": 554.9,
+    "q8": 715.7,
+    "bf16": 1347
+   }
+  }
+ ],
  "copy": {
   "one_liner": "Mistral 675B MoE 开源多模态，Apache-2.0，非推理。",
   "highlights": [

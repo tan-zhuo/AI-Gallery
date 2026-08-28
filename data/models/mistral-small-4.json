@@ -70,6 +70,59 @@
   "hf": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
   "pricing": "https://docs.mistral.ai/inference/pricing"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "mistralai",
+   "repo": "mistralai/Mistral-Small-4-119B-2603",
+   "url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+   "note": "官方发布版（FP8）",
+   "sizes": {
+    "fp8": 120.9
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "mistralai",
+   "repo": "mistralai/Mistral-Small-4-119B-2603-NVFP4",
+   "url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603-NVFP4",
+   "note": "官方 NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Mistral-Small-4-119B-2603-GGUF",
+   "url": "https://huggingface.co/unsloth/Mistral-Small-4-119B-2603-GGUF",
+   "sizes": {
+    "q8": 126.5,
+    "bf16": 238
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/mistralai_Mistral-Small-4-119B-2603-GGUF",
+   "url": "https://huggingface.co/bartowski/mistralai_Mistral-Small-4-119B-2603-GGUF",
+   "sizes": {
+    "q4": 72.6,
+    "q5": 85,
+    "q6": 102.8,
+    "q8": 126.5
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/Mistral-Small-4-119B-2603-AWQ-4bit",
+   "url": "https://huggingface.co/cyankiwi/Mistral-Small-4-119B-2603-AWQ-4bit"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/Mistral-Small-4-119B-2603-4bit",
+   "url": "https://huggingface.co/mlx-community/Mistral-Small-4-119B-2603-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "119B MoE 仅 6.5B 激活，推理 / 视觉 / 编程三合一。",
   "highlights": [

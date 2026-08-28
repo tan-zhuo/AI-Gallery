@@ -71,6 +71,59 @@
   "official": "https://nvidianews.nvidia.com/news/nvidia-debuts-nemotron-3-family-of-open-models",
   "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 128.4
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
+   "note": "官方 NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+   "url": "https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+   "sizes": {
+    "q8": 128.5,
+    "bf16": 241.5
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/nvidia_Nemotron-3-Super-120B-A12B-GGUF",
+   "url": "https://huggingface.co/bartowski/nvidia_Nemotron-3-Super-120B-A12B-GGUF",
+   "sizes": {
+    "q4": 87,
+    "q5": 96.6,
+    "q6": 113.6,
+    "q8": 128.5
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/NVIDIA-Nemotron-3-Super-120B-A12B-AWQ-4bit",
+   "url": "https://huggingface.co/cyankiwi/NVIDIA-Nemotron-3-Super-120B-A12B-AWQ-4bit"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/NVIDIA-Nemotron-3-Super-120B-A12B-4bit",
+   "url": "https://huggingface.co/mlx-community/NVIDIA-Nemotron-3-Super-120B-A12B-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "NVIDIA 120B 混合 Mamba-MoE，12B 激活，1M 上下文。",
   "highlights": [

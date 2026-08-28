@@ -49,7 +49,9 @@
  },
  "memory": {
   "weight_gb": {
-   "q4": 595
+   "q4": 595,
+   "fp8": 1030.9,
+   "bf16": 2053.2
   },
   "kv_per_token_kib": 70,
   "kv_note": "MLA，与 K2 同：≈ 70 KiB/token。",
@@ -73,6 +75,48 @@
   "paper": "https://arxiv.org/abs/2602.02276",
   "pricing": "https://platform.kimi.ai/docs/pricing/chat-k26"
  },
+ "variants": [
+  {
+   "kind": "other",
+   "publisher": "moonshotai",
+   "repo": "moonshotai/Kimi-K2.6",
+   "url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+   "note": "官方原生 INT4（compressed-tensors）",
+   "sizes": {
+    "q4": 595.2
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/Kimi-K2.6-NVFP4",
+   "url": "https://huggingface.co/nvidia/Kimi-K2.6-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Kimi-K2.6-GGUF",
+   "url": "https://huggingface.co/unsloth/Kimi-K2.6-GGUF",
+   "sizes": {
+    "bf16": 2053.2
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/moonshotai_Kimi-K2.6-GGUF",
+   "url": "https://huggingface.co/bartowski/moonshotai_Kimi-K2.6-GGUF"
+  },
+  {
+   "kind": "fp8",
+   "publisher": "RedHatAI",
+   "repo": "RedHatAI/Kimi-K2.6-FP8-BLOCK",
+   "url": "https://huggingface.co/RedHatAI/Kimi-K2.6-FP8-BLOCK",
+   "sizes": {
+    "fp8": 1030.9
+   }
+  }
+ ],
  "copy": {
   "one_liner": "1T/32B 多模态 agent 模型，K3 之下的性价比选择。",
   "highlights": [

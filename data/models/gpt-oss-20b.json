@@ -67,6 +67,55 @@
   "hf": "https://huggingface.co/openai/gpt-oss-20b",
   "github": "https://github.com/openai/gpt-oss"
  },
+ "variants": [
+  {
+   "kind": "other",
+   "publisher": "openai",
+   "repo": "openai/gpt-oss-20b",
+   "url": "https://huggingface.co/openai/gpt-oss-20b",
+   "note": "官方 MXFP4 safetensors（MoE 4-bit、其余 BF16）",
+   "sizes": {
+    "bf16": 13.8
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/gpt-oss-20b-GGUF",
+   "url": "https://huggingface.co/unsloth/gpt-oss-20b-GGUF",
+   "sizes": {
+    "q4": 11.6,
+    "q5": 11.7,
+    "q6": 12,
+    "q8": 12.1
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/openai_gpt-oss-20b-GGUF",
+   "url": "https://huggingface.co/bartowski/openai_gpt-oss-20b-GGUF",
+   "sizes": {
+    "q4": 11.7,
+    "q5": 11.7,
+    "q6": 12,
+    "q8": 12.1,
+    "bf16": 13.8
+   }
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+   "url": "https://huggingface.co/mlx-community/gpt-oss-20b-MXFP4-Q8"
+  },
+  {
+   "kind": "bnb",
+   "publisher": "unsloth",
+   "repo": "unsloth/gpt-oss-20b-unsloth-bnb-4bit",
+   "url": "https://huggingface.co/unsloth/gpt-oss-20b-unsloth-bnb-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "16GB 显存跑的推理模型，数学能力惊人。",
   "highlights": [

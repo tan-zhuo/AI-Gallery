@@ -37,7 +37,9 @@
  "memory": {
   "weight_gb": {
    "bf16": 63,
-   "q4": 19
+   "q4": 19,
+   "q8": 33.6,
+   "fp8": 32.7
   },
   "estimated": true,
   "ref_hw_24gb": "Q4 约 19 GB（估）",
@@ -47,6 +49,57 @@
   "official": "https://developer.nvidia.com/nemotron",
   "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 32.7
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4",
+   "note": "官方 NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Nemotron-3-Nano-30B-A3B-GGUF",
+   "url": "https://huggingface.co/unsloth/Nemotron-3-Nano-30B-A3B-GGUF",
+   "sizes": {
+    "q4": 24.6,
+    "q5": 26.1,
+    "q6": 33.5,
+    "q8": 33.6,
+    "bf16": 63.2
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/nvidia_Nemotron-3-Nano-30B-A3B-GGUF",
+   "url": "https://huggingface.co/bartowski/nvidia_Nemotron-3-Nano-30B-A3B-GGUF",
+   "sizes": {
+    "q4": 24.7,
+    "q5": 26.2,
+    "q6": 33.4,
+    "q8": 33.6,
+    "bf16": 63.2
+   }
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/NVIDIA-Nemotron-3-Nano-30B-A3B-4bit",
+   "url": "https://huggingface.co/mlx-community/NVIDIA-Nemotron-3-Nano-30B-A3B-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "NVIDIA 开放数据与配方的混合 Mamba MoE，1M 上下文。",
   "highlights": [

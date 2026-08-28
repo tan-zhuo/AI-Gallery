@@ -50,7 +50,8 @@
   "weight_gb": {
    "bf16": 1507,
    "fp8": 753,
-   "q4": 432
+   "q4": 432,
+   "q8": 801.4
   },
   "kv_per_token_kib": 88,
   "kv_note": "MLA：576 维 × 2 B × 78 层 ≈ 88 KiB/token。1M 上下文单请求 KV ≈ 88 GB；DSA 只降低计算不减 KV 存储。",
@@ -74,6 +75,46 @@
   "paper": "https://arxiv.org/abs/2602.15763",
   "pricing": "https://docs.z.ai/guides/overview/pricing"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "zai-org",
+   "repo": "zai-org/GLM-5.2-FP8",
+   "url": "https://huggingface.co/zai-org/GLM-5.2-FP8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 755.6
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/GLM-5.2-NVFP4",
+   "url": "https://huggingface.co/nvidia/GLM-5.2-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/GLM-5.2-GGUF",
+   "url": "https://huggingface.co/unsloth/GLM-5.2-GGUF",
+   "sizes": {
+    "q8": 801.4,
+    "bf16": 1508
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/GLM-5.2-AWQ-INT4",
+   "url": "https://huggingface.co/cyankiwi/GLM-5.2-AWQ-INT4"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/GLM-5.2-4bit",
+   "url": "https://huggingface.co/mlx-community/GLM-5.2-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "MIT 许可、1M 上下文的 744B 开源编程旗舰。",
   "highlights": [

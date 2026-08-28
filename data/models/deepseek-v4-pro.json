@@ -73,6 +73,36 @@
   "paper": "https://arxiv.org/abs/2606.19348",
   "pricing": "https://api-docs.deepseek.com/quick_start/pricing"
  },
+ "variants": [
+  {
+   "kind": "other",
+   "publisher": "deepseek-ai",
+   "repo": "deepseek-ai/DeepSeek-V4-Pro-0813",
+   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+   "note": "官方原生 FP4（专家）+ FP8 混合权重",
+   "sizes": {
+    "fp8": 892.7
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/DeepSeek-V4-Pro-NVFP4",
+   "url": "https://huggingface.co/nvidia/DeepSeek-V4-Pro-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/DeepSeek-V4-Pro-0813-GGUF",
+   "url": "https://huggingface.co/unsloth/DeepSeek-V4-Pro-0813-GGUF"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/DeepSeek-V4-Pro-4bit",
+   "url": "https://huggingface.co/mlx-community/DeepSeek-V4-Pro-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "MIT 许可 1.6T 旗舰，1M 上下文，Agent 榜追平闭源。",
   "highlights": [

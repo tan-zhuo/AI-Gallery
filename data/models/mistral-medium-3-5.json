@@ -44,7 +44,8 @@
   "weight_gb": {
    "bf16": 256,
    "fp8": 128,
-   "q4": 74
+   "q4": 74,
+   "q8": 132.9
   },
   "kv_per_token_kib": 352,
   "kv_note": "8 KV 头 × 128 × 2 × 88 层 × 2 B = 352 KiB/token，128K 上下文约 44 GB，长上下文显存占用不小。",
@@ -66,6 +67,58 @@
   "hf": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B",
   "pricing": "https://docs.mistral.ai/inference/pricing"
  },
+ "variants": [
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/Mistral-Medium-3.5-128B-NVFP4",
+   "url": "https://huggingface.co/nvidia/Mistral-Medium-3.5-128B-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Mistral-Medium-3.5-128B-GGUF",
+   "url": "https://huggingface.co/unsloth/Mistral-Medium-3.5-128B-GGUF",
+   "sizes": {
+    "q4": 74.9,
+    "q5": 88.3,
+    "q6": 102.6,
+    "q8": 132.9,
+    "bf16": 250.1
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "url": "https://huggingface.co/bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+   "sizes": {
+    "q4": 78.4,
+    "q5": 91.1,
+    "q6": 107.8,
+    "q8": 132.9
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/Mistral-Medium-3.5-128B-AWQ-INT4",
+   "url": "https://huggingface.co/cyankiwi/Mistral-Medium-3.5-128B-AWQ-INT4"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/Mistral-Medium-3.5-128B-4bit",
+   "url": "https://huggingface.co/mlx-community/Mistral-Medium-3.5-128B-4bit"
+  },
+  {
+   "kind": "other",
+   "publisher": "turboderp",
+   "repo": "turboderp/Mistral-Medium-3.5-128B-exl3",
+   "url": "https://huggingface.co/turboderp/Mistral-Medium-3.5-128B-exl3",
+   "note": "EXL3（ExLlamaV3）"
+  }
+ ],
  "copy": {
   "one_liner": "Mistral 128B 稠密开源旗舰，SWE-bench 77.6%。",
   "highlights": [

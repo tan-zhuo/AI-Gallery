@@ -75,6 +75,35 @@
   "github": "https://github.com/QwenLM/Qwen3.8",
   "pricing": "https://www.alibabacloud.com/help/en/model-studio/models"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "Qwen",
+   "repo": "Qwen/Qwen3.8-2.4T-A95B-FP8",
+   "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B-FP8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 2496.1
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "RedHatAI",
+   "repo": "RedHatAI/Qwen3.8-2.4T-A95B-NVFP4",
+   "url": "https://huggingface.co/RedHatAI/Qwen3.8-2.4T-A95B-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Qwen3.8-2.4T-A95B-GGUF",
+   "url": "https://huggingface.co/unsloth/Qwen3.8-2.4T-A95B-GGUF",
+   "note": "2.4T 级仅 unsloth 提供 GGUF（UD-IQ4_XS 等），无 Q4_K_M",
+   "sizes": {
+    "q8": 2600.2,
+    "bf16": 4893.2
+   }
+  }
+ ],
  "copy": {
   "one_liner": "首个可下载的 Max 级 Qwen，2.4T MoE，自定义许可。",
   "highlights": [

@@ -49,7 +49,8 @@
   "weight_gb": {
    "bf16": 598,
    "fp8": 299,
-   "q4": 173
+   "q4": 173,
+   "q8": 317.7
   },
   "kv_per_token_kib": 320,
   "estimated": true,
@@ -68,6 +69,42 @@
   "official": "https://www.tencent.com/en-us/articles/2202386.html",
   "hf": "https://huggingface.co/tencent/Hy3"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "tencent",
+   "repo": "tencent/Hy3-FP8",
+   "url": "https://huggingface.co/tencent/Hy3-FP8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 299.9
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "RedHatAI",
+   "repo": "RedHatAI/Hy3-NVFP4-FP8",
+   "url": "https://huggingface.co/RedHatAI/Hy3-NVFP4-FP8"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/Hy3-GGUF",
+   "url": "https://huggingface.co/bartowski/Hy3-GGUF",
+   "sizes": {
+    "q4": 182.2,
+    "q5": 212.8,
+    "q6": 257.2,
+    "q8": 317.7
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/Hy3-AWQ-INT4",
+   "url": "https://huggingface.co/cyankiwi/Hy3-AWQ-INT4"
+  }
+ ],
  "copy": {
   "one_liner": "腾讯 295B MoE 开源，SWE-bench 78%、GPQA 90。",
   "highlights": [

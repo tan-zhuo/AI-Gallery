@@ -188,6 +188,30 @@ function Detail({ m }: { m: Model }) {
               {Object.entries(m.links).filter(([, u]) => u).map(([k, u]) => <a key={k} href={u} target="_blank" rel="noreferrer" className="link">{({ official: t('官方'), hf: 'Hugging Face', github: 'GitHub', paper: t('论文 / 报告'), pricing: t('定价') } as Record<string, string>)[k] ?? k} ↗</a>)}
             </div>
             <Md md={m.sheet?.ecosystem_md} />
+            {m.variants && m.variants.length > 0 && (
+              <div className="mt-4 border-t border-border pt-4">
+                <div className="font-semibold mb-1">{t('下载版本')}</div>
+                <p className="text-xs text-muted mb-3">{t('官方与社区量化 / 格式变体，仓库均已核实存在；文件大小取自仓库文件列表（GB）。社区仓库质量请自行评估。')}</p>
+                <div className="overflow-x-auto">
+                  <table className="w-full text-sm min-w-[560px]">
+                    <thead className="text-[11px] uppercase tracking-wide text-muted"><tr className="border-b border-border"><th className="text-left py-1.5 pr-3">{t('格式')}</th><th className="text-left py-1.5 pr-3">{t('发布者')}</th><th className="text-left py-1.5 pr-3">{t('仓库')}</th><th className="text-right py-1.5 pr-3">Q4</th><th className="text-right py-1.5 pr-3">Q8</th><th className="text-right py-1.5 pr-3">FP8</th><th className="text-right py-1.5">BF16</th></tr></thead>
+                    <tbody>
+                      {m.variants.map((v) => (
+                        <tr key={v.repo} className="border-b border-border/60">
+                          <td className="py-1.5 pr-3"><Badge tone={v.kind === 'gguf' ? 'open' : v.kind === 'fp8' || v.kind === 'nvfp4' ? 'closed' : 'neutral'}>{v.kind.toUpperCase()}</Badge></td>
+                          <td className="py-1.5 pr-3 text-xs">{v.publisher}</td>
+                          <td className="py-1.5 pr-3"><a href={v.url} target="_blank" rel="noreferrer" className="link num text-xs">{v.repo}</a>{v.note && <div className="text-[10px] text-muted">{v.note}</div>}</td>
+                          <td className="py-1.5 pr-3 num text-right text-xs">{v.sizes?.q4 != null ? `${v.sizes.q4} GB` : '—'}</td>
+                          <td className="py-1.5 pr-3 num text-right text-xs">{v.sizes?.q8 != null ? `${v.sizes.q8} GB` : '—'}</td>
+                          <td className="py-1.5 pr-3 num text-right text-xs">{v.sizes?.fp8 != null ? `${v.sizes.fp8} GB` : '—'}</td>
+                          <td className="py-1.5 num text-right text-xs">{v.sizes?.bf16 != null ? `${v.sizes.bf16} GB` : '—'}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
           </Sec>
           <Sec id="s7" n={7} title={t('证据与榜单明细')} open>
             {scores.length === 0 ? <p className="text-sm text-muted">{t('暂无带来源的分数。')}</p> : (

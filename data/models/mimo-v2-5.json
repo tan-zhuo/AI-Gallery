@@ -52,7 +52,8 @@
   "weight_gb": {
    "bf16": 620,
    "fp8": 310,
-   "q4": 180
+   "q4": 180,
+   "q8": 329.3
   },
   "estimated": true,
   "ref_hw_80gb": "不可行",
@@ -69,6 +70,40 @@
   "official": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
   "hf": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "XiaomiMiMo",
+   "repo": "XiaomiMiMo/MiMo-V2.5",
+   "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
+   "note": "官方发布版（FP8）",
+   "sizes": {
+    "fp8": 315.7
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/MiMo-V2.5-GGUF",
+   "url": "https://huggingface.co/unsloth/MiMo-V2.5-GGUF",
+   "sizes": {
+    "q8": 329.3,
+    "bf16": 619.6
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/MiMo-V2.5-GGUF",
+   "url": "https://huggingface.co/bartowski/MiMo-V2.5-GGUF",
+   "sizes": {
+    "q4": 188.8,
+    "q5": 221.4,
+    "q6": 267.6,
+    "q8": 329.3
+   }
+  }
+ ],
  "copy": {
   "one_liner": "小米 310B 全模态 MoE，15B 激活，MIT 许可，1M 上下文。",
   "highlights": [

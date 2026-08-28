@@ -51,7 +51,8 @@
   "weight_gb": {
    "bf16": 396,
    "fp8": 198,
-   "q4": 115
+   "q4": 115,
+   "q8": 213.1
   },
   "estimated": true,
   "ref_hw_80gb": "不可行（官方最低 120GB 统一内存，如 Mac Studio / DGX Station）",
@@ -69,6 +70,64 @@
   "official": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
   "hf": "https://huggingface.co/stepfun-ai/Step-3.7-Flash"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "stepfun-ai",
+   "repo": "stepfun-ai/Step-3.7-Flash-FP8",
+   "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash-FP8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 212.5
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "stepfun-ai",
+   "repo": "stepfun-ai/Step-3.7-Flash-NVFP4",
+   "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash-NVFP4",
+   "note": "官方 NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "stepfun-ai",
+   "repo": "stepfun-ai/Step-3.7-Flash-GGUF",
+   "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash-GGUF",
+   "note": "官方 GGUF",
+   "sizes": {
+    "q8": 213.1,
+    "bf16": 401
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Step-3.7-Flash-GGUF",
+   "url": "https://huggingface.co/unsloth/Step-3.7-Flash-GGUF",
+   "sizes": {
+    "q8": 209.4,
+    "bf16": 394
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/Step-3.7-Flash-GGUF",
+   "url": "https://huggingface.co/bartowski/Step-3.7-Flash-GGUF",
+   "sizes": {
+    "q4": 121.6,
+    "q5": 142,
+    "q6": 171.8,
+    "q8": 212
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/Step-3.7-Flash-AWQ-INT4",
+   "url": "https://huggingface.co/cyankiwi/Step-3.7-Flash-AWQ-INT4"
+  }
+ ],
  "copy": {
   "one_liner": "阶跃 198B 视觉 MoE，11B 激活，图 / 视频 / 编程 agent。",
   "highlights": [

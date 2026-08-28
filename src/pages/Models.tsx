@@ -53,8 +53,9 @@ interface Filters {
   arch: 'any' | 'dense' | 'moe' | 'hybrid'; ctxMin: number; year: string[]
   status: 'all' | 'current' | 'preview' | 'superseded'; sheet: 'any' | 'complete'
   priceMax: number; evidence: 'any' | 'independent'
+  fmt: string[]
 }
-const DEF: Filters = { open: 'all', vendor: [], size: [], lic: 'all', mod: [], hw: 0, reasoning: 'any', arch: 'any', ctxMin: 0, year: [], status: 'all', sheet: 'any', priceMax: 0, evidence: 'any' }
+const DEF: Filters = { open: 'all', vendor: [], size: [], lic: 'all', mod: [], hw: 0, reasoning: 'any', arch: 'any', ctxMin: 0, year: [], status: 'all', sheet: 'any', priceMax: 0, evidence: 'any', fmt: [] }
 
 export default function Models() {
   const { t } = useT()
@@ -62,7 +63,7 @@ export default function Models() {
   const [q, setQ] = useState('')
   const [f, setF] = useState<Filters>(DEF)
   const set = (p: Partial<Filters>) => setF((s) => ({ ...s, ...p }))
-  const tog = (k: 'vendor' | 'size' | 'mod' | 'year', v: string) => set({ [k]: f[k].includes(v) ? f[k].filter((x) => x !== v) : [...f[k], v] } as Partial<Filters>)
+  const tog = (k: 'vendor' | 'size' | 'mod' | 'year' | 'fmt', v: string) => set({ [k]: f[k].includes(v) ? f[k].filter((x) => x !== v) : [...f[k], v] } as Partial<Filters>)
   const [sortKey, setSortKey] = useLocalStorage<string>('mb_models_sort', 'ref')
   const [dir, setDir] = useLocalStorage<'asc' | 'desc'>('mb_models_dir', 'desc')
   const [page, setPage] = useState(1)
@@ -99,6 +100,7 @@ export default function Models() {
       if (f.sheet === 'complete' && !m.complete) return false
       if (f.priceMax && !(m.pricing?.input_per_m != null && m.pricing.input_per_m <= f.priceMax)) return false
       if (f.evidence === 'independent' && !(g(m, 'aa_index') != null || g(m, 'arena_text') != null)) return false
+      for (const k of f.fmt) if (!m.variants?.some((v) => v.kind === k)) return false
       return true
     })
     if (!q.trim()) {
@@ -150,6 +152,7 @@ export default function Models() {
           <F title={t('推理模式')}>{([['any', '全部'], ['none', '无思考'], ['optional', '可开关'], ['default-on', '默认开']] as const).map(([k, l]) => <Chip key={k} active={f.reasoning === k} onClick={() => set({ reasoning: k })}>{t(l)}</Chip>)}</F>
           <F title={t('硬件（开源 Q4）')}>{([16, 24, 80] as const).map((gb) => <Chip key={gb} active={f.hw === gb} onClick={() => set({ hw: f.hw === gb ? 0 : gb })}>{t('能进 {g}GB', { g: gb })}</Chip>)}</F>
           <F title={t('输入价格 ≤ $/1M')}>{([[0, '任意'], [0.5, '0.5'], [1, '1'], [3, '3'], [10, '10']] as const).map(([k, l]) => <Chip key={k} active={f.priceMax === k} onClick={() => set({ priceMax: k })}>{k === 0 ? t(l) : `$${l}`}</Chip>)}</F>
+          <F title={t('下载格式')}>{([['gguf', 'GGUF'], ['mlx', 'MLX'], ['fp8', 'FP8'], ['awq', 'AWQ'], ['gptq', 'GPTQ'], ['nvfp4', 'NVFP4']] as const).map(([k, l]) => <Chip key={k} active={f.fmt.includes(k)} onClick={() => tog('fmt', k)}>{l}</Chip>)}</F>
           <F title={t('数据')}><Chip active={f.sheet === 'complete'} onClick={() => set({ sheet: f.sheet === 'complete' ? 'any' : 'complete' })}>{t('有完整说明书')}</Chip><Chip active={f.evidence === 'independent'} onClick={() => set({ evidence: f.evidence === 'independent' ? 'any' : 'independent' })}>{t('有独立复测')}</Chip></F>
           <Button variant="outline" onClick={reset} className="w-full">{t('清空筛选')}{active > 0 && ` (${active})`}</Button>
         </aside>

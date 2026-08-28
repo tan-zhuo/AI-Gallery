@@ -50,7 +50,8 @@
  },
  "memory": {
   "weight_gb": {
-   "q4": 1561
+   "q4": 1561,
+   "fp8": 2819.9
   },
   "kv_per_token_kib": 27,
   "kv_note": "仅 24 层 MLA 存 per-token KV：576 × 2 B × 24 ≈ 27 KiB/token；69 层 KDA 为固定状态（每层 96 头 × 128 × 128 × 2 B ≈ 3 MiB，每请求约 207 MiB 常量）。",
@@ -73,6 +74,39 @@
   "github": "https://github.com/MoonshotAI/Kimi-K3",
   "pricing": "https://platform.kimi.ai/docs/pricing/chat-k3"
  },
+ "variants": [
+  {
+   "kind": "other",
+   "publisher": "moonshotai",
+   "repo": "moonshotai/Kimi-K3",
+   "url": "https://huggingface.co/moonshotai/Kimi-K3",
+   "note": "官方原生 MXFP4 权重",
+   "sizes": {
+    "q4": 1560.9
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/Kimi-K3-NVFP4",
+   "url": "https://huggingface.co/nvidia/Kimi-K3-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Kimi-K3-GGUF",
+   "url": "https://huggingface.co/unsloth/Kimi-K3-GGUF"
+  },
+  {
+   "kind": "fp8",
+   "publisher": "RedHatAI",
+   "repo": "RedHatAI/Kimi-K3-FP8-BLOCK",
+   "url": "https://huggingface.co/RedHatAI/Kimi-K3-FP8-BLOCK",
+   "sizes": {
+    "fp8": 2819.9
+   }
+  }
+ ],
  "copy": {
   "one_liner": "2.8T 参数的开源多模态 agent 旗舰，LMArena 开源第一。",
   "highlights": [

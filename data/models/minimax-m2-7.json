@@ -46,7 +46,9 @@
  "memory": {
   "weight_gb": {
    "fp8": 230,
-   "q4": 133
+   "q4": 133,
+   "q8": 243.1,
+   "bf16": 457.5
   },
   "kv_per_token_kib": 248,
   "kv_note": "8 KV 头 × 128 × 2 × 62 层 × 2 B = 248 KiB/token。",
@@ -69,6 +71,58 @@
   "github": "https://github.com/MiniMax-AI/MiniMax-M2.7",
   "pricing": "https://platform.minimax.io/docs/guides/pricing-paygo"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "MiniMaxAI",
+   "repo": "MiniMaxAI/MiniMax-M2.7",
+   "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+   "note": "官方发布版（FP8）",
+   "sizes": {
+    "fp8": 230.1
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/MiniMax-M2.7-NVFP4",
+   "url": "https://huggingface.co/nvidia/MiniMax-M2.7-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/MiniMax-M2.7-GGUF",
+   "url": "https://huggingface.co/unsloth/MiniMax-M2.7-GGUF",
+   "sizes": {
+    "q8": 243.1,
+    "bf16": 457.5
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "url": "https://huggingface.co/bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+   "sizes": {
+    "q4": 138.8,
+    "q5": 162.7,
+    "q6": 197.1,
+    "q8": 243.1
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/MiniMax-M2.7-AWQ-4bit",
+   "url": "https://huggingface.co/cyankiwi/MiniMax-M2.7-AWQ-4bit"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/MiniMax-M2.7-4bit",
+   "url": "https://huggingface.co/mlx-community/MiniMax-M2.7-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "10B 激活的 agent 编程模型，但权重仅限非商用。",
   "highlights": [

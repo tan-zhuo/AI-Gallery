@@ -45,7 +45,8 @@
   "weight_gb": {
    "bf16": 960,
    "fp8": 480,
-   "q4": 280
+   "q4": 280,
+   "q8": 510.4
   },
   "estimated": true,
   "ref_hw_8x80gb": "FP8 8×H100 可服务"
@@ -63,6 +64,61 @@
   "hf": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct",
   "github": "https://github.com/QwenLM/Qwen3-Coder"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "Qwen",
+   "repo": "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+   "url": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 482.1
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/Qwen3-Coder-480B-A35B-Instruct-NVFP4",
+   "url": "https://huggingface.co/nvidia/Qwen3-Coder-480B-A35B-Instruct-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Qwen3-Coder-480B-A35B-Instruct-GGUF",
+   "url": "https://huggingface.co/unsloth/Qwen3-Coder-480B-A35B-Instruct-GGUF",
+   "sizes": {
+    "q4": 290.1,
+    "q5": 340.5,
+    "q6": 394.1,
+    "q8": 510.4,
+    "bf16": 960.4
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/Qwen_Qwen3-Coder-480B-A35B-Instruct-GGUF",
+   "url": "https://huggingface.co/bartowski/Qwen_Qwen3-Coder-480B-A35B-Instruct-GGUF",
+   "sizes": {
+    "q4": 290.8,
+    "q5": 340.6,
+    "q6": 394.2,
+    "q8": 510.4
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "QuantTrio",
+   "repo": "QuantTrio/Qwen3-Coder-480B-A35B-Instruct-AWQ",
+   "url": "https://huggingface.co/QuantTrio/Qwen3-Coder-480B-A35B-Instruct-AWQ"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/Qwen3-Coder-480B-A35B-Instruct-4bit",
+   "url": "https://huggingface.co/mlx-community/Qwen3-Coder-480B-A35B-Instruct-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "Apache-2.0 的编程 agent 专用 MoE，非思考模式。",
   "highlights": [

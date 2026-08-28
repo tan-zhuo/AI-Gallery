@@ -42,7 +42,8 @@
   "weight_gb": {
    "bf16": 60,
    "q8": 32,
-   "q4": 17.4
+   "q4": 17.4,
+   "fp8": 30.1
   },
   "kv_per_token_kib": 256,
   "estimated": true,
@@ -53,6 +54,58 @@
   "official": "https://huggingface.co/ibm-granite/granite-4.2-30b",
   "hf": "https://huggingface.co/ibm-granite/granite-4.2-30b"
  },
+ "variants": [
+  {
+   "kind": "gguf",
+   "publisher": "ibm-granite",
+   "repo": "ibm-granite/granite-4.2-30b-GGUF",
+   "url": "https://huggingface.co/ibm-granite/granite-4.2-30b-GGUF",
+   "note": "官方 GGUF",
+   "sizes": {
+    "q4": 17.7,
+    "q5": 20.8,
+    "q6": 24,
+    "q8": 31.1,
+    "bf16": 58.6
+   }
+  },
+  {
+   "kind": "fp8",
+   "publisher": "ibm-granite",
+   "repo": "ibm-granite/granite-4.2-30b-fp8",
+   "url": "https://huggingface.co/ibm-granite/granite-4.2-30b-fp8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 30.1
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "ibm-granite",
+   "repo": "ibm-granite/granite-4.2-30b-nvfp4",
+   "url": "https://huggingface.co/ibm-granite/granite-4.2-30b-nvfp4",
+   "note": "官方 NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/granite-4.2-30b-GGUF",
+   "url": "https://huggingface.co/bartowski/granite-4.2-30b-GGUF",
+   "sizes": {
+    "q4": 18,
+    "q5": 21,
+    "q6": 24.5,
+    "q8": 31.1,
+    "bf16": 58.6
+   }
+  },
+  {
+   "kind": "mlx",
+   "publisher": "lmstudio-community",
+   "repo": "lmstudio-community/granite-4.2-30b-MLX-4bit",
+   "url": "https://huggingface.co/lmstudio-community/granite-4.2-30b-MLX-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "IBM 30B 稠密推理模型，Apache-2.0，24GB 可跑。",
   "highlights": [

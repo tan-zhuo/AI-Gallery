@@ -188,4 +188,10 @@ Models without modeled KV (missing layers / heads): fit judged by weights only
   "有完整说明书": "Full sheet",
   "有独立复测": "Independently tested",
   "点击排序": "Click to sort",
+  "下载版本": "Downloads",
+  "官方与社区量化 / 格式变体，仓库均已核实存在；文件大小取自仓库文件列表（GB）。社区仓库质量请自行评估。": "Official and community quantizations / formats; every repo verified to exist; sizes read from the repo file list (GB). Judge community repos yourself.",
+  "格式": "Format",
+  "发布者": "Publisher",
+  "仓库": "Repository",
+  "下载格式": "Download format",
 }

@@ -49,7 +49,8 @@
   "weight_gb": {
    "bf16": 854,
    "fp8": 428,
-   "q4": 248
+   "q4": 248,
+   "q8": 453.6
   },
   "kv_per_token_kib": 120,
   "kv_note": "4 KV 头 × 128 × 2 × 60 层 × 2 B = 120 KiB/token；MSA 只减少注意力计算，KV 仍全量存储。1M 上下文单请求 ≈ 117 GB。",
@@ -73,6 +74,58 @@
   "paper": "https://arxiv.org/abs/2606.13392",
   "pricing": "https://platform.minimax.io/docs/guides/pricing-paygo"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "MiniMaxAI",
+   "repo": "MiniMaxAI/MiniMax-M3-MXFP8",
+   "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3-MXFP8",
+   "note": "官方 MXFP8",
+   "sizes": {
+    "fp8": 443.7
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/MiniMax-M3-NVFP4",
+   "url": "https://huggingface.co/nvidia/MiniMax-M3-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/MiniMax-M3-GGUF",
+   "url": "https://huggingface.co/bartowski/MiniMax-M3-GGUF",
+   "sizes": {
+    "q4": 261.3,
+    "q5": 305.3,
+    "q6": 369.4,
+    "q8": 453.6
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/MiniMax-M3-GGUF",
+   "url": "https://huggingface.co/unsloth/MiniMax-M3-GGUF",
+   "sizes": {
+    "q8": 452.7,
+    "bf16": 852
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/MiniMax-M3-AWQ-INT4",
+   "url": "https://huggingface.co/cyankiwi/MiniMax-M3-AWQ-INT4"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/MiniMax-M3-4bit",
+   "url": "https://huggingface.co/mlx-community/MiniMax-M3-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "428B/23B 稀疏注意力多模态开源模型，1M 上下文低价。",
   "highlights": [

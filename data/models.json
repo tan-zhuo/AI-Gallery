@@ -1601,7 +1601,8 @@
    "weight_gb": {
     "bf16": 436,
     "fp8": 218,
-    "q4": 126
+    "q4": 126,
+    "q8": 232
    },
    "estimated": true,
    "ref_hw_80gb": "官方 W4A4 需 2×H100 或 1×B200",
@@ -1611,6 +1612,47 @@
    "official": "https://huggingface.co/CohereLabs/command-a-plus-05-2026",
    "hf": "https://huggingface.co/CohereLabs/command-a-plus-05-2026"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "CohereLabs",
+    "repo": "CohereLabs/command-a-plus-05-2026-fp8",
+    "url": "https://huggingface.co/CohereLabs/command-a-plus-05-2026-fp8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 225
+    }
+   },
+   {
+    "kind": "other",
+    "publisher": "CohereLabs",
+    "repo": "CohereLabs/command-a-plus-05-2026-w4a4",
+    "url": "https://huggingface.co/CohereLabs/command-a-plus-05-2026-w4a4",
+    "note": "官方 W4A4（4-bit 权重 + 4-bit 激活）"
+   },
+   {
+    "kind": "other",
+    "publisher": "CohereLabs",
+    "repo": "CohereLabs/command-a-plus-05-2026-bf16",
+    "url": "https://huggingface.co/CohereLabs/command-a-plus-05-2026-bf16",
+    "note": "官方 BF16",
+    "sizes": {
+     "bf16": 437.5
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/command-a-plus-05-2026-GGUF",
+    "url": "https://huggingface.co/bartowski/command-a-plus-05-2026-GGUF",
+    "sizes": {
+     "q4": 135.1,
+     "q5": 157.8,
+     "q6": 189.8,
+     "q8": 232
+    }
+   }
+  ],
   "copy": {
    "one_liner": "Cohere 首个 Apache-2.0 开源 MoE，218B，48 语言。",
    "highlights": [
@@ -2889,6 +2931,43 @@
    "paper": "https://arxiv.org/abs/2606.19348",
    "pricing": "https://api-docs.deepseek.com/quick_start/pricing"
   },
+  "variants": [
+   {
+    "kind": "other",
+    "publisher": "deepseek-ai",
+    "repo": "deepseek-ai/DeepSeek-V4-Flash-0731",
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+    "note": "官方原生 FP4（专家）+ FP8 混合权重",
+    "sizes": {
+     "fp8": 166.9
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/DeepSeek-V4-Flash-NVFP4",
+    "url": "https://huggingface.co/nvidia/DeepSeek-V4-Flash-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+    "url": "https://huggingface.co/unsloth/DeepSeek-V4-Flash-0731-GGUF",
+    "note": "仓库内 Q8_0/BF16 文件为 DSpark 草稿模型，主权重为 UD 系列量化"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/DeepSeek-V4-Flash-0731-GGUF",
+    "url": "https://huggingface.co/bartowski/DeepSeek-V4-Flash-0731-GGUF"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/DeepSeek-V4-Flash-4bit",
+    "url": "https://huggingface.co/mlx-community/DeepSeek-V4-Flash-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "13B 激活跑出旗舰 Agent 分，MIT，167 GB 可自建。",
    "highlights": [
@@ -3086,6 +3165,36 @@
    "paper": "https://arxiv.org/abs/2606.19348",
    "pricing": "https://api-docs.deepseek.com/quick_start/pricing"
   },
+  "variants": [
+   {
+    "kind": "other",
+    "publisher": "deepseek-ai",
+    "repo": "deepseek-ai/DeepSeek-V4-Pro-0813",
+    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+    "note": "官方原生 FP4（专家）+ FP8 混合权重",
+    "sizes": {
+     "fp8": 892.7
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/DeepSeek-V4-Pro-NVFP4",
+    "url": "https://huggingface.co/nvidia/DeepSeek-V4-Pro-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/DeepSeek-V4-Pro-0813-GGUF",
+    "url": "https://huggingface.co/unsloth/DeepSeek-V4-Pro-0813-GGUF"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/DeepSeek-V4-Pro-4bit",
+    "url": "https://huggingface.co/mlx-community/DeepSeek-V4-Pro-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "MIT 许可 1.6T 旗舰，1M 上下文，Agent 榜追平闭源。",
    "highlights": [
@@ -5115,6 +5224,52 @@
    "hf": "https://huggingface.co/google/gemma-4-26B-A4B-it",
    "paper": "https://arxiv.org/abs/2607.02770"
   },
+  "variants": [
+   {
+    "kind": "gguf",
+    "publisher": "google",
+    "repo": "google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+    "url": "https://huggingface.co/google/gemma-4-26B-A4B-it-qat-q4_0-gguf",
+    "note": "官方 QAT Q4_0"
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/Gemma-4-26B-A4B-NVFP4",
+    "url": "https://huggingface.co/nvidia/Gemma-4-26B-A4B-NVFP4"
+   },
+   {
+    "kind": "fp8",
+    "publisher": "RedHatAI",
+    "repo": "RedHatAI/gemma-4-26B-A4B-it-FP8-dynamic",
+    "url": "https://huggingface.co/RedHatAI/gemma-4-26B-A4B-it-FP8-dynamic",
+    "sizes": {
+     "fp8": 28.6
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/gemma-4-26B-A4B-it-GGUF",
+    "url": "https://huggingface.co/unsloth/gemma-4-26B-A4B-it-GGUF",
+    "sizes": {
+     "q8": 27.3,
+     "bf16": 51.4
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit",
+    "url": "https://huggingface.co/cyankiwi/gemma-4-26B-A4B-it-AWQ-4bit"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/gemma-4-26b-a4b-it-4bit",
+    "url": "https://huggingface.co/mlx-community/gemma-4-26b-a4b-it-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "激活 3.8B 的 MoE，24GB 卡上又快又能装长上下文。",
    "highlights": [
@@ -5308,6 +5463,55 @@
    "hf": "https://huggingface.co/google/gemma-4-31B-it",
    "paper": "https://arxiv.org/abs/2607.02770"
   },
+  "variants": [
+   {
+    "kind": "gguf",
+    "publisher": "google",
+    "repo": "google/gemma-4-31B-it-qat-q4_0-gguf",
+    "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf",
+    "note": "官方 QAT Q4_0"
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/Gemma-4-31B-IT-NVFP4",
+    "url": "https://huggingface.co/nvidia/Gemma-4-31B-IT-NVFP4"
+   },
+   {
+    "kind": "fp8",
+    "publisher": "RedHatAI",
+    "repo": "RedHatAI/gemma-4-31B-it-FP8-dynamic",
+    "url": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-dynamic",
+    "sizes": {
+     "fp8": 33.3
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/gemma-4-31B-it-GGUF",
+    "url": "https://huggingface.co/unsloth/gemma-4-31B-it-GGUF",
+    "sizes": {
+     "q4": 18.3,
+     "q5": 21.7,
+     "q6": 25.2,
+     "q8": 33.2,
+     "bf16": 62.4
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/gemma-4-31B-it-AWQ-4bit",
+    "url": "https://huggingface.co/cyankiwi/gemma-4-31B-it-AWQ-4bit"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/gemma-4-31b-it-4bit",
+    "url": "https://huggingface.co/mlx-community/gemma-4-31b-it-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "Apache 2.0 的单卡 Dense 旗舰，带思考模式，256K 上下文。",
    "highlights": [
@@ -6015,7 +6219,8 @@
    "weight_gb": {
     "bf16": 1507,
     "fp8": 753,
-    "q4": 432
+    "q4": 432,
+    "q8": 801.4
    },
    "kv_per_token_kib": 88,
    "kv_note": "MLA：576 维 × 2 B × 78 层 ≈ 88 KiB/token。1M 上下文单请求 KV ≈ 88 GB；DSA 只降低计算不减 KV 存储。",
@@ -6039,6 +6244,46 @@
    "paper": "https://arxiv.org/abs/2602.15763",
    "pricing": "https://docs.z.ai/guides/overview/pricing"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "zai-org",
+    "repo": "zai-org/GLM-5.2-FP8",
+    "url": "https://huggingface.co/zai-org/GLM-5.2-FP8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 755.6
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/GLM-5.2-NVFP4",
+    "url": "https://huggingface.co/nvidia/GLM-5.2-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/GLM-5.2-GGUF",
+    "url": "https://huggingface.co/unsloth/GLM-5.2-GGUF",
+    "sizes": {
+     "q8": 801.4,
+     "bf16": 1508
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/GLM-5.2-AWQ-INT4",
+    "url": "https://huggingface.co/cyankiwi/GLM-5.2-AWQ-INT4"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/GLM-5.2-4bit",
+    "url": "https://huggingface.co/mlx-community/GLM-5.2-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "MIT 许可、1M 上下文的 744B 开源编程旗舰。",
    "highlights": [
@@ -6236,6 +6481,39 @@
    "paper": "https://arxiv.org/abs/2602.15763",
    "pricing": "https://docs.z.ai/guides/overview/pricing"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "zai-org",
+    "repo": "zai-org/GLM-5.3-Flash",
+    "url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+    "note": "官方原生 FP8 仓库",
+    "sizes": {
+     "fp8": 328.3
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/GLM-5.3-Flash-GGUF",
+    "url": "https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF"
+   },
+   {
+    "kind": "fp8",
+    "publisher": "unsloth",
+    "repo": "unsloth/GLM-5.3-Flash-FP8",
+    "url": "https://huggingface.co/unsloth/GLM-5.3-Flash-FP8",
+    "sizes": {
+     "fp8": 328.3
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "RedHatAI",
+    "repo": "RedHatAI/GLM-5.3-Flash-NVFP4",
+    "url": "https://huggingface.co/RedHatAI/GLM-5.3-Flash-NVFP4"
+   }
+  ],
   "copy": {
    "one_liner": "320B/18B 混合注意力多模态开源模型，价格极低。",
    "highlights": [
@@ -7886,7 +8164,8 @@
   },
   "memory": {
    "weight_gb": {
-    "q4": 63
+    "q4": 63,
+    "q8": 63.4
    },
    "kv_per_token_kib": 72,
    "kv_note": "8 KV 头 × 64 × 2 × 36 层 × 2 B = 72 KiB/token（滑窗层实际更小）。",
@@ -7909,6 +8188,57 @@
    "github": "https://github.com/openai/gpt-oss",
    "paper": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf"
   },
+  "variants": [
+   {
+    "kind": "other",
+    "publisher": "openai",
+    "repo": "openai/gpt-oss-120b",
+    "url": "https://huggingface.co/openai/gpt-oss-120b",
+    "note": "官方 MXFP4 safetensors",
+    "sizes": {
+     "q4": 65.2
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "ggml-org",
+    "repo": "ggml-org/gpt-oss-120b-GGUF",
+    "url": "https://huggingface.co/ggml-org/gpt-oss-120b-GGUF",
+    "sizes": {
+     "bf16": 1.6
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/gpt-oss-120b-GGUF",
+    "url": "https://huggingface.co/unsloth/gpt-oss-120b-GGUF",
+    "sizes": {
+     "q4": 62.8,
+     "q5": 62.9,
+     "q6": 63.3,
+     "q8": 63.4
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/openai_gpt-oss-120b-GGUF",
+    "url": "https://huggingface.co/bartowski/openai_gpt-oss-120b-GGUF",
+    "sizes": {
+     "q4": 62.8,
+     "q6": 63.3,
+     "q8": 63.4,
+     "bf16": 65.4
+    }
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/gpt-oss-120b-MXFP4-Q8",
+    "url": "https://huggingface.co/mlx-community/gpt-oss-120b-MXFP4-Q8"
+   }
+  ],
   "copy": {
    "one_liner": "单卡 80GB 跑的 OpenAI 开源推理模型，5B 激活极快。",
    "highlights": [
@@ -8097,6 +8427,55 @@
    "hf": "https://huggingface.co/openai/gpt-oss-20b",
    "github": "https://github.com/openai/gpt-oss"
   },
+  "variants": [
+   {
+    "kind": "other",
+    "publisher": "openai",
+    "repo": "openai/gpt-oss-20b",
+    "url": "https://huggingface.co/openai/gpt-oss-20b",
+    "note": "官方 MXFP4 safetensors（MoE 4-bit、其余 BF16）",
+    "sizes": {
+     "bf16": 13.8
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/gpt-oss-20b-GGUF",
+    "url": "https://huggingface.co/unsloth/gpt-oss-20b-GGUF",
+    "sizes": {
+     "q4": 11.6,
+     "q5": 11.7,
+     "q6": 12,
+     "q8": 12.1
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/openai_gpt-oss-20b-GGUF",
+    "url": "https://huggingface.co/bartowski/openai_gpt-oss-20b-GGUF",
+    "sizes": {
+     "q4": 11.7,
+     "q5": 11.7,
+     "q6": 12,
+     "q8": 12.1,
+     "bf16": 13.8
+    }
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+    "url": "https://huggingface.co/mlx-community/gpt-oss-20b-MXFP4-Q8"
+   },
+   {
+    "kind": "bnb",
+    "publisher": "unsloth",
+    "repo": "unsloth/gpt-oss-20b-unsloth-bnb-4bit",
+    "url": "https://huggingface.co/unsloth/gpt-oss-20b-unsloth-bnb-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "16GB 显存跑的推理模型，数学能力惊人。",
    "highlights": [
@@ -8261,7 +8640,8 @@
    "weight_gb": {
     "bf16": 60,
     "q8": 32,
-    "q4": 17.4
+    "q4": 17.4,
+    "fp8": 30.1
    },
    "kv_per_token_kib": 256,
    "estimated": true,
@@ -8272,6 +8652,58 @@
    "official": "https://huggingface.co/ibm-granite/granite-4.2-30b",
    "hf": "https://huggingface.co/ibm-granite/granite-4.2-30b"
   },
+  "variants": [
+   {
+    "kind": "gguf",
+    "publisher": "ibm-granite",
+    "repo": "ibm-granite/granite-4.2-30b-GGUF",
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-30b-GGUF",
+    "note": "官方 GGUF",
+    "sizes": {
+     "q4": 17.7,
+     "q5": 20.8,
+     "q6": 24,
+     "q8": 31.1,
+     "bf16": 58.6
+    }
+   },
+   {
+    "kind": "fp8",
+    "publisher": "ibm-granite",
+    "repo": "ibm-granite/granite-4.2-30b-fp8",
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-30b-fp8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 30.1
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "ibm-granite",
+    "repo": "ibm-granite/granite-4.2-30b-nvfp4",
+    "url": "https://huggingface.co/ibm-granite/granite-4.2-30b-nvfp4",
+    "note": "官方 NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/granite-4.2-30b-GGUF",
+    "url": "https://huggingface.co/bartowski/granite-4.2-30b-GGUF",
+    "sizes": {
+     "q4": 18,
+     "q5": 21,
+     "q6": 24.5,
+     "q8": 31.1,
+     "bf16": 58.6
+    }
+   },
+   {
+    "kind": "mlx",
+    "publisher": "lmstudio-community",
+    "repo": "lmstudio-community/granite-4.2-30b-MLX-4bit",
+    "url": "https://huggingface.co/lmstudio-community/granite-4.2-30b-MLX-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "IBM 30B 稠密推理模型，Apache-2.0，24GB 可跑。",
    "highlights": [
@@ -9278,7 +9710,8 @@
    "weight_gb": {
     "bf16": 598,
     "fp8": 299,
-    "q4": 173
+    "q4": 173,
+    "q8": 317.7
    },
    "kv_per_token_kib": 320,
    "estimated": true,
@@ -9297,6 +9730,42 @@
    "official": "https://www.tencent.com/en-us/articles/2202386.html",
    "hf": "https://huggingface.co/tencent/Hy3"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "tencent",
+    "repo": "tencent/Hy3-FP8",
+    "url": "https://huggingface.co/tencent/Hy3-FP8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 299.9
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "RedHatAI",
+    "repo": "RedHatAI/Hy3-NVFP4-FP8",
+    "url": "https://huggingface.co/RedHatAI/Hy3-NVFP4-FP8"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/Hy3-GGUF",
+    "url": "https://huggingface.co/bartowski/Hy3-GGUF",
+    "sizes": {
+     "q4": 182.2,
+     "q5": 212.8,
+     "q6": 257.2,
+     "q8": 317.7
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/Hy3-AWQ-INT4",
+    "url": "https://huggingface.co/cyankiwi/Hy3-AWQ-INT4"
+   }
+  ],
   "copy": {
    "one_liner": "腾讯 295B MoE 开源，SWE-bench 78%、GPQA 90。",
    "highlights": [
@@ -9645,7 +10114,9 @@
   },
   "memory": {
    "weight_gb": {
-    "q4": 595
+    "q4": 595,
+    "fp8": 1030.9,
+    "bf16": 2053.2
    },
    "kv_per_token_kib": 70,
    "kv_note": "MLA，与 K2 同：≈ 70 KiB/token。",
@@ -9669,6 +10140,48 @@
    "paper": "https://arxiv.org/abs/2602.02276",
    "pricing": "https://platform.kimi.ai/docs/pricing/chat-k26"
   },
+  "variants": [
+   {
+    "kind": "other",
+    "publisher": "moonshotai",
+    "repo": "moonshotai/Kimi-K2.6",
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+    "note": "官方原生 INT4（compressed-tensors）",
+    "sizes": {
+     "q4": 595.2
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/Kimi-K2.6-NVFP4",
+    "url": "https://huggingface.co/nvidia/Kimi-K2.6-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Kimi-K2.6-GGUF",
+    "url": "https://huggingface.co/unsloth/Kimi-K2.6-GGUF",
+    "sizes": {
+     "bf16": 2053.2
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/moonshotai_Kimi-K2.6-GGUF",
+    "url": "https://huggingface.co/bartowski/moonshotai_Kimi-K2.6-GGUF"
+   },
+   {
+    "kind": "fp8",
+    "publisher": "RedHatAI",
+    "repo": "RedHatAI/Kimi-K2.6-FP8-BLOCK",
+    "url": "https://huggingface.co/RedHatAI/Kimi-K2.6-FP8-BLOCK",
+    "sizes": {
+     "fp8": 1030.9
+    }
+   }
+  ],
   "copy": {
    "one_liner": "1T/32B 多模态 agent 模型，K3 之下的性价比选择。",
    "highlights": [
@@ -9847,6 +10360,36 @@
    "hf": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
    "pricing": "https://platform.kimi.ai/docs/pricing/chat-k27-code"
   },
+  "variants": [
+   {
+    "kind": "other",
+    "publisher": "moonshotai",
+    "repo": "moonshotai/Kimi-K2.7-Code",
+    "url": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+    "note": "官方原生 INT4（compressed-tensors）",
+    "sizes": {
+     "q4": 595.2
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/Kimi-K2.7-Code-NVFP4",
+    "url": "https://huggingface.co/nvidia/Kimi-K2.7-Code-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Kimi-K2.7-Code-GGUF",
+    "url": "https://huggingface.co/unsloth/Kimi-K2.7-Code-GGUF"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/Kimi-K2.7-Code-4bit",
+    "url": "https://huggingface.co/mlx-community/Kimi-K2.7-Code-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "K2.6 编程特化版，长程编程任务成功率更高。",
    "highlights": [
@@ -10234,7 +10777,8 @@
   },
   "memory": {
    "weight_gb": {
-    "q4": 1561
+    "q4": 1561,
+    "fp8": 2819.9
    },
    "kv_per_token_kib": 27,
    "kv_note": "仅 24 层 MLA 存 per-token KV：576 × 2 B × 24 ≈ 27 KiB/token；69 层 KDA 为固定状态（每层 96 头 × 128 × 128 × 2 B ≈ 3 MiB，每请求约 207 MiB 常量）。",
@@ -10257,6 +10801,39 @@
    "github": "https://github.com/MoonshotAI/Kimi-K3",
    "pricing": "https://platform.kimi.ai/docs/pricing/chat-k3"
   },
+  "variants": [
+   {
+    "kind": "other",
+    "publisher": "moonshotai",
+    "repo": "moonshotai/Kimi-K3",
+    "url": "https://huggingface.co/moonshotai/Kimi-K3",
+    "note": "官方原生 MXFP4 权重",
+    "sizes": {
+     "q4": 1560.9
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/Kimi-K3-NVFP4",
+    "url": "https://huggingface.co/nvidia/Kimi-K3-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Kimi-K3-GGUF",
+    "url": "https://huggingface.co/unsloth/Kimi-K3-GGUF"
+   },
+   {
+    "kind": "fp8",
+    "publisher": "RedHatAI",
+    "repo": "RedHatAI/Kimi-K3-FP8-BLOCK",
+    "url": "https://huggingface.co/RedHatAI/Kimi-K3-FP8-BLOCK",
+    "sizes": {
+     "fp8": 2819.9
+    }
+   }
+  ],
   "copy": {
    "one_liner": "2.8T 参数的开源多模态 agent 旗舰，LMArena 开源第一。",
    "highlights": [
@@ -11339,7 +11916,8 @@
    "weight_gb": {
     "bf16": 620,
     "fp8": 310,
-    "q4": 180
+    "q4": 180,
+    "q8": 329.3
    },
    "estimated": true,
    "ref_hw_80gb": "不可行",
@@ -11356,6 +11934,40 @@
    "official": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
    "hf": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "XiaomiMiMo",
+    "repo": "XiaomiMiMo/MiMo-V2.5",
+    "url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
+    "note": "官方发布版（FP8）",
+    "sizes": {
+     "fp8": 315.7
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/MiMo-V2.5-GGUF",
+    "url": "https://huggingface.co/unsloth/MiMo-V2.5-GGUF",
+    "sizes": {
+     "q8": 329.3,
+     "bf16": 619.6
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/MiMo-V2.5-GGUF",
+    "url": "https://huggingface.co/bartowski/MiMo-V2.5-GGUF",
+    "sizes": {
+     "q4": 188.8,
+     "q5": 221.4,
+     "q6": 267.6,
+     "q8": 329.3
+    }
+   }
+  ],
   "copy": {
    "one_liner": "小米 310B 全模态 MoE，15B 激活，MIT 许可，1M 上下文。",
    "highlights": [
@@ -11618,7 +12230,9 @@
   "memory": {
    "weight_gb": {
     "fp8": 230,
-    "q4": 133
+    "q4": 133,
+    "q8": 243.1,
+    "bf16": 457.5
    },
    "kv_per_token_kib": 248,
    "kv_note": "8 KV 头 × 128 × 2 × 62 层 × 2 B = 248 KiB/token。",
@@ -11641,6 +12255,58 @@
    "github": "https://github.com/MiniMax-AI/MiniMax-M2.7",
    "pricing": "https://platform.minimax.io/docs/guides/pricing-paygo"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "MiniMaxAI",
+    "repo": "MiniMaxAI/MiniMax-M2.7",
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+    "note": "官方发布版（FP8）",
+    "sizes": {
+     "fp8": 230.1
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/MiniMax-M2.7-NVFP4",
+    "url": "https://huggingface.co/nvidia/MiniMax-M2.7-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/MiniMax-M2.7-GGUF",
+    "url": "https://huggingface.co/unsloth/MiniMax-M2.7-GGUF",
+    "sizes": {
+     "q8": 243.1,
+     "bf16": 457.5
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+    "url": "https://huggingface.co/bartowski/MiniMaxAI_MiniMax-M2.7-GGUF",
+    "sizes": {
+     "q4": 138.8,
+     "q5": 162.7,
+     "q6": 197.1,
+     "q8": 243.1
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/MiniMax-M2.7-AWQ-4bit",
+    "url": "https://huggingface.co/cyankiwi/MiniMax-M2.7-AWQ-4bit"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/MiniMax-M2.7-4bit",
+    "url": "https://huggingface.co/mlx-community/MiniMax-M2.7-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "10B 激活的 agent 编程模型，但权重仅限非商用。",
    "highlights": [
@@ -11910,7 +12576,8 @@
    "weight_gb": {
     "bf16": 854,
     "fp8": 428,
-    "q4": 248
+    "q4": 248,
+    "q8": 453.6
    },
    "kv_per_token_kib": 120,
    "kv_note": "4 KV 头 × 128 × 2 × 60 层 × 2 B = 120 KiB/token；MSA 只减少注意力计算，KV 仍全量存储。1M 上下文单请求 ≈ 117 GB。",
@@ -11934,6 +12601,58 @@
    "paper": "https://arxiv.org/abs/2606.13392",
    "pricing": "https://platform.minimax.io/docs/guides/pricing-paygo"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "MiniMaxAI",
+    "repo": "MiniMaxAI/MiniMax-M3-MXFP8",
+    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M3-MXFP8",
+    "note": "官方 MXFP8",
+    "sizes": {
+     "fp8": 443.7
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/MiniMax-M3-NVFP4",
+    "url": "https://huggingface.co/nvidia/MiniMax-M3-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/MiniMax-M3-GGUF",
+    "url": "https://huggingface.co/bartowski/MiniMax-M3-GGUF",
+    "sizes": {
+     "q4": 261.3,
+     "q5": 305.3,
+     "q6": 369.4,
+     "q8": 453.6
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/MiniMax-M3-GGUF",
+    "url": "https://huggingface.co/unsloth/MiniMax-M3-GGUF",
+    "sizes": {
+     "q8": 452.7,
+     "bf16": 852
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/MiniMax-M3-AWQ-INT4",
+    "url": "https://huggingface.co/cyankiwi/MiniMax-M3-AWQ-INT4"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/MiniMax-M3-4bit",
+    "url": "https://huggingface.co/mlx-community/MiniMax-M3-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "428B/23B 稀疏注意力多模态开源模型，1M 上下文低价。",
    "highlights": [
@@ -12288,7 +13007,8 @@
    "weight_gb": {
     "bf16": 1350,
     "fp8": 675,
-    "q4": 392
+    "q4": 392,
+    "q8": 715.7
    },
    "estimated": true,
    "ref_hw_80gb": "不可行",
@@ -12306,6 +13026,48 @@
    "hf": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
    "pricing": "https://docs.mistral.ai/inference/pricing"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "mistralai",
+    "repo": "mistralai/Mistral-Large-3-675B-Instruct-2512",
+    "url": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512",
+    "note": "官方发布版（FP8）"
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "mistralai",
+    "repo": "mistralai/Mistral-Large-3-675B-Instruct-2512-NVFP4",
+    "url": "https://huggingface.co/mistralai/Mistral-Large-3-675B-Instruct-2512-NVFP4",
+    "note": "官方 NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Mistral-Large-3-675B-Instruct-2512-GGUF",
+    "url": "https://huggingface.co/unsloth/Mistral-Large-3-675B-Instruct-2512-GGUF",
+    "sizes": {
+     "q4": 407,
+     "q5": 478,
+     "q6": 553.3,
+     "q8": 715.7,
+     "bf16": 1347
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/mistralai_Mistral-Large-3-675B-Instruct-2512-GGUF",
+    "url": "https://huggingface.co/bartowski/mistralai_Mistral-Large-3-675B-Instruct-2512-GGUF",
+    "sizes": {
+     "q4": 411.4,
+     "q5": 480.8,
+     "q6": 554.9,
+     "q8": 715.7,
+     "bf16": 1347
+    }
+   }
+  ],
   "copy": {
    "one_liner": "Mistral 675B MoE 开源多模态，Apache-2.0，非推理。",
    "highlights": [
@@ -12515,7 +13277,8 @@
    "weight_gb": {
     "bf16": 256,
     "fp8": 128,
-    "q4": 74
+    "q4": 74,
+    "q8": 132.9
    },
    "kv_per_token_kib": 352,
    "kv_note": "8 KV 头 × 128 × 2 × 88 层 × 2 B = 352 KiB/token，128K 上下文约 44 GB，长上下文显存占用不小。",
@@ -12537,6 +13300,58 @@
    "hf": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B",
    "pricing": "https://docs.mistral.ai/inference/pricing"
   },
+  "variants": [
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/Mistral-Medium-3.5-128B-NVFP4",
+    "url": "https://huggingface.co/nvidia/Mistral-Medium-3.5-128B-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Mistral-Medium-3.5-128B-GGUF",
+    "url": "https://huggingface.co/unsloth/Mistral-Medium-3.5-128B-GGUF",
+    "sizes": {
+     "q4": 74.9,
+     "q5": 88.3,
+     "q6": 102.6,
+     "q8": 132.9,
+     "bf16": 250.1
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+    "url": "https://huggingface.co/bartowski/mistralai_Mistral-Medium-3.5-128B-GGUF",
+    "sizes": {
+     "q4": 78.4,
+     "q5": 91.1,
+     "q6": 107.8,
+     "q8": 132.9
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/Mistral-Medium-3.5-128B-AWQ-INT4",
+    "url": "https://huggingface.co/cyankiwi/Mistral-Medium-3.5-128B-AWQ-INT4"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/Mistral-Medium-3.5-128B-4bit",
+    "url": "https://huggingface.co/mlx-community/Mistral-Medium-3.5-128B-4bit"
+   },
+   {
+    "kind": "other",
+    "publisher": "turboderp",
+    "repo": "turboderp/Mistral-Medium-3.5-128B-exl3",
+    "url": "https://huggingface.co/turboderp/Mistral-Medium-3.5-128B-exl3",
+    "note": "EXL3（ExLlamaV3）"
+   }
+  ],
   "copy": {
    "one_liner": "Mistral 128B 稠密开源旗舰，SWE-bench 77.6%。",
    "highlights": [
@@ -12921,6 +13736,59 @@
    "hf": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
    "pricing": "https://docs.mistral.ai/inference/pricing"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "mistralai",
+    "repo": "mistralai/Mistral-Small-4-119B-2603",
+    "url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+    "note": "官方发布版（FP8）",
+    "sizes": {
+     "fp8": 120.9
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "mistralai",
+    "repo": "mistralai/Mistral-Small-4-119B-2603-NVFP4",
+    "url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603-NVFP4",
+    "note": "官方 NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Mistral-Small-4-119B-2603-GGUF",
+    "url": "https://huggingface.co/unsloth/Mistral-Small-4-119B-2603-GGUF",
+    "sizes": {
+     "q8": 126.5,
+     "bf16": 238
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/mistralai_Mistral-Small-4-119B-2603-GGUF",
+    "url": "https://huggingface.co/bartowski/mistralai_Mistral-Small-4-119B-2603-GGUF",
+    "sizes": {
+     "q4": 72.6,
+     "q5": 85,
+     "q6": 102.8,
+     "q8": 126.5
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/Mistral-Small-4-119B-2603-AWQ-4bit",
+    "url": "https://huggingface.co/cyankiwi/Mistral-Small-4-119B-2603-AWQ-4bit"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/Mistral-Small-4-119B-2603-4bit",
+    "url": "https://huggingface.co/mlx-community/Mistral-Small-4-119B-2603-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "119B MoE 仅 6.5B 激活，推理 / 视觉 / 编程三合一。",
    "highlights": [
@@ -13308,7 +14176,9 @@
   "memory": {
    "weight_gb": {
     "bf16": 55,
-    "q4": 18
+    "q4": 18,
+    "q8": 29.6,
+    "fp8": 34.4
    },
    "kv_per_token_kib": 52,
    "kv_note": "2 KV 头 × 128 × 2 × 52 层 × 2 B = 52 KiB/token，128K 上下文仅约 6.5 GB，极省显存。",
@@ -13329,6 +14199,62 @@
    "official": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
    "hf": "https://huggingface.co/meta-models/Muse-Glimmer-30B"
   },
+  "variants": [
+   {
+    "kind": "gguf",
+    "publisher": "meta-models",
+    "repo": "meta-models/Muse-Glimmer-30B-GGUF",
+    "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B-GGUF",
+    "note": "官方 GGUF",
+    "sizes": {
+     "q4": 18.4
+    }
+   },
+   {
+    "kind": "fp8",
+    "publisher": "RedHatAI",
+    "repo": "RedHatAI/Muse-Glimmer-30B-FP8-block",
+    "url": "https://huggingface.co/RedHatAI/Muse-Glimmer-30B-FP8-block",
+    "sizes": {
+     "fp8": 34.4
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Muse-Glimmer-30B-GGUF",
+    "url": "https://huggingface.co/unsloth/Muse-Glimmer-30B-GGUF",
+    "sizes": {
+     "q8": 29.6,
+     "bf16": 55.7
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/Muse-Glimmer-30B-GGUF",
+    "url": "https://huggingface.co/bartowski/Muse-Glimmer-30B-GGUF",
+    "sizes": {
+     "q4": 17.3,
+     "q5": 20.1,
+     "q6": 23.4,
+     "q8": 32.3,
+     "bf16": 55.7
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/Muse-Glimmer-30B-AWQ-INT4",
+    "url": "https://huggingface.co/cyankiwi/Muse-Glimmer-30B-AWQ-INT4"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/Muse-Glimmer-30B-4bit",
+    "url": "https://huggingface.co/mlx-community/Muse-Glimmer-30B-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "Meta 回归开源：30B 稠密 agent 模型，24GB 单卡跑。",
    "highlights": [
@@ -13625,7 +14551,9 @@
   "memory": {
    "weight_gb": {
     "bf16": 63,
-    "q4": 19
+    "q4": 19,
+    "q8": 33.6,
+    "fp8": 32.7
    },
    "estimated": true,
    "ref_hw_24gb": "Q4 约 19 GB（估）",
@@ -13635,6 +14563,57 @@
    "official": "https://developer.nvidia.com/nemotron",
    "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-FP8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 32.7
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-NVFP4",
+    "note": "官方 NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Nemotron-3-Nano-30B-A3B-GGUF",
+    "url": "https://huggingface.co/unsloth/Nemotron-3-Nano-30B-A3B-GGUF",
+    "sizes": {
+     "q4": 24.6,
+     "q5": 26.1,
+     "q6": 33.5,
+     "q8": 33.6,
+     "bf16": 63.2
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/nvidia_Nemotron-3-Nano-30B-A3B-GGUF",
+    "url": "https://huggingface.co/bartowski/nvidia_Nemotron-3-Nano-30B-A3B-GGUF",
+    "sizes": {
+     "q4": 24.7,
+     "q5": 26.2,
+     "q6": 33.4,
+     "q8": 33.6,
+     "bf16": 63.2
+    }
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/NVIDIA-Nemotron-3-Nano-30B-A3B-4bit",
+    "url": "https://huggingface.co/mlx-community/NVIDIA-Nemotron-3-Nano-30B-A3B-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "NVIDIA 开放数据与配方的混合 Mamba MoE，1M 上下文。",
    "highlights": [
@@ -13822,6 +14801,59 @@
    "official": "https://nvidianews.nvidia.com/news/nvidia-debuts-nemotron-3-family-of-open-models",
    "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-FP8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 128.4
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-NVFP4",
+    "note": "官方 NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+    "url": "https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF",
+    "sizes": {
+     "q8": 128.5,
+     "bf16": 241.5
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/nvidia_Nemotron-3-Super-120B-A12B-GGUF",
+    "url": "https://huggingface.co/bartowski/nvidia_Nemotron-3-Super-120B-A12B-GGUF",
+    "sizes": {
+     "q4": 87,
+     "q5": 96.6,
+     "q6": 113.6,
+     "q8": 128.5
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/NVIDIA-Nemotron-3-Super-120B-A12B-AWQ-4bit",
+    "url": "https://huggingface.co/cyankiwi/NVIDIA-Nemotron-3-Super-120B-A12B-AWQ-4bit"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/NVIDIA-Nemotron-3-Super-120B-A12B-4bit",
+    "url": "https://huggingface.co/mlx-community/NVIDIA-Nemotron-3-Super-120B-A12B-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "NVIDIA 120B 混合 Mamba-MoE，12B 激活，1M 上下文。",
    "highlights": [
@@ -13992,7 +15024,8 @@
    "weight_gb": {
     "bf16": 1100,
     "fp8": 550,
-    "q4": 319
+    "q4": 319,
+    "q8": 584.3
    },
    "estimated": true,
    "ref_hw_80gb": "不可行",
@@ -14009,6 +15042,40 @@
    "official": "https://nvidianews.nvidia.com/news/nvidia-debuts-nemotron-3-family-of-open-models",
    "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16"
   },
+  "variants": [
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-NVFP4",
+    "note": "官方 NVFP4"
+   },
+   {
+    "kind": "fp8",
+    "publisher": "RedHatAI",
+    "repo": "RedHatAI/NVIDIA-Nemotron-3-Ultra-550B-A55B-FP8-block",
+    "url": "https://huggingface.co/RedHatAI/NVIDIA-Nemotron-3-Ultra-550B-A55B-FP8-block",
+    "sizes": {
+     "fp8": 563.3
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/NVIDIA-Nemotron-3-Ultra-550B-A55B-GGUF",
+    "url": "https://huggingface.co/unsloth/NVIDIA-Nemotron-3-Ultra-550B-A55B-GGUF",
+    "sizes": {
+     "q8": 584.3,
+     "bf16": 1099
+    }
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/Nemotron-3-Ultra-550B-A55B-4bit",
+    "url": "https://huggingface.co/mlx-community/Nemotron-3-Ultra-550B-A55B-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "NVIDIA 550B 开源旗舰，GPQA 87、LCB 89，1M 上下文。",
    "highlights": [
@@ -15688,6 +16755,35 @@
    "github": "https://github.com/QwenLM/Qwen3.8",
    "pricing": "https://www.alibabacloud.com/help/en/model-studio/models"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "Qwen",
+    "repo": "Qwen/Qwen3.8-2.4T-A95B-FP8",
+    "url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B-FP8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 2496.1
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "RedHatAI",
+    "repo": "RedHatAI/Qwen3.8-2.4T-A95B-NVFP4",
+    "url": "https://huggingface.co/RedHatAI/Qwen3.8-2.4T-A95B-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Qwen3.8-2.4T-A95B-GGUF",
+    "url": "https://huggingface.co/unsloth/Qwen3.8-2.4T-A95B-GGUF",
+    "note": "2.4T 级仅 unsloth 提供 GGUF（UD-IQ4_XS 等），无 Q4_K_M",
+    "sizes": {
+     "q8": 2600.2,
+     "bf16": 4893.2
+    }
+   }
+  ],
   "copy": {
    "one_liner": "首个可下载的 Max 级 Qwen，2.4T MoE，自定义许可。",
    "highlights": [
@@ -15885,6 +16981,59 @@
    "hf": "https://huggingface.co/Qwen/Qwen3.8-27B",
    "github": "https://github.com/QwenLM/Qwen3.8"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "Qwen",
+    "repo": "Qwen/Qwen3.8-27B-FP8",
+    "url": "https://huggingface.co/Qwen/Qwen3.8-27B-FP8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 30.9
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "unsloth",
+    "repo": "unsloth/Qwen3.8-27B-NVFP4",
+    "url": "https://huggingface.co/unsloth/Qwen3.8-27B-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Qwen3.8-27B-GGUF",
+    "url": "https://huggingface.co/unsloth/Qwen3.8-27B-GGUF",
+    "sizes": {
+     "q8": 29,
+     "bf16": 54.7
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/Qwen3.8-27B-GGUF",
+    "url": "https://huggingface.co/bartowski/Qwen3.8-27B-GGUF",
+    "sizes": {
+     "q4": 17.8,
+     "q5": 20.8,
+     "q6": 23.5,
+     "q8": 29.1,
+     "bf16": 54.7
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+    "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-INT4"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/Qwen3.8-27B-4bit",
+    "url": "https://huggingface.co/mlx-community/Qwen3.8-27B-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "24GB 单卡能跑的原生多模态 27B，Apache-2.0。",
    "highlights": [
@@ -16168,7 +17317,8 @@
    "weight_gb": {
     "bf16": 960,
     "fp8": 480,
-    "q4": 280
+    "q4": 280,
+    "q8": 510.4
    },
    "estimated": true,
    "ref_hw_8x80gb": "FP8 8×H100 可服务"
@@ -16186,6 +17336,61 @@
    "hf": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct",
    "github": "https://github.com/QwenLM/Qwen3-Coder"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "Qwen",
+    "repo": "Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+    "url": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct-FP8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 482.1
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/Qwen3-Coder-480B-A35B-Instruct-NVFP4",
+    "url": "https://huggingface.co/nvidia/Qwen3-Coder-480B-A35B-Instruct-NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Qwen3-Coder-480B-A35B-Instruct-GGUF",
+    "url": "https://huggingface.co/unsloth/Qwen3-Coder-480B-A35B-Instruct-GGUF",
+    "sizes": {
+     "q4": 290.1,
+     "q5": 340.5,
+     "q6": 394.1,
+     "q8": 510.4,
+     "bf16": 960.4
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/Qwen_Qwen3-Coder-480B-A35B-Instruct-GGUF",
+    "url": "https://huggingface.co/bartowski/Qwen_Qwen3-Coder-480B-A35B-Instruct-GGUF",
+    "sizes": {
+     "q4": 290.8,
+     "q5": 340.6,
+     "q6": 394.2,
+     "q8": 510.4
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "QuantTrio",
+    "repo": "QuantTrio/Qwen3-Coder-480B-A35B-Instruct-AWQ",
+    "url": "https://huggingface.co/QuantTrio/Qwen3-Coder-480B-A35B-Instruct-AWQ"
+   },
+   {
+    "kind": "mlx",
+    "publisher": "mlx-community",
+    "repo": "mlx-community/Qwen3-Coder-480B-A35B-Instruct-4bit",
+    "url": "https://huggingface.co/mlx-community/Qwen3-Coder-480B-A35B-Instruct-4bit"
+   }
+  ],
   "copy": {
    "one_liner": "Apache-2.0 的编程 agent 专用 MoE，非思考模式。",
    "highlights": [
@@ -16637,7 +17842,8 @@
    "weight_gb": {
     "bf16": 396,
     "fp8": 198,
-    "q4": 115
+    "q4": 115,
+    "q8": 213.1
    },
    "estimated": true,
    "ref_hw_80gb": "不可行（官方最低 120GB 统一内存，如 Mac Studio / DGX Station）",
@@ -16655,6 +17861,64 @@
    "official": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
    "hf": "https://huggingface.co/stepfun-ai/Step-3.7-Flash"
   },
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "stepfun-ai",
+    "repo": "stepfun-ai/Step-3.7-Flash-FP8",
+    "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash-FP8",
+    "note": "官方 FP8",
+    "sizes": {
+     "fp8": 212.5
+    }
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "stepfun-ai",
+    "repo": "stepfun-ai/Step-3.7-Flash-NVFP4",
+    "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash-NVFP4",
+    "note": "官方 NVFP4"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "stepfun-ai",
+    "repo": "stepfun-ai/Step-3.7-Flash-GGUF",
+    "url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash-GGUF",
+    "note": "官方 GGUF",
+    "sizes": {
+     "q8": 213.1,
+     "bf16": 401
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "unsloth",
+    "repo": "unsloth/Step-3.7-Flash-GGUF",
+    "url": "https://huggingface.co/unsloth/Step-3.7-Flash-GGUF",
+    "sizes": {
+     "q8": 209.4,
+     "bf16": 394
+    }
+   },
+   {
+    "kind": "gguf",
+    "publisher": "bartowski",
+    "repo": "bartowski/Step-3.7-Flash-GGUF",
+    "url": "https://huggingface.co/bartowski/Step-3.7-Flash-GGUF",
+    "sizes": {
+     "q4": 121.6,
+     "q5": 142,
+     "q6": 171.8,
+     "q8": 212
+    }
+   },
+   {
+    "kind": "awq",
+    "publisher": "cyankiwi",
+    "repo": "cyankiwi/Step-3.7-Flash-AWQ-INT4",
+    "url": "https://huggingface.co/cyankiwi/Step-3.7-Flash-AWQ-INT4"
+   }
+  ],
   "copy": {
    "one_liner": "阶跃 198B 视觉 MoE，11B 激活，图 / 视频 / 编程 agent。",
    "highlights": [

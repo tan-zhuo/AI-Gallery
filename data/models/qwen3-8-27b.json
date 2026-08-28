@@ -71,6 +71,59 @@
   "hf": "https://huggingface.co/Qwen/Qwen3.8-27B",
   "github": "https://github.com/QwenLM/Qwen3.8"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "Qwen",
+   "repo": "Qwen/Qwen3.8-27B-FP8",
+   "url": "https://huggingface.co/Qwen/Qwen3.8-27B-FP8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 30.9
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "unsloth",
+   "repo": "unsloth/Qwen3.8-27B-NVFP4",
+   "url": "https://huggingface.co/unsloth/Qwen3.8-27B-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Qwen3.8-27B-GGUF",
+   "url": "https://huggingface.co/unsloth/Qwen3.8-27B-GGUF",
+   "sizes": {
+    "q8": 29,
+    "bf16": 54.7
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/Qwen3.8-27B-GGUF",
+   "url": "https://huggingface.co/bartowski/Qwen3.8-27B-GGUF",
+   "sizes": {
+    "q4": 17.8,
+    "q5": 20.8,
+    "q6": 23.5,
+    "q8": 29.1,
+    "bf16": 54.7
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/Qwen3.8-27B-AWQ-INT4",
+   "url": "https://huggingface.co/cyankiwi/Qwen3.8-27B-AWQ-INT4"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/Qwen3.8-27B-4bit",
+   "url": "https://huggingface.co/mlx-community/Qwen3.8-27B-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "24GB 单卡能跑的原生多模态 27B，Apache-2.0。",
   "highlights": [

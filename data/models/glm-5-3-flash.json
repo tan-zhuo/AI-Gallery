@@ -74,6 +74,39 @@
   "paper": "https://arxiv.org/abs/2602.15763",
   "pricing": "https://docs.z.ai/guides/overview/pricing"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "zai-org",
+   "repo": "zai-org/GLM-5.3-Flash",
+   "url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+   "note": "官方原生 FP8 仓库",
+   "sizes": {
+    "fp8": 328.3
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/GLM-5.3-Flash-GGUF",
+   "url": "https://huggingface.co/unsloth/GLM-5.3-Flash-GGUF"
+  },
+  {
+   "kind": "fp8",
+   "publisher": "unsloth",
+   "repo": "unsloth/GLM-5.3-Flash-FP8",
+   "url": "https://huggingface.co/unsloth/GLM-5.3-Flash-FP8",
+   "sizes": {
+    "fp8": 328.3
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "RedHatAI",
+   "repo": "RedHatAI/GLM-5.3-Flash-NVFP4",
+   "url": "https://huggingface.co/RedHatAI/GLM-5.3-Flash-NVFP4"
+  }
+ ],
  "copy": {
   "one_liner": "320B/18B 混合注意力多模态开源模型，价格极低。",
   "highlights": [

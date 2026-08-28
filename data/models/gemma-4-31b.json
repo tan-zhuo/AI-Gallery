@@ -70,6 +70,55 @@
   "hf": "https://huggingface.co/google/gemma-4-31B-it",
   "paper": "https://arxiv.org/abs/2607.02770"
  },
+ "variants": [
+  {
+   "kind": "gguf",
+   "publisher": "google",
+   "repo": "google/gemma-4-31B-it-qat-q4_0-gguf",
+   "url": "https://huggingface.co/google/gemma-4-31B-it-qat-q4_0-gguf",
+   "note": "官方 QAT Q4_0"
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/Gemma-4-31B-IT-NVFP4",
+   "url": "https://huggingface.co/nvidia/Gemma-4-31B-IT-NVFP4"
+  },
+  {
+   "kind": "fp8",
+   "publisher": "RedHatAI",
+   "repo": "RedHatAI/gemma-4-31B-it-FP8-dynamic",
+   "url": "https://huggingface.co/RedHatAI/gemma-4-31B-it-FP8-dynamic",
+   "sizes": {
+    "fp8": 33.3
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/gemma-4-31B-it-GGUF",
+   "url": "https://huggingface.co/unsloth/gemma-4-31B-it-GGUF",
+   "sizes": {
+    "q4": 18.3,
+    "q5": 21.7,
+    "q6": 25.2,
+    "q8": 33.2,
+    "bf16": 62.4
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/gemma-4-31B-it-AWQ-4bit",
+   "url": "https://huggingface.co/cyankiwi/gemma-4-31B-it-AWQ-4bit"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/gemma-4-31b-it-4bit",
+   "url": "https://huggingface.co/mlx-community/gemma-4-31b-it-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "Apache 2.0 的单卡 Dense 旗舰，带思考模式，256K 上下文。",
   "highlights": [

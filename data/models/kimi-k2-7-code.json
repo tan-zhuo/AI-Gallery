@@ -69,6 +69,36 @@
   "hf": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
   "pricing": "https://platform.kimi.ai/docs/pricing/chat-k27-code"
  },
+ "variants": [
+  {
+   "kind": "other",
+   "publisher": "moonshotai",
+   "repo": "moonshotai/Kimi-K2.7-Code",
+   "url": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+   "note": "官方原生 INT4（compressed-tensors）",
+   "sizes": {
+    "q4": 595.2
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/Kimi-K2.7-Code-NVFP4",
+   "url": "https://huggingface.co/nvidia/Kimi-K2.7-Code-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Kimi-K2.7-Code-GGUF",
+   "url": "https://huggingface.co/unsloth/Kimi-K2.7-Code-GGUF"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/Kimi-K2.7-Code-4bit",
+   "url": "https://huggingface.co/mlx-community/Kimi-K2.7-Code-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "K2.6 编程特化版，长程编程任务成功率更高。",
   "highlights": [

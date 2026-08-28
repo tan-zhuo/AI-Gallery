@@ -43,7 +43,9 @@
  "memory": {
   "weight_gb": {
    "bf16": 55,
-   "q4": 18
+   "q4": 18,
+   "q8": 29.6,
+   "fp8": 34.4
   },
   "kv_per_token_kib": 52,
   "kv_note": "2 KV 头 × 128 × 2 × 52 层 × 2 B = 52 KiB/token，128K 上下文仅约 6.5 GB，极省显存。",
@@ -64,6 +66,62 @@
   "official": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
   "hf": "https://huggingface.co/meta-models/Muse-Glimmer-30B"
  },
+ "variants": [
+  {
+   "kind": "gguf",
+   "publisher": "meta-models",
+   "repo": "meta-models/Muse-Glimmer-30B-GGUF",
+   "url": "https://huggingface.co/meta-models/Muse-Glimmer-30B-GGUF",
+   "note": "官方 GGUF",
+   "sizes": {
+    "q4": 18.4
+   }
+  },
+  {
+   "kind": "fp8",
+   "publisher": "RedHatAI",
+   "repo": "RedHatAI/Muse-Glimmer-30B-FP8-block",
+   "url": "https://huggingface.co/RedHatAI/Muse-Glimmer-30B-FP8-block",
+   "sizes": {
+    "fp8": 34.4
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/Muse-Glimmer-30B-GGUF",
+   "url": "https://huggingface.co/unsloth/Muse-Glimmer-30B-GGUF",
+   "sizes": {
+    "q8": 29.6,
+    "bf16": 55.7
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/Muse-Glimmer-30B-GGUF",
+   "url": "https://huggingface.co/bartowski/Muse-Glimmer-30B-GGUF",
+   "sizes": {
+    "q4": 17.3,
+    "q5": 20.1,
+    "q6": 23.4,
+    "q8": 32.3,
+    "bf16": 55.7
+   }
+  },
+  {
+   "kind": "awq",
+   "publisher": "cyankiwi",
+   "repo": "cyankiwi/Muse-Glimmer-30B-AWQ-INT4",
+   "url": "https://huggingface.co/cyankiwi/Muse-Glimmer-30B-AWQ-INT4"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/Muse-Glimmer-30B-4bit",
+   "url": "https://huggingface.co/mlx-community/Muse-Glimmer-30B-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "Meta 回归开源：30B 稠密 agent 模型，24GB 单卡跑。",
   "highlights": [

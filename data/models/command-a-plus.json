@@ -49,7 +49,8 @@
   "weight_gb": {
    "bf16": 436,
    "fp8": 218,
-   "q4": 126
+   "q4": 126,
+   "q8": 232
   },
   "estimated": true,
   "ref_hw_80gb": "官方 W4A4 需 2×H100 或 1×B200",
@@ -59,6 +60,47 @@
   "official": "https://huggingface.co/CohereLabs/command-a-plus-05-2026",
   "hf": "https://huggingface.co/CohereLabs/command-a-plus-05-2026"
  },
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "CohereLabs",
+   "repo": "CohereLabs/command-a-plus-05-2026-fp8",
+   "url": "https://huggingface.co/CohereLabs/command-a-plus-05-2026-fp8",
+   "note": "官方 FP8",
+   "sizes": {
+    "fp8": 225
+   }
+  },
+  {
+   "kind": "other",
+   "publisher": "CohereLabs",
+   "repo": "CohereLabs/command-a-plus-05-2026-w4a4",
+   "url": "https://huggingface.co/CohereLabs/command-a-plus-05-2026-w4a4",
+   "note": "官方 W4A4（4-bit 权重 + 4-bit 激活）"
+  },
+  {
+   "kind": "other",
+   "publisher": "CohereLabs",
+   "repo": "CohereLabs/command-a-plus-05-2026-bf16",
+   "url": "https://huggingface.co/CohereLabs/command-a-plus-05-2026-bf16",
+   "note": "官方 BF16",
+   "sizes": {
+    "bf16": 437.5
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/command-a-plus-05-2026-GGUF",
+   "url": "https://huggingface.co/bartowski/command-a-plus-05-2026-GGUF",
+   "sizes": {
+    "q4": 135.1,
+    "q5": 157.8,
+    "q6": 189.8,
+    "q8": 232
+   }
+  }
+ ],
  "copy": {
   "one_liner": "Cohere 首个 Apache-2.0 开源 MoE，218B，48 语言。",
   "highlights": [

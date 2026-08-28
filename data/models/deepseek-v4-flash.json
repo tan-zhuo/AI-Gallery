@@ -73,6 +73,43 @@
   "paper": "https://arxiv.org/abs/2606.19348",
   "pricing": "https://api-docs.deepseek.com/quick_start/pricing"
  },
+ "variants": [
+  {
+   "kind": "other",
+   "publisher": "deepseek-ai",
+   "repo": "deepseek-ai/DeepSeek-V4-Flash-0731",
+   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+   "note": "官方原生 FP4（专家）+ FP8 混合权重",
+   "sizes": {
+    "fp8": 166.9
+   }
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/DeepSeek-V4-Flash-NVFP4",
+   "url": "https://huggingface.co/nvidia/DeepSeek-V4-Flash-NVFP4"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/DeepSeek-V4-Flash-0731-GGUF",
+   "url": "https://huggingface.co/unsloth/DeepSeek-V4-Flash-0731-GGUF",
+   "note": "仓库内 Q8_0/BF16 文件为 DSpark 草稿模型，主权重为 UD 系列量化"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/DeepSeek-V4-Flash-0731-GGUF",
+   "url": "https://huggingface.co/bartowski/DeepSeek-V4-Flash-0731-GGUF"
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/DeepSeek-V4-Flash-4bit",
+   "url": "https://huggingface.co/mlx-community/DeepSeek-V4-Flash-4bit"
+  }
+ ],
  "copy": {
   "one_liner": "13B 激活跑出旗舰 Agent 分，MIT，167 GB 可自建。",
   "highlights": [

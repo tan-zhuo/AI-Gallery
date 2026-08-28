@@ -46,7 +46,8 @@
  },
  "memory": {
   "weight_gb": {
-   "q4": 63
+   "q4": 63,
+   "q8": 63.4
   },
   "kv_per_token_kib": 72,
   "kv_note": "8 KV 头 × 64 × 2 × 36 层 × 2 B = 72 KiB/token（滑窗层实际更小）。",
@@ -69,6 +70,57 @@
   "github": "https://github.com/openai/gpt-oss",
   "paper": "https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7637/oai_gpt-oss_model_card.pdf"
  },
+ "variants": [
+  {
+   "kind": "other",
+   "publisher": "openai",
+   "repo": "openai/gpt-oss-120b",
+   "url": "https://huggingface.co/openai/gpt-oss-120b",
+   "note": "官方 MXFP4 safetensors",
+   "sizes": {
+    "q4": 65.2
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "ggml-org",
+   "repo": "ggml-org/gpt-oss-120b-GGUF",
+   "url": "https://huggingface.co/ggml-org/gpt-oss-120b-GGUF",
+   "sizes": {
+    "bf16": 1.6
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "unsloth",
+   "repo": "unsloth/gpt-oss-120b-GGUF",
+   "url": "https://huggingface.co/unsloth/gpt-oss-120b-GGUF",
+   "sizes": {
+    "q4": 62.8,
+    "q5": 62.9,
+    "q6": 63.3,
+    "q8": 63.4
+   }
+  },
+  {
+   "kind": "gguf",
+   "publisher": "bartowski",
+   "repo": "bartowski/openai_gpt-oss-120b-GGUF",
+   "url": "https://huggingface.co/bartowski/openai_gpt-oss-120b-GGUF",
+   "sizes": {
+    "q4": 62.8,
+    "q6": 63.3,
+    "q8": 63.4,
+    "bf16": 65.4
+   }
+  },
+  {
+   "kind": "mlx",
+   "publisher": "mlx-community",
+   "repo": "mlx-community/gpt-oss-120b-MXFP4-Q8",
+   "url": "https://huggingface.co/mlx-community/gpt-oss-120b-MXFP4-Q8"
+  }
+ ],
  "copy": {
   "one_liner": "单卡 80GB 跑的 OpenAI 开源推理模型，5B 激活极快。",
   "highlights": [
