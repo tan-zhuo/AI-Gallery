@@ -8,6 +8,8 @@ import { paramsB, priceLabel, tParams, formatGB, cx } from '@/lib/format'
 import { OpennessBadge, Badge } from '@/components/ui/Badge'
 import { ModelName } from '@/components/ui/ModelName'
 import { Empty, Button, Chip } from '@/components/ui/Misc'
+import { useColResize } from '@/components/ui/useColResize'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
 import type { Model } from '@/lib/types'
 import { useSeo } from '@/hooks/useSeo'
 import { useT } from '@/i18n'
@@ -29,7 +31,9 @@ export default function Models() {
   const [think, setThink] = useState(false)
   const [old, setOld] = useState(true)
   const [page, setPage] = useState(1)
-  const PAGE = 40
+  const [PAGE, setPageSize] = useLocalStorage<number>('mb_page_size', 40)
+  const COLS = ['model', 'open', 'ref', 'released', 'params', 'ctx', 'price', 'q4', 'license']
+  const { ref: tref, thProps, Handle, tableStyle } = useColResize('models', COLS)
   const [sort, setSort] = useState<Sort>('ref')
   const refs = useMemo(() => computeReferenceScores(models, scoreMap), [])
   const list = useMemo(() => {
@@ -69,7 +73,7 @@ export default function Models() {
     if (!q.trim()) ms = [...ms].sort(cmp[sort])
     return ms
   }, [q, open, vendor, size, lic, mod, hw, think, old, sort, refs])
-  useEffect(() => { setPage(1) }, [q, open, vendor, size, lic, mod, hw, think, old, sort])
+  useEffect(() => { setPage(1) }, [q, open, vendor, size, lic, mod, hw, think, old, sort, PAGE])
   const pages = Math.max(1, Math.ceil(list.length / PAGE))
   const cur = Math.min(page, pages)
   const paged = list.slice((cur - 1) * PAGE, cur * PAGE)
@@ -106,9 +110,17 @@ export default function Models() {
         <div>
           {list.length === 0 ? <Empty text={t('没有匹配的模型')} action={<Button variant="outline" onClick={reset}>{t('清空筛选')}</Button>} /> : (
             <div className="card overflow-x-auto">
-              <table className="tbl w-full text-sm">
+              <table ref={tref} style={tableStyle} className="tbl w-full text-sm">
                 <thead className="text-[11px] uppercase tracking-wide text-muted"><tr className="border-b border-border">
-                  <th className="px-3 py-2 text-left">{t('模型')}</th><th className="px-2 py-2 text-left">{t('开闭源')}</th><th className="px-2 py-2 text-right">{t('参考分')}</th><th className="px-2 py-2 text-right num">{t('发布')}</th><th className="px-2 py-2 text-left hidden md:table-cell">{t('参数')}</th><th className="px-2 py-2 text-right hidden sm:table-cell">{t('上下文')}</th><th className="px-2 py-2 text-right">{t('价格')}</th><th className="px-2 py-2 text-right hidden md:table-cell">Q4</th><th className="px-2 py-2 text-left hidden lg:table-cell">{t('许可证')}</th>
+                  <th {...thProps('model')} className="px-3 py-2 text-left">{t('模型')}<Handle k="model" /></th>
+                  <th {...thProps('open')} className="px-2 py-2 text-left">{t('开闭源')}<Handle k="open" /></th>
+                  <th {...thProps('ref')} className="px-2 py-2 text-right">{t('参考分')}<Handle k="ref" /></th>
+                  <th {...thProps('released')} className="px-2 py-2 text-right num">{t('发布')}<Handle k="released" /></th>
+                  <th {...thProps('params')} className="px-2 py-2 text-left hidden md:table-cell">{t('参数')}<Handle k="params" /></th>
+                  <th {...thProps('ctx')} className="px-2 py-2 text-right hidden sm:table-cell">{t('上下文')}<Handle k="ctx" /></th>
+                  <th {...thProps('price')} className="px-2 py-2 text-right">{t('价格')}<Handle k="price" /></th>
+                  <th {...thProps('q4')} className="px-2 py-2 text-right hidden md:table-cell">Q4<Handle k="q4" /></th>
+                  <th {...thProps('license')} className="px-2 py-2 text-left hidden lg:table-cell">{t('许可证')}</th>
                 </tr></thead>
                 <tbody>
                   {paged.map((m) => (
@@ -131,14 +143,19 @@ export default function Models() {
               </table>
             </div>
           )}
-          {pages > 1 && (
+          {list.length > 20 && (
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-              <span className="text-xs text-muted num">{t('第 {a}–{b} 条，共 {c} 条', { a: (cur - 1) * PAGE + 1, b: Math.min(cur * PAGE, list.length), c: list.length })}</span>
-              <div className="seg seg-sm">
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-muted num">{t('第 {a}–{b} 条，共 {c} 条', { a: (cur - 1) * PAGE + 1, b: Math.min(cur * PAGE, list.length), c: list.length })}</span>
+                <select value={PAGE} onChange={(e) => setPageSize(+e.target.value)} className="ctl ctl-sm" aria-label={t('每页条数')}>
+                  {[20, 40, 100, 200, 500].map((n) => <option key={n} value={n}>{t('{n} / 页', { n })}</option>)}
+                </select>
+              </div>
+              {pages > 1 && <div className="seg seg-sm">
                 <button type="button" onClick={() => setPage(cur - 1)} disabled={cur === 1} className="disabled:opacity-40">‹</button>
                 {Array.from({ length: pages }, (_, i) => i + 1).map((n) => <button key={n} type="button" aria-pressed={n === cur} onClick={() => setPage(n)} className="num">{n}</button>)}
                 <button type="button" onClick={() => setPage(cur + 1)} disabled={cur === pages} className="disabled:opacity-40">›</button>
-              </div>
+              </div>}
             </div>
           )}
           <p className="mt-3 text-xs text-muted">{t('「速览」模型只有顶栏、分数与链接，说明书缺节显示「完善中」。')}<Link to="/about" className="link">{t('如何贡献')}</Link></p>

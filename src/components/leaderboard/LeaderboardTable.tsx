@@ -8,6 +8,7 @@ import { formatGB, priceLabel, cx, copyFor } from '@/lib/format'
 import { fitsIn } from '@/lib/vram'
 import { MAX_COMPARE } from '@/hooks/useCompare'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { useColResize } from '../ui/useColResize'
 import { useT } from '@/i18n'
 
 export const OPTIONAL_COLS = [
@@ -30,30 +31,32 @@ export function LeaderboardTable({ rows, selected, onToggle, showValue, cols: co
   const cols = colsProp ?? stored
   const [expanded, setExpanded] = useState<string | null>(null)
   const has = useMemo(() => new Set(cols), [cols])
+  const keys = ['sel', 'rank', 'model', 'open', 'score', ...cols, 'ctx', 'price', 'updated']
+  const { ref: tref, thProps, Handle, tableStyle } = useColResize('leaderboard', keys)
   return (
     <>
       {/* desktop table */}
       <div className="card hidden md:block overflow-x-auto">
-        <table className="tbl w-full text-sm">
+        <table ref={tref} style={tableStyle} className="tbl w-full text-sm">
           <thead className="text-[11px] uppercase tracking-wide text-muted">
             <tr className="border-b border-border">
-              <th className="w-8 px-3 py-2.5"></th>
-              <th className="w-12 px-2 py-2.5 text-left">#</th>
-              <th className="px-2 py-2.5 text-left">{t('模型')}</th>
-              <th className="px-2 py-2.5 text-left">{t('开闭源')}</th>
-              <th className="px-2 py-2.5 text-right">{showValue ? t('性价比') : t('参考分')}</th>
-              {has.has('elo') && <th className="px-2 py-2.5 text-right">Elo</th>}
-              {has.has('coding') && <th className="px-2 py-2.5 text-right">{t('代码')}</th>}
-              {has.has('reasoning') && <th className="px-2 py-2.5 text-right">{t('推理')}</th>}
-              {has.has('math') && <th className="px-2 py-2.5 text-right">{t('数学')}</th>}
-              {has.has('agent') && <th className="px-2 py-2.5 text-right">Agent</th>}
-              {has.has('mm') && <th className="px-2 py-2.5 text-right">{t('多模态')}</th>}
-              <th className="px-2 py-2.5 text-right">{t('上下文')}</th>
-              <th className="px-2 py-2.5 text-right">{t('价格 in / out')}</th>
-              {has.has('q4') && <th className="px-2 py-2.5 text-right">{t('Q4 显存')}</th>}
-              {has.has('license') && <th className="px-2 py-2.5 text-left">{t('许可证')}</th>}
-              {has.has('tok') && <th className="px-2 py-2.5 text-right">tok/s</th>}
-              <th className="px-2 py-2.5 text-right">{t('更新')}</th>
+              <th {...thProps('sel')} className="w-8 px-3 py-2.5"></th>
+              <th {...thProps('rank')} className="w-12 px-2 py-2.5 text-left">#<Handle k="rank" /></th>
+              <th {...thProps('model')} className="px-2 py-2.5 text-left">{t('模型')}<Handle k="model" /></th>
+              <th {...thProps('open')} className="px-2 py-2.5 text-left">{t('开闭源')}<Handle k="open" /></th>
+              <th {...thProps('score')} className="px-2 py-2.5 text-right">{showValue ? t('性价比') : t('参考分')}<Handle k="score" /></th>
+              {has.has('elo') && <th {...thProps('elo')} className="px-2 py-2.5 text-right">Elo<Handle k="elo" /></th>}
+              {has.has('coding') && <th {...thProps('coding')} className="px-2 py-2.5 text-right">{t('代码')}<Handle k="coding" /></th>}
+              {has.has('reasoning') && <th {...thProps('reasoning')} className="px-2 py-2.5 text-right">{t('推理')}<Handle k="reasoning" /></th>}
+              {has.has('math') && <th {...thProps('math')} className="px-2 py-2.5 text-right">{t('数学')}<Handle k="math" /></th>}
+              {has.has('agent') && <th {...thProps('agent')} className="px-2 py-2.5 text-right">Agent<Handle k="agent" /></th>}
+              {has.has('mm') && <th {...thProps('mm')} className="px-2 py-2.5 text-right">{t('多模态')}<Handle k="mm" /></th>}
+              <th {...thProps('ctx')} className="px-2 py-2.5 text-right">{t('上下文')}<Handle k="ctx" /></th>
+              <th {...thProps('price')} className="px-2 py-2.5 text-right">{t('价格 in / out')}<Handle k="price" /></th>
+              {has.has('q4') && <th {...thProps('q4')} className="px-2 py-2.5 text-right">{t('Q4 显存')}<Handle k="q4" /></th>}
+              {has.has('license') && <th {...thProps('license')} className="px-2 py-2.5 text-left">{t('许可证')}<Handle k="license" /></th>}
+              {has.has('tok') && <th {...thProps('tok')} className="px-2 py-2.5 text-right">tok/s<Handle k="tok" /></th>}
+              <th {...thProps('updated')} className="px-2 py-2.5 text-right">{t('更新')}</th>
             </tr>
           </thead>
           <tbody>

@@ -97,4 +97,6 @@ Models without modeled KV (missing layers / heads): fit judged by weights only
   '只看当前代': 'Current generation only',
   '已隐藏 {n} 个旧代': '{n} superseded hidden',
   '第 {a}–{b} 条，共 {c} 条': '{a}–{b} of {c}',
+  '每页条数': 'Rows per page',
+  '{n} / 页': '{n} / page',
 }

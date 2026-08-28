@@ -138,3 +138,9 @@ input[type="range"] { accent-color: var(--accent); height: 2.25rem; }
 /* 防止 grid 子项被内容（长 option、num）撑出容器 */
 .grid > * { min-width: 0; }
 select.ctl { max-width: 100%; }
+/* 列宽拖拽手柄 */
+th { position: relative; }
+.col-handle { position: absolute; top: 0; right: -3px; width: 7px; height: 100%; cursor: col-resize; user-select: none; z-index: 2; }
+.col-handle::after { content: ""; position: absolute; top: 25%; bottom: 25%; left: 3px; width: 1px; background: var(--border); transition: background .15s, width .15s; }
+.col-handle:hover::after, .col-handle:active::after { background: var(--accent); width: 2px; }
+table[style*="fixed"] td { overflow: hidden; text-overflow: ellipsis; }
