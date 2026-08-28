@@ -9,6 +9,7 @@ import Models from './pages/Models'
 import ModelDetail from './pages/ModelDetail'
 import Compare from './pages/Compare'
 import Calculator from './pages/Calculator'
+import Hardware from './pages/Hardware'
 import Architecture from './pages/Architecture'
 import Methodology from './pages/Methodology'
 import Changelog from './pages/Changelog'
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
       { path: 'models/:slug', element: <ModelDetail /> },
       { path: 'compare', element: <Compare /> },
       { path: 'calculator', element: <Calculator /> },
+      { path: 'hardware', element: <Hardware /> },
       { path: 'architecture', element: <Architecture /> },
       { path: 'architecture/:topic', element: <Architecture /> },
       { path: 'methodology', element: <Methodology /> },

@@ -4,6 +4,7 @@ import { estimateVram, QUANT_LABEL, BYTES_PER_PARAM, type CalcQuant } from '@/li
 import { formatGB, paramsB, cx } from '@/lib/format'
 import { Section, Stat } from '@/components/ui/Misc'
 import { Link } from 'react-router-dom'
+import { GPUS, estimatePerf, fmtTok } from '@/lib/perf'
 
 const openModels = models.filter((m) => m.weights_available && (m.architecture.total_params_b ?? paramsB(m.architecture.total_params)))
 const priced = models.filter((m) => m.pricing?.input_per_m != null && m.pricing.output_per_m != null)
@@ -28,6 +29,10 @@ function Vram() {
   const [batch, setBatch] = useState(1)
   const m = openModels.find((x) => x.id === id)!
   const r = useMemo(() => estimateVram(m, quant, ctx, batch), [m, quant, ctx, batch])
+  const [gpuId, setGpuId] = useState('rtx4090')
+  const [gpuN, setGpuN] = useState(1)
+  const gpu = GPUS.find((g) => g.id === gpuId)!
+  const perf = useMemo(() => estimatePerf(m, gpu, gpuN, quant, ctx), [m, gpu, gpuN, quant, ctx])
   return (
     <div className="grid gap-5 lg:grid-cols-[360px_1fr]">
       <div className="card p-4 space-y-4 text-sm">
@@ -52,6 +57,20 @@ function Vram() {
           <Stat label="KV Cache" value={r.kv_modeled ? formatGB(r.kv_gb) : '未建模'} sub={r.kv_modeled ? `${ctx / 1024}K × ${batch}` : '缺层数 / KV 头'} />
           <Stat label="合计（估）" value={formatGB(r.total_gb)} sub={r.kv_modeled ? '' : '仅权重'} />
           <Stat label="建议" value={<span className="text-base">{r.suggestion}</span>} />
+        </div>
+        <div className="card p-4 space-y-3">
+          <div className="flex flex-wrap items-end gap-3">
+            <label className="block flex-1 min-w-[200px]"><div className="mb-1 text-xs text-muted">在这张卡上跑（单流吞吐）</div>
+              <select value={gpuId} onChange={(e) => { setGpuId(e.target.value); setGpuN(1) }} className="w-full rounded-md border border-border bg-surface px-2 py-1.5 text-sm">{GPUS.map((g) => <option key={g.id} value={g.id}>{g.name} · {g.bandwidth_gbs} GB/s</option>)}</select></label>
+            <div className="flex gap-1">{[1, 2, 4, 8].filter((c) => c <= gpu.max_count).map((c) => <button key={c} type="button" onClick={() => setGpuN(c)} className={cx('rounded-md border px-3 py-1.5 text-sm num', gpuN === c ? 'bg-text text-bg border-text' : 'border-border')}>{c}×</button>)}</div>
+          </div>
+          {perf && (
+            <div className="grid grid-cols-3 gap-4">
+              <Stat label={perf.fits ? '能装下' : '装不下'} value={<span className={perf.fits ? 'text-open' : 'text-down'}>{formatGB(perf.total_gb)} / {perf.vram_gb} GB</span>} />
+              <Stat label="解码" value={perf.fits ? `${fmtTok(perf.decode_tok_s)} tok/s` : '—'} sub="batch=1" />
+              <Stat label="预填充" value={perf.fits ? `${fmtTok(perf.prefill_tok_s)} tok/s` : '—'} />
+            </div>
+          )}
         </div>
         {!r.kv_modeled && <div className="rounded-lg border border-community/40 bg-community/10 p-3 text-xs">⚠ 该模型缺少层数或 KV 头数，KV Cache 未建模。实际长上下文占用会显著更高。</div>}
         <div className="card p-4 text-xs space-y-1.5">

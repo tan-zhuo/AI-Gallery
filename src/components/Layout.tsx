@@ -7,7 +7,7 @@ import { SearchPalette } from './SearchPalette'
 import { Logo, LogoMark, Wordmark } from './ui/Logo'
 
 const nav = [
-  ['/leaderboard', '排行榜'], ['/models', '模型库'], ['/compare', '对比'], ['/calculator', '计算器'], ['/architecture', '架构图鉴'], ['/methodology', '方法论'],
+  ['/leaderboard', '排行榜'], ['/models', '模型库'], ['/compare', '对比'], ['/calculator', '计算器'], ['/hardware', '显卡'], ['/architecture', '架构图鉴'], ['/methodology', '方法论'],
 ]
 
 export default function Layout() {

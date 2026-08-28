@@ -62,7 +62,7 @@ export default function Home() {
             <p className="text-muted max-w-xl text-sm md:text-base leading-relaxed">开源 / 闭源同场分栏；每个模型一份统一骨架的说明书；显存与价格是一等公民；所有数字带来源、日期与证据等级。</p>
             <div className="flex flex-wrap gap-2 pt-1">
               <Button variant="primary" to="/leaderboard">查看排行榜</Button>
-              <Button variant="outline" to="/calculator">显存计算器</Button>
+              <Button variant="outline" to="/hardware">我的显卡能跑谁</Button>
               <Button variant="ghost" to="/methodology">方法论 →</Button>
             </div>
           </div>

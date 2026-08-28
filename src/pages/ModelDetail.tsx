@@ -12,9 +12,12 @@ import { ScoreBar } from '@/components/ui/ScoreBar'
 import { Button, Stat, Empty } from '@/components/ui/Misc'
 import { ArchDiagram } from '@/components/model/ArchDiagram'
 import { VendorLogo } from '@/components/ui/VendorLogo'
+import { DeploySection } from '@/components/model/DeploySection'
 import { CapabilityRadar } from '@/components/charts/Radar'
 import { radarFor } from '@/lib/capabilities'
 import { useCompareIds, MAX_COMPARE } from '@/hooks/useCompare'
+import { pickConfigs, fmtTok } from '@/lib/perf'
+import { QUANT_LABEL } from '@/lib/vram'
 import type { CapabilityKey, Model } from '@/lib/types'
 
 const CAP_LABEL: Record<CapabilityKey, string> = { coding: '编程', reasoning: '推理', math: '数学', knowledge: '知识', instruction: '指令遵循', agent: 'Agent', multimodal: '多模态', chinese: '中文' }
@@ -38,6 +41,7 @@ function Detail({ m }: { m: Model }) {
   const a = m.architecture
   const family = models.filter((x) => x.id !== m.id && x.family && x.family === m.family)
   const succ = m.superseded_by ? getModel(m.superseded_by) : undefined
+  const cfg = isOpenWeights(m) ? pickConfigs(m).minimal : undefined
   const ctaLinks = isOpenWeights(m)
     ? [['Hugging Face', m.links.hf ?? m.weights_url], ['GitHub', m.links.github], ['技术报告', m.links.paper], ['官方', m.links.official]]
     : [['官方模型页', m.links.official], ['定价', m.links.pricing], ['发布公告', m.links.paper]]
@@ -63,7 +67,7 @@ function Detail({ m }: { m: Model }) {
               <Stat label="参数" value={<span className="text-base">{formatParams(a.total_params, a.active_params)}</span>} sub={a.type !== 'unknown' ? a.type.toUpperCase() : undefined} />
               <Stat label="上下文" value={m.context.display} sub={m.context.max_output ? `输出 ${Math.round(m.context.max_output / 1024)}K` : undefined} />
               <Stat label="价格 / 1M tok" value={<span className="text-base">{priceLabel(m)}</span>} sub={m.pricing?.source ? `${m.pricing.source.slice(0, 14)} · ${m.pricing.as_of}` : (m.weights_available ? '无官方 API' : undefined)} />
-              <Stat label="推荐部署" value={<span className="text-base">{isOpenWeights(m) ? (single ? `Q4 · ${formatGB(m.memory.weight_gb.q4)} · 24GB` : m.memory.weight_gb.q4 ? `Q4 · ${formatGB(m.memory.weight_gb.q4)}` : '见说明书') : 'API'}</span>} sub={isOpenWeights(m) ? (single ? 'RTX 4090 / 3090' : m.memory.ref_hw_80gb ? '80GB+' : undefined) : '无自建选项'} />
+              <Stat label="最低可跑" value={<span className="text-base">{cfg ? `${cfg.est.count > 1 ? cfg.est.count + '× ' : ''}${cfg.est.gpu.name.replace(/ \d+GB.*$/, '')}` : isOpenWeights(m) ? '多节点' : 'API'}</span>} sub={cfg ? `${QUANT_LABEL[cfg.est.quant]} · ${formatGB(cfg.est.total_gb)} · ≈${fmtTok(cfg.est.decode_tok_s)} tok/s` : isOpenWeights(m) ? '超出单机' : '无自建选项'} />
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <ScoreBar label="Arena Elo" value={elo ? Math.max(0, Math.min(100, ((elo.value - 1200) / 320) * 100)) : undefined} display={elo?.value.toString()} sub={elo?.as_of} />
@@ -127,6 +131,10 @@ function Detail({ m }: { m: Model }) {
                 {m.memory.kv_note && <p className="text-sm"><span className="text-muted">KV Cache：</span>{m.memory.kv_note}{m.memory.kv_per_token_kib && <span className="num"> ≈ {m.memory.kv_per_token_kib} KiB/token</span>}</p>}
                 <p className="text-xs text-community">⚠ 能加载 ≠ 能在满上下文 / 高并发下舒服跑。标「估」的数字来自 <Link to="/calculator" className="link">计算器</Link> 公式或社区量化文件大小。</p>
                 <Md md={m.sheet?.memory_md} />
+                <div className="border-t border-border pt-4 mt-2">
+                  <div className="font-semibold mb-3">硬件配置与预估吞吐</div>
+                  <DeploySection m={m} />
+                </div>
                 <Link to="/calculator" className="link text-sm">用计算器按你的上下文与并发估算 →</Link>
               </div>
             ) : <div className="space-y-3"><p className="text-sm text-muted">闭源模型，无自建选项，不提供显存表。</p><Md md={m.sheet?.memory_md} /></div>}
