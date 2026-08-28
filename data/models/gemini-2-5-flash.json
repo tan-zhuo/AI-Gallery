@@ -1,5 +1,73 @@
-{"id":"gemini-2-5-flash","name":"Gemini 2.5 Flash","aliases":["gemini-2.5-flash"],"vendor":"Google","vendor_zh":"谷歌","family":"Gemini 2.5","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2025-06-17","updated_at":"2025-12-20","modalities":["text","image","audio","video","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"unknown","undisclosed":true},"context":{"max_tokens":1048576,"display":"1M","max_output":65536},"memory":{"weight_gb":{},"estimated":false},
-"pricing":{"input_per_m":0.3,"output_per_m":2.5,"currency":"USD","source":"Google AI 定价页","as_of":"2025-12-20"},
-"links":{"official":"https://deepmind.google/models/gemini/flash/","pricing":"https://ai.google.dev/pricing"},
-"copy":{"one_liner":"1M 上下文的低价多模态档，思考预算可控。","highlights":["$0.30 / $2.50","1M 上下文 + 多模态","thinking budget 可设 0"],"pitfalls":["复杂推理明显弱于 Pro","代码 agent 一般","无自建"],"logic_ability":"考试型推理中上，可关思考。","best_for":["海量文档 / 视频处理","低价多模态"],"not_for":["复杂 agent"]},"capability_notes":{},"complete":false}
+{
+ "id": "gemini-2-5-flash",
+ "name": "Gemini 2.5 Flash",
+ "aliases": [
+  "gemini-2.5-flash"
+ ],
+ "vendor": "Google",
+ "vendor_zh": "谷歌",
+ "family": "Gemini 2.5",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "released_at": "2025-06-17",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.3,
+  "output_per_m": 2.5,
+  "currency": "USD",
+  "source": "Google AI 定价页",
+  "as_of": "2025-12-20"
+ },
+ "links": {
+  "official": "https://deepmind.google/models/gemini/flash/",
+  "pricing": "https://ai.google.dev/pricing"
+ },
+ "copy": {
+  "one_liner": "1M 上下文的低价多模态档，思考预算可控。",
+  "highlights": [
+   "$0.30 / $2.50",
+   "1M 上下文 + 多模态",
+   "thinking budget 可设 0"
+  ],
+  "pitfalls": [
+   "复杂推理明显弱于 Pro",
+   "代码 agent 一般",
+   "无自建"
+  ],
+  "logic_ability": "考试型推理中上，可关思考。",
+  "best_for": [
+   "海量文档 / 视频处理",
+   "低价多模态"
+  ],
+  "not_for": [
+   "复杂 agent"
+  ]
+ },
+ "capability_notes": {},
+ "complete": false,
+ "superseded_by": "gemini-3-7-flash"
+}

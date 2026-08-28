@@ -20,9 +20,10 @@ export default function Leaderboard() {
   const tab = ((['all', 'open', 'closed'] as Tab[]).includes(sp.get('tab') as Tab) ? sp.get('tab') : 'all') as Tab
   const [q, setQ] = useState('')
   const [verified, setVerified] = useState(false)
+  const [old, setOld] = useState(false)
   const [cols, setCols] = useLocalStorage<OptCol[]>('mb_cols', ['coding', 'reasoning'])
   const [ids, setIds] = useCompareIds()
-  const rows = useMemo(() => buildRows(tab, scene, verified), [tab, scene, verified])
+  const rows = useMemo(() => buildRows(tab, scene, verified, old), [tab, scene, verified, old])
   const shown = useMemo(() => {
     if (!q.trim()) return rows
     const set = new Set(filterModels(rows.map((r) => r.m), q).map((m) => m.id))
@@ -60,6 +61,7 @@ export default function Leaderboard() {
       <div className="card flex flex-wrap items-center gap-2 p-2">
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="过滤当前表…" className="min-w-[160px] flex-1 rounded-md bg-surface-2 px-3 py-1.5 text-sm outline-none" aria-label="过滤" />
         <label className="flex items-center gap-1.5 text-xs px-2"><input type="checkbox" checked={verified} onChange={(e) => setVerified(e.target.checked)} />只看有独立复测</label>
+        <label className="flex items-center gap-1.5 text-xs px-2"><input type="checkbox" checked={old} onChange={(e) => setOld(e.target.checked)} />包含已被替代的旧代</label>
         <details className="relative">
           <summary className="cursor-pointer select-none rounded-md border border-border px-2.5 py-1.5 text-xs">列 ({cols.length})</summary>
           <div className="absolute right-0 z-20 mt-1 card p-2 grid grid-cols-2 gap-1 w-56 shadow-xl">
@@ -71,7 +73,7 @@ export default function Leaderboard() {
         <Button variant="outline" onClick={exportCsv} className="text-xs">导出 CSV</Button>
       </div>
 
-      {shown.length === 0 ? <Empty text="没有匹配的模型" action={<Button variant="outline" onClick={() => { setQ(''); setVerified(false) }}>清空筛选</Button>} />
+      {shown.length === 0 ? <Empty text="没有匹配的模型" action={<Button variant="outline" onClick={() => { setQ(''); setVerified(false); setOld(false) }}>清空筛选</Button>} />
         : <LeaderboardTable rows={shown} selected={ids} onToggle={toggle} showValue={scene === 'value'} cols={cols} />}
       <Disclaimer />
       {ids.length > 0 && <CompareBar ids={ids} onClear={() => setIds([])} />}

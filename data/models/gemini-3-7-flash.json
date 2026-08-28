@@ -1,0 +1,37 @@
+{
+  "id": "gemini-3-7-flash",
+  "name": "Gemini 3.7 Flash",
+  "name_zh": "Gemini 3.7 闪电版",
+  "aliases": ["gemini-3.7-flash", "Gemini 3.7 Flash High"],
+  "vendor": "Google",
+  "vendor_zh": "谷歌",
+  "family": "Gemini 3",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-08-13",
+  "updated_at": "2026-08-28",
+  "modalities": ["text", "image", "audio", "video", "tools"],
+  "reasoning_mode": "default-on",
+  "architecture": { "type": "unknown", "undisclosed": true, "notes": "未披露。可配置 thinking 档位以平衡质量 / 成本 / 延迟。" },
+  "context": { "max_tokens": 1048576, "display": "1M", "max_output": 65536 },
+  "memory": { "weight_gb": {}, "estimated": false },
+  "pricing": { "input_per_m": 0.75, "output_per_m": 3.75, "currency": "USD", "source": "Google AI 定价页", "as_of": "2026-08-28", "note": "2026-12-31 前为发布优惠价；2027-01-01 起 $1.50 / $7.50。缓存输入 $0.075" },
+  "links": { "official": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "pricing": "https://ai.google.dev/gemini-api/docs/pricing", "paper": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/" },
+  "copy": {
+    "one_liner": "Google 当前 Flash 主力，代码 / agent 强，年内半价。",
+    "highlights": ["Terminal-Bench 2.1 85.8%、DeepSWE v1.1 65.3%，Flash 档做到接近 Sonnet 5 水平", "AA 智能指数 56，与 Grok 4.5 持平，输出速度约 300 tok/s", "Arena 文本榜 1490，高于 Gemini 3.1 Pro"],
+    "pitfalls": ["$0.75 / $3.75 是 2026 年底前的优惠价，2027 年起翻倍到 $1.50 / $7.50", "Flash 线三周一迭代（3.5 → 3.6 → 3.7），模型 ID 与行为漂移快，需固定版本", "官方模型卡未公布 GPQA / HLE / SWE-bench Verified 等通用基准，横向比较依赖第三方"],
+    "logic_ability": "工程型推理为主打：DeepSWE 65.3%、FrontierCode 43.6%、Terminal-Bench 2.1 85.8%；长上下文 MRCR v2 8-needle 97.0%。考试型推理官方未列数据。",
+    "best_for": ["高频代码 / agent 任务", "长文档批处理", "高性价比多模态"],
+    "not_for": ["需要长期稳定价格的预算规划", "私有化部署"]
+  },
+  "capability_notes": {
+    "coding": "DeepSWE v1.1 65.3%、FrontierCode 1.1 43.6%（官方模型卡）。",
+    "agent": "Terminal-Bench 2.1 85.8%、OSWorld-2.0 47.9%（官方）。",
+    "multimodal": "支持文本 / 图像 / 音频 / 视频输入；官方未公布 MMMU。"
+  },
+  "complete": false
+}

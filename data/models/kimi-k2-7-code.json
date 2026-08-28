@@ -1,0 +1,108 @@
+{
+  "id": "kimi-k2-7-code",
+  "name": "Kimi K2.7 Code",
+  "name_zh": "月之暗面 Kimi K2.7 Code",
+  "aliases": [
+    "kimi-k2.7-code",
+    "K2.7 Code",
+    "Kimi-K2.7-Code"
+  ],
+  "vendor": "Moonshot AI",
+  "vendor_zh": "月之暗面",
+  "family": "Kimi K2",
+  "license": "Modified MIT",
+  "license_commercial": "restricted",
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+  "status": "current",
+  "released_at": "2026-06-11",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "tools"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+    "type": "moe",
+    "total_params": "1T",
+    "active_params": "32B",
+    "total_params_b": 1000,
+    "active_params_b": 32,
+    "experts": 384,
+    "active_experts": 8,
+    "shared_expert": true,
+    "layers": 61,
+    "hidden_size": 7168,
+    "vocab_size": 160000,
+    "kv_heads": 1,
+    "head_dim": 288,
+    "attention": "MLA（64 头）",
+    "notes": "基于 K2.6 的编程特化后训练版，结构完全相同；强制思考 + preserve_thinking，思考 token 比 K2.6 少约 30%。原生 INT4。",
+    "undisclosed": false
+  },
+  "context": {
+    "max_tokens": 262144,
+    "display": "256K"
+  },
+  "memory": {
+    "weight_gb": {
+      "q4": 595
+    },
+    "kv_per_token_kib": 70,
+    "kv_note": "MLA，≈ 70 KiB/token。",
+    "ref_hw_24gb": "不可行",
+    "ref_hw_80gb": "不可行",
+    "ref_hw_8x80gb": "INT4 595 GB，推荐 8×H200",
+    "estimated": false
+  },
+  "pricing": {
+    "input_per_m": 0.95,
+    "output_per_m": 4.0,
+    "currency": "USD",
+    "source": "Kimi 开放平台",
+    "as_of": "2026-08-28",
+    "note": "缓存命中 $0.19；highspeed 版 $1.9 / $8（约 180 tok/s）"
+  },
+  "links": {
+    "official": "https://www.kimi.com/code",
+    "hf": "https://huggingface.co/moonshotai/Kimi-K2.7-Code",
+    "pricing": "https://platform.kimi.ai/docs/pricing/chat-k27-code"
+  },
+  "copy": {
+    "one_liner": "K2.6 编程特化版，长程编程任务成功率更高。",
+    "highlights": [
+      "Kimi Code Bench v2 62.0（K2.6 50.9）、MCP Mark Verified 81.1",
+      "思考 token 比 K2.6 少约 30%，highspeed 版 180–260 tok/s",
+      "AA 指数 43；与 K2.6 同权重规模，INT4 595 GB"
+    ],
+    "pitfalls": [
+      "纯文本，不带视觉；思考与 preserve_thinking 强制开启不可关",
+      "Modified MIT 品牌标注条款同 K2.6",
+      "官方仅披露自家 Kimi Code Bench 等少量基准"
+    ],
+    "logic_ability": "工程型推理专用：ProgramBench 53.6、MLS Bench Lite 35.1，官方对比仍低于 GPT-5.5 / Opus 4.8。",
+    "best_for": [
+      "Kimi Code CLI / Claude Code 后端",
+      "长程多文件编程"
+    ],
+    "not_for": [
+      "通用对话与多模态",
+      "单机部署"
+    ]
+  },
+  "capability_notes": {
+    "coding": "Kimi Code Bench v2 62.0、ProgramBench 53.6（官方）。",
+    "agent": "MCP Atlas 76.0、MCP Mark Verified 81.1（官方）。"
+  },
+  "ecosystem": {
+    "engines": [
+      "vLLM",
+      "SGLang",
+      "KTransformers"
+    ],
+    "finetune": "基本不可行",
+    "zh_docs": "有"
+  },
+  "complete": false
+}

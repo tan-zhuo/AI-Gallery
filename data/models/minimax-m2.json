@@ -1,61 +1,120 @@
 {
-  "id": "minimax-m2",
-  "name": "MiniMax-M2",
-  "name_zh": "MiniMax M2",
-  "aliases": ["MiniMax M2", "minimax-m2"],
-  "vendor": "MiniMax",
-  "family": "MiniMax-M",
-  "license": "MIT",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2",
-  "status": "current",
-  "released_at": "2025-10-27",
-  "updated_at": "2025-12-20",
-  "modalities": ["text", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": {
-    "type": "moe", "total_params": "230B", "active_params": "10B", "total_params_b": 230, "active_params_b": 10,
-    "experts": 256, "active_experts": 8, "shared_expert": false, "layers": 62, "hidden_size": 3072, "vocab_size": 200064,
-    "kv_heads": 8, "head_dim": 128, "attention": "GQA（48 Q 头 / 8 KV 头）",
-    "notes": "放弃 M1 的 Lightning Attention，回到全注意力 GQA + MoE。思考内容用 <think> 标签交错输出，官方要求保留历史思考。",
-    "undisclosed": false
+ "id": "minimax-m2",
+ "name": "MiniMax-M2",
+ "name_zh": "MiniMax M2",
+ "aliases": [
+  "MiniMax M2",
+  "minimax-m2"
+ ],
+ "vendor": "MiniMax",
+ "family": "MiniMax-M",
+ "license": "MIT",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2",
+ "status": "superseded",
+ "released_at": "2025-10-27",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "230B",
+  "active_params": "10B",
+  "total_params_b": 230,
+  "active_params_b": 10,
+  "experts": 256,
+  "active_experts": 8,
+  "shared_expert": false,
+  "layers": 62,
+  "hidden_size": 3072,
+  "vocab_size": 200064,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（48 Q 头 / 8 KV 头）",
+  "notes": "放弃 M1 的 Lightning Attention，回到全注意力 GQA + MoE。思考内容用 <think> 标签交错输出，官方要求保留历史思考。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 204800,
+  "display": "200K",
+  "max_output": 131072
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 460,
+   "fp8": 230,
+   "q4": 135
   },
-  "context": { "max_tokens": 204800, "display": "200K", "max_output": 131072 },
-  "memory": {
-    "weight_gb": { "bf16": 460, "fp8": 230, "q4": 135 },
-    "kv_per_token_kib": 248,
-    "kv_note": "8 KV 头 × 128 × 2 × 62 层 × 2 B = 248 KiB/token。",
-    "ref_hw_24gb": "不可行",
-    "ref_hw_80gb": "不可行（Q4 135 GB）",
-    "ref_hw_8x80gb": "BF16 460 GB 可部署，官方推荐 4×H100 FP8 起",
-    "estimated": true
-  },
-  "pricing": { "input_per_m": 0.3, "output_per_m": 1.2, "currency": "USD", "source": "MiniMax 开放平台", "as_of": "2025-12-20" },
-  "links": { "official": "https://www.minimax.io/news/minimax-m2", "hf": "https://huggingface.co/MiniMaxAI/MiniMax-M2", "github": "https://github.com/MiniMax-AI/MiniMax-M2", "pricing": "https://platform.minimax.io/docs/guides/pricing" },
-  "copy": {
-    "one_liner": "10B 激活的 agent 编程模型，AA 指数开源第一（发布时）。",
-    "highlights": ["10B 激活带来的低延迟，Artificial Analysis 指数 61 为发布时开源最高", "SWE-bench Verified 69.4%、Terminal-Bench 46.3%，编程 agent 表现接近闭源中档", "MIT 许可，API 价 $0.3 / $1.2 约为 Claude Sonnet 的 8%"],
-    "pitfalls": ["<think> 交错输出必须完整回传历史，否则多轮 agent 质量明显下降", "230B 总参数，Q4 也要 135 GB，自建门槛不低", "知识与写作类任务弱于同期 GLM-4.6 / DeepSeek"],
-    "logic_ability": "工程型推理为主：训练重点是「多文件编辑 → 运行 → 修复」的 agent 循环，BrowseComp 44%。考试型推理（AIME 78%）在开源里中游。思考不可关闭。常见问题：过度依赖工具反馈，无工具纯推理时较弱。",
-    "best_for": ["编程 agent（Claude Code / Cursor 后端）", "低延迟工具调用服务", "自建 4×H100 级别推理"],
-    "not_for": ["单卡部署", "写作 / 知识类产品"]
-  },
-  "capability_notes": {
-    "coding": "SWE-bench Verified 69.4%、Multi-SWE 36.2%（官方）。",
-    "reasoning": "GPQA Diamond 78%、HLE 31.8%（工具，官方）。",
-    "math": "AIME 2025 78%（官方）。",
-    "agent": "Terminal-Bench 46.3%、τ²-bench 77.2%、BrowseComp 44.0%（官方）。",
-    "chinese": "中文良好。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：MoE，230B 总 / 10B 激活。\n\n- 62 层，隐藏维 3072，词表 200,064\n- 专家：256 个，每 token 激活 8 个\n- GQA：48 Q 头 / 8 KV 头，head_dim 128\n- 全注意力（放弃 M1 的 Lightning Attention 混合）\n- 上下文 204,800\n\n参考：MiniMax-M2 GitHub / HF 模型卡。",
-    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | ≈ 460 GB | 8×80GB |\n| FP8 | ≈ 230 GB | 4×80GB |\n| Q4 | ≈ 135 GB（估） | 2×80GB |\n\n**KV Cache**：≈ 248 KiB/token，128K 上下文 ≈ 31 GB。\n\n**参考配置**：\n- 24GB / 80GB：不可行\n- 4×H100：FP8，官方推荐起步\n- 8×H100：BF16 舒适",
-    "training_md": "- 训练细节披露有限\n- 思考默认开启（<think>），交错输出，官方要求历史保留\n- 工具调用：原生，兼容 Anthropic / OpenAI 接口格式\n- 最大输出 131K",
-    "ecosystem_md": "- HF：MiniMaxAI/MiniMax-M2\n- 引擎：vLLM、SGLang（官方指南）、Transformers\n- 微调：社区少\n- 中文文档：有",
-    "versions_md": "- 上代：MiniMax-M1（Lightning Attention 混合，456B/46B）\n- 后续：M2.1（2025-12）"
-  },
-  "ecosystem": { "engines": ["vLLM", "SGLang"], "finetune": "社区少", "zh_docs": "有" },
-  "complete": true
+  "kv_per_token_kib": 248,
+  "kv_note": "8 KV 头 × 128 × 2 × 62 层 × 2 B = 248 KiB/token。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（Q4 135 GB）",
+  "ref_hw_8x80gb": "BF16 460 GB 可部署，官方推荐 4×H100 FP8 起",
+  "estimated": true
+ },
+ "pricing": {
+  "input_per_m": 0.3,
+  "output_per_m": 1.2,
+  "currency": "USD",
+  "source": "MiniMax 开放平台",
+  "as_of": "2025-12-20"
+ },
+ "links": {
+  "official": "https://www.minimax.io/news/minimax-m2",
+  "hf": "https://huggingface.co/MiniMaxAI/MiniMax-M2",
+  "github": "https://github.com/MiniMax-AI/MiniMax-M2",
+  "pricing": "https://platform.minimax.io/docs/guides/pricing"
+ },
+ "copy": {
+  "one_liner": "10B 激活的 agent 编程模型，AA 指数开源第一（发布时）。",
+  "highlights": [
+   "10B 激活带来的低延迟，Artificial Analysis 指数 61 为发布时开源最高",
+   "SWE-bench Verified 69.4%、Terminal-Bench 46.3%，编程 agent 表现接近闭源中档",
+   "MIT 许可，API 价 $0.3 / $1.2 约为 Claude Sonnet 的 8%"
+  ],
+  "pitfalls": [
+   "<think> 交错输出必须完整回传历史，否则多轮 agent 质量明显下降",
+   "230B 总参数，Q4 也要 135 GB，自建门槛不低",
+   "知识与写作类任务弱于同期 GLM-4.6 / DeepSeek"
+  ],
+  "logic_ability": "工程型推理为主：训练重点是「多文件编辑 → 运行 → 修复」的 agent 循环，BrowseComp 44%。考试型推理（AIME 78%）在开源里中游。思考不可关闭。常见问题：过度依赖工具反馈，无工具纯推理时较弱。",
+  "best_for": [
+   "编程 agent（Claude Code / Cursor 后端）",
+   "低延迟工具调用服务",
+   "自建 4×H100 级别推理"
+  ],
+  "not_for": [
+   "单卡部署",
+   "写作 / 知识类产品"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 69.4%、Multi-SWE 36.2%（官方）。",
+  "reasoning": "GPQA Diamond 78%、HLE 31.8%（工具，官方）。",
+  "math": "AIME 2025 78%（官方）。",
+  "agent": "Terminal-Bench 46.3%、τ²-bench 77.2%、BrowseComp 44.0%（官方）。",
+  "chinese": "中文良好。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE，230B 总 / 10B 激活。\n\n- 62 层，隐藏维 3072，词表 200,064\n- 专家：256 个，每 token 激活 8 个\n- GQA：48 Q 头 / 8 KV 头，head_dim 128\n- 全注意力（放弃 M1 的 Lightning Attention 混合）\n- 上下文 204,800\n\n参考：MiniMax-M2 GitHub / HF 模型卡。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | ≈ 460 GB | 8×80GB |\n| FP8 | ≈ 230 GB | 4×80GB |\n| Q4 | ≈ 135 GB（估） | 2×80GB |\n\n**KV Cache**：≈ 248 KiB/token，128K 上下文 ≈ 31 GB。\n\n**参考配置**：\n- 24GB / 80GB：不可行\n- 4×H100：FP8，官方推荐起步\n- 8×H100：BF16 舒适",
+  "training_md": "- 训练细节披露有限\n- 思考默认开启（<think>），交错输出，官方要求历史保留\n- 工具调用：原生，兼容 Anthropic / OpenAI 接口格式\n- 最大输出 131K",
+  "ecosystem_md": "- HF：MiniMaxAI/MiniMax-M2\n- 引擎：vLLM、SGLang（官方指南）、Transformers\n- 微调：社区少\n- 中文文档：有",
+  "versions_md": "- 上代：MiniMax-M1（Lightning Attention 混合，456B/46B）\n- 后续：M2.1（2025-12）"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang"
+  ],
+  "finetune": "社区少",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "superseded_by": "minimax-m3"
 }

@@ -1,0 +1,110 @@
+{
+  "id": "glm-5-3",
+  "name": "GLM-5.3",
+  "name_zh": "智谱 GLM-5.3",
+  "aliases": [
+    "GLM 5.3",
+    "glm-5.3"
+  ],
+  "vendor": "Z.ai",
+  "vendor_zh": "智谱",
+  "family": "GLM-5",
+  "license": "MIT（承诺；权重未发布）",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "weights_url": "https://huggingface.co/zai-org/GLM-5.3",
+  "status": "current",
+  "released_at": "2026-08-14",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "tools"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+    "type": "moe",
+    "total_params": "744B",
+    "active_params": "40B",
+    "total_params_b": 744,
+    "active_params_b": 40,
+    "experts": 256,
+    "active_experts": 8,
+    "shared_expert": true,
+    "layers": 78,
+    "hidden_size": 6144,
+    "vocab_size": 154880,
+    "kv_heads": 1,
+    "head_dim": 288,
+    "attention": "MLA + DSA 稀疏注意力（同 GLM-5.2）",
+    "notes": "官方明确「与 GLM-5.2 同一底座，所有提升来自后训练」，结构参数沿用 GLM-5.2（GitHub 标注 744B-A40B）。权重截至 2026-08-28 未发布，HF 页面为倒计时预告。",
+    "undisclosed": false
+  },
+  "context": {
+    "max_tokens": 1048576,
+    "display": "1M",
+    "max_output": 131072
+  },
+  "memory": {
+    "weight_gb": {},
+    "kv_per_token_kib": 88,
+    "kv_note": "同 GLM-5.2 结构，MLA ≈ 88 KiB/token；权重未发布，暂无官方文件大小。",
+    "ref_hw_24gb": "不可行",
+    "ref_hw_80gb": "不可行",
+    "ref_hw_8x80gb": "开源后预期同 GLM-5.2：FP8 8×H200",
+    "estimated": true
+  },
+  "pricing": {
+    "input_per_m": 1.4,
+    "output_per_m": 4.4,
+    "currency": "USD",
+    "source": "Z.ai 开放平台",
+    "as_of": "2026-08-28",
+    "note": "缓存命中输入 $0.26；GLM Coding Plan 优先开放"
+  },
+  "links": {
+    "official": "https://z.ai/blog/glm-5.3",
+    "hf": "https://huggingface.co/zai-org/GLM-5.3",
+    "github": "https://github.com/zai-org/GLM-5",
+    "paper": "https://arxiv.org/abs/2602.15763",
+    "pricing": "https://docs.z.ai/guides/overview/pricing"
+  },
+  "copy": {
+    "one_liner": "GLM-5.2 同底座后训练加强版，权重承诺开源。",
+    "highlights": [
+      "承诺开源：官方称安全审查后两周内开源权重，HF 页面预告 2026-08-28；截至今日仍只有 API",
+      "同底座纯后训练：Z.ai Code Bench 比 GLM-5.2 提升 50%，DeepSWE v1.1 46.2→66.9，Terminal-Bench 3.0 4.6→28.3",
+      "网络安全能力突出：CyberGym 84.5、ExploitBench 54.4（GLM-5.2 为 24.4）"
+    ],
+    "pitfalls": [
+      "权重尚未发布，本条目按 API-only 记录；开源后需重新核对文件与许可",
+      "推理不可关闭，只能调 reasoning_effort；max 档单题输出可达 ~75K token",
+      "漏洞利用能力被官方列为「意外涌现」，分阶段先向安全伙伴开放，企业合规需留意"
+    ],
+    "logic_ability": "工程型推理：官方主张为开源最强编程模型，agent 类任务提升最大（DeepSWE 66.9、SWE-Marathon 42.5、Agents' Last Exam 28.5）。LMArena 文本榜 1484（第 15），AA 指数 60。考试型基准官方未单独披露，推测与 GLM-5.2 相近（同底座）。",
+    "best_for": [
+      "编程 agent（ZCode / Claude Code / OpenCode）",
+      "漏洞发现与安全审计",
+      "等 GLM-5.2 开源用户升级"
+    ],
+    "not_for": [
+      "需要今天就能自建的场景（权重未发布）",
+      "多模态（用 GLM-5.3-Flash）"
+    ]
+  },
+  "capability_notes": {
+    "coding": "DeepSWE v1.1 66.9、Terminal-Bench 3.0 28.3、SWE-Marathon v1.1 42.5、Z.ai Code Bench 34.5（max）（官方）。",
+    "agent": "Agents' Last Exam 28.5；CyberGym 84.5、ExploitBench 54.4（官方）。",
+    "reasoning": "官方未单独披露；同底座参考 GLM-5.2。",
+    "chinese": "中文顶级。"
+  },
+  "ecosystem": {
+    "engines": [
+      "SGLang",
+      "vLLM"
+    ],
+    "finetune": "待权重发布",
+    "zh_docs": "有"
+  },
+  "complete": false
+}

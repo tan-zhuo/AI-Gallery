@@ -11,6 +11,7 @@ import { EvidenceTag } from '@/components/ui/EvidenceTag'
 import { ScoreBar } from '@/components/ui/ScoreBar'
 import { Button, Stat, Empty } from '@/components/ui/Misc'
 import { ArchDiagram } from '@/components/model/ArchDiagram'
+import { VendorLogo } from '@/components/ui/VendorLogo'
 import { CapabilityRadar } from '@/components/charts/Radar'
 import { radarFor } from '@/lib/capabilities'
 import { useCompareIds, MAX_COMPARE } from '@/hooks/useCompare'
@@ -48,11 +49,14 @@ function Detail({ m }: { m: Model }) {
         <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
           <div className="space-y-4 min-w-0">
             <BadgeRow m={m} singleGpu={single} />
-            <div>
+            <div className="flex items-start gap-4">
+              <VendorLogo vendor={m.vendor} size={56} className="rounded-xl mt-1" />
+              <div className="min-w-0">
               <h1 className="text-3xl md:text-4xl font-semibold tracking-tight">{m.name}</h1>
               <p className="text-sm text-muted mt-1">
                 {m.name_zh && <>{m.name_zh} · </>}{m.vendor}{m.vendor_zh && ` ${m.vendor_zh}`} · 发布 <span className="num">{m.released_at ?? '—'}</span> · {m.status === 'current' ? '当前代' : m.status === 'preview' ? 'Preview' : m.status === 'superseded' ? <>已被替代{succ && <> → <Link className="link" to={`/models/${succ.id}`}>{succ.name}</Link></>}</> : '已停更'}
               </p>
+              </div>
             </div>
             <p className="text-base md:text-lg leading-relaxed">{m.copy.one_liner}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-border pt-4">

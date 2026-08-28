@@ -1,62 +1,124 @@
 {
-  "id": "glm-4-6",
-  "name": "GLM-4.6",
-  "name_zh": "智谱 GLM-4.6",
-  "aliases": ["GLM 4.6", "glm-4.6"],
-  "vendor": "Z.ai",
-  "vendor_zh": "智谱",
-  "family": "GLM-4.5",
-  "license": "MIT",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/zai-org/GLM-4.6",
-  "status": "current",
-  "released_at": "2025-09-30",
-  "updated_at": "2025-12-20",
-  "modalities": ["text", "tools"],
-  "reasoning_mode": "optional",
-  "architecture": {
-    "type": "moe", "total_params": "355B", "active_params": "32B", "total_params_b": 355, "active_params_b": 32,
-    "experts": 160, "active_experts": 8, "shared_expert": true, "layers": 92, "hidden_size": 5120, "vocab_size": 151552,
-    "kv_heads": 8, "head_dim": 128, "attention": "GQA（96 Q 头 / 8 KV 头）+ 部分 RoPE",
-    "notes": "沿用 GLM-4.5 结构：更深更窄的 MoE（层数多、专家维度小），带 MTP 层加速投机解码。上下文从 128K 扩到 200K。",
-    "undisclosed": false
+ "id": "glm-4-6",
+ "name": "GLM-4.6",
+ "name_zh": "智谱 GLM-4.6",
+ "aliases": [
+  "GLM 4.6",
+  "glm-4.6"
+ ],
+ "vendor": "Z.ai",
+ "vendor_zh": "智谱",
+ "family": "GLM-4.5",
+ "license": "MIT",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/zai-org/GLM-4.6",
+ "status": "superseded",
+ "released_at": "2025-09-30",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "355B",
+  "active_params": "32B",
+  "total_params_b": 355,
+  "active_params_b": 32,
+  "experts": 160,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 92,
+  "hidden_size": 5120,
+  "vocab_size": 151552,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（96 Q 头 / 8 KV 头）+ 部分 RoPE",
+  "notes": "沿用 GLM-4.5 结构：更深更窄的 MoE（层数多、专家维度小），带 MTP 层加速投机解码。上下文从 128K 扩到 200K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 710,
+   "fp8": 355,
+   "q4": 200
   },
-  "context": { "max_tokens": 200000, "display": "200K", "max_output": 128000 },
-  "memory": {
-    "weight_gb": { "bf16": 710, "fp8": 355, "q4": 200 },
-    "kv_per_token_kib": 368,
-    "kv_note": "8 KV 头 × 128 × 2 × 92 层 × 2 B ≈ 368 KiB/token；深层结构导致 KV 偏大。",
-    "ref_hw_24gb": "不可行",
-    "ref_hw_80gb": "不可行",
-    "ref_hw_8x80gb": "BF16 710 GB 需 8×H200 或 16×H100；FP8 8×H100 可服务",
-    "estimated": true
-  },
-  "pricing": { "input_per_m": 0.6, "output_per_m": 2.2, "currency": "USD", "source": "Z.ai 开放平台", "as_of": "2025-12-20", "note": "GLM Coding Plan 另有包月" },
-  "links": { "official": "https://z.ai/", "hf": "https://huggingface.co/zai-org/GLM-4.6", "github": "https://github.com/zai-org/GLM-4.5", "paper": "https://arxiv.org/abs/2508.06471", "pricing": "https://docs.z.ai/guides/overview/pricing" },
-  "copy": {
-    "one_liner": "MIT 许可、Agent 编程向的开源旗舰，Claude Code 替代热门。",
-    "highlights": ["MIT 许可，355B/32B 激活，商用无附加条件", "编程 agent 场景（Claude Code / Cline 类工具）的实测口碑好，token 消耗比 GLM-4.5 少 15%", "200K 上下文、128K 最大输出，长任务友好"],
-    "pitfalls": ["355B 体量，自建门槛与 DeepSeek 相当", "92 层深结构让 KV Cache 偏大（368 KiB/token），高并发长上下文吃显存", "英文创作与知识广度弱于同价位闭源"],
-    "logic_ability": "工程型推理是主打：SWE-bench Verified 68%、在真实 IDE agent 任务中完成率高，官方以「CC-Bench」实测对标 Claude Sonnet 4。考试型推理（AIME 93.9%）也强。思考可开关；关闭时代码质量下降明显。常见问题：长 agent 任务中偶尔过早结束。",
-    "best_for": ["编程 agent 后端", "自建替代 Claude Sonnet 的编程服务", "中文工程任务"],
-    "not_for": ["单卡部署（用 GLM-4.5-Air）", "多模态（用 GLM-4.5V）"]
-  },
-  "capability_notes": {
-    "coding": "SWE-bench Verified 68.0%、LiveCodeBench v6 82.8%（官方）。",
-    "reasoning": "GPQA Diamond 81.0%、HLE 30.4%（工具，官方）。",
-    "math": "AIME 2025 93.9%（官方）。",
-    "agent": "τ²-bench 75.9%、BrowseComp 45.1%（官方）。",
-    "chinese": "中文顶级。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：MoE，355B 总 / 32B 激活。\n\n- 92 层（含 MTP 层），隐藏维 5120，词表 151,552\n- 专家：160 路由 + 1 共享，每 token 激活 8 个路由专家\n- GQA：96 Q 头 / 8 KV 头，head_dim 128；部分 RoPE\n- 设计取向：「更深更窄」——层多、专家小，官方认为深度对推理更有利\n- 上下文 200K\n- MTP 层支持投机解码\n\n参考：GLM-4.5 技术报告（arXiv 2508.06471）。",
-    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | ≈ 710 GB | 8×H200 |\n| FP8 | ≈ 355 GB | 8×H100 |\n| Q4 | ≈ 200 GB（估） | 4×80GB |\n\n**KV Cache**：≈ 368 KiB/token。128K 上下文单请求 ≈ 46 GB，是同规模 MLA 模型的 5 倍以上。\n\n**参考配置**：\n- 24GB / 80GB：不可行\n- 8×H100：FP8 权重 + 有限并发\n- 8×H200：BF16 舒适",
-    "training_md": "- 预训练 22T token（GLM-4.5）+ 后续中训（代码 / 推理 / 长上下文 / agent）\n- 后训练：专家蒸馏 + RL（slime 框架）\n- 思考模式：`thinking.type` 可切 enabled / disabled\n- 工具调用：原生，支持 Claude Code / Cline / Roo Code 等\n- 最大输出 128K",
-    "ecosystem_md": "- HF：zai-org/GLM-4.6（+ FP8）\n- 引擎：vLLM、SGLang（官方 recipes）、llama.cpp（GGUF）\n- 微调：LLaMA-Factory 支持\n- 中文文档：有",
-    "versions_md": "- 上代：GLM-4.5（2025-07）\n- 轻量：GLM-4.5-Air（106B/12B）\n- 视觉：GLM-4.5V\n- 后续：GLM-4.6V、GLM-5（2026）"
-  },
-  "ecosystem": { "engines": ["vLLM", "SGLang", "llama.cpp"], "finetune": "LoRA / 全参（多节点）", "zh_docs": "有" },
-  "complete": true
+  "kv_per_token_kib": 368,
+  "kv_note": "8 KV 头 × 128 × 2 × 92 层 × 2 B ≈ 368 KiB/token；深层结构导致 KV 偏大。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "BF16 710 GB 需 8×H200 或 16×H100；FP8 8×H100 可服务",
+  "estimated": true
+ },
+ "pricing": {
+  "input_per_m": 0.6,
+  "output_per_m": 2.2,
+  "currency": "USD",
+  "source": "Z.ai 开放平台",
+  "as_of": "2025-12-20",
+  "note": "GLM Coding Plan 另有包月"
+ },
+ "links": {
+  "official": "https://z.ai/",
+  "hf": "https://huggingface.co/zai-org/GLM-4.6",
+  "github": "https://github.com/zai-org/GLM-4.5",
+  "paper": "https://arxiv.org/abs/2508.06471",
+  "pricing": "https://docs.z.ai/guides/overview/pricing"
+ },
+ "copy": {
+  "one_liner": "MIT 许可、Agent 编程向的开源旗舰，Claude Code 替代热门。",
+  "highlights": [
+   "MIT 许可，355B/32B 激活，商用无附加条件",
+   "编程 agent 场景（Claude Code / Cline 类工具）的实测口碑好，token 消耗比 GLM-4.5 少 15%",
+   "200K 上下文、128K 最大输出，长任务友好"
+  ],
+  "pitfalls": [
+   "355B 体量，自建门槛与 DeepSeek 相当",
+   "92 层深结构让 KV Cache 偏大（368 KiB/token），高并发长上下文吃显存",
+   "英文创作与知识广度弱于同价位闭源"
+  ],
+  "logic_ability": "工程型推理是主打：SWE-bench Verified 68%、在真实 IDE agent 任务中完成率高，官方以「CC-Bench」实测对标 Claude Sonnet 4。考试型推理（AIME 93.9%）也强。思考可开关；关闭时代码质量下降明显。常见问题：长 agent 任务中偶尔过早结束。",
+  "best_for": [
+   "编程 agent 后端",
+   "自建替代 Claude Sonnet 的编程服务",
+   "中文工程任务"
+  ],
+  "not_for": [
+   "单卡部署（用 GLM-4.5-Air）",
+   "多模态（用 GLM-4.5V）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 68.0%、LiveCodeBench v6 82.8%（官方）。",
+  "reasoning": "GPQA Diamond 81.0%、HLE 30.4%（工具，官方）。",
+  "math": "AIME 2025 93.9%（官方）。",
+  "agent": "τ²-bench 75.9%、BrowseComp 45.1%（官方）。",
+  "chinese": "中文顶级。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE，355B 总 / 32B 激活。\n\n- 92 层（含 MTP 层），隐藏维 5120，词表 151,552\n- 专家：160 路由 + 1 共享，每 token 激活 8 个路由专家\n- GQA：96 Q 头 / 8 KV 头，head_dim 128；部分 RoPE\n- 设计取向：「更深更窄」——层多、专家小，官方认为深度对推理更有利\n- 上下文 200K\n- MTP 层支持投机解码\n\n参考：GLM-4.5 技术报告（arXiv 2508.06471）。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | ≈ 710 GB | 8×H200 |\n| FP8 | ≈ 355 GB | 8×H100 |\n| Q4 | ≈ 200 GB（估） | 4×80GB |\n\n**KV Cache**：≈ 368 KiB/token。128K 上下文单请求 ≈ 46 GB，是同规模 MLA 模型的 5 倍以上。\n\n**参考配置**：\n- 24GB / 80GB：不可行\n- 8×H100：FP8 权重 + 有限并发\n- 8×H200：BF16 舒适",
+  "training_md": "- 预训练 22T token（GLM-4.5）+ 后续中训（代码 / 推理 / 长上下文 / agent）\n- 后训练：专家蒸馏 + RL（slime 框架）\n- 思考模式：`thinking.type` 可切 enabled / disabled\n- 工具调用：原生，支持 Claude Code / Cline / Roo Code 等\n- 最大输出 128K",
+  "ecosystem_md": "- HF：zai-org/GLM-4.6（+ FP8）\n- 引擎：vLLM、SGLang（官方 recipes）、llama.cpp（GGUF）\n- 微调：LLaMA-Factory 支持\n- 中文文档：有",
+  "versions_md": "- 上代：GLM-4.5（2025-07）\n- 轻量：GLM-4.5-Air（106B/12B）\n- 视觉：GLM-4.5V\n- 后续：GLM-4.6V、GLM-5（2026）"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp"
+  ],
+  "finetune": "LoRA / 全参（多节点）",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "superseded_by": "glm-5-2"
 }

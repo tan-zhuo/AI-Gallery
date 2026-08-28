@@ -1,62 +1,126 @@
 {
-  "id": "qwen3-30b-a3b-thinking-2507",
-  "name": "Qwen3-30B-A3B-Thinking-2507",
-  "name_zh": "通义千问 3 · 30B 小 MoE 推理版",
-  "aliases": ["Qwen3 30B A3B", "qwen3-30b-a3b-thinking"],
-  "vendor": "Alibaba",
-  "vendor_zh": "阿里巴巴",
-  "family": "Qwen3",
-  "license": "Apache-2.0",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Thinking-2507",
-  "status": "current",
-  "released_at": "2025-07-30",
-  "updated_at": "2025-12-20",
-  "modalities": ["text", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": {
-    "type": "moe", "total_params": "30.5B", "active_params": "3.3B", "total_params_b": 30.5, "active_params_b": 3.3,
-    "experts": 128, "active_experts": 8, "shared_expert": false, "layers": 48, "hidden_size": 2048, "vocab_size": 151936,
-    "kv_heads": 4, "head_dim": 128, "attention": "GQA（32 Q 头 / 4 KV 头）",
-    "notes": "每 token 只算 3.3B，CPU / Apple Silicon 也能有可用速度。原生 262K 上下文。",
-    "undisclosed": false
+ "id": "qwen3-30b-a3b-thinking-2507",
+ "name": "Qwen3-30B-A3B-Thinking-2507",
+ "name_zh": "通义千问 3 · 30B 小 MoE 推理版",
+ "aliases": [
+  "Qwen3 30B A3B",
+  "qwen3-30b-a3b-thinking"
+ ],
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen3",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Thinking-2507",
+ "status": "superseded",
+ "released_at": "2025-07-30",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "30.5B",
+  "active_params": "3.3B",
+  "total_params_b": 30.5,
+  "active_params_b": 3.3,
+  "experts": 128,
+  "active_experts": 8,
+  "shared_expert": false,
+  "layers": 48,
+  "hidden_size": 2048,
+  "vocab_size": 151936,
+  "kv_heads": 4,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 4 KV 头）",
+  "notes": "每 token 只算 3.3B，CPU / Apple Silicon 也能有可用速度。原生 262K 上下文。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K",
+  "max_output": 81920
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 61,
+   "fp8": 31,
+   "q8": 32.5,
+   "q4": 18.6
   },
-  "context": { "max_tokens": 262144, "display": "256K", "max_output": 81920 },
-  "memory": {
-    "weight_gb": { "bf16": 61, "fp8": 31, "q8": 32.5, "q4": 18.6 },
-    "kv_per_token_kib": 96,
-    "kv_note": "4 KV 头 × 128 × 2 × 48 层 × 2 B = 96 KiB/token。",
-    "ref_hw_24gb": "Q4_K_M 18.6 GB，剩 ~5 GB 给 KV ≈ 40K 上下文；生成速度 100+ tok/s",
-    "ref_hw_80gb": "BF16 61 GB 可跑，KV 余量 ~15 GB",
-    "ref_hw_8x80gb": "过剩",
-    "estimated": false
-  },
-  "pricing": { "input_per_m": 0.08, "output_per_m": 0.3, "currency": "USD", "source": "第三方托管常见价", "as_of": "2025-12-20", "note": "开源权重，社区托管价" },
-  "links": { "official": "https://qwen.ai/", "hf": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Thinking-2507", "github": "https://github.com/QwenLM/Qwen3", "paper": "https://arxiv.org/abs/2505.09388" },
-  "copy": {
-    "one_liner": "3B 激活的小 MoE，单卡跑出 32B 级推理，速度快 3 倍。",
-    "highlights": ["激活仅 3.3B，4090 上 100+ tok/s，Mac M 系列也可用", "AIME 2025 85%，推理分超过 Dense 的 Qwen3-32B", "原生 256K 上下文，KV 仅 96 KiB/token"],
-    "pitfalls": ["30B 总参数仍要 18.6 GB（Q4）显存，不是「3B 模型」", "小激活量导致知识广度与指令细节遵循弱于 Dense 32B", "Thinking 版不可关闭思考，短问答成本高，用 Instruct-2507"],
-    "logic_ability": "考试型推理相对其体量非常强，思考链长度控制好于 235B 版。工程型推理（多文件代码修改）明显弱，容易丢失约束。事实知识覆盖不足，幻觉高于 Dense 32B。适合「快、便宜、要有推理能力」的场景，不适合做知识库问答主力。",
-    "best_for": ["本地推理助手", "高吞吐批量推理", "边缘 / 笔记本部署"],
-    "not_for": ["知识密集型问答", "复杂 agent 编排"]
-  },
-  "capability_notes": {
-    "coding": "LiveCodeBench v6 66.0%（官方）。",
-    "reasoning": "GPQA Diamond 73.4%（官方）。",
-    "math": "AIME 2025 85.0%（官方）。",
-    "agent": "BFCL-v3 72.4%（官方）。",
-    "chinese": "中文良好。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：MoE，30.5B 总 / 3.3B 激活。\n\n- 48 层，隐藏维 2048，词表 151,936\n- 专家：128 个，每 token 激活 8 个，无共享专家\n- GQA：32 Q 头 / 4 KV 头，head_dim 128\n- 上下文：原生 262,144\n\n参考：Qwen3 技术报告。",
-    "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | 61 GB | 80GB | 官方 |\n| FP8 | ≈ 31 GB | 48GB | 官方 FP8 版 |\n| Q8 | 32.5 GB | 48GB | GGUF |\n| Q4 | 18.6 GB | 24GB | GGUF Q4_K_M |\n\n**KV Cache**：96 KiB/token，128K 上下文 ≈ 12 GB。\n\n**参考配置**：\n- 24GB：Q4，~40K 上下文\n- 80GB：BF16，128K 上下文可行\n- Mac 64GB 统一内存：Q8 舒适",
-    "training_md": "- 与 Qwen3 系列共享预训练（36T token）\n- 2507 版后训练增强推理深度\n- 思考默认且不可关\n- 工具调用支持\n- 最大输出 81,920",
-    "ecosystem_md": "- HF：Qwen/Qwen3-30B-A3B-Thinking-2507（+ FP8、GGUF）\n- 引擎：vLLM、SGLang、llama.cpp、Ollama、MLX\n- 微调：LoRA 友好（MoE 全参微调需注意路由稳定）\n- 中文文档：有",
-    "versions_md": "- 姊妹：Qwen3-30B-A3B-Instruct-2507（非思考）、Qwen3-Coder-30B-A3B\n- 更大：Qwen3-235B-A22B-2507\n- 新架构：Qwen3-Next-80B-A3B"
-  },
-  "ecosystem": { "engines": ["vLLM", "SGLang", "llama.cpp", "Ollama", "MLX"], "finetune": "LoRA 友好", "zh_docs": "有" },
-  "complete": true
+  "kv_per_token_kib": 96,
+  "kv_note": "4 KV 头 × 128 × 2 × 48 层 × 2 B = 96 KiB/token。",
+  "ref_hw_24gb": "Q4_K_M 18.6 GB，剩 ~5 GB 给 KV ≈ 40K 上下文；生成速度 100+ tok/s",
+  "ref_hw_80gb": "BF16 61 GB 可跑，KV 余量 ~15 GB",
+  "ref_hw_8x80gb": "过剩",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.08,
+  "output_per_m": 0.3,
+  "currency": "USD",
+  "source": "第三方托管常见价",
+  "as_of": "2025-12-20",
+  "note": "开源权重，社区托管价"
+ },
+ "links": {
+  "official": "https://qwen.ai/",
+  "hf": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Thinking-2507",
+  "github": "https://github.com/QwenLM/Qwen3",
+  "paper": "https://arxiv.org/abs/2505.09388"
+ },
+ "copy": {
+  "one_liner": "3B 激活的小 MoE，单卡跑出 32B 级推理，速度快 3 倍。",
+  "highlights": [
+   "激活仅 3.3B，4090 上 100+ tok/s，Mac M 系列也可用",
+   "AIME 2025 85%，推理分超过 Dense 的 Qwen3-32B",
+   "原生 256K 上下文，KV 仅 96 KiB/token"
+  ],
+  "pitfalls": [
+   "30B 总参数仍要 18.6 GB（Q4）显存，不是「3B 模型」",
+   "小激活量导致知识广度与指令细节遵循弱于 Dense 32B",
+   "Thinking 版不可关闭思考，短问答成本高，用 Instruct-2507"
+  ],
+  "logic_ability": "考试型推理相对其体量非常强，思考链长度控制好于 235B 版。工程型推理（多文件代码修改）明显弱，容易丢失约束。事实知识覆盖不足，幻觉高于 Dense 32B。适合「快、便宜、要有推理能力」的场景，不适合做知识库问答主力。",
+  "best_for": [
+   "本地推理助手",
+   "高吞吐批量推理",
+   "边缘 / 笔记本部署"
+  ],
+  "not_for": [
+   "知识密集型问答",
+   "复杂 agent 编排"
+  ]
+ },
+ "capability_notes": {
+  "coding": "LiveCodeBench v6 66.0%（官方）。",
+  "reasoning": "GPQA Diamond 73.4%（官方）。",
+  "math": "AIME 2025 85.0%（官方）。",
+  "agent": "BFCL-v3 72.4%（官方）。",
+  "chinese": "中文良好。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE，30.5B 总 / 3.3B 激活。\n\n- 48 层，隐藏维 2048，词表 151,936\n- 专家：128 个，每 token 激活 8 个，无共享专家\n- GQA：32 Q 头 / 4 KV 头，head_dim 128\n- 上下文：原生 262,144\n\n参考：Qwen3 技术报告。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | 61 GB | 80GB | 官方 |\n| FP8 | ≈ 31 GB | 48GB | 官方 FP8 版 |\n| Q8 | 32.5 GB | 48GB | GGUF |\n| Q4 | 18.6 GB | 24GB | GGUF Q4_K_M |\n\n**KV Cache**：96 KiB/token，128K 上下文 ≈ 12 GB。\n\n**参考配置**：\n- 24GB：Q4，~40K 上下文\n- 80GB：BF16，128K 上下文可行\n- Mac 64GB 统一内存：Q8 舒适",
+  "training_md": "- 与 Qwen3 系列共享预训练（36T token）\n- 2507 版后训练增强推理深度\n- 思考默认且不可关\n- 工具调用支持\n- 最大输出 81,920",
+  "ecosystem_md": "- HF：Qwen/Qwen3-30B-A3B-Thinking-2507（+ FP8、GGUF）\n- 引擎：vLLM、SGLang、llama.cpp、Ollama、MLX\n- 微调：LoRA 友好（MoE 全参微调需注意路由稳定）\n- 中文文档：有",
+  "versions_md": "- 姊妹：Qwen3-30B-A3B-Instruct-2507（非思考）、Qwen3-Coder-30B-A3B\n- 更大：Qwen3-235B-A22B-2507\n- 新架构：Qwen3-Next-80B-A3B"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Ollama",
+   "MLX"
+  ],
+  "finetune": "LoRA 友好",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "superseded_by": "qwen3-8-27b"
 }

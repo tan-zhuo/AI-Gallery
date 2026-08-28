@@ -100,7 +100,7 @@ export default function Models() {
                     <tr key={m.id} className="border-b border-border/60 hover:bg-surface-2/60">
                       <td className="px-3 py-2 min-w-[200px]">
                         <ModelName m={m} />
-                        <div className="mt-1 flex gap-1">{m.complete ? <Badge tone="info">完整说明书</Badge> : <Badge>速览</Badge>}{m.reasoning_mode !== 'none' && <Badge>推理</Badge>}{m.modalities.includes('image') && <Badge>视觉</Badge>}</div>
+                        <div className="mt-1 flex gap-1">{m.complete ? <Badge tone="info">完整说明书</Badge> : <Badge>速览</Badge>}{m.status === 'superseded' && <Badge tone="warn">已被替代</Badge>}{m.reasoning_mode !== 'none' && <Badge>推理</Badge>}{m.modalities.includes('image') && <Badge>视觉</Badge>}</div>
                       </td>
                       <td className="px-2 py-2"><OpennessBadge m={m} /></td>
                       <td className="px-2 py-2 text-right num">{refs.get(m.id)?.score?.toFixed(1) ?? <span className="text-muted">—</span>}</td>

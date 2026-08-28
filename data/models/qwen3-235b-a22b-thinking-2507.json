@@ -1,62 +1,126 @@
 {
-  "id": "qwen3-235b-a22b-thinking-2507",
-  "name": "Qwen3-235B-A22B-Thinking-2507",
-  "name_zh": "通义千问 3 · 235B 推理版",
-  "aliases": ["Qwen3 235B Thinking", "qwen3-235b-a22b-thinking"],
-  "vendor": "Alibaba",
-  "vendor_zh": "阿里巴巴",
-  "family": "Qwen3",
-  "license": "Apache-2.0",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507",
-  "status": "current",
-  "released_at": "2025-07-25",
-  "updated_at": "2025-12-20",
-  "modalities": ["text", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": {
-    "type": "moe", "total_params": "235B", "active_params": "22B", "total_params_b": 235, "active_params_b": 22,
-    "experts": 128, "active_experts": 8, "shared_expert": false, "layers": 94, "hidden_size": 4096, "vocab_size": 151936,
-    "kv_heads": 4, "head_dim": 128, "attention": "GQA（64 Q 头 / 4 KV 头）",
-    "notes": "无共享专家；QK-Norm；原生 262K 上下文，YaRN 可扩至 1M（需引擎支持）。",
-    "undisclosed": false
+ "id": "qwen3-235b-a22b-thinking-2507",
+ "name": "Qwen3-235B-A22B-Thinking-2507",
+ "name_zh": "通义千问 3 · 235B 推理版",
+ "aliases": [
+  "Qwen3 235B Thinking",
+  "qwen3-235b-a22b-thinking"
+ ],
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen3",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507",
+ "status": "superseded",
+ "released_at": "2025-07-25",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "235B",
+  "active_params": "22B",
+  "total_params_b": 235,
+  "active_params_b": 22,
+  "experts": 128,
+  "active_experts": 8,
+  "shared_expert": false,
+  "layers": 94,
+  "hidden_size": 4096,
+  "vocab_size": 151936,
+  "kv_heads": 4,
+  "head_dim": 128,
+  "attention": "GQA（64 Q 头 / 4 KV 头）",
+  "notes": "无共享专家；QK-Norm；原生 262K 上下文，YaRN 可扩至 1M（需引擎支持）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K",
+  "max_output": 81920
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 470,
+   "fp8": 235,
+   "q8": 250,
+   "q4": 142
   },
-  "context": { "max_tokens": 262144, "display": "256K", "max_output": 81920 },
-  "memory": {
-    "weight_gb": { "bf16": 470, "fp8": 235, "q8": 250, "q4": 142 },
-    "kv_per_token_kib": 188,
-    "kv_note": "GQA 4 KV 头 × 128 × 2 × 94 层 × 2 B ≈ 188 KiB/token。128K 上下文单请求 ≈ 23 GB。",
-    "ref_hw_24gb": "不可行",
-    "ref_hw_80gb": "不可行（Q4 142 GB）；2×80GB Q4 可跑但上下文受限",
-    "ref_hw_8x80gb": "BF16 / FP8 舒适，官方 FP8 版本推荐",
-    "estimated": true
-  },
-  "pricing": { "input_per_m": 0.7, "output_per_m": 8.4, "currency": "USD", "source": "阿里云百炼（国际站）", "as_of": "2025-12-20", "note": "开源权重，此为官方托管价；第三方托管更便宜" },
-  "links": { "official": "https://qwen.ai/", "hf": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507", "github": "https://github.com/QwenLM/Qwen3", "paper": "https://arxiv.org/abs/2505.09388" },
-  "copy": {
-    "one_liner": "Apache-2.0 的 MoE 推理旗舰，中文与数学突出。",
-    "highlights": ["Apache-2.0，权重可下、商用无附加条件", "AIME 2025 92.3%，开源模型里少数能跟上闭源旗舰的数学能力", "22B 激活参数，吞吐远优于同能力的 Dense 模型"],
-    "pitfalls": ["Thinking 版默认输出大量思考 token，短任务成本高（用 Instruct-2507 版）", "235B 权重，单卡 80GB 装不下 Q4，实际门槛 2×80GB 起", "无共享专家 + 128 专家，对推理引擎的专家并行要求高"],
-    "logic_ability": "考试型推理非常强（AIME、HMMT、GPQA），且喜欢写很长的思考链——对简单问题也会「想很久」，这是它的主要坑。工程型推理（SWE-bench）弱于同期闭源模型，也弱于专门的 Qwen3-Coder。中文逻辑题与阅读理解在开源里顶级。",
-    "best_for": ["数学 / 逻辑 / 科学推理", "中文复杂任务", "多卡自建推理服务"],
-    "not_for": ["单卡本地部署", "对延迟敏感的对话产品（思考太长）"]
-  },
-  "capability_notes": {
-    "coding": "LiveCodeBench v6 74.1%（官方）；工程任务用 Qwen3-Coder。",
-    "reasoning": "GPQA Diamond 81.1%、HLE 18.2%（官方）。",
-    "math": "AIME 2025 92.3%、HMMT 83.9%（官方）。",
-    "agent": "BFCL-v3 71.9%、TAU2 ~ 70（官方）。",
-    "chinese": "C-Eval / 中文 SimpleQA 开源顶级。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：MoE，235B 总 / 22B 激活。\n\n- 94 层，隐藏维 4096，词表 151,936\n- 专家：128 个，每 token 激活 8 个，**无共享专家**\n- 注意力：GQA，64 Query 头 / 4 KV 头，head_dim 128，QK-Norm\n- 上下文：原生 262,144；YaRN factor 4 可到 1M（vLLM/SGLang 需显式配置）\n- 与 Instruct-2507 共享结构，仅后训练不同\n\n参考：Qwen3 技术报告（arXiv 2505.09388）。",
-    "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | ≈ 470 GB | 8×80GB | 官方 safetensors |\n| FP8 | ≈ 235 GB | 4×80GB | 官方 FP8 版本 |\n| Q8 | ≈ 250 GB（估） | 4×80GB | GGUF Q8_0 |\n| Q4 | ≈ 142 GB（估） | 2×80GB | GGUF Q4_K_M（unsloth） |\n\n**KV Cache**：≈ 188 KiB/token（BF16）。128K 上下文 ≈ 23 GB；Thinking 模式输出常达 30K+，请留足。\n\n**参考配置**：\n- 24GB：不可行\n- 单卡 80GB：不可行\n- 8×H100：BF16 舒适，FP8 可服务较高并发",
-    "training_md": "- 预训练 36T token，119 语言\n- 三阶段预训练（通用 → 推理密集 → 长上下文）\n- 后训练：长 CoT 冷启动 → 推理 RL → 通用 RL；2507 版为增强版后训练\n- **默认思考且不可关闭**（关闭思考请用 Instruct-2507）\n- 工具调用：Hermes 风格 / OpenAI 兼容，支持 Qwen-Agent\n- 最大输出 81,920",
-    "ecosystem_md": "- HF：Qwen/Qwen3-235B-A22B-Thinking-2507（+ FP8 版）\n- 推理引擎：vLLM、SGLang、TensorRT-LLM、llama.cpp（GGUF）、Ollama\n- 微调：LLaMA-Factory / ms-swift 支持 LoRA，全参需多节点\n- 中文文档：有（官方中文文档完整）",
-    "versions_md": "- 同系列：Qwen3-235B-A22B-Instruct-2507（非思考）、Qwen3-32B、Qwen3-30B-A3B-2507\n- 后续：Qwen3-Next-80B-A3B（新架构）、Qwen3-Max（仅 API）\n- 被替代：Qwen3-235B-A22B（2025-04 混合思考版）"
-  },
-  "ecosystem": { "engines": ["vLLM", "SGLang", "TensorRT-LLM", "llama.cpp", "Ollama"], "finetune": "LoRA 友好，全参需多节点", "zh_docs": "有" },
-  "complete": true
+  "kv_per_token_kib": 188,
+  "kv_note": "GQA 4 KV 头 × 128 × 2 × 94 层 × 2 B ≈ 188 KiB/token。128K 上下文单请求 ≈ 23 GB。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（Q4 142 GB）；2×80GB Q4 可跑但上下文受限",
+  "ref_hw_8x80gb": "BF16 / FP8 舒适，官方 FP8 版本推荐",
+  "estimated": true
+ },
+ "pricing": {
+  "input_per_m": 0.7,
+  "output_per_m": 8.4,
+  "currency": "USD",
+  "source": "阿里云百炼（国际站）",
+  "as_of": "2025-12-20",
+  "note": "开源权重，此为官方托管价；第三方托管更便宜"
+ },
+ "links": {
+  "official": "https://qwen.ai/",
+  "hf": "https://huggingface.co/Qwen/Qwen3-235B-A22B-Thinking-2507",
+  "github": "https://github.com/QwenLM/Qwen3",
+  "paper": "https://arxiv.org/abs/2505.09388"
+ },
+ "copy": {
+  "one_liner": "Apache-2.0 的 MoE 推理旗舰，中文与数学突出。",
+  "highlights": [
+   "Apache-2.0，权重可下、商用无附加条件",
+   "AIME 2025 92.3%，开源模型里少数能跟上闭源旗舰的数学能力",
+   "22B 激活参数，吞吐远优于同能力的 Dense 模型"
+  ],
+  "pitfalls": [
+   "Thinking 版默认输出大量思考 token，短任务成本高（用 Instruct-2507 版）",
+   "235B 权重，单卡 80GB 装不下 Q4，实际门槛 2×80GB 起",
+   "无共享专家 + 128 专家，对推理引擎的专家并行要求高"
+  ],
+  "logic_ability": "考试型推理非常强（AIME、HMMT、GPQA），且喜欢写很长的思考链——对简单问题也会「想很久」，这是它的主要坑。工程型推理（SWE-bench）弱于同期闭源模型，也弱于专门的 Qwen3-Coder。中文逻辑题与阅读理解在开源里顶级。",
+  "best_for": [
+   "数学 / 逻辑 / 科学推理",
+   "中文复杂任务",
+   "多卡自建推理服务"
+  ],
+  "not_for": [
+   "单卡本地部署",
+   "对延迟敏感的对话产品（思考太长）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "LiveCodeBench v6 74.1%（官方）；工程任务用 Qwen3-Coder。",
+  "reasoning": "GPQA Diamond 81.1%、HLE 18.2%（官方）。",
+  "math": "AIME 2025 92.3%、HMMT 83.9%（官方）。",
+  "agent": "BFCL-v3 71.9%、TAU2 ~ 70（官方）。",
+  "chinese": "C-Eval / 中文 SimpleQA 开源顶级。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE，235B 总 / 22B 激活。\n\n- 94 层，隐藏维 4096，词表 151,936\n- 专家：128 个，每 token 激活 8 个，**无共享专家**\n- 注意力：GQA，64 Query 头 / 4 KV 头，head_dim 128，QK-Norm\n- 上下文：原生 262,144；YaRN factor 4 可到 1M（vLLM/SGLang 需显式配置）\n- 与 Instruct-2507 共享结构，仅后训练不同\n\n参考：Qwen3 技术报告（arXiv 2505.09388）。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | ≈ 470 GB | 8×80GB | 官方 safetensors |\n| FP8 | ≈ 235 GB | 4×80GB | 官方 FP8 版本 |\n| Q8 | ≈ 250 GB（估） | 4×80GB | GGUF Q8_0 |\n| Q4 | ≈ 142 GB（估） | 2×80GB | GGUF Q4_K_M（unsloth） |\n\n**KV Cache**：≈ 188 KiB/token（BF16）。128K 上下文 ≈ 23 GB；Thinking 模式输出常达 30K+，请留足。\n\n**参考配置**：\n- 24GB：不可行\n- 单卡 80GB：不可行\n- 8×H100：BF16 舒适，FP8 可服务较高并发",
+  "training_md": "- 预训练 36T token，119 语言\n- 三阶段预训练（通用 → 推理密集 → 长上下文）\n- 后训练：长 CoT 冷启动 → 推理 RL → 通用 RL；2507 版为增强版后训练\n- **默认思考且不可关闭**（关闭思考请用 Instruct-2507）\n- 工具调用：Hermes 风格 / OpenAI 兼容，支持 Qwen-Agent\n- 最大输出 81,920",
+  "ecosystem_md": "- HF：Qwen/Qwen3-235B-A22B-Thinking-2507（+ FP8 版）\n- 推理引擎：vLLM、SGLang、TensorRT-LLM、llama.cpp（GGUF）、Ollama\n- 微调：LLaMA-Factory / ms-swift 支持 LoRA，全参需多节点\n- 中文文档：有（官方中文文档完整）",
+  "versions_md": "- 同系列：Qwen3-235B-A22B-Instruct-2507（非思考）、Qwen3-32B、Qwen3-30B-A3B-2507\n- 后续：Qwen3-Next-80B-A3B（新架构）、Qwen3-Max（仅 API）\n- 被替代：Qwen3-235B-A22B（2025-04 混合思考版）"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "TensorRT-LLM",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "finetune": "LoRA 友好，全参需多节点",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "superseded_by": "qwen3-8-2-4t-a95b"
 }

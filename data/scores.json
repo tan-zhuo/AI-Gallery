@@ -11,16 +11,6 @@
  },
  {
   "model_id": "gemini-3-pro",
-  "key": "aa_index",
-  "value": 73,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gemini-3-pro",
   "key": "swe_verified",
   "value": 76.2,
   "unit": "percent",
@@ -101,16 +91,6 @@
  },
  {
   "model_id": "claude-opus-4-5",
-  "key": "aa_index",
-  "value": 70,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "claude-opus-4-5",
   "key": "swe_verified",
   "value": 80.9,
   "unit": "percent",
@@ -171,16 +151,6 @@
  },
  {
   "model_id": "gpt-5-1",
-  "key": "aa_index",
-  "value": 70,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gpt-5-1",
   "key": "swe_verified",
   "value": 76.3,
   "unit": "percent",
@@ -216,16 +186,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gpt-5",
-  "key": "aa_index",
-  "value": 68,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -301,16 +261,6 @@
  },
  {
   "model_id": "gemini-3-flash",
-  "key": "aa_index",
-  "value": 71,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gemini-3-flash",
   "key": "swe_verified",
   "value": 78,
   "unit": "percent",
@@ -366,16 +316,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "claude-sonnet-4-5",
-  "key": "aa_index",
-  "value": 63,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -451,16 +391,6 @@
  },
  {
   "model_id": "grok-4",
-  "key": "aa_index",
-  "value": 65,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "grok-4",
   "key": "swe_verified",
   "value": 75,
   "unit": "percent",
@@ -511,16 +441,6 @@
  },
  {
   "model_id": "grok-4-1-fast",
-  "key": "aa_index",
-  "value": 60,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "grok-4-1-fast",
   "key": "hle",
   "value": 17.6,
   "unit": "percent",
@@ -546,16 +466,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "claude-opus-4-1",
-  "key": "aa_index",
-  "value": 59,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -616,16 +526,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "claude-haiku-4-5",
-  "key": "aa_index",
-  "value": 55,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -701,16 +601,6 @@
  },
  {
   "model_id": "gemini-2-5-pro",
-  "key": "aa_index",
-  "value": 60,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gemini-2-5-pro",
   "key": "swe_verified",
   "value": 63.8,
   "unit": "percent",
@@ -781,16 +671,6 @@
  },
  {
   "model_id": "gemini-2-5-flash",
-  "key": "aa_index",
-  "value": 54,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gemini-2-5-flash",
   "key": "swe_verified",
   "value": 60.4,
   "unit": "percent",
@@ -851,16 +731,6 @@
  },
  {
   "model_id": "gpt-5-mini",
-  "key": "aa_index",
-  "value": 64,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gpt-5-mini",
   "key": "gpqa_diamond",
   "value": 82.3,
   "unit": "percent",
@@ -910,32 +780,12 @@
   "evidence": "independent"
  },
  {
-  "model_id": "mistral-medium-3-1",
-  "key": "aa_index",
-  "value": 42,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
   "model_id": "qwen3-max",
   "key": "arena_text",
   "value": 1428,
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "qwen3-max",
-  "key": "aa_index",
-  "value": 56,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -966,16 +816,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "deepseek-v3-2",
-  "key": "aa_index",
-  "value": 66,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -1046,16 +886,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "kimi-k2-thinking",
-  "key": "aa_index",
-  "value": 67,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -1141,16 +971,6 @@
  },
  {
   "model_id": "kimi-k2-0905",
-  "key": "aa_index",
-  "value": 50,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "kimi-k2-0905",
   "key": "swe_verified",
   "value": 69.2,
   "unit": "percent",
@@ -1196,16 +1016,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "glm-4-6",
-  "key": "aa_index",
-  "value": 56,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -1281,16 +1091,6 @@
  },
  {
   "model_id": "glm-4-5-air",
-  "key": "aa_index",
-  "value": 49,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "glm-4-5-air",
   "key": "swe_verified",
   "value": 57.6,
   "unit": "percent",
@@ -1336,16 +1136,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "minimax-m2",
-  "key": "aa_index",
-  "value": 61,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -1411,16 +1201,6 @@
  },
  {
   "model_id": "qwen3-235b-a22b-thinking-2507",
-  "key": "aa_index",
-  "value": 57,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "qwen3-235b-a22b-thinking-2507",
   "key": "livecodebench",
   "value": 74.1,
   "unit": "percent",
@@ -1476,16 +1256,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "qwen3-next-80b-a3b-thinking",
-  "key": "aa_index",
-  "value": 54,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -1551,16 +1321,6 @@
  },
  {
   "model_id": "qwen3-coder-480b-a35b",
-  "key": "aa_index",
-  "value": 42,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "qwen3-coder-480b-a35b",
   "key": "swe_verified",
   "value": 69.6,
   "unit": "percent",
@@ -1586,16 +1346,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "qwen3-32b",
-  "key": "aa_index",
-  "value": 44,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -1641,16 +1391,6 @@
  },
  {
   "model_id": "qwen3-30b-a3b-thinking-2507",
-  "key": "aa_index",
-  "value": 46,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "qwen3-30b-a3b-thinking-2507",
   "key": "livecodebench",
   "value": 66,
   "unit": "percent",
@@ -1686,16 +1426,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "deepseek-r1-0528",
-  "key": "aa_index",
-  "value": 59,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -1761,16 +1491,6 @@
  },
  {
   "model_id": "gpt-oss-120b",
-  "key": "aa_index",
-  "value": 61,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gpt-oss-120b",
   "key": "swe_verified",
   "value": 62.4,
   "unit": "percent",
@@ -1831,16 +1551,6 @@
  },
  {
   "model_id": "gpt-oss-20b",
-  "key": "aa_index",
-  "value": 49,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gpt-oss-20b",
   "key": "swe_verified",
   "value": 60.7,
   "unit": "percent",
@@ -1891,16 +1601,6 @@
  },
  {
   "model_id": "gemma-3-27b",
-  "key": "aa_index",
-  "value": 27,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "gemma-3-27b",
   "key": "livecodebench",
   "value": 29.7,
   "unit": "percent",
@@ -1941,16 +1641,6 @@
  },
  {
   "model_id": "llama-4-maverick",
-  "key": "aa_index",
-  "value": 36,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "llama-4-maverick",
   "key": "livecodebench",
   "value": 43.4,
   "unit": "percent",
@@ -1986,16 +1676,6 @@
   "unit": "elo",
   "source": "LMArena Text (style control)",
   "source_url": "https://lmarena.ai/leaderboard/text",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "llama-4-scout",
-  "key": "aa_index",
-  "value": 28,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
   "as_of": "2025-12-20",
   "evidence": "independent"
  },
@@ -2050,26 +1730,6 @@
   "evidence": "independent"
  },
  {
-  "model_id": "mistral-small-3-2",
-  "key": "aa_index",
-  "value": 30,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
-  "model_id": "nemotron-3-nano-30b-a3b",
-  "key": "aa_index",
-  "value": 44,
-  "unit": "index",
-  "source": "Artificial Analysis Intelligence Index v3",
-  "source_url": "https://artificialanalysis.ai/leaderboards/models",
-  "as_of": "2025-12-20",
-  "evidence": "independent"
- },
- {
   "model_id": "nemotron-3-nano-30b-a3b",
   "key": "livecodebench",
   "value": 68.3,
@@ -2087,6 +1747,1366 @@
   "source": "NVIDIA 模型卡",
   "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
   "as_of": "2025-12-20",
+  "evidence": "official"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "arena_text",
+  "value": 1507,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "aa_index",
+  "value": 62,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "terminal_bench",
+  "value": 88,
+  "unit": "percent",
+  "source": "Anthropic 发布公告",
+  "source_url": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "arena_text",
+  "value": 1492,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "aa_index",
+  "value": 63,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "aa_index",
+  "value": 55,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "terminal_bench",
+  "value": 80.4,
+  "unit": "percent",
+  "source": "Anthropic 发布公告",
+  "source_url": "https://www.anthropic.com/news/claude-sonnet-5",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "claude-opus-4-8",
+  "key": "arena_text",
+  "value": 1481,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-4-8",
+  "key": "swe_verified",
+  "value": 88.6,
+  "unit": "percent",
+  "source": "Anthropic 发布公告",
+  "source_url": "https://www.anthropic.com/news/claude-opus-4-8",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "claude-opus-4-8",
+  "key": "gpqa_diamond",
+  "value": 93.6,
+  "unit": "percent",
+  "source": "Anthropic 发布公告",
+  "source_url": "https://www.anthropic.com/news/claude-opus-4-8",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "claude-opus-4-8",
+  "key": "terminal_bench",
+  "value": 74.6,
+  "unit": "percent",
+  "source": "Anthropic 发布公告",
+  "source_url": "https://www.anthropic.com/news/claude-opus-4-8",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "arena_text",
+  "value": 1482,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "aa_index",
+  "value": 61,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "terminal_bench",
+  "value": 88.8,
+  "unit": "percent",
+  "source": "OpenAI 发布公告",
+  "source_url": "https://openai.com/index/gpt-5-6/",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "aa_index",
+  "value": 57,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-luna",
+  "key": "aa_index",
+  "value": 51,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "arena_text",
+  "value": 1482,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "terminal_bench",
+  "value": 88,
+  "unit": "percent",
+  "source": "OpenAI 发布公告",
+  "source_url": "https://openai.com/index/introducing-gpt-5-5/",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "arena_text",
+  "value": 1487,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "aa_index",
+  "value": 48,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "swe_verified",
+  "value": 80.6,
+  "unit": "percent",
+  "source": "Google 官方模型页",
+  "source_url": "https://deepmind.google/models/gemini/pro/",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "gpqa_diamond",
+  "value": 94.3,
+  "unit": "percent",
+  "source": "Google 官方模型页",
+  "source_url": "https://deepmind.google/models/gemini/pro/",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "hle",
+  "value": 44.4,
+  "unit": "percent",
+  "source": "Google 官方模型页",
+  "source_url": "https://deepmind.google/models/gemini/pro/",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "terminal_bench",
+  "value": 68.5,
+  "unit": "percent",
+  "source": "Google 官方模型页",
+  "source_url": "https://deepmind.google/models/gemini/pro/",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "mmmu",
+  "value": 80.5,
+  "unit": "percent",
+  "source": "Google 官方模型页",
+  "source_url": "https://deepmind.google/models/gemini/pro/",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "arena_text",
+  "value": 1490,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "aa_index",
+  "value": 56,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "arena_text",
+  "value": 1458,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "aa_index",
+  "value": 37,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "arena_text",
+  "value": 1451,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "aa_index",
+  "value": 30,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "livecodebench",
+  "value": 80,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "gpqa_diamond",
+  "value": 84.3,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "hle",
+  "value": 19.5,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "tau2_bench",
+  "value": 76.9,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "mmmu",
+  "value": 76.9,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "arena_text",
+  "value": 1438,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "aa_index",
+  "value": 26,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "livecodebench",
+  "value": 77.1,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "gpqa_diamond",
+  "value": 82.3,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "hle",
+  "value": 8.7,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "tau2_bench",
+  "value": 68.2,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "mmmu",
+  "value": 73.8,
+  "unit": "percent",
+  "source": "Gemma 4 官方模型卡",
+  "source_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "arena_text",
+  "value": 1470,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "aa_index",
+  "value": 56,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-6",
+  "key": "arena_text",
+  "value": 1461,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-6",
+  "key": "aa_index",
+  "value": 61,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "arena_text",
+  "value": 1442,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "aa_index",
+  "value": 38,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "arena_text",
+  "value": 1436,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "aa_index",
+  "value": 52,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "livecodebench",
+  "value": 90.3,
+  "unit": "percent",
+  "source": "Qwen3.8-27B 模型卡",
+  "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "gpqa_diamond",
+  "value": 89.2,
+  "unit": "percent",
+  "source": "Qwen3.8-27B 模型卡",
+  "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "hle",
+  "value": 30.8,
+  "unit": "percent",
+  "source": "Qwen3.8-27B 模型卡",
+  "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "terminal_bench",
+  "value": 73,
+  "unit": "percent",
+  "source": "Qwen3.8-27B 模型卡",
+  "source_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "arena_text",
+  "value": 1479,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "aa_index",
+  "value": 58,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "gpqa_diamond",
+  "value": 92.6,
+  "unit": "percent",
+  "source": "Qwen3.8-2.4T-A95B 模型卡（Qwen3.8-Max 列）",
+  "source_url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "hle",
+  "value": 43.6,
+  "unit": "percent",
+  "source": "Qwen3.8-2.4T-A95B 模型卡（Qwen3.8-Max 列）",
+  "source_url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "terminal_bench",
+  "value": 86.6,
+  "unit": "percent",
+  "source": "Qwen3.8-2.4T-A95B 模型卡（Qwen3.8-Max 列）",
+  "source_url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "arena_text",
+  "value": 1462,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "aa_index",
+  "value": 53,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "swe_verified",
+  "value": 80.6,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Pro 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "livecodebench",
+  "value": 93.5,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Pro 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "gpqa_diamond",
+  "value": 90.1,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Pro 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "hle",
+  "value": 42.7,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Pro 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "terminal_bench",
+  "value": 87.9,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Pro 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "arena_text",
+  "value": 1436,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "aa_index",
+  "value": 52,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "swe_verified",
+  "value": 79,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Flash 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "livecodebench",
+  "value": 91.6,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Flash 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "gpqa_diamond",
+  "value": 88.1,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Flash 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "hle",
+  "value": 37.8,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Flash 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "terminal_bench",
+  "value": 82.7,
+  "unit": "percent",
+  "source": "DeepSeek-V4-Flash 模型卡",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "arena_text",
+  "value": 1472,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "aa_index",
+  "value": 53,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "gpqa_diamond",
+  "value": 91.2,
+  "unit": "percent",
+  "source": "GLM-5.2 模型卡",
+  "source_url": "https://huggingface.co/zai-org/GLM-5.2",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "hle",
+  "value": 40.5,
+  "unit": "percent",
+  "source": "GLM-5.2 模型卡",
+  "source_url": "https://huggingface.co/zai-org/GLM-5.2",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "terminal_bench",
+  "value": 81,
+  "unit": "percent",
+  "source": "GLM-5.2 模型卡",
+  "source_url": "https://huggingface.co/zai-org/GLM-5.2",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "glm-5-3",
+  "key": "arena_text",
+  "value": 1484,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3",
+  "key": "aa_index",
+  "value": 60,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3-flash",
+  "key": "arena_text",
+  "value": 1469,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3-flash",
+  "key": "aa_index",
+  "value": 57,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3-flash",
+  "key": "terminal_bench",
+  "value": 84.3,
+  "unit": "percent",
+  "source": "GLM-5.3-Flash 模型卡",
+  "source_url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "arena_text",
+  "value": 1489,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "aa_index",
+  "value": 60,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "gpqa_diamond",
+  "value": 93.5,
+  "unit": "percent",
+  "source": "Kimi K3 模型卡",
+  "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "hle",
+  "value": 43.5,
+  "unit": "percent",
+  "source": "Kimi K3 模型卡",
+  "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "terminal_bench",
+  "value": 88.3,
+  "unit": "percent",
+  "source": "Kimi K3 模型卡",
+  "source_url": "https://huggingface.co/moonshotai/Kimi-K3",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "arena_text",
+  "value": 1461,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "swe_verified",
+  "value": 80.2,
+  "unit": "percent",
+  "source": "Kimi K2.6 模型卡",
+  "source_url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "livecodebench",
+  "value": 89.6,
+  "unit": "percent",
+  "source": "Kimi K2.6 模型卡",
+  "source_url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "gpqa_diamond",
+  "value": 90.5,
+  "unit": "percent",
+  "source": "Kimi K2.6 模型卡",
+  "source_url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "hle",
+  "value": 34.7,
+  "unit": "percent",
+  "source": "Kimi K2.6 模型卡",
+  "source_url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "terminal_bench",
+  "value": 66.7,
+  "unit": "percent",
+  "source": "Kimi K2.6 模型卡",
+  "source_url": "https://huggingface.co/moonshotai/Kimi-K2.6",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "aa_index",
+  "value": 43,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "arena_text",
+  "value": 1442,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "aa_index",
+  "value": 45,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "terminal_bench",
+  "value": 66,
+  "unit": "percent",
+  "source": "MiniMax M3 官方博客",
+  "source_url": "https://www.minimax.io/blog/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "terminal_bench",
+  "value": 57,
+  "unit": "percent",
+  "source": "MiniMax M2.7 模型卡",
+  "source_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "aa_index",
+  "value": 30,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "swe_verified",
+  "value": 77.6,
+  "unit": "percent",
+  "source": "Mistral Medium 3.5 模型卡",
+  "source_url": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "aa_index",
+  "value": 16,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "aa_index",
+  "value": 20,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "gpqa_diamond",
+  "value": 71.2,
+  "unit": "percent",
+  "source": "Mistral Small 4 模型卡",
+  "source_url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "aa_index",
+  "value": 35,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "swe_verified",
+  "value": 76,
+  "unit": "percent",
+  "source": "Muse Glimmer 模型卡",
+  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "gpqa_diamond",
+  "value": 83.5,
+  "unit": "percent",
+  "source": "Muse Glimmer 模型卡",
+  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "hle",
+  "value": 22,
+  "unit": "percent",
+  "source": "Muse Glimmer 模型卡",
+  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "terminal_bench",
+  "value": 51.7,
+  "unit": "percent",
+  "source": "Muse Glimmer 模型卡",
+  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "arena_text",
+  "value": 1498,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "aa_index",
+  "value": 57,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "hle",
+  "value": 58,
+  "unit": "percent",
+  "source": "Meta Muse Spark 发布公告",
+  "source_url": "https://ai.meta.com/blog/introducing-muse-spark-msl/",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "aa_index",
+  "value": 26,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "swe_verified",
+  "value": 60.5,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Super 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "livecodebench",
+  "value": 81.2,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Super 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "gpqa_diamond",
+  "value": 79.2,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Super 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "aime_2025",
+  "value": 90.2,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Super 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "aa_index",
+  "value": 38,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "swe_verified",
+  "value": 70.7,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Ultra 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "livecodebench",
+  "value": 89,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Ultra 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "gpqa_diamond",
+  "value": 87,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Ultra 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "terminal_bench",
+  "value": 56.4,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Ultra 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "arena_text",
+  "value": 1456,
+  "unit": "elo",
+  "source": "LMArena Text (style control)",
+  "source_url": "https://lmarena.ai/leaderboard/text",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "aa_index",
+  "value": 42,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "swe_verified",
+  "value": 78,
+  "unit": "percent",
+  "source": "Hy3 模型卡",
+  "source_url": "https://huggingface.co/tencent/Hy3",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "gpqa_diamond",
+  "value": 90.4,
+  "unit": "percent",
+  "source": "Hy3 模型卡",
+  "source_url": "https://huggingface.co/tencent/Hy3",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "terminal_bench",
+  "value": 71.7,
+  "unit": "percent",
+  "source": "Hy3 模型卡",
+  "source_url": "https://huggingface.co/tencent/Hy3",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "aa_index",
+  "value": 31,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "terminal_bench",
+  "value": 59.5,
+  "unit": "percent",
+  "source": "Step-3.7-Flash 模型卡",
+  "source_url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "aa_index",
+  "value": 38,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "aa_index",
+  "value": 23,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "aa_index",
+  "value": 24,
+  "unit": "index",
+  "source": "Artificial Analysis Intelligence Index v3",
+  "source_url": "https://artificialanalysis.ai/leaderboards/models",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "livecodebench",
+  "value": 75.8,
+  "unit": "percent",
+  "source": "Granite 4.2 30B 模型卡",
+  "source_url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "gpqa_diamond",
+  "value": 66.4,
+  "unit": "percent",
+  "source": "Granite 4.2 30B 模型卡",
+  "source_url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "aime_2025",
+  "value": 89.2,
+  "unit": "percent",
+  "source": "Granite 4.2 30B 模型卡",
+  "source_url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+  "as_of": "2026-08-28",
   "evidence": "official"
  },
  {
@@ -2177,6 +3197,26 @@
   "source": "LMArena Text · Chinese",
   "source_url": "https://lmarena.ai/leaderboard/text",
   "as_of": "2025-12-20",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "hle",
+  "value": 53,
+  "unit": "percent",
+  "source": "Artificial Analysis · Opus 5 评测文章",
+  "source_url": "https://artificialanalysis.ai/articles/opus-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "terminal_bench",
+  "value": 89,
+  "unit": "percent",
+  "source": "Artificial Analysis · Opus 5 评测文章",
+  "source_url": "https://artificialanalysis.ai/articles/opus-5",
+  "as_of": "2026-08-28",
   "evidence": "independent"
  }
 ]

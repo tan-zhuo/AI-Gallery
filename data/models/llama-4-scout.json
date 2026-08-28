@@ -1,5 +1,93 @@
-{"id":"llama-4-scout","name":"Llama 4 Scout","aliases":["Llama-4-Scout-17B-16E-Instruct"],"vendor":"Meta","family":"Llama 4","license":"Llama 4 Community License","license_commercial":"restricted","openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct","status":"current","released_at":"2025-04-05","updated_at":"2025-12-20","modalities":["text","image","tools"],"reasoning_mode":"none",
-"architecture":{"type":"moe","total_params":"109B","active_params":"17B","total_params_b":109,"active_params_b":17,"experts":16,"active_experts":1,"shared_expert":true,"layers":48,"hidden_size":5120,"kv_heads":8,"head_dim":128,"attention":"GQA + iRoPE","undisclosed":false},"context":{"max_tokens":10000000,"display":"10M"},"memory":{"weight_gb":{"bf16":218,"fp8":109,"q4":65},"estimated":true,"ref_hw_80gb":"官方 int4 单 H100 可跑"},
-"pricing":{"input_per_m":0.08,"output_per_m":0.3,"currency":"USD","source":"第三方托管常见价","as_of":"2025-12-20"},
-"links":{"official":"https://ai.meta.com/blog/llama-4-multimodal-intelligence/","hf":"https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"},
-"copy":{"one_liner":"单卡 H100 可跑的多模态 MoE，宣称 10M 上下文。","highlights":["int4 单 H100","10M 上下文（宣称）","原生图文"],"pitfalls":["10M 上下文实际可用性远低于宣称","推理弱","许可限制"],"logic_ability":"非推理模型，能力中游。","best_for":["多模态 + 长文原型"],"not_for":["推理 / 代码"]},"capability_notes":{},"ecosystem":{"engines":["vLLM","llama.cpp"],"zh_docs":"无"},"complete":false}
+{
+ "id": "llama-4-scout",
+ "name": "Llama 4 Scout",
+ "aliases": [
+  "Llama-4-Scout-17B-16E-Instruct"
+ ],
+ "vendor": "Meta",
+ "family": "Llama 4",
+ "license": "Llama 4 Community License",
+ "license_commercial": "restricted",
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct",
+ "status": "superseded",
+ "released_at": "2025-04-05",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "architecture": {
+  "type": "moe",
+  "total_params": "109B",
+  "active_params": "17B",
+  "total_params_b": 109,
+  "active_params_b": 17,
+  "experts": 16,
+  "active_experts": 1,
+  "shared_expert": true,
+  "layers": 48,
+  "hidden_size": 5120,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA + iRoPE",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 10000000,
+  "display": "10M"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 218,
+   "fp8": 109,
+   "q4": 65
+  },
+  "estimated": true,
+  "ref_hw_80gb": "官方 int4 单 H100 可跑"
+ },
+ "pricing": {
+  "input_per_m": 0.08,
+  "output_per_m": 0.3,
+  "currency": "USD",
+  "source": "第三方托管常见价",
+  "as_of": "2025-12-20"
+ },
+ "links": {
+  "official": "https://ai.meta.com/blog/llama-4-multimodal-intelligence/",
+  "hf": "https://huggingface.co/meta-llama/Llama-4-Scout-17B-16E-Instruct"
+ },
+ "copy": {
+  "one_liner": "单卡 H100 可跑的多模态 MoE，宣称 10M 上下文。",
+  "highlights": [
+   "int4 单 H100",
+   "10M 上下文（宣称）",
+   "原生图文"
+  ],
+  "pitfalls": [
+   "10M 上下文实际可用性远低于宣称",
+   "推理弱",
+   "许可限制"
+  ],
+  "logic_ability": "非推理模型，能力中游。",
+  "best_for": [
+   "多模态 + 长文原型"
+  ],
+  "not_for": [
+   "推理 / 代码"
+  ]
+ },
+ "capability_notes": {},
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp"
+  ],
+  "zh_docs": "无"
+ },
+ "complete": false,
+ "superseded_by": "muse-glimmer-30b"
+}

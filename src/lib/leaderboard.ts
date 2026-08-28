@@ -31,8 +31,8 @@ export const SCENES: Array<{ key: Scene; label: string; desc: string }> = [
 ]
 
 /** 基于 tab + scene 计算榜单行。全部在浏览器完成。 */
-export function buildRows(tab: Tab, scene: Scene, onlyVerified = false): Row[] {
-  let peers = filterTab(models, tab)
+export function buildRows(tab: Tab, scene: Scene, onlyVerified = false, includeSuperseded = false): Row[] {
+  let peers = filterTab(includeSuperseded ? models : models.filter((m) => m.status !== 'superseded' && m.status !== 'deprecated'), tab)
   peers = filterScene(peers, scene, scoreMap)
   if (onlyVerified) peers = peers.filter((m) => getScore(scoreMap, m.id, 'aa_index') || getScore(scoreMap, m.id, 'arena_text'))
   const refs = computeReferenceScores(peers, scoreMap, sceneWeights(scene))

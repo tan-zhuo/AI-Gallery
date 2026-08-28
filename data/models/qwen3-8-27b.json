@@ -1,0 +1,125 @@
+{
+ "id": "qwen3-8-27b",
+ "name": "Qwen3.8-27B",
+ "name_zh": "通义千问 3.8 · 27B",
+ "aliases": [
+  "Qwen3.8 27B",
+  "qwen3.8-27b"
+ ],
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen3.8",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+ "status": "current",
+ "released_at": "2026-08-14",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "27B",
+  "total_params_b": 27,
+  "layers": 64,
+  "kv_layers": 16,
+  "hidden_size": 5120,
+  "vocab_size": 248320,
+  "kv_heads": 4,
+  "head_dim": 256,
+  "attention": "Gated DeltaNet（线性注意力）× 3 + Gated Attention（GQA，24 Q / 4 KV）× 1 交错",
+  "notes": "Dense 主干但注意力为混合结构：64 层 = 16 × (3 × Gated DeltaNet → FFN + 1 × Gated Attention → FFN)。DeltaNet 48 V 头 / 16 QK 头、head_dim 128；Gated Attention 24 Q 头 / 4 KV 头、head_dim 256，RoPE 仅占 1/4（64 维）。FFN 中间维 17,408。自带 1 层 MTP 头。视觉编码器 27 层、hidden 1152、patch 16。表内 kv_heads / head_dim 指 16 层全注意力层。 上下文：256K（YaRN 可扩至 1M）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K",
+  "max_output": 131072
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 55.6,
+   "fp8": 30.9,
+   "q8": 29,
+   "q4": 16.5
+  },
+  "kv_per_token_kib": 64,
+  "kv_note": "仅 16 层全注意力层有 KV：4 KV 头 × 256 × 2（K/V）× 2 B = 4 KiB/层 → 64 KiB/token（BF16）。另有 48 层 DeltaNet 的固定递归状态（48 头 × 128 × 128 × FP32），每序列约 150 MB，与长度无关。256K 上下文 KV ≈ 16 GB。",
+  "ref_hw_24gb": "UD-Q4_K_M 16.5 GB 可加载，剩约 6 GB 给 KV，约 64K 上下文单并发；视觉编码器另占少量显存",
+  "ref_hw_80gb": "BF16 55.6 GB 单卡可跑，KV 余量约 20 GB ≈ 256K 上下文；或 FP8 30.9 GB 留更多并发",
+  "ref_hw_8x80gb": "过剩；用于高并发 / 长上下文服务",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.289,
+  "output_per_m": 2.4,
+  "currency": "USD",
+  "source": "第三方托管参考价（OpenRouter）",
+  "as_of": "2026-08-28",
+  "note": "开源权重，官方 Qwen Cloud 托管端点尚未上线定价；此为社区托管价仅供参考"
+ },
+ "links": {
+  "official": "https://qwen.ai/",
+  "hf": "https://huggingface.co/Qwen/Qwen3.8-27B",
+  "github": "https://github.com/QwenLM/Qwen3.8"
+ },
+ "copy": {
+  "one_liner": "24GB 单卡能跑的原生多模态 27B，Apache-2.0。",
+  "highlights": [
+   "Apache-2.0，Q4 仅 16.5 GB，RTX 4090 / 5090 单卡可跑，原生图像与视频输入",
+   "3:1 DeltaNet 混合注意力，KV 仅 64 KiB/token，256K 原生上下文可在 80GB 单卡跑满",
+   "官方榜上整体超过闭源 Qwen3.7-Plus：SWE-bench Pro 61.7、OSWorld-Verified 84.3、LiveCodeBench v6 90.3"
+  ],
+  "pitfalls": [
+   "思考默认开启且非常「话痨」（AA 评为 very verbose），推理 token 成本与延迟高",
+   "混合 DeltaNet 结构较新，llama.cpp / MLX 需最新版本，旧版引擎与部分微调框架不支持",
+   "官方未披露预训练 token 数与后训练细节；SWE-bench Verified、AIME 等常用榜未给官方数"
+  ],
+  "logic_ability": "27B 档目前最强的开源逻辑推理之一：GPQA Diamond 89.2、HLE 30.8（无工具）、LiveCodeBench v6 90.3，均已接近或超过上一代 Qwen3.7-Plus 闭源 API。Artificial Analysis 智能指数 52，在同体量开源模型中排第一。reasoning_effort 提供 xhigh / medium / low 三档，xhigh 下推理链很长；medium 档可明显缩短但考试型分数会下降。Agent 场景（Terminal Bench 2.1 73.0、DeepSWE 1.1 42.2）在 30B 档大幅领先。常见问题：思考输出冗长、简单问题也会展开长链。",
+  "best_for": [
+   "单卡本地多模态助手 / 桌面 Agent",
+   "私有化 Coding Agent 底座",
+   "视觉文档、图表理解（OmniDocBench 91.1）"
+  ],
+  "not_for": [
+   "对首 token 延迟敏感的实时对话",
+   "无法升级推理引擎的老旧部署环境"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Pro 61.7、LiveCodeBench v6 90.3、Terminal Bench 2.1 73.0（官方模型卡）。",
+  "reasoning": "GPQA Diamond 89.2、HLE 30.8（官方模型卡）。",
+  "math": "MathVision 90.0（无代码解释器）/ 94.6（有）；AIME 官方未披露。",
+  "agent": "OSWorld-Verified 84.3、AndroidWorld 81.9、Agents' Last Exam 20.4 Pass@1（官方模型卡）。",
+  "multimodal": "原生图像 + 视频；OmniDocBench 1.5 91.1、RealWorldQA 85.9、CharXiv RQ 83.7（官方模型卡）。",
+  "instruction": "IFBench 79.5（官方模型卡）。",
+  "chinese": "中文顶级的 27B 档，Qwen 系列一贯优势。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：Dense 主干 + 混合注意力（Gated DeltaNet / Gated Attention），27B 参数，原生多模态。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 64 = 16 × (3 × DeltaNet → FFN + 1 × Gated Attention → FFN) |\n| 隐藏维 | 5,120 |\n| FFN 中间维 | 17,408 |\n| 全注意力层 | 16 层，24 Q 头 / 4 KV 头，head_dim 256 |\n| 线性注意力层 | 48 层，48 V 头 / 16 QK 头，head_dim 128，conv kernel 4 |\n| RoPE | partial_rotary_factor 0.25（64 维），theta 1e7，M-RoPE 交错 |\n| 词表 | 248,320（padded） |\n| 原生上下文 | 262,144，YaRN 可扩至 1,000,000 |\n| MTP | 1 层多 token 预测头 |\n| 视觉编码器 | 27 层，hidden 1152，patch 16，spatial merge 2，temporal patch 2 |\n\n`config.json` 中 `model_type: qwen3_5`，`architectures: Qwen3_5ForConditionalGeneration`。\n\n参考：Qwen/Qwen3.8-27B 模型卡与 config.json。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | 55.6 GB | 80GB 单卡 | 官方 safetensors，18 分片 |\n| FP8 | 30.9 GB | 48GB | 官方 Qwen3.8-27B-FP8 仓库总大小 |\n| Q8 | 29 GB | 48GB | unsloth GGUF Q8_0 |\n| Q4 | 16.5 GB | 24GB | unsloth GGUF UD-Q4_K_M |\n\n**KV Cache**：只有 16 层全注意力层产生 KV，64 KiB/token（BF16）；DeltaNet 层为固定大小递归状态（约 150 MB / 序列）。256K 上下文 KV ≈ 16 GB。\n\n**参考配置**：\n- RTX 4090 / 5090 24GB：UD-Q4_K_M，约 64K 上下文单并发\n- A100 / H100 80GB：BF16 可跑满 256K；FP8 可做中等并发\n- 8×80GB：高并发服务\n\n警示：视觉编码器与视频帧 token 会额外吃显存；思考模式输出很长，预留输出 KV。",
+  "training_md": "- 预训练 token 数：**未披露**（模型卡仅写 Pre-training & Post-training）\n- 思考模式默认开启，可按请求关闭；`reasoning_effort` 支持 xhigh（默认）/ medium / low\n- Preserve-thinking：多轮对话默认保留上一轮推理上下文\n- 最大输出：推理内容最长 262,144，最终回复建议 131,072\n- 推荐采样：temperature 1.0、top_p 0.95、top_k 20、min_p 0\n- 训练时带 MTP，可用于投机解码",
+  "ecosystem_md": "- HF：Qwen/Qwen3.8-27B、Qwen3.8-27B-FP8；GGUF：unsloth/Qwen3.8-27B-GGUF（发布 24 小时内 HF 热度第 3）\n- 引擎：SGLang、vLLM、TokenSpeed、Transformers（≥ 5.8 dev）；llama.cpp / Ollama / LM Studio 需支持 qwen3_5 混合结构的新版本\n- 微调：Unsloth 已适配；LLaMA-Factory / ms-swift 跟进中\n- 中文文档：有",
+  "versions_md": "- 同代：Qwen3.8-2.4T-A95B（开源 Max 级 MoE）、Qwen3.8-Max（API）\n- 上代：Qwen3.6-27B（官方对比列）、Qwen3.7-Plus（API）\n- 更早：Qwen3-32B、Qwen3-30B-A3B-2507、Qwen3-Next-80B-A3B\n- 本代无 Qwen3.8 小体量 MoE 开源版（截至 2026-08-28 HF 集合仅 27B 与 2.4T-A95B 两档）"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "TokenSpeed",
+   "llama.cpp",
+   "Transformers"
+  ],
+  "finetune": "Unsloth 已适配；全参需 ≥ 2×80GB",
+  "zh_docs": "有"
+ },
+ "complete": true
+}

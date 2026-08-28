@@ -1,0 +1,60 @@
+{
+  "id": "mistral-medium-3-5",
+  "name": "Mistral Medium 3.5",
+  "name_zh": "Mistral Medium 3.5",
+  "aliases": ["mistral-medium-3-5", "Mistral-Medium-3.5-128B", "mistral-medium-2604"],
+  "vendor": "Mistral AI",
+  "family": "Mistral Medium",
+  "license": "Modified MIT License",
+  "license_commercial": "restricted",
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B",
+  "status": "current",
+  "released_at": "2026-04-29",
+  "updated_at": "2026-08-28",
+  "modalities": ["text", "image", "tools"],
+  "reasoning_mode": "optional",
+  "architecture": {
+    "type": "dense", "total_params": "128B", "total_params_b": 128,
+    "layers": 88, "hidden_size": 12288, "vocab_size": 131072,
+    "kv_heads": 8, "head_dim": 128, "attention": "GQA（96 Q 头 / 8 KV 头），无滑窗",
+    "notes": "稠密 Transformer，YaRN RoPE（theta 1e6，factor 64）扩到 256K。自研视觉编码器（48 层，1664 维，1540px，可变分辨率 / 长宽比）。官方配套 EAGLE 投机解码器。",
+    "undisclosed": false
+  },
+  "context": { "max_tokens": 262144, "display": "256K" },
+  "memory": {
+    "weight_gb": { "bf16": 256, "fp8": 128, "q4": 74 },
+    "kv_per_token_kib": 352,
+    "kv_note": "8 KV 头 × 128 × 2 × 88 层 × 2 B = 352 KiB/token，128K 上下文约 44 GB，长上下文显存占用不小。",
+    "ref_hw_24gb": "不可行",
+    "ref_hw_80gb": "NVFP4 / Q4 约 74 GB 勉强单卡，上下文很短；官方说法「最少 4 张 GPU」",
+    "ref_hw_8x80gb": "BF16 TP8 官方示例配置，长上下文高并发",
+    "estimated": true
+  },
+  "pricing": { "input_per_m": 1.5, "output_per_m": 7.5, "currency": "USD", "source": "Mistral 定价页", "as_of": "2026-08-28", "note": "缓存输入九折" },
+  "links": { "official": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5/", "hf": "https://huggingface.co/mistralai/Mistral-Medium-3.5-128B", "pricing": "https://docs.mistral.ai/inference/pricing" },
+  "copy": {
+    "one_liner": "Mistral 128B 稠密开源旗舰，SWE-bench 77.6%。",
+    "highlights": ["SWE-bench Verified 77.6%、τ³-Telecom 91.4%（官方），Mistral 系最强工程模型", "指令 / 推理 / 编程 / 视觉合一，reasoning effort 按请求可调", "开放权重，256K 上下文，配 EAGLE 投机解码"],
+    "pitfalls": ["Modified MIT：公司上月全球合并营收超 2000 万美元即不得使用，需另签商业许可", "128B 稠密，单卡 80GB 只能勉强 Q4 跑短上下文，实际要 4 卡起", "API 输出 $7.5/M 偏贵；中文能力独立数据少"],
+    "logic_ability": "工程型推理强（SWE-bench 77.6%、AA 智能指数 30 居开源中上），考试型推理官方未给 GPQA / AIME 数字，独立复测有限。reasoning=none 时退化为普通指令模型。",
+    "best_for": ["自托管编程 agent / Vibe 类工具", "多工具长任务 agent", "欧洲合规场景"],
+    "not_for": ["大型企业（营收超阈值）自部署", "24GB 单卡本地"]
+  },
+  "capability_notes": {
+    "coding": "SWE-bench Verified 77.6%（官方）。",
+    "agent": "τ³-Telecom 91.4%（官方）。",
+    "multimodal": "自研视觉编码器，支持可变分辨率图片。",
+    "chinese": "官方多语言支持含中文，独立数据少。"
+  },
+  "sheet": {
+    "architecture_md": "**类型**：稠密 Transformer，128B 参数。\n\n- 88 层，隐藏维 12288，FFN 28672，词表 131,072\n- GQA：96 Q 头 / 8 KV 头，head_dim 128，无滑窗\n- RoPE theta 1e6 + YaRN（factor 64）扩到 256K\n- 视觉编码器：从零训练的 Pixtral 系 48 层、1664 维、1540px、patch 14，2× 空间合并，支持可变图片尺寸与长宽比\n- 官方提供 EAGLE 投机解码器（Mistral-Medium-3.5-128B-EAGLE）\n\n参考：HF 模型卡 config.json。",
+    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | ≈ 256 GB | 4×80GB 起（官方「最少 4 张 GPU」） |\n| FP8 | ≈ 128 GB | 2×80GB |\n| NVFP4 / Q4（估算） | ≈ 74 GB | 单卡 80GB 极勉强，仅短上下文 |\n\n**KV Cache**：8 KV 头 × 128 × 2 × 88 层 × 2 B = 352 KiB/token；32K 上下文 ≈ 11 GB，128K ≈ 44 GB。\n\n**参考配置**：\n- 24GB：不可行\n- 80GB：Q4 权重 74 GB + 几 GB KV，仅原型验证\n- 4×80GB：FP8 + 长上下文，实际推荐起点\n- 8×80GB：官方 vLLM 示例 `--tensor-parallel-size 8`",
+    "training_md": "- 预训练规模未披露\n- 首个把指令 / 推理 / 编程合并进单一权重的 Mistral 旗舰\n- 推理：`reasoning_effort` 按请求 none / high；high 推荐 temperature 0.7、top_p 0.95\n- 原生函数调用、JSON 输出；官方主打多工具长时程 agent（τ³-Telecom 91.4%）\n- 官方公布：SWE-bench Verified 77.6%\n- 知识截止未披露",
+    "ecosystem_md": "- HF：mistralai/Mistral-Medium-3.5-128B（另有 EAGLE 版；NVIDIA 官方 NVFP4 版）\n- 引擎：vLLM（需 mistral_common ≥ 1.11.1、transformers ≥ 5.4）、SGLang、Transformers、llama.cpp、Ollama\n- 社区量化：Unsloth GGUF、AWQ-INT4\n- API：Mistral 平台 $1.5 / $7.5，缓存输入九折；Mistral Vibe 远程 agent 默认模型\n- 中文文档：无（官方英文）\n- 注意：发布初期修过配置，旧版 GGUF 长上下文质量下降",
+    "versions_md": "- 2604：Mistral Medium 3.5（本条）\n- 前代：Mistral Medium 3.1（2508，API-only）→ 被本条取代\n- 同代：Mistral Large 3（675B MoE，Apache-2.0）、Mistral Small 4（119B MoE）"
+  },
+  "ecosystem": { "engines": ["vLLM", "SGLang", "llama.cpp", "Ollama", "Transformers"], "finetune": "全量 / LoRA（社区）", "zh_docs": "无" },
+  "complete": true
+}

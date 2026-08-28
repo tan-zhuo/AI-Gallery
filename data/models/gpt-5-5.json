@@ -1,0 +1,80 @@
+{
+  "id": "gpt-5-5",
+  "name": "GPT-5.5",
+  "name_zh": "GPT-5.5",
+  "aliases": [
+    "gpt-5.5",
+    "gpt-5.5-2026-04-23"
+  ],
+  "vendor": "OpenAI",
+  "family": "GPT-5",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-04-23",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "image",
+    "tools",
+    "computer-use"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+    "type": "unknown",
+    "undisclosed": true,
+    "notes": "未披露。reasoning.effort 支持 none/low/medium/high/xhigh（无 max）。"
+  },
+  "context": {
+    "max_tokens": 1050000,
+    "display": "1M",
+    "max_output": 128000
+  },
+  "memory": {
+    "weight_gb": {},
+    "estimated": false
+  },
+  "pricing": {
+    "input_per_m": 5,
+    "output_per_m": 30,
+    "currency": "USD",
+    "source": "OpenAI 官方定价页（developers.openai.com）",
+    "as_of": "2026-08-28",
+    "note": ">272K 输入按 2×/1.5× 计费；gpt-5.5-pro $30 / $180"
+  },
+  "links": {
+    "official": "https://developers.openai.com/api/docs/models/gpt-5.5",
+    "pricing": "https://developers.openai.com/api/docs/pricing",
+    "paper": "https://openai.com/index/introducing-gpt-5-5/"
+  },
+  "copy": {
+    "one_liner": "GPT-5.6 之前的旗舰，1M 上下文，$5 / $30。",
+    "highlights": [
+      "LMArena 文本榜 1482（GPT-5.5 High），与 GPT-5.6 Sol 持平",
+      "Terminal-Bench 2.1 88.0%、OSWorld-Verified 78.7%",
+      "1.05M 上下文 + 128K 输出；另有 gpt-5.5-pro（$30 / $180）"
+    ],
+    "pitfalls": [
+      "$5 / $30 比 GPT-5.6 Sol 促销价贵，且无 max 推理档，性价比已被 Sol 反超",
+      "SWE-bench Pro 58.6% 明显落后 Opus 4.8（69.2%）",
+      "无自建"
+    ],
+    "logic_ability": "GPT-5.6 发布前的旗舰：Terminal-Bench 2.1 88.0%（OpenAI 公告对比表）、HLE（带工具）52.2%、GDPval-AA 1769（Anthropic Opus 4.8 公告表，Vellum 转录）。综合能力与 Opus 4.7 相当，已被 GPT-5.6 Sol 在同价位全面覆盖。",
+    "best_for": [
+      "已在 GPT-5.5 上调优的存量系统",
+      "需要 gpt-5.5-pro 高精度档的场景"
+    ],
+    "not_for": [
+      "新项目（改用 GPT-5.6 Sol）",
+      "私有化部署"
+    ]
+  },
+  "capability_notes": {
+    "coding": "Terminal-Bench 2.1 88.0%；SWE-bench Pro 58.6%。",
+    "agent": "OSWorld-Verified 78.7%。",
+    "reasoning": "HLE（带工具）52.2%。"
+  },
+  "complete": false
+}

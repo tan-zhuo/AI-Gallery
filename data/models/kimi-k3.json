@@ -1,0 +1,126 @@
+{
+  "id": "kimi-k3",
+  "name": "Kimi K3",
+  "name_zh": "月之暗面 Kimi K3",
+  "aliases": [
+    "kimi-k3",
+    "K3",
+    "Kimi-K3"
+  ],
+  "vendor": "Moonshot AI",
+  "vendor_zh": "月之暗面",
+  "family": "Kimi K3",
+  "license": "Kimi K3 License（Modified MIT）",
+  "license_commercial": "restricted",
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/moonshotai/Kimi-K3",
+  "status": "current",
+  "released_at": "2026-07-16",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "image",
+    "video",
+    "tools"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+    "type": "hybrid",
+    "total_params": "2.8T",
+    "active_params": "104B",
+    "total_params_b": 2800,
+    "active_params_b": 104,
+    "experts": 896,
+    "active_experts": 16,
+    "shared_expert": true,
+    "layers": 93,
+    "kv_layers": 24,
+    "hidden_size": 7168,
+    "vocab_size": 163840,
+    "kv_heads": 1,
+    "head_dim": 288,
+    "attention": "KDA 线性注意力 69 层 + Gated MLA 24 层（96 头）",
+    "notes": "首个开源 3T 级模型。93 层（1 层 Dense）中 69 层为 Kimi Delta Attention（线性，固定状态），24 层为带输出门的 MLA（kv_lora 512 + RoPE 64，按「1 KV 头 × 288」等价表示）。Attention Residuals（AttnRes）、SiTU-GLU 激活、Latent MoE（潜维 3584）；2 个共享专家。原生 MXFP4 权重 / MXFP8 激活 QAT。视觉编码器 MoonViT-V2（401M）。",
+    "undisclosed": false
+  },
+  "context": {
+    "max_tokens": 1048576,
+    "display": "1M"
+  },
+  "memory": {
+    "weight_gb": {
+      "q4": 1561
+    },
+    "kv_per_token_kib": 27,
+    "kv_note": "仅 24 层 MLA 存 per-token KV：576 × 2 B × 24 ≈ 27 KiB/token；69 层 KDA 为固定状态（每层 96 头 × 128 × 128 × 2 B ≈ 3 MiB，每请求约 207 MiB 常量）。",
+    "ref_hw_24gb": "不可行",
+    "ref_hw_80gb": "不可行",
+    "ref_hw_8x80gb": "MXFP4 权重 1,561 GB 已超单节点 8×H200（1,128 GB），需 16×H200 / 16×H100 双节点或 8×B300 级",
+    "estimated": false
+  },
+  "pricing": {
+    "input_per_m": 3.0,
+    "output_per_m": 15.0,
+    "currency": "USD",
+    "source": "Kimi 开放平台",
+    "as_of": "2026-08-28",
+    "note": "缓存命中输入 $0.30"
+  },
+  "links": {
+    "official": "https://www.kimi.com/",
+    "hf": "https://huggingface.co/moonshotai/Kimi-K3",
+    "github": "https://github.com/MoonshotAI/Kimi-K3",
+    "pricing": "https://platform.kimi.ai/docs/pricing/chat-k3"
+  },
+  "copy": {
+    "one_liner": "2.8T 参数的开源多模态 agent 旗舰，LMArena 开源第一。",
+    "highlights": [
+      "2.8T/104B 激活，KDA 线性 + Gated MLA 混合，1M 上下文；LMArena 文本榜 1489（第 10，开源最高）、AA 指数 60",
+      "Terminal-Bench 2.1 88.3、BrowseComp 91.2、GPQA 93.5，官方对标 Claude Fable 5 / GPT-5.6 Sol 仅小幅落后",
+      "原生 MXFP4 QAT 发布，1.56 TB 即「全精度」；文本 + 图像 + 视频原生多模态"
+    ],
+    "pitfalls": [
+      "Kimi K3 License：月活 > 1 亿或月收入 > 2000 万美元须在界面标注「Kimi K3」；MaaS 年收入 > 2000 万美元须另签协议",
+      "1.56 TB 权重超出单节点 8×H200，自建需双节点，几乎只有云厂商能跑",
+      "API 价 $3/$15 是 K2.6 的 3–4 倍；思考不可关，max 档 token 消耗大；多轮必须原样回传 reasoning_content"
+    ],
+    "logic_ability": "工程型与 agent 推理是核心：Terminal-Bench 2.1 88.3、DeepSWE 67.5、FrontierSWE 81.2、SWE-Marathon 42.0，BrowseComp 91.2 为公开最高。考试型推理顶级（GPQA 93.5、HLE-Full 43.5 / 带工具 56.0），但 CritPt 23.4 明显低于 GPT-5.6 Sol。思考默认开启，reasoning_effort 可调 low/high/max。常见问题：low 档 AA 指数掉到 48，差距大；无工具纯文本对话偏冗长。",
+    "best_for": [
+      "深度搜索 / 研究型 agent",
+      "长程编程 agent（Kimi Code CLI）",
+      "视觉 + 长上下文的文档 / 视频理解",
+      "云厂商级自建"
+    ],
+    "not_for": [
+      "任何单节点部署",
+      "简单对话（成本高，用 K2.6）",
+      "超大 MAU 产品且不愿标注品牌"
+    ]
+  },
+  "capability_notes": {
+    "coding": "Terminal-Bench 2.1 88.3、DeepSWE 67.5、ProgramBench 77.8、SciCode 58.7、FrontierSWE 81.2（官方）。",
+    "reasoning": "GPQA Diamond 93.5、HLE-Full 43.5 / 56.0（工具）、CritPt 23.4（官方）。",
+    "math": "官方未披露 AIME；MathVision 94.3 / 97.8（Python）。",
+    "agent": "BrowseComp 91.2、MCP-Atlas 84.2、Toolathlon-Verified 76.5、OSWorld-Verified 84.8、τ³-Banking 33.4（官方）。",
+    "multimodal": "MMMU-Pro 81.6 / 83.4（工具）、Video-MME 90.0、OmniDocBench 91.1（官方）。",
+    "chinese": "中文顶级。"
+  },
+  "sheet": {
+    "architecture_md": "**类型**：混合线性注意力 MoE，2.8T 总 / 104B 激活。\n\n- 93 层（含 1 层 Dense）：69 层 **Kimi Delta Attention（KDA）** + 24 层 **Gated MLA**，每 3 层 KDA 接 1 层 MLA\n- 隐藏维 7168，96 注意力头，词表 163,840\n- 专家：896 路由 + 2 共享，每 token 激活 16 个；Latent MoE（潜维 3584），专家中间维 3072\n- MLA：kv_lora 512，qk_nope 128 + RoPE 64，v_head 128，带输出门（mla_use_output_gate）\n- KDA：head_dim 128，短卷积核 4，full-rank gate\n- **Attention Residuals（AttnRes）**：每 12 层一个注意力残差块\n- 激活：SiTU-GLU\n- 上下文 1,048,576\n- 视觉：MoonViT-V2（401M），patch 14，2×2 merge\n- **原生 MXFP4**：从 SFT 阶段起做 QAT，权重 MXFP4 / 激活 MXFP8\n\n参考：Kimi K3 技术报告（GitHub）。",
+    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| MXFP4（原生） | 1,561 GB（官方文件） | 16×H200 |\n\n无 BF16 发布版本（MXFP4 即官方精度）。\n\n**KV Cache**：≈ 27 KiB/token（仅 24 层 MLA）+ 每请求约 207 MiB KDA 固定状态。1M 上下文单请求 KV ≈ 27 GB，比 GLM-5.2 小 3 倍。\n\n**参考配置**：\n- 24GB / 80GB / 单节点 8×H100：不可行\n- 8×H200 141GB（1,128 GB）：权重放不下\n- 16×H200 双节点：可服务；官方部署指南基于 vLLM / SGLang / TokenSpeed",
+    "training_md": "- 预训练 token 数官方未披露\n- 后训练：agentic RL；从 SFT 起 MXFP4 量化感知训练\n- 思考默认开启，不可关；`reasoning_effort` low / high / max（默认 max）\n- 多轮与工具调用要求原样回传含 `reasoning_content` 的完整 assistant 消息（preserved thinking）\n- 评测统一 temperature 1.0、effort max\n- API 最大输出官方未披露（OpenRouter 标注 1M）",
+    "ecosystem_md": "- HF：moonshotai/Kimi-K3\n- 引擎：vLLM、SGLang、TokenSpeed（官方 recipes）\n- Agent 框架：Kimi Code CLI（官方推荐）\n- 微调：体量过大，社区几乎无\n- 中文文档：有",
+    "versions_md": "- 发布：2026-07-16 API；2026-07-26 开源权重\n- 上代：Kimi K2.5（2026-01，多模态）、K2.6（2026-04，1T/32B）、K2.7 Code（2026-06，编程特化）\n- K2.5 于 2026-08-31 下线"
+  },
+  "ecosystem": {
+    "engines": [
+      "vLLM",
+      "SGLang",
+      "TokenSpeed"
+    ],
+    "finetune": "基本不可行",
+    "zh_docs": "有"
+  },
+  "complete": true
+}

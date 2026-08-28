@@ -1,46 +1,95 @@
 {
-  "id": "gpt-5",
-  "name": "GPT-5",
-  "name_zh": "GPT-5 旗舰",
-  "aliases": ["gpt-5-2025-08-07", "GPT5"],
-  "vendor": "OpenAI",
-  "family": "GPT-5",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "current",
-  "released_at": "2025-08-07",
-  "updated_at": "2025-12-20",
-  "modalities": ["text", "image", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": { "type": "unknown", "undisclosed": true, "notes": "未披露。API 提供 reasoning_effort（minimal/low/medium/high）与 verbosity 参数；ChatGPT 端为路由器 + 多模型组合。" },
-  "context": { "max_tokens": 400000, "display": "400K", "max_output": 128000 },
-  "memory": { "weight_gb": {}, "estimated": false },
-  "pricing": { "input_per_m": 1.25, "output_per_m": 10, "currency": "USD", "source": "OpenAI 定价页", "as_of": "2025-12-20", "note": "缓存输入 $0.125" },
-  "links": { "official": "https://openai.com/gpt-5", "pricing": "https://openai.com/api/pricing", "paper": "https://openai.com/index/introducing-gpt-5" },
-  "copy": {
-    "one_liner": "输入价格极低的推理旗舰，数学与科学问答顶级。",
-    "highlights": ["AIME 2025 94.6%（无工具）、GPQA 85.7%，考试型推理顶级", "输入 $1.25 / 百万 token，同档位里最便宜的旗舰", "400K 上下文、128K 最大输出，长输出任务友好"],
-    "pitfalls": ["默认开推理，minimal effort 下能力下滑明显，需按任务调 effort", "输出 $10 与推理 token 叠加后，长任务实际成本并不低", "API 不暴露原始思维链，调试推理错误困难"],
-    "logic_ability": "考试型推理是其强项：AIME、GPQA、HLE 都居前。工程型推理（SWE-bench 74.9%）扎实但略逊于 Claude Opus 4.5。reasoning_effort 是主要调节旋钮：high 下更少幻觉、更多自我校验；minimal 接近非推理模型。常见问题：在 low effort 时会跳过验证直接给结论。",
-    "best_for": ["数学 / 科学 / 数据分析", "低输入成本的批量处理", "长文本生成"],
-    "not_for": ["需要私有化部署", "对延迟极敏感的实时交互（用 mini / nano）"]
-  },
-  "capability_notes": {
-    "coding": "SWE-bench Verified 74.9%、Aider Polyglot 88%（官方）。",
-    "reasoning": "GPQA 85.7%、HLE 24.8%（无工具，官方）。",
-    "math": "AIME 2025 94.6%（无工具，官方）。",
-    "multimodal": "MMMU 84.2%（官方）。",
-    "chinese": "中文良好，缺独立榜单。"
-  },
-  "sheet": {
-    "architecture_md": "**未披露**。OpenAI 未公开 GPT-5 的参数量或结构。\n\n已知接口层信息：\n- `reasoning_effort`：minimal / low / medium / high\n- `verbosity`：low / medium / high\n- 400K 上下文（输入 272K + 输出 128K）\n- 自定义工具（custom tools）支持自由文本工具调用\n\nChatGPT 端为「路由 + 快模型 + 推理模型」的系统，API 端 `gpt-5` 为单一推理模型。",
-    "memory_md": "无自建选项。\n\n成本参考：输入 $1.25 / 输出 $10；缓存输入 $0.125。\n\n**警示**：推理 token 按输出计费且不可见，high effort 下一条复杂请求可能产生 10K+ 推理 token。",
-    "training_md": "- 训练细节未披露\n- 默认推理开启，可用 effort=minimal 关到最低\n- 支持函数调用、并行工具、结构化输出、图像输入\n- 最大输出 128K",
-    "ecosystem_md": "- 官方 API、Azure OpenAI\n- 不支持微调（GPT-5 系列暂无 fine-tune）\n- 中文文档：弱（官方英文）",
-    "versions_md": "- 上代：GPT-4.1 / o3\n- 同代：GPT-5 mini、GPT-5 nano、GPT-5 pro\n- 继任：GPT-5.1（2025-11）"
-  },
-  "ecosystem": { "engines": [], "finetune": "不支持", "zh_docs": "弱" },
-  "complete": true
+ "id": "gpt-5",
+ "name": "GPT-5",
+ "name_zh": "GPT-5 旗舰",
+ "aliases": [
+  "gpt-5-2025-08-07",
+  "GPT5"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-5",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "released_at": "2025-08-07",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。API 提供 reasoning_effort（minimal/low/medium/high）与 verbosity 参数；ChatGPT 端为路由器 + 多模型组合。"
+ },
+ "context": {
+  "max_tokens": 400000,
+  "display": "400K",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 1.25,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "OpenAI 定价页",
+  "as_of": "2025-12-20",
+  "note": "缓存输入 $0.125"
+ },
+ "links": {
+  "official": "https://openai.com/gpt-5",
+  "pricing": "https://openai.com/api/pricing",
+  "paper": "https://openai.com/index/introducing-gpt-5"
+ },
+ "copy": {
+  "one_liner": "输入价格极低的推理旗舰，数学与科学问答顶级。",
+  "highlights": [
+   "AIME 2025 94.6%（无工具）、GPQA 85.7%，考试型推理顶级",
+   "输入 $1.25 / 百万 token，同档位里最便宜的旗舰",
+   "400K 上下文、128K 最大输出，长输出任务友好"
+  ],
+  "pitfalls": [
+   "默认开推理，minimal effort 下能力下滑明显，需按任务调 effort",
+   "输出 $10 与推理 token 叠加后，长任务实际成本并不低",
+   "API 不暴露原始思维链，调试推理错误困难"
+  ],
+  "logic_ability": "考试型推理是其强项：AIME、GPQA、HLE 都居前。工程型推理（SWE-bench 74.9%）扎实但略逊于 Claude Opus 4.5。reasoning_effort 是主要调节旋钮：high 下更少幻觉、更多自我校验；minimal 接近非推理模型。常见问题：在 low effort 时会跳过验证直接给结论。",
+  "best_for": [
+   "数学 / 科学 / 数据分析",
+   "低输入成本的批量处理",
+   "长文本生成"
+  ],
+  "not_for": [
+   "需要私有化部署",
+   "对延迟极敏感的实时交互（用 mini / nano）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 74.9%、Aider Polyglot 88%（官方）。",
+  "reasoning": "GPQA 85.7%、HLE 24.8%（无工具，官方）。",
+  "math": "AIME 2025 94.6%（无工具，官方）。",
+  "multimodal": "MMMU 84.2%（官方）。",
+  "chinese": "中文良好，缺独立榜单。"
+ },
+ "sheet": {
+  "architecture_md": "**未披露**。OpenAI 未公开 GPT-5 的参数量或结构。\n\n已知接口层信息：\n- `reasoning_effort`：minimal / low / medium / high\n- `verbosity`：low / medium / high\n- 400K 上下文（输入 272K + 输出 128K）\n- 自定义工具（custom tools）支持自由文本工具调用\n\nChatGPT 端为「路由 + 快模型 + 推理模型」的系统，API 端 `gpt-5` 为单一推理模型。",
+  "memory_md": "无自建选项。\n\n成本参考：输入 $1.25 / 输出 $10；缓存输入 $0.125。\n\n**警示**：推理 token 按输出计费且不可见，high effort 下一条复杂请求可能产生 10K+ 推理 token。",
+  "training_md": "- 训练细节未披露\n- 默认推理开启，可用 effort=minimal 关到最低\n- 支持函数调用、并行工具、结构化输出、图像输入\n- 最大输出 128K",
+  "ecosystem_md": "- 官方 API、Azure OpenAI\n- 不支持微调（GPT-5 系列暂无 fine-tune）\n- 中文文档：弱（官方英文）",
+  "versions_md": "- 上代：GPT-4.1 / o3\n- 同代：GPT-5 mini、GPT-5 nano、GPT-5 pro\n- 继任：GPT-5.1（2025-11）"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": true,
+ "superseded_by": "gpt-5-6-sol"
 }

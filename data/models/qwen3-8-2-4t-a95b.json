@@ -1,0 +1,128 @@
+{
+ "id": "qwen3-8-2-4t-a95b",
+ "name": "Qwen3.8-2.4T-A95B",
+ "name_zh": "通义千问 3.8 · 2.4T-A95B（开源 Max 级）",
+ "aliases": [
+  "Qwen3.8 2.4T A95B",
+  "Qwen3.8-Max（API 版）",
+  "qwen3.8-max"
+ ],
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen3.8",
+ "license": "Qwen3.8-Max License",
+ "license_commercial": "restricted",
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+ "status": "current",
+ "released_at": "2026-08-13",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "2.4T",
+  "active_params": "95B",
+  "total_params_b": 2400,
+  "active_params_b": 95,
+  "experts": 512,
+  "active_experts": 10,
+  "shared_expert": true,
+  "layers": 92,
+  "kv_layers": 23,
+  "hidden_size": 8192,
+  "vocab_size": 248320,
+  "kv_heads": 4,
+  "head_dim": 256,
+  "attention": "Gated DeltaNet × 3 + Gated Attention（GQA，64 Q / 4 KV）× 1 交错",
+  "notes": "92 层 = 23 × (3 × Gated DeltaNet → MoE + 1 × Gated Attention → MoE)。512 路由专家 + 1 共享专家，每 token 激活 10 路由 + 1 共享；专家中间维 2,048。DeltaNet 128 V 头 / 16 QK 头、head_dim 128；全注意力 64 Q / 4 KV、head_dim 256，RoPE 占 1/4。自带 1 层 MTP。表内 kv_heads / head_dim 指 23 层全注意力层。开源权重为纯文本；API 版 Qwen3.8-Max 在同一底座上加了视觉输入、非思考模式与默认 1M 上下文。 上下文：256K（可扩至 1M；API 版默认 1M）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K",
+  "max_output": 131072
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 4890,
+   "fp8": 2500,
+   "q8": 2600,
+   "q4": 1310
+  },
+  "kv_per_token_kib": 92,
+  "kv_note": "仅 23 层全注意力层有 KV：4 KV 头 × 256 × 2 × 2 B = 4 KiB/层 → 92 KiB/token（BF16）。69 层 DeltaNet 固定递归状态约 0.6 GB / 序列。256K 上下文 KV ≈ 23 GB。q4 一栏为 unsloth UD-IQ4_XS（1.31 TB），无 Q4_K_M。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）",
+  "ref_hw_8x80gb": "不可行（单机 8×80GB = 640 GB，远小于 FP8 2.5 TB）；需多节点 H200 / B200 集群，或 IQ4_XS 1.31 TB 于 ≥ 2 台 8×H200",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2.0,
+  "output_per_m": 6.0,
+  "currency": "USD",
+  "source": "阿里云 Model Studio 国际站 qwen3.8-max 定价",
+  "as_of": "2026-08-28",
+  "note": "此为 API 产品 Qwen3.8-Max 的价格（同一底座 + 视觉 / 1M 上下文 / 内置工具）；缓存命中输入 $0.25；中国站更便宜。开源权重本身无官方托管价"
+ },
+ "links": {
+  "official": "https://qwen.ai/",
+  "hf": "https://huggingface.co/Qwen/Qwen3.8-2.4T-A95B",
+  "github": "https://github.com/QwenLM/Qwen3.8",
+  "pricing": "https://www.alibabacloud.com/help/en/model-studio/models"
+ },
+ "copy": {
+  "one_liner": "首个可下载的 Max 级 Qwen，2.4T MoE，自定义许可。",
+  "highlights": [
+   "Qwen 首次开放 Max 级权重：2.4T / 95B 激活，官方榜 Terminal Bench 2.1 86.6、GPQA Diamond 92.6",
+   "Artificial Analysis 智能指数 58，Agentic 指数一度全球第一；Text Arena 1479 分（qwen3.8-max）",
+   "3:1 DeltaNet 混合注意力，KV 仅 92 KiB/token，长上下文显存远小于同规模 GQA"
+  ],
+  "pitfalls": [
+   "非 Apache-2.0：Qwen3.8-Max License 对 >1 亿 MAU / 月收入 >$2000 万要求展示模型名，MaaS 年收入 >$5000 万需另签许可",
+   "开源权重为纯文本且思考不可关闭；视觉、非思考、1M 默认上下文与内置工具仅 API 版 Qwen3.8-Max 有",
+   "BF16 4.89 TB / FP8 2.5 TB，自建门槛为多节点集群；官方榜单数字来自 API 版 Qwen3.8-Max，开源权重复现可能有差"
+  ],
+  "logic_ability": "闭源旗舰级：GPQA Diamond 92.6、HLE 43.6（无工具）/ 56.2（有工具），Artificial Analysis 智能指数 58 仅次于 Anthropic 与 OpenAI 旗舰。强项在长程 Agent：Terminal Bench 2.1 86.6、PaperBench 93.0、DeepSWE 1.1 56.6，均远超上代 Qwen3.7-Max。思考强制开启，reasoning_effort xhigh 默认；AA 实测约 21 tok/s、输出极其冗长，不适合低延迟场景。常见问题：Agents' Last Exam Pass@1 仅 27.0，超长多步任务仍会失误。",
+  "best_for": [
+   "超大规模自建旗舰推理（有集群）",
+   "长程 Coding / Office Agent",
+   "通过 Qwen3.8-Max API 低价替代闭源旗舰"
+  ],
+  "not_for": [
+   "单机部署",
+   "需要视觉输入的开源自建（用 27B）",
+   "MaaS 大厂（许可限制）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal Bench 2.1 86.6、SWE-bench Pro 67.7、DeepSWE 1.1 56.6、NL2Repo 55.9（官方模型卡，Qwen3.8-Max）。",
+  "reasoning": "GPQA Diamond 92.6、HLE 43.6 / 56.2（有工具）（官方模型卡）。",
+  "math": "AIME 官方未披露。",
+  "agent": "Toolathlon Verified 72.5、WideSearch 81.9、Agents' Last Exam 27.0 Pass@1、CoWorkBench 74.8（官方模型卡）。",
+  "instruction": "IFBench 82.8（官方模型卡）。",
+  "chinese": "中文旗舰级；PLawBench 73.2。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE + 混合注意力，2.4T 总参数 / 95B 激活。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 92 = 23 × (3 × DeltaNet → MoE + 1 × Gated Attention → MoE) |\n| 隐藏维 | 8,192 |\n| 专家 | 512 路由 + 1 共享，每 token 激活 10 路由 + 1 共享 |\n| 专家中间维 | 2,048（共享专家同） |\n| 全注意力层 | 23 层，64 Q 头 / 4 KV 头，head_dim 256 |\n| 线性注意力层 | 69 层，128 V 头 / 16 QK 头，head_dim 128 |\n| RoPE | partial_rotary_factor 0.25（64 维），theta 1e7 |\n| 词表 | 248,320（padded） |\n| 原生上下文 | 262,144，可扩至 1,010,000 |\n| MTP | 1 层 |\n\n`config.json`：`model_type: qwen3_5_moe_text`，`Qwen3_5MoeForCausalLM`，纯文本。\n\n**与 Qwen3.8-Max 的关系**：模型卡称 Qwen3.8-Max 是「基于 Qwen3.8-2.4T-A95B 的官方版本」，额外具备视觉输入、非思考模式、默认 1M 上下文与内置工具。API 名 `qwen3.8-max`。",
+  "memory_md": "| 精度 | 权重大小 | 说明 |\n|---|---|---|\n| BF16 | 4.89 TB | 官方 safetensors，213 分片 |\n| FP8 | ≈ 2.5 TB | 官方 Qwen3.8-2.4T-A95B-FP8 仓库 |\n| Q8 | 2.6 TB | unsloth GGUF Q8_0 |\n| IQ4_XS | 1.31 TB | unsloth UD-IQ4_XS |\n| IQ2_XXS | 657 GB | unsloth UD-IQ2_XXS |\n| IQ1_S | 508 GB | unsloth UD-IQ1_S（质量损失大） |\n\n**KV Cache**：92 KiB/token（BF16，仅 23 层全注意力层）；DeltaNet 状态约 0.6 GB / 序列。256K ≈ 23 GB。\n\n**参考配置**：\n- 24GB / 80GB 单卡：不可行\n- 单机 8×80GB：不可行（640 GB < 最小可用量化）\n- 多节点：FP8 需 ≥ 3–4 台 8×H200（141GB）级别；IQ4_XS 可在 2 台 8×H200 装下但精度有损\n\n警示：模型卡未给官方硬件建议；上述节点数为按文件大小换算，未含 KV 与并发余量。",
+  "training_md": "- 预训练 token 数：**未披露**\n- 后训练：模型卡仅写 Pre-training & Post-training，带 MTP 训练\n- 思考模式：**强制开启，不可关闭**（非思考仅 API 版 Qwen3.8-Max 提供）\n- `reasoning_effort`：xhigh（默认）/ medium / low；preserve-thinking 默认开\n- 最大输出：推理内容 262,144，最终回复建议 131,072\n- 推荐采样：temperature 1.0、top_p 0.95、top_k 20、min_p 0\n- 官方榜单说明：Terminal Bench 2.1 用 Claude Code 评测（avg@10），对比模型取已公开最佳分",
+  "ecosystem_md": "- HF：Qwen/Qwen3.8-2.4T-A95B、Qwen3.8-2.4T-A95B-FP8；GGUF：unsloth/Qwen3.8-2.4T-A95B-GGUF\n- 引擎：SGLang、vLLM、TokenSpeed（官方推荐生产用）、Transformers ≥ 4.57.3\n- 微调：全参不现实；LoRA 需多节点\n- API：阿里云 Model Studio `qwen3.8-max`（$2 / $6，缓存 $0.25），OpenAI / Anthropic / DashScope 三种兼容接口\n- 中文文档：有",
+  "versions_md": "- API 版：Qwen3.8-Max（2026-08-03 GA，7 月 19 日 WAIC 预览）\n- 同代开源：Qwen3.8-27B（Apache-2.0，多模态）\n- 上代：Qwen3.7-Max（API-only）、Qwen3-Max（API-only）\n- 更早开源旗舰：Qwen3-235B-A22B-2507 系列"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "TokenSpeed",
+   "Transformers"
+  ],
+  "finetune": "多节点 LoRA",
+  "zh_docs": "有"
+ },
+ "complete": true
+}

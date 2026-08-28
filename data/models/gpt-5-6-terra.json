@@ -1,0 +1,79 @@
+{
+  "id": "gpt-5-6-terra",
+  "name": "GPT-5.6 Terra",
+  "name_zh": "GPT-5.6 均衡档",
+  "aliases": [
+    "gpt-5.6-terra",
+    "Terra"
+  ],
+  "vendor": "OpenAI",
+  "family": "GPT-5.6",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-07-09",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "image",
+    "tools",
+    "computer-use"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+    "type": "unknown",
+    "undisclosed": true,
+    "notes": "未披露。与 Sol 同一系列，支持 none~max 六档 reasoning.effort。"
+  },
+  "context": {
+    "max_tokens": 1050000,
+    "display": "1M",
+    "max_output": 128000
+  },
+  "memory": {
+    "weight_gb": {},
+    "estimated": false
+  },
+  "pricing": {
+    "input_per_m": 2,
+    "output_per_m": 12,
+    "currency": "USD",
+    "source": "OpenAI 官方定价页（developers.openai.com）",
+    "as_of": "2026-08-28",
+    "note": "2026-07-30 降价 20% 后价格；>272K 输入按 2×/1.5× 计费"
+  },
+  "links": {
+    "official": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+    "pricing": "https://developers.openai.com/api/docs/pricing",
+    "paper": "https://openai.com/index/gpt-5-6/"
+  },
+  "copy": {
+    "one_liner": "GPT-5.6 生产默认档，Sol 一半价钱，AA 指数 57。",
+    "highlights": [
+      "AA 智能指数 57，Coding Agent Index 77，单任务成本约为 Sol 的一半",
+      "1.05M 上下文 + 128K 输出，支持 max 推理档与全部内置工具",
+      "2026-07-30 降价 20% 至 $2 / $12，比 GPT-5.5 便宜一半以上"
+    ],
+    "pitfalls": [
+      ">272K 输入按 2× 输入 / 1.5× 输出计费",
+      "官方未单独公布 Terra 的 SWE-bench / GPQA 等分数，只有 AA 综合指数",
+      "网络安全 / 生化 Preparedness 分级 High，有安全拦截"
+    ],
+    "logic_ability": "AA 智能指数 57，介于 Sol（61）与 Luna（51）之间；Coding Agent Index 77 仅比 Sol 低 3 分。适合大多数生产工作负载。",
+    "best_for": [
+      "生产环境默认模型",
+      "中等复杂度 agent"
+    ],
+    "not_for": [
+      "前沿难题",
+      "私有化部署"
+    ]
+  },
+  "capability_notes": {
+    "reasoning": "AA 智能指数 57（max 档）。",
+    "coding": "AA Coding Agent Index 77。"
+  },
+  "complete": false
+}

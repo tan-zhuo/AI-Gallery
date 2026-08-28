@@ -1,0 +1,125 @@
+{
+  "id": "minimax-m3",
+  "name": "MiniMax-M3",
+  "name_zh": "MiniMax M3",
+  "aliases": [
+    "MiniMax M3",
+    "minimax-m3"
+  ],
+  "vendor": "MiniMax",
+  "family": "MiniMax-M",
+  "license": "MiniMax Community License",
+  "license_commercial": "restricted",
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+  "status": "current",
+  "released_at": "2026-06-01",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "image",
+    "video",
+    "tools"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+    "type": "moe",
+    "total_params": "428B",
+    "active_params": "23B",
+    "total_params_b": 428,
+    "active_params_b": 23,
+    "experts": 128,
+    "active_experts": 4,
+    "shared_expert": true,
+    "layers": 60,
+    "hidden_size": 6144,
+    "vocab_size": 200064,
+    "kv_heads": 4,
+    "head_dim": 128,
+    "attention": "MSA 块稀疏注意力（GQA 64 Q 头 / 4 KV 头）",
+    "notes": "MiniMax Sparse Attention（MSA）：在 GQA 之上用 4 头索引分支选 top-16 个 128-token 块做块稀疏注意力；前 3 层全注意力 + Dense MLP。专家 128 路由 + 1 共享，每 token 4 个，swigluoai 激活，QK-norm，半维 RoPE。7 个 MTP 模块。原生多模态（CLIP 式 ViT，32 层，2016px），从预训练第一步混合模态。",
+    "undisclosed": false
+  },
+  "context": {
+    "max_tokens": 1048576,
+    "display": "1M"
+  },
+  "memory": {
+    "weight_gb": {
+      "bf16": 854,
+      "fp8": 428,
+      "q4": 248
+    },
+    "kv_per_token_kib": 120,
+    "kv_note": "4 KV 头 × 128 × 2 × 60 层 × 2 B = 120 KiB/token；MSA 只减少注意力计算，KV 仍全量存储。1M 上下文单请求 ≈ 117 GB。",
+    "ref_hw_24gb": "不可行",
+    "ref_hw_80gb": "不可行",
+    "ref_hw_8x80gb": "BF16 854 GB 需 8×H200；FP8 428 GB 可 8×H100（KV 余量约 200 GB）",
+    "estimated": true
+  },
+  "pricing": {
+    "input_per_m": 0.3,
+    "output_per_m": 1.2,
+    "currency": "USD",
+    "source": "MiniMax 开放平台",
+    "as_of": "2026-08-28",
+    "note": "标价 $0.6/$2.4「永久 5 折」后；缓存读 $0.06；输入 > 512K 计费 ×2"
+  },
+  "links": {
+    "official": "https://www.minimax.io/blog/minimax-m3",
+    "hf": "https://huggingface.co/MiniMaxAI/MiniMax-M3",
+    "github": "https://github.com/MiniMax-AI/MiniMax-M3",
+    "paper": "https://arxiv.org/abs/2606.13392",
+    "pricing": "https://platform.minimax.io/docs/guides/pricing-paygo"
+  },
+  "copy": {
+    "one_liner": "428B/23B 稀疏注意力多模态开源模型，1M 上下文低价。",
+    "highlights": [
+      "MSA 稀疏注意力：1M 上下文下 prefill 9× / decode 15× 于 M2，每 token 计算降至 1/20",
+      "原生多模态（文本 + 图像 + 视频），SWE-Bench Pro 59.0 与 GPT-5.5 持平，API 价 $0.3/$1.2",
+      "思考可选：enabled / adaptive / disabled 三档，低延迟场景可关"
+    ],
+    "pitfalls": [
+      "MiniMax Community License：商用须标注「Built with MiniMax M3」，年收入 > 2000 万美元须书面授权，非 MIT",
+      "428B 总参数，BF16 854 GB，比 M2 大近一倍；KV 120 KiB/token 不因 MSA 减少",
+      "纯文本编程弱于同期 GLM-5.2 / Kimi K3；LMArena 1442、AA 指数 45，在旗舰中偏低"
+    ],
+    "logic_ability": "工程型推理为主：SWE-Bench Pro 59.0、Terminal-Bench 2.1 66.0、MCP Atlas 74.2，BrowseComp 83.5。考试型基准官方未披露（Z.ai 对比表中列 GPQA 93、HLE 37，属第三方引用）。思考默认可切 adaptive。常见问题：长程自主任务（PostTrainBench 37.1）落后 Opus 4.8；多模态强于纯文本推理。",
+    "best_for": [
+      "图像 / 视频 + 长上下文的 agent",
+      "低成本 1M 上下文服务",
+      "自建 8×H100 级多模态推理"
+    ],
+    "not_for": [
+      "单卡部署",
+      "对纯文本编程要求最高（用 GLM-5.2 / K3）",
+      "不愿标注品牌的商用产品"
+    ]
+  },
+  "capability_notes": {
+    "coding": "SWE-Bench Pro 59.0、Terminal-Bench 2.1 66.0、SWE-fficiency 34.8、KernelBench Hard 28.8（官方）。",
+    "reasoning": "官方未披露 GPQA / HLE；Z.ai GLM-5.2 对比表引用 GPQA 93、HLE 37。",
+    "agent": "BrowseComp 83.5、MCP Atlas 74.2、PostTrainBench 37.1（官方）。",
+    "multimodal": "原生图像 + 视频；官方博客未给出 MMMU 数值。",
+    "chinese": "中文良好。"
+  },
+  "sheet": {
+    "architecture_md": "**类型**：MoE + 块稀疏注意力，428B 总 / 23B 激活，原生多模态。\n\n- 60 层（前 3 层全注意力 + Dense MLP 12288），隐藏维 6144，词表 200,064\n- 专家：128 路由 + 1 共享，每 token 激活 4 个，专家中间维 3072，sigmoid 路由 + 路由偏置\n- **MSA（MiniMax Sparse Attention）**：GQA 64 Q 头 / 4 KV 头，head_dim 128；4 头索引分支（维 128）对 128-token 块打分选 top-16 块；从第 4 层起启用\n- 半维 RoPE（rotary_dim 64），QK-norm（per-head），Gemma 式 norm，swigluoai 激活\n- 7 个 MTP 模块用于投机解码\n- 上下文 1,048,576，RoPE theta 5e6\n- 视觉：32 层 ViT（隐藏 1280，patch 14，最大 2016px，3D RoPE），投影到 6144\n\n参考：MSA 论文（arXiv 2606.13392）、HF 模型卡。",
+    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | 854 GB（官方文件） | 8×H200 |\n| FP8 | ≈ 428 GB（估） | 8×H100 |\n| Q4 | ≈ 248 GB（估） | 4×80GB |\n\n**KV Cache**：≈ 120 KiB/token。128K 上下文 ≈ 15 GB，1M ≈ 117 GB。MSA 降低的是注意力计算，不是 KV 存储。\n\n**参考配置**：\n- 24GB / 80GB：不可行\n- 8×H100：FP8 权重 + 有限并发\n- 8×H200：BF16 舒适\n- ROCm ATOM 提供 MXFP4 / MXFP8 路径",
+    "training_md": "- 从预训练第一步混合文本 / 图像 / 视频（mixed-modality training from step zero）\n- 预训练 token 数与 RL 细节官方未披露\n- 思考：`thinking` 参数 enabled / adaptive / disabled\n- 推荐 temperature 1.0、top_p 0.95\n- 最大输出官方未披露",
+    "ecosystem_md": "- HF：MiniMaxAI/MiniMax-M3；nvidia/MiniMax-M3-NVFP4\n- 引擎：SGLang、vLLM、Transformers、KTransformers、Unsloth、ROCm ATOM（官方均有指南）\n- 微调：Unsloth 指南；社区少\n- 中文文档：有",
+    "versions_md": "- 上代：MiniMax-M2（2025-10，230B/10B）、M2.1、M2.5、M2.7（2026-03，229B/10B，非商用许可）\n- 同期：MiniMax-H3（HF 已上架）\n- M2.5 及更早已在开放平台标记 Legacy"
+  },
+  "ecosystem": {
+    "engines": [
+      "SGLang",
+      "vLLM",
+      "KTransformers",
+      "Transformers"
+    ],
+    "finetune": "Unsloth 指南",
+    "zh_docs": "有"
+  },
+  "complete": true
+}

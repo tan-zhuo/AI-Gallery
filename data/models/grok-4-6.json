@@ -1,0 +1,37 @@
+{
+  "id": "grok-4-6",
+  "name": "Grok 4.6",
+  "name_zh": "Grok 4.6",
+  "aliases": ["grok-4.6", "Grok 4.6 High"],
+  "vendor": "xAI",
+  "vendor_zh": "xAI",
+  "family": "Grok 4",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-08-12",
+  "updated_at": "2026-08-28",
+  "modalities": ["text", "image", "tools"],
+  "reasoning_mode": "default-on",
+  "architecture": { "type": "unknown", "undisclosed": true, "notes": "未披露。xAI 称在 Grok 4.5 基座上追加训练与 agent 环境 RL，非更大模型。reasoning_effort：low / medium / high / xhigh。" },
+  "context": { "max_tokens": 500000, "display": "500K" },
+  "memory": { "weight_gb": {}, "estimated": false },
+  "pricing": { "input_per_m": 2, "output_per_m": 6, "currency": "USD", "source": "xAI 模型定价页", "as_of": "2026-08-28", "note": "≥200K 上下文：$4 / $12；缓存输入 $0.50；Fast 变体价格翻倍" },
+  "runtime": { "tok_s": 57.8, "source": "Artificial Analysis（2026-08-28）" },
+  "links": { "official": "https://x.ai/news/grok-4-6", "pricing": "https://docs.x.ai/docs/models" },
+  "copy": {
+    "one_liner": "Grok 4.5 的加训版，长程 agent 与知识工作更强，同价。",
+    "highlights": ["AA 智能指数 61，GDPval-AA v2 1753，知识工作类基准领先", "新增 xhigh 推理档，DeepSWE v1.1 65.9%、APEX-Agents 57.5%", "与 4.5 同价 $2 / $6，xAI 当前推荐模型"],
+    "pitfalls": ["Terminal-Bench v3.0 仅 26%，自主软件工程类基准仍落后对手", "Arena 文本 1461，反而低于 Grok 4.5 的 1470", "无音视频输入；官方仍未公布 GPQA / HLE 等通用推理基准"],
+    "logic_ability": "在 4.5 基础上强化长程 agent；知识工作类领先，纯软件工程类不占优。",
+    "best_for": ["多步研究 / 分析 agent", "可视化与交互式应用生成", "长上下文代码库工作"],
+    "not_for": ["低延迟交互", "私有化部署"]
+  },
+  "capability_notes": {
+    "coding": "DeepSWE v1.1 65.9%、CursorBench v3.2 69.9%、FrontierCode v1.1 61.3%（xAI 公告）。",
+    "agent": "APEX-Agents 57.5%、Terminal-Bench v3.0 26%（xAI 公告）。"
+  },
+  "complete": false
+}

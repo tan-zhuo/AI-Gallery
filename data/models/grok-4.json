@@ -1,5 +1,69 @@
-{"id":"grok-4","name":"Grok 4","aliases":["grok-4-0709"],"vendor":"xAI","family":"Grok 4","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2025-07-09","updated_at":"2025-12-20","modalities":["text","image","tools"],"reasoning_mode":"default-on",
-"architecture":{"type":"unknown","undisclosed":true},"context":{"max_tokens":256000,"display":"256K"},"memory":{"weight_gb":{},"estimated":false},
-"pricing":{"input_per_m":3,"output_per_m":15,"currency":"USD","source":"xAI 定价页","as_of":"2025-12-20"},
-"links":{"official":"https://x.ai/news/grok-4","pricing":"https://docs.x.ai/docs/models"},
-"copy":{"one_liner":"考试型推理顶级的闭源旗舰，价格与 Claude Sonnet 同档但更慢。","highlights":["HLE 25.4%（无工具）、GPQA 87.5%","256K 上下文","Grok 4 Heavy 多 agent 变体"],"pitfalls":["延迟高、吞吐低","代码 agent 生态弱","无自建"],"logic_ability":"考试型推理顶级；工程型推理中上。","best_for":["科学推理","深度研究"],"not_for":["低延迟产品"]},"capability_notes":{},"complete":false}
+{
+ "id": "grok-4",
+ "name": "Grok 4",
+ "aliases": [
+  "grok-4-0709"
+ ],
+ "vendor": "xAI",
+ "family": "Grok 4",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "released_at": "2025-07-09",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "context": {
+  "max_tokens": 256000,
+  "display": "256K"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 3,
+  "output_per_m": 15,
+  "currency": "USD",
+  "source": "xAI 定价页",
+  "as_of": "2025-12-20"
+ },
+ "links": {
+  "official": "https://x.ai/news/grok-4",
+  "pricing": "https://docs.x.ai/docs/models"
+ },
+ "copy": {
+  "one_liner": "考试型推理顶级的闭源旗舰，价格与 Claude Sonnet 同档但更慢。",
+  "highlights": [
+   "HLE 25.4%（无工具）、GPQA 87.5%",
+   "256K 上下文",
+   "Grok 4 Heavy 多 agent 变体"
+  ],
+  "pitfalls": [
+   "延迟高、吞吐低",
+   "代码 agent 生态弱",
+   "无自建"
+  ],
+  "logic_ability": "考试型推理顶级；工程型推理中上。",
+  "best_for": [
+   "科学推理",
+   "深度研究"
+  ],
+  "not_for": [
+   "低延迟产品"
+  ]
+ },
+ "capability_notes": {},
+ "complete": false,
+ "superseded_by": "grok-4-5"
+}

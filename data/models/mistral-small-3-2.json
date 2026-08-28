@@ -1,5 +1,90 @@
-{"id":"mistral-small-3-2","name":"Mistral Small 3.2","aliases":["mistral-small-2506"],"vendor":"Mistral AI","family":"Mistral Small","license":"Apache-2.0","license_commercial":true,"openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506","status":"current","released_at":"2025-06-20","updated_at":"2025-12-20","modalities":["text","image","tools"],"reasoning_mode":"none",
-"architecture":{"type":"dense","total_params":"24B","total_params_b":24,"layers":40,"hidden_size":5120,"kv_heads":8,"head_dim":128,"attention":"GQA（32 Q / 8 KV）","undisclosed":false},"context":{"max_tokens":131072,"display":"128K"},"memory":{"weight_gb":{"bf16":48,"q8":25.5,"q4":14.5},"kv_per_token_kib":160,"estimated":false,"ref_hw_24gb":"Q4 14.5 GB 舒适"},
-"pricing":{"input_per_m":0.1,"output_per_m":0.3,"currency":"USD","source":"Mistral 定价页","as_of":"2025-12-20"},
-"links":{"official":"https://mistral.ai/news/mistral-small-3-1","hf":"https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506"},
-"copy":{"one_liner":"Apache-2.0 的 24B 多模态通用模型，欧洲语言强。","highlights":["Apache-2.0，24GB 单卡","视觉输入","指令遵循较 3.1 明显改善"],"pitfalls":["非推理模型","中文弱于 Qwen","代码一般"],"logic_ability":"非推理模型，中游。","best_for":["单卡多语言助手"],"not_for":["推理密集"]},"capability_notes":{},"ecosystem":{"engines":["vLLM","llama.cpp","Ollama"],"zh_docs":"无"},"complete":false}
+{
+ "id": "mistral-small-3-2",
+ "name": "Mistral Small 3.2",
+ "aliases": [
+  "mistral-small-2506"
+ ],
+ "vendor": "Mistral AI",
+ "family": "Mistral Small",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+ "status": "superseded",
+ "released_at": "2025-06-20",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "architecture": {
+  "type": "dense",
+  "total_params": "24B",
+  "total_params_b": 24,
+  "layers": 40,
+  "hidden_size": 5120,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（32 Q / 8 KV）",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 48,
+   "q8": 25.5,
+   "q4": 14.5
+  },
+  "kv_per_token_kib": 160,
+  "estimated": false,
+  "ref_hw_24gb": "Q4 14.5 GB 舒适"
+ },
+ "pricing": {
+  "input_per_m": 0.1,
+  "output_per_m": 0.3,
+  "currency": "USD",
+  "source": "Mistral 定价页",
+  "as_of": "2025-12-20"
+ },
+ "links": {
+  "official": "https://mistral.ai/news/mistral-small-3-1",
+  "hf": "https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506"
+ },
+ "copy": {
+  "one_liner": "Apache-2.0 的 24B 多模态通用模型，欧洲语言强。",
+  "highlights": [
+   "Apache-2.0，24GB 单卡",
+   "视觉输入",
+   "指令遵循较 3.1 明显改善"
+  ],
+  "pitfalls": [
+   "非推理模型",
+   "中文弱于 Qwen",
+   "代码一般"
+  ],
+  "logic_ability": "非推理模型，中游。",
+  "best_for": [
+   "单卡多语言助手"
+  ],
+  "not_for": [
+   "推理密集"
+  ]
+ },
+ "capability_notes": {},
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "zh_docs": "无"
+ },
+ "complete": false,
+ "superseded_by": "mistral-small-4"
+}

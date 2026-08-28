@@ -9,6 +9,7 @@ import { PriceScatter } from '@/components/charts/PriceScatter'
 import { LeaderboardTable } from '@/components/leaderboard/LeaderboardTable'
 import { OpennessBadge } from '@/components/ui/Badge'
 import { LogoMark } from '@/components/ui/Logo'
+import { VendorLogo } from '@/components/ui/VendorLogo'
 import { scores } from '@/lib/catalog'
 import { Section, Chip, Button, Disclaimer } from '@/components/ui/Misc'
 import { useCompareIds } from '@/hooks/useCompare'
@@ -24,9 +25,12 @@ function HeroCard({ title, m, reason, stat, statLabel, tone, index }: { title: s
         <span className="eyebrow inline-flex items-center gap-1.5"><i className="h-1.5 w-1.5 rounded-full" style={{ background: color }} />{title}</span>
         <OpennessBadge m={m} />
       </div>
-      <div className="mt-4 min-w-0">
-        <div className="truncate text-xl font-semibold tracking-tight group-hover:text-accent transition">{m.name}</div>
-        <div className="truncate text-xs text-muted mt-0.5">{m.vendor_zh ? `${m.vendor} ${m.vendor_zh}` : m.vendor}</div>
+      <div className="mt-4 flex items-center gap-3 min-w-0">
+        <VendorLogo vendor={m.vendor} size={40} />
+        <div className="min-w-0">
+          <div className="truncate text-xl font-semibold tracking-tight group-hover:text-accent transition">{m.name}</div>
+          <div className="truncate text-xs text-muted mt-0.5">{m.vendor_zh ? `${m.vendor} ${m.vendor_zh}` : m.vendor}</div>
+        </div>
       </div>
       <p className="mt-3 text-[13px] leading-relaxed text-muted line-clamp-2 flex-1">{reason}</p>
       <div className="mt-5 flex items-baseline gap-2 border-t border-border pt-4">

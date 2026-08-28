@@ -1,48 +1,99 @@
 {
-  "id": "gemini-3-pro",
-  "name": "Gemini 3 Pro",
-  "name_zh": "Gemini 3 专业版",
-  "aliases": ["gemini-3-pro-preview", "Gemini 3"],
-  "vendor": "Google",
-  "vendor_zh": "谷歌",
-  "family": "Gemini 3",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "preview",
-  "released_at": "2025-11-18",
-  "updated_at": "2025-12-20",
-  "modalities": ["text", "image", "audio", "video", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": { "type": "unknown", "undisclosed": true, "notes": "未披露。Google 仅说明为稀疏 MoE Transformer，原生多模态。thinking_level 参数（low / high）。" },
-  "context": { "max_tokens": 1048576, "display": "1M", "max_output": 65536 },
-  "memory": { "weight_gb": {}, "estimated": false },
-  "pricing": { "input_per_m": 2, "output_per_m": 12, "currency": "USD", "source": "Google AI 定价页", "as_of": "2025-12-20", "note": ">200K 上下文：$4 / $18" },
-  "links": { "official": "https://deepmind.google/models/gemini/pro/", "pricing": "https://ai.google.dev/pricing", "paper": "https://blog.google/products/gemini/gemini-3/" },
-  "copy": {
-    "one_liner": "2025 年底榜单第一的多模态旗舰，1M 上下文。",
-    "highlights": ["LMArena 文本榜首次突破 1500 Elo", "HLE 37.5%、GPQA 91.9%，考试型推理断层领先", "原生视频 / 音频 / 图像输入 + 1M 上下文，长多模态任务无对手"],
-    "pitfalls": ["preview 状态，接口行为与配额可能变动", "超过 200K 上下文后价格翻倍，1M 是能力不是默认预算", "Agent 长任务稳定性略逊于 Claude Opus 4.5（Terminal-bench / tau2 差距）"],
-    "logic_ability": "考试型推理当前第一：HLE、GPQA、ARC-AGI-2 均领先。工程型推理（SWE-bench 76.2%）优秀但非第一。thinking_level=high 时会做大量内部搜索式推理；low 更接近 Flash 行为。失败模式：在极长上下文里偶尔遗漏中段信息；工具调用格式偶有偏差。",
-    "best_for": ["视频 / 音频 / 大量图片理解", "超长文档（百万 token 级）分析", "科学 / 数学推理"],
-    "not_for": ["需要稳定 GA 接口的生产线（等 GA）", "私有化部署"]
-  },
-  "capability_notes": {
-    "coding": "SWE-bench Verified 76.2%、LiveCodeBench Pro Elo 2439（官方）。",
-    "reasoning": "GPQA 91.9%、HLE 37.5%、ARC-AGI-2 31.1%（官方）。",
-    "math": "AIME 2025 95%（无工具，官方）。",
-    "agent": "Terminal-bench 2.0 54.2%（官方）。",
-    "multimodal": "MMMU-Pro 81%、Video-MMMU 87.6%（官方），当前最强。",
-    "chinese": "中文能力强，多语言 MMMLU 91.8%。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：稀疏 MoE Transformer（Google 官方描述），细节未披露。\n\n已知：\n- 原生多模态：文本、图像、音频、视频统一输入\n- 1M token 上下文，64K 输出\n- `thinking_level`：low / high\n- 支持 Google Search grounding、代码执行、URL 上下文等托管工具",
-    "memory_md": "无自建选项。\n\n成本参考：≤200K 上下文 $2 / $12；>200K $4 / $18。缓存输入 $0.20。\n\n**警示**：1M 上下文下一次请求输入费可达 $4；请配合 context caching。",
-    "training_md": "- 训练细节未披露，TPU 训练\n- 默认推理开启\n- 支持函数调用、结构化输出、多模态输入、原生音频\n- 最大输出 64K",
-    "ecosystem_md": "- Google AI Studio、Vertex AI、Gemini API\n- Antigravity IDE、Gemini CLI 集成\n- 不支持微调（Pro 档）\n- 中文文档：有（Google 中文文档较全）",
-    "versions_md": "- 上代：Gemini 2.5 Pro\n- 同代：Gemini 3 Flash（2025-12）\n- Deep Think 模式另计"
-  },
-  "ecosystem": { "engines": [], "finetune": "不支持", "zh_docs": "有" },
-  "complete": true
+ "id": "gemini-3-pro",
+ "name": "Gemini 3 Pro",
+ "name_zh": "Gemini 3 专业版",
+ "aliases": [
+  "gemini-3-pro-preview",
+  "Gemini 3"
+ ],
+ "vendor": "Google",
+ "vendor_zh": "谷歌",
+ "family": "Gemini 3",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "released_at": "2025-11-18",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。Google 仅说明为稀疏 MoE Transformer，原生多模态。thinking_level 参数（low / high）。"
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 12,
+  "currency": "USD",
+  "source": "Google AI 定价页",
+  "as_of": "2025-12-20",
+  "note": ">200K 上下文：$4 / $18"
+ },
+ "links": {
+  "official": "https://deepmind.google/models/gemini/pro/",
+  "pricing": "https://ai.google.dev/pricing",
+  "paper": "https://blog.google/products/gemini/gemini-3/"
+ },
+ "copy": {
+  "one_liner": "2025 年底榜单第一的多模态旗舰，1M 上下文。",
+  "highlights": [
+   "LMArena 文本榜首次突破 1500 Elo",
+   "HLE 37.5%、GPQA 91.9%，考试型推理断层领先",
+   "原生视频 / 音频 / 图像输入 + 1M 上下文，长多模态任务无对手"
+  ],
+  "pitfalls": [
+   "preview 状态，接口行为与配额可能变动",
+   "超过 200K 上下文后价格翻倍，1M 是能力不是默认预算",
+   "Agent 长任务稳定性略逊于 Claude Opus 4.5（Terminal-bench / tau2 差距）"
+  ],
+  "logic_ability": "考试型推理当前第一：HLE、GPQA、ARC-AGI-2 均领先。工程型推理（SWE-bench 76.2%）优秀但非第一。thinking_level=high 时会做大量内部搜索式推理；low 更接近 Flash 行为。失败模式：在极长上下文里偶尔遗漏中段信息；工具调用格式偶有偏差。",
+  "best_for": [
+   "视频 / 音频 / 大量图片理解",
+   "超长文档（百万 token 级）分析",
+   "科学 / 数学推理"
+  ],
+  "not_for": [
+   "需要稳定 GA 接口的生产线（等 GA）",
+   "私有化部署"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 76.2%、LiveCodeBench Pro Elo 2439（官方）。",
+  "reasoning": "GPQA 91.9%、HLE 37.5%、ARC-AGI-2 31.1%（官方）。",
+  "math": "AIME 2025 95%（无工具，官方）。",
+  "agent": "Terminal-bench 2.0 54.2%（官方）。",
+  "multimodal": "MMMU-Pro 81%、Video-MMMU 87.6%（官方），当前最强。",
+  "chinese": "中文能力强，多语言 MMMLU 91.8%。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：稀疏 MoE Transformer（Google 官方描述），细节未披露。\n\n已知：\n- 原生多模态：文本、图像、音频、视频统一输入\n- 1M token 上下文，64K 输出\n- `thinking_level`：low / high\n- 支持 Google Search grounding、代码执行、URL 上下文等托管工具",
+  "memory_md": "无自建选项。\n\n成本参考：≤200K 上下文 $2 / $12；>200K $4 / $18。缓存输入 $0.20。\n\n**警示**：1M 上下文下一次请求输入费可达 $4；请配合 context caching。",
+  "training_md": "- 训练细节未披露，TPU 训练\n- 默认推理开启\n- 支持函数调用、结构化输出、多模态输入、原生音频\n- 最大输出 64K",
+  "ecosystem_md": "- Google AI Studio、Vertex AI、Gemini API\n- Antigravity IDE、Gemini CLI 集成\n- 不支持微调（Pro 档）\n- 中文文档：有（Google 中文文档较全）",
+  "versions_md": "- 上代：Gemini 2.5 Pro\n- 同代：Gemini 3 Flash（2025-12）\n- Deep Think 模式另计"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "superseded_by": "gemini-3-1-pro"
 }

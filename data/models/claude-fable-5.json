@@ -1,4 +1,98 @@
-{"id":"claude-fable-5","name":"Claude Fable 5","aliases":["claude-fable-5","Mythos 5"],"vendor":"Anthropic","family":"Claude 5","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2026","updated_at":"2026-08-28","modalities":["text","image","tools","computer-use"],"reasoning_mode":"optional",
-"architecture":{"type":"unknown","undisclosed":true,"notes":"未披露。与 Claude Mythos 5 共享底层模型，Fable 5 为通用可用版本。"},"context":{"display":"未披露"},"memory":{"weight_gb":{},"estimated":false},
-"links":{"official":"https://www.anthropic.com/news/claude-fable-5-mythos-5","pricing":"https://www.anthropic.com/pricing"},
-"copy":{"one_liner":"Anthropic Mythos 级新档位，通用可用版本。分数与定价待补录。","highlights":["位于 Opus 之上的新能力档","与 Mythos 5 同底层模型","完善中"],"pitfalls":["本站尚无带来源的分数与定价","参数、架构未披露","完善中"],"logic_ability":"完善中。","best_for":[],"not_for":[]},"capability_notes":{},"complete":false}
+{
+  "id": "claude-fable-5",
+  "name": "Claude Fable 5",
+  "name_zh": "Claude Fable 5（Mythos 级公开版）",
+  "aliases": [
+    "claude-fable-5",
+    "Fable 5",
+    "anthropic.claude-fable-5"
+  ],
+  "vendor": "Anthropic",
+  "family": "Claude 5",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-06-09",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "image",
+    "tools",
+    "computer-use"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+    "type": "unknown",
+    "undisclosed": true,
+    "notes": "未披露。官方仅说明：与 Claude Mythos 5 为同一底层模型，Fable 5 额外挂载安全分类器；adaptive thinking 始终开启，不可关闭；使用 Opus 4.7 起的新分词器（同文本 token 约多 30%）。"
+  },
+  "context": {
+    "max_tokens": 1000000,
+    "display": "1M",
+    "max_output": 128000
+  },
+  "memory": {
+    "weight_gb": {},
+    "estimated": false
+  },
+  "pricing": {
+    "input_per_m": 10,
+    "output_per_m": 50,
+    "currency": "USD",
+    "source": "Anthropic 官方定价页（platform.claude.com）",
+    "as_of": "2026-08-28",
+    "note": "不到 Mythos Preview 一半；缓存读 $1，Batch 五折；被拒绝请求不计费"
+  },
+  "links": {
+    "official": "https://www.anthropic.com/claude/fable",
+    "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "paper": "https://www.anthropic.com/news/claude-fable-5-mythos-5"
+  },
+  "copy": {
+    "one_liner": "Anthropic 公开的 Mythos 级模型，可连续多日运行 agent。",
+    "highlights": [
+      "LMArena 文本榜第一（1507，2026-08-27），AA 智能指数 62",
+      "1M 上下文 + 128K 输出，思考始终开启，可跨阶段委派子 agent 连续工作数日",
+      "官方定价 $10 / $50，不到 Mythos Preview 的一半，缓存读取 $1"
+    ],
+    "pitfalls": [
+      "网络安全 / 生化 / 蒸馏类请求会被分类器拒绝并回退到 Opus 4.8，集成须处理 stop_reason=refusal",
+      "首 token 延迟高（AA 实测 TTFT 约 80 s），思考不可关闭且不返回原始思维链",
+      "价格是 Opus 5 的 2 倍，而 Opus 5 在多数榜单已持平甚至反超；30 天强制数据留存，无 ZDR"
+    ],
+    "logic_ability": "当前公开模型中的最高档：GDP.pdf 视觉推理 29.8、SWE-bench Pro 80.3（官方公告表）领先所有对手；纯视觉通关《宝可梦 火红》，持久记忆下 Slay the Spire 表现比 Opus 4.8 高 3 倍。但 Opus 5 发布后，在 GDPval-AA v2、AA-Briefcase、ARC-AGI-3 上已被 Opus 5 反超，Fable 5 的优势集中在需要极长任务链、极高自主度的场景。失败模式：分类器偏保守，约 5% 会话会触发回退；输出偏长、思考 token 多。",
+    "best_for": [
+      "跨天运行的多阶段 agent 项目",
+      "大规模代码迁移 / 仓库级重构",
+      "金融、法律等高级知识工作",
+      "视觉密集型任务"
+    ],
+    "not_for": [
+      "高频低价值调用",
+      "安全研究 / 生物类内容（会回退）",
+      "需要 ZDR 或私有化部署的合规场景"
+    ]
+  },
+  "capability_notes": {
+    "coding": "SWE-bench Pro 80.3%（官方公告表，Vellum 转录）；Cognition FrontierCode 最高分；Stripe 用其一天完成 5000 万行 Ruby 迁移。",
+    "reasoning": "AA 智能指数 62（2026-08）；Frontier-Bench v0.1 33.7%，低于 Opus 5 的 43.3%。",
+    "agent": "官方定位为「长时运行 agent」，Claude Code / Managed Agents 下可工作数日；AA 测 Cost per task $3.14。",
+    "multimodal": "官方称视觉 SOTA：GDP.pdf（视觉、无工具）29.8 vs GPT-5.5 24.9。",
+    "chinese": "中文可用，缺少独立中文评测。"
+  },
+  "sheet": {
+    "architecture_md": "**未披露**。Anthropic 未公布参数量、Dense/MoE、注意力结构。\n\n官方确认的事实：\n- 与 **Claude Mythos 5** 是同一底层模型，Fable 5 多了三类安全分类器（网络安全、生物/化学、蒸馏）；Mythos 5 仅通过 Project Glasswing 受邀提供\n- **Adaptive thinking 始终开启**，`thinking.type=disabled` 直接报错；深度用 `effort`（默认 `high`）调节\n- 原始思维链从不返回，`thinking.display` 只能选 `summarized` / `omitted`\n- 使用 Opus 4.7 起的新分词器，同一文本 token 数约多 30%\n- 1M 上下文（默认即最大）、128K 最大输出\n- 可靠知识截止 2026-01",
+    "memory_md": "无自建选项。\n\n**成本模型**（官方定价页，2026-08-28）：\n- 输入 $10 / 输出 $50 / MTok\n- 5 分钟缓存写 $12.50，1 小时缓存写 $20，缓存读 $1（10%）\n- Batch API 五折：$5 / $25\n- 1M 长上下文按标准价，不加价\n\n**被拒绝的请求不计费**；回退到其他模型时 fallback credit 会退还重复的缓存成本。\n\n实测：AA 智能指数单任务平均 $3.14，输出 64.9 tok/s，TTFT 约 80 s——比 Opus 5 贵约 35% 且更慢。",
+    "training_md": "- 训练细节未披露\n- 官方公告：在软件工程、知识工作、视觉、科学研究等几乎所有测试基准上 SOTA（截至 2026-06-09）\n- 生命科学：内部蛋白设计专家称药物设计流程提速约 10 倍；14 个蛋白靶点中 9 个得到强候选\n- 安全：1000+ 小时外部红队未发现通用越狱；UK AISI 在首轮测试窗口内「取得进展」\n- 对齐评估结果与 Opus 4.8 相近\n- 2026-06-12 因美国商务部出口管制命令下线，06-30 命令解除，07-01 恢复",
+    "ecosystem_md": "- Claude API、Amazon Bedrock、Claude Platform on AWS、Google Cloud（Vertex）、Microsoft Foundry\n- claude.ai Pro / Max / Team / Enterprise 可用（2026-06-23 起订阅用户需额外用量额度）\n- Claude Code、Claude Managed Agents\n- 支持 effort、task budgets（beta）、memory tool、code execution、programmatic tool calling、compaction、context editing\n- **不可微调**；30 天数据留存，属 Covered Model，不支持 ZDR\n- 中文文档：弱",
+    "versions_md": "- 2026-06-09 Claude Fable 5 / Claude Mythos 5 发布，定价 $10 / $50\n- 2026-06-12 ~ 07-01 因出口管制短暂下线\n- 同代：Claude Opus 5（2026-07-24，$5 / $25，多数榜单已追平）、Claude Sonnet 5（2026-06-30）\n- 上代对应：Claude Mythos Preview（Glasswing 限定）、Claude Opus 4.8\n- 退役承诺：不早于 2027-06-09"
+  },
+  "ecosystem": {
+    "engines": [],
+    "finetune": "不支持",
+    "zh_docs": "弱"
+  },
+  "complete": true
+}

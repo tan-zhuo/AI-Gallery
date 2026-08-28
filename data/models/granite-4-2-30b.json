@@ -1,0 +1,96 @@
+{
+ "id": "granite-4-2-30b",
+ "name": "Granite 4.2 30B",
+ "name_zh": "IBM Granite 4.2 30B",
+ "aliases": [
+  "granite-4.2-30b",
+  "ibm-granite/granite-4.2-30b"
+ ],
+ "vendor": "IBM",
+ "family": "Granite 4",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+ "status": "current",
+ "released_at": "2026-08-25",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "dense",
+  "total_params": "30B",
+  "total_params_b": 30,
+  "layers": 64,
+  "hidden_size": 4096,
+  "vocab_size": 100352,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（32 Q / 8 KV）",
+  "notes": "稠密 Transformer，FFN 32768，RoPE theta 1e7；原生 128K，可扩 512K。基于 Granite-4.1-30B-Base 后训练，<think> 三档思考模式。 上下文：128K（可扩 512K）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 60,
+   "q8": 32,
+   "q4": 17.4
+  },
+  "kv_per_token_kib": 256,
+  "estimated": true,
+  "ref_hw_24gb": "Q4 约 17 GB 可跑，KV 256 KiB/token 上下文有限",
+  "ref_hw_80gb": "BF16 60 GB 单卡 + 数万 token 上下文"
+ },
+ "links": {
+  "official": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+  "hf": "https://huggingface.co/ibm-granite/granite-4.2-30b"
+ },
+ "copy": {
+  "one_liner": "IBM 30B 稠密推理模型，Apache-2.0，24GB 可跑。",
+  "highlights": [
+   "AIME 2025 89.2、LiveCodeBench v6 75.8、MMLU-Pro 77.6（官方）",
+   "Apache-2.0，企业友好，12 种语言含中文",
+   "Q4 约 17 GB，24GB 单卡本地"
+  ],
+  "pitfalls": [
+   "刚发布 3 天，AA 智能指数 24 低于 Muse Glimmer（35）",
+   "SWE-bench Pro 33.3，编程 agent 弱",
+   "无视觉（Granite Vision 另出）"
+  ],
+  "logic_ability": "考试型推理数学强（AIME 89.2）、GPQA 66.4 中游；工程型推理一般（SWE-bench Pro 33.3）。",
+  "best_for": [
+   "企业内网合规部署",
+   "24GB 本地推理 / 工具调用"
+  ],
+  "not_for": [
+   "编程 agent 主力",
+   "多模态"
+  ]
+ },
+ "capability_notes": {
+  "coding": "LiveCodeBench v6 75.77、SWE-bench Pro 33.29（官方）。",
+  "reasoning": "GPQA 66.41、MMLU-Pro 77.60（官方）。",
+  "math": "AIME 2025 89.17（官方）。",
+  "agent": "BFCL v4 61.39（官方）。",
+  "chinese": "官方 12 语言含中文。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "Transformers",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "zh_docs": "无"
+ },
+ "complete": false
+}

@@ -1,5 +1,68 @@
-{"id":"grok-4-1-fast","name":"Grok 4.1 Fast","aliases":["grok-4-1-fast-reasoning"],"vendor":"xAI","family":"Grok 4","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2025-11-19","updated_at":"2025-12-20","modalities":["text","image","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"unknown","undisclosed":true},"context":{"max_tokens":2000000,"display":"2M"},"memory":{"weight_gb":{},"estimated":false},
-"pricing":{"input_per_m":0.2,"output_per_m":0.5,"currency":"USD","source":"xAI 定价页","as_of":"2025-12-20"},
-"links":{"official":"https://x.ai/news/grok-4-1-fast","pricing":"https://docs.x.ai/docs/models"},
-"copy":{"one_liner":"2M 上下文、$0.2 输入的工具调用特化档。","highlights":["2M 上下文","$0.20 / $0.50","τ²-bench 工具调用官方领先"],"pitfalls":["独立复测数据少","推理深度不如 Grok 4","无自建"],"logic_ability":"工具调用型 agent 强；深度推理中等。","best_for":["低价长上下文 agent"],"not_for":["顶级推理"]},"capability_notes":{},"complete":false}
+{
+ "id": "grok-4-1-fast",
+ "name": "Grok 4.1 Fast",
+ "aliases": [
+  "grok-4-1-fast-reasoning"
+ ],
+ "vendor": "xAI",
+ "family": "Grok 4",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "released_at": "2025-11-19",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "context": {
+  "max_tokens": 2000000,
+  "display": "2M"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.2,
+  "output_per_m": 0.5,
+  "currency": "USD",
+  "source": "xAI 定价页",
+  "as_of": "2025-12-20"
+ },
+ "links": {
+  "official": "https://x.ai/news/grok-4-1-fast",
+  "pricing": "https://docs.x.ai/docs/models"
+ },
+ "copy": {
+  "one_liner": "2M 上下文、$0.2 输入的工具调用特化档。",
+  "highlights": [
+   "2M 上下文",
+   "$0.20 / $0.50",
+   "τ²-bench 工具调用官方领先"
+  ],
+  "pitfalls": [
+   "独立复测数据少",
+   "推理深度不如 Grok 4",
+   "无自建"
+  ],
+  "logic_ability": "工具调用型 agent 强；深度推理中等。",
+  "best_for": [
+   "低价长上下文 agent"
+  ],
+  "not_for": [
+   "顶级推理"
+  ]
+ },
+ "capability_notes": {},
+ "complete": false,
+ "superseded_by": "grok-4-3"
+}

@@ -1,0 +1,99 @@
+{
+  "id": "gpt-5-6-sol",
+  "name": "GPT-5.6 Sol",
+  "name_zh": "GPT-5.6 旗舰",
+  "aliases": [
+    "gpt-5.6-sol",
+    "gpt-5.6",
+    "GPT-5.6",
+    "Sol"
+  ],
+  "vendor": "OpenAI",
+  "family": "GPT-5.6",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-07-09",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "image",
+    "tools",
+    "computer-use"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+    "type": "unknown",
+    "undisclosed": true,
+    "notes": "未披露。系统卡仅称「以强化学习训练的推理模型，具备长内部思维链」。reasoning.effort 支持 none/low/medium/high/xhigh/max；ultra 模式调用子 agent。"
+  },
+  "context": {
+    "max_tokens": 1050000,
+    "display": "1M",
+    "max_output": 128000
+  },
+  "memory": {
+    "weight_gb": {},
+    "estimated": false
+  },
+  "pricing": {
+    "input_per_m": 4,
+    "output_per_m": 20,
+    "currency": "USD",
+    "source": "OpenAI 官方定价页（developers.openai.com）",
+    "as_of": "2026-08-28",
+    "note": "2026-08-21 ~ 11-21 促销价，原价 $5 / $30；>272K 输入按 2×/1.5× 计费"
+  },
+  "links": {
+    "official": "https://openai.com/index/gpt-5-6/",
+    "pricing": "https://developers.openai.com/api/docs/pricing",
+    "paper": "https://deploymentsafety.openai.com/gpt-5-6-preview"
+  },
+  "copy": {
+    "one_liner": "OpenAI 旗舰，Terminal-Bench 第一，限时 $4/$20。",
+    "highlights": [
+      "Terminal-Bench 2.1 88.8%（ultra 模式 91.9%）领先全场，FrontierMath v2 89.1%",
+      "新增 max 推理档与 ultra 子 agent 模式，1.05M 上下文 + 128K 输出",
+      "2026-08-21 起降价至 $4 / $20（原 $5 / $30），至 11-21"
+    ],
+    "pitfalls": [
+      "$4 / $20 为三个月促销价，11-21 后可能回到 $5 / $30；>272K 输入按 2× 输入 / 1.5× 输出计费",
+      "AA 实测 max 档首 token 延迟约 122 s，深推理成本与时延都高",
+      "LMArena 1482 落后 Claude Fable 5 / Opus 5；网络安全与生化均被评为 High 风险，有安全拦截"
+    ],
+    "logic_ability": "数学与命令行 agent 极强：FrontierMath v2 89.1%（max）、Terminal-Bench 2.1 88.8%、GPQA Diamond 93.5%（DataLearner 汇总）。ARC-AGI-2 92.5%（ARC Prize 验证）说明模式推理已接近饱和，但 ARC-AGI-3 仅 7.8%，远低于 Opus 5 的 30.2%——交互式新环境推理是弱项。AA 智能指数 61，略低于 Opus 5（63）与 Fable 5（62）；AA-Briefcase 表现 Elo 最高但 rubric 分 42% 低于 Fable 5 的 56%。失败模式：系统卡承认存在任务作弊与捏造研究结果的实例。",
+    "best_for": [
+      "终端 / Codex 类编码 agent",
+      "数学与形式化推理",
+      "高并发企业工作流（tier 5 达 40M TPM）"
+    ],
+    "not_for": [
+      "交互式探索型推理（ARC-AGI-3）",
+      "生物 / 安全敏感场景",
+      "需要私有化部署的合规场景"
+    ]
+  },
+  "capability_notes": {
+    "coding": "Terminal-Bench 2.1 88.8%（官方公告，ultra 91.9%）；SWE-bench Pro Public 64.6%（DataLearner）；AA Coding Agent Index 80。",
+    "reasoning": "AA 智能指数 61；ARC-AGI-2 92.5%（ARC Prize 验证）；ARC-AGI-3 7.8%。",
+    "math": "FrontierMath v2 89.1%（max，DataLearner 汇总）。",
+    "agent": "OSWorld 2.0 62.6%（xhigh + 工具）；ultra 模式以子 agent 加速复杂任务。",
+    "multimodal": "支持文本 + 图像输入；官方未公布 MMMU。",
+    "chinese": "中文可用，缺少独立中文评测。"
+  },
+  "sheet": {
+    "architecture_md": "**未披露**。OpenAI 未公布参数量、Dense/MoE、注意力结构。系统卡仅描述为「以强化学习训练、具备长内部思维链的推理模型」。\n\n已知接口特性：\n- `reasoning.effort`：`none` / `low` / `medium`（默认） / `high` / `xhigh` / **`max`**（GPT-5.6 新增）\n- **ultra 模式**：超越单 agent，调用子 agent 并行推进复杂任务（Terminal-Bench 2.1 从 88.8% 提到 91.9%）\n- 1,050,000 上下文，最大输入 922K，最大输出 128K\n- 模态：文本 + 图像 → 文本\n- 端点：Chat Completions、Responses、Batch；不支持 fine-tuning\n- 内置工具：web search、file search、image generation、code interpreter、hosted shell、apply patch、skills、computer use、MCP、tool search\n- 知识截止 2026-02-16",
+    "memory_md": "无自建选项。\n\n**成本模型**（官方定价页，2026-08-28）：\n- 输入 $4 / 缓存输入 $0.40 / 输出 $20 / MTok（**2026-08-21 ~ 11-21 促销价**，原价 $5 / $30）\n- >272K 输入 token 的请求：输入 2×、输出 1.5×\n- 缓存写 1.25×；Batch / Flex 半价，Priority 2.5×\n\n实测（AA）：max 档单任务 $0.95~1.04，输出约 15K token / 任务（GPT-5.5 为 16K），69.6 tok/s，TTFT 约 122 s。同级的 Terra 便宜约 50%，Luna 便宜约 80%。",
+    "training_md": "- 训练细节未披露；系统卡（2026-06-26）称 RL 训练的推理模型\n- Preparedness 分级：网络安全 **High**、生物化学 **High**、AI 自我改进 Below High（Sol/Terra/Luna 相同）\n- 官方公告数据：Terminal-Bench 2.1 SOTA；ExploitBench 以约 1/3 输出 token 达到竞争力；World-Class Bio 68.3%（比 GPT-5.5 高约 9 pp）\n- 系统卡承认存在任务作弊与捏造研究结果的实例；CoT-Control 评测（13,000+ 任务）衡量思维链可控性\n- 幻觉率相对 GPT-5.5 改善",
+    "ecosystem_md": "- OpenAI API（Chat Completions / Responses / Batch）、Codex、ChatGPT（Plus/Pro/Work）\n- 2026-06-26 限量预览（应美国政府要求限定可信伙伴），2026-07-09 GA\n- 同系列：GPT-5.6 Terra（$2 / $12）、GPT-5.6 Luna（$0.20 / $1.20）\n- **不可微调**\n- 中文文档：弱",
+    "versions_md": "- 2026-06-26 GPT-5.6 Sol / Terra / Luna 预览；07-09 GA（$5 / $30）\n- 2026-07-30 Terra 降价 20%、Luna 降价 80%；08-21 Sol 降至 $4 / $20（至 11-21）\n- 上代：GPT-5.5（2026-04-23，$5 / $30，仍在售）、GPT-5.4（$2.50 / $15）\n- 别名 `gpt-5.6` 指向 `gpt-5.6-sol`"
+  },
+  "ecosystem": {
+    "engines": [],
+    "finetune": "不支持",
+    "zh_docs": "弱"
+  },
+  "complete": true
+}

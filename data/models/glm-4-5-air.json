@@ -1,5 +1,100 @@
-{"id":"glm-4-5-air","name":"GLM-4.5-Air","name_zh":"智谱 GLM-4.5 Air","aliases":["glm-4.5-air"],"vendor":"Z.ai","vendor_zh":"智谱","family":"GLM-4.5","license":"MIT","license_commercial":true,"openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/zai-org/GLM-4.5-Air","status":"current","released_at":"2025-07-28","updated_at":"2025-12-20","modalities":["text","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"moe","total_params":"106B","active_params":"12B","total_params_b":106,"active_params_b":12,"experts":128,"active_experts":8,"shared_expert":true,"layers":46,"hidden_size":4096,"kv_heads":8,"head_dim":128,"attention":"GQA（96 Q / 8 KV）","undisclosed":false},"context":{"max_tokens":131072,"display":"128K","max_output":96000},"memory":{"weight_gb":{"bf16":220,"fp8":110,"q4":65},"kv_per_token_kib":184,"estimated":true,"ref_hw_80gb":"Q4 65 GB 单卡可跑","ref_hw_8x80gb":"BF16"},
-"pricing":{"input_per_m":0.2,"output_per_m":1.1,"currency":"USD","source":"Z.ai 开放平台","as_of":"2025-12-20"},
-"links":{"official":"https://z.ai/","hf":"https://huggingface.co/zai-org/GLM-4.5-Air","github":"https://github.com/zai-org/GLM-4.5","paper":"https://arxiv.org/abs/2508.06471"},
-"copy":{"one_liner":"单卡 80GB 可跑的 agent 编程 MoE，MIT 许可。","highlights":["Q4 约 65 GB，单卡 80GB 或 Mac 128GB 可跑","SWE-bench Verified 57.6%（官方）","MIT"],"pitfalls":["24GB 卡不可行","知识广度一般","GLM-4.6 未出 Air 版（截至数据日期）"],"logic_ability":"工程型推理为主，思考可开关；考试型中上。","best_for":["单卡 agent 编程服务"],"not_for":["消费级 24GB"]},"capability_notes":{},"ecosystem":{"engines":["vLLM","SGLang","llama.cpp"],"zh_docs":"有"},"complete":false}
+{
+ "id": "glm-4-5-air",
+ "name": "GLM-4.5-Air",
+ "name_zh": "智谱 GLM-4.5 Air",
+ "aliases": [
+  "glm-4.5-air"
+ ],
+ "vendor": "Z.ai",
+ "vendor_zh": "智谱",
+ "family": "GLM-4.5",
+ "license": "MIT",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/zai-org/GLM-4.5-Air",
+ "status": "superseded",
+ "released_at": "2025-07-28",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "106B",
+  "active_params": "12B",
+  "total_params_b": 106,
+  "active_params_b": 12,
+  "experts": 128,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 46,
+  "hidden_size": 4096,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（96 Q / 8 KV）",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 96000
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 220,
+   "fp8": 110,
+   "q4": 65
+  },
+  "kv_per_token_kib": 184,
+  "estimated": true,
+  "ref_hw_80gb": "Q4 65 GB 单卡可跑",
+  "ref_hw_8x80gb": "BF16"
+ },
+ "pricing": {
+  "input_per_m": 0.2,
+  "output_per_m": 1.1,
+  "currency": "USD",
+  "source": "Z.ai 开放平台",
+  "as_of": "2025-12-20"
+ },
+ "links": {
+  "official": "https://z.ai/",
+  "hf": "https://huggingface.co/zai-org/GLM-4.5-Air",
+  "github": "https://github.com/zai-org/GLM-4.5",
+  "paper": "https://arxiv.org/abs/2508.06471"
+ },
+ "copy": {
+  "one_liner": "单卡 80GB 可跑的 agent 编程 MoE，MIT 许可。",
+  "highlights": [
+   "Q4 约 65 GB，单卡 80GB 或 Mac 128GB 可跑",
+   "SWE-bench Verified 57.6%（官方）",
+   "MIT"
+  ],
+  "pitfalls": [
+   "24GB 卡不可行",
+   "知识广度一般",
+   "GLM-4.6 未出 Air 版（截至数据日期）"
+  ],
+  "logic_ability": "工程型推理为主，思考可开关；考试型中上。",
+  "best_for": [
+   "单卡 agent 编程服务"
+  ],
+  "not_for": [
+   "消费级 24GB"
+  ]
+ },
+ "capability_notes": {},
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp"
+  ],
+  "zh_docs": "有"
+ },
+ "complete": false,
+ "superseded_by": "glm-5-3-flash"
+}

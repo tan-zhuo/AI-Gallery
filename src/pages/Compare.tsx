@@ -12,6 +12,7 @@ import { CapabilityRadar } from '@/components/charts/Radar'
 import { radarFor } from '@/lib/capabilities'
 import type { Model } from '@/lib/types'
 import { Link } from 'react-router-dom'
+import { VendorLogo } from '@/components/ui/VendorLogo'
 
 const COLORS = ['var(--accent)', 'var(--open)', 'var(--community)', 'var(--down)']
 
@@ -53,7 +54,7 @@ export default function Compare() {
                 {sel.map((m, i) => (
                   <th key={m.id} className="px-3 py-3 text-left font-normal min-w-[180px]">
                     <div className="flex items-start justify-between gap-2">
-                      <div><Link to={`/models/${m.id}`} className="font-semibold hover:underline" style={{ color: COLORS[i] }}>{m.name}</Link><div className="text-xs text-muted">{m.vendor}</div></div>
+                      <div className="flex items-center gap-2 min-w-0"><VendorLogo vendor={m.vendor} size={32} /><div className="min-w-0"><Link to={`/models/${m.id}`} className="font-semibold hover:underline" style={{ color: COLORS[i] }}>{m.name}</Link><div className="text-xs text-muted">{m.vendor}</div></div></div>
                       <button type="button" onClick={() => remove(m.id)} className="text-muted hover:text-text text-xs" aria-label="移除">✕</button>
                     </div>
                   </th>

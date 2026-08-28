@@ -1,0 +1,80 @@
+{
+  "id": "gpt-5-6-luna",
+  "name": "GPT-5.6 Luna",
+  "name_zh": "GPT-5.6 经济档",
+  "aliases": [
+    "gpt-5.6-luna",
+    "Luna"
+  ],
+  "vendor": "OpenAI",
+  "family": "GPT-5.6",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-07-09",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "image",
+    "tools",
+    "computer-use"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+    "type": "unknown",
+    "undisclosed": true,
+    "notes": "未披露。GPT-5.6 系列最小档（对应此前的 nano 定位），支持 none~max 六档 reasoning.effort。"
+  },
+  "context": {
+    "max_tokens": 1050000,
+    "display": "1M",
+    "max_output": 128000
+  },
+  "memory": {
+    "weight_gb": {},
+    "estimated": false
+  },
+  "pricing": {
+    "input_per_m": 0.2,
+    "output_per_m": 1.2,
+    "currency": "USD",
+    "source": "OpenAI 官方定价页（developers.openai.com）",
+    "as_of": "2026-08-28",
+    "note": "2026-07-30 降价 80% 后价格"
+  },
+  "links": {
+    "official": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
+    "pricing": "https://developers.openai.com/api/docs/pricing",
+    "paper": "https://openai.com/index/gpt-5-6/"
+  },
+  "copy": {
+    "one_liner": "GPT-5.6 最便宜档，$0.20 / $1.20，AA 指数 51。",
+    "highlights": [
+      "$0.20 / $1.20，2026-07-30 降价 80%，单任务成本约为 Sol 的 1/5",
+      "AA 智能指数 51、Coding Agent Index 75，仍带 1.05M 上下文与全部工具",
+      "支持 max 推理档，可按需拉高深度"
+    ],
+    "pitfalls": [
+      "知识广度与复杂 agent 能力明显弱于 Sol / Terra",
+      "官方未单独公布基准分数",
+      "无自建，且不支持微调"
+    ],
+    "logic_ability": "AA 智能指数 51（max 档），适合批量分类、抽取与轻量推理；复杂 agent 任务应上 Terra 或 Sol。",
+    "best_for": [
+      "批量分类 / 抽取",
+      "高并发低价值调用",
+      "轻量推理"
+    ],
+    "not_for": [
+      "复杂 agent",
+      "私有化部署"
+    ]
+  },
+  "capability_notes": {
+    "reasoning": "AA 智能指数 51（max 档）。",
+    "coding": "AA Coding Agent Index 75。"
+  },
+  "complete": false
+}

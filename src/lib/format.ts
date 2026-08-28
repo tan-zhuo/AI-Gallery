@@ -21,6 +21,7 @@ export function formatDate(d?: string): string {
 }
 
 export function priceLabel(m: Model): string {
+  if (m.pricing?.input_per_m === 0 && !m.pricing.output_per_m) return '免费层'
   if (m.pricing?.input_per_m != null) return formatPrice(m.pricing.input_per_m, m.pricing.output_per_m)
   return m.weights_available ? '自建' : '—'
 }

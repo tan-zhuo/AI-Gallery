@@ -1,5 +1,74 @@
-{"id":"gemini-2-5-pro","name":"Gemini 2.5 Pro","aliases":["gemini-2.5-pro"],"vendor":"Google","vendor_zh":"谷歌","family":"Gemini 2.5","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"superseded","superseded_by":"gemini-3-pro","released_at":"2025-06-17","updated_at":"2025-12-20","modalities":["text","image","audio","video","tools"],"reasoning_mode":"default-on",
-"architecture":{"type":"unknown","undisclosed":true,"notes":"官方称为稀疏 MoE。"},"context":{"max_tokens":1048576,"display":"1M","max_output":65536},"memory":{"weight_gb":{},"estimated":false},
-"pricing":{"input_per_m":1.25,"output_per_m":10,"currency":"USD","source":"Google AI 定价页","as_of":"2025-12-20","note":">200K：$2.5 / $15"},
-"links":{"official":"https://deepmind.google/models/gemini/pro/","pricing":"https://ai.google.dev/pricing"},
-"copy":{"one_liner":"2025 年中的多模态旗舰，1M 上下文，已被 Gemini 3 Pro 替代。","highlights":["1M 上下文","视频 / 音频原生输入","GPQA 86.4%"],"pitfalls":["已被 Gemini 3 Pro 替代","代码 agent 弱于 Claude","无自建"],"logic_ability":"考试型推理强，工程型中上。","best_for":["长多模态输入"],"not_for":["新项目（用 3 Pro）"]},"capability_notes":{},"complete":false}
+{
+ "id": "gemini-2-5-pro",
+ "name": "Gemini 2.5 Pro",
+ "aliases": [
+  "gemini-2.5-pro"
+ ],
+ "vendor": "Google",
+ "vendor_zh": "谷歌",
+ "family": "Gemini 2.5",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "superseded_by": "gemini-3-1-pro",
+ "released_at": "2025-06-17",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "官方称为稀疏 MoE。"
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 1.25,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "Google AI 定价页",
+  "as_of": "2025-12-20",
+  "note": ">200K：$2.5 / $15"
+ },
+ "links": {
+  "official": "https://deepmind.google/models/gemini/pro/",
+  "pricing": "https://ai.google.dev/pricing"
+ },
+ "copy": {
+  "one_liner": "2025 年中的多模态旗舰，1M 上下文，已被 Gemini 3 Pro 替代。",
+  "highlights": [
+   "1M 上下文",
+   "视频 / 音频原生输入",
+   "GPQA 86.4%"
+  ],
+  "pitfalls": [
+   "已被 Gemini 3 Pro 替代",
+   "代码 agent 弱于 Claude",
+   "无自建"
+  ],
+  "logic_ability": "考试型推理强，工程型中上。",
+  "best_for": [
+   "长多模态输入"
+  ],
+  "not_for": [
+   "新项目（用 3 Pro）"
+  ]
+ },
+ "capability_notes": {},
+ "complete": false
+}

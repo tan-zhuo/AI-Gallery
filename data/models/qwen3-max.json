@@ -1,5 +1,74 @@
-{"id":"qwen3-max","name":"Qwen3-Max","name_zh":"通义千问 3 Max","aliases":["qwen3-max","qwen3-max-2025-09-23"],"vendor":"Alibaba","vendor_zh":"阿里巴巴","family":"Qwen3","license":"Proprietary","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2025-09-23","updated_at":"2025-12-20","modalities":["text","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"moe","total_params":"1T+","undisclosed":true,"notes":"官方仅称「超过 1T 参数 MoE」，细节未披露；仅 API。"},"context":{"max_tokens":262144,"display":"256K"},"memory":{"weight_gb":{},"estimated":false},
-"pricing":{"input_per_m":1.2,"output_per_m":6,"currency":"USD","source":"阿里云百炼国际站（≤32K 档）","as_of":"2025-12-20","note":"阶梯计价"},
-"links":{"official":"https://qwen.ai/","pricing":"https://www.alibabacloud.com/help/en/model-studio/models"},
-"copy":{"one_liner":"Qwen 系列仅 API 的 1T+ 旗舰，中文与 agent 强。","highlights":["1T+ MoE","SWE-bench Verified 69.6%（官方）","中文 / 阿里云生态"],"pitfalls":["仅 API，不开源（与 Qwen3 开源系列区分）","国际站可用性 / 合规按地区","参数细节未披露"],"logic_ability":"工程型与中文推理强；考试型推理 Thinking 版另计。","best_for":["中文企业应用","阿里云生态"],"not_for":["需要权重"]},"capability_notes":{},"complete":false}
+{
+ "id": "qwen3-max",
+ "name": "Qwen3-Max",
+ "name_zh": "通义千问 3 Max",
+ "aliases": [
+  "qwen3-max",
+  "qwen3-max-2025-09-23"
+ ],
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen3",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "released_at": "2025-09-23",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "1T+",
+  "undisclosed": true,
+  "notes": "官方仅称「超过 1T 参数 MoE」，细节未披露；仅 API。"
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 1.2,
+  "output_per_m": 6,
+  "currency": "USD",
+  "source": "阿里云百炼国际站（≤32K 档）",
+  "as_of": "2025-12-20",
+  "note": "阶梯计价"
+ },
+ "links": {
+  "official": "https://qwen.ai/",
+  "pricing": "https://www.alibabacloud.com/help/en/model-studio/models"
+ },
+ "copy": {
+  "one_liner": "Qwen 系列仅 API 的 1T+ 旗舰，中文与 agent 强。",
+  "highlights": [
+   "1T+ MoE",
+   "SWE-bench Verified 69.6%（官方）",
+   "中文 / 阿里云生态"
+  ],
+  "pitfalls": [
+   "仅 API，不开源（与 Qwen3 开源系列区分）",
+   "国际站可用性 / 合规按地区",
+   "参数细节未披露"
+  ],
+  "logic_ability": "工程型与中文推理强；考试型推理 Thinking 版另计。",
+  "best_for": [
+   "中文企业应用",
+   "阿里云生态"
+  ],
+  "not_for": [
+   "需要权重"
+  ]
+ },
+ "capability_notes": {},
+ "complete": false,
+ "superseded_by": "qwen3-8-2-4t-a95b"
+}

@@ -1,62 +1,123 @@
 {
-  "id": "qwen3-next-80b-a3b-thinking",
-  "name": "Qwen3-Next-80B-A3B-Thinking",
-  "name_zh": "通义千问 3 Next · 80B 混合注意力",
-  "aliases": ["Qwen3 Next", "qwen3-next-80b"],
-  "vendor": "Alibaba",
-  "vendor_zh": "阿里巴巴",
-  "family": "Qwen3-Next",
-  "license": "Apache-2.0",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking",
-  "status": "current",
-  "released_at": "2025-09-11",
-  "updated_at": "2025-12-20",
-  "modalities": ["text", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": {
-    "type": "hybrid", "total_params": "80B", "active_params": "3B", "total_params_b": 80, "active_params_b": 3,
-    "experts": 512, "active_experts": 10, "shared_expert": true, "layers": 48, "kv_layers": 12, "hidden_size": 2048, "vocab_size": 151936,
-    "kv_heads": 2, "head_dim": 256, "attention": "Gated DeltaNet ×3 + Gated Attention ×1（混合，3:1）",
-    "notes": "48 层中 36 层为 Gated DeltaNet（线性注意力），12 层为门控全注意力（16 Q 头 / 2 KV 头，head_dim 256）。512 专家（10 路由 + 1 共享）。多 token 预测。",
-    "undisclosed": false
+ "id": "qwen3-next-80b-a3b-thinking",
+ "name": "Qwen3-Next-80B-A3B-Thinking",
+ "name_zh": "通义千问 3 Next · 80B 混合注意力",
+ "aliases": [
+  "Qwen3 Next",
+  "qwen3-next-80b"
+ ],
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen3-Next",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking",
+ "status": "superseded",
+ "released_at": "2025-09-11",
+ "updated_at": "2025-12-20",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "80B",
+  "active_params": "3B",
+  "total_params_b": 80,
+  "active_params_b": 3,
+  "experts": 512,
+  "active_experts": 10,
+  "shared_expert": true,
+  "layers": 48,
+  "kv_layers": 12,
+  "hidden_size": 2048,
+  "vocab_size": 151936,
+  "kv_heads": 2,
+  "head_dim": 256,
+  "attention": "Gated DeltaNet ×3 + Gated Attention ×1（混合，3:1）",
+  "notes": "48 层中 36 层为 Gated DeltaNet（线性注意力），12 层为门控全注意力（16 Q 头 / 2 KV 头，head_dim 256）。512 专家（10 路由 + 1 共享）。多 token 预测。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K",
+  "max_output": 32768
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 160,
+   "fp8": 80,
+   "q4": 47
   },
-  "context": { "max_tokens": 262144, "display": "256K", "max_output": 32768 },
-  "memory": {
-    "weight_gb": { "bf16": 160, "fp8": 80, "q4": 47 },
-    "kv_per_token_kib": 24,
-    "kv_note": "仅 12 层全注意力计 KV：2 × 256 × 2 × 12 × 2 B = 24 KiB/token；DeltaNet 层状态与序列长度无关。",
-    "ref_hw_24gb": "不可行（Q4 47 GB）",
-    "ref_hw_80gb": "FP8 80 GB 边缘；Q4 47 GB 舒适，256K 上下文仅需 6 GB KV",
-    "ref_hw_8x80gb": "BF16 高并发",
-    "estimated": true
-  },
-  "pricing": { "input_per_m": 0.15, "output_per_m": 1.5, "currency": "USD", "source": "第三方托管常见价", "as_of": "2025-12-20", "note": "开源权重，社区托管价" },
-  "links": { "official": "https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd", "hf": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking", "github": "https://github.com/QwenLM/Qwen3-Next", "paper": "https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd" },
-  "copy": {
-    "one_liner": "线性注意力混合架构，长上下文吞吐比 235B 高 10 倍。",
-    "highlights": ["Gated DeltaNet 3:1 混合，32K+ 上下文下解码吞吐是 Qwen3-32B 的 10 倍以上", "训练成本仅 235B 的 1/10，推理分数接近 235B-Thinking", "KV Cache 24 KiB/token，256K 上下文只要 6 GB"],
-    "pitfalls": ["新算子：需要 vLLM / SGLang 最新版 + 定制 kernel（flash-linear-attention、causal-conv1d），llama.cpp 支持滞后", "3B 激活 + 线性注意力，精确回忆长文中的细节（needle 类任务）弱于全注意力模型", "512 专家极端稀疏，量化后质量波动大于常规 MoE"],
-    "logic_ability": "考试型推理接近 Qwen3-235B-Thinking（AIME 87.8%、GPQA 77.2%），且长上下文推理成本低得多。工程型推理与长文精确检索是弱项（线性注意力天然的记忆压缩）。思考不可关闭。适合「长输入、短输出、要有推理」的任务。",
-    "best_for": ["超长上下文高吞吐推理", "长文档批处理", "架构研究（DeltaNet 落地样本）"],
-    "not_for": ["需要精确长文回忆", "llama.cpp / 本地量化生态"]
-  },
-  "capability_notes": {
-    "coding": "LiveCodeBench v6 68.7%（官方）。",
-    "reasoning": "GPQA Diamond 77.2%、HLE 13.2%（官方）。",
-    "math": "AIME 2025 87.8%（官方）。",
-    "agent": "BFCL-v3 72.0%（官方）。",
-    "chinese": "中文良好。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：Hybrid（线性 + 全注意力）MoE，80B 总 / 3B 激活。\n\n- 48 层 = 12 × [3 × (Gated DeltaNet → MoE) + 1 × (Gated Attention → MoE)]\n- Gated DeltaNet：线性注意力，32 V 头 / 16 QK 头，head_dim 128，状态固定大小\n- Gated Attention：16 Q 头 / 2 KV 头，head_dim 256，输出门控，仅前 25% 维度用 RoPE\n- MoE：512 专家，激活 10 路由 + 1 共享，专家中间维 512\n- Zero-centered RMSNorm，MTP 多 token 预测\n- 上下文 262K，YaRN 可到 1M\n\n参考：Qwen3-Next 官方博客 / Gated DeltaNet 论文（arXiv 2412.06464）。",
-    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | ≈ 160 GB | 2×80GB |\n| FP8 | ≈ 80 GB | 80GB（边缘）|\n| Q4 | ≈ 47 GB（估） | 48GB / 80GB |\n\n**KV Cache**：仅 12 层全注意力 ≈ 24 KiB/token。256K 上下文 ≈ 6 GB。DeltaNet 层状态固定（每层 ~ 数 MB）。\n\n**参考配置**：\n- 24GB：不可行\n- 80GB：Q4/FP8 + 256K 上下文可行\n- 8×80GB：BF16 高并发",
-    "training_md": "- 预训练 15T token（Qwen3 语料子集）\n- 后训练：Thinking 版由 Qwen3-235B-Thinking 蒸馏 + RL\n- 思考默认且不可关（Instruct 版无思考）\n- 工具调用支持\n- 最大输出 32K",
-    "ecosystem_md": "- HF：Qwen/Qwen3-Next-80B-A3B-Thinking（+ FP8）\n- 引擎：vLLM ≥ 0.10.2、SGLang ≥ 0.5.2（需 flash-linear-attention）；llama.cpp 支持后续跟进\n- 微调：Transformers 主线支持，LoRA 可行\n- 中文文档：有",
-    "versions_md": "- 姊妹：Qwen3-Next-80B-A3B-Instruct\n- 官方称 Qwen3.5 将沿用该架构"
-  },
-  "ecosystem": { "engines": ["vLLM", "SGLang"], "finetune": "LoRA 可行（需新版 Transformers）", "zh_docs": "有" },
-  "complete": true
+  "kv_per_token_kib": 24,
+  "kv_note": "仅 12 层全注意力计 KV：2 × 256 × 2 × 12 × 2 B = 24 KiB/token；DeltaNet 层状态与序列长度无关。",
+  "ref_hw_24gb": "不可行（Q4 47 GB）",
+  "ref_hw_80gb": "FP8 80 GB 边缘；Q4 47 GB 舒适，256K 上下文仅需 6 GB KV",
+  "ref_hw_8x80gb": "BF16 高并发",
+  "estimated": true
+ },
+ "pricing": {
+  "input_per_m": 0.15,
+  "output_per_m": 1.5,
+  "currency": "USD",
+  "source": "第三方托管常见价",
+  "as_of": "2025-12-20",
+  "note": "开源权重，社区托管价"
+ },
+ "links": {
+  "official": "https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd",
+  "hf": "https://huggingface.co/Qwen/Qwen3-Next-80B-A3B-Thinking",
+  "github": "https://github.com/QwenLM/Qwen3-Next",
+  "paper": "https://qwen.ai/blog?id=4074cca80393150c248e508aa62983f9cb7d27cd"
+ },
+ "copy": {
+  "one_liner": "线性注意力混合架构，长上下文吞吐比 235B 高 10 倍。",
+  "highlights": [
+   "Gated DeltaNet 3:1 混合，32K+ 上下文下解码吞吐是 Qwen3-32B 的 10 倍以上",
+   "训练成本仅 235B 的 1/10，推理分数接近 235B-Thinking",
+   "KV Cache 24 KiB/token，256K 上下文只要 6 GB"
+  ],
+  "pitfalls": [
+   "新算子：需要 vLLM / SGLang 最新版 + 定制 kernel（flash-linear-attention、causal-conv1d），llama.cpp 支持滞后",
+   "3B 激活 + 线性注意力，精确回忆长文中的细节（needle 类任务）弱于全注意力模型",
+   "512 专家极端稀疏，量化后质量波动大于常规 MoE"
+  ],
+  "logic_ability": "考试型推理接近 Qwen3-235B-Thinking（AIME 87.8%、GPQA 77.2%），且长上下文推理成本低得多。工程型推理与长文精确检索是弱项（线性注意力天然的记忆压缩）。思考不可关闭。适合「长输入、短输出、要有推理」的任务。",
+  "best_for": [
+   "超长上下文高吞吐推理",
+   "长文档批处理",
+   "架构研究（DeltaNet 落地样本）"
+  ],
+  "not_for": [
+   "需要精确长文回忆",
+   "llama.cpp / 本地量化生态"
+  ]
+ },
+ "capability_notes": {
+  "coding": "LiveCodeBench v6 68.7%（官方）。",
+  "reasoning": "GPQA Diamond 77.2%、HLE 13.2%（官方）。",
+  "math": "AIME 2025 87.8%（官方）。",
+  "agent": "BFCL-v3 72.0%（官方）。",
+  "chinese": "中文良好。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：Hybrid（线性 + 全注意力）MoE，80B 总 / 3B 激活。\n\n- 48 层 = 12 × [3 × (Gated DeltaNet → MoE) + 1 × (Gated Attention → MoE)]\n- Gated DeltaNet：线性注意力，32 V 头 / 16 QK 头，head_dim 128，状态固定大小\n- Gated Attention：16 Q 头 / 2 KV 头，head_dim 256，输出门控，仅前 25% 维度用 RoPE\n- MoE：512 专家，激活 10 路由 + 1 共享，专家中间维 512\n- Zero-centered RMSNorm，MTP 多 token 预测\n- 上下文 262K，YaRN 可到 1M\n\n参考：Qwen3-Next 官方博客 / Gated DeltaNet 论文（arXiv 2412.06464）。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | ≈ 160 GB | 2×80GB |\n| FP8 | ≈ 80 GB | 80GB（边缘）|\n| Q4 | ≈ 47 GB（估） | 48GB / 80GB |\n\n**KV Cache**：仅 12 层全注意力 ≈ 24 KiB/token。256K 上下文 ≈ 6 GB。DeltaNet 层状态固定（每层 ~ 数 MB）。\n\n**参考配置**：\n- 24GB：不可行\n- 80GB：Q4/FP8 + 256K 上下文可行\n- 8×80GB：BF16 高并发",
+  "training_md": "- 预训练 15T token（Qwen3 语料子集）\n- 后训练：Thinking 版由 Qwen3-235B-Thinking 蒸馏 + RL\n- 思考默认且不可关（Instruct 版无思考）\n- 工具调用支持\n- 最大输出 32K",
+  "ecosystem_md": "- HF：Qwen/Qwen3-Next-80B-A3B-Thinking（+ FP8）\n- 引擎：vLLM ≥ 0.10.2、SGLang ≥ 0.5.2（需 flash-linear-attention）；llama.cpp 支持后续跟进\n- 微调：Transformers 主线支持，LoRA 可行\n- 中文文档：有",
+  "versions_md": "- 姊妹：Qwen3-Next-80B-A3B-Instruct\n- 官方称 Qwen3.5 将沿用该架构"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang"
+  ],
+  "finetune": "LoRA 可行（需新版 Transformers）",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "superseded_by": "qwen3-8-27b"
 }

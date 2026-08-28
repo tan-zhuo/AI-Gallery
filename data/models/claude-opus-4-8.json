@@ -1,0 +1,83 @@
+{
+  "id": "claude-opus-4-8",
+  "name": "Claude Opus 4.8",
+  "name_zh": "Claude 4.8 顶配（已被 Opus 5 取代）",
+  "aliases": [
+    "claude-opus-4-8",
+    "Opus 4.8",
+    "anthropic.claude-opus-4-8"
+  ],
+  "vendor": "Anthropic",
+  "family": "Claude 4",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "superseded",
+  "superseded_by": "claude-opus-5",
+  "released_at": "2026-05-28",
+  "updated_at": "2026-08-28",
+  "modalities": [
+    "text",
+    "image",
+    "tools",
+    "computer-use"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+    "type": "unknown",
+    "undisclosed": true,
+    "notes": "未披露。adaptive thinking 需显式开启；effort 默认 high；fast mode 2.5× 速度；官方已标 Legacy。"
+  },
+  "context": {
+    "max_tokens": 1000000,
+    "display": "1M",
+    "max_output": 128000
+  },
+  "memory": {
+    "weight_gb": {},
+    "estimated": false
+  },
+  "pricing": {
+    "input_per_m": 5,
+    "output_per_m": 25,
+    "currency": "USD",
+    "source": "Anthropic 官方定价页（platform.claude.com）",
+    "as_of": "2026-08-28",
+    "note": "Fast mode $10 / $50"
+  },
+  "links": {
+    "official": "https://platform.claude.com/docs/en/models/opus-4-8/overview",
+    "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
+    "paper": "https://www.anthropic.com/news/claude-opus-4-8"
+  },
+  "copy": {
+    "one_liner": "Opus 4.x 末代，SWE-bench 88.6%，已被 Opus 5 取代",
+    "highlights": [
+      "SWE-bench Verified 88.6%、GPQA Diamond 93.6%、OSWorld-Verified 83.4%（官方公告表）",
+      "Fable 5 拒绝请求时的官方回退模型，仍在所有平台提供",
+      "与 Opus 5 同价 $5 / $25，思考默认关闭，迁移成本低"
+    ],
+    "pitfalls": [
+      "官方状态 Legacy：Frontier-Bench 仅 18.7%，不到 Opus 5 一半，新项目无理由选它",
+      "ARC-AGI-3 仅 1.5%，抽象推理明显落后",
+      "退役承诺仅到 2027-05-28，应尽快迁移"
+    ],
+    "logic_ability": "上一代旗舰水平：GPQA Diamond 93.6%、HLE（带工具）57.9%、GDPval-AA 1890（官方公告表，Vellum 转录）。相比 Opus 5，深度推理与长任务差距显著（Frontier-Bench 18.7 vs 43.3）。",
+    "best_for": [
+      "Fable 5 回退目标",
+      "已有 Opus 4.x 提示词的存量系统"
+    ],
+    "not_for": [
+      "新项目",
+      "需要私有化部署的合规场景"
+    ]
+  },
+  "capability_notes": {
+    "coding": "SWE-bench Verified 88.6%、SWE-bench Pro 69.2%、Terminal-Bench 2.1 74.6%（官方公告表，Vellum 转录）。",
+    "reasoning": "GPQA Diamond 93.6%、HLE（带工具）57.9%。",
+    "agent": "OSWorld-Verified 83.4%、Finance Agent v2 53.9%。",
+    "chinese": "中文可用，缺少独立中文评测。"
+  },
+  "complete": false
+}
