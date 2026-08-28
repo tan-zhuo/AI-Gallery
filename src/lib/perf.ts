@@ -6,6 +6,7 @@ import { paramsB } from './format'
 export interface Gpu {
   id: string; name: string; tier: 'consumer' | 'workstation' | 'datacenter' | 'mac'
   vram_gb: number; bandwidth_gbs: number; fp16_tflops: number; price_hint: string; price_cny: number; max_count: number; note?: string
+  tdp_w: number; interconnect: 'nvlink' | 'pcie' | 'unified'; node_base_cny: number; node_base_w: number; cloud_usd_h?: number
 }
 export const GPUS = hardwareJson as Gpu[]
 export const TIER_LABEL: Record<Gpu['tier'], string> = { consumer: '消费级', workstation: '工作站', datacenter: '数据中心', mac: '统一内存' }

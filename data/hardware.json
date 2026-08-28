@@ -8,7 +8,12 @@
   "fp16_tflops": 25,
   "price_hint": "≈¥2,000",
   "price_cny": 2000,
-  "max_count": 2
+  "max_count": 2,
+  "tdp_w": 170,
+  "interconnect": "pcie",
+  "node_base_cny": 8000,
+  "node_base_w": 150,
+  "cloud_usd_h": null
  },
  {
   "id": "rtx4060ti16",
@@ -19,7 +24,12 @@
   "fp16_tflops": 22,
   "price_hint": "≈¥3,500",
   "max_count": 2,
-  "price_cny": 3500
+  "price_cny": 3500,
+  "tdp_w": 165,
+  "interconnect": "pcie",
+  "node_base_cny": 8000,
+  "node_base_w": 150,
+  "cloud_usd_h": null
  },
  {
   "id": "rtx3090",
@@ -30,7 +40,12 @@
   "fp16_tflops": 71,
   "price_hint": "二手 ≈¥5,000",
   "max_count": 4,
-  "price_cny": 5000
+  "price_cny": 5000,
+  "tdp_w": 350,
+  "interconnect": "pcie",
+  "node_base_cny": 8000,
+  "node_base_w": 150,
+  "cloud_usd_h": null
  },
  {
   "id": "rtx4070tis",
@@ -41,7 +56,12 @@
   "fp16_tflops": 44,
   "price_hint": "≈¥6,000",
   "price_cny": 6000,
-  "max_count": 2
+  "max_count": 2,
+  "tdp_w": 285,
+  "interconnect": "pcie",
+  "node_base_cny": 8000,
+  "node_base_w": 150,
+  "cloud_usd_h": null
  },
  {
   "id": "rtx5070ti",
@@ -52,7 +72,12 @@
   "fp16_tflops": 88,
   "price_hint": "≈¥6,500",
   "price_cny": 6500,
-  "max_count": 2
+  "max_count": 2,
+  "tdp_w": 300,
+  "interconnect": "pcie",
+  "node_base_cny": 8000,
+  "node_base_w": 150,
+  "cloud_usd_h": null
  },
  {
   "id": "rtx4080s",
@@ -63,7 +88,12 @@
   "fp16_tflops": 52,
   "price_hint": "≈¥8,000",
   "price_cny": 8000,
-  "max_count": 2
+  "max_count": 2,
+  "tdp_w": 320,
+  "interconnect": "pcie",
+  "node_base_cny": 8000,
+  "node_base_w": 150,
+  "cloud_usd_h": null
  },
  {
   "id": "rtx5080",
@@ -74,7 +104,12 @@
   "fp16_tflops": 112,
   "price_hint": "≈¥8,500",
   "price_cny": 8500,
-  "max_count": 2
+  "max_count": 2,
+  "tdp_w": 360,
+  "interconnect": "pcie",
+  "node_base_cny": 8000,
+  "node_base_w": 150,
+  "cloud_usd_h": null
  },
  {
   "id": "rtx4090",
@@ -85,7 +120,12 @@
   "fp16_tflops": 165,
   "price_hint": "≈¥13,000",
   "max_count": 4,
-  "price_cny": 13000
+  "price_cny": 13000,
+  "tdp_w": 450,
+  "interconnect": "pcie",
+  "node_base_cny": 8000,
+  "node_base_w": 150,
+  "cloud_usd_h": 0.4
  },
  {
   "id": "rtx5090",
@@ -96,7 +136,12 @@
   "fp16_tflops": 210,
   "price_hint": "≈¥16,000",
   "max_count": 4,
-  "price_cny": 16000
+  "price_cny": 16000,
+  "tdp_w": 575,
+  "interconnect": "pcie",
+  "node_base_cny": 8000,
+  "node_base_w": 150,
+  "cloud_usd_h": 0.6
  },
  {
   "id": "l4",
@@ -108,7 +153,12 @@
   "price_hint": "≈¥15,000 / 云 ≈$0.5/h",
   "price_cny": 15000,
   "max_count": 8,
-  "note": "带宽低，解码慢"
+  "note": "带宽低，解码慢",
+  "tdp_w": 72,
+  "interconnect": "pcie",
+  "node_base_cny": 20000,
+  "node_base_w": 300,
+  "cloud_usd_h": 0.5
  },
  {
   "id": "rtxa6000",
@@ -119,7 +169,12 @@
   "fp16_tflops": 77,
   "price_hint": "≈¥35,000",
   "price_cny": 35000,
-  "max_count": 4
+  "max_count": 4,
+  "tdp_w": 300,
+  "interconnect": "pcie",
+  "node_base_cny": 20000,
+  "node_base_w": 300,
+  "cloud_usd_h": null
  },
  {
   "id": "rtx6000ada",
@@ -130,7 +185,12 @@
   "fp16_tflops": 91,
   "price_hint": "≈¥50,000",
   "max_count": 4,
-  "price_cny": 50000
+  "price_cny": 50000,
+  "tdp_w": 300,
+  "interconnect": "pcie",
+  "node_base_cny": 20000,
+  "node_base_w": 300,
+  "cloud_usd_h": 0.9
  },
  {
   "id": "l40s",
@@ -141,7 +201,12 @@
   "fp16_tflops": 91,
   "price_hint": "≈¥50,000 / 云 ≈$1/h",
   "price_cny": 50000,
-  "max_count": 8
+  "max_count": 8,
+  "tdp_w": 350,
+  "interconnect": "pcie",
+  "node_base_cny": 20000,
+  "node_base_w": 300,
+  "cloud_usd_h": 1.0
  },
  {
   "id": "rtxpro6000",
@@ -152,7 +217,12 @@
   "fp16_tflops": 250,
   "price_hint": "≈¥70,000",
   "max_count": 8,
-  "price_cny": 70000
+  "price_cny": 70000,
+  "tdp_w": 600,
+  "interconnect": "nvlink",
+  "node_base_cny": 20000,
+  "node_base_w": 300,
+  "cloud_usd_h": 1.5
  },
  {
   "id": "a10",
@@ -163,7 +233,12 @@
   "fp16_tflops": 62,
   "price_hint": "云 ≈$0.6/h",
   "price_cny": 12000,
-  "max_count": 8
+  "max_count": 8,
+  "tdp_w": 150,
+  "interconnect": "pcie",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": 0.6
  },
  {
   "id": "a100-40",
@@ -174,7 +249,12 @@
   "fp16_tflops": 312,
   "price_hint": "云 ≈$1.2/h",
   "price_cny": 45000,
-  "max_count": 8
+  "max_count": 8,
+  "tdp_w": 400,
+  "interconnect": "nvlink",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": 1.2
  },
  {
   "id": "a100-80",
@@ -185,7 +265,12 @@
   "fp16_tflops": 312,
   "price_hint": "云 ≈$1.5/h",
   "max_count": 8,
-  "price_cny": 60000
+  "price_cny": 60000,
+  "tdp_w": 400,
+  "interconnect": "nvlink",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": 1.5
  },
  {
   "id": "h20",
@@ -197,7 +282,12 @@
   "price_hint": "≈¥100,000",
   "price_cny": 100000,
   "max_count": 8,
-  "note": "中国特供：带宽高、算力低，预填充慢"
+  "note": "中国特供：带宽高、算力低，预填充慢",
+  "tdp_w": 400,
+  "interconnect": "pcie",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": null
  },
  {
   "id": "ascend910b",
@@ -209,7 +299,12 @@
   "price_hint": "≈¥120,000（估）",
   "price_cny": 120000,
   "max_count": 8,
-  "note": "需 MindIE / vLLM-Ascend，算子覆盖有限"
+  "note": "需 MindIE / vLLM-Ascend，算子覆盖有限",
+  "tdp_w": 400,
+  "interconnect": "nvlink",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": null
  },
  {
   "id": "h100-pcie",
@@ -220,7 +315,12 @@
   "fp16_tflops": 756,
   "price_hint": "云 ≈$2/h",
   "price_cny": 180000,
-  "max_count": 8
+  "max_count": 8,
+  "tdp_w": 350,
+  "interconnect": "pcie",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": 2.0
  },
  {
   "id": "h100-80",
@@ -231,7 +331,12 @@
   "fp16_tflops": 989,
   "price_hint": "云 ≈$2.5/h",
   "max_count": 8,
-  "price_cny": 200000
+  "price_cny": 200000,
+  "tdp_w": 700,
+  "interconnect": "nvlink",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": 2.5
  },
  {
   "id": "mi300x",
@@ -243,7 +348,12 @@
   "price_hint": "云 ≈$3/h",
   "price_cny": 250000,
   "max_count": 8,
-  "note": "ROCm 生态，vLLM 支持良好"
+  "note": "ROCm 生态，vLLM 支持良好",
+  "tdp_w": 750,
+  "interconnect": "nvlink",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": 3.0
  },
  {
   "id": "h200",
@@ -254,7 +364,12 @@
   "fp16_tflops": 989,
   "price_hint": "云 ≈$3.5/h",
   "max_count": 8,
-  "price_cny": 260000
+  "price_cny": 260000,
+  "tdp_w": 700,
+  "interconnect": "nvlink",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": 3.5
  },
  {
   "id": "b200",
@@ -265,7 +380,12 @@
   "fp16_tflops": 2250,
   "price_hint": "云 ≈$6/h",
   "max_count": 8,
-  "price_cny": 350000
+  "price_cny": 350000,
+  "tdp_w": 1000,
+  "interconnect": "nvlink",
+  "node_base_cny": 120000,
+  "node_base_w": 800,
+  "cloud_usd_h": 6.0
  },
  {
   "id": "m4pro64",
@@ -277,7 +397,12 @@
   "price_hint": "≈¥25,000",
   "price_cny": 25000,
   "max_count": 1,
-  "note": "统一内存，按 56GB 可用计"
+  "note": "统一内存，按 56GB 可用计",
+  "tdp_w": 70,
+  "interconnect": "unified",
+  "node_base_cny": 0,
+  "node_base_w": 0,
+  "cloud_usd_h": null
  },
  {
   "id": "dgxspark",
@@ -289,7 +414,12 @@
   "price_hint": "≈¥30,000",
   "max_count": 2,
   "note": "统一内存，带宽偏低",
-  "price_cny": 30000
+  "price_cny": 30000,
+  "tdp_w": 240,
+  "interconnect": "unified",
+  "node_base_cny": 0,
+  "node_base_w": 0,
+  "cloud_usd_h": null
  },
  {
   "id": "m4max128",
@@ -301,7 +431,12 @@
   "price_hint": "≈¥35,000",
   "max_count": 1,
   "note": "统一内存，按 120GB 可用计",
-  "price_cny": 35000
+  "price_cny": 35000,
+  "tdp_w": 100,
+  "interconnect": "unified",
+  "node_base_cny": 0,
+  "node_base_w": 0,
+  "cloud_usd_h": null
  },
  {
   "id": "m3ultra256",
@@ -313,7 +448,12 @@
   "price_hint": "≈¥50,000",
   "price_cny": 50000,
   "max_count": 1,
-  "note": "统一内存，按 240GB 可用计"
+  "note": "统一内存，按 240GB 可用计",
+  "tdp_w": 180,
+  "interconnect": "unified",
+  "node_base_cny": 0,
+  "node_base_w": 0,
+  "cloud_usd_h": null
  },
  {
   "id": "m3ultra512",
@@ -325,6 +465,11 @@
   "price_hint": "≈¥75,000",
   "max_count": 1,
   "note": "统一内存，按 490GB 可用计",
-  "price_cny": 75000
+  "price_cny": 75000,
+  "tdp_w": 180,
+  "interconnect": "unified",
+  "node_base_cny": 0,
+  "node_base_w": 0,
+  "cloud_usd_h": null
  }
 ]
