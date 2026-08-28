@@ -1,5 +1,16 @@
 [
  {
+  "id": "rtx3060-12",
+  "name": "RTX 3060 12GB",
+  "tier": "consumer",
+  "vram_gb": 12,
+  "bandwidth_gbs": 360,
+  "fp16_tflops": 25,
+  "price_hint": "≈¥2,000",
+  "price_cny": 2000,
+  "max_count": 2
+ },
+ {
   "id": "rtx4060ti16",
   "name": "RTX 4060 Ti 16GB",
   "tier": "consumer",
@@ -20,6 +31,50 @@
   "price_hint": "二手 ≈¥5,000",
   "max_count": 4,
   "price_cny": 5000
+ },
+ {
+  "id": "rtx4070tis",
+  "name": "RTX 4070 Ti Super 16GB",
+  "tier": "consumer",
+  "vram_gb": 16,
+  "bandwidth_gbs": 672,
+  "fp16_tflops": 44,
+  "price_hint": "≈¥6,000",
+  "price_cny": 6000,
+  "max_count": 2
+ },
+ {
+  "id": "rtx5070ti",
+  "name": "RTX 5070 Ti 16GB",
+  "tier": "consumer",
+  "vram_gb": 16,
+  "bandwidth_gbs": 896,
+  "fp16_tflops": 88,
+  "price_hint": "≈¥6,500",
+  "price_cny": 6500,
+  "max_count": 2
+ },
+ {
+  "id": "rtx4080s",
+  "name": "RTX 4080 Super 16GB",
+  "tier": "consumer",
+  "vram_gb": 16,
+  "bandwidth_gbs": 736,
+  "fp16_tflops": 52,
+  "price_hint": "≈¥8,000",
+  "price_cny": 8000,
+  "max_count": 2
+ },
+ {
+  "id": "rtx5080",
+  "name": "RTX 5080 16GB",
+  "tier": "consumer",
+  "vram_gb": 16,
+  "bandwidth_gbs": 960,
+  "fp16_tflops": 112,
+  "price_hint": "≈¥8,500",
+  "price_cny": 8500,
+  "max_count": 2
  },
  {
   "id": "rtx4090",
@@ -44,6 +99,29 @@
   "price_cny": 16000
  },
  {
+  "id": "l4",
+  "name": "L4 24GB",
+  "tier": "workstation",
+  "vram_gb": 24,
+  "bandwidth_gbs": 300,
+  "fp16_tflops": 60,
+  "price_hint": "≈¥15,000 / 云 ≈$0.5/h",
+  "price_cny": 15000,
+  "max_count": 8,
+  "note": "带宽低，解码慢"
+ },
+ {
+  "id": "rtxa6000",
+  "name": "RTX A6000 48GB",
+  "tier": "workstation",
+  "vram_gb": 48,
+  "bandwidth_gbs": 768,
+  "fp16_tflops": 77,
+  "price_hint": "≈¥35,000",
+  "price_cny": 35000,
+  "max_count": 4
+ },
+ {
   "id": "rtx6000ada",
   "name": "RTX 6000 Ada 48GB",
   "tier": "workstation",
@@ -53,6 +131,17 @@
   "price_hint": "≈¥50,000",
   "max_count": 4,
   "price_cny": 50000
+ },
+ {
+  "id": "l40s",
+  "name": "L40S 48GB",
+  "tier": "workstation",
+  "vram_gb": 48,
+  "bandwidth_gbs": 864,
+  "fp16_tflops": 91,
+  "price_hint": "≈¥50,000 / 云 ≈$1/h",
+  "price_cny": 50000,
+  "max_count": 8
  },
  {
   "id": "rtxpro6000",
@@ -66,6 +155,28 @@
   "price_cny": 70000
  },
  {
+  "id": "a10",
+  "name": "A10 24GB",
+  "tier": "datacenter",
+  "vram_gb": 24,
+  "bandwidth_gbs": 600,
+  "fp16_tflops": 62,
+  "price_hint": "云 ≈$0.6/h",
+  "price_cny": 12000,
+  "max_count": 8
+ },
+ {
+  "id": "a100-40",
+  "name": "A100 40GB",
+  "tier": "datacenter",
+  "vram_gb": 40,
+  "bandwidth_gbs": 1555,
+  "fp16_tflops": 312,
+  "price_hint": "云 ≈$1.2/h",
+  "price_cny": 45000,
+  "max_count": 8
+ },
+ {
   "id": "a100-80",
   "name": "A100 80GB",
   "tier": "datacenter",
@@ -77,6 +188,41 @@
   "price_cny": 60000
  },
  {
+  "id": "h20",
+  "name": "H20 96GB",
+  "tier": "datacenter",
+  "vram_gb": 96,
+  "bandwidth_gbs": 4000,
+  "fp16_tflops": 74,
+  "price_hint": "≈¥100,000",
+  "price_cny": 100000,
+  "max_count": 8,
+  "note": "中国特供：带宽高、算力低，预填充慢"
+ },
+ {
+  "id": "ascend910b",
+  "name": "昇腾 Ascend 910B 64GB",
+  "tier": "datacenter",
+  "vram_gb": 64,
+  "bandwidth_gbs": 1600,
+  "fp16_tflops": 280,
+  "price_hint": "≈¥120,000（估）",
+  "price_cny": 120000,
+  "max_count": 8,
+  "note": "需 MindIE / vLLM-Ascend，算子覆盖有限"
+ },
+ {
+  "id": "h100-pcie",
+  "name": "H100 80GB PCIe",
+  "tier": "datacenter",
+  "vram_gb": 80,
+  "bandwidth_gbs": 2000,
+  "fp16_tflops": 756,
+  "price_hint": "云 ≈$2/h",
+  "price_cny": 180000,
+  "max_count": 8
+ },
+ {
   "id": "h100-80",
   "name": "H100 80GB SXM",
   "tier": "datacenter",
@@ -86,6 +232,18 @@
   "price_hint": "云 ≈$2.5/h",
   "max_count": 8,
   "price_cny": 200000
+ },
+ {
+  "id": "mi300x",
+  "name": "AMD MI300X 192GB",
+  "tier": "datacenter",
+  "vram_gb": 192,
+  "bandwidth_gbs": 5300,
+  "fp16_tflops": 1307,
+  "price_hint": "云 ≈$3/h",
+  "price_cny": 250000,
+  "max_count": 8,
+  "note": "ROCm 生态，vLLM 支持良好"
  },
  {
   "id": "h200",
@@ -110,28 +268,16 @@
   "price_cny": 350000
  },
  {
-  "id": "m4max128",
-  "name": "Mac M4 Max 128GB",
+  "id": "m4pro64",
+  "name": "Mac M4 Pro 64GB",
   "tier": "mac",
-  "vram_gb": 120,
-  "bandwidth_gbs": 546,
-  "fp16_tflops": 34,
-  "price_hint": "≈¥35,000",
+  "vram_gb": 56,
+  "bandwidth_gbs": 273,
+  "fp16_tflops": 17,
+  "price_hint": "≈¥25,000",
+  "price_cny": 25000,
   "max_count": 1,
-  "note": "统一内存，按 120GB 可用计",
-  "price_cny": 35000
- },
- {
-  "id": "m3ultra512",
-  "name": "Mac Studio M3 Ultra 512GB",
-  "tier": "mac",
-  "vram_gb": 490,
-  "bandwidth_gbs": 819,
-  "fp16_tflops": 57,
-  "price_hint": "≈¥75,000",
-  "max_count": 1,
-  "note": "统一内存，按 490GB 可用计",
-  "price_cny": 75000
+  "note": "统一内存，按 56GB 可用计"
  },
  {
   "id": "dgxspark",
@@ -144,5 +290,41 @@
   "max_count": 2,
   "note": "统一内存，带宽偏低",
   "price_cny": 30000
+ },
+ {
+  "id": "m4max128",
+  "name": "Mac M4 Max 128GB",
+  "tier": "mac",
+  "vram_gb": 120,
+  "bandwidth_gbs": 546,
+  "fp16_tflops": 34,
+  "price_hint": "≈¥35,000",
+  "max_count": 1,
+  "note": "统一内存，按 120GB 可用计",
+  "price_cny": 35000
+ },
+ {
+  "id": "m3ultra256",
+  "name": "Mac Studio M3 Ultra 256GB",
+  "tier": "mac",
+  "vram_gb": 240,
+  "bandwidth_gbs": 819,
+  "fp16_tflops": 57,
+  "price_hint": "≈¥50,000",
+  "price_cny": 50000,
+  "max_count": 1,
+  "note": "统一内存，按 240GB 可用计"
+ },
+ {
+  "id": "m3ultra512",
+  "name": "Mac Studio M3 Ultra 512GB",
+  "tier": "mac",
+  "vram_gb": 490,
+  "bandwidth_gbs": 819,
+  "fp16_tflops": 57,
+  "price_hint": "≈¥75,000",
+  "max_count": 1,
+  "note": "统一内存，按 490GB 可用计",
+  "price_cny": 75000
  }
 ]

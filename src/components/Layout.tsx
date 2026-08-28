@@ -5,6 +5,7 @@ import { meta } from '@/lib/catalog'
 import { cx } from '@/lib/format'
 import { SearchPalette } from './SearchPalette'
 import { Logo, LogoMark, Wordmark } from './ui/Logo'
+import { useT, LANGS } from '@/i18n'
 
 const nav = [
   ['/leaderboard', '排行榜'], ['/models', '模型库'], ['/compare', '对比'], ['/calculator', '计算器'], ['/hardware', '显卡'], ['/architecture', '架构图鉴'], ['/methodology', '方法论'],
@@ -12,6 +13,7 @@ const nav = [
 
 export default function Layout() {
   const [dark, toggle] = useTheme()
+  const { t, lang, setLang } = useT()
   const [open, setOpen] = useState(false)
   const [menu, setMenu] = useState(false)
   const loc = useLocation()
@@ -30,27 +32,33 @@ export default function Layout() {
           <Link to="/" className="flex items-center" aria-label="AI-Gallery 首页"><Logo /></Link>
           <nav className="hidden md:flex items-center gap-0.5 ml-4">
             {nav.map(([to, label]) => (
-              <NavLink key={to} to={to} className={({ isActive }) => cx('rounded-full px-3 py-1.5 text-[13px] font-medium transition', isActive ? 'bg-surface-2 text-text shadow-[inset_0_0_0_1px_var(--border)]' : 'text-muted hover:text-text hover:bg-surface-2/60')}>{label}</NavLink>
+              <NavLink key={to} to={to} className={({ isActive }) => cx('rounded-full px-3 py-1.5 text-[13px] font-medium transition', isActive ? 'bg-surface-2 text-text shadow-[inset_0_0_0_1px_var(--border)]' : 'text-muted hover:text-text hover:bg-surface-2/60')}>{t(label)}</NavLink>
             ))}
           </nav>
           <div className="ml-auto flex items-center gap-2">
             <button type="button" onClick={() => setOpen(true)} className="ctl text-muted hover:text-text" aria-label="搜索模型">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="7" /><path d="m20 20-3.5-3.5" /></svg>
-              <span className="hidden sm:inline">搜索模型</span>
+              <span className="hidden sm:inline">{t('搜索模型')}</span>
               <kbd className="hidden sm:inline num text-[10px] rounded border border-border px-1">⌘K</kbd>
             </button>
-            <button type="button" onClick={toggle} aria-label={dark ? '切换到浅色' : '切换到深色'} className="ctl w-9 justify-center px-0 hover:bg-surface-2">
+            <details className="relative">
+              <summary className="ctl w-auto px-2.5 cursor-pointer select-none num text-xs" aria-label="Language">{LANGS.find((l) => l.code === lang)?.short}</summary>
+              <div className="popover w-32 p-1">
+                {LANGS.map((l) => <button key={l.code} type="button" onClick={(e) => { setLang(l.code); (e.currentTarget.closest('details') as HTMLDetailsElement).open = false }} className={cx('block w-full rounded-md px-2.5 py-1.5 text-left text-sm hover:bg-surface-2', lang === l.code && 'text-accent font-medium')}>{l.label}</button>)}
+              </div>
+            </details>
+            <button type="button" onClick={toggle} aria-label={dark ? t('切换到浅色') : t('切换到深色')} className="ctl w-9 justify-center px-0 hover:bg-surface-2">
               {dark ? <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4" /></svg>
                 : <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" /></svg>}
             </button>
-            <button type="button" onClick={() => setMenu((m) => !m)} className="md:hidden ctl w-9 justify-center px-0" aria-label="菜单" aria-expanded={menu}>
+            <button type="button" onClick={() => setMenu((m) => !m)} className="md:hidden ctl w-9 justify-center px-0" aria-label={t('菜单')} aria-expanded={menu}>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
             </button>
           </div>
         </div>
         {menu && (
           <nav className="md:hidden border-t border-border bg-bg px-4 py-2 grid grid-cols-2 gap-1">
-            {nav.map(([to, label]) => <NavLink key={to} to={to} className="rounded-md px-2.5 py-2 text-sm hover:bg-surface-2">{label}</NavLink>)}
+            {nav.map(([to, label]) => <NavLink key={to} to={to} className="rounded-md px-2.5 py-2 text-sm hover:bg-surface-2">{t(label)}</NavLink>)}
           </nav>
         )}
       </header>
