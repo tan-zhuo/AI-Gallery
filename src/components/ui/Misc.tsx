@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { cx } from '@/lib/format'
+import { useT } from '@/i18n'
 
 export function Section({ title, sub, children, right, className }: { title: string; sub?: string; children: React.ReactNode; right?: React.ReactNode; className?: string }) {
   return (
@@ -59,5 +60,6 @@ export function Stat({ label, value, sub }: { label: string; value: React.ReactN
 }
 
 export function Disclaimer() {
-  return <p className="text-xs text-muted">排名供选型参考，基准会饱和、会泄漏、会过时。</p>
+  const { t } = useT()
+  return <p className="text-xs text-muted">{t('排名供选型参考，基准会饱和、会泄漏、会过时。')}</p>
 }

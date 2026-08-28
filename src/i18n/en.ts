@@ -6,4 +6,5 @@ export const en: Record<string, string> = {
   '厂商公布': 'Vendor-reported', '独立复测': 'Independent', '社区/估计': 'Community / est.', '未知': 'Unknown',
   '排名供选型参考，基准会饱和、会泄漏、会过时。': 'Rankings are for reference only; benchmarks saturate, leak and go stale.',
   '完善中': 'In progress', '未披露': 'Undisclosed', '暂无': 'N/A', '自建': 'Self-host', '免费层': 'Free tier', '估': 'est.', '部分': 'partial', '托管': 'hosted',
+  '{total} 总 / {active} 激活': '{total} total / {active} active',
 }

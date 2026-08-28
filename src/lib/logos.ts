@@ -21,6 +21,11 @@ export const VENDOR_LOGOS: Record<string, { file: string; mono: boolean }> = {
   ByteDance: { file: 'bytedance.svg', mono: true },
   Microsoft: { file: 'microsoft.svg', mono: true },
   Amazon: { file: 'amazonaws.svg', mono: true },
+  '01.AI': { file: '01-ai.png', mono: false },
+  TII: { file: 'tiiuae.png', mono: false },
+  Databricks: { file: 'databricks.svg', mono: true },
+  'Shanghai AI Lab': { file: 'InternLM.png', mono: false },
+  Baichuan: { file: 'baichuan-inc.png', mono: false },
 }
 
 export function vendorLogo(vendor: string) {

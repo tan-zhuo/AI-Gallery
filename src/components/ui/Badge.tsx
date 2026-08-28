@@ -1,6 +1,7 @@
 import type { Model } from '@/lib/types'
 import { isOpenWeights } from '@/lib/scoring'
 import { cx } from '@/lib/format'
+import { useT } from '@/i18n'
 
 type Tone = 'open' | 'closed' | 'neutral' | 'warn' | 'info'
 const tones: Record<Tone, string> = {
@@ -21,30 +22,33 @@ export function Badge({ tone = 'neutral', children, title, className }: { tone?:
 
 export function OpennessBadge({ m, size = 'sm' }: { m: Model; size?: 'sm' | 'md' }) {
   const open = isOpenWeights(m)
+  const { t } = useT()
   return (
     <Badge tone={open ? 'open' : 'closed'} className={size === 'md' ? 'text-xs px-2 py-1' : ''}>
       <span aria-hidden className={cx('inline-block h-1.5 w-1.5 rounded-full', open ? 'bg-open' : 'bg-closed')} />
-      {open ? '开源' : '闭源'}
+      {open ? t('开源') : t('闭源')}
     </Badge>
   )
 }
 
 export function LicenseBadge({ m }: { m: Model }) {
+  const { t } = useT()
   const lc = m.license_commercial
   const tone: Tone = lc === true ? 'neutral' : lc === 'restricted' ? 'warn' : 'warn'
-  const label = lc === true ? '可商用' : lc === 'restricted' ? '限制许可' : '不可商用'
+  const label = lc === true ? t('可商用') : lc === 'restricted' ? t('限制许可') : t('不可商用')
   return <Badge tone={tone} title={m.license}>{label} · {m.license}</Badge>
 }
 
 /** 详情顶栏徽章组（最多 6 个） */
 export function BadgeRow({ m, singleGpu }: { m: Model; singleGpu: boolean }) {
+  const { t } = useT()
   const items: React.ReactNode[] = [<OpennessBadge key="o" m={m} size="md" />]
-  if (m.weights_available) items.push(<Badge key="w" tone="open">权重可下</Badge>)
-  else items.push(<Badge key="a" tone="closed">仅 API</Badge>)
-  if (m.reasoning_mode !== 'none') items.push(<Badge key="r" tone="info">推理模型{m.reasoning_mode === 'optional' ? '·可关' : ''}</Badge>)
-  if (m.modalities.includes('image')) items.push(<Badge key="m" tone="info">多模态</Badge>)
-  if (singleGpu) items.push(<Badge key="g" tone="open">单卡可跑</Badge>)
-  if (m.status === 'superseded' || m.status === 'deprecated') items.push(<Badge key="s" tone="warn">已被替代</Badge>)
+  if (m.weights_available) items.push(<Badge key="w" tone="open">{t('权重可下')}</Badge>)
+  else items.push(<Badge key="a" tone="closed">{t('仅 API')}</Badge>)
+  if (m.reasoning_mode !== 'none') items.push(<Badge key="r" tone="info">{m.reasoning_mode === 'optional' ? t('推理模型·可关') : t('推理模型')}</Badge>)
+  if (m.modalities.includes('image')) items.push(<Badge key="m" tone="info">{t('多模态')}</Badge>)
+  if (singleGpu) items.push(<Badge key="g" tone="open">{t('单卡可跑')}</Badge>)
+  if (m.status === 'superseded' || m.status === 'deprecated') items.push(<Badge key="s" tone="warn">{t('已被替代')}</Badge>)
   else if (m.status === 'preview') items.push(<Badge key="p" tone="warn">Preview</Badge>)
   items.push(<LicenseBadge key="l" m={m} />)
   return <div className="flex flex-wrap gap-1.5">{items.slice(0, 7)}</div>

@@ -85,6 +85,17 @@ export interface Model {
     finetune?: string
     zh_docs?: '有' | '弱' | '无'
   }
+  /** 可选：英/日文案（短文案；长说明书暂只中文） */
+  i18n?: Partial<Record<'en' | 'ja', {
+    name_zh?: string
+    one_liner?: string
+    highlights?: string[]
+    pitfalls?: string[]
+    logic_ability?: string
+    best_for?: string[]
+    not_for?: string[]
+    capability_notes?: Partial<Record<CapabilityKey, string>>
+  }>>
   /** 是否完整说明书 */
   complete: boolean
 }

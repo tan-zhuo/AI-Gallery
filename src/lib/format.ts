@@ -38,3 +38,24 @@ export function paramsB(s?: string): number | undefined {
 export function cx(...xs: Array<string | false | null | undefined>): string {
   return xs.filter(Boolean).join(' ')
 }
+
+import type { Lang, T } from '@/i18n'
+/** 按语言取模型短文案；缺失回退中文 */
+export function copyFor(m: Model, lang: Lang) {
+  const o = lang === 'zh' ? undefined : m.i18n?.[lang]
+  return {
+    name_zh: o?.name_zh ?? m.name_zh,
+    one_liner: o?.one_liner ?? m.copy.one_liner,
+    highlights: o?.highlights ?? m.copy.highlights,
+    pitfalls: o?.pitfalls ?? m.copy.pitfalls,
+    logic_ability: o?.logic_ability ?? m.copy.logic_ability,
+    best_for: o?.best_for ?? m.copy.best_for,
+    not_for: o?.not_for ?? m.copy.not_for,
+    capability_notes: o?.capability_notes ?? m.capability_notes,
+  }
+}
+/** 可翻译的参数格式 */
+export function tParams(t: T, total?: string, active?: string): string {
+  if (!total) return t('未披露')
+  return active ? t('{total} 总 / {active} 激活', { total, active }) : total
+}
