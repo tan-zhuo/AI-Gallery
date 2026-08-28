@@ -1,37 +1,102 @@
 {
-  "id": "gemini-3-7-flash",
-  "name": "Gemini 3.7 Flash",
-  "name_zh": "Gemini 3.7 闪电版",
-  "aliases": ["gemini-3.7-flash", "Gemini 3.7 Flash High"],
-  "vendor": "Google",
-  "vendor_zh": "谷歌",
-  "family": "Gemini 3",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "current",
-  "released_at": "2026-08-13",
-  "updated_at": "2026-08-28",
-  "modalities": ["text", "image", "audio", "video", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": { "type": "unknown", "undisclosed": true, "notes": "未披露。可配置 thinking 档位以平衡质量 / 成本 / 延迟。" },
-  "context": { "max_tokens": 1048576, "display": "1M", "max_output": 65536 },
-  "memory": { "weight_gb": {}, "estimated": false },
-  "pricing": { "input_per_m": 0.75, "output_per_m": 3.75, "currency": "USD", "source": "Google AI 定价页", "as_of": "2026-08-28", "note": "2026-12-31 前为发布优惠价；2027-01-01 起 $1.50 / $7.50。缓存输入 $0.075" },
-  "links": { "official": "https://deepmind.google/models/model-cards/gemini-3-7-flash/", "pricing": "https://ai.google.dev/gemini-api/docs/pricing", "paper": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/" },
-  "copy": {
-    "one_liner": "Google 当前 Flash 主力，代码 / agent 强，年内半价。",
-    "highlights": ["Terminal-Bench 2.1 85.8%、DeepSWE v1.1 65.3%，Flash 档做到接近 Sonnet 5 水平", "AA 智能指数 56，与 Grok 4.5 持平，输出速度约 300 tok/s", "Arena 文本榜 1490，高于 Gemini 3.1 Pro"],
-    "pitfalls": ["$0.75 / $3.75 是 2026 年底前的优惠价，2027 年起翻倍到 $1.50 / $7.50", "Flash 线三周一迭代（3.5 → 3.6 → 3.7），模型 ID 与行为漂移快，需固定版本", "官方模型卡未公布 GPQA / HLE / SWE-bench Verified 等通用基准，横向比较依赖第三方"],
-    "logic_ability": "工程型推理为主打：DeepSWE 65.3%、FrontierCode 43.6%、Terminal-Bench 2.1 85.8%；长上下文 MRCR v2 8-needle 97.0%。考试型推理官方未列数据。",
-    "best_for": ["高频代码 / agent 任务", "长文档批处理", "高性价比多模态"],
-    "not_for": ["需要长期稳定价格的预算规划", "私有化部署"]
-  },
-  "capability_notes": {
-    "coding": "DeepSWE v1.1 65.3%、FrontierCode 1.1 43.6%（官方模型卡）。",
-    "agent": "Terminal-Bench 2.1 85.8%、OSWorld-2.0 47.9%（官方）。",
-    "multimodal": "支持文本 / 图像 / 音频 / 视频输入；官方未公布 MMMU。"
-  },
-  "complete": false
+ "id": "gemini-3-7-flash",
+ "name": "Gemini 3.7 Flash",
+ "name_zh": "Gemini 3.7 闪电版",
+ "aliases": [
+  "gemini-3.7-flash",
+  "Gemini 3.7 Flash High"
+ ],
+ "vendor": "Google",
+ "vendor_zh": "谷歌",
+ "family": "Gemini 3",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-08-13",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。基于 Gemini 3.6 Flash 继续训练；thinking_level 可选 low / medium（默认）/ high，不支持 minimal。知识截止 2026-03。"
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.75,
+  "output_per_m": 3.75,
+  "currency": "USD",
+  "source": "Google AI 定价页",
+  "as_of": "2026-08-28",
+  "note": "2026-12-31 前为发布优惠价；2027-01-01 起 $1.50 / $7.50。缓存输入 $0.075"
+ },
+ "links": {
+  "official": "https://deepmind.google/models/model-cards/gemini-3-7-flash/",
+  "pricing": "https://ai.google.dev/gemini-api/docs/pricing",
+  "paper": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-3-7-flash/"
+ },
+ "copy": {
+  "one_liner": "Google 当前 Flash 主力，代码 / agent 强，年内半价。",
+  "highlights": [
+   "Terminal-Bench 2.1 85.8%、DeepSWE v1.1 65.3%，Flash 档做到接近 Sonnet 5 水平",
+   "AA 智能指数 56，与 Grok 4.5 持平，输出速度约 300 tok/s",
+   "Arena 文本榜 1490，高于 Gemini 3.1 Pro"
+  ],
+  "pitfalls": [
+   "$0.75 / $3.75 是 2026 年底前的优惠价，2027 年起翻倍到 $1.50 / $7.50",
+   "Flash 线三周一迭代（3.5 → 3.6 → 3.7），模型 ID 与行为漂移快，需固定版本",
+   "官方模型卡未公布 GPQA / HLE / SWE-bench Verified 等通用基准，横向比较依赖第三方"
+  ],
+  "logic_ability": "工程型推理为主打：DeepSWE 65.3%、FrontierCode 43.6%、Terminal-Bench 2.1 85.8%；长上下文 MRCR v2 8-needle 97.0%。考试型推理官方未列数据。",
+  "best_for": [
+   "高频代码 / agent 任务",
+   "长文档批处理",
+   "高性价比多模态"
+  ],
+  "not_for": [
+   "需要长期稳定价格的预算规划",
+   "私有化部署"
+  ]
+ },
+ "capability_notes": {
+  "coding": "DeepSWE v1.1 65.3%、FrontierCode 1.1 43.6%（官方模型卡；Sonnet 5 为 53.8% / 42.7%）；WebDev Arena 1588（官方博客）。",
+  "agent": "Terminal-Bench 2.1 85.8%、OSWorld-2.0 47.9%、AutomationBench 30.4%（官方模型卡 / 博客）。",
+  "reasoning": "AA 智能指数 56（high 档，2026-08-28，3.6 Flash 为 52）；官方未公布 GPQA / HLE。",
+  "knowledge": "GDM-MRCR 128K 97.0%（官方模型卡，同表最高）；GDP.pdf 文档任务 34.0%（官方博客）。",
+  "multimodal": "支持文本 / 图像 / 音频 / 视频 / PDF 输入，仅文本输出；官方未公布 MMMU。"
+ },
+ "complete": true,
+ "sheet": {
+  "architecture_md": "**未披露**。Google 未公布参数量与架构，模型卡只说明「基于 Gemini 3.6 Flash」，细节引用 3.6 Flash 模型卡。\n\n已知接口特性（ai.google.dev 模型页，2026-08-28）：\n- 输入 1,048,576 token，输出 65,536 token\n- 输入：文本、图像、视频、音频、PDF；输出：仅文本（无图像 / 音频生成，无 Live API）\n- `thinking_level`：`low` / `medium`（默认）/ `high`；**不支持 `minimal`**，思考不可完全关闭\n- 能力：function calling、code execution、Google Search grounding、Google Maps grounding、URL context、file search、structured outputs、context caching、Batch API、computer use（预览）\n- 模型 ID `gemini-3.7-flash`，状态 Stable（GA）\n- 知识截止 2026-03（部分领域仅到 2025-01）",
+  "memory_md": "无自建选项。\n\n**成本模型**（Google AI 定价页，2026-08-28）：\n- 2026-12-31 前发布价：输入 $0.75 / 输出 $3.75（含思考 token）\n- **2027-01-01 起翻倍**：$1.50 / $7.50\n- 缓存读 $0.075（10%），缓存存储 $0.50 / 1M token / 小时\n- Batch 与 Flex 五折；Priority 1.8×\n- Search / Maps grounding：3.x 系列共享每月 5,000 次免费，之后 $14 / 1,000 次\n- 免费层：AI Studio 免费但内容用于产品改进；付费层不用于训练\n\n**什么时候会变贵**：\n- 思考 token 按输出计费，`high` 档长任务输出膨胀\n- 缓存存储按小时计，长期挂着大上下文会被存储费吃掉\n- 2027 年预算要按翻倍后价格做\n\n速度：AA 实测约 306 tok/s（high 档，187 个模型中第一），TTFT 约 12 s；单任务成本 $0.40。",
+  "training_md": "- 训练细节未披露；模型卡称在 Gemini 3.6 Flash 基础上构建，训练数据说明沿用 3.6 Flash\n- 知识截止 2026-03\n- 官方博客强调提升：生产级代码质量与调试、Web 开发 / UI 生成、知识密集流程（金融 / 法律 / 生物）、复杂文档处理、业务流程自动化\n- 官方数据（vs 3.6 Flash）：FrontierCode 43.6%（34.4%）、DeepSWE 65.3%（48.6~49.0%）、WebDev Arena 1588（1538）、GDP.pdf 34.0%（22.0%）、AutomationBench 30.4%（17.0%）、MRCR 128K 97.0%（91.8%）\n- 安全：Frontier Safety 评估未触及任何 tracked / critical 能力等级；红队测试「与 3.6 Flash 相当或更好」；强化了 CBRN 与网络滥用防护",
+  "ecosystem_md": "- **API 渠道**：Gemini API（AI Studio）、Vertex AI / Gemini Enterprise Agent Platform（同 ID `gemini-3.7-flash`，支持 batch、context caching、grounding、provisioned throughput）\n- 产品：Gemini App（Spark，Pro / Ultra 订阅 160+ 国家）、Gemini Enterprise app、Google Antigravity、Android Studio、Gemini CLI\n- SDK：google-genai（Python / JS / Go / Java）、Vertex AI SDK；OpenAI 兼容端点\n- 微调：模型页未列出 tuning 支持，按不支持处理\n- 中文文档：有（ai.google.dev 与 cloud.google.com 提供中文版）",
+  "versions_md": "- Flash 线迭代：Gemini 3 Flash（2025-12）→ 3.1 Flash → 3.5 Flash → 3.6 Flash → **3.7 Flash**（2026-08-13 GA），约三周一版，行为漂移快\n- 同代 Pro 线：Gemini 3.1 Pro（Arena 文本榜低于 3.7 Flash）\n- 更低档：Gemini 3.1 Flash-Lite\n- 定价节点：2026-12-31 优惠价到期，2027-01-01 起 $1.50 / $7.50\n- 模型 ID：`gemini-3.7-flash`（Stable），建议在生产中固定版本而非跟随最新"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "未列出，按不支持处理",
+  "zh_docs": "有"
+ },
+ "runtime": {
+  "tok_s": 306,
+  "latency_s": 11.73,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

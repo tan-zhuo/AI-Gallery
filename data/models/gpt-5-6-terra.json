@@ -1,79 +1,100 @@
 {
-  "id": "gpt-5-6-terra",
-  "name": "GPT-5.6 Terra",
-  "name_zh": "GPT-5.6 均衡档",
-  "aliases": [
-    "gpt-5.6-terra",
-    "Terra"
+ "id": "gpt-5-6-terra",
+ "name": "GPT-5.6 Terra",
+ "name_zh": "GPT-5.6 均衡档",
+ "aliases": [
+  "gpt-5.6-terra",
+  "Terra",
+  "GPT-5.6 Terra (max)"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-5.6",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-07-09",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。与 Sol / Luna 同一系列，支持 none / low / medium（默认）/ high / xhigh / max 六档 reasoning.effort；知识截止 2026-02-16。"
+ },
+ "context": {
+  "max_tokens": 1050000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 12,
+  "currency": "USD",
+  "source": "OpenAI 官方定价页（developers.openai.com）",
+  "as_of": "2026-08-28",
+  "note": "2026-07-30 降价 20% 后价格；>272K 输入按 2×/1.5× 计费"
+ },
+ "links": {
+  "official": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
+  "pricing": "https://developers.openai.com/api/docs/pricing",
+  "paper": "https://openai.com/index/gpt-5-6/"
+ },
+ "copy": {
+  "one_liner": "GPT-5.6 生产默认档，Sol 一半价钱，AA 指数 57。",
+  "highlights": [
+   "AA 智能指数 57，Coding Agent Index 77，单任务成本约为 Sol 的一半",
+   "1.05M 上下文 + 128K 输出，支持 max 推理档与全部内置工具",
+   "2026-07-30 降价 20% 至 $2 / $12（发布价 $2.5 / $15），比 GPT-5.5 便宜一半以上"
   ],
-  "vendor": "OpenAI",
-  "family": "GPT-5.6",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "current",
-  "released_at": "2026-07-09",
-  "updated_at": "2026-08-28",
-  "modalities": [
-    "text",
-    "image",
-    "tools",
-    "computer-use"
+  "pitfalls": [
+   ">272K 输入按 2× 输入 / 1.5× 输出计费",
+   "官方未单独公布 Terra 的 SWE-bench / GPQA 等分数，只有 AA 综合指数",
+   "网络安全 / 生化 Preparedness 分级 High，有安全拦截"
   ],
-  "reasoning_mode": "optional",
-  "architecture": {
-    "type": "unknown",
-    "undisclosed": true,
-    "notes": "未披露。与 Sol 同一系列，支持 none~max 六档 reasoning.effort。"
-  },
-  "context": {
-    "max_tokens": 1050000,
-    "display": "1M",
-    "max_output": 128000
-  },
-  "memory": {
-    "weight_gb": {},
-    "estimated": false
-  },
-  "pricing": {
-    "input_per_m": 2,
-    "output_per_m": 12,
-    "currency": "USD",
-    "source": "OpenAI 官方定价页（developers.openai.com）",
-    "as_of": "2026-08-28",
-    "note": "2026-07-30 降价 20% 后价格；>272K 输入按 2×/1.5× 计费"
-  },
-  "links": {
-    "official": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
-    "pricing": "https://developers.openai.com/api/docs/pricing",
-    "paper": "https://openai.com/index/gpt-5-6/"
-  },
-  "copy": {
-    "one_liner": "GPT-5.6 生产默认档，Sol 一半价钱，AA 指数 57。",
-    "highlights": [
-      "AA 智能指数 57，Coding Agent Index 77，单任务成本约为 Sol 的一半",
-      "1.05M 上下文 + 128K 输出，支持 max 推理档与全部内置工具",
-      "2026-07-30 降价 20% 至 $2 / $12，比 GPT-5.5 便宜一半以上"
-    ],
-    "pitfalls": [
-      ">272K 输入按 2× 输入 / 1.5× 输出计费",
-      "官方未单独公布 Terra 的 SWE-bench / GPQA 等分数，只有 AA 综合指数",
-      "网络安全 / 生化 Preparedness 分级 High，有安全拦截"
-    ],
-    "logic_ability": "AA 智能指数 57，介于 Sol（61）与 Luna（51）之间；Coding Agent Index 77 仅比 Sol 低 3 分。适合大多数生产工作负载。",
-    "best_for": [
-      "生产环境默认模型",
-      "中等复杂度 agent"
-    ],
-    "not_for": [
-      "前沿难题",
-      "私有化部署"
-    ]
-  },
-  "capability_notes": {
-    "reasoning": "AA 智能指数 57（max 档）。",
-    "coding": "AA Coding Agent Index 77。"
-  },
-  "complete": false
+  "logic_ability": "AA 智能指数 57，介于 Sol（61）与 Luna（51）之间；Coding Agent Index 77 仅比 Sol 低 3 分。适合大多数生产工作负载。",
+  "best_for": [
+   "生产环境默认模型",
+   "中等复杂度 agent"
+  ],
+  "not_for": [
+   "前沿难题",
+   "私有化部署"
+  ]
+ },
+ "capability_notes": {
+  "reasoning": "AA 智能指数 57（max 档，2026-08-28；发布当日 55），xhigh 52 / high 49 / medium 46 / 无推理 34（AA）。",
+  "coding": "AA Coding Agent Index 77（Sol 80、Luna 75）；DeepSWE v1.1 69.6%、FrontierCode 1.1 41.3%（Google Gemini 3.7 Flash 模型卡对照列）。",
+  "agent": "Agents' Last Exam 官方称「以约 1/16 成本超过 Claude Fable 5」（OpenAI 公告，Simon Willison 转述）；AA 单任务成本 $0.53，约为 Sol 一半。",
+  "knowledge": "知识截止 2026-02-16（官方模型页）；GDM-MRCR 128K 93.5%（Google 模型卡对照列）。",
+  "multimodal": "文本 + 图像输入、文本输出；新增原始分辨率图像处理（不缩放）；不含音频。"
+ },
+ "complete": true,
+ "sheet": {
+  "architecture_md": "**未披露**。OpenAI 未公布参数量与架构。\n\n已知接口特性（developers.openai.com 模型页，2026-08-28）：\n- 上下文 1,050,000 token，最大输出 128K\n- `reasoning.effort`：`none` / `low` / `medium`（默认）/ `high` / `xhigh` / `max`；`none` 即无推理模式（AA 指数 34）\n- 端点：Responses、Chat Completions、Batch；不支持 Realtime、Assistants、Fine-tuning、Embeddings、图像生成、音频\n- 输入：文本 + 图像；输出：文本。图像可按原始分辨率处理\n- 内置工具：web search、file search、code interpreter、computer use、image generation、hosted shell、MCP；支持 streaming、structured outputs、function calling、prompt caching\n- 5.6 系列新增：Programmatic Tool Calling（JS 编排工具组合）、多 agent 并行子 agent、显式缓存断点\n- 单一快照 `gpt-5.6-terra`；知识截止 2026-02-16\n- 速率限制：Tier 1 500 RPM / 500K TPM，Tier 5 15,000 RPM / 40M TPM",
+  "memory_md": "无自建选项。\n\n**成本模型**（官方定价页，2026-08-28）：\n- ≤272K 输入：$2 输入 / $0.20 缓存读 / $2.50 缓存写 / $12 输出\n- **>272K 输入**：整条请求按 $4 / $0.40 / $5 / $18 计费（输入 2×，输出 1.5×）\n- Batch 与 Flex：五折（$1 / $6；长上下文 $2 / $9）\n- Fast mode：翻倍（$4 / $24；长上下文 $8 / $36）\n- 2026-07-30 起从发布价 $2.5 / $15 降 20%\n\n**什么时候会变贵**：\n- 跨过 272K 门槛整条请求涨价，长文档批处理要主动截断或用 Luna\n- `max` 档吃 token 最多；AA 实测 Terra max 单任务 $0.53（Sol $1.04，Luna 约 $0.21）\n\n速度：AA 实测 106~121 tok/s（max 档），高于均值；max 档 TTFT 可达两分钟级，交互场景用 medium/high。",
+  "training_md": "- 训练细节未披露；知识截止 2026-02-16\n- 官方定位：GPT-5.6 系列的「均衡日常」档，Sol 主打前沿推理与长程 agent，Luna 主打速度与成本\n- 官方公开数据以 Sol 为主（Agents' Last Exam 53.6、SWE-bench Pro 64.6%）；Terra 只有「Agents' Last Exam 以约 1/16 成本超过 Fable 5」与 AA 综合指数，SWE-bench / GPQA 等未单独公布\n- 第三方对照：Google 3.7 Flash 模型卡列 Terra DeepSWE v1.1 69.6%、FrontierCode 41.3%、MRCR 128K 93.5%\n- 安全：网络安全 / 生化按 Preparedness Framework 定为 High，存在安全拦截\n- 行为：AA 称 5.6 系列输出 token 偏少（Sol 约 15K / 任务），token 效率优于同级",
+  "ecosystem_md": "- **API 渠道**：OpenAI API（Responses / Chat Completions / Batch）、Azure OpenAI（Microsoft Foundry）\n- ChatGPT：5.6 系列为 ChatGPT 默认模型线；Codex CLI / Cursor 等编码工具已接入\n- SDK：官方 Python / Node，兼容 OpenAI 协议的网关（OpenRouter、Vercel AI Gateway 等）\n- **不支持微调**（模型页明确 Fine-tuning 不可用）\n- 中文文档：弱（developers.openai.com 仅英文）",
+  "versions_md": "- 系列：GPT-5.6 Sol（旗舰，$5 / $30，2026-11-21 前促销价 $4 起）、**Terra**（均衡，$2 / $12）、Luna（经济，降价 80% 后 $0.20 / $1.80）；三者同一 2026-02-16 知识截止、1M 上下文、128K 输出\n- 发布：2026-07-09 三档同日 GA（Sol 此前有预览）；2026-07-30 Terra 降价 20%、Luna 降价 80%\n- 上代：GPT-5.5（AA 指数约 55~56，xhigh 档）\n- 快照：仅 `gpt-5.6-terra` 一个"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "runtime": {
+  "tok_s": 106,
+  "latency_s": 141.99,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

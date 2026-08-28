@@ -1,37 +1,99 @@
 {
-  "id": "grok-4-6",
-  "name": "Grok 4.6",
-  "name_zh": "Grok 4.6",
-  "aliases": ["grok-4.6", "Grok 4.6 High"],
-  "vendor": "xAI",
-  "vendor_zh": "xAI",
-  "family": "Grok 4",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "current",
-  "released_at": "2026-08-12",
-  "updated_at": "2026-08-28",
-  "modalities": ["text", "image", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": { "type": "unknown", "undisclosed": true, "notes": "未披露。xAI 称在 Grok 4.5 基座上追加训练与 agent 环境 RL，非更大模型。reasoning_effort：low / medium / high / xhigh。" },
-  "context": { "max_tokens": 500000, "display": "500K" },
-  "memory": { "weight_gb": {}, "estimated": false },
-  "pricing": { "input_per_m": 2, "output_per_m": 6, "currency": "USD", "source": "xAI 模型定价页", "as_of": "2026-08-28", "note": "≥200K 上下文：$4 / $12；缓存输入 $0.50；Fast 变体价格翻倍" },
-  "runtime": { "tok_s": 57.8, "source": "Artificial Analysis（2026-08-28）" },
-  "links": { "official": "https://x.ai/news/grok-4-6", "pricing": "https://docs.x.ai/docs/models" },
-  "copy": {
-    "one_liner": "Grok 4.5 的加训版，长程 agent 与知识工作更强，同价。",
-    "highlights": ["AA 智能指数 61，GDPval-AA v2 1753，知识工作类基准领先", "新增 xhigh 推理档，DeepSWE v1.1 65.9%、APEX-Agents 57.5%", "与 4.5 同价 $2 / $6，xAI 当前推荐模型"],
-    "pitfalls": ["Terminal-Bench v3.0 仅 26%，自主软件工程类基准仍落后对手", "Arena 文本 1461，反而低于 Grok 4.5 的 1470", "无音视频输入；官方仍未公布 GPQA / HLE 等通用推理基准"],
-    "logic_ability": "在 4.5 基础上强化长程 agent；知识工作类领先，纯软件工程类不占优。",
-    "best_for": ["多步研究 / 分析 agent", "可视化与交互式应用生成", "长上下文代码库工作"],
-    "not_for": ["低延迟交互", "私有化部署"]
-  },
-  "capability_notes": {
-    "coding": "DeepSWE v1.1 65.9%、CursorBench v3.2 69.9%、FrontierCode v1.1 61.3%（xAI 公告）。",
-    "agent": "APEX-Agents 57.5%、Terminal-Bench v3.0 26%（xAI 公告）。"
-  },
-  "complete": false
+ "id": "grok-4-6",
+ "name": "Grok 4.6",
+ "name_zh": "Grok 4.6 加训版",
+ "aliases": [
+  "grok-4.6",
+  "Grok 4.6 High",
+  "grok-4.6-fast"
+ ],
+ "vendor": "xAI",
+ "vendor_zh": "xAI",
+ "family": "Grok 4",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-08-12",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。xAI 称在 Grok 4.5 基座上追加训练与 agent 环境 RL，非更大模型。reasoning_effort：low / medium / high（默认）/ xhigh，推理不可关闭。知识截止 2026-02-01。"
+ },
+ "context": {
+  "max_tokens": 500000,
+  "display": "500K"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 6,
+  "currency": "USD",
+  "source": "xAI 模型定价页",
+  "as_of": "2026-08-28",
+  "note": "≥200K 上下文：$4 / $12；缓存输入 $0.50；Fast 变体价格翻倍"
+ },
+ "runtime": {
+  "tok_s": 58,
+  "latency_s": 42.98,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "links": {
+  "official": "https://x.ai/news/grok-4-6",
+  "pricing": "https://docs.x.ai/docs/models"
+ },
+ "copy": {
+  "one_liner": "Grok 4.5 的加训版，长程 agent 与知识工作更强，同价。",
+  "highlights": [
+   "AA 智能指数 61，GDPval-AA v2 1753，知识工作类基准领先",
+   "新增 xhigh 推理档，DeepSWE v1.1 65.9%、APEX-Agents 57.5%",
+   "与 4.5 同价 $2 / $6，xAI 当前推荐模型"
+  ],
+  "pitfalls": [
+   "Terminal-Bench v3.0 仅 26%，自主软件工程类基准仍落后对手",
+   "Arena 文本 1461，反而低于 Grok 4.5 的 1470",
+   "无音视频输入；官方仍未公布 GPQA / HLE 等通用推理基准"
+  ],
+  "logic_ability": "在 4.5 基础上强化长程 agent；知识工作类领先，纯软件工程类不占优。",
+  "best_for": [
+   "多步研究 / 分析 agent",
+   "可视化与交互式应用生成",
+   "长上下文代码库工作"
+  ],
+  "not_for": [
+   "低延迟交互",
+   "私有化部署"
+  ]
+ },
+ "capability_notes": {
+  "coding": "DeepSWE v1.1 65.9%、CursorBench v3.2 69.9%、FrontierCode v1.1 61.3%（xAI 公告）。",
+  "agent": "APEX-Agents 57.5%、Terminal-Bench v3.0 26%（xAI 公告）；Terminal-Bench v2.1 88.4%、τ³-Banking 50.7%、AA-Briefcase 1577（AA）。",
+  "reasoning": "AA 智能指数 61（high 档，2026-08-28，与 GPT-5.6 Sol 持平、次于 Opus 5 的 63）；较 Grok 4.5 +5 分。",
+  "knowledge": "GDPval-AA v2 1753（AA，仅次于 Opus 5）；知识截止 2026-02-01（docs.x.ai）。",
+  "multimodal": "文本 + 图像输入、文本输出；无音视频。"
+ },
+ "complete": true,
+ "sheet": {
+  "architecture_md": "**未披露**。xAI 未公布参数量与架构，仅说明 4.6 是 Grok 4.5 基座的追加训练版（改进优化器与训练配方），不是更大的模型。\n\n已知接口特性（docs.x.ai，2026-08-28）：\n- 上下文 500K；官方文档写「无文本输出上限」（未给出 max_output 数值）\n- `reasoning_effort`：`low` / `medium` / `high`（默认）/ `xhigh`；`xhigh` 为 4.6 起新增，**推理不可关闭**\n- 输入：文本 + 图像；输出：文本\n- 能力：function calling、structured outputs、prompt caching、context compaction；服务端工具 web search、X search、code execution\n- **不支持 Batch API**；速率限制 150 RPS / 50M TPM；区域 us-east-1、us-west-2\n- Fast 变体：同模型更快推理，价格翻倍\n- 知识截止 2026-02-01（模型页；开发者指南写 2026-01）",
+  "memory_md": "无自建选项。\n\n**成本模型**（docs.x.ai 模型页，2026-08-28）：\n- <200K 上下文：$2 输入 / $0.50 缓存读 / $6 输出\n- **≥200K 上下文：整条请求按 $4 / $1 / $12 计费**（翻倍）\n- Fast 变体价格翻倍；无 Batch 折扣\n- 与 Grok 4.5 同价；缓存读由 $0.30 涨到 $0.50\n\n**什么时候会变贵**：\n- 跨 200K 门槛整条翻倍，长上下文代码库工作要注意压缩（可用 context compaction）\n- xhigh 档 token 消耗最大\n- 优势在输出价：$6 仅为 Opus 5 的 1/4、GPT-5.6 Sol 的 1/5；AA 实测单任务 $0.84~0.94，比 Opus 5 低 60% 以上；agent 轮次约 53（Opus 5 约 103）、输入 token 约 0.5B（Opus 5 约 2.0B）\n\n速度：AA 实测 57.8 tok/s（低于均值），TTFT 约 43 s，不适合低延迟交互；需要速度选 Fast 变体。",
+  "training_md": "- 参数与数据规模未披露\n- 官方公开训练方法：在 Grok 4.5 上做延长补充训练——用 Grok 4.5 重新生成 SFT 轨迹（推理、agent harness、STEM / 软件工程 / 知识工作），配合高质量工程数据集、改进优化器与训练配方\n- Agentic RL：知识工作、通用编码，以及内核优化、Web 开发、CAD 等领域专用环境\n- 官方称擅长：长程 agent 任务、多步项目、可视化 / 交互式应用生成、自测与迭代修正\n- 官方数据：AA 指数 61、GDPval-AA v2 1753、CursorBench 69.9%、DeepSWE 65.9%、FrontierCode 61.3%、APEX-Agents 57.5%、Terminal-Bench v3.0 26%\n- 短板：Terminal-Bench v3.0 与自主软件工程类落后；Arena 文本 1461 低于 4.5 的 1470；未公布 GPQA / HLE",
+  "ecosystem_md": "- **API 渠道**：xAI API（`grok-4.6`，OpenAI / Anthropic 兼容协议）、Grok Build（x.ai/build 编码 agent）、Cursor\n- 网关：OpenRouter、Vercel AI Gateway、Cloudflare AI Gateway；官方文档未提及 Azure / Bedrock / Vertex\n- 发布首周 API 与 Grok Build 双倍额度\n- SDK：xai-sdk（Python）+ OpenAI 兼容 SDK\n- **不支持微调**\n- 中文文档：无（docs.x.ai 仅英文）",
+  "versions_md": "- 上代：Grok 4.5（同价 $2 / $6，AA 指数 56，Arena 1470）；更早 Grok 4.3、Grok 4.1 Fast、Grok 4\n- 本代：`grok-4.6`（2026-08-12）与 Fast 变体（价格翻倍）\n- 定位：xAI 当前推荐模型，「最智能且最快」的代码 / 对话模型\n- 迭代节奏：4.3 → 4.5 → 4.6 间 AA 指数 +23 分"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "无"
+ }
 }

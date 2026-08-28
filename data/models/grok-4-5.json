@@ -1,47 +1,98 @@
 {
-  "id": "grok-4-5",
-  "name": "Grok 4.5",
-  "name_zh": "Grok 4.5",
-  "aliases": ["grok-4.5", "Grok 4.5 High"],
-  "vendor": "xAI",
-  "vendor_zh": "xAI",
-  "family": "Grok 4",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "current",
-  "released_at": "2026-07-16",
-  "updated_at": "2026-08-28",
-  "modalities": ["text", "image", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": { "type": "unknown", "undisclosed": true, "notes": "未披露。reasoning_effort 可选 low / medium / high（默认 high）。" },
-  "context": { "max_tokens": 500000, "display": "500K" },
-  "memory": { "weight_gb": {}, "estimated": false },
-  "pricing": { "input_per_m": 2, "output_per_m": 6, "currency": "USD", "source": "xAI 模型定价页", "as_of": "2026-08-28", "note": "≥200K 上下文：$4 / $12；缓存输入 $0.30" },
-  "runtime": { "tok_s": 51.6, "latency_s": 14.2, "source": "Artificial Analysis（2026-08-28）" },
-  "links": { "official": "https://x.ai/news/grok-4-5", "pricing": "https://docs.x.ai/docs/models" },
-  "copy": {
-    "one_liner": "xAI 面向代码与 agent 的旗舰，输出价仅 $6，Arena 1470。",
-    "highlights": ["Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%，代码 agent 进入第一梯队", "$2 / $6 定价，输出价是 Gemini 3.1 Pro 的一半", "Arena 文本榜 1470，高于后续的 Grok 4.6（1461）"],
-    "pitfalls": ["发布不到一个月就被 Grok 4.6 取代为「推荐」模型，xAI 迭代节奏极快", "官方公告只给代码 / agent 类基准，GPQA / HLE / AIME 等通用推理数据缺失", "AA 实测 51.6 tok/s、TTFT 约 14 s，速度偏慢；仅文本 + 图像，无音视频"],
-    "logic_ability": "工程型推理是主打：DeepSWE 1.0 62.0%、SWE Marathon 29.0%（公告称第一）、Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%。考试型推理官方未公布，AA 智能指数 56（与 Gemini 3.7 Flash 持平，低于 Grok 4.6 的 61）。失败模式：长程自主软件工程任务仍不及 GPT-5.5 / Opus 级；token 效率好但延迟高。",
-    "best_for": ["代码 agent / IDE 集成", "知识工作类长任务", "预算敏感的旗舰级调用"],
-    "not_for": ["低延迟交互", "音视频输入", "私有化部署"]
-  },
-  "capability_notes": {
-    "coding": "Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%、DeepSWE 1.0 62.0%（xAI 公告）。",
-    "reasoning": "官方未公布 GPQA / HLE；AA 智能指数 56。",
-    "agent": "SWE Marathon 29.0%（xAI 公告）。",
-    "multimodal": "文本 + 图像输入。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：未披露。\n\n已知：\n- 500K 上下文，文本 + 图像输入，文本输出\n- `reasoning_effort`：low / medium / high（默认 high）；Grok 4.6 再加 xhigh\n- 面向代码、agent 与知识工作训练\n- 工具调用、结构化输出\n\n参考：x.ai/news/grok-4-5、docs.x.ai 模型页。",
-    "memory_md": "无自建选项。\n\n成本参考（2026-08-28 xAI 定价页）：\n\n| 档位 | 输入 $/M | 输出 $/M | 缓存输入 |\n|---|---|---|---|\n| <200K | 2.00 | 6.00 | 0.30 |\n| ≥200K | 4.00 | 12.00 | 0.60 |\n\n**提示**：AA 估算单次智能指数任务成本约 $0.31，token 效率优于同档闭源；但 TTFT 长，按并发设计要留超时。",
-    "training_md": "- 训练细节未披露\n- 默认开启推理，effort 三档可调\n- 官方基准（公告）：DeepSWE 1.0 62.0%、DeepSWE 1.1 53%、SWE Marathon 29.0%、Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%\n- 第三方：AA 智能指数 56，Arena 文本 1470",
-    "ecosystem_md": "- xAI API（OpenAI 兼容）、Grok Build、Cursor、OpenRouter、Amazon Bedrock\n- Grok App（iOS / Android / Web / X）内置\n- 不支持微调\n- 中文文档：无",
-    "versions_md": "- 上代：Grok 4.3（2026-04 末，$1.25 / $2.50，1M 上下文，现为低价档）、Grok 4.20（2026-03）\n- 后续：Grok 4.6（2026-08-12，同价，AA 指数 61，xAI 现推荐）\n- 更早：Grok 4（2025-07）、Grok 4.1 Fast（2025-11），均已被取代"
-  },
-  "ecosystem": { "engines": [], "finetune": "不支持", "zh_docs": "无" },
-  "complete": true
+ "id": "grok-4-5",
+ "name": "Grok 4.5",
+ "name_zh": "Grok 4.5",
+ "aliases": [
+  "grok-4.5",
+  "Grok 4.5 High"
+ ],
+ "vendor": "xAI",
+ "vendor_zh": "xAI",
+ "family": "Grok 4",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-07-16",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。reasoning_effort 可选 low / medium / high（默认 high）。"
+ },
+ "context": {
+  "max_tokens": 500000,
+  "display": "500K"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 6,
+  "currency": "USD",
+  "source": "xAI 模型定价页",
+  "as_of": "2026-08-28",
+  "note": "≥200K 上下文：$4 / $12；缓存输入 $0.30"
+ },
+ "runtime": {
+  "tok_s": 52,
+  "latency_s": 14.21,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "links": {
+  "official": "https://x.ai/news/grok-4-5",
+  "pricing": "https://docs.x.ai/docs/models"
+ },
+ "copy": {
+  "one_liner": "xAI 面向代码与 agent 的旗舰，输出价仅 $6，Arena 1470。",
+  "highlights": [
+   "Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%，代码 agent 进入第一梯队",
+   "$2 / $6 定价，输出价是 Gemini 3.1 Pro 的一半",
+   "Arena 文本榜 1470，高于后续的 Grok 4.6（1461）"
+  ],
+  "pitfalls": [
+   "发布不到一个月就被 Grok 4.6 取代为「推荐」模型，xAI 迭代节奏极快",
+   "官方公告只给代码 / agent 类基准，GPQA / HLE / AIME 等通用推理数据缺失",
+   "AA 实测 51.6 tok/s、TTFT 约 14 s，速度偏慢；仅文本 + 图像，无音视频"
+  ],
+  "logic_ability": "工程型推理是主打：DeepSWE 1.0 62.0%、SWE Marathon 29.0%（公告称第一）、Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%。考试型推理官方未公布，AA 智能指数 56（与 Gemini 3.7 Flash 持平，低于 Grok 4.6 的 61）。失败模式：长程自主软件工程任务仍不及 GPT-5.5 / Opus 级；token 效率好但延迟高。",
+  "best_for": [
+   "代码 agent / IDE 集成",
+   "知识工作类长任务",
+   "预算敏感的旗舰级调用"
+  ],
+  "not_for": [
+   "低延迟交互",
+   "音视频输入",
+   "私有化部署"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%、DeepSWE 1.0 62.0%（xAI 公告）。",
+  "reasoning": "官方未公布 GPQA / HLE；AA 智能指数 56。",
+  "agent": "SWE Marathon 29.0%（xAI 公告）。",
+  "multimodal": "文本 + 图像输入。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：未披露。\n\n已知：\n- 500K 上下文，文本 + 图像输入，文本输出\n- `reasoning_effort`：low / medium / high（默认 high）；Grok 4.6 再加 xhigh\n- 面向代码、agent 与知识工作训练\n- 工具调用、结构化输出\n\n参考：x.ai/news/grok-4-5、docs.x.ai 模型页。",
+  "memory_md": "无自建选项。\n\n成本参考（2026-08-28 xAI 定价页）：\n\n| 档位 | 输入 $/M | 输出 $/M | 缓存输入 |\n|---|---|---|---|\n| <200K | 2.00 | 6.00 | 0.30 |\n| ≥200K | 4.00 | 12.00 | 0.60 |\n\n**提示**：AA 估算单次智能指数任务成本约 $0.31，token 效率优于同档闭源；但 TTFT 长，按并发设计要留超时。",
+  "training_md": "- 训练细节未披露\n- 默认开启推理，effort 三档可调\n- 官方基准（公告）：DeepSWE 1.0 62.0%、DeepSWE 1.1 53%、SWE Marathon 29.0%、Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%\n- 第三方：AA 智能指数 56，Arena 文本 1470",
+  "ecosystem_md": "- xAI API（OpenAI 兼容）、Grok Build、Cursor、OpenRouter、Amazon Bedrock\n- Grok App（iOS / Android / Web / X）内置\n- 不支持微调\n- 中文文档：无",
+  "versions_md": "- 上代：Grok 4.3（2026-04 末，$1.25 / $2.50，1M 上下文，现为低价档）、Grok 4.20（2026-03）\n- 后续：Grok 4.6（2026-08-12，同价，AA 指数 61，xAI 现推荐）\n- 更早：Grok 4（2025-07）、Grok 4.1 Fast（2025-11），均已被取代"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "无"
+ },
+ "complete": true
 }

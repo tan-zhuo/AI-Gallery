@@ -90,5 +90,63 @@
   "category": "chinese",
   "unit": "elo",
   "higher_is_better": true
+ },
+ {
+  "key": "aime_2026",
+  "name": "AIME 2026",
+  "name_zh": "美国数学邀请赛 2026",
+  "category": "math",
+  "unit": "percent",
+  "higher_is_better": true
+ },
+ {
+  "key": "tb_hard",
+  "name": "Terminal-Bench Hard",
+  "name_zh": "终端 agent（AA 困难子集）",
+  "category": "agent",
+  "unit": "percent",
+  "higher_is_better": true,
+  "description": "Artificial Analysis 统一复测的 Terminal-Bench 困难子集。"
+ },
+ {
+  "key": "tau2_telecom",
+  "name": "τ²-Bench Telecom",
+  "name_zh": "工具调用 agent（电信域）",
+  "category": "agent",
+  "unit": "percent",
+  "higher_is_better": true
+ },
+ {
+  "key": "mmmu_pro",
+  "name": "MMMU-Pro",
+  "name_zh": "多模态理解（Pro）",
+  "category": "multimodal",
+  "unit": "percent",
+  "higher_is_better": true
+ },
+ {
+  "key": "scicode",
+  "name": "SciCode",
+  "name_zh": "科学计算编程",
+  "category": "coding",
+  "unit": "percent",
+  "higher_is_better": true
+ },
+ {
+  "key": "ifbench",
+  "name": "IFBench",
+  "name_zh": "指令遵循",
+  "category": "knowledge",
+  "unit": "percent",
+  "higher_is_better": true
+ },
+ {
+  "key": "tau3_banking",
+  "name": "τ³-Bench Banking",
+  "name_zh": "工具调用 agent（银行域）",
+  "category": "agent",
+  "unit": "percent",
+  "higher_is_better": true,
+  "description": "Artificial Analysis 指数 v4 的 agent 分量。"
  }
 ]

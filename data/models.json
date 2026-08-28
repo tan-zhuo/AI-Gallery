@@ -95,7 +95,12 @@
    "finetune": "不支持",
    "zh_docs": "弱"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 65,
+   "latency_s": 79.92,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "claude-haiku-4-5",
@@ -166,7 +171,12 @@
    ]
   },
   "capability_notes": {},
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 119,
+   "latency_s": 16.59,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "claude-opus-4-1",
@@ -513,7 +523,12 @@
    "finetune": "不支持",
    "zh_docs": "弱"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 55,
+   "latency_s": 42.91,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "claude-sonnet-4-5",
@@ -645,7 +660,7 @@
   "architecture": {
    "type": "unknown",
    "undisclosed": true,
-   "notes": "未披露。adaptive thinking 默认开启；不再接受手动 extended thinking 与非默认 temperature/top_p/top_k（400 错误）；新分词器。"
+   "notes": "未披露。adaptive thinking 默认开启（effort 默认 high，五档 low/medium/high/xhigh/max）；不再接受手动 extended thinking 与非默认 temperature/top_p/top_k（400 错误）；新分词器（同文本约多 30% token）。"
   },
   "context": {
    "max_tokens": 1000000,
@@ -672,7 +687,7 @@
   "copy": {
    "one_liner": "接近 Opus 4.8 的 agent 能力，$2 / $10 永久定价。",
    "highlights": [
-    "Terminal-Bench 2.1 80.4%（+20.7 vs Sonnet 4.6），OSWorld-Verified 81.2% 与 Opus 4.8 基本持平",
+    "Terminal-Bench 2.1 80.4%（Sonnet 4.6 为 67.0%，+13.4），OSWorld-Verified 81.2% 与 Opus 4.8 基本持平",
     "$2 / $10 原为限时价，2026-08 起改为永久标准价，比 Sonnet 4.6 便宜 1/3",
     "1M 上下文 + 128K 输出，AA 智能指数 55，Free / Pro 计划默认模型"
    ],
@@ -693,12 +708,31 @@
    ]
   },
   "capability_notes": {
-   "coding": "Terminal-Bench 2.1 80.4%、SWE-bench Pro 63.2%（官方公告表，Vellum 转录）。",
-   "reasoning": "HLE（带工具）57.4%；AA 智能指数 55（max 档）。",
-   "agent": "OSWorld-Verified 81.2%；BrowseComp 相对 Sonnet 4.6 大幅提升。",
+   "coding": "Terminal-Bench 2.1 80.4%、SWE-bench Pro 63.2%、CursorBench 57%（官方公告表，Vellum 转录）；AA 实测 Terminal-Bench 较 Sonnet 4.6 +9 分。",
+   "reasoning": "HLE（带工具）57.4%（官方公告表）；AA 智能指数 55（max 档，2026-08-28）；CritPt 17%，较 Sonnet 4.6 +14 分（AA）。",
+   "agent": "OSWorld-Verified 81.2%、GDPval-AA v2 1618（官方公告表，与 Opus 4.8 的 1615 持平）；BrowseComp 相对 Sonnet 4.6 大幅提升（官方）。",
+   "instruction": "官方称幻觉率与谄媚率均低于 Sonnet 4.6；不支持 assistant 预填，需改用 structured outputs（官方文档）。",
+   "multimodal": "支持文本 + 图像输入、文本输出；官方未公布 MMMU 等视觉基准。",
    "chinese": "中文可用，缺少独立中文评测。"
   },
-  "complete": false
+  "complete": true,
+  "sheet": {
+   "architecture_md": "**未披露**。Anthropic 未公布参数量、Dense/MoE、注意力类型。\n\n已知接口特性（官方文档，2026-08-28）：\n- **Adaptive thinking 默认开启**：不传 `thinking` 字段即带思考；关闭需显式 `thinking: {type: \"disabled\"}`\n- `effort` 五档 `low` / `medium` / `high`（默认）/ `xhigh` / `max`，与 Opus 4.8 对齐；`xhigh` 为 Sonnet 线新增\n- **三个破坏性变更**（相对 Sonnet 4.6）：手动 extended thinking（`budget_tokens`）返回 400；`temperature` / `top_p` / `top_k` 非默认值返回 400；assistant 预填仍不支持\n- 1M 上下文既是默认也是最大（无更小档），128K 最大输出；Batch API 加 `output-300k-2026-03-24` beta 头可到 300K 输出\n- 输入：文本 + 图像；输出：文本\n- **新分词器**：同文本约多 30%（官方公告口径 1.0~1.35×），`max_tokens`、缓存断点、上下文容量都要重新计算\n- 工具集与 Sonnet 4.6 相同，另支持 browser use 工具和稳定版 `computer_toolset_20260801`（Claude API / Google Cloud）；不提供 Priority Tier\n- 首个带实时网络安全防护的 Sonnet：被拦截时返回 HTTP 200 + `stop_reason: \"refusal\"`\n- 可靠知识截止 2026-01（训练数据截止同为 2026-01）",
+   "memory_md": "无自建选项。\n\n**成本模型**（官方定价页，2026-08-28）：\n- 输入 $2 / 输出 $10 / MTok；原定 2026-09-01 涨回 $3 / $15 的计划已于 2026-08-10 取消，$2 / $10 为永久标准价\n- 缓存写 $2.50（5 分钟）/ $4（1 小时），缓存读 $0.20（基价 10%）\n- Batch 五折：$1 / $5\n- 1M 长上下文不加价；Bedrock / Vertex / Foundry 按各自价目\n\n**什么时候会变贵**：\n- 新分词器让同一段文本多约 30% token，标价降 1/3 但等价请求账单降幅明显小于此\n- AA 实测 max 档单任务 $1.72~2.29，约为 Sonnet 4.6 的 2 倍、与 Opus 4.8 相当——因为输出 token 多 ~40%、知识工作类 agent 轮次约 3 倍；max 比 low 多约 6 倍轮次\n- 思考默认开启，`max_tokens` 是思考 + 正文总上限，旧的无思考预算会截断\n\n速度：AA 实测约 95 tok/s（max 档），高于均值；高 effort 下 TTFT 很长（AA 记录 max 档 225 s），交互场景请降 effort 或流式。",
+   "training_md": "- 训练细节未披露；训练数据截止 2026-01\n- 官方定位：Sonnet 4.6 的直接替代，最大提升在编码与 agent 任务，「接近 Opus 4.8 的能力、更低价格」\n- 官方公告表（默认 effort）：SWE-bench Pro 63.2%（4.6：58.1%）、Terminal-Bench 2.1 80.4%（4.6：67.0%；Opus 4.8：74.6%）、OSWorld-Verified 81.2%（4.6：78.5%）、HLE 带工具 57.4%（4.6：46.8%）、GDPval-AA v2 1618\n- 行为：幻觉率与谄媚率低于 Sonnet 4.6，对恶意请求的拒绝更准；整体「不良行为率」下降\n- 安全：默认开启网络安全防护；漏洞利用开发能力被刻意压低（Firefox 147 可用 exploit 0%）；系统卡见 anthropic.com/claude-sonnet-5-system-card\n- 已知取舍：misalignment 率高于 Opus 4.8；官方分数均为默认 effort，未公布 GPQA Diamond",
+   "ecosystem_md": "- **API 渠道**：Claude API（`claude-sonnet-5`，无日期后缀即固定快照）、Amazon Bedrock（`anthropic.claude-sonnet-5`，含 InvokeModel）、Claude Platform on AWS、Google Cloud Vertex AI、Microsoft Foundry\n- claude.ai：Free / Pro 计划默认模型，Max / Team / Enterprise 可用；Claude Code 默认 effort `high`\n- SDK：官方 Python / TypeScript / C# / Go / Java / PHP / Ruby，均有 `ModelClaudeSonnet5` 常量\n- 工具：bash、text editor、web search、code execution、memory、tool search、browser use、computer_toolset_20260801\n- 支持 ZDR（零数据保留）协议；**不可微调**\n- 中文文档：弱（platform.claude.com 仅英文，社区中文资料较多）",
+   "versions_md": "- 上代：Claude Sonnet 4.6（$3 / $15，仍可用，Legacy）；更早 Sonnet 4.5（2025-09）\n- 同代：Claude Opus 5（2026-07-24，$5 / $25）、Claude Fable 5（2026-06-09，$10 / $50）、Claude Haiku 4.5（$1 / $5，200K）\n- 版本策略：4.6 代起模型 ID 不带日期，`claude-sonnet-5` 本身就是固定快照\n- 退役承诺：不早于 2027-06-30（Bedrock / Google Cloud 自行定）"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "弱"
+  },
+  "runtime": {
+   "tok_s": 95,
+   "latency_s": 225.59,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "command-a-plus",
@@ -796,7 +830,12 @@
    ],
    "zh_docs": "无"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 254,
+   "latency_s": 0.39,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "deepseek-r1-0528",
@@ -1145,7 +1184,12 @@
    "finetune": "多卡 LoRA；Unsloth 跟进中",
    "zh_docs": "有"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 119,
+   "latency_s": 1.12,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "deepseek-v4-pro",
@@ -1270,7 +1314,12 @@
    "finetune": "多节点；社区 LoRA 极少",
    "zh_docs": "有"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 66,
+   "latency_s": 1.59,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "devstral-small-2",
@@ -1607,7 +1656,12 @@
    "finetune": "不支持",
    "zh_docs": "有"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 115,
+   "latency_s": 23.93,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "gemini-3-5-flash-lite",
@@ -1688,7 +1742,12 @@
    "coding": "SWE-Bench Pro 54.2%（官方模型卡）。",
    "agent": "Terminal-Bench 2.1 54.0%、OSWorld-Verified 74.0%（官方）。"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 346,
+   "latency_s": 8.76,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "gemini-3-7-flash",
@@ -1719,7 +1778,7 @@
   "architecture": {
    "type": "unknown",
    "undisclosed": true,
-   "notes": "未披露。可配置 thinking 档位以平衡质量 / 成本 / 延迟。"
+   "notes": "未披露。基于 Gemini 3.6 Flash 继续训练；thinking_level 可选 low / medium（默认）/ high，不支持 minimal。知识截止 2026-03。"
   },
   "context": {
    "max_tokens": 1048576,
@@ -1767,11 +1826,30 @@
    ]
   },
   "capability_notes": {
-   "coding": "DeepSWE v1.1 65.3%、FrontierCode 1.1 43.6%（官方模型卡）。",
-   "agent": "Terminal-Bench 2.1 85.8%、OSWorld-2.0 47.9%（官方）。",
-   "multimodal": "支持文本 / 图像 / 音频 / 视频输入；官方未公布 MMMU。"
+   "coding": "DeepSWE v1.1 65.3%、FrontierCode 1.1 43.6%（官方模型卡；Sonnet 5 为 53.8% / 42.7%）；WebDev Arena 1588（官方博客）。",
+   "agent": "Terminal-Bench 2.1 85.8%、OSWorld-2.0 47.9%、AutomationBench 30.4%（官方模型卡 / 博客）。",
+   "reasoning": "AA 智能指数 56（high 档，2026-08-28，3.6 Flash 为 52）；官方未公布 GPQA / HLE。",
+   "knowledge": "GDM-MRCR 128K 97.0%（官方模型卡，同表最高）；GDP.pdf 文档任务 34.0%（官方博客）。",
+   "multimodal": "支持文本 / 图像 / 音频 / 视频 / PDF 输入，仅文本输出；官方未公布 MMMU。"
   },
-  "complete": false
+  "complete": true,
+  "sheet": {
+   "architecture_md": "**未披露**。Google 未公布参数量与架构，模型卡只说明「基于 Gemini 3.6 Flash」，细节引用 3.6 Flash 模型卡。\n\n已知接口特性（ai.google.dev 模型页，2026-08-28）：\n- 输入 1,048,576 token，输出 65,536 token\n- 输入：文本、图像、视频、音频、PDF；输出：仅文本（无图像 / 音频生成，无 Live API）\n- `thinking_level`：`low` / `medium`（默认）/ `high`；**不支持 `minimal`**，思考不可完全关闭\n- 能力：function calling、code execution、Google Search grounding、Google Maps grounding、URL context、file search、structured outputs、context caching、Batch API、computer use（预览）\n- 模型 ID `gemini-3.7-flash`，状态 Stable（GA）\n- 知识截止 2026-03（部分领域仅到 2025-01）",
+   "memory_md": "无自建选项。\n\n**成本模型**（Google AI 定价页，2026-08-28）：\n- 2026-12-31 前发布价：输入 $0.75 / 输出 $3.75（含思考 token）\n- **2027-01-01 起翻倍**：$1.50 / $7.50\n- 缓存读 $0.075（10%），缓存存储 $0.50 / 1M token / 小时\n- Batch 与 Flex 五折；Priority 1.8×\n- Search / Maps grounding：3.x 系列共享每月 5,000 次免费，之后 $14 / 1,000 次\n- 免费层：AI Studio 免费但内容用于产品改进；付费层不用于训练\n\n**什么时候会变贵**：\n- 思考 token 按输出计费，`high` 档长任务输出膨胀\n- 缓存存储按小时计，长期挂着大上下文会被存储费吃掉\n- 2027 年预算要按翻倍后价格做\n\n速度：AA 实测约 306 tok/s（high 档，187 个模型中第一），TTFT 约 12 s；单任务成本 $0.40。",
+   "training_md": "- 训练细节未披露；模型卡称在 Gemini 3.6 Flash 基础上构建，训练数据说明沿用 3.6 Flash\n- 知识截止 2026-03\n- 官方博客强调提升：生产级代码质量与调试、Web 开发 / UI 生成、知识密集流程（金融 / 法律 / 生物）、复杂文档处理、业务流程自动化\n- 官方数据（vs 3.6 Flash）：FrontierCode 43.6%（34.4%）、DeepSWE 65.3%（48.6~49.0%）、WebDev Arena 1588（1538）、GDP.pdf 34.0%（22.0%）、AutomationBench 30.4%（17.0%）、MRCR 128K 97.0%（91.8%）\n- 安全：Frontier Safety 评估未触及任何 tracked / critical 能力等级；红队测试「与 3.6 Flash 相当或更好」；强化了 CBRN 与网络滥用防护",
+   "ecosystem_md": "- **API 渠道**：Gemini API（AI Studio）、Vertex AI / Gemini Enterprise Agent Platform（同 ID `gemini-3.7-flash`，支持 batch、context caching、grounding、provisioned throughput）\n- 产品：Gemini App（Spark，Pro / Ultra 订阅 160+ 国家）、Gemini Enterprise app、Google Antigravity、Android Studio、Gemini CLI\n- SDK：google-genai（Python / JS / Go / Java）、Vertex AI SDK；OpenAI 兼容端点\n- 微调：模型页未列出 tuning 支持，按不支持处理\n- 中文文档：有（ai.google.dev 与 cloud.google.com 提供中文版）",
+   "versions_md": "- Flash 线迭代：Gemini 3 Flash（2025-12）→ 3.1 Flash → 3.5 Flash → 3.6 Flash → **3.7 Flash**（2026-08-13 GA），约三周一版，行为漂移快\n- 同代 Pro 线：Gemini 3.1 Pro（Arena 文本榜低于 3.7 Flash）\n- 更低档：Gemini 3.1 Flash-Lite\n- 定价节点：2026-12-31 优惠价到期，2027-01-01 起 $1.50 / $7.50\n- 模型 ID：`gemini-3.7-flash`（Stable），建议在生产中固定版本而非跟随最新"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "未列出，按不支持处理",
+   "zh_docs": "有"
+  },
+  "runtime": {
+   "tok_s": 306,
+   "latency_s": 11.73,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "gemini-3-flash",
@@ -2076,7 +2154,7 @@
   "vendor": "Google",
   "vendor_zh": "谷歌",
   "family": "Gemma 4",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "license_commercial": true,
   "openness": "open-weights",
   "weights_available": true,
@@ -2104,10 +2182,10 @@
    "kv_layers": 6,
    "hidden_size": 2816,
    "vocab_size": 262144,
-   "kv_heads": 8,
-   "head_dim": 256,
-   "attention": "GQA（16 Q 头 / 8 KV 头，head_dim 256），5:1 局部滑窗(1024) : 全局",
-   "notes": "30 层中 6 层全局注意力。128 专家选 8 + 1 共享专家（模型卡），专家中间维 704。视觉编码器约 550M。",
+   "kv_heads": 2,
+   "head_dim": 512,
+   "attention": "局部滑窗(1024) 24 层：16 Q / 8 KV，head_dim 256；全局 6 层：16 Q / 2 KV，head_dim 512，K=V 共享（5:1 交错）",
+   "notes": "30 层 = 6 × (5 × 滑窗 + 1 × 全局)。128 路由专家 + 1 共享专家选 8，专家中间维 704，稠密 FFN 2112。全局层 partial_rotary 0.25、theta 1e6；滑窗层 theta 1e4。logit softcap 30。视觉编码器 27 层、hidden 1152、patch 16，每图 280 个 soft token。表内 kv_heads / head_dim 指 6 层全局层。",
    "undisclosed": false
   },
   "context": {
@@ -2117,15 +2195,16 @@
   },
   "memory": {
    "weight_gb": {
-    "bf16": 50.4,
+    "bf16": 51.6,
     "fp8": 28.8,
     "q8": 26.9,
     "q4": 14.4
    },
-   "kv_per_token_kib": 48,
-   "kv_note": "全局层 6 × 8 KV 头 × 256 × 2 × 2 B = 48 KiB/token；128K ≈ 6 GB。",
-   "ref_hw_24gb": "官方 QAT Q4_0 14.4 GB（社区 Q4_K_M 16.9 GB），KV 余量约 8 GB，64K+ 上下文舒适，激活 3.8B 速度快",
-   "ref_hw_80gb": "BF16 50.4 GB + 256K 上下文（KV 12 GB）可行",
+   "kv_per_token_kib": 12,
+   "kv_note": "随长度增长的只有 6 层全局层：2 KV 头 × 512 × K=V 共享 × 2 B = 2 KiB/层 → 12 KiB/token（BF16）。24 层滑窗层窗口 1024，KV 固定约 8 MiB/层。256K 上下文 KV ≈ 3 GB。",
+   "ref_hw_24gb": "官方 QAT Q4_0 14.4 GB（社区 Q4_K_M 16.9 GB），KV 极小，256K 上下文单并发可行，激活 3.8B 速度快",
+   "ref_hw_80gb": "BF16 51.6 GB + 256K 上下文（KV 3 GB）轻松，可多并发",
+   "ref_hw_8x80gb": "过剩；用于高并发服务",
    "estimated": false
   },
   "pricing": {
@@ -2144,16 +2223,16 @@
   "copy": {
    "one_liner": "激活 3.8B 的 MoE，24GB 卡上又快又能装长上下文。",
    "highlights": [
-    "Apache 2.0，25.2B 总参 / 3.8B 激活，单卡吞吐远高于 31B Dense",
-    "GPQA 82.3%、AIME 2026 88.3%、LiveCodeBench v6 77.1%，只比 31B 低 2–3 分",
-    "KV 仅 48 KiB/token，24GB 卡 Q4 可跑 64K+ 上下文"
+    "Apache-2.0，25.2B 总参 / 3.8B 激活，单卡吞吐远高于 31B Dense",
+    "GPQA 82.3、AIME 2026 88.3、LiveCodeBench v6 77.1，只比 31B 低 2–3 分",
+    "仅 6 层全局注意力且 K=V 共享，KV 12 KiB/token，24GB 卡 Q4 可跑 256K 上下文"
    ],
    "pitfalls": [
     "MoE 全部 25B 参数都要进显存，不是 4B 模型的显存需求",
-    "HLE 无工具 8.7%、MRCR v2 128K 44.1%，知识与长程检索明显弱于 31B",
-    "tau2 均值 68.2%、Codeforces 1718，agent / 竞赛代码差距比考试题大"
+    "HLE 无工具 8.7、MRCR v2 128K 44.1，知识与长程检索明显弱于 31B",
+    "tau2 均值 68.2、Codeforces 1718，agent / 竞赛代码差距比考试题大；无 SWE-bench 官方数"
    ],
-   "logic_ability": "带思考模式的 MoE。考试型推理接近 31B（GPQA 82.3%、AIME 88.3%、MMLU Pro 82.6%），但 HLE 与长上下文检索差距大，工程型推理中等。",
+   "logic_ability": "带可选思考模式的 MoE。考试型推理接近 31B（GPQA Diamond 82.3、AIME 2026 88.3、MMLU Pro 82.6、BigBench Extra Hard 64.8），但 HLE 8.7（无工具）/ 17.2（带搜索）和 128K 长上下文检索 44.1 差距大。工程型推理中等：LiveCodeBench v6 77.1、Codeforces 1718、tau2 68.2；官方未给 SWE-bench / Terminal-Bench。多模态推理强：MMMU Pro 73.8、MATH-Vision 82.4。",
    "best_for": [
     "单卡高吞吐本地助手",
     "边缘服务器批处理",
@@ -2165,13 +2244,34 @@
    ]
   },
   "capability_notes": {
-   "coding": "LiveCodeBench v6 77.1%、Codeforces Elo 1718（官方模型卡）。",
-   "reasoning": "GPQA Diamond 82.3%、HLE 8.7%（无工具）（官方）。",
-   "math": "AIME 2026 88.3%（无工具，官方）。",
-   "agent": "tau2-bench 三项均值 68.2%（官方）。",
-   "multimodal": "MMMU Pro 73.8%、MATH-Vision 82.4%（官方）。"
+   "coding": "LiveCodeBench v6 77.1、Codeforces Elo 1718（官方模型卡）；SWE-bench 未披露。",
+   "reasoning": "GPQA Diamond 82.3、HLE 8.7（无工具）/ 17.2（带搜索）、BigBench Extra Hard 64.8（官方模型卡）。",
+   "math": "AIME 2026 88.3（无工具，官方模型卡）；AIME 2025 未披露。",
+   "agent": "tau2-bench 三项均值 68.2（官方模型卡）。",
+   "multimodal": "MMMU Pro 73.8、MATH-Vision 82.4、MedXPertQA MM 58.1、OmniDocBench 1.5 0.149（官方模型卡）。",
+   "knowledge": "MMLU Pro 82.6、MMMLU 86.3（官方模型卡）。",
+   "chinese": "140+ 语言训练，MMMLU 86.3；中文独立数据少。"
   },
-  "complete": false
+  "complete": true,
+  "sheet": {
+   "architecture_md": "**类型**：MoE + 局部/全局交错注意力，25.2B 总参 / 3.8B 激活，原生图像 / 视频输入。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 30 = 6 × (5 × 滑窗 1024 + 1 × 全局) |\n| 隐藏维 | 2,816 |\n| 稠密 FFN | 2,112 |\n| 专家 | 128 路由 + 1 共享，每 token 选 8，专家中间维 704 |\n| 滑窗层（24 层） | 16 Q / 8 KV，head_dim 256，theta 1e4 |\n| 全局层（6 层） | 16 Q / 2 KV，head_dim 512，K=V 共享，partial_rotary 0.25，theta 1e6 |\n| 词表 | 262,144 |\n| 上下文 | 262,144 |\n| logit softcap | 30 |\n| 视觉编码器 | 27 层，hidden 1152，patch 16，280 soft token / 图 |\n\n`config.json` 中 `model_type: gemma4`，`architectures: Gemma4ForConditionalGeneration`。\n\n参考：google/gemma-4-26B-A4B-it config.json 与 Gemma 4 模型卡。",
+   "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | 51.6 GB | 80GB 单卡 | 官方 safetensors，2 分片（含视觉编码器） |\n| FP8 | 28.8 GB | 48GB | 社区量化（估） |\n| Q8 | 26.9 GB | 48GB | unsloth GGUF Q8_0 |\n| Q4 | 14.4 GB | 24GB | 官方 QAT Q4_0 GGUF；unsloth Q4_K_M 16.9 GB |\n\n**KV Cache**：只有 6 层全局层随长度增长，2 KV 头 × 512 × K=V 共享 × 2 B = 12 KiB/token；24 层滑窗层各固定约 8 MiB。256K 上下文 KV ≈ 3 GB。\n\n**参考配置**：\n- RTX 4090 / 5090 24GB：QAT Q4_0，256K 上下文单并发\n- A100 / H100 80GB：BF16 + 256K，多并发\n- 8×80GB：高并发服务\n\n警示：MoE 权重全部驻留显存；视频帧 token 会明显增加输入长度。",
+   "training_md": "- 预训练 token 数：**未披露**（模型卡仅描述语料类型：网页、代码、数学、图像，140+ 语言）\n- 知识截止：2025 年 1 月\n- 思考模式可选（optional），无思考时延迟更低\n- 官方发布 QAT（量化感知训练）Q4_0 检查点，4-bit 精度损失小\n- 后训练细节：官方未披露",
+   "ecosystem_md": "- HF：google/gemma-4-26B-A4B-it（BF16 51.6 GB）、google/gemma-4-26B-A4B-it-qat-q4_0-gguf（14.4 GB）；GGUF：unsloth/gemma-4-26B-A4B-it-GGUF\n- 引擎：Transformers（≥ 5.5 dev）、vLLM、SGLang、llama.cpp、Ollama、LM Studio、MLX\n- 微调：Unsloth、LLaMA-Factory 已适配；QLoRA 可在 24GB 卡上进行\n- 中文文档：弱（Google 官方文档以英文为主）",
+   "versions_md": "- 同代：Gemma 4 31B（Dense，考试型分数高 2–3 分）、Gemma 4 小体量版本\n- 上代：Gemma 3 27B / 12B（Dense，Gemma 许可）\n- 本代改为 Apache-2.0，并新增 MoE 与视频输入"
+  },
+  "ecosystem": {
+   "engines": [
+    "Transformers",
+    "vLLM",
+    "SGLang",
+    "llama.cpp",
+    "Ollama",
+    "MLX"
+   ],
+   "finetune": "Unsloth / LLaMA-Factory 已适配；QLoRA 24GB 可行",
+   "zh_docs": "弱"
+  }
  },
  {
   "id": "gemma-4-31b",
@@ -2294,7 +2394,12 @@
    "finetune": "LoRA 可用",
    "zh_docs": "弱"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 35,
+   "latency_s": 1.05,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "glm-4-5-air",
@@ -2644,7 +2749,12 @@
    "finetune": "Unsloth / 全参（多节点）",
    "zh_docs": "有"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 69,
+   "latency_s": 1.55,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "glm-5-3-flash",
@@ -2685,9 +2795,9 @@
    "hidden_size": 4096,
    "vocab_size": 154880,
    "kv_heads": 1,
-   "head_dim": 288,
-   "attention": "KDA 线性注意力 34 层 + DSA 稀疏 MLA 11 层（3:1）",
-   "notes": "GLM 系列首个稀疏 + 线性混合架构（glm5_next），前 3 层 Dense MLP，采用 mHC 超连接；全新底座，30T 多模态语料预训练，原生多模态。仅 11 层 DSA 层有 per-token KV（MLA 潜向量 576 维）。",
+   "head_dim": 256,
+   "attention": "KDA 线性注意力 34 层 + DSA 稀疏 MLA 11 层（3:1 交错）",
+   "notes": "glm5_next 混合架构：45 层 = 34 层 KDA（Kimi Delta Attention，64 头 × 128）+ 11 层 DeepSeek 稀疏注意力（MLA，kv_lora_rank 512，q_lora_rank 1536，qk/v head_dim 256，无 RoPE 维，indexer 32 头 top-k 2048）。前 3 层 Dense MLP，其余 288 路由专家 + 1 共享专家选 8，专家中间维 2048，sigmoid 无辅助损失路由。mHC 超连接（hc_mult 4）。1 层 MTP 头。视觉编码器 24 层、hidden 1024、patch 14。表内 kv_heads / head_dim 指 11 层 DSA 层的 MLA 潜向量。config 最大位置 1,048,576，官方评测按 300K 报告。",
    "undisclosed": false
   },
   "context": {
@@ -2698,14 +2808,14 @@
    "weight_gb": {
     "fp8": 328,
     "bf16": 640,
-    "q4": 186
+    "q4": 200
    },
-   "kv_per_token_kib": 12.4,
-   "kv_note": "仅 11 层 DSA/MLA 层存 KV：576 × 2 B × 11 ≈ 12.4 KiB/token；34 层 KDA 为固定大小状态，不随长度增长。",
-   "ref_hw_24gb": "不可行",
-   "ref_hw_80gb": "不可行（Q4 约 186 GB）",
-   "ref_hw_8x80gb": "FP8 328 GB 官方发布版，4×H100 起；8×H100 舒适",
-   "estimated": true
+   "kv_per_token_kib": 11,
+   "kv_note": "仅 11 层 DSA 层存 KV：MLA 潜向量 512 维（无 RoPE 分量）× 2 B = 1 KiB/层 → 11 KiB/token。34 层 KDA 为固定大小递归状态（64 头 × 128 × 128），与长度无关。1M 上下文 KV ≈ 11 GB。",
+   "ref_hw_24gb": "不可行（最小 UD-IQ1_S 也有 93 GB）",
+   "ref_hw_80gb": "不可行（UD-IQ1_S 93 GB / UD-IQ4_XS 157 GB 均超单卡）",
+   "ref_hw_8x80gb": "官方 FP8 328 GB：4×H100 起步，8×H100 舒适并可用满 1M 上下文（KV 很小）",
+   "estimated": false
   },
   "pricing": {
    "input_per_m": 0.075,
@@ -2725,16 +2835,16 @@
   "copy": {
    "one_liner": "320B/18B 混合注意力多模态开源模型，价格极低。",
    "highlights": [
-    "MIT 许可，Terminal-Bench 2.1 84.3 超过 GLM-5.2，官方称成本仅其 1/10",
-    "KDA 线性 + DSA 稀疏混合，1M 上下文 KV 极小（≈12 KiB/token）",
-    "GLM-5 系列首个原生多模态；曾以 Ox Alpha 匿名上线 OpenRouter"
+    "MIT 许可，Terminal-Bench 2.1 84.3、DeepSWE 63.4 超过 GLM-5.2，官方称价格仅其 1/10",
+    "KDA 线性 + DSA 稀疏 3:1 混合，KV 仅 11 KiB/token，1M 上下文 KV ≈ 11 GB",
+    "GLM-5 系列首个原生多模态（30T 多模态语料新底座）；曾以 Ox Alpha 匿名上线 OpenRouter"
    ],
    "pitfalls": [
-    "320B 总参数，Q4 也超过单卡 80GB",
-    "架构新（glm5_next），引擎支持需 SGLang / vLLM 最新版",
-    "刚发布两天，独立评测少"
+    "320B 总参数，官方 FP8 328 GB，最低 4×H100；社区 1-bit 量化也有 93 GB，单卡无解",
+    "架构新（glm5_next：KDA + DSA + mHC），需 SGLang / vLLM / Transformers 最新版，llama.cpp 仅 Unsloth 动态量化",
+    "刚发布，官方只给 6 项 agent 类基准，GPQA / AIME / SWE-bench Verified / MMMU 等常用榜未披露"
    ],
-   "logic_ability": "工程型推理强（Terminal-Bench 2.1 84.3、DeepSWE 63.4），HLE 带工具 55.3。LMArena 1469，AA 指数 57。",
+   "logic_ability": "工程型推理强：Terminal-Bench 2.1 84.3、DeepSWE v1.1 63.4、AutomationBench 48.8、Agents' Last Exam 26.3，均高于 GLM-5.2（81.0 / 46.2 / 26.2 / 20.4），逼近 Claude Opus 4.8 与 GPT-5.6 Terra 的档位。HLE（带工具）55.3。GDPVal-AA v2 1773 为本表最高。考试型基准（GPQA、AIME）官方未披露，无法评估纯数学推理。LMArena 1469、AA 指数 57 为第三方口径。",
    "best_for": [
     "低成本编程 agent",
     "多模态 + 长上下文的自建服务"
@@ -2745,20 +2855,37 @@
    ]
   },
   "capability_notes": {
-   "coding": "Terminal-Bench 2.1 84.3、DeepSWE 63.4（官方）。",
-   "reasoning": "HLE（工具）55.3（官方）。",
-   "multimodal": "原生多模态（图像），官方数值待补。"
+   "coding": "Terminal-Bench 2.1 84.3、DeepSWE v1.1 63.4（官方模型卡 bench_53）。",
+   "agent": "Agents' Last Exam 26.3、AutomationBench v1.0.6 48.8、GDPVal-AA v2 1773（官方模型卡）。",
+   "reasoning": "HLE（带工具）55.3（官方模型卡）；无工具 HLE、GPQA 未披露。",
+   "math": "AIME 官方未披露。",
+   "multimodal": "原生图像输入（24 层视觉编码器）；MMMU 等官方数值未披露。",
+   "chinese": "智谱系中文顶级。"
   },
   "ecosystem": {
    "engines": [
     "SGLang",
     "vLLM",
-    "KTransformers"
+    "TokenSpeed",
+    "KTransformers",
+    "Transformers"
    ],
-   "finetune": "Unsloth 指南",
+   "finetune": "Unsloth 指南；全参需多机",
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": true,
+  "runtime": {
+   "tok_s": 50,
+   "latency_s": 1.49,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  },
+  "sheet": {
+   "architecture_md": "**类型**：MoE + 混合注意力（KDA 线性 / DSA 稀疏 MLA），320B 总参 / 18B 激活，原生多模态。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 45 = 11 × (3 × KDA → MoE + 1 × DSA → MoE) |\n| 隐藏维 | 4,096 |\n| Dense 层 | 前 3 层 Dense MLP（中间维 12,288） |\n| 专家 | 288 路由 + 1 共享，每 token 选 8，专家中间维 2,048 |\n| DSA 层（11 层） | MLA：kv_lora_rank 512、q_lora_rank 1536，64 头，qk/v head_dim 256，无 RoPE 分量；indexer 32 头 × 128，top-k 2048 |\n| KDA 层（34 层） | 64 头 × head_dim 128，short conv kernel 4 |\n| 超连接 | mHC（hc_mult 4，Sinkhorn 20 轮） |\n| 词表 | 154,880 |\n| 上下文 | config 1,048,576；官方评测按 300K |\n| MTP | 1 层 |\n| 视觉编码器 | 24 层，hidden 1024，patch 14，spatial merge 2 |\n\n`config.json` 中 `architectures: Glm5NextForConditionalGeneration`，`model_type: glm5_next_text`。\n\n参考：zai-org/GLM-5.3-Flash config.json。",
+   "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| FP8 | 328 GB | 4–8×H100 | 官方 safetensors，62 分片（BF16 / F8_E4M3 混合） |\n| BF16 | ≈640 GB | 8×H200+ | 按 320B × 2 B 估算，官方未发布 |\n| Q4 | 200 GB | 3×80GB | unsloth UD-Q4_K_XL；UD-IQ4_XS 157 GB |\n| 低比特 | 93–148 GB | 2×80GB | unsloth UD-IQ1_S 93.1 / UD-Q2_K_XL 109 / UD-Q3_K_XL 148 |\n\n**KV Cache**：仅 11 层 DSA 层产生 KV，MLA 潜向量 512 维 × 2 B = 1 KiB/层，共 11 KiB/token；34 层 KDA 为固定递归状态。1M 上下文 KV ≈ 11 GB，是同级模型中最省的。\n\n**参考配置**：\n- 24GB / 80GB 单卡：不可行\n- 4×H100：官方 FP8 最低配置\n- 8×H100：FP8 高并发 + 1M 上下文\n\n警示：权重体积远大于「Flash」之名；视觉 token 另占显存。",
+   "training_md": "- 新底座：30T token 多模态预训练语料（模型卡）\n- 思考默认开启，可关；训练带 1 层 MTP 头可做投机解码\n- 后训练细节、RL 配方：官方未披露\n- 官方评测最大上下文 300K；BabyVision 评测用 164K",
+   "ecosystem_md": "- HF：zai-org/GLM-5.3-Flash（FP8 328 GB）；GGUF：unsloth/GLM-5.3-Flash-GGUF（仅 UD 动态量化，93–200 GB）\n- 引擎：SGLang、vLLM、TokenSpeed、KTransformers、Transformers（模型卡列出）\n- 微调：Unsloth 指南；全参微调需多机\n- 中文文档：有（智谱开放平台）",
+   "versions_md": "- 同代：GLM-5.3（744B-A40B，API；权重预告 2026-08-28）\n- 上代：GLM-5.2、GLM-5 / GLM-5-FP8（754B）\n- 关系：GLM-5.3-Flash 为全新底座（非 GLM-5.2 蒸馏），是 GLM-5 系列首个原生多模态模型"
+  }
  },
  {
   "id": "glm-5-3",
@@ -2868,7 +2995,12 @@
    "finetune": "待权重发布",
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 72,
+   "latency_s": 1.62,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "gpt-5-1",
@@ -3019,7 +3151,12 @@
    "agent": "OSWorld-Verified 78.7%。",
    "reasoning": "HLE（带工具）52.2%。"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 81,
+   "latency_s": 62.42,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "gpt-5-6-luna",
@@ -3099,7 +3236,12 @@
    "reasoning": "AA 智能指数 51（max 档）。",
    "coding": "AA Coding Agent Index 75。"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 126,
+   "latency_s": 108.61,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "gpt-5-6-sol",
@@ -3198,7 +3340,12 @@
    "finetune": "不支持",
    "zh_docs": "弱"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 70,
+   "latency_s": 122.11,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "gpt-5-6-terra",
@@ -3206,7 +3353,8 @@
   "name_zh": "GPT-5.6 均衡档",
   "aliases": [
    "gpt-5.6-terra",
-   "Terra"
+   "Terra",
+   "GPT-5.6 Terra (max)"
   ],
   "vendor": "OpenAI",
   "family": "GPT-5.6",
@@ -3227,7 +3375,7 @@
   "architecture": {
    "type": "unknown",
    "undisclosed": true,
-   "notes": "未披露。与 Sol 同一系列，支持 none~max 六档 reasoning.effort。"
+   "notes": "未披露。与 Sol / Luna 同一系列，支持 none / low / medium（默认）/ high / xhigh / max 六档 reasoning.effort；知识截止 2026-02-16。"
   },
   "context": {
    "max_tokens": 1050000,
@@ -3256,7 +3404,7 @@
    "highlights": [
     "AA 智能指数 57，Coding Agent Index 77，单任务成本约为 Sol 的一半",
     "1.05M 上下文 + 128K 输出，支持 max 推理档与全部内置工具",
-    "2026-07-30 降价 20% 至 $2 / $12，比 GPT-5.5 便宜一半以上"
+    "2026-07-30 降价 20% 至 $2 / $12（发布价 $2.5 / $15），比 GPT-5.5 便宜一半以上"
    ],
    "pitfalls": [
     ">272K 输入按 2× 输入 / 1.5× 输出计费",
@@ -3274,10 +3422,30 @@
    ]
   },
   "capability_notes": {
-   "reasoning": "AA 智能指数 57（max 档）。",
-   "coding": "AA Coding Agent Index 77。"
+   "reasoning": "AA 智能指数 57（max 档，2026-08-28；发布当日 55），xhigh 52 / high 49 / medium 46 / 无推理 34（AA）。",
+   "coding": "AA Coding Agent Index 77（Sol 80、Luna 75）；DeepSWE v1.1 69.6%、FrontierCode 1.1 41.3%（Google Gemini 3.7 Flash 模型卡对照列）。",
+   "agent": "Agents' Last Exam 官方称「以约 1/16 成本超过 Claude Fable 5」（OpenAI 公告，Simon Willison 转述）；AA 单任务成本 $0.53，约为 Sol 一半。",
+   "knowledge": "知识截止 2026-02-16（官方模型页）；GDM-MRCR 128K 93.5%（Google 模型卡对照列）。",
+   "multimodal": "文本 + 图像输入、文本输出；新增原始分辨率图像处理（不缩放）；不含音频。"
   },
-  "complete": false
+  "complete": true,
+  "sheet": {
+   "architecture_md": "**未披露**。OpenAI 未公布参数量与架构。\n\n已知接口特性（developers.openai.com 模型页，2026-08-28）：\n- 上下文 1,050,000 token，最大输出 128K\n- `reasoning.effort`：`none` / `low` / `medium`（默认）/ `high` / `xhigh` / `max`；`none` 即无推理模式（AA 指数 34）\n- 端点：Responses、Chat Completions、Batch；不支持 Realtime、Assistants、Fine-tuning、Embeddings、图像生成、音频\n- 输入：文本 + 图像；输出：文本。图像可按原始分辨率处理\n- 内置工具：web search、file search、code interpreter、computer use、image generation、hosted shell、MCP；支持 streaming、structured outputs、function calling、prompt caching\n- 5.6 系列新增：Programmatic Tool Calling（JS 编排工具组合）、多 agent 并行子 agent、显式缓存断点\n- 单一快照 `gpt-5.6-terra`；知识截止 2026-02-16\n- 速率限制：Tier 1 500 RPM / 500K TPM，Tier 5 15,000 RPM / 40M TPM",
+   "memory_md": "无自建选项。\n\n**成本模型**（官方定价页，2026-08-28）：\n- ≤272K 输入：$2 输入 / $0.20 缓存读 / $2.50 缓存写 / $12 输出\n- **>272K 输入**：整条请求按 $4 / $0.40 / $5 / $18 计费（输入 2×，输出 1.5×）\n- Batch 与 Flex：五折（$1 / $6；长上下文 $2 / $9）\n- Fast mode：翻倍（$4 / $24；长上下文 $8 / $36）\n- 2026-07-30 起从发布价 $2.5 / $15 降 20%\n\n**什么时候会变贵**：\n- 跨过 272K 门槛整条请求涨价，长文档批处理要主动截断或用 Luna\n- `max` 档吃 token 最多；AA 实测 Terra max 单任务 $0.53（Sol $1.04，Luna 约 $0.21）\n\n速度：AA 实测 106~121 tok/s（max 档），高于均值；max 档 TTFT 可达两分钟级，交互场景用 medium/high。",
+   "training_md": "- 训练细节未披露；知识截止 2026-02-16\n- 官方定位：GPT-5.6 系列的「均衡日常」档，Sol 主打前沿推理与长程 agent，Luna 主打速度与成本\n- 官方公开数据以 Sol 为主（Agents' Last Exam 53.6、SWE-bench Pro 64.6%）；Terra 只有「Agents' Last Exam 以约 1/16 成本超过 Fable 5」与 AA 综合指数，SWE-bench / GPQA 等未单独公布\n- 第三方对照：Google 3.7 Flash 模型卡列 Terra DeepSWE v1.1 69.6%、FrontierCode 41.3%、MRCR 128K 93.5%\n- 安全：网络安全 / 生化按 Preparedness Framework 定为 High，存在安全拦截\n- 行为：AA 称 5.6 系列输出 token 偏少（Sol 约 15K / 任务），token 效率优于同级",
+   "ecosystem_md": "- **API 渠道**：OpenAI API（Responses / Chat Completions / Batch）、Azure OpenAI（Microsoft Foundry）\n- ChatGPT：5.6 系列为 ChatGPT 默认模型线；Codex CLI / Cursor 等编码工具已接入\n- SDK：官方 Python / Node，兼容 OpenAI 协议的网关（OpenRouter、Vercel AI Gateway 等）\n- **不支持微调**（模型页明确 Fine-tuning 不可用）\n- 中文文档：弱（developers.openai.com 仅英文）",
+   "versions_md": "- 系列：GPT-5.6 Sol（旗舰，$5 / $30，2026-11-21 前促销价 $4 起）、**Terra**（均衡，$2 / $12）、Luna（经济，降价 80% 后 $0.20 / $1.80）；三者同一 2026-02-16 知识截止、1M 上下文、128K 输出\n- 发布：2026-07-09 三档同日 GA（Sol 此前有预览）；2026-07-30 Terra 降价 20%、Luna 降价 80%\n- 上代：GPT-5.5（AA 指数约 55~56，xhigh 档）\n- 快照：仅 `gpt-5.6-terra` 一个"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "弱"
+  },
+  "runtime": {
+   "tok_s": 106,
+   "latency_s": 141.99,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "gpt-5-mini",
@@ -3563,7 +3731,12 @@
    "finetune": "LoRA（官方示例）",
    "zh_docs": "无"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 152,
+   "latency_s": 0.87,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "gpt-oss-20b",
@@ -3581,7 +3754,7 @@
   "weights_url": "https://huggingface.co/openai/gpt-oss-20b",
   "status": "current",
   "released_at": "2025-08-05",
-  "updated_at": "2025-12-20",
+  "updated_at": "2026-08-28",
   "modalities": [
    "text",
    "tools"
@@ -3589,9 +3762,9 @@
   "reasoning_mode": "default-on",
   "architecture": {
    "type": "moe",
-   "total_params": "21B",
+   "total_params": "20.9B",
    "active_params": "3.6B",
-   "total_params_b": 21,
+   "total_params_b": 20.9,
    "active_params_b": 3.6,
    "experts": 32,
    "active_experts": 4,
@@ -3599,8 +3772,11 @@
    "hidden_size": 2880,
    "kv_heads": 8,
    "head_dim": 64,
-   "attention": "GQA（64 Q / 8 KV），交替滑窗",
-   "undisclosed": false
+   "attention": "GQA（64 Q / 8 KV，head_dim 64），滑窗 128 与全注意力逐层交替",
+   "undisclosed": false,
+   "vocab_size": 201088,
+   "kv_layers": 12,
+   "notes": "24 层 = 12 × (滑窗 128 + 全注意力)。32 专家选 4，专家中间维 2880，带 attention sink。YaRN factor 32（原始 4K → 128K），theta 150000。MoE 权重原生 MXFP4，注意力 / 嵌入为 BF16。表内 kv_layers 指 12 层全注意力层。"
   },
   "context": {
    "max_tokens": 131072,
@@ -3608,17 +3784,22 @@
   },
   "memory": {
    "weight_gb": {
-    "q4": 12.8
+    "bf16": 13.8,
+    "q8": 12.1,
+    "q4": 11.6
    },
-   "kv_per_token_kib": 48,
-   "estimated": false,
-   "ref_hw_24gb": "MXFP4 12.8 GB，16GB 卡即可"
+   "kv_per_token_kib": 24,
+   "kv_note": "只有 12 层全注意力层随长度增长：8 KV 头 × 64 × 2（K/V）× 2 B = 2 KiB/层 → 24 KiB/token（BF16）。12 层滑窗层窗口 128，KV 固定可忽略。128K 上下文 KV ≈ 3 GB。表内「bf16」为 HF 官方 safetensors 13.8 GB（MoE 为 MXFP4、其余 BF16），完全反量化到 BF16 约 42 GB。",
+   "ref_hw_24gb": "官方 MXFP4 13.8 GB（GGUF Q4_K_M 11.6 GB），16GB 卡即可；24GB 卡 128K 上下文单并发",
+   "ref_hw_80gb": "过剩；可高并发",
+   "ref_hw_8x80gb": "过剩",
+   "estimated": false
   },
   "pricing": {
    "input_per_m": 0.05,
    "output_per_m": 0.2,
    "currency": "USD",
-   "source": "第三方托管常见价",
+   "source": "第三方托管常见价（OpenRouter）",
    "as_of": "2025-12-20"
   },
   "links": {
@@ -3629,16 +3810,16 @@
   "copy": {
    "one_liner": "16GB 显存跑的推理模型，数学能力惊人。",
    "highlights": [
-    "MXFP4 12.8 GB，16GB 卡 / 笔记本可跑",
-    "AIME 2025 98.7%（工具，官方）",
-    "Apache-2.0"
+    "官方 MXFP4 13.8 GB，16GB 卡 / 笔记本可跑，仅 12 层全注意力 KV 24 KiB/token",
+    "AIME 2025 91.7（无工具）/ 98.7（工具）、GPQA 71.5，考试型推理远超体量",
+    "Apache-2.0，reasoning 三档可调，SWE-bench Verified 60.7"
    ],
    "pitfalls": [
-    "知识与中文弱",
-    "幻觉高",
-    "Harmony 格式要求严格"
+    "知识与中文弱（MMLU 85.3、MMMLU 75.7），HLE 无工具仅 10.9",
+    "幻觉率高，tau-bench Airline 38.0、Aider Polyglot 34.2，agent 稳定性一般",
+    "Harmony 格式要求严格，chat template 不对会明显掉分"
    ],
-   "logic_ability": "考试型推理相对体量极强，工程型一般。",
+   "logic_ability": "考试型推理相对体量极强：AIME 2025 91.7（无工具）/ 98.7（工具）、AIME 2024 92.1、GPQA Diamond 71.5、Codeforces 2230（模型卡，high 档）。HLE 10.9 / 17.3（工具）显示前沿知识浅。工程型推理中等：SWE-bench Verified 60.7、tau-bench Retail 54.8 / Airline 38.0。reasoning 低档时推理链很短，分数明显下滑。",
    "best_for": [
     "本地推理助手",
     "边缘 STEM 推理"
@@ -3648,17 +3829,39 @@
     "知识问答"
    ]
   },
-  "capability_notes": {},
+  "capability_notes": {
+   "coding": "SWE-bench Verified 60.7、Codeforces Elo 2230、Aider Polyglot 34.2（OpenAI 模型卡 arXiv 2508.10925，high）。",
+   "reasoning": "GPQA Diamond 71.5（无工具）/ 74.2（工具）、HLE 10.9 / 17.3（工具）（OpenAI 模型卡）。",
+   "math": "AIME 2025 91.7（无工具）/ 98.7（工具）、AIME 2024 92.1 / 96.0（OpenAI 模型卡）。",
+   "agent": "tau-bench Retail 54.8、Airline 38.0（OpenAI 模型卡）。",
+   "knowledge": "MMLU 85.3、MMMLU 75.7、HealthBench 42.5（OpenAI 模型卡）。",
+   "chinese": "中文弱，MMMLU 75.7，不建议中文产品主力。"
+  },
   "ecosystem": {
    "engines": [
     "llama.cpp",
     "Ollama",
     "vLLM",
-    "MLX"
+    "SGLang",
+    "MLX",
+    "Transformers"
    ],
+   "finetune": "官方指南 + Unsloth / TRL；LoRA 24GB 可行",
    "zh_docs": "无"
   },
-  "complete": false
+  "complete": true,
+  "runtime": {
+   "tok_s": 119,
+   "latency_s": 1.12,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  },
+  "sheet": {
+   "architecture_md": "**类型**：MoE，20.9B 总参 / 3.6B 激活，纯文本。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 24 = 12 × (滑窗 128 + 全注意力) |\n| 隐藏维 | 2,880 |\n| 专家 | 32，每 token 选 4，专家中间维 2,880 |\n| 注意力 | 64 Q / 8 KV，head_dim 64，attention sink，bias |\n| RoPE | YaRN factor 32，原始 4,096，theta 150,000 |\n| 词表 | 201,088（o200k_harmony） |\n| 上下文 | 131,072 |\n| 量化 | MoE 权重 MXFP4，其余 BF16 |\n\n`config.json` 中 `model_type: gpt_oss`，`quant_method: mxfp4`。\n\n参考：openai/gpt-oss-20b config.json 与模型卡（arXiv 2508.10925）。",
+   "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| MXFP4（官方） | 13.8 GB | 16GB | HF safetensors 3 分片 13.76 GB；unsloth GGUF F16 同为 13.8 GB |\n| Q8 | 12.1 GB | 16GB | unsloth GGUF Q8_0 |\n| Q4 | 11.6 GB | 16GB | unsloth GGUF Q4_K_M |\n| 全 BF16 反量化 | ≈42 GB | 80GB | 按 20.9B × 2 B 估算，无官方文件 |\n\n**KV Cache**：12 层全注意力层 × 2 KiB = 24 KiB/token；滑窗层固定可忽略。128K 上下文 KV ≈ 3 GB。\n\n**参考配置**：\n- 16GB 卡 / Mac：MXFP4 全量可跑\n- RTX 4090 24GB：128K 上下文单并发\n- 80GB：高并发\n\n警示：MXFP4 只有 Hopper / Blackwell 原生支持，其他 GPU 会在加载时反量化到 BF16（约 42 GB）或需用 GGUF。",
+   "training_md": "- 预训练 token 数：**未披露**（模型卡仅写「数万亿 token」，STEM / 代码为主，H100 训练）\n- Harmony 响应格式训练，需严格使用官方 chat template\n- reasoning effort 三档：low / medium / high，可在系统提示中设定\n- 支持函数调用、浏览、Python 工具、结构化输出\n- 训练即 MXFP4 感知，MoE 权重原生 4-bit",
+   "ecosystem_md": "- HF：openai/gpt-oss-20b（13.8 GB）；GGUF：unsloth/gpt-oss-20b-GGUF、ggml-org\n- 引擎：Transformers、vLLM、SGLang、llama.cpp、Ollama、LM Studio、MLX；官方另给 PyTorch / Triton / Metal 参考实现\n- 微调：官方 fine-tuning 指南，Unsloth / TRL 支持；LoRA 24GB 可行\n- 中文文档：无",
+   "versions_md": "- 同代：gpt-oss-120b（117B-A5.1B，同架构 36 层）\n- 后续：gpt-oss-safeguard（安全分类衍生）\n- 发布于 2025-08-05，为 OpenAI 自 GPT-2 后首个开放权重模型"
+  }
  },
  {
   "id": "granite-4-2-30b",
@@ -3754,7 +3957,12 @@
    ],
    "zh_docs": "无"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 75,
+   "latency_s": 0.92,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "grok-4-1-fast",
@@ -3871,8 +4079,9 @@
    "note": "≥200K 上下文：$2.50 / $5.00；缓存输入 $0.20"
   },
   "runtime": {
-   "tok_s": 126.2,
-   "source": "Artificial Analysis（2026-08-28）"
+   "tok_s": 126,
+   "latency_s": 15.33,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
   },
   "links": {
    "official": "https://x.ai/news/grok-amazon-bedrock",
@@ -3950,9 +4159,9 @@
    "note": "≥200K 上下文：$4 / $12；缓存输入 $0.30"
   },
   "runtime": {
-   "tok_s": 51.6,
-   "latency_s": 14.2,
-   "source": "Artificial Analysis（2026-08-28）"
+   "tok_s": 52,
+   "latency_s": 14.21,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
   },
   "links": {
    "official": "https://x.ai/news/grok-4-5",
@@ -4005,10 +4214,11 @@
  {
   "id": "grok-4-6",
   "name": "Grok 4.6",
-  "name_zh": "Grok 4.6",
+  "name_zh": "Grok 4.6 加训版",
   "aliases": [
    "grok-4.6",
-   "Grok 4.6 High"
+   "Grok 4.6 High",
+   "grok-4.6-fast"
   ],
   "vendor": "xAI",
   "vendor_zh": "xAI",
@@ -4029,7 +4239,7 @@
   "architecture": {
    "type": "unknown",
    "undisclosed": true,
-   "notes": "未披露。xAI 称在 Grok 4.5 基座上追加训练与 agent 环境 RL，非更大模型。reasoning_effort：low / medium / high / xhigh。"
+   "notes": "未披露。xAI 称在 Grok 4.5 基座上追加训练与 agent 环境 RL，非更大模型。reasoning_effort：low / medium / high（默认）/ xhigh，推理不可关闭。知识截止 2026-02-01。"
   },
   "context": {
    "max_tokens": 500000,
@@ -4048,8 +4258,9 @@
    "note": "≥200K 上下文：$4 / $12；缓存输入 $0.50；Fast 变体价格翻倍"
   },
   "runtime": {
-   "tok_s": 57.8,
-   "source": "Artificial Analysis（2026-08-28）"
+   "tok_s": 58,
+   "latency_s": 42.98,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
   },
   "links": {
    "official": "https://x.ai/news/grok-4-6",
@@ -4080,9 +4291,24 @@
   },
   "capability_notes": {
    "coding": "DeepSWE v1.1 65.9%、CursorBench v3.2 69.9%、FrontierCode v1.1 61.3%（xAI 公告）。",
-   "agent": "APEX-Agents 57.5%、Terminal-Bench v3.0 26%（xAI 公告）。"
+   "agent": "APEX-Agents 57.5%、Terminal-Bench v3.0 26%（xAI 公告）；Terminal-Bench v2.1 88.4%、τ³-Banking 50.7%、AA-Briefcase 1577（AA）。",
+   "reasoning": "AA 智能指数 61（high 档，2026-08-28，与 GPT-5.6 Sol 持平、次于 Opus 5 的 63）；较 Grok 4.5 +5 分。",
+   "knowledge": "GDPval-AA v2 1753（AA，仅次于 Opus 5）；知识截止 2026-02-01（docs.x.ai）。",
+   "multimodal": "文本 + 图像输入、文本输出；无音视频。"
   },
-  "complete": false
+  "complete": true,
+  "sheet": {
+   "architecture_md": "**未披露**。xAI 未公布参数量与架构，仅说明 4.6 是 Grok 4.5 基座的追加训练版（改进优化器与训练配方），不是更大的模型。\n\n已知接口特性（docs.x.ai，2026-08-28）：\n- 上下文 500K；官方文档写「无文本输出上限」（未给出 max_output 数值）\n- `reasoning_effort`：`low` / `medium` / `high`（默认）/ `xhigh`；`xhigh` 为 4.6 起新增，**推理不可关闭**\n- 输入：文本 + 图像；输出：文本\n- 能力：function calling、structured outputs、prompt caching、context compaction；服务端工具 web search、X search、code execution\n- **不支持 Batch API**；速率限制 150 RPS / 50M TPM；区域 us-east-1、us-west-2\n- Fast 变体：同模型更快推理，价格翻倍\n- 知识截止 2026-02-01（模型页；开发者指南写 2026-01）",
+   "memory_md": "无自建选项。\n\n**成本模型**（docs.x.ai 模型页，2026-08-28）：\n- <200K 上下文：$2 输入 / $0.50 缓存读 / $6 输出\n- **≥200K 上下文：整条请求按 $4 / $1 / $12 计费**（翻倍）\n- Fast 变体价格翻倍；无 Batch 折扣\n- 与 Grok 4.5 同价；缓存读由 $0.30 涨到 $0.50\n\n**什么时候会变贵**：\n- 跨 200K 门槛整条翻倍，长上下文代码库工作要注意压缩（可用 context compaction）\n- xhigh 档 token 消耗最大\n- 优势在输出价：$6 仅为 Opus 5 的 1/4、GPT-5.6 Sol 的 1/5；AA 实测单任务 $0.84~0.94，比 Opus 5 低 60% 以上；agent 轮次约 53（Opus 5 约 103）、输入 token 约 0.5B（Opus 5 约 2.0B）\n\n速度：AA 实测 57.8 tok/s（低于均值），TTFT 约 43 s，不适合低延迟交互；需要速度选 Fast 变体。",
+   "training_md": "- 参数与数据规模未披露\n- 官方公开训练方法：在 Grok 4.5 上做延长补充训练——用 Grok 4.5 重新生成 SFT 轨迹（推理、agent harness、STEM / 软件工程 / 知识工作），配合高质量工程数据集、改进优化器与训练配方\n- Agentic RL：知识工作、通用编码，以及内核优化、Web 开发、CAD 等领域专用环境\n- 官方称擅长：长程 agent 任务、多步项目、可视化 / 交互式应用生成、自测与迭代修正\n- 官方数据：AA 指数 61、GDPval-AA v2 1753、CursorBench 69.9%、DeepSWE 65.9%、FrontierCode 61.3%、APEX-Agents 57.5%、Terminal-Bench v3.0 26%\n- 短板：Terminal-Bench v3.0 与自主软件工程类落后；Arena 文本 1461 低于 4.5 的 1470；未公布 GPQA / HLE",
+   "ecosystem_md": "- **API 渠道**：xAI API（`grok-4.6`，OpenAI / Anthropic 兼容协议）、Grok Build（x.ai/build 编码 agent）、Cursor\n- 网关：OpenRouter、Vercel AI Gateway、Cloudflare AI Gateway；官方文档未提及 Azure / Bedrock / Vertex\n- 发布首周 API 与 Grok Build 双倍额度\n- SDK：xai-sdk（Python）+ OpenAI 兼容 SDK\n- **不支持微调**\n- 中文文档：无（docs.x.ai 仅英文）",
+   "versions_md": "- 上代：Grok 4.5（同价 $2 / $6，AA 指数 56，Arena 1470）；更早 Grok 4.3、Grok 4.1 Fast、Grok 4\n- 本代：`grok-4.6`（2026-08-12）与 Fast 变体（价格翻倍）\n- 定位：xAI 当前推荐模型，「最智能且最快」的代码 / 对话模型\n- 迭代节奏：4.3 → 4.5 → 4.6 间 AA 指数 +23 分"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "无"
+  }
  },
  {
   "id": "grok-4",
@@ -4258,7 +4484,12 @@
    ],
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 67,
+   "latency_s": 2.81,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "kimi-k2-0905",
@@ -4473,7 +4704,12 @@
    "finetune": "基本不可行",
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 39,
+   "latency_s": 2.75,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "kimi-k2-7-code",
@@ -4581,7 +4817,12 @@
    "finetune": "基本不可行",
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 45,
+   "latency_s": 2.82,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "kimi-k2-thinking",
@@ -4829,7 +5070,12 @@
    "finetune": "基本不可行",
    "zh_docs": "有"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 36,
+   "latency_s": 8.6,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "llama-4-maverick",
@@ -5123,7 +5369,12 @@
    ],
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 68,
+   "latency_s": 2.82,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "minimax-m2-7",
@@ -5231,7 +5482,12 @@
    "finetune": "社区少",
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 61,
+   "latency_s": 1.56,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "minimax-m2",
@@ -5476,7 +5732,12 @@
    "finetune": "Unsloth 指南",
    "zh_docs": "有"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 118,
+   "latency_s": 1.13,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "mistral-large-3",
@@ -5579,7 +5840,12 @@
    ],
    "zh_docs": "无"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 30,
+   "latency_s": 1.88,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "mistral-medium-3-1",
@@ -5765,7 +6031,12 @@
    "finetune": "全量 / LoRA（社区）",
    "zh_docs": "无"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 147,
+   "latency_s": 2.25,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "mistral-small-3-2",
@@ -5895,8 +6166,8 @@
    "vocab_size": 131072,
    "kv_heads": 32,
    "head_dim": 128,
-   "attention": "MLA（kv_lora_rank 256，32 头）",
-   "notes": "与 Large 3 同构的细粒度 MoE：128 路由 + 1 共享专家，专家隐藏维 2048。合并 Magistral 推理、Pixtral 视觉、Devstral 编程于一体。官方权重为 FP8。",
+   "attention": "MLA（kv_lora_rank 256 + RoPE 64，q_lora_rank 1024，32 头，head_dim 128）",
+   "notes": "与 Large 3 同构的细粒度 MoE：128 路由 + 1 共享专家，每 token 选 4，专家中间维 2048，全部 36 层均为 MoE（first_k_dense_replace 0）。MLA：qk_nope 64 + qk_rope 64、v_head 128，YaRN factor 128（原始 8K → config 1M，官方上下文 256K）。Pixtral 视觉编码器 24 层、hidden 1024、patch 14、image 1540。合并 Magistral 推理、Pixtral 视觉、Devstral 编程于一体。官方权重为 FP8（静态激活量化）。",
    "undisclosed": false
   },
   "context": {
@@ -5906,13 +6177,16 @@
   "memory": {
    "weight_gb": {
     "bf16": 238,
-    "fp8": 119,
-    "q4": 69
+    "fp8": 121,
+    "q8": 126,
+    "q4": 73.8
    },
-   "estimated": true,
+   "kv_per_token_kib": 22.5,
+   "kv_note": "MLA 压缩缓存：(256 潜向量 + 64 RoPE) × 2 B = 640 B/层 × 36 层 ≈ 22.5 KiB/token。若引擎不做 MLA 吸收而缓存完整 K/V（32 头 × 128 × 2 × 2 B），则为 576 KiB/token。256K 上下文 MLA 缓存 ≈ 5.6 GB。",
    "ref_hw_24gb": "不可行",
-   "ref_hw_80gb": "Q4 约 69 GB 单卡可跑短上下文；官方最低 4×H100 / 1×B200",
-   "ref_hw_8x80gb": "FP8 高并发"
+   "ref_hw_80gb": "UD-Q4_K_M 73.8 GB 单卡勉强可载，仅短上下文；官方最低 4×H100 / 2×H200 / 1×B200",
+   "ref_hw_8x80gb": "官方 FP8 121 GB，4×H100 推荐配置，8×H100 高并发",
+   "estimated": false
   },
   "pricing": {
    "input_per_m": 0.15,
@@ -5929,16 +6203,16 @@
   "copy": {
    "one_liner": "119B MoE 仅 6.5B 激活，推理 / 视觉 / 编程三合一。",
    "highlights": [
-    "Apache-2.0，指令 + 推理 + 多模态 + 编程 agent 单一权重",
-    "6.5B 激活，官方称比 Small 3 吞吐 3 倍",
-    "GPQA Diamond 71.2（官方），输出比 gpt-oss-120b 短 20%"
+    "Apache-2.0，指令 + 推理 + 多模态 + 编程 agent 单一权重，reasoning_effort 可切",
+    "6.5B 激活，官方称比 Small 3 吞吐 3 倍、端到端延迟降 40%",
+    "GPQA Diamond 71.2、AIME 2025 84、LiveCodeBench 64（high），输出比 gpt-oss-120b 短 20%"
    ],
    "pitfalls": [
-    "名为 Small 实为 119B，24GB 单卡跑不了",
-    "AA 智能指数 20，推理深度不及同期国产 MoE",
-    "新架构（mistral4 / MLA）引擎适配仍在跟进"
+    "名为 Small 实为 119B，FP8 121 GB，24GB 单卡跑不了，官方最低 4×H100",
+    "推理档输出很长（AIME 均 27.9K 字符），关思考后 GPQA 掉到 59.1、AIME 36",
+    "Agent 类官方未给 SWE-bench / Terminal-Bench / tau2 数字，IFBench 仅 48"
    ],
-   "logic_ability": "考试型推理中游（GPQA 71.2），reasoning_effort=high 时可用；工程型推理继承 Devstral 但官方未给 SWE-bench 数字。",
+   "logic_ability": "考试型推理中游：reasoning_effort=high 时 GPQA Diamond 71.2、AIME 2025 84（另一张图 83.8）、MMLU Pro 78，与 Magistral Medium 1.2 持平；instruct 模式下 GPQA 59.1、AIME 36、LiveCodeBench 32，差距很大。工程型推理：LiveCodeBench 64（high），继承 Devstral 但官方未给 SWE-bench 数字。长上下文 AA LCR 72。指令遵循偏弱（IFBench 48）。",
    "best_for": [
     "低成本 API 多模态 agent",
     "80GB 单卡本地推理"
@@ -5949,18 +6223,38 @@
    ]
   },
   "capability_notes": {
-   "reasoning": "GPQA Diamond 71.2（官方）。",
+   "coding": "LiveCodeBench 64（high）/ 32（instruct）（官方模型卡图表）；SWE-bench 未披露。",
+   "reasoning": "GPQA Diamond 71.2（high）/ 59.1（instruct）、MMLU Pro 78（官方模型卡图表）；HLE 未披露。",
+   "math": "AIME 2025 84（high，图 1）/ 83.8（图 2）/ 36（instruct）（官方模型卡图表）。",
+   "agent": "tau2 / Terminal-Bench 官方未披露；Collie 62.9。",
+   "instruction": "AllenAI IFBench 48（high）/ 35.7（instruct）、Arena Hard 58.3（官方模型卡图表）。",
+   "multimodal": "MMMU-Pro 60（high）/ 46.3（instruct）（官方模型卡图表）。",
    "chinese": "官方支持中文，独立数据少。"
   },
   "ecosystem": {
    "engines": [
     "vLLM",
     "SGLang",
-    "llama.cpp"
+    "llama.cpp",
+    "Transformers"
    ],
+   "finetune": "mistral-finetune / Unsloth；全参需 ≥ 4×80GB",
    "zh_docs": "无"
   },
-  "complete": false
+  "complete": true,
+  "runtime": {
+   "tok_s": 164,
+   "latency_s": 0.89,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  },
+  "vendor_zh": "Mistral AI",
+  "sheet": {
+   "architecture_md": "**类型**：细粒度 MoE + MLA，119B 总参 / 6.5B 激活，图像输入。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 36（全部 MoE） |\n| 隐藏维 | 4,096 |\n| 专家 | 128 路由 + 1 共享，每 token 选 4，专家中间维 2,048 |\n| 注意力 | MLA：32 头，q_lora_rank 1024，kv_lora_rank 256，qk_nope 64 + qk_rope 64，v_head 128 |\n| RoPE | YaRN factor 128，原始 8,192，theta 1e4 |\n| 词表 | 131,072（Tekken） |\n| 上下文 | 官方 256K（config max_position 1,048,576） |\n| 视觉编码器 | Pixtral 24 层，hidden 1024，patch 14，image 1540，spatial merge 2 |\n\n`config.json` 中 `model_type: mistral3` / `text_config.model_type: mistral4`，`quant_method: fp8`。\n\n参考：mistralai/Mistral-Small-4-119B-2603 config.json。",
+   "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | 238 GB | 4×80GB | unsloth GGUF BF16（官方未发布 BF16） |\n| FP8 | 121 GB | 2×80GB | 官方 safetensors，3 分片 120.9 GB（另有 7 分片 consolidated 格式 141 GB） |\n| Q8 | 126 GB | 2×80GB | unsloth GGUF Q8_0 |\n| Q4 | 73.8 GB | 80GB 单卡 | unsloth UD-Q4_K_M；UD-Q4_K_S 69.5 GB |\n\n**KV Cache**：MLA 压缩缓存 ≈ 22.5 KiB/token（(256 + 64) × 2 B × 36 层）；非吸收实现 576 KiB/token。256K 上下文 MLA 缓存 ≈ 5.6 GB。\n\n**参考配置**：\n- 24GB：不可行\n- 80GB 单卡：Q4 勉强可载，短上下文\n- 4×H100 / 2×H200 / 1×B200：官方最低；4×H200 / 2×B200：官方推荐\n\n警示：high 推理档输出很长，预留输出 KV；vLLM 需 tensor-parallel ≥ 2。",
+   "training_md": "- 预训练 token 数：**未披露**\n- 单一权重同时覆盖指令、推理（Magistral）、视觉（Pixtral）、编程 agent（Devstral）\n- reasoning_effort：high（深度推理，推荐 temperature 0.7）/ none（快速响应）\n- 官方发布即 FP8（静态激活量化），无 BF16 官方权重\n- 官方评测：AA LCR 0.72 且平均输出仅 1.6K 字符",
+   "ecosystem_md": "- HF：mistralai/Mistral-Small-4-119B-2603（FP8 121 GB）；GGUF：unsloth/Mistral-Small-4-119B-2603-GGUF\n- 引擎：vLLM（官方推荐）、SGLang、llama.cpp、LM Studio、Transformers（main 分支）\n- 微调：mistral-finetune / Unsloth；MoE 全参需 ≥ 4×80GB\n- 中文文档：无",
+   "versions_md": "- 同代：Mistral Large 3（同构更大 MoE）、Magistral Medium 1.2 / Small 1.2（纯推理）、Devstral 2\n- 上代：Mistral Small 3.2（24B Dense）、Mistral Medium 3.1\n- 本代把 Small 从 24B Dense 改为 119B-A6.5B MoE，并合并推理 / 视觉 / 编程分支"
+  }
  },
  {
   "id": "muse-glimmer-30b",
@@ -6078,7 +6372,12 @@
    "finetune": "Unsloth / LoRA",
    "zh_docs": "无"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 102,
+   "latency_s": 0.84,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "muse-spark",
@@ -6176,7 +6475,7 @@
   "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
   "status": "current",
   "released_at": "2025-12-15",
-  "updated_at": "2025-12-20",
+  "updated_at": "2026-08-28",
   "modalities": [
    "text",
    "tools"
@@ -6230,7 +6529,14 @@
     "成熟生态依赖"
    ]
   },
-  "capability_notes": {},
+  "capability_notes": {
+   "coding": "LiveCodeBench v6 68.3、SWE-bench（OpenHands）38.8、Terminal-Bench hard 8.5（官方模型卡）。",
+   "reasoning": "GPQA 73.0（无工具）/ 75.0（工具）、HLE 10.6 / 15.5（工具）、MMLU-Pro 78.3（官方模型卡）。",
+   "math": "AIME 2025 89.1（无工具）/ 99.2（工具）、MiniF2F pass@1 50.0（官方模型卡）。",
+   "agent": "tau2-bench 均值 49.0、BFCL v4 53.8（官方模型卡）。",
+   "instruction": "IFBench 71.5、Arena-Hard-V2 均值 67.7（官方模型卡）。",
+   "chinese": "官方语言列表为英德西法意日，不含中文；MMLU-ProX 59.5。"
+  },
   "ecosystem": {
    "engines": [
     "vLLM",
@@ -6238,12 +6544,26 @@
    ],
    "zh_docs": "无"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 227,
+   "latency_s": 1.19,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  },
+  "name_zh": "NVIDIA Nemotron 3 Nano · 30B A3B",
+  "pricing": {
+   "input_per_m": 0.05,
+   "output_per_m": 0.2,
+   "currency": "USD",
+   "source": "第三方托管常见价（OpenRouter）",
+   "as_of": "2026-08-28",
+   "note": "DeepInfra / Crusoe / Nebius / Novita 托管；缓存读取 $0.025"
+  }
  },
  {
   "id": "nemotron-3-super-120b-a12b",
   "name": "NVIDIA Nemotron 3 Super 120B-A12B",
-  "name_zh": "NVIDIA Nemotron 3 Super",
+  "name_zh": "NVIDIA Nemotron 3 Super · 120B A12B",
   "aliases": [
    "Nemotron-3-Super-120B-A12B",
    "nvidia/nemotron-3-super-120b-a12b",
@@ -6278,9 +6598,10 @@
    "vocab_size": 131072,
    "kv_heads": 2,
    "head_dim": 128,
-   "attention": "混合：8 层注意力（32 Q / 2 KV）+ 35 层 Mamba-2 + 52 层 LatentMoE",
-   "notes": "Mamba-2 / 注意力 / LatentMoE 交错（M35 / *8 / E52），多 token 预测头。训练用 NVFP4。",
-   "undisclosed": false
+   "attention": "混合：8 层 GQA 注意力（32 Q / 2 KV，head_dim 128）+ 40 层 Mamba-2 + 40 层 LatentMoE",
+   "notes": "config hybrid_override_pattern 共 88 层：40 M（Mamba-2，128 头 × 64，state 128）/ 40 E（LatentMoE：512 路由 + 1 共享专家选 22，latent 1024，专家中间维 2688）/ 8 *（注意力），无 RoPE 缩放（theta 1e4，注意力层主要靠 Mamba 提供位置信息）。1 层 MTP（*E）。训练用 NVFP4。config max_position 262,144，官方标称 1M（RULER@1M 91.75）。",
+   "undisclosed": false,
+   "kv_layers": 8
   },
   "context": {
    "max_tokens": 1048576,
@@ -6289,14 +6610,17 @@
   },
   "memory": {
    "weight_gb": {
-    "bf16": 240,
-    "fp8": 120,
-    "q4": 70
+    "bf16": 247,
+    "fp8": 128,
+    "q8": 128,
+    "q4": 82.5
    },
-   "estimated": true,
+   "kv_per_token_kib": 8,
+   "kv_note": "仅 8 层注意力有 KV：2 KV 头 × 128 × 2（K/V）× 2 B = 1 KiB/层 → 8 KiB/token（BF16）。40 层 Mamba-2 为固定 SSM 状态（128 头 × 64 × 128，FP32，约 4 MiB/层），每序列约 160 MB 与长度无关。1M 上下文 KV ≈ 8 GB。",
    "ref_hw_24gb": "不可行",
-   "ref_hw_80gb": "Q4 约 70 GB 单卡可跑，仅 8 层注意力 KV 极省；官方最低 8×H100",
-   "ref_hw_8x80gb": "BF16 官方推荐"
+   "ref_hw_80gb": "不可行（UD-Q4_K_M 82.5 GB 已超 80GB；官方 NVFP4 版可跑单 B200 / DGX Spark）",
+   "ref_hw_8x80gb": "官方最低 8×H100 BF16；FP8 128 GB 用 2×H100 即可载",
+   "estimated": false
   },
   "pricing": {
    "input_per_m": 0.085,
@@ -6312,16 +6636,16 @@
   "copy": {
    "one_liner": "NVIDIA 120B 混合 Mamba-MoE，12B 激活，1M 上下文。",
    "highlights": [
-    "AIME 2025 90.2%、LiveCodeBench 81.2%、GPQA 79.2%（官方）",
-    "仅 8 层注意力 + 2 KV 头，1M 上下文显存极省",
-    "Nemotron 开放许可可商用，训练数据 / 配方公开度高"
+    "AIME 2025 90.2、LiveCodeBench 81.2、GPQA 79.2、RULER@1M 91.75（官方）",
+    "仅 8 层注意力 + 2 KV 头，KV 8 KiB/token，1M 上下文 KV 仅约 8 GB",
+    "Nemotron 开放许可可商用，25T token 预训练数据 / 配方公开度高"
    ],
    "pitfalls": [
-    "SWE-bench Verified 60.5%，工程能力平平",
-    "AA 智能指数 26，被 Muse Glimmer 30B（35）反超",
-    "混合架构需新版 vLLM / TRT-LLM，llama.cpp 支持滞后"
+    "SWE-bench Verified 60.5、Terminal-Bench Core 2.0 31.0、tau2 均值 61.2，工程与 agent 中游",
+    "AA 智能指数 26；HLE 无工具 18.3、Arena-Hard-V2 73.9 低于 gpt-oss-120b",
+    "Mamba-MoE 混合架构需新版 vLLM（≥ 0.18.1）/ TRT-LLM，llama.cpp 支持滞后；Q4 也超 80GB"
    ],
-   "logic_ability": "考试型推理强（AIME 90.2、GPQA 79.2），工程型推理中游（SWE-bench 60.5）。thinking 可开关。",
+   "logic_ability": "考试型推理强：AIME 2025 90.21（无工具）、HMMT Feb25 93.67 / 94.73（工具）、GPQA 79.23 / 82.70（工具）、MMLU-Pro 83.73。HLE 18.26 / 22.82（工具）中等。工程型推理中游：LiveCodeBench 81.19 高，但 SWE-bench Verified 60.47（OpenHands）、Terminal-Bench Core 2.0 31.00 / hard 25.78、tau2 均值 61.15。长上下文是强项（RULER 256K 96.3、1M 91.75、AA-LCR 58.31）。thinking 可开关。",
    "best_for": [
     "超长上下文 RAG / 文档 agent",
     "高吞吐推理服务"
@@ -6332,21 +6656,38 @@
    ]
   },
   "capability_notes": {
-   "coding": "LiveCodeBench 81.19、SWE-bench Verified 60.47（OpenHands，官方）。",
-   "reasoning": "GPQA 79.23（无工具）、MMLU-Pro 83.73（官方）。",
-   "math": "AIME 2025 90.21（无工具，官方）。",
-   "chinese": "官方支持中文（7 种语言之一）。"
+   "coding": "LiveCodeBench 81.19、SWE-bench Verified 60.47（OpenHands）/ 59.20（OpenCode）、Terminal-Bench Core 2.0 31.00、SciCode 42.05（官方模型卡）。",
+   "reasoning": "GPQA 79.23（无工具）/ 82.70（工具）、HLE 18.26 / 22.82（工具）、MMLU-Pro 83.73（官方模型卡）。",
+   "math": "AIME 2025 90.21（无工具）、HMMT Feb25 93.67 / 94.73（工具）（官方模型卡）。",
+   "agent": "tau2-bench 均值 61.15（Airline 56.25 / Retail 62.83 / Telecom 64.36）、BrowseComp（搜索）31.28、BIRD 41.80（官方模型卡）。",
+   "instruction": "IFBench 72.56、Arena-Hard-V2 73.88、Multi-Challenge 55.23（官方模型卡）。",
+   "chinese": "官方支持中文（7 种语言之一），MMLU-ProX 均值 79.36、WMT24++ 86.67（官方模型卡）。"
   },
   "ecosystem": {
    "engines": [
     "vLLM",
     "SGLang",
     "TensorRT-LLM",
+    "Transformers",
     "llama.cpp"
    ],
+   "finetune": "NeMo / Megatron 官方脚本；LoRA ≥ 2×80GB",
    "zh_docs": "无"
   },
-  "complete": false
+  "complete": true,
+  "runtime": {
+   "tok_s": 142,
+   "latency_s": 1.79,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  },
+  "vendor_zh": "英伟达",
+  "sheet": {
+   "architecture_md": "**类型**：Mamba-2 / 注意力 / LatentMoE 混合，120B 总参 / 12B 激活，纯文本。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 88 = 40 Mamba-2 + 40 LatentMoE + 8 注意力（pattern MEMEMEM*E…） |\n| 隐藏维 | 4,096 |\n| Mamba-2 | 128 头 × head_dim 64，state 128，conv kernel 4，expand 2 |\n| 专家 | 512 路由 + 1 共享（中间维 5,376），每 token 选 22，专家中间维 2,688，latent 1,024 |\n| 注意力 | 32 Q / 2 KV，head_dim 128，theta 1e4 |\n| 词表 | 131,072 |\n| 上下文 | 官方 1M（config max_position 262,144） |\n| MTP | 1 层（*E） |\n\n`config.json` 中 `model_type: nemotron_h`，`architectures: NemotronHForCausalLM`。\n\n参考：nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16 config.json 与模型卡。",
+   "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | 247 GB | 8×H100 | 官方 safetensors，50 分片（官方最低配置） |\n| FP8 | 128 GB | 2×H100 | 官方 NVIDIA-Nemotron-3-Super-120B-A12B-FP8，26 分片 |\n| Q8 | 128 GB | 2×H100 | unsloth GGUF Q8_0 |\n| Q4 | 82.5 GB | 2×80GB | unsloth GGUF Q4_K_M（超过单张 80GB） |\n| NVFP4 | 官方另发 | 1×B200 / DGX Spark | 官方 NVFP4 版本 |\n\n**KV Cache**：仅 8 层注意力 × 1 KiB = 8 KiB/token；40 层 Mamba-2 状态固定约 160 MB/序列。1M 上下文 KV ≈ 8 GB。\n\n**参考配置**：\n- 24GB / 80GB 单卡：不可行\n- 2×H100：FP8 或 Q8 可载，长上下文余量大\n- 8×H100：官方 BF16 推荐\n\n警示：vLLM 需 ≥ 0.18.1，Transformers ≥ 5.3；Mamba 状态用 FP32 缓存。",
+   "training_md": "- 预训练：25T+ token（模型卡），预训练截止 2025-06，后训练截止 2026-02\n- 训练精度 NVFP4；带 MTP 头（另发 MTPv2 版本）\n- 数据与配方：Nemotron 系列公开预训练 / 后训练数据集与训练脚本（NeMo）\n- 思考模式可开关（reasoning on/off）\n- 支持 7 种语言：英、法、德、意、日、西、中",
+   "ecosystem_md": "- HF：nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16（247 GB）、-FP8（128 GB）、NVFP4；GGUF：unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF\n- 引擎：vLLM（≥ 0.18.1）、SGLang、TensorRT-LLM、Transformers（≥ 5.3）；llama.cpp 经 GGUF\n- 微调：NeMo / Megatron 官方脚本；社区 LoRA 需 ≥ 2×80GB\n- 中文文档：无",
+   "versions_md": "- 同代：Nemotron 3 Nano 30B-A3B（52 层同构小版）、Nemotron 3 Ultra（更大）\n- 后续：Nemotron 3.5 Lightning（已上线 OpenRouter）\n- 上代：Nemotron 2 Nano 9B / 12B（Mamba 混合 Dense）"
+  }
  },
  {
   "id": "nemotron-3-ultra-550b-a55b",
@@ -6451,7 +6792,12 @@
    ],
    "zh_docs": "无"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 150,
+   "latency_s": 2.09,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "qwen3-235b-a22b-thinking-2507",
@@ -6951,7 +7297,12 @@
    "finetune": "多节点 LoRA",
    "zh_docs": "有"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 25,
+   "latency_s": 2.53,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "qwen3-8-27b",
@@ -7076,7 +7427,12 @@
    "finetune": "Unsloth 已适配；全参需 ≥ 2×80GB",
    "zh_docs": "有"
   },
-  "complete": true
+  "complete": true,
+  "runtime": {
+   "tok_s": 47,
+   "latency_s": 3.77,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "qwen3-coder-480b-a35b",
@@ -7096,7 +7452,7 @@
   "weights_url": "https://huggingface.co/Qwen/Qwen3-Coder-480B-A35B-Instruct",
   "status": "current",
   "released_at": "2025-07-22",
-  "updated_at": "2025-12-20",
+  "updated_at": "2026-08-28",
   "modalities": [
    "text",
    "tools"
@@ -7163,7 +7519,13 @@
     "通用推理"
    ]
   },
-  "capability_notes": {},
+  "capability_notes": {
+   "coding": "SWE-bench Verified 69.6（官方博客）；SWE-bench Pro 38.7、Terminal-Bench 2.0 23.9（HF 模型卡）。",
+   "agent": "长时程 agent RL 训练，Qwen Code / CLINE 工具调用；Evasion Bench 78.16（HF 模型卡）。",
+   "reasoning": "非思考模式，官方未给 GPQA / HLE。",
+   "math": "官方未披露。",
+   "chinese": "中文顶级（Qwen 系列）。"
+  },
   "ecosystem": {
    "engines": [
     "vLLM",
@@ -7171,7 +7533,12 @@
    ],
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 66,
+   "latency_s": 2.97,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  },
  {
   "id": "qwen3-max",
@@ -7478,6 +7845,11 @@
    ],
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": false,
+  "runtime": {
+   "tok_s": 86,
+   "latency_s": 2.78,
+   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+  }
  }
 ]

@@ -1,108 +1,113 @@
 {
-  "id": "minimax-m2-7",
-  "name": "MiniMax-M2.7",
-  "name_zh": "MiniMax M2.7",
-  "aliases": [
-    "MiniMax M2.7",
-    "minimax-m2.7"
+ "id": "minimax-m2-7",
+ "name": "MiniMax-M2.7",
+ "name_zh": "MiniMax M2.7",
+ "aliases": [
+  "MiniMax M2.7",
+  "minimax-m2.7"
+ ],
+ "vendor": "MiniMax",
+ "family": "MiniMax-M",
+ "license": "MiniMax Non-Commercial License（MIT-style）",
+ "license_commercial": false,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+ "status": "current",
+ "released_at": "2026-03-18",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "229B",
+  "active_params": "10B",
+  "total_params_b": 229,
+  "active_params_b": 10,
+  "experts": 256,
+  "active_experts": 8,
+  "shared_expert": false,
+  "layers": 62,
+  "hidden_size": 3072,
+  "vocab_size": 200064,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（48 Q 头 / 8 KV 头）",
+  "notes": "与 M2 同构（62 层 GQA + 256 专家），3 个 MTP 模块，QK-norm。HF 发布版为 FP8（block 128×128）。预训练 29.2T token（NVIDIA 技术博客）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 204800,
+  "display": "200K"
+ },
+ "memory": {
+  "weight_gb": {
+   "fp8": 230,
+   "q4": 133
+  },
+  "kv_per_token_kib": 248,
+  "kv_note": "8 KV 头 × 128 × 2 × 62 层 × 2 B = 248 KiB/token。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（Q4 约 133 GB）",
+  "ref_hw_8x80gb": "FP8 230 GB 官方发布版，4×H100 起",
+  "estimated": true
+ },
+ "pricing": {
+  "input_per_m": 0.3,
+  "output_per_m": 1.2,
+  "currency": "USD",
+  "source": "MiniMax 开放平台",
+  "as_of": "2026-08-28",
+  "note": "缓存读 $0.06 / 写 $0.375"
+ },
+ "links": {
+  "official": "https://www.minimax.io/news/minimax-m27-en",
+  "hf": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
+  "github": "https://github.com/MiniMax-AI/MiniMax-M2.7",
+  "pricing": "https://platform.minimax.io/docs/guides/pricing-paygo"
+ },
+ "copy": {
+  "one_liner": "10B 激活的 agent 编程模型，但权重仅限非商用。",
+  "highlights": [
+   "SWE-Pro 56.22、Terminal Bench 2 57.0、GDPval-AA Elo 1495（发布时开源最高）",
+   "10B 激活低延迟，FP8 230 GB 4×H100 可跑",
+   "原生 Agent Teams 多 agent 协作"
   ],
-  "vendor": "MiniMax",
-  "family": "MiniMax-M",
-  "license": "MiniMax Non-Commercial License（MIT-style）",
-  "license_commercial": false,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
-  "status": "current",
-  "released_at": "2026-03-18",
-  "updated_at": "2026-08-28",
-  "modalities": [
-    "text",
-    "tools"
+  "pitfalls": [
+   "许可为非商用：商用须 MiniMax 书面授权并标注「Built with MiniMax M2.7」，与 M2 的 MIT 不同",
+   "已被 M3 取代旗舰；多模态需用 M3",
+   "通用推理基准（GPQA / AIME）官方未披露"
   ],
-  "reasoning_mode": "default-on",
-  "architecture": {
-    "type": "moe",
-    "total_params": "229B",
-    "active_params": "10B",
-    "total_params_b": 229,
-    "active_params_b": 10,
-    "experts": 256,
-    "active_experts": 8,
-    "shared_expert": false,
-    "layers": 62,
-    "hidden_size": 3072,
-    "vocab_size": 200064,
-    "kv_heads": 8,
-    "head_dim": 128,
-    "attention": "GQA（48 Q 头 / 8 KV 头）",
-    "notes": "与 M2 同构（62 层 GQA + 256 专家），3 个 MTP 模块，QK-norm。HF 发布版为 FP8（block 128×128）。预训练 29.2T token（NVIDIA 技术博客）。",
-    "undisclosed": false
-  },
-  "context": {
-    "max_tokens": 204800,
-    "display": "200K"
-  },
-  "memory": {
-    "weight_gb": {
-      "fp8": 230,
-      "q4": 133
-    },
-    "kv_per_token_kib": 248,
-    "kv_note": "8 KV 头 × 128 × 2 × 62 层 × 2 B = 248 KiB/token。",
-    "ref_hw_24gb": "不可行",
-    "ref_hw_80gb": "不可行（Q4 约 133 GB）",
-    "ref_hw_8x80gb": "FP8 230 GB 官方发布版，4×H100 起",
-    "estimated": true
-  },
-  "pricing": {
-    "input_per_m": 0.3,
-    "output_per_m": 1.2,
-    "currency": "USD",
-    "source": "MiniMax 开放平台",
-    "as_of": "2026-08-28",
-    "note": "缓存读 $0.06 / 写 $0.375"
-  },
-  "links": {
-    "official": "https://www.minimax.io/news/minimax-m27-en",
-    "hf": "https://huggingface.co/MiniMaxAI/MiniMax-M2.7",
-    "github": "https://github.com/MiniMax-AI/MiniMax-M2.7",
-    "pricing": "https://platform.minimax.io/docs/guides/pricing-paygo"
-  },
-  "copy": {
-    "one_liner": "10B 激活的 agent 编程模型，但权重仅限非商用。",
-    "highlights": [
-      "SWE-Pro 56.22、Terminal Bench 2 57.0、GDPval-AA Elo 1495（发布时开源最高）",
-      "10B 激活低延迟，FP8 230 GB 4×H100 可跑",
-      "原生 Agent Teams 多 agent 协作"
-    ],
-    "pitfalls": [
-      "许可为非商用：商用须 MiniMax 书面授权并标注「Built with MiniMax M2.7」，与 M2 的 MIT 不同",
-      "已被 M3 取代旗舰；多模态需用 M3",
-      "通用推理基准（GPQA / AIME）官方未披露"
-    ],
-    "logic_ability": "工程型推理为主：SWE-Pro 56.22、Multi-SWE 52.7、NL2Repo 39.8、MLE Bench Lite 66.6% 奖牌率。",
-    "best_for": [
-      "非商用 / 研究自建的编程 agent",
-      "API 低成本 agent 服务"
-    ],
-    "not_for": [
-      "商用自建（许可限制）",
-      "多模态"
-    ]
-  },
-  "capability_notes": {
-    "coding": "SWE-Pro 56.22、Terminal Bench 2 57.0、SWE Multilingual 76.5、Multi-SWE 52.7（官方）。",
-    "agent": "Toolathon 46.3、GDPval-AA 1495、MM Claw 62.7（官方）。"
-  },
-  "ecosystem": {
-    "engines": [
-      "SGLang",
-      "vLLM",
-      "Transformers"
-    ],
-    "finetune": "社区少",
-    "zh_docs": "有"
-  },
-  "complete": false
+  "logic_ability": "工程型推理为主：SWE-Pro 56.22、Multi-SWE 52.7、NL2Repo 39.8、MLE Bench Lite 66.6% 奖牌率。",
+  "best_for": [
+   "非商用 / 研究自建的编程 agent",
+   "API 低成本 agent 服务"
+  ],
+  "not_for": [
+   "商用自建（许可限制）",
+   "多模态"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-Pro 56.22、Terminal Bench 2 57.0、SWE Multilingual 76.5、Multi-SWE 52.7（官方）。",
+  "agent": "Toolathon 46.3、GDPval-AA 1495、MM Claw 62.7（官方）。"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "Transformers"
+  ],
+  "finetune": "社区少",
+  "zh_docs": "有"
+ },
+ "complete": false,
+ "runtime": {
+  "tok_s": 61,
+  "latency_s": 1.56,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

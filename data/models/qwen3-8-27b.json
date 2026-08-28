@@ -121,5 +121,10 @@
   "finetune": "Unsloth 已适配；全参需 ≥ 2×80GB",
   "zh_docs": "有"
  },
- "complete": true
+ "complete": true,
+ "runtime": {
+  "tok_s": 47,
+  "latency_s": 3.77,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

@@ -10,7 +10,7 @@ import { ModelName } from '@/components/ui/ModelName'
 import { Empty, Button, Chip } from '@/components/ui/Misc'
 import type { Model } from '@/lib/types'
 
-type Sort = 'ref' | 'updated' | 'params' | 'price' | 'elo' | 'name'
+type Sort = 'ref' | 'released' | 'updated' | 'params' | 'price' | 'elo' | 'name'
 const sizeBuckets = [['≤8B', 0, 8], ['8–32B', 8, 32], ['32–70B', 32, 70], ['70B+', 70, Infinity]] as const
 
 export default function Models() {
@@ -22,11 +22,13 @@ export default function Models() {
   const [mod, setMod] = useState<string[]>([])
   const [hw, setHw] = useState<0 | 16 | 24 | 80>(0)
   const [think, setThink] = useState(false)
+  const [old, setOld] = useState(false)
   const [sort, setSort] = useState<Sort>('ref')
   const refs = useMemo(() => computeReferenceScores(models, scoreMap), [])
   const list = useMemo(() => {
     let ms = filterModels(models, q)
     ms = ms.filter((m) => {
+      if (!old && m.status === 'superseded') return false
       if (open === 'open' && !isOpenWeights(m)) return false
       if (open === 'closed' && isOpenWeights(m)) return false
       if (open === 'weights' && !m.weights_available) return false
@@ -50,6 +52,7 @@ export default function Models() {
     const g = (m: Model, k: string) => getScore(scoreMap, m.id, k)?.value
     const cmp: Record<Sort, (a: Model, b: Model) => number> = {
       ref: (a, b) => (refs.get(b.id)?.score ?? -1) - (refs.get(a.id)?.score ?? -1),
+      released: (a, b) => (b.released_at ?? '').localeCompare(a.released_at ?? ''),
       updated: (a, b) => b.updated_at.localeCompare(a.updated_at),
       params: (a, b) => (b.architecture.total_params_b ?? paramsB(b.architecture.total_params) ?? -1) - (a.architecture.total_params_b ?? paramsB(a.architecture.total_params) ?? -1),
       price: (a, b) => (a.pricing?.input_per_m ?? 1e9) - (b.pricing?.input_per_m ?? 1e9),
@@ -58,8 +61,8 @@ export default function Models() {
     }
     if (!q.trim()) ms = [...ms].sort(cmp[sort])
     return ms
-  }, [q, open, vendor, size, lic, mod, hw, think, sort, refs])
-  const reset = () => { setQ(''); setOpen('all'); setVendor([]); setSize([]); setLic('all'); setMod([]); setHw(0); setThink(false) }
+  }, [q, open, vendor, size, lic, mod, hw, think, old, sort, refs])
+  const reset = () => { setQ(''); setOpen('all'); setVendor([]); setSize([]); setLic('all'); setMod([]); setHw(0); setThink(false); setOld(false) }
   const tog = (arr: string[], set: (v: string[]) => void, v: string) => set(arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v])
   return (
     <div className="space-y-5">
@@ -68,7 +71,7 @@ export default function Models() {
         <div className="flex items-center gap-2 text-xs">
           <span className="text-muted">排序</span>
           <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="rounded-md border border-border bg-surface px-2 py-1.5">
-            <option value="ref">参考分</option><option value="updated">更新日期</option><option value="params">参数量</option><option value="price">价格</option><option value="elo">Elo</option><option value="name">名称</option>
+            <option value="ref">参考分</option><option value="released">发布日期</option><option value="updated">更新日期</option><option value="params">参数量</option><option value="price">价格</option><option value="elo">Elo</option><option value="name">名称</option>
           </select>
         </div>
       </div>
@@ -86,6 +89,7 @@ export default function Models() {
           <F title="模态"><Chip active={mod.includes('image')} onClick={() => tog(mod, setMod, 'image')}>视觉</Chip><Chip active={mod.includes('tools')} onClick={() => tog(mod, setMod, 'tools')}>工具调用</Chip></F>
           <F title="硬件（开源 Q4）">{([16, 24, 80] as const).map((g) => <Chip key={g} active={hw === g} onClick={() => setHw(hw === g ? 0 : g)}>能进 {g}GB</Chip>)}</F>
           <F title="推理"><Chip active={think} onClick={() => setThink(!think)}>推理模型 (thinking)</Chip></F>
+          <F title="代际"><Chip active={old} onClick={() => setOld(!old)}>包含已被替代的旧代</Chip></F>
           <Button variant="outline" onClick={reset} className="w-full text-xs">清空筛选</Button>
         </aside>
         <div>
@@ -93,7 +97,7 @@ export default function Models() {
             <div className="card overflow-x-auto">
               <table className="tbl w-full text-sm">
                 <thead className="text-[11px] uppercase tracking-wide text-muted"><tr className="border-b border-border">
-                  <th className="px-3 py-2 text-left">模型</th><th className="px-2 py-2 text-left">开闭源</th><th className="px-2 py-2 text-right">参考分</th><th className="px-2 py-2 text-left hidden md:table-cell">参数</th><th className="px-2 py-2 text-right hidden sm:table-cell">上下文</th><th className="px-2 py-2 text-right">价格</th><th className="px-2 py-2 text-right hidden md:table-cell">Q4</th><th className="px-2 py-2 text-left hidden lg:table-cell">许可证</th>
+                  <th className="px-3 py-2 text-left">模型</th><th className="px-2 py-2 text-left">开闭源</th><th className="px-2 py-2 text-right">参考分</th><th className="px-2 py-2 text-right num">发布</th><th className="px-2 py-2 text-left hidden md:table-cell">参数</th><th className="px-2 py-2 text-right hidden sm:table-cell">上下文</th><th className="px-2 py-2 text-right">价格</th><th className="px-2 py-2 text-right hidden md:table-cell">Q4</th><th className="px-2 py-2 text-left hidden lg:table-cell">许可证</th>
                 </tr></thead>
                 <tbody>
                   {list.map((m) => (
@@ -104,6 +108,7 @@ export default function Models() {
                       </td>
                       <td className="px-2 py-2"><OpennessBadge m={m} /></td>
                       <td className="px-2 py-2 text-right num">{refs.get(m.id)?.score?.toFixed(1) ?? <span className="text-muted">—</span>}</td>
+                      <td className="px-2 py-2 text-right num text-xs whitespace-nowrap">{m.released_at ?? '—'}</td>
                       <td className="px-2 py-2 hidden md:table-cell text-xs">{formatParams(m.architecture.total_params, m.architecture.active_params)}</td>
                       <td className="px-2 py-2 text-right num hidden sm:table-cell">{m.context.display}</td>
                       <td className="px-2 py-2 text-right num whitespace-nowrap">{priceLabel(m)}</td>

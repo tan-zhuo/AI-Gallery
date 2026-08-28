@@ -62,8 +62,8 @@
   "estimated": false
  },
  "pricing": {
-  "input_per_m": 2.0,
-  "output_per_m": 6.0,
+  "input_per_m": 2,
+  "output_per_m": 6,
   "currency": "USD",
   "source": "阿里云 Model Studio 国际站 qwen3.8-max 定价",
   "as_of": "2026-08-28",
@@ -124,5 +124,10 @@
   "finetune": "多节点 LoRA",
   "zh_docs": "有"
  },
- "complete": true
+ "complete": true,
+ "runtime": {
+  "tok_s": 25,
+  "latency_s": 2.53,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

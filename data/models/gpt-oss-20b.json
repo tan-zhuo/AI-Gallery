@@ -1,5 +1,125 @@
-{"id":"gpt-oss-20b","name":"gpt-oss-20b","name_zh":"OpenAI 开源 20B","aliases":["gpt oss 20b"],"vendor":"OpenAI","family":"gpt-oss","license":"Apache-2.0","license_commercial":true,"openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/openai/gpt-oss-20b","status":"current","released_at":"2025-08-05","updated_at":"2025-12-20","modalities":["text","tools"],"reasoning_mode":"default-on",
-"architecture":{"type":"moe","total_params":"21B","active_params":"3.6B","total_params_b":21,"active_params_b":3.6,"experts":32,"active_experts":4,"layers":24,"hidden_size":2880,"kv_heads":8,"head_dim":64,"attention":"GQA（64 Q / 8 KV），交替滑窗","undisclosed":false},"context":{"max_tokens":131072,"display":"128K"},"memory":{"weight_gb":{"q4":12.8},"kv_per_token_kib":48,"estimated":false,"ref_hw_24gb":"MXFP4 12.8 GB，16GB 卡即可"},
-"pricing":{"input_per_m":0.05,"output_per_m":0.2,"currency":"USD","source":"第三方托管常见价","as_of":"2025-12-20"},
-"links":{"official":"https://openai.com/index/introducing-gpt-oss/","hf":"https://huggingface.co/openai/gpt-oss-20b","github":"https://github.com/openai/gpt-oss"},
-"copy":{"one_liner":"16GB 显存跑的推理模型，数学能力惊人。","highlights":["MXFP4 12.8 GB，16GB 卡 / 笔记本可跑","AIME 2025 98.7%（工具，官方）","Apache-2.0"],"pitfalls":["知识与中文弱","幻觉高","Harmony 格式要求严格"],"logic_ability":"考试型推理相对体量极强，工程型一般。","best_for":["本地推理助手","边缘 STEM 推理"],"not_for":["中文产品","知识问答"]},"capability_notes":{},"ecosystem":{"engines":["llama.cpp","Ollama","vLLM","MLX"],"zh_docs":"无"},"complete":false}
+{
+ "id": "gpt-oss-20b",
+ "name": "gpt-oss-20b",
+ "name_zh": "OpenAI 开源 20B",
+ "aliases": [
+  "gpt oss 20b"
+ ],
+ "vendor": "OpenAI",
+ "family": "gpt-oss",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/openai/gpt-oss-20b",
+ "status": "current",
+ "released_at": "2025-08-05",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "20.9B",
+  "active_params": "3.6B",
+  "total_params_b": 20.9,
+  "active_params_b": 3.6,
+  "experts": 32,
+  "active_experts": 4,
+  "layers": 24,
+  "hidden_size": 2880,
+  "kv_heads": 8,
+  "head_dim": 64,
+  "attention": "GQA（64 Q / 8 KV，head_dim 64），滑窗 128 与全注意力逐层交替",
+  "undisclosed": false,
+  "vocab_size": 201088,
+  "kv_layers": 12,
+  "notes": "24 层 = 12 × (滑窗 128 + 全注意力)。32 专家选 4，专家中间维 2880，带 attention sink。YaRN factor 32（原始 4K → 128K），theta 150000。MoE 权重原生 MXFP4，注意力 / 嵌入为 BF16。表内 kv_layers 指 12 层全注意力层。"
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 13.8,
+   "q8": 12.1,
+   "q4": 11.6
+  },
+  "kv_per_token_kib": 24,
+  "kv_note": "只有 12 层全注意力层随长度增长：8 KV 头 × 64 × 2（K/V）× 2 B = 2 KiB/层 → 24 KiB/token（BF16）。12 层滑窗层窗口 128，KV 固定可忽略。128K 上下文 KV ≈ 3 GB。表内「bf16」为 HF 官方 safetensors 13.8 GB（MoE 为 MXFP4、其余 BF16），完全反量化到 BF16 约 42 GB。",
+  "ref_hw_24gb": "官方 MXFP4 13.8 GB（GGUF Q4_K_M 11.6 GB），16GB 卡即可；24GB 卡 128K 上下文单并发",
+  "ref_hw_80gb": "过剩；可高并发",
+  "ref_hw_8x80gb": "过剩",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.05,
+  "output_per_m": 0.2,
+  "currency": "USD",
+  "source": "第三方托管常见价（OpenRouter）",
+  "as_of": "2025-12-20"
+ },
+ "links": {
+  "official": "https://openai.com/index/introducing-gpt-oss/",
+  "hf": "https://huggingface.co/openai/gpt-oss-20b",
+  "github": "https://github.com/openai/gpt-oss"
+ },
+ "copy": {
+  "one_liner": "16GB 显存跑的推理模型，数学能力惊人。",
+  "highlights": [
+   "官方 MXFP4 13.8 GB，16GB 卡 / 笔记本可跑，仅 12 层全注意力 KV 24 KiB/token",
+   "AIME 2025 91.7（无工具）/ 98.7（工具）、GPQA 71.5，考试型推理远超体量",
+   "Apache-2.0，reasoning 三档可调，SWE-bench Verified 60.7"
+  ],
+  "pitfalls": [
+   "知识与中文弱（MMLU 85.3、MMMLU 75.7），HLE 无工具仅 10.9",
+   "幻觉率高，tau-bench Airline 38.0、Aider Polyglot 34.2，agent 稳定性一般",
+   "Harmony 格式要求严格，chat template 不对会明显掉分"
+  ],
+  "logic_ability": "考试型推理相对体量极强：AIME 2025 91.7（无工具）/ 98.7（工具）、AIME 2024 92.1、GPQA Diamond 71.5、Codeforces 2230（模型卡，high 档）。HLE 10.9 / 17.3（工具）显示前沿知识浅。工程型推理中等：SWE-bench Verified 60.7、tau-bench Retail 54.8 / Airline 38.0。reasoning 低档时推理链很短，分数明显下滑。",
+  "best_for": [
+   "本地推理助手",
+   "边缘 STEM 推理"
+  ],
+  "not_for": [
+   "中文产品",
+   "知识问答"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 60.7、Codeforces Elo 2230、Aider Polyglot 34.2（OpenAI 模型卡 arXiv 2508.10925，high）。",
+  "reasoning": "GPQA Diamond 71.5（无工具）/ 74.2（工具）、HLE 10.9 / 17.3（工具）（OpenAI 模型卡）。",
+  "math": "AIME 2025 91.7（无工具）/ 98.7（工具）、AIME 2024 92.1 / 96.0（OpenAI 模型卡）。",
+  "agent": "tau-bench Retail 54.8、Airline 38.0（OpenAI 模型卡）。",
+  "knowledge": "MMLU 85.3、MMMLU 75.7、HealthBench 42.5（OpenAI 模型卡）。",
+  "chinese": "中文弱，MMMLU 75.7，不建议中文产品主力。"
+ },
+ "ecosystem": {
+  "engines": [
+   "llama.cpp",
+   "Ollama",
+   "vLLM",
+   "SGLang",
+   "MLX",
+   "Transformers"
+  ],
+  "finetune": "官方指南 + Unsloth / TRL；LoRA 24GB 可行",
+  "zh_docs": "无"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 119,
+  "latency_s": 1.12,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE，20.9B 总参 / 3.6B 激活，纯文本。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 24 = 12 × (滑窗 128 + 全注意力) |\n| 隐藏维 | 2,880 |\n| 专家 | 32，每 token 选 4，专家中间维 2,880 |\n| 注意力 | 64 Q / 8 KV，head_dim 64，attention sink，bias |\n| RoPE | YaRN factor 32，原始 4,096，theta 150,000 |\n| 词表 | 201,088（o200k_harmony） |\n| 上下文 | 131,072 |\n| 量化 | MoE 权重 MXFP4，其余 BF16 |\n\n`config.json` 中 `model_type: gpt_oss`，`quant_method: mxfp4`。\n\n参考：openai/gpt-oss-20b config.json 与模型卡（arXiv 2508.10925）。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| MXFP4（官方） | 13.8 GB | 16GB | HF safetensors 3 分片 13.76 GB；unsloth GGUF F16 同为 13.8 GB |\n| Q8 | 12.1 GB | 16GB | unsloth GGUF Q8_0 |\n| Q4 | 11.6 GB | 16GB | unsloth GGUF Q4_K_M |\n| 全 BF16 反量化 | ≈42 GB | 80GB | 按 20.9B × 2 B 估算，无官方文件 |\n\n**KV Cache**：12 层全注意力层 × 2 KiB = 24 KiB/token；滑窗层固定可忽略。128K 上下文 KV ≈ 3 GB。\n\n**参考配置**：\n- 16GB 卡 / Mac：MXFP4 全量可跑\n- RTX 4090 24GB：128K 上下文单并发\n- 80GB：高并发\n\n警示：MXFP4 只有 Hopper / Blackwell 原生支持，其他 GPU 会在加载时反量化到 BF16（约 42 GB）或需用 GGUF。",
+  "training_md": "- 预训练 token 数：**未披露**（模型卡仅写「数万亿 token」，STEM / 代码为主，H100 训练）\n- Harmony 响应格式训练，需严格使用官方 chat template\n- reasoning effort 三档：low / medium / high，可在系统提示中设定\n- 支持函数调用、浏览、Python 工具、结构化输出\n- 训练即 MXFP4 感知，MoE 权重原生 4-bit",
+  "ecosystem_md": "- HF：openai/gpt-oss-20b（13.8 GB）；GGUF：unsloth/gpt-oss-20b-GGUF、ggml-org\n- 引擎：Transformers、vLLM、SGLang、llama.cpp、Ollama、LM Studio、MLX；官方另给 PyTorch / Triton / Metal 参考实现\n- 微调：官方 fine-tuning 指南，Unsloth / TRL 支持；LoRA 24GB 可行\n- 中文文档：无",
+  "versions_md": "- 同代：gpt-oss-120b（117B-A5.1B，同架构 36 层）\n- 后续：gpt-oss-safeguard（安全分类衍生）\n- 发布于 2025-08-05，为 OpenAI 自 GPT-2 后首个开放权重模型"
+ }
+}

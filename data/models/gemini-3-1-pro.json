@@ -1,48 +1,104 @@
 {
-  "id": "gemini-3-1-pro",
-  "name": "Gemini 3.1 Pro",
-  "name_zh": "Gemini 3.1 专业版",
-  "aliases": ["gemini-3.1-pro-preview", "Gemini 3.1 Pro Preview"],
-  "vendor": "Google",
-  "vendor_zh": "谷歌",
-  "family": "Gemini 3",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "preview",
-  "released_at": "2026-02-19",
-  "updated_at": "2026-08-28",
-  "modalities": ["text", "image", "audio", "video", "tools"],
-  "reasoning_mode": "default-on",
-  "architecture": { "type": "unknown", "undisclosed": true, "notes": "未披露。延续 Gemini 3 系列的稀疏 MoE、原生多模态设计；支持 thinking_level 调节推理深度，另有 Deep Think 模式。" },
-  "context": { "max_tokens": 1048576, "display": "1M", "max_output": 65536 },
-  "memory": { "weight_gb": {}, "estimated": false },
-  "pricing": { "input_per_m": 2, "output_per_m": 12, "currency": "USD", "source": "Google AI 定价页", "as_of": "2026-08-28", "note": ">200K 上下文：$4 / $18；缓存输入 $0.20；Batch / Flex 半价" },
-  "links": { "official": "https://deepmind.google/models/gemini/pro/", "pricing": "https://ai.google.dev/gemini-api/docs/pricing", "paper": "https://deepmind.google/models/model-cards/gemini-3-1-pro/" },
-  "copy": {
-    "one_liner": "Google 当前 Pro 旗舰（仍 preview），抽象推理第一。",
-    "highlights": ["ARC-AGI-2 77.1%、GPQA Diamond 94.3%，考试型推理与抽象推理第一梯队", "SWE-bench Verified 80.6%、Terminal-Bench 2.0 68.5%，工程与 agent 能力较 Gemini 3 Pro 大幅提升", "1M 上下文 + 原生音视频输入，MRCR v2 128K 84.9%"],
-    "pitfalls": ["发布半年仍是 preview 接口，无 GA 承诺，配额与行为可能调整", ">200K 上下文价格翻倍，1M 是能力上限不是默认预算", "首 token 延迟高（AA 实测 TTFT 约 24 s），不适合交互式低延迟场景"],
-    "logic_ability": "考试型推理顶级：HLE 无工具 44.4%（带搜索 + 代码 51.4%）、GPQA 94.3%、ARC-AGI-2 77.1%。工程型推理由 Gemini 3 Pro 的 76.2% 提升到 80.6%（SWE-bench Verified），tau2-bench 零售 90.8% / 电信 99.3%，agent 可靠性显著改善。长程 agent 任务（APEX-Agents 33.5%）仍是短板。失败模式：超长上下文里中段信息偶有遗漏；工具调用格式偶有偏差；高 thinking_level 下 token 消耗大。",
-    "best_for": ["科学 / 数学 / 抽象推理", "视频 / 音频 / 大量图片理解", "百万 token 级长文档分析"],
-    "not_for": ["需要 GA 接口与 SLA 的生产线", "低延迟对话产品", "私有化部署"]
-  },
-  "capability_notes": {
-    "coding": "SWE-bench Verified 80.6%、LiveCodeBench Pro Elo 2887、Terminal-Bench 2.0 68.5%（官方模型卡）。",
-    "reasoning": "GPQA Diamond 94.3%、HLE 44.4%（无工具）、ARC-AGI-2 77.1%（官方）。",
-    "math": "AIME 2025 官方未单列；官方以 ARC-AGI-2 与 HLE 为主。",
-    "agent": "tau2-bench 零售 90.8% / 电信 99.3%、BrowseComp 85.9%、APEX-Agents 33.5%（官方）。",
-    "multimodal": "MMMU-Pro 80.5%（官方）。",
-    "chinese": "MMMLU 92.6%（官方），中文能力强。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：未披露（Google 仅说明沿用 Gemini 3 系列的稀疏 MoE Transformer、原生多模态）。\n\n已知：\n- 输入：文本、图像、音频、视频、PDF；输出文本\n- 1M token 上下文，64K 输出\n- `thinking_level` 可调推理深度；Deep Think 模式另行提供\n- 托管工具：Google Search grounding、代码执行、URL 上下文\n- 官方称相较 Gemini 3 Pro 在同等任务上 token 消耗更低\n\n参考：Gemini 3.1 Pro 模型卡（deepmind.google/models/model-cards/gemini-3-1-pro/）。",
-    "memory_md": "无自建选项。\n\n成本参考（2026-08-28 定价页）：\n\n| 档位 | 输入 $/M | 输出 $/M |\n|---|---|---|\n| 标准 ≤200K | 2.00 | 12.00 |\n| 标准 >200K | 4.00 | 18.00 |\n| Batch / Flex ≤200K | 1.00 | 6.00 |\n| Priority ≤200K | 3.60 | 21.60 |\n\n缓存输入 $0.20（≤200K）/ $0.40（>200K）。\n\n**警示**：单次 1M 上下文请求输入费可达 $4，务必配合 context caching；高 thinking_level 下输出 token 消耗显著。",
-    "training_md": "- 训练细节未披露，TPU 训练\n- 默认开启推理；thinking_level 控制深度\n- 支持函数调用、结构化输出、多模态输入\n- 最大输出 64K\n- 官方基准（模型卡）：HLE 44.4% / 51.4%（带工具）、GPQA 94.3%、ARC-AGI-2 77.1%、SWE-bench Verified 80.6%、Terminal-Bench 2.0 68.5%、LiveCodeBench Pro 2887 Elo、MMMU-Pro 80.5%、MRCR v2 128K 84.9%",
-    "ecosystem_md": "- Gemini API、Google AI Studio、Vertex AI\n- Antigravity、Gemini CLI、Gemini App 集成\n- 不支持微调（Pro 档）\n- 中文文档：有（Google 中文文档较全）",
-    "versions_md": "- 上代：Gemini 3 Pro（2025-11，已被 3.1 Pro 取代）\n- 同期 Flash 线迭代很快：3 Flash → 3.1 Flash-Lite → 3.5 Flash / 3.5 Flash-Lite（2026-07）→ 3.6 Flash → 3.7 Flash（2026-08-13）\n- 截至 2026-08-28，Pro 线仍停留在 3.1 Pro Preview，未见 3.5 / 3.7 Pro\n- Deep Think 模式另计"
-  },
-  "ecosystem": { "engines": [], "finetune": "不支持", "zh_docs": "有" },
-  "complete": true
+ "id": "gemini-3-1-pro",
+ "name": "Gemini 3.1 Pro",
+ "name_zh": "Gemini 3.1 专业版",
+ "aliases": [
+  "gemini-3.1-pro-preview",
+  "Gemini 3.1 Pro Preview"
+ ],
+ "vendor": "Google",
+ "vendor_zh": "谷歌",
+ "family": "Gemini 3",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "preview",
+ "released_at": "2026-02-19",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。延续 Gemini 3 系列的稀疏 MoE、原生多模态设计；支持 thinking_level 调节推理深度，另有 Deep Think 模式。"
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 12,
+  "currency": "USD",
+  "source": "Google AI 定价页",
+  "as_of": "2026-08-28",
+  "note": ">200K 上下文：$4 / $18；缓存输入 $0.20；Batch / Flex 半价"
+ },
+ "links": {
+  "official": "https://deepmind.google/models/gemini/pro/",
+  "pricing": "https://ai.google.dev/gemini-api/docs/pricing",
+  "paper": "https://deepmind.google/models/model-cards/gemini-3-1-pro/"
+ },
+ "copy": {
+  "one_liner": "Google 当前 Pro 旗舰（仍 preview），抽象推理第一。",
+  "highlights": [
+   "ARC-AGI-2 77.1%、GPQA Diamond 94.3%，考试型推理与抽象推理第一梯队",
+   "SWE-bench Verified 80.6%、Terminal-Bench 2.0 68.5%，工程与 agent 能力较 Gemini 3 Pro 大幅提升",
+   "1M 上下文 + 原生音视频输入，MRCR v2 128K 84.9%"
+  ],
+  "pitfalls": [
+   "发布半年仍是 preview 接口，无 GA 承诺，配额与行为可能调整",
+   ">200K 上下文价格翻倍，1M 是能力上限不是默认预算",
+   "首 token 延迟高（AA 实测 TTFT 约 24 s），不适合交互式低延迟场景"
+  ],
+  "logic_ability": "考试型推理顶级：HLE 无工具 44.4%（带搜索 + 代码 51.4%）、GPQA 94.3%、ARC-AGI-2 77.1%。工程型推理由 Gemini 3 Pro 的 76.2% 提升到 80.6%（SWE-bench Verified），tau2-bench 零售 90.8% / 电信 99.3%，agent 可靠性显著改善。长程 agent 任务（APEX-Agents 33.5%）仍是短板。失败模式：超长上下文里中段信息偶有遗漏；工具调用格式偶有偏差；高 thinking_level 下 token 消耗大。",
+  "best_for": [
+   "科学 / 数学 / 抽象推理",
+   "视频 / 音频 / 大量图片理解",
+   "百万 token 级长文档分析"
+  ],
+  "not_for": [
+   "需要 GA 接口与 SLA 的生产线",
+   "低延迟对话产品",
+   "私有化部署"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 80.6%、LiveCodeBench Pro Elo 2887、Terminal-Bench 2.0 68.5%（官方模型卡）。",
+  "reasoning": "GPQA Diamond 94.3%、HLE 44.4%（无工具）、ARC-AGI-2 77.1%（官方）。",
+  "math": "AIME 2025 官方未单列；官方以 ARC-AGI-2 与 HLE 为主。",
+  "agent": "tau2-bench 零售 90.8% / 电信 99.3%、BrowseComp 85.9%、APEX-Agents 33.5%（官方）。",
+  "multimodal": "MMMU-Pro 80.5%（官方）。",
+  "chinese": "MMMLU 92.6%（官方），中文能力强。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：未披露（Google 仅说明沿用 Gemini 3 系列的稀疏 MoE Transformer、原生多模态）。\n\n已知：\n- 输入：文本、图像、音频、视频、PDF；输出文本\n- 1M token 上下文，64K 输出\n- `thinking_level` 可调推理深度；Deep Think 模式另行提供\n- 托管工具：Google Search grounding、代码执行、URL 上下文\n- 官方称相较 Gemini 3 Pro 在同等任务上 token 消耗更低\n\n参考：Gemini 3.1 Pro 模型卡（deepmind.google/models/model-cards/gemini-3-1-pro/）。",
+  "memory_md": "无自建选项。\n\n成本参考（2026-08-28 定价页）：\n\n| 档位 | 输入 $/M | 输出 $/M |\n|---|---|---|\n| 标准 ≤200K | 2.00 | 12.00 |\n| 标准 >200K | 4.00 | 18.00 |\n| Batch / Flex ≤200K | 1.00 | 6.00 |\n| Priority ≤200K | 3.60 | 21.60 |\n\n缓存输入 $0.20（≤200K）/ $0.40（>200K）。\n\n**警示**：单次 1M 上下文请求输入费可达 $4，务必配合 context caching；高 thinking_level 下输出 token 消耗显著。",
+  "training_md": "- 训练细节未披露，TPU 训练\n- 默认开启推理；thinking_level 控制深度\n- 支持函数调用、结构化输出、多模态输入\n- 最大输出 64K\n- 官方基准（模型卡）：HLE 44.4% / 51.4%（带工具）、GPQA 94.3%、ARC-AGI-2 77.1%、SWE-bench Verified 80.6%、Terminal-Bench 2.0 68.5%、LiveCodeBench Pro 2887 Elo、MMMU-Pro 80.5%、MRCR v2 128K 84.9%",
+  "ecosystem_md": "- Gemini API、Google AI Studio、Vertex AI\n- Antigravity、Gemini CLI、Gemini App 集成\n- 不支持微调（Pro 档）\n- 中文文档：有（Google 中文文档较全）",
+  "versions_md": "- 上代：Gemini 3 Pro（2025-11，已被 3.1 Pro 取代）\n- 同期 Flash 线迭代很快：3 Flash → 3.1 Flash-Lite → 3.5 Flash / 3.5 Flash-Lite（2026-07）→ 3.6 Flash → 3.7 Flash（2026-08-13）\n- 截至 2026-08-28，Pro 线仍停留在 3.1 Pro Preview，未见 3.5 / 3.7 Pro\n- Deep Think 模式另计"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 115,
+  "latency_s": 23.93,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

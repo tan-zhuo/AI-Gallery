@@ -1,62 +1,123 @@
 {
-  "id": "muse-glimmer-30b",
-  "name": "Muse Glimmer 30B",
-  "name_zh": "Meta Muse Glimmer 30B",
-  "aliases": ["Muse-Glimmer-30B", "meta/muse-glimmer-30b", "Muse Glimmer"],
-  "vendor": "Meta",
-  "family": "Muse",
-  "license": "Apache-2.0",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
-  "status": "current",
-  "released_at": "2026-08-10",
-  "updated_at": "2026-08-28",
-  "modalities": ["text", "image", "tools"],
-  "reasoning_mode": "optional",
-  "architecture": {
-    "type": "dense", "total_params": "29.6B", "total_params_b": 29.6,
-    "layers": 52, "hidden_size": 6656, "vocab_size": 202048,
-    "kv_heads": 2, "head_dim": 128, "attention": "GQA（32 Q 头 / 2 KV 头，16:1）",
-    "notes": "稠密因果 Transformer + 约 1.8B Perception Encoder 视觉编码器。词表 200K BPE + 2048 特殊 token。官方配 DFlash 投机解码 drafter。",
-    "undisclosed": false
+ "id": "muse-glimmer-30b",
+ "name": "Muse Glimmer 30B",
+ "name_zh": "Meta Muse Glimmer 30B",
+ "aliases": [
+  "Muse-Glimmer-30B",
+  "meta/muse-glimmer-30b",
+  "Muse Glimmer"
+ ],
+ "vendor": "Meta",
+ "family": "Muse",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+ "status": "current",
+ "released_at": "2026-08-10",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "dense",
+  "total_params": "29.6B",
+  "total_params_b": 29.6,
+  "layers": 52,
+  "hidden_size": 6656,
+  "vocab_size": 202048,
+  "kv_heads": 2,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 2 KV 头，16:1）",
+  "notes": "稠密因果 Transformer + 约 1.8B Perception Encoder 视觉编码器。词表 200K BPE + 2048 特殊 token。官方配 DFlash 投机解码 drafter。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 55,
+   "q4": 18
   },
-  "context": { "max_tokens": 131072, "display": "128K" },
-  "memory": {
-    "weight_gb": { "bf16": 55, "q4": 18 },
-    "kv_per_token_kib": 52,
-    "kv_note": "2 KV 头 × 128 × 2 × 52 层 × 2 B = 52 KiB/token，128K 上下文仅约 6.5 GB，极省显存。",
-    "ref_hw_24gb": "官方 4-bit K-Quant 约 17–20 GB，24GB 单卡 / 32GB 官方目标配置",
-    "ref_hw_80gb": "BF16 55 GB 单卡全精度 + 长上下文",
-    "ref_hw_8x80gb": "无必要",
-    "estimated": false
-  },
-  "pricing": { "input_per_m": 0.3, "output_per_m": 1.1, "currency": "USD", "source": "第三方托管常见价（OpenRouter）", "as_of": "2026-08-28", "note": "开源权重，社区托管价（Together / Fireworks / DeepInfra 等）" },
-  "links": { "official": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model", "hf": "https://huggingface.co/meta-models/Muse-Glimmer-30B" },
-  "copy": {
-    "one_liner": "Meta 回归开源：30B 稠密 agent 模型，24GB 单卡跑。",
-    "highlights": ["Apache-2.0，Meta 首个 Muse 系开源权重，从 Muse Spark 蒸馏", "SWE-bench Verified 76.0%、GPQA Diamond 83.5、AIME 2026 94.7（官方）", "4-bit 不到 20 GB，2 KV 头 KV 极省，配 DFlash 投机解码 RTX 5090 提速 3.1×"],
-    "pitfalls": ["刚发布不到一月，独立复测与长期稳定性待观察", "上下文 128K，低于同级 Qwen / Gemma 的 256K+", "中文能力官方称 100+ 语言但无中文专项数据"],
-    "logic_ability": "考试型推理在 30B 级别顶尖（GPQA 83.5、AIME 2026 94.7、HLE 文本 22.0），工程型推理同样突出（SWE-bench Verified 76.0%、Terminal-Bench 2.1 51.7%），AA 智能指数 35 超过 Nemotron 3 Super。reasoning effort 可调，关闭思考时能力回落。",
-    "best_for": ["24GB 单卡本地编程 agent", "本地多模态助手 / 工具调用", "MCP / 长任务 agent"],
-    "not_for": ["超长上下文（>128K）", "中文为主产品的首选"]
-  },
-  "capability_notes": {
-    "coding": "SWE-bench Verified 76.0%、SWE-bench Pro 51.2%、Terminal-Bench 2.1 51.7%（官方）。",
-    "reasoning": "GPQA Diamond 83.5、HLE 文本 22.0（官方）。",
-    "math": "AIME 2026 94.7（官方；AIME 2025 未披露）。",
-    "agent": "MCP-Atlas 75.5、OSWorld-Verified 65.9（官方）。",
-    "multimodal": "MMMU-Pro 74（官方）。",
-    "chinese": "官方支持 100+ 语言，中文未单独评测。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：稠密 Transformer，约 29.6B 参数（含约 1.8B 视觉编码器）。\n\n- 语言模型 52 层，隐藏维 6656，词表 202,048（200K BPE + 2,048 特殊 token）\n- GQA：32 Q 头 / 2 KV 头，head_dim 128 —— 16:1 极端比例，KV Cache 非常小\n- 视觉：Meta Perception Encoder，图文输入、文本输出\n- 上下文 131,072+\n- 配套 DFlash 投机解码 drafter：RTX 5090 3.1×、M5 Max 1.8×、M4 Max 1.5×\n\n参考：HF 模型卡。",
-    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | 55 GB | 80GB 单卡 |\n| 4-bit K-Quant（官方两档） | ≈ 17–20 GB | 24GB / 32GB 消费卡 |\n\n**KV Cache**：2 KV 头 × 128 × 2 × 52 层 × 2 B = 52 KiB/token；128K 上下文 ≈ 6.5 GB。\n\n**参考配置**：\n- 24GB（4090 / 5090）：官方目标，4-bit + 数万 token 上下文\n- 32GB（5090）：4-bit 高档量化 + 满上下文\n- 80GB：BF16 全精度 + 128K\n- Mac M4 / M5 Max：官方 MLX 支持\n\n**实测**：RTX 5090 基线 74.9 tok/s，DFlash 投机 233.4 tok/s（官方）。",
-    "training_md": "- 预训练：从 Muse Spark logit 蒸馏，数据构成与 Spark 相近\n- 中期训练：扩上下文 + agent 数据 + 推理轨迹\n- 后训练：SFT + on-policy 蒸馏 + RL，覆盖通用 / 推理 / 编程 / agent\n- 推理强度可调；函数调用严格遵循 schema；强调错误诊断与重试\n- 官方对标 Gemma 4 31B、Qwen3.6 27B\n- 知识截止未披露",
-    "ecosystem_md": "- HF：meta-models/Muse-Glimmer-30B（BF16 + 两档 4-bit）；Meta AI Developer Center\n- 引擎：llama.cpp、MLX、ExecuTorch、Ollama、LM Studio、vLLM、SGLang（发布日原生支持）\n- 微调：Unsloth 支持\n- 托管：Together、Fireworks、OpenRouter、DeepInfra\n- 硬件伙伴：NVIDIA、AMD、Intel、Arm、Dell\n- 中文文档：无（官方英文）",
-    "versions_md": "- 2026-08-10：Muse Glimmer 30B（本条，唯一尺寸）\n- 闭源上游：Muse Spark（2026-04）→ 1.1（07-09）→ 1.2（08-05），API-only\n- 前代开源：Llama 4 Scout / Maverick（2025-04，Llama 社区许可）→ 被本条在实用层面取代"
-  },
-  "ecosystem": { "engines": ["vLLM", "SGLang", "llama.cpp", "Ollama", "MLX", "LM Studio"], "finetune": "Unsloth / LoRA", "zh_docs": "无" },
-  "complete": true
+  "kv_per_token_kib": 52,
+  "kv_note": "2 KV 头 × 128 × 2 × 52 层 × 2 B = 52 KiB/token，128K 上下文仅约 6.5 GB，极省显存。",
+  "ref_hw_24gb": "官方 4-bit K-Quant 约 17–20 GB，24GB 单卡 / 32GB 官方目标配置",
+  "ref_hw_80gb": "BF16 55 GB 单卡全精度 + 长上下文",
+  "ref_hw_8x80gb": "无必要",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.3,
+  "output_per_m": 1.1,
+  "currency": "USD",
+  "source": "第三方托管常见价（OpenRouter）",
+  "as_of": "2026-08-28",
+  "note": "开源权重，社区托管价（Together / Fireworks / DeepInfra 等）"
+ },
+ "links": {
+  "official": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+  "hf": "https://huggingface.co/meta-models/Muse-Glimmer-30B"
+ },
+ "copy": {
+  "one_liner": "Meta 回归开源：30B 稠密 agent 模型，24GB 单卡跑。",
+  "highlights": [
+   "Apache-2.0，Meta 首个 Muse 系开源权重，从 Muse Spark 蒸馏",
+   "SWE-bench Verified 76.0%、GPQA Diamond 83.5、AIME 2026 94.7（官方）",
+   "4-bit 不到 20 GB，2 KV 头 KV 极省，配 DFlash 投机解码 RTX 5090 提速 3.1×"
+  ],
+  "pitfalls": [
+   "刚发布不到一月，独立复测与长期稳定性待观察",
+   "上下文 128K，低于同级 Qwen / Gemma 的 256K+",
+   "中文能力官方称 100+ 语言但无中文专项数据"
+  ],
+  "logic_ability": "考试型推理在 30B 级别顶尖（GPQA 83.5、AIME 2026 94.7、HLE 文本 22.0），工程型推理同样突出（SWE-bench Verified 76.0%、Terminal-Bench 2.1 51.7%），AA 智能指数 35 超过 Nemotron 3 Super。reasoning effort 可调，关闭思考时能力回落。",
+  "best_for": [
+   "24GB 单卡本地编程 agent",
+   "本地多模态助手 / 工具调用",
+   "MCP / 长任务 agent"
+  ],
+  "not_for": [
+   "超长上下文（>128K）",
+   "中文为主产品的首选"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 76.0%、SWE-bench Pro 51.2%、Terminal-Bench 2.1 51.7%（官方）。",
+  "reasoning": "GPQA Diamond 83.5、HLE 文本 22.0（官方）。",
+  "math": "AIME 2026 94.7（官方；AIME 2025 未披露）。",
+  "agent": "MCP-Atlas 75.5、OSWorld-Verified 65.9（官方）。",
+  "multimodal": "MMMU-Pro 74（官方）。",
+  "chinese": "官方支持 100+ 语言，中文未单独评测。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：稠密 Transformer，约 29.6B 参数（含约 1.8B 视觉编码器）。\n\n- 语言模型 52 层，隐藏维 6656，词表 202,048（200K BPE + 2,048 特殊 token）\n- GQA：32 Q 头 / 2 KV 头，head_dim 128 —— 16:1 极端比例，KV Cache 非常小\n- 视觉：Meta Perception Encoder，图文输入、文本输出\n- 上下文 131,072+\n- 配套 DFlash 投机解码 drafter：RTX 5090 3.1×、M5 Max 1.8×、M4 Max 1.5×\n\n参考：HF 模型卡。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | 55 GB | 80GB 单卡 |\n| 4-bit K-Quant（官方两档） | ≈ 17–20 GB | 24GB / 32GB 消费卡 |\n\n**KV Cache**：2 KV 头 × 128 × 2 × 52 层 × 2 B = 52 KiB/token；128K 上下文 ≈ 6.5 GB。\n\n**参考配置**：\n- 24GB（4090 / 5090）：官方目标，4-bit + 数万 token 上下文\n- 32GB（5090）：4-bit 高档量化 + 满上下文\n- 80GB：BF16 全精度 + 128K\n- Mac M4 / M5 Max：官方 MLX 支持\n\n**实测**：RTX 5090 基线 74.9 tok/s，DFlash 投机 233.4 tok/s（官方）。",
+  "training_md": "- 预训练：从 Muse Spark logit 蒸馏，数据构成与 Spark 相近\n- 中期训练：扩上下文 + agent 数据 + 推理轨迹\n- 后训练：SFT + on-policy 蒸馏 + RL，覆盖通用 / 推理 / 编程 / agent\n- 推理强度可调；函数调用严格遵循 schema；强调错误诊断与重试\n- 官方对标 Gemma 4 31B、Qwen3.6 27B\n- 知识截止未披露",
+  "ecosystem_md": "- HF：meta-models/Muse-Glimmer-30B（BF16 + 两档 4-bit）；Meta AI Developer Center\n- 引擎：llama.cpp、MLX、ExecuTorch、Ollama、LM Studio、vLLM、SGLang（发布日原生支持）\n- 微调：Unsloth 支持\n- 托管：Together、Fireworks、OpenRouter、DeepInfra\n- 硬件伙伴：NVIDIA、AMD、Intel、Arm、Dell\n- 中文文档：无（官方英文）",
+  "versions_md": "- 2026-08-10：Muse Glimmer 30B（本条，唯一尺寸）\n- 闭源上游：Muse Spark（2026-04）→ 1.1（07-09）→ 1.2（08-05），API-only\n- 前代开源：Llama 4 Scout / Maverick（2025-04，Llama 社区许可）→ 被本条在实用层面取代"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Ollama",
+   "MLX",
+   "LM Studio"
+  ],
+  "finetune": "Unsloth / LoRA",
+  "zh_docs": "无"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 102,
+  "latency_s": 0.84,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

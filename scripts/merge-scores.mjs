@@ -1,5 +1,6 @@
 // 本地脚本：把紧凑的分数表展开为 data/scores.json。只在维护者电脑跑，不是线上服务。
 import { writeFileSync } from 'node:fs'
+import { AA, AA_TBV21, ZH } from './aa-2026-08.mjs'
 const AS_OLD = '2025-12-20'
 const AS_NEW = '2026-08-28'
 const SRC = {
@@ -37,13 +38,13 @@ const rowsOld = [
   ['qwen3-30b-a3b-thinking-2507', 1370, null, null, 66.0, 73.4, null, 85.0, null, null, null, 'Qwen3-30B-A3B-Thinking-2507 模型卡', 'https://huggingface.co/Qwen/Qwen3-30B-A3B-Thinking-2507'],
   ['deepseek-r1-0528', 1415, null, 57.6, 73.3, 81.0, 17.7, 87.5, null, null, null, 'DeepSeek-R1-0528 模型卡', 'https://huggingface.co/deepseek-ai/DeepSeek-R1-0528'],
   ['gpt-oss-120b', 1340, null, 62.4, null, 80.1, 19.0, 92.5, 67.8, null, null, 'gpt-oss 模型卡', 'https://openai.com/index/introducing-gpt-oss/'],
-  ['gpt-oss-20b', 1300, null, 60.7, null, 71.5, 17.3, 91.7, null, null, null, 'gpt-oss 模型卡', 'https://openai.com/index/introducing-gpt-oss/'],
+  ['gpt-oss-20b', 1300, null, 60.7, null, 71.5, 10.9, 91.7, null, null, null, 'gpt-oss 模型卡', 'https://openai.com/index/introducing-gpt-oss/'],
   ['gemma-3-27b', 1338, null, null, 29.7, 42.4, null, null, null, null, 64.9, 'Gemma 3 技术报告', 'https://arxiv.org/abs/2503.19786'],
   ['llama-4-maverick', 1330, null, null, 43.4, 69.8, null, null, null, null, 73.4, 'Llama 4 模型卡', 'https://ai.meta.com/blog/llama-4-multimodal-intelligence/'],
   ['llama-4-scout', 1300, null, null, 32.8, 57.2, null, null, null, null, 69.4, 'Llama 4 模型卡', 'https://ai.meta.com/blog/llama-4-multimodal-intelligence/'],
   ['devstral-small-2', null, null, 68.0, null, null, null, null, null, null, null, 'Mistral 发布公告', 'https://mistral.ai/news/devstral-2-vibe-cli'],
   ['mistral-small-3-2', 1320, null, null, null, null, null, null, null, null, null, 'Mistral 模型卡', 'https://huggingface.co/mistralai/Mistral-Small-3.2-24B-Instruct-2506'],
-  ['nemotron-3-nano-30b-a3b', null, null, null, 68.3, 73.7, null, null, null, null, null, 'NVIDIA 模型卡', 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16'],
+  ['nemotron-3-nano-30b-a3b', null, null, null, 68.3, 73.7, 10.6, 89.1, 49.0, null, null, 'NVIDIA 模型卡', 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16'],
 ]
 // ---- 2026 当前代（2026-08-28 联网核对）----
 const rowsNew = [
@@ -77,10 +78,10 @@ const rowsNew = [
   ['minimax-m2-7', null, null, null, null, null, null, null, null, 57.0, null, 'MiniMax M2.7 模型卡', 'https://huggingface.co/MiniMaxAI/MiniMax-M2.7'],
   ['mistral-medium-3-5', null, 30, 77.6, null, null, null, null, null, null, null, 'Mistral Medium 3.5 模型卡', 'https://huggingface.co/mistralai/Mistral-Medium-3.5-128B'],
   ['mistral-large-3', null, 16, null, null, null, null, null, null, null, null, 'Mistral 3 发布公告', 'https://mistral.ai/news/mistral-3/'],
-  ['mistral-small-4', null, 20, null, null, 71.2, null, null, null, null, null, 'Mistral Small 4 模型卡', 'https://huggingface.co/mistralai/Mistral-Small-4-119B-2603'],
+  ['mistral-small-4', null, 20, null, 64, 71.2, null, 84, null, null, null, 'Mistral Small 4 模型卡', 'https://huggingface.co/mistralai/Mistral-Small-4-119B-2603'],
   ['muse-glimmer-30b', null, 35, 76.0, null, 83.5, 22.0, null, null, 51.7, null, 'Muse Glimmer 模型卡', 'https://huggingface.co/meta-models/Muse-Glimmer-30B'],
   ['muse-spark', 1498, 57, null, null, null, 58.0, null, null, null, null, 'Meta Muse Spark 发布公告', 'https://ai.meta.com/blog/introducing-muse-spark-msl/'],
-  ['nemotron-3-super-120b-a12b', null, 26, 60.5, 81.2, 79.2, null, 90.2, null, null, null, 'NVIDIA Nemotron 3 Super 模型卡', 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16'],
+  ['nemotron-3-super-120b-a12b', null, 26, 60.5, 81.2, 79.2, 18.3, 90.2, 61.2, null, null, 'NVIDIA Nemotron 3 Super 模型卡', 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16'],
   ['nemotron-3-ultra-550b-a55b', null, 38, 70.7, 89.0, 87.0, null, null, null, 56.4, null, 'NVIDIA Nemotron 3 Ultra 模型卡', 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Ultra-550B-A55B-BF16'],
   ['hunyuan-hy3', 1456, 42, 78.0, null, 90.4, null, null, null, 71.7, null, 'Hy3 模型卡', 'https://huggingface.co/tencent/Hy3'],
   ['step-3-7-flash', null, 31, null, null, null, null, null, null, 59.5, null, 'Step-3.7-Flash 模型卡', 'https://huggingface.co/stepfun-ai/Step-3.7-Flash'],
@@ -102,7 +103,25 @@ for (const { r, as: AS } of rows) {
     out.push({ model_id: id, key: k, value: v, unit: units[k] ?? 'percent', source: s.source, source_url: s.url, as_of: AS, evidence: s.evidence })
   })
 }
-// 中文 Arena（示例，仅部分）
+// ---- Artificial Analysis 统一复测（independent）----
+const aaKeys = ['aa_index', 'gpqa_diamond', 'hle', 'aime', null, 'livecodebench', 'scicode', 'tb_hard', 'tau2_telecom', 'mmmu_pro', 'swe_verified', 'ifbench']
+for (const r of AA) {
+  const [id, ...v] = r
+  const url = r[15]
+  aaKeys.forEach((k, i) => {
+    if (!k || v[i] == null) return
+    const key = k === 'aime' ? (v[4] === 2026 ? 'aime_2026' : 'aime_2025') : k
+    out.push({ model_id: id, key, value: v[i], unit: key === 'aa_index' ? 'index' : 'percent', source: 'Artificial Analysis (v4.1.1)', source_url: url, as_of: AS_NEW, evidence: 'independent' })
+  })
+}
+for (const [id, tb, tau3] of AA_TBV21) {
+  const url = AA.find((r) => r[0] === id)?.[15]
+  if (tb != null) out.push({ model_id: id, key: 'terminal_bench', value: tb, unit: 'percent', source: 'Artificial Analysis · Terminal-Bench 2.1', source_url: url, as_of: AS_NEW, evidence: 'independent' })
+  if (tau3 != null) out.push({ model_id: id, key: 'tau3_banking', value: tau3, unit: 'percent', source: 'Artificial Analysis · τ³-Bench Banking', source_url: url, as_of: AS_NEW, evidence: 'independent' })
+}
+for (const [id, v] of ZH) out.push({ model_id: id, key: 'arena_zh', value: v, unit: 'elo', source: 'LMArena Text · Chinese (style control)', source_url: 'https://arena.ai/leaderboard/text/chinese', as_of: AS_NEW, evidence: 'independent' })
+
+// 中文 Arena（旧代快照）
 for (const [id, v] of [['deepseek-v3-2', 1440], ['qwen3-max', 1445], ['kimi-k2-thinking', 1442], ['glm-4-6', 1430], ['gemini-3-pro', 1490], ['claude-opus-4-5', 1462], ['gpt-5', 1445], ['qwen3-235b-a22b-thinking-2507', 1425], ['claude-sonnet-4-5', 1440]]) {
   out.push({ model_id: id, key: 'arena_zh', value: v, unit: 'elo', source: 'LMArena Text · Chinese', source_url: 'https://lmarena.ai/leaderboard/text', as_of: AS_OLD, evidence: 'independent' })
 }

@@ -1,5 +1,129 @@
-{"id":"nemotron-3-super-120b-a12b","name":"NVIDIA Nemotron 3 Super 120B-A12B","name_zh":"NVIDIA Nemotron 3 Super","aliases":["Nemotron-3-Super-120B-A12B","nvidia/nemotron-3-super-120b-a12b","Nemotron 3 Super"],"vendor":"NVIDIA","family":"Nemotron 3","license":"NVIDIA Nemotron Open Model License","license_commercial":true,"openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16","status":"current","released_at":"2026-03-11","updated_at":"2026-08-28","modalities":["text","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"hybrid","total_params":"120B","active_params":"12B","total_params_b":120,"active_params_b":12,"experts":512,"active_experts":22,"shared_expert":true,"layers":88,"hidden_size":4096,"vocab_size":131072,"kv_heads":2,"head_dim":128,"attention":"混合：8 层注意力（32 Q / 2 KV）+ 35 层 Mamba-2 + 52 层 LatentMoE","notes":"Mamba-2 / 注意力 / LatentMoE 交错（M35 / *8 / E52），多 token 预测头。训练用 NVFP4。","undisclosed":false},"context":{"max_tokens":1048576,"display":"1M","max_output":32768},"memory":{"weight_gb":{"bf16":240,"fp8":120,"q4":70},"estimated":true,"ref_hw_24gb":"不可行","ref_hw_80gb":"Q4 约 70 GB 单卡可跑，仅 8 层注意力 KV 极省；官方最低 8×H100","ref_hw_8x80gb":"BF16 官方推荐"},
-"pricing":{"input_per_m":0.085,"output_per_m":0.4,"currency":"USD","source":"第三方托管常见价（OpenRouter）","as_of":"2026-08-28"},
-"links":{"official":"https://nvidianews.nvidia.com/news/nvidia-debuts-nemotron-3-family-of-open-models","hf":"https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"},
-"copy":{"one_liner":"NVIDIA 120B 混合 Mamba-MoE，12B 激活，1M 上下文。","highlights":["AIME 2025 90.2%、LiveCodeBench 81.2%、GPQA 79.2%（官方）","仅 8 层注意力 + 2 KV 头，1M 上下文显存极省","Nemotron 开放许可可商用，训练数据 / 配方公开度高"],"pitfalls":["SWE-bench Verified 60.5%，工程能力平平","AA 智能指数 26，被 Muse Glimmer 30B（35）反超","混合架构需新版 vLLM / TRT-LLM，llama.cpp 支持滞后"],"logic_ability":"考试型推理强（AIME 90.2、GPQA 79.2），工程型推理中游（SWE-bench 60.5）。thinking 可开关。","best_for":["超长上下文 RAG / 文档 agent","高吞吐推理服务"],"not_for":["24GB 消费卡","高难度编程 agent"]},"capability_notes":{"coding":"LiveCodeBench 81.19、SWE-bench Verified 60.47（OpenHands，官方）。","reasoning":"GPQA 79.23（无工具）、MMLU-Pro 83.73（官方）。","math":"AIME 2025 90.21（无工具，官方）。","chinese":"官方支持中文（7 种语言之一）。"},"ecosystem":{"engines":["vLLM","SGLang","TensorRT-LLM","llama.cpp"],"zh_docs":"无"},"complete":false}
+{
+ "id": "nemotron-3-super-120b-a12b",
+ "name": "NVIDIA Nemotron 3 Super 120B-A12B",
+ "name_zh": "NVIDIA Nemotron 3 Super · 120B A12B",
+ "aliases": [
+  "Nemotron-3-Super-120B-A12B",
+  "nvidia/nemotron-3-super-120b-a12b",
+  "Nemotron 3 Super"
+ ],
+ "vendor": "NVIDIA",
+ "family": "Nemotron 3",
+ "license": "NVIDIA Nemotron Open Model License",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+ "status": "current",
+ "released_at": "2026-03-11",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "120B",
+  "active_params": "12B",
+  "total_params_b": 120,
+  "active_params_b": 12,
+  "experts": 512,
+  "active_experts": 22,
+  "shared_expert": true,
+  "layers": 88,
+  "hidden_size": 4096,
+  "vocab_size": 131072,
+  "kv_heads": 2,
+  "head_dim": 128,
+  "attention": "混合：8 层 GQA 注意力（32 Q / 2 KV，head_dim 128）+ 40 层 Mamba-2 + 40 层 LatentMoE",
+  "notes": "config hybrid_override_pattern 共 88 层：40 M（Mamba-2，128 头 × 64，state 128）/ 40 E（LatentMoE：512 路由 + 1 共享专家选 22，latent 1024，专家中间维 2688）/ 8 *（注意力），无 RoPE 缩放（theta 1e4，注意力层主要靠 Mamba 提供位置信息）。1 层 MTP（*E）。训练用 NVFP4。config max_position 262,144，官方标称 1M（RULER@1M 91.75）。",
+  "undisclosed": false,
+  "kv_layers": 8
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 32768
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 247,
+   "fp8": 128,
+   "q8": 128,
+   "q4": 82.5
+  },
+  "kv_per_token_kib": 8,
+  "kv_note": "仅 8 层注意力有 KV：2 KV 头 × 128 × 2（K/V）× 2 B = 1 KiB/层 → 8 KiB/token（BF16）。40 层 Mamba-2 为固定 SSM 状态（128 头 × 64 × 128，FP32，约 4 MiB/层），每序列约 160 MB 与长度无关。1M 上下文 KV ≈ 8 GB。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（UD-Q4_K_M 82.5 GB 已超 80GB；官方 NVFP4 版可跑单 B200 / DGX Spark）",
+  "ref_hw_8x80gb": "官方最低 8×H100 BF16；FP8 128 GB 用 2×H100 即可载",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.085,
+  "output_per_m": 0.4,
+  "currency": "USD",
+  "source": "第三方托管常见价（OpenRouter）",
+  "as_of": "2026-08-28"
+ },
+ "links": {
+  "official": "https://nvidianews.nvidia.com/news/nvidia-debuts-nemotron-3-family-of-open-models",
+  "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16"
+ },
+ "copy": {
+  "one_liner": "NVIDIA 120B 混合 Mamba-MoE，12B 激活，1M 上下文。",
+  "highlights": [
+   "AIME 2025 90.2、LiveCodeBench 81.2、GPQA 79.2、RULER@1M 91.75（官方）",
+   "仅 8 层注意力 + 2 KV 头，KV 8 KiB/token，1M 上下文 KV 仅约 8 GB",
+   "Nemotron 开放许可可商用，25T token 预训练数据 / 配方公开度高"
+  ],
+  "pitfalls": [
+   "SWE-bench Verified 60.5、Terminal-Bench Core 2.0 31.0、tau2 均值 61.2，工程与 agent 中游",
+   "AA 智能指数 26；HLE 无工具 18.3、Arena-Hard-V2 73.9 低于 gpt-oss-120b",
+   "Mamba-MoE 混合架构需新版 vLLM（≥ 0.18.1）/ TRT-LLM，llama.cpp 支持滞后；Q4 也超 80GB"
+  ],
+  "logic_ability": "考试型推理强：AIME 2025 90.21（无工具）、HMMT Feb25 93.67 / 94.73（工具）、GPQA 79.23 / 82.70（工具）、MMLU-Pro 83.73。HLE 18.26 / 22.82（工具）中等。工程型推理中游：LiveCodeBench 81.19 高，但 SWE-bench Verified 60.47（OpenHands）、Terminal-Bench Core 2.0 31.00 / hard 25.78、tau2 均值 61.15。长上下文是强项（RULER 256K 96.3、1M 91.75、AA-LCR 58.31）。thinking 可开关。",
+  "best_for": [
+   "超长上下文 RAG / 文档 agent",
+   "高吞吐推理服务"
+  ],
+  "not_for": [
+   "24GB 消费卡",
+   "高难度编程 agent"
+  ]
+ },
+ "capability_notes": {
+  "coding": "LiveCodeBench 81.19、SWE-bench Verified 60.47（OpenHands）/ 59.20（OpenCode）、Terminal-Bench Core 2.0 31.00、SciCode 42.05（官方模型卡）。",
+  "reasoning": "GPQA 79.23（无工具）/ 82.70（工具）、HLE 18.26 / 22.82（工具）、MMLU-Pro 83.73（官方模型卡）。",
+  "math": "AIME 2025 90.21（无工具）、HMMT Feb25 93.67 / 94.73（工具）（官方模型卡）。",
+  "agent": "tau2-bench 均值 61.15（Airline 56.25 / Retail 62.83 / Telecom 64.36）、BrowseComp（搜索）31.28、BIRD 41.80（官方模型卡）。",
+  "instruction": "IFBench 72.56、Arena-Hard-V2 73.88、Multi-Challenge 55.23（官方模型卡）。",
+  "chinese": "官方支持中文（7 种语言之一），MMLU-ProX 均值 79.36、WMT24++ 86.67（官方模型卡）。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "TensorRT-LLM",
+   "Transformers",
+   "llama.cpp"
+  ],
+  "finetune": "NeMo / Megatron 官方脚本；LoRA ≥ 2×80GB",
+  "zh_docs": "无"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 142,
+  "latency_s": 1.79,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "vendor_zh": "英伟达",
+ "sheet": {
+  "architecture_md": "**类型**：Mamba-2 / 注意力 / LatentMoE 混合，120B 总参 / 12B 激活，纯文本。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 88 = 40 Mamba-2 + 40 LatentMoE + 8 注意力（pattern MEMEMEM*E…） |\n| 隐藏维 | 4,096 |\n| Mamba-2 | 128 头 × head_dim 64，state 128，conv kernel 4，expand 2 |\n| 专家 | 512 路由 + 1 共享（中间维 5,376），每 token 选 22，专家中间维 2,688，latent 1,024 |\n| 注意力 | 32 Q / 2 KV，head_dim 128，theta 1e4 |\n| 词表 | 131,072 |\n| 上下文 | 官方 1M（config max_position 262,144） |\n| MTP | 1 层（*E） |\n\n`config.json` 中 `model_type: nemotron_h`，`architectures: NemotronHForCausalLM`。\n\n参考：nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16 config.json 与模型卡。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | 247 GB | 8×H100 | 官方 safetensors，50 分片（官方最低配置） |\n| FP8 | 128 GB | 2×H100 | 官方 NVIDIA-Nemotron-3-Super-120B-A12B-FP8，26 分片 |\n| Q8 | 128 GB | 2×H100 | unsloth GGUF Q8_0 |\n| Q4 | 82.5 GB | 2×80GB | unsloth GGUF Q4_K_M（超过单张 80GB） |\n| NVFP4 | 官方另发 | 1×B200 / DGX Spark | 官方 NVFP4 版本 |\n\n**KV Cache**：仅 8 层注意力 × 1 KiB = 8 KiB/token；40 层 Mamba-2 状态固定约 160 MB/序列。1M 上下文 KV ≈ 8 GB。\n\n**参考配置**：\n- 24GB / 80GB 单卡：不可行\n- 2×H100：FP8 或 Q8 可载，长上下文余量大\n- 8×H100：官方 BF16 推荐\n\n警示：vLLM 需 ≥ 0.18.1，Transformers ≥ 5.3；Mamba 状态用 FP32 缓存。",
+  "training_md": "- 预训练：25T+ token（模型卡），预训练截止 2025-06，后训练截止 2026-02\n- 训练精度 NVFP4；带 MTP 头（另发 MTPv2 版本）\n- 数据与配方：Nemotron 系列公开预训练 / 后训练数据集与训练脚本（NeMo）\n- 思考模式可开关（reasoning on/off）\n- 支持 7 种语言：英、法、德、意、日、西、中",
+  "ecosystem_md": "- HF：nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16（247 GB）、-FP8（128 GB）、NVFP4；GGUF：unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF\n- 引擎：vLLM（≥ 0.18.1）、SGLang、TensorRT-LLM、Transformers（≥ 5.3）；llama.cpp 经 GGUF\n- 微调：NeMo / Megatron 官方脚本；社区 LoRA 需 ≥ 2×80GB\n- 中文文档：无",
+  "versions_md": "- 同代：Nemotron 3 Nano 30B-A3B（52 层同构小版）、Nemotron 3 Ultra（更大）\n- 后续：Nemotron 3.5 Lightning（已上线 OpenRouter）\n- 上代：Nemotron 2 Nano 9B / 12B（Mamba 混合 Dense）"
+ }
+}

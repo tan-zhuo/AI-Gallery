@@ -1,98 +1,103 @@
 {
-  "id": "claude-opus-5",
-  "name": "Claude Opus 5",
-  "name_zh": "Claude 5 顶配",
-  "aliases": [
-    "claude-opus-5",
-    "Opus 5",
-    "anthropic.claude-opus-5"
+ "id": "claude-opus-5",
+ "name": "Claude Opus 5",
+ "name_zh": "Claude 5 顶配",
+ "aliases": [
+  "claude-opus-5",
+  "Opus 5",
+  "anthropic.claude-opus-5"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 5",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-07-24",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方接口特性：adaptive thinking 默认开启；effort 五档 low/medium/high/xhigh/max；xhigh/max 下不可关闭思考；fast mode（2.5× 速度，$10/$50）。"
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 5,
+  "output_per_m": 25,
+  "currency": "USD",
+  "source": "Anthropic 官方定价页（platform.claude.com）",
+  "as_of": "2026-08-28",
+  "note": "与 Opus 4.8 同价；Fast mode $10 / $50；Batch 五折"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/claude/opus",
+  "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "paper": "https://www.anthropic.com/news/claude-opus-5"
+ },
+ "copy": {
+  "one_liner": "AA 智能指数第一，Fable 5 级智能只要一半价钱。",
+  "highlights": [
+   "AA 智能指数 63 排名第一，GDPval-AA v2、AA-Briefcase、Frontier-Bench 均为 SOTA",
+   "effort 五档（low→max）可连续换算成本与深度，max 档 Terminal-Bench 2.1 达 89%",
+   "定价 $5 / $25 与 Opus 4.8 持平，仅 Fable 5 一半；1M 上下文不加价"
   ],
-  "vendor": "Anthropic",
-  "family": "Claude 5",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "current",
-  "released_at": "2026-07-24",
-  "updated_at": "2026-08-28",
-  "modalities": [
-    "text",
-    "image",
-    "tools",
-    "computer-use"
+  "pitfalls": [
+   "思考默认开启，max_tokens 要重新预算；xhigh/max 下无法关闭思考（400 错误）",
+   "默认回复与交付物明显变长，会主动自我验证，沿用旧提示词易「过度验证」",
+   "生物、进攻性网络安全能力仍落后 Mythos 5，且安全限制比 Opus 4.8 更严"
   ],
-  "reasoning_mode": "default-on",
-  "architecture": {
-    "type": "unknown",
-    "undisclosed": true,
-    "notes": "未披露。官方接口特性：adaptive thinking 默认开启；effort 五档 low/medium/high/xhigh/max；xhigh/max 下不可关闭思考；fast mode（2.5× 速度，$10/$50）。"
-  },
-  "context": {
-    "max_tokens": 1000000,
-    "display": "1M",
-    "max_output": 128000
-  },
-  "memory": {
-    "weight_gb": {},
-    "estimated": false
-  },
-  "pricing": {
-    "input_per_m": 5,
-    "output_per_m": 25,
-    "currency": "USD",
-    "source": "Anthropic 官方定价页（platform.claude.com）",
-    "as_of": "2026-08-28",
-    "note": "与 Opus 4.8 同价；Fast mode $10 / $50；Batch 五折"
-  },
-  "links": {
-    "official": "https://www.anthropic.com/claude/opus",
-    "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
-    "paper": "https://www.anthropic.com/news/claude-opus-5"
-  },
-  "copy": {
-    "one_liner": "AA 智能指数第一，Fable 5 级智能只要一半价钱。",
-    "highlights": [
-      "AA 智能指数 63 排名第一，GDPval-AA v2、AA-Briefcase、Frontier-Bench 均为 SOTA",
-      "effort 五档（low→max）可连续换算成本与深度，max 档 Terminal-Bench 2.1 达 89%",
-      "定价 $5 / $25 与 Opus 4.8 持平，仅 Fable 5 一半；1M 上下文不加价"
-    ],
-    "pitfalls": [
-      "思考默认开启，max_tokens 要重新预算；xhigh/max 下无法关闭思考（400 错误）",
-      "默认回复与交付物明显变长，会主动自我验证，沿用旧提示词易「过度验证」",
-      "生物、进攻性网络安全能力仍落后 Mythos 5，且安全限制比 Opus 4.8 更严"
-    ],
-    "logic_ability": "当前综合推理最强档之一：ARC-AGI-3 官方验证 30.2%（次优 GPT-5.6 Sol 仅 7.8%），HLE 53%（AA，无工具），Frontier-Bench v0.1 43.3% 是 Opus 4.8 的 2 倍以上。官方强调「test-time compute scaling」：把 effort 从 low 提到 max，GDPval-AA 分差达 407 Elo，输出 token 约 8 倍。失败模式：高 effort 下输出冗长；关闭思考时偶尔把工具调用写进正文或漏出内部 XML 标签。",
-    "best_for": [
-      "复杂多文件重构与端到端功能开发",
-      "多 agent 编排（writer-verifier 模式）",
-      "深度研究与长推理链",
-      "表格 / 幻灯片等办公文档生成"
-    ],
-    "not_for": [
-      "高频低价值调用（下沉到 Sonnet 5 / Haiku 4.5）",
-      "进攻性安全研究",
-      "需要私有化部署的合规场景"
-    ]
-  },
-  "capability_notes": {
-    "coding": "Frontier-Bench v0.1 43.3%（官方公告，Vellum 转录），CursorBench 3.2 与 Fable 5 差距 0.5% 以内；Terminal-Bench 2.1 max 档 89%（AA）。",
-    "reasoning": "AA 智能指数 63（第一）；HLE 53%（AA）；ARC-AGI-3 30.2%（ARC Prize 验证）。",
-    "agent": "Zapier AutomationBench 通过率为次优模型 1.5 倍；OSWorld 2.0 以 1/3 成本超过 Fable 5；GDPval-AA v2 1861 Elo。",
-    "multimodal": "官方称视觉能力提升，擅长图表 / 文档 / UI 复刻，配合裁剪工具迭代效果最好。",
-    "chinese": "中文可用，缺少独立中文评测。"
-  },
-  "sheet": {
-    "architecture_md": "**未披露**。Anthropic 未公布参数量、Dense/MoE、注意力类型。\n\n已知接口特性：\n- **Adaptive thinking 默认开启**（Opus 4.8 默认关闭），模型自行决定每轮思考量\n- `effort` 五档：`low` / `medium` / `high`（默认） / `xhigh` / `max`；官方称 Opus 5 把额外 effort 换成结果的效率高于任何前代\n- `thinking.type=disabled` 仅在 effort ≤ high 时接受，xhigh/max 下返回 400（相对 Opus 4.8 的破坏性变更）\n- 1M 上下文既是默认也是最大值，128K 最大输出；Batch API 加 beta 头可到 300K 输出\n- 新增：会话中途增删工具并保留缓存（beta）、`fallbacks: \"default\"` 模式、缓存最小长度降至 512 token\n- Fast mode（研究预览）：约 2.5× 输出速度，$10 / $50\n- 可靠知识截止 2026-05（全家族最新）",
-    "memory_md": "无自建选项。\n\n**成本模型**（官方定价页，2026-08-28）：\n- 输入 $5 / 输出 $25 / MTok，与 Opus 4.8、4.7、4.6、4.5 完全一致\n- 缓存写 $6.25（5 分钟）/ $10（1 小时），缓存读 $0.50\n- Batch $2.50 / $12.50；Fast mode $10 / $50\n- 1M 长上下文标准价\n\n**effort 决定真实成本**：AA 实测 max 档单任务 $2.03~2.34，比 Fable 5（$2.75~3.14）低约 26%，但比 Opus 4.8 max（$1.80）高；low→max 输出 token 跨度约 8 倍。高 effort 时请给足 `max_tokens`（官方示例 64K 并流式）。\n\n速度：AA 实测 55.4 tok/s，TTFT 约 43 s（max 档）。",
-    "training_md": "- 训练细节未披露\n- 官方定位：相对 Opus 4.8 是「阶跃式」而非增量升级，最大提升在深度推理、agent 长任务、test-time compute scaling\n- 官方公告数据：Frontier-Bench v0.1 43.3%（Opus 4.8 18.7%）；ARC-AGI-3 为次优模型 3 倍；有机化学 +10.2 pp、蛋白预测 +7.7 pp（vs 4.8）\n- 代码审查：单次通过发现真实 bug 率高、误报少，低 effort 仍准确\n- 对齐：近期模型中最低的 misalignment 分数（2.3）；生物与进攻性网络安全仍弱于 Mythos 5\n- 行为变化：回复更长、agent 会话中更常汇报进度、更愿意委派子 agent、无需指示即自我验证",
-    "ecosystem_md": "- Claude API、Amazon Bedrock（含 InvokeModel）、Claude Platform on AWS、Google Cloud、Microsoft Foundry\n- claude.ai Max 默认模型，Pro 可用的最强模型；Claude Code、Claude Cowork\n- Claude Managed Agents：token 价 + $0.08 / 会话小时\n- 工具：computer_toolset_20260801、browser_toolset_20260801、bash、text editor、web search、code execution、memory、tool search\n- **不可微调**\n- 中文文档：弱",
-    "versions_md": "- 上代：Claude Opus 4.8（2026-05-28，已标 Legacy，仍可用；官方建议迁移）\n- 更早：Opus 4.7、4.6、4.5（2025-11）\n- 同代：Claude Fable 5（2026-06-09，$10/$50）、Claude Sonnet 5（2026-06-30，$2/$10）\n- 更高档：Claude Mythos 5（同 Fable 5 底层，Glasswing 限定）\n- 退役承诺：不早于 2027-07-24"
-  },
-  "ecosystem": {
-    "engines": [],
-    "finetune": "不支持",
-    "zh_docs": "弱"
-  },
-  "complete": true
+  "logic_ability": "当前综合推理最强档之一：ARC-AGI-3 官方验证 30.2%（次优 GPT-5.6 Sol 仅 7.8%），HLE 53%（AA，无工具），Frontier-Bench v0.1 43.3% 是 Opus 4.8 的 2 倍以上。官方强调「test-time compute scaling」：把 effort 从 low 提到 max，GDPval-AA 分差达 407 Elo，输出 token 约 8 倍。失败模式：高 effort 下输出冗长；关闭思考时偶尔把工具调用写进正文或漏出内部 XML 标签。",
+  "best_for": [
+   "复杂多文件重构与端到端功能开发",
+   "多 agent 编排（writer-verifier 模式）",
+   "深度研究与长推理链",
+   "表格 / 幻灯片等办公文档生成"
+  ],
+  "not_for": [
+   "高频低价值调用（下沉到 Sonnet 5 / Haiku 4.5）",
+   "进攻性安全研究",
+   "需要私有化部署的合规场景"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Frontier-Bench v0.1 43.3%（官方公告，Vellum 转录），CursorBench 3.2 与 Fable 5 差距 0.5% 以内；Terminal-Bench 2.1 max 档 89%（AA）。",
+  "reasoning": "AA 智能指数 63（第一）；HLE 53%（AA）；ARC-AGI-3 30.2%（ARC Prize 验证）。",
+  "agent": "Zapier AutomationBench 通过率为次优模型 1.5 倍；OSWorld 2.0 以 1/3 成本超过 Fable 5；GDPval-AA v2 1861 Elo。",
+  "multimodal": "官方称视觉能力提升，擅长图表 / 文档 / UI 复刻，配合裁剪工具迭代效果最好。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "sheet": {
+  "architecture_md": "**未披露**。Anthropic 未公布参数量、Dense/MoE、注意力类型。\n\n已知接口特性：\n- **Adaptive thinking 默认开启**（Opus 4.8 默认关闭），模型自行决定每轮思考量\n- `effort` 五档：`low` / `medium` / `high`（默认） / `xhigh` / `max`；官方称 Opus 5 把额外 effort 换成结果的效率高于任何前代\n- `thinking.type=disabled` 仅在 effort ≤ high 时接受，xhigh/max 下返回 400（相对 Opus 4.8 的破坏性变更）\n- 1M 上下文既是默认也是最大值，128K 最大输出；Batch API 加 beta 头可到 300K 输出\n- 新增：会话中途增删工具并保留缓存（beta）、`fallbacks: \"default\"` 模式、缓存最小长度降至 512 token\n- Fast mode（研究预览）：约 2.5× 输出速度，$10 / $50\n- 可靠知识截止 2026-05（全家族最新）",
+  "memory_md": "无自建选项。\n\n**成本模型**（官方定价页，2026-08-28）：\n- 输入 $5 / 输出 $25 / MTok，与 Opus 4.8、4.7、4.6、4.5 完全一致\n- 缓存写 $6.25（5 分钟）/ $10（1 小时），缓存读 $0.50\n- Batch $2.50 / $12.50；Fast mode $10 / $50\n- 1M 长上下文标准价\n\n**effort 决定真实成本**：AA 实测 max 档单任务 $2.03~2.34，比 Fable 5（$2.75~3.14）低约 26%，但比 Opus 4.8 max（$1.80）高；low→max 输出 token 跨度约 8 倍。高 effort 时请给足 `max_tokens`（官方示例 64K 并流式）。\n\n速度：AA 实测 55.4 tok/s，TTFT 约 43 s（max 档）。",
+  "training_md": "- 训练细节未披露\n- 官方定位：相对 Opus 4.8 是「阶跃式」而非增量升级，最大提升在深度推理、agent 长任务、test-time compute scaling\n- 官方公告数据：Frontier-Bench v0.1 43.3%（Opus 4.8 18.7%）；ARC-AGI-3 为次优模型 3 倍；有机化学 +10.2 pp、蛋白预测 +7.7 pp（vs 4.8）\n- 代码审查：单次通过发现真实 bug 率高、误报少，低 effort 仍准确\n- 对齐：近期模型中最低的 misalignment 分数（2.3）；生物与进攻性网络安全仍弱于 Mythos 5\n- 行为变化：回复更长、agent 会话中更常汇报进度、更愿意委派子 agent、无需指示即自我验证",
+  "ecosystem_md": "- Claude API、Amazon Bedrock（含 InvokeModel）、Claude Platform on AWS、Google Cloud、Microsoft Foundry\n- claude.ai Max 默认模型，Pro 可用的最强模型；Claude Code、Claude Cowork\n- Claude Managed Agents：token 价 + $0.08 / 会话小时\n- 工具：computer_toolset_20260801、browser_toolset_20260801、bash、text editor、web search、code execution、memory、tool search\n- **不可微调**\n- 中文文档：弱",
+  "versions_md": "- 上代：Claude Opus 4.8（2026-05-28，已标 Legacy，仍可用；官方建议迁移）\n- 更早：Opus 4.7、4.6、4.5（2025-11）\n- 同代：Claude Fable 5（2026-06-09，$10/$50）、Claude Sonnet 5（2026-06-30，$2/$10）\n- 更高档：Claude Mythos 5（同 Fable 5 底层，Glasswing 限定）\n- 退役承诺：不早于 2027-07-24"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 55,
+  "latency_s": 42.91,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

@@ -1,36 +1,86 @@
 {
-  "id": "gemini-3-5-flash-lite",
-  "name": "Gemini 3.5 Flash-Lite",
-  "name_zh": "Gemini 3.5 闪电轻量版",
-  "aliases": ["gemini-3.5-flash-lite", "Gemini 3.5 Flash Lite"],
-  "vendor": "Google",
-  "vendor_zh": "谷歌",
-  "family": "Gemini 3",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "current",
-  "released_at": "2026-07-21",
-  "updated_at": "2026-08-28",
-  "modalities": ["text", "image", "audio", "video", "tools"],
-  "reasoning_mode": "optional",
-  "architecture": { "type": "unknown", "undisclosed": true, "notes": "未披露。" },
-  "context": { "max_tokens": 1048576, "display": "1M", "max_output": 65536 },
-  "memory": { "weight_gb": {}, "estimated": false },
-  "pricing": { "input_per_m": 0.3, "output_per_m": 2.5, "currency": "USD", "source": "Google AI 定价页", "as_of": "2026-08-28", "note": "缓存输入 $0.03；Batch / Flex 半价" },
-  "links": { "official": "https://deepmind.google/models/model-cards/gemini-3-5-flash-lite/", "pricing": "https://ai.google.dev/gemini-api/docs/pricing" },
-  "copy": {
-    "one_liner": "Google 当前最便宜的 1M 上下文多模态模型，吞吐优先。",
-    "highlights": ["$0.30 / $2.50，1M 上下文，全模态输入", "AA 实测约 350 tok/s，Terminal-Bench 2.1 54.0%（上代 3.1 Flash-Lite 31.0%）", "GDM-MRCR v2 128K 72.2%，长上下文检索远超 Haiku 4.5 / GPT-5.4 mini"],
-    "pitfalls": ["AA 智能指数 37，复杂推理明显弱于 Flash 主力", "输出价 $2.50 比上代 3.1 Flash-Lite（$1.50）贵 67%，纯文本轻任务未必划算", "官方未公布 GPQA / HLE / MMMU 等通用基准"],
-    "logic_ability": "轻量档，agent / 抽取 / 分类类任务为主。SWE-Bench Pro 54.2%、OSWorld-Verified 74.0%。深度推理应上 Flash 或 Pro。",
-    "best_for": ["大规模文档抽取 / 翻译", "agentic search", "低延迟高并发"],
-    "not_for": ["复杂推理与数学", "私有化部署"]
-  },
-  "capability_notes": {
-    "coding": "SWE-Bench Pro 54.2%（官方模型卡）。",
-    "agent": "Terminal-Bench 2.1 54.0%、OSWorld-Verified 74.0%（官方）。"
-  },
-  "complete": false
+ "id": "gemini-3-5-flash-lite",
+ "name": "Gemini 3.5 Flash-Lite",
+ "name_zh": "Gemini 3.5 闪电轻量版",
+ "aliases": [
+  "gemini-3.5-flash-lite",
+  "Gemini 3.5 Flash Lite"
+ ],
+ "vendor": "Google",
+ "vendor_zh": "谷歌",
+ "family": "Gemini 3",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-07-21",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。"
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.3,
+  "output_per_m": 2.5,
+  "currency": "USD",
+  "source": "Google AI 定价页",
+  "as_of": "2026-08-28",
+  "note": "缓存输入 $0.03；Batch / Flex 半价"
+ },
+ "links": {
+  "official": "https://deepmind.google/models/model-cards/gemini-3-5-flash-lite/",
+  "pricing": "https://ai.google.dev/gemini-api/docs/pricing"
+ },
+ "copy": {
+  "one_liner": "Google 当前最便宜的 1M 上下文多模态模型，吞吐优先。",
+  "highlights": [
+   "$0.30 / $2.50，1M 上下文，全模态输入",
+   "AA 实测约 350 tok/s，Terminal-Bench 2.1 54.0%（上代 3.1 Flash-Lite 31.0%）",
+   "GDM-MRCR v2 128K 72.2%，长上下文检索远超 Haiku 4.5 / GPT-5.4 mini"
+  ],
+  "pitfalls": [
+   "AA 智能指数 37，复杂推理明显弱于 Flash 主力",
+   "输出价 $2.50 比上代 3.1 Flash-Lite（$1.50）贵 67%，纯文本轻任务未必划算",
+   "官方未公布 GPQA / HLE / MMMU 等通用基准"
+  ],
+  "logic_ability": "轻量档，agent / 抽取 / 分类类任务为主。SWE-Bench Pro 54.2%、OSWorld-Verified 74.0%。深度推理应上 Flash 或 Pro。",
+  "best_for": [
+   "大规模文档抽取 / 翻译",
+   "agentic search",
+   "低延迟高并发"
+  ],
+  "not_for": [
+   "复杂推理与数学",
+   "私有化部署"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-Bench Pro 54.2%（官方模型卡）。",
+  "agent": "Terminal-Bench 2.1 54.0%、OSWorld-Verified 74.0%（官方）。"
+ },
+ "complete": false,
+ "runtime": {
+  "tok_s": 346,
+  "latency_s": 8.76,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

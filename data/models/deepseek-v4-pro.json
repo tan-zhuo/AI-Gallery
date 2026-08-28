@@ -1,62 +1,130 @@
 {
-  "id": "deepseek-v4-pro",
-  "name": "DeepSeek-V4-Pro",
-  "name_zh": "深度求索 V4 Pro",
-  "aliases": ["DeepSeek V4 Pro", "DeepSeek-V4-Pro-0813", "deepseek-v4-pro"],
-  "vendor": "DeepSeek",
-  "vendor_zh": "深度求索",
-  "family": "DeepSeek V4",
-  "license": "MIT",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
-  "status": "current",
-  "released_at": "2026-08-13",
-  "updated_at": "2026-08-28",
-  "modalities": ["text", "tools"],
-  "reasoning_mode": "optional",
-  "architecture": {
-    "type": "moe", "total_params": "1.6T", "active_params": "49B", "total_params_b": 1600, "active_params_b": 49,
-    "experts": 384, "active_experts": 6, "shared_expert": true, "layers": 61, "hidden_size": 7168, "vocab_size": 129280,
-    "kv_heads": 1, "head_dim": 512,
-    "attention": "CSA（Compressed Sparse Attention）+ HCA（Heavily Compressed Attention）混合，MLA 式潜向量",
-    "notes": "config：128 Q 头、q_lora_rank 1536、o_lora_rank 1024、RoPE 64 维；每层 KV 用 4× 或 128× token 压缩（compress_ratios 4/128 交错），稀疏 indexer 64 头、top-k 1024，滑窗 128，前 3 层为 hash 层。表内 kv_heads=1、head_dim=512 为 MLA 式潜向量的等效换算。384 路由 + 1 共享专家，每 token 激活 6；专家 FP4、其余 FP8 原生。mHC 超连接残差、Muon 优化器、1 层 MTP。官方称 1M 上下文下单 token FLOPs 仅为 V3.2 的 27%、KV 为 10%。",
-    "undisclosed": false
+ "id": "deepseek-v4-pro",
+ "name": "DeepSeek-V4-Pro",
+ "name_zh": "深度求索 V4 Pro",
+ "aliases": [
+  "DeepSeek V4 Pro",
+  "DeepSeek-V4-Pro-0813",
+  "deepseek-v4-pro"
+ ],
+ "vendor": "DeepSeek",
+ "vendor_zh": "深度求索",
+ "family": "DeepSeek V4",
+ "license": "MIT",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+ "status": "current",
+ "released_at": "2026-08-13",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "1.6T",
+  "active_params": "49B",
+  "total_params_b": 1600,
+  "active_params_b": 49,
+  "experts": 384,
+  "active_experts": 6,
+  "shared_expert": true,
+  "layers": 61,
+  "hidden_size": 7168,
+  "vocab_size": 129280,
+  "kv_heads": 1,
+  "head_dim": 512,
+  "attention": "CSA（Compressed Sparse Attention）+ HCA（Heavily Compressed Attention）混合，MLA 式潜向量",
+  "notes": "config：128 Q 头、q_lora_rank 1536、o_lora_rank 1024、RoPE 64 维；每层 KV 用 4× 或 128× token 压缩（compress_ratios 4/128 交错），稀疏 indexer 64 头、top-k 1024，滑窗 128，前 3 层为 hash 层。表内 kv_heads=1、head_dim=512 为 MLA 式潜向量的等效换算。384 路由 + 1 共享专家，每 token 激活 6；专家 FP4、其余 FP8 原生。mHC 超连接残差、Muon 优化器、1 层 MTP。官方称 1M 上下文下单 token FLOPs 仅为 V3.2 的 27%、KV 为 10%。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 393216
+ },
+ "memory": {
+  "weight_gb": {
+   "fp8": 893,
+   "q8": 873.4,
+   "q4": 849.7
   },
-  "context": { "max_tokens": 1048576, "display": "1M", "max_output": 393216 },
-  "memory": {
-    "weight_gb": { "fp8": 893, "q8": 873.4, "q4": 849.7 },
-    "kv_note": "混合压缩注意力：HCA 层按 128× 压缩、CSA 层按 4× 压缩再稀疏选 top-1024，官方称 1M 上下文 KV 仅为 V3.2 的 10%；每 token 精确 KiB 官方未披露。fp8 一栏为官方 FP4（专家）+ FP8 混合原生权重 893 GB；Q4 一栏为 unsloth UD-Q4_K_XL，专家本就是 4-bit 所以几乎不缩。",
-    "ref_hw_24gb": "不可行",
-    "ref_hw_80gb": "不可行（单卡）",
-    "ref_hw_8x80gb": "不可行（893 GB > 640 GB）；需 8×H200 141GB（1.13 TB）或 8×B200 / GB300 级别单机",
-    "estimated": false
-  },
-  "pricing": { "input_per_m": 0.66, "output_per_m": 1.98, "currency": "USD", "source": "DeepSeek 官方 API 定价（非高峰）", "as_of": "2026-08-28", "note": "高峰时段（UTC 01–04、06–10 周一至五）翻倍为 $1.32 / $3.96；缓存命中输入 $0.022 / $0.044。8 月 17 日起分峰谷计价" },
-  "links": { "official": "https://www.deepseek.com/", "hf": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813", "github": "https://github.com/deepseek-ai/DeepSeek-V4", "paper": "https://arxiv.org/abs/2606.19348", "pricing": "https://api-docs.deepseek.com/quick_start/pricing" },
-  "copy": {
-    "one_liner": "MIT 许可 1.6T 旗舰，1M 上下文，Agent 榜追平闭源。",
-    "highlights": ["MIT 许可 1.6T / 49B 激活权重可下，0813 正式版 Terminal Bench 2.1 87.9、DeepSWE 62.7 与 Opus-4.8 同档", "CSA + HCA 混合压缩注意力：1M 上下文下 FLOPs 为 V3.2 的 27%、KV 为 10%", "API $0.66 / $1.98（非高峰），Text Arena 1462 分；DSpark 投机解码模块随权重附带"],
-    "pitfalls": ["893 GB 原生 FP4/FP8，单机 8×80GB 装不下，起步是 8×H200 或 B200 级别", "0813 版 API 价格较 4 月预览版上涨（AA 称约 3.6×），且分高峰 / 非高峰计价", "纯文本；HLE 42.7、GPQA 90.1 等考试型榜落后 Opus 4.8 / Fable 5 数分，SWE-bench Verified 80.6 为预览版数"],
-    "logic_ability": "工程型强于考试型：预览版模型卡 SWE-bench Verified 80.6、LiveCodeBench 93.5、Codeforces 3206 已是开源第一梯队；0813 正式版重点补强 Agent，Terminal Bench 2.1 从 72.1 升到 87.9、DeepSWE 从 12.8 升到 62.7、Cybergym 83.3。考试型 GPQA Diamond 90.1、HLE 42.7（无工具）/ 60.0（有工具）距 Fable 5 仍有差距。三档 reasoning_effort（low / high / max），max 建议 ≥ 384K 输出窗口；非思考模式在 HLE 等题上骤降（预览版 7.7）。AA 智能指数 53，仅比 V4-Flash-0731 高 1 分，性价比不如 Flash。",
-    "best_for": ["自建旗舰级 Coding / Terminal Agent", "1M 超长上下文文档与代码库", "低成本 API 替代闭源旗舰"],
-    "not_for": ["单机 8×80GB 及以下部署", "视觉输入", "对 Flash 已够用的场景（差距仅 1 分 AA）"]
-  },
-  "capability_notes": {
-    "coding": "SWE-bench Verified 80.6、LiveCodeBench 93.5、Codeforces 3206（预览版模型卡，Max）；Terminal Bench 2.1 87.9、NL2Repo 61.5（0813 模型卡）。",
-    "reasoning": "GPQA Diamond 90.1（预览版）；HLE 42.7 / 60.0 有工具（0813 模型卡）。",
-    "math": "HMMT 2026 Feb 95.2、IMOAnswerBench 89.8（预览版模型卡）；AIME 2025 未披露。",
-    "agent": "DeepSWE 62.7、Toolathlon-Verified 74.1、Cybergym 83.3、DSBench-FullStack 71.1（0813 模型卡）；BrowseComp 83.4（预览版）。",
-    "chinese": "Chinese-SimpleQA 84.4（预览版模型卡），中文事实知识顶级。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：MoE，1.6T 总参数 / 49B 激活。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 61（前 3 层 hash 层） |\n| 隐藏维 | 7,168 |\n| 专家 | 384 路由 + 1 共享，每 token 激活 6，专家中间维 3,072 |\n| 路由 | sqrtsoftplus 打分、noaux_tc、scaling 2.5 |\n| 注意力头 | 128 Q 头，head_dim 512，KV 单头（MLA 式潜向量） |\n| 低秩 | q_lora_rank 1536、o_lora_rank 1024（o_groups 16） |\n| RoPE | 64 维，YaRN factor 16（原生 64K → 1M） |\n| 稀疏 indexer | 64 头 × 128 维，top-k 1024，滑窗 128 |\n| KV 压缩比 | 逐层 4× / 128× 交错（CSA / HCA） |\n| 词表 | 129,280 |\n| 精度 | 专家 FP4，其余 FP8（e4m3，块 128×128） |\n| MTP | 1 层；0813 版附 DSpark 投机解码模块 |\n\n**CSA + HCA**：HCA 层把 KV 按 128× 压缩做全局注意力，CSA 层按 4× 压缩后用 DSA 式 indexer 选 top-1024。官方：1M 上下文下单 token FLOPs 为 V3.2 的 27%、KV 为 10%。\n\n**mHC**：Manifold-Constrained Hyper-Connections（hc_mult 4，Sinkhorn 20 步）替代普通残差。\n\n参考：DeepSeek-V4 技术报告（arXiv 2606.19348）、config.json。",
-    "memory_md": "| 精度 | 权重大小 | 说明 |\n|---|---|---|\n| FP4 + FP8 混合 | 893 GB | 官方原生发布，66 分片 |\n| Q8 | 873 GB | unsloth UD-Q8_K_XL |\n| Q4 | 850 GB | unsloth UD-Q4_K_XL（专家本就 4-bit，几乎不缩） |\n| BF16 | 未提供 | 官方不发 BF16 |\n\n**KV Cache**：混合压缩注意力，官方称 1M 上下文 KV 为 V3.2 的 10%；每 token 精确值未披露。Think Max 建议 ≥ 384K 输出窗口。\n\n**参考配置**：\n- 24GB / 80GB 单卡：不可行\n- 单机 8×80GB：不可行（893 GB > 640 GB）\n- 8×H200 141GB / 8×B200 / GB300：可部署，vLLM 与 SGLang 均支持 DSpark 投机解码\n\n警示：Q4 GGUF 不能省显存，「量化就能本地跑」对 V4-Pro 不成立。",
-    "training_md": "- 预训练 32T+ token，Muon 优化器\n- 后训练两阶段：领域专家培养（SFT + GRPO RL）→ on-policy 蒸馏统一合并\n- 0813 正式版：在预览版基础上「大幅增强 Agent 能力，生产环境提升尤其明显」\n- 思考模式：`reasoning_effort` low / high / max，可非思考\n- 最大输出：384K（API）\n- 推荐采样：temperature 1.0；top_p 0.95（Agent）/ 1.0（其他）\n- 无 Jinja 模板，官方提供 Python 编码脚本",
-    "ecosystem_md": "- HF：deepseek-ai/DeepSeek-V4-Pro-0813（正式）、DeepSeek-V4-Pro（4 月预览）、DeepSeek-V4-Pro-DSpark、DeepSeek-V4-Pro-Base\n- GGUF：unsloth/DeepSeek-V4-Pro-0813-GGUF\n- 引擎：vLLM（`--speculative-config` 开 DSpark）、SGLang（`--speculative-algorithm DSPARK`）、Transformers；可在华为昇腾运行\n- API：`deepseek-v4-pro`，OpenAI / Anthropic / Responses 三种接口\n- 中文文档：有",
-    "versions_md": "- DeepSeek-V4-Pro（预览，2026-04-24）→ DeepSeek-V4-Pro-0813（正式，2026-08-13，本条目）\n- 姊妹：DeepSeek-V4-Flash-0731（284B / 13B）、deepseek-v4-flash-vision-exp（API 视觉实验版）\n- 上代：DeepSeek-V3.2（2025-12）、V3.1-Terminus\n- 基座：DeepSeek-V4-Pro-Base"
-  },
-  "ecosystem": { "engines": ["vLLM", "SGLang", "Transformers", "llama.cpp"], "finetune": "多节点；社区 LoRA 极少", "zh_docs": "有" },
-  "complete": true
+  "kv_note": "混合压缩注意力：HCA 层按 128× 压缩、CSA 层按 4× 压缩再稀疏选 top-1024，官方称 1M 上下文 KV 仅为 V3.2 的 10%；每 token 精确 KiB 官方未披露。fp8 一栏为官方 FP4（专家）+ FP8 混合原生权重 893 GB；Q4 一栏为 unsloth UD-Q4_K_XL，专家本就是 4-bit 所以几乎不缩。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）",
+  "ref_hw_8x80gb": "不可行（893 GB > 640 GB）；需 8×H200 141GB（1.13 TB）或 8×B200 / GB300 级别单机",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.66,
+  "output_per_m": 1.98,
+  "currency": "USD",
+  "source": "DeepSeek 官方 API 定价（非高峰）",
+  "as_of": "2026-08-28",
+  "note": "高峰时段（UTC 01–04、06–10 周一至五）翻倍为 $1.32 / $3.96；缓存命中输入 $0.022 / $0.044。8 月 17 日起分峰谷计价"
+ },
+ "links": {
+  "official": "https://www.deepseek.com/",
+  "hf": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro-0813",
+  "github": "https://github.com/deepseek-ai/DeepSeek-V4",
+  "paper": "https://arxiv.org/abs/2606.19348",
+  "pricing": "https://api-docs.deepseek.com/quick_start/pricing"
+ },
+ "copy": {
+  "one_liner": "MIT 许可 1.6T 旗舰，1M 上下文，Agent 榜追平闭源。",
+  "highlights": [
+   "MIT 许可 1.6T / 49B 激活权重可下，0813 正式版 Terminal Bench 2.1 87.9、DeepSWE 62.7 与 Opus-4.8 同档",
+   "CSA + HCA 混合压缩注意力：1M 上下文下 FLOPs 为 V3.2 的 27%、KV 为 10%",
+   "API $0.66 / $1.98（非高峰），Text Arena 1462 分；DSpark 投机解码模块随权重附带"
+  ],
+  "pitfalls": [
+   "893 GB 原生 FP4/FP8，单机 8×80GB 装不下，起步是 8×H200 或 B200 级别",
+   "0813 版 API 价格较 4 月预览版上涨（AA 称约 3.6×），且分高峰 / 非高峰计价",
+   "纯文本；HLE 42.7、GPQA 90.1 等考试型榜落后 Opus 4.8 / Fable 5 数分，SWE-bench Verified 80.6 为预览版数"
+  ],
+  "logic_ability": "工程型强于考试型：预览版模型卡 SWE-bench Verified 80.6、LiveCodeBench 93.5、Codeforces 3206 已是开源第一梯队；0813 正式版重点补强 Agent，Terminal Bench 2.1 从 72.1 升到 87.9、DeepSWE 从 12.8 升到 62.7、Cybergym 83.3。考试型 GPQA Diamond 90.1、HLE 42.7（无工具）/ 60.0（有工具）距 Fable 5 仍有差距。三档 reasoning_effort（low / high / max），max 建议 ≥ 384K 输出窗口；非思考模式在 HLE 等题上骤降（预览版 7.7）。AA 智能指数 53，仅比 V4-Flash-0731 高 1 分，性价比不如 Flash。",
+  "best_for": [
+   "自建旗舰级 Coding / Terminal Agent",
+   "1M 超长上下文文档与代码库",
+   "低成本 API 替代闭源旗舰"
+  ],
+  "not_for": [
+   "单机 8×80GB 及以下部署",
+   "视觉输入",
+   "对 Flash 已够用的场景（差距仅 1 分 AA）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 80.6、LiveCodeBench 93.5、Codeforces 3206（预览版模型卡，Max）；Terminal Bench 2.1 87.9、NL2Repo 61.5（0813 模型卡）。",
+  "reasoning": "GPQA Diamond 90.1（预览版）；HLE 42.7 / 60.0 有工具（0813 模型卡）。",
+  "math": "HMMT 2026 Feb 95.2、IMOAnswerBench 89.8（预览版模型卡）；AIME 2025 未披露。",
+  "agent": "DeepSWE 62.7、Toolathlon-Verified 74.1、Cybergym 83.3、DSBench-FullStack 71.1（0813 模型卡）；BrowseComp 83.4（预览版）。",
+  "chinese": "Chinese-SimpleQA 84.4（预览版模型卡），中文事实知识顶级。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE，1.6T 总参数 / 49B 激活。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 61（前 3 层 hash 层） |\n| 隐藏维 | 7,168 |\n| 专家 | 384 路由 + 1 共享，每 token 激活 6，专家中间维 3,072 |\n| 路由 | sqrtsoftplus 打分、noaux_tc、scaling 2.5 |\n| 注意力头 | 128 Q 头，head_dim 512，KV 单头（MLA 式潜向量） |\n| 低秩 | q_lora_rank 1536、o_lora_rank 1024（o_groups 16） |\n| RoPE | 64 维，YaRN factor 16（原生 64K → 1M） |\n| 稀疏 indexer | 64 头 × 128 维，top-k 1024，滑窗 128 |\n| KV 压缩比 | 逐层 4× / 128× 交错（CSA / HCA） |\n| 词表 | 129,280 |\n| 精度 | 专家 FP4，其余 FP8（e4m3，块 128×128） |\n| MTP | 1 层；0813 版附 DSpark 投机解码模块 |\n\n**CSA + HCA**：HCA 层把 KV 按 128× 压缩做全局注意力，CSA 层按 4× 压缩后用 DSA 式 indexer 选 top-1024。官方：1M 上下文下单 token FLOPs 为 V3.2 的 27%、KV 为 10%。\n\n**mHC**：Manifold-Constrained Hyper-Connections（hc_mult 4，Sinkhorn 20 步）替代普通残差。\n\n参考：DeepSeek-V4 技术报告（arXiv 2606.19348）、config.json。",
+  "memory_md": "| 精度 | 权重大小 | 说明 |\n|---|---|---|\n| FP4 + FP8 混合 | 893 GB | 官方原生发布，66 分片 |\n| Q8 | 873 GB | unsloth UD-Q8_K_XL |\n| Q4 | 850 GB | unsloth UD-Q4_K_XL（专家本就 4-bit，几乎不缩） |\n| BF16 | 未提供 | 官方不发 BF16 |\n\n**KV Cache**：混合压缩注意力，官方称 1M 上下文 KV 为 V3.2 的 10%；每 token 精确值未披露。Think Max 建议 ≥ 384K 输出窗口。\n\n**参考配置**：\n- 24GB / 80GB 单卡：不可行\n- 单机 8×80GB：不可行（893 GB > 640 GB）\n- 8×H200 141GB / 8×B200 / GB300：可部署，vLLM 与 SGLang 均支持 DSpark 投机解码\n\n警示：Q4 GGUF 不能省显存，「量化就能本地跑」对 V4-Pro 不成立。",
+  "training_md": "- 预训练 32T+ token，Muon 优化器\n- 后训练两阶段：领域专家培养（SFT + GRPO RL）→ on-policy 蒸馏统一合并\n- 0813 正式版：在预览版基础上「大幅增强 Agent 能力，生产环境提升尤其明显」\n- 思考模式：`reasoning_effort` low / high / max，可非思考\n- 最大输出：384K（API）\n- 推荐采样：temperature 1.0；top_p 0.95（Agent）/ 1.0（其他）\n- 无 Jinja 模板，官方提供 Python 编码脚本",
+  "ecosystem_md": "- HF：deepseek-ai/DeepSeek-V4-Pro-0813（正式）、DeepSeek-V4-Pro（4 月预览）、DeepSeek-V4-Pro-DSpark、DeepSeek-V4-Pro-Base\n- GGUF：unsloth/DeepSeek-V4-Pro-0813-GGUF\n- 引擎：vLLM（`--speculative-config` 开 DSpark）、SGLang（`--speculative-algorithm DSPARK`）、Transformers；可在华为昇腾运行\n- API：`deepseek-v4-pro`，OpenAI / Anthropic / Responses 三种接口\n- 中文文档：有",
+  "versions_md": "- DeepSeek-V4-Pro（预览，2026-04-24）→ DeepSeek-V4-Pro-0813（正式，2026-08-13，本条目）\n- 姊妹：DeepSeek-V4-Flash-0731（284B / 13B）、deepseek-v4-flash-vision-exp（API 视觉实验版）\n- 上代：DeepSeek-V3.2（2025-12）、V3.1-Terminus\n- 基座：DeepSeek-V4-Pro-Base"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "Transformers",
+   "llama.cpp"
+  ],
+  "finetune": "多节点；社区 LoRA 极少",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 66,
+  "latency_s": 1.59,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

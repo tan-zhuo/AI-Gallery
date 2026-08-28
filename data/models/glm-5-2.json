@@ -1,126 +1,131 @@
 {
-  "id": "glm-5-2",
-  "name": "GLM-5.2",
-  "name_zh": "智谱 GLM-5.2",
-  "aliases": [
-    "GLM 5.2",
-    "glm-5.2",
-    "GLM-5.2-FP8"
+ "id": "glm-5-2",
+ "name": "GLM-5.2",
+ "name_zh": "智谱 GLM-5.2",
+ "aliases": [
+  "GLM 5.2",
+  "glm-5.2",
+  "GLM-5.2-FP8"
+ ],
+ "vendor": "Z.ai",
+ "vendor_zh": "智谱",
+ "family": "GLM-5",
+ "license": "MIT",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/zai-org/GLM-5.2",
+ "status": "current",
+ "released_at": "2026-06-16",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "744B",
+  "active_params": "40B",
+  "total_params_b": 744,
+  "active_params_b": 40,
+  "experts": 256,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 78,
+  "hidden_size": 6144,
+  "vocab_size": 154880,
+  "kv_heads": 1,
+  "head_dim": 288,
+  "attention": "MLA + DSA 稀疏注意力（64 头，IndexShare 索引器）",
+  "notes": "官方 GitHub 标注 744B-A40B（HF 自动计数 753B 含 MTP 层）。MLA：kv_lora_rank 512 + RoPE 64，每层 KV 潜向量 576 维，这里按「1 KV 头 × 288」等价表示。DSA 稀疏注意力每 token 只取 top-2048 索引；IndexShare 让每 4 层共用一个索引器。前 3 层 Dense MLP，其余 256 路由专家 + 1 共享，MoE 中间维 2048；含 1 层 MTP。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 131072
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 1507,
+   "fp8": 753,
+   "q4": 432
+  },
+  "kv_per_token_kib": 88,
+  "kv_note": "MLA：576 维 × 2 B × 78 层 ≈ 88 KiB/token。1M 上下文单请求 KV ≈ 88 GB；DSA 只降低计算不减 KV 存储。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "BF16 1.5 TB 需 16×H100 或 16×H200；FP8 753 GB 可 8×H200（KV 余量约 370 GB），8×H100 FP8 极紧",
+  "estimated": true
+ },
+ "pricing": {
+  "input_per_m": 1.4,
+  "output_per_m": 4.4,
+  "currency": "USD",
+  "source": "Z.ai 开放平台",
+  "as_of": "2026-08-28",
+  "note": "缓存命中输入 $0.26；GLM Coding Plan 另有包月"
+ },
+ "links": {
+  "official": "https://z.ai/blog/glm-5.2",
+  "hf": "https://huggingface.co/zai-org/GLM-5.2",
+  "github": "https://github.com/zai-org/GLM-5",
+  "paper": "https://arxiv.org/abs/2602.15763",
+  "pricing": "https://docs.z.ai/guides/overview/pricing"
+ },
+ "copy": {
+  "one_liner": "MIT 许可、1M 上下文的 744B 开源编程旗舰。",
+  "highlights": [
+   "MIT 许可，744B/40B 激活，无地区限制，商用无附加条件",
+   "官方 1M「无损」上下文；IndexShare 稀疏注意力让 1M 长度下每 token FLOPs 降 2.9×",
+   "SWE-bench Pro 62.1、Terminal-Bench 2.1 81.0（Terminus-2），发布时为开源最高"
   ],
-  "vendor": "Z.ai",
-  "vendor_zh": "智谱",
-  "family": "GLM-5",
-  "license": "MIT",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/zai-org/GLM-5.2",
-  "status": "current",
-  "released_at": "2026-06-16",
-  "updated_at": "2026-08-28",
-  "modalities": [
-    "text",
-    "tools"
+  "pitfalls": [
+   "744B 体量，FP8 也要 8×H200 级别，自建门槛比 GLM-4.6 翻倍",
+   "思考默认开启且 API 已不支持关闭（只能调 reasoning_effort low/high/max），简单任务 token 消耗大",
+   "API 价 $1.4/$4.4，是 GLM-4.6 的 2 倍以上；长上下文 KV 存储不因 DSA 而减少"
   ],
-  "reasoning_mode": "default-on",
-  "architecture": {
-    "type": "moe",
-    "total_params": "744B",
-    "active_params": "40B",
-    "total_params_b": 744,
-    "active_params_b": 40,
-    "experts": 256,
-    "active_experts": 8,
-    "shared_expert": true,
-    "layers": 78,
-    "hidden_size": 6144,
-    "vocab_size": 154880,
-    "kv_heads": 1,
-    "head_dim": 288,
-    "attention": "MLA + DSA 稀疏注意力（64 头，IndexShare 索引器）",
-    "notes": "官方 GitHub 标注 744B-A40B（HF 自动计数 753B 含 MTP 层）。MLA：kv_lora_rank 512 + RoPE 64，每层 KV 潜向量 576 维，这里按「1 KV 头 × 288」等价表示。DSA 稀疏注意力每 token 只取 top-2048 索引；IndexShare 让每 4 层共用一个索引器。前 3 层 Dense MLP，其余 256 路由专家 + 1 共享，MoE 中间维 2048；含 1 层 MTP。",
-    "undisclosed": false
-  },
-  "context": {
-    "max_tokens": 1048576,
-    "display": "1M",
-    "max_output": 131072
-  },
-  "memory": {
-    "weight_gb": {
-      "bf16": 1507,
-      "fp8": 753,
-      "q4": 432
-    },
-    "kv_per_token_kib": 88,
-    "kv_note": "MLA：576 维 × 2 B × 78 层 ≈ 88 KiB/token。1M 上下文单请求 KV ≈ 88 GB；DSA 只降低计算不减 KV 存储。",
-    "ref_hw_24gb": "不可行",
-    "ref_hw_80gb": "不可行",
-    "ref_hw_8x80gb": "BF16 1.5 TB 需 16×H100 或 16×H200；FP8 753 GB 可 8×H200（KV 余量约 370 GB），8×H100 FP8 极紧",
-    "estimated": true
-  },
-  "pricing": {
-    "input_per_m": 1.4,
-    "output_per_m": 4.4,
-    "currency": "USD",
-    "source": "Z.ai 开放平台",
-    "as_of": "2026-08-28",
-    "note": "缓存命中输入 $0.26；GLM Coding Plan 另有包月"
-  },
-  "links": {
-    "official": "https://z.ai/blog/glm-5.2",
-    "hf": "https://huggingface.co/zai-org/GLM-5.2",
-    "github": "https://github.com/zai-org/GLM-5",
-    "paper": "https://arxiv.org/abs/2602.15763",
-    "pricing": "https://docs.z.ai/guides/overview/pricing"
-  },
-  "copy": {
-    "one_liner": "MIT 许可、1M 上下文的 744B 开源编程旗舰。",
-    "highlights": [
-      "MIT 许可，744B/40B 激活，无地区限制，商用无附加条件",
-      "官方 1M「无损」上下文；IndexShare 稀疏注意力让 1M 长度下每 token FLOPs 降 2.9×",
-      "SWE-bench Pro 62.1、Terminal-Bench 2.1 81.0（Terminus-2），发布时为开源最高"
-    ],
-    "pitfalls": [
-      "744B 体量，FP8 也要 8×H200 级别，自建门槛比 GLM-4.6 翻倍",
-      "思考默认开启且 API 已不支持关闭（只能调 reasoning_effort low/high/max），简单任务 token 消耗大",
-      "API 价 $1.4/$4.4，是 GLM-4.6 的 2 倍以上；长上下文 KV 存储不因 DSA 而减少"
-    ],
-    "logic_ability": "工程型推理是主打：SWE-bench Pro 62.1、Terminal-Bench 2.1 81.0、FrontierSWE 74.4，官方对标 Claude Opus 4.8 / GPT-5.5 且在部分 agent 编程基准持平。考试型推理也到顶级（AIME 2026 99.2、GPQA 91.2、HLE 40.5 / 带工具 54.7）。思考不可关；reasoning_effort=max 时输出很长。常见问题：SWE-Marathon 这类超长任务仅 13.0，长时间自主任务仍明显落后闭源。",
-    "best_for": [
-      "编程 agent 后端（Claude Code / ZCode / OpenCode）",
-      "整库级 1M 上下文代码理解",
-      "自建替代 Opus 级编程服务"
-    ],
-    "not_for": [
-      "单机 / 单节点 80GB 部署（用 GLM-5.3-Flash）",
-      "多模态输入（用 GLM-5.3-Flash 或 GLM-5V 系列）",
-      "对成本敏感的简单对话"
-    ]
-  },
-  "capability_notes": {
-    "coding": "SWE-bench Pro 62.1、Terminal-Bench 2.1 81.0（Terminus-2）/ 82.7（最佳 harness）、DeepSWE 46.2、NL2Repo 48.9（官方）。",
-    "reasoning": "GPQA Diamond 91.2、HLE 40.5、HLE（工具）54.7（官方）。",
-    "math": "AIME 2026 99.2、HMMT Feb 2026 92.5、IMOAnswerBench 91.0（官方）。",
-    "agent": "MCP-Atlas 76.8、Tool-Decathlon 48.2、FrontierSWE 74.4（官方）。",
-    "chinese": "中文顶级。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：MoE，744B 总 / 40B 激活（HF 计数 753B 含 MTP）。\n\n- 78 层（前 3 层 Dense MLP）+ 1 层 MTP，隐藏维 6144，词表 154,880\n- 专家：256 路由 + 1 共享，每 token 激活 8 个，MoE 中间维 2048，sigmoid 路由（noaux_tc）\n- 注意力：MLA，64 头，q_lora 2048 / kv_lora 512，qk_nope 192 + RoPE 64，v_head 256\n- **DSA 稀疏注意力**：每 token 通过 32 头索引器选 top-2048 位置；**IndexShare** 让每 4 层共用 1 个索引器（full/shared 交替），1M 上下文下每 token FLOPs 降 2.9×\n- 上下文 1,048,576，RoPE theta 8e6\n- MTP 层改进后投机解码接受长度提升最多 20%\n\n参考：GLM-5 技术报告（arXiv 2602.15763）、IndexShare（arXiv 2603.12201）。",
-    "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | 1,507 GB（官方文件） | 16×H100 / 16×H200 |\n| FP8 | ≈ 753 GB（zai-org/GLM-5.2-FP8） | 8×H200 |\n| Q4 | ≈ 432 GB（估） | 8×80GB |\n\n**KV Cache**：MLA ≈ 88 KiB/token。128K 上下文单请求 ≈ 11 GB，1M ≈ 88 GB。\n\n**参考配置**：\n- 24GB / 80GB：不可行\n- 8×H100 80GB：FP8 权重后仅剩 ~90 GB 给 KV，长上下文并发受限\n- 8×H200 141GB：FP8 舒适\n- 16×H100：BF16",
-    "training_md": "- 底座沿用 GLM-5 系列预训练；GLM-5.2 重点做长上下文（1M）与长程任务的中训 + 后训练\n- 后训练：agentic RL（slime 框架），评测均在 reasoning_effort=max\n- 思考默认开启，`reasoning_effort` 可选 low / high / max\n- 工具调用：原生，兼容 Claude Code / ZCode / OpenCode 等\n- 最大输出 128K（API）",
-    "ecosystem_md": "- HF：zai-org/GLM-5.2、GLM-5.2-FP8；nvidia/GLM-5.2-NVFP4\n- 引擎：SGLang（≥0.5.13）、vLLM（≥0.23）、Transformers、KTransformers、Unsloth、昇腾 vLLM-Ascend / xLLM\n- 微调：Unsloth 有指南；体量大，社区少\n- 中文文档：有",
-    "versions_md": "- 同底座：GLM-5（2026-02）、GLM-5.1、GLM-5.2（2026-06）\n- 后续：GLM-5.3（2026-08-14 API 上线，同底座纯后训练，权重承诺 8-28 开源）\n- 轻量：GLM-5.3-Flash（320B/18B，MIT，原生多模态，2026-08-26）\n- 上代：GLM-4.6 / GLM-4.7"
-  },
-  "ecosystem": {
-    "engines": [
-      "SGLang",
-      "vLLM",
-      "KTransformers",
-      "Transformers"
-    ],
-    "finetune": "Unsloth / 全参（多节点）",
-    "zh_docs": "有"
-  },
-  "complete": true
+  "logic_ability": "工程型推理是主打：SWE-bench Pro 62.1、Terminal-Bench 2.1 81.0、FrontierSWE 74.4，官方对标 Claude Opus 4.8 / GPT-5.5 且在部分 agent 编程基准持平。考试型推理也到顶级（AIME 2026 99.2、GPQA 91.2、HLE 40.5 / 带工具 54.7）。思考不可关；reasoning_effort=max 时输出很长。常见问题：SWE-Marathon 这类超长任务仅 13.0，长时间自主任务仍明显落后闭源。",
+  "best_for": [
+   "编程 agent 后端（Claude Code / ZCode / OpenCode）",
+   "整库级 1M 上下文代码理解",
+   "自建替代 Opus 级编程服务"
+  ],
+  "not_for": [
+   "单机 / 单节点 80GB 部署（用 GLM-5.3-Flash）",
+   "多模态输入（用 GLM-5.3-Flash 或 GLM-5V 系列）",
+   "对成本敏感的简单对话"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Pro 62.1、Terminal-Bench 2.1 81.0（Terminus-2）/ 82.7（最佳 harness）、DeepSWE 46.2、NL2Repo 48.9（官方）。",
+  "reasoning": "GPQA Diamond 91.2、HLE 40.5、HLE（工具）54.7（官方）。",
+  "math": "AIME 2026 99.2、HMMT Feb 2026 92.5、IMOAnswerBench 91.0（官方）。",
+  "agent": "MCP-Atlas 76.8、Tool-Decathlon 48.2、FrontierSWE 74.4（官方）。",
+  "chinese": "中文顶级。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE，744B 总 / 40B 激活（HF 计数 753B 含 MTP）。\n\n- 78 层（前 3 层 Dense MLP）+ 1 层 MTP，隐藏维 6144，词表 154,880\n- 专家：256 路由 + 1 共享，每 token 激活 8 个，MoE 中间维 2048，sigmoid 路由（noaux_tc）\n- 注意力：MLA，64 头，q_lora 2048 / kv_lora 512，qk_nope 192 + RoPE 64，v_head 256\n- **DSA 稀疏注意力**：每 token 通过 32 头索引器选 top-2048 位置；**IndexShare** 让每 4 层共用 1 个索引器（full/shared 交替），1M 上下文下每 token FLOPs 降 2.9×\n- 上下文 1,048,576，RoPE theta 8e6\n- MTP 层改进后投机解码接受长度提升最多 20%\n\n参考：GLM-5 技术报告（arXiv 2602.15763）、IndexShare（arXiv 2603.12201）。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 |\n|---|---|---|\n| BF16 | 1,507 GB（官方文件） | 16×H100 / 16×H200 |\n| FP8 | ≈ 753 GB（zai-org/GLM-5.2-FP8） | 8×H200 |\n| Q4 | ≈ 432 GB（估） | 8×80GB |\n\n**KV Cache**：MLA ≈ 88 KiB/token。128K 上下文单请求 ≈ 11 GB，1M ≈ 88 GB。\n\n**参考配置**：\n- 24GB / 80GB：不可行\n- 8×H100 80GB：FP8 权重后仅剩 ~90 GB 给 KV，长上下文并发受限\n- 8×H200 141GB：FP8 舒适\n- 16×H100：BF16",
+  "training_md": "- 底座沿用 GLM-5 系列预训练；GLM-5.2 重点做长上下文（1M）与长程任务的中训 + 后训练\n- 后训练：agentic RL（slime 框架），评测均在 reasoning_effort=max\n- 思考默认开启，`reasoning_effort` 可选 low / high / max\n- 工具调用：原生，兼容 Claude Code / ZCode / OpenCode 等\n- 最大输出 128K（API）",
+  "ecosystem_md": "- HF：zai-org/GLM-5.2、GLM-5.2-FP8；nvidia/GLM-5.2-NVFP4\n- 引擎：SGLang（≥0.5.13）、vLLM（≥0.23）、Transformers、KTransformers、Unsloth、昇腾 vLLM-Ascend / xLLM\n- 微调：Unsloth 有指南；体量大，社区少\n- 中文文档：有",
+  "versions_md": "- 同底座：GLM-5（2026-02）、GLM-5.1、GLM-5.2（2026-06）\n- 后续：GLM-5.3（2026-08-14 API 上线，同底座纯后训练，权重承诺 8-28 开源）\n- 轻量：GLM-5.3-Flash（320B/18B，MIT，原生多模态，2026-08-26）\n- 上代：GLM-4.6 / GLM-4.7"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "KTransformers",
+   "Transformers"
+  ],
+  "finetune": "Unsloth / 全参（多节点）",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 69,
+  "latency_s": 1.55,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

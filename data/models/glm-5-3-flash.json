@@ -1,114 +1,131 @@
 {
-  "id": "glm-5-3-flash",
-  "name": "GLM-5.3-Flash",
-  "name_zh": "智谱 GLM-5.3-Flash",
-  "aliases": [
-    "GLM 5.3 Flash",
-    "glm-5.3-flash",
-    "Ox Alpha"
+ "id": "glm-5-3-flash",
+ "name": "GLM-5.3-Flash",
+ "name_zh": "智谱 GLM-5.3-Flash",
+ "aliases": [
+  "GLM 5.3 Flash",
+  "glm-5.3-flash",
+  "Ox Alpha"
+ ],
+ "vendor": "Z.ai",
+ "vendor_zh": "智谱",
+ "family": "GLM-5",
+ "license": "MIT",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+ "status": "current",
+ "released_at": "2026-08-26",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "320B",
+  "active_params": "18B",
+  "total_params_b": 320,
+  "active_params_b": 18,
+  "experts": 288,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 45,
+  "hidden_size": 4096,
+  "vocab_size": 154880,
+  "kv_heads": 1,
+  "head_dim": 256,
+  "attention": "KDA 线性注意力 34 层 + DSA 稀疏 MLA 11 层（3:1 交错）",
+  "notes": "glm5_next 混合架构：45 层 = 34 层 KDA（Kimi Delta Attention，64 头 × 128）+ 11 层 DeepSeek 稀疏注意力（MLA，kv_lora_rank 512，q_lora_rank 1536，qk/v head_dim 256，无 RoPE 维，indexer 32 头 top-k 2048）。前 3 层 Dense MLP，其余 288 路由专家 + 1 共享专家选 8，专家中间维 2048，sigmoid 无辅助损失路由。mHC 超连接（hc_mult 4）。1 层 MTP 头。视觉编码器 24 层、hidden 1024、patch 14。表内 kv_heads / head_dim 指 11 层 DSA 层的 MLA 潜向量。config 最大位置 1,048,576，官方评测按 300K 报告。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {
+   "fp8": 328,
+   "bf16": 640,
+   "q4": 200
+  },
+  "kv_per_token_kib": 11,
+  "kv_note": "仅 11 层 DSA 层存 KV：MLA 潜向量 512 维（无 RoPE 分量）× 2 B = 1 KiB/层 → 11 KiB/token。34 层 KDA 为固定大小递归状态（64 头 × 128 × 128），与长度无关。1M 上下文 KV ≈ 11 GB。",
+  "ref_hw_24gb": "不可行（最小 UD-IQ1_S 也有 93 GB）",
+  "ref_hw_80gb": "不可行（UD-IQ1_S 93 GB / UD-IQ4_XS 157 GB 均超单卡）",
+  "ref_hw_8x80gb": "官方 FP8 328 GB：4×H100 起步，8×H100 舒适并可用满 1M 上下文（KV 很小）",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.075,
+  "output_per_m": 0.25,
+  "currency": "USD",
+  "source": "Z.ai 开放平台",
+  "as_of": "2026-08-28",
+  "note": "50% 折扣价，促销至 2026-09-09；缓存命中 $0.015"
+ },
+ "links": {
+  "official": "https://z.ai/blog/glm-5.3-flash",
+  "hf": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+  "github": "https://github.com/zai-org/GLM-5",
+  "paper": "https://arxiv.org/abs/2602.15763",
+  "pricing": "https://docs.z.ai/guides/overview/pricing"
+ },
+ "copy": {
+  "one_liner": "320B/18B 混合注意力多模态开源模型，价格极低。",
+  "highlights": [
+   "MIT 许可，Terminal-Bench 2.1 84.3、DeepSWE 63.4 超过 GLM-5.2，官方称价格仅其 1/10",
+   "KDA 线性 + DSA 稀疏 3:1 混合，KV 仅 11 KiB/token，1M 上下文 KV ≈ 11 GB",
+   "GLM-5 系列首个原生多模态（30T 多模态语料新底座）；曾以 Ox Alpha 匿名上线 OpenRouter"
   ],
-  "vendor": "Z.ai",
-  "vendor_zh": "智谱",
-  "family": "GLM-5",
-  "license": "MIT",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
-  "status": "current",
-  "released_at": "2026-08-26",
-  "updated_at": "2026-08-28",
-  "modalities": [
-    "text",
-    "image",
-    "tools"
+  "pitfalls": [
+   "320B 总参数，官方 FP8 328 GB，最低 4×H100；社区 1-bit 量化也有 93 GB，单卡无解",
+   "架构新（glm5_next：KDA + DSA + mHC），需 SGLang / vLLM / Transformers 最新版，llama.cpp 仅 Unsloth 动态量化",
+   "刚发布，官方只给 6 项 agent 类基准，GPQA / AIME / SWE-bench Verified / MMMU 等常用榜未披露"
   ],
-  "reasoning_mode": "default-on",
-  "architecture": {
-    "type": "hybrid",
-    "total_params": "320B",
-    "active_params": "18B",
-    "total_params_b": 320,
-    "active_params_b": 18,
-    "experts": 288,
-    "active_experts": 8,
-    "shared_expert": true,
-    "layers": 45,
-    "hidden_size": 4096,
-    "vocab_size": 154880,
-    "kv_heads": 1,
-    "head_dim": 288,
-    "attention": "KDA 线性注意力 34 层 + DSA 稀疏 MLA 11 层（3:1）",
-    "notes": "GLM 系列首个稀疏 + 线性混合架构（glm5_next），前 3 层 Dense MLP，采用 mHC 超连接；全新底座，30T 多模态语料预训练，原生多模态。仅 11 层 DSA 层有 per-token KV（MLA 潜向量 576 维）。",
-    "undisclosed": false
-  },
-  "context": {
-    "max_tokens": 1048576,
-    "display": "1M"
-  },
-  "memory": {
-    "weight_gb": {
-      "fp8": 328,
-      "bf16": 640,
-      "q4": 186
-    },
-    "kv_per_token_kib": 12.4,
-    "kv_note": "仅 11 层 DSA/MLA 层存 KV：576 × 2 B × 11 ≈ 12.4 KiB/token；34 层 KDA 为固定大小状态，不随长度增长。",
-    "ref_hw_24gb": "不可行",
-    "ref_hw_80gb": "不可行（Q4 约 186 GB）",
-    "ref_hw_8x80gb": "FP8 328 GB 官方发布版，4×H100 起；8×H100 舒适",
-    "estimated": true
-  },
-  "pricing": {
-    "input_per_m": 0.075,
-    "output_per_m": 0.25,
-    "currency": "USD",
-    "source": "Z.ai 开放平台",
-    "as_of": "2026-08-28",
-    "note": "50% 折扣价，促销至 2026-09-09；缓存命中 $0.015"
-  },
-  "links": {
-    "official": "https://z.ai/blog/glm-5.3-flash",
-    "hf": "https://huggingface.co/zai-org/GLM-5.3-Flash",
-    "github": "https://github.com/zai-org/GLM-5",
-    "paper": "https://arxiv.org/abs/2602.15763",
-    "pricing": "https://docs.z.ai/guides/overview/pricing"
-  },
-  "copy": {
-    "one_liner": "320B/18B 混合注意力多模态开源模型，价格极低。",
-    "highlights": [
-      "MIT 许可，Terminal-Bench 2.1 84.3 超过 GLM-5.2，官方称成本仅其 1/10",
-      "KDA 线性 + DSA 稀疏混合，1M 上下文 KV 极小（≈12 KiB/token）",
-      "GLM-5 系列首个原生多模态；曾以 Ox Alpha 匿名上线 OpenRouter"
-    ],
-    "pitfalls": [
-      "320B 总参数，Q4 也超过单卡 80GB",
-      "架构新（glm5_next），引擎支持需 SGLang / vLLM 最新版",
-      "刚发布两天，独立评测少"
-    ],
-    "logic_ability": "工程型推理强（Terminal-Bench 2.1 84.3、DeepSWE 63.4），HLE 带工具 55.3。LMArena 1469，AA 指数 57。",
-    "best_for": [
-      "低成本编程 agent",
-      "多模态 + 长上下文的自建服务"
-    ],
-    "not_for": [
-      "单卡部署",
-      "需要成熟生态的微调"
-    ]
-  },
-  "capability_notes": {
-    "coding": "Terminal-Bench 2.1 84.3、DeepSWE 63.4（官方）。",
-    "reasoning": "HLE（工具）55.3（官方）。",
-    "multimodal": "原生多模态（图像），官方数值待补。"
-  },
-  "ecosystem": {
-    "engines": [
-      "SGLang",
-      "vLLM",
-      "KTransformers"
-    ],
-    "finetune": "Unsloth 指南",
-    "zh_docs": "有"
-  },
-  "complete": false
+  "logic_ability": "工程型推理强：Terminal-Bench 2.1 84.3、DeepSWE v1.1 63.4、AutomationBench 48.8、Agents' Last Exam 26.3，均高于 GLM-5.2（81.0 / 46.2 / 26.2 / 20.4），逼近 Claude Opus 4.8 与 GPT-5.6 Terra 的档位。HLE（带工具）55.3。GDPVal-AA v2 1773 为本表最高。考试型基准（GPQA、AIME）官方未披露，无法评估纯数学推理。LMArena 1469、AA 指数 57 为第三方口径。",
+  "best_for": [
+   "低成本编程 agent",
+   "多模态 + 长上下文的自建服务"
+  ],
+  "not_for": [
+   "单卡部署",
+   "需要成熟生态的微调"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal-Bench 2.1 84.3、DeepSWE v1.1 63.4（官方模型卡 bench_53）。",
+  "agent": "Agents' Last Exam 26.3、AutomationBench v1.0.6 48.8、GDPVal-AA v2 1773（官方模型卡）。",
+  "reasoning": "HLE（带工具）55.3（官方模型卡）；无工具 HLE、GPQA 未披露。",
+  "math": "AIME 官方未披露。",
+  "multimodal": "原生图像输入（24 层视觉编码器）；MMMU 等官方数值未披露。",
+  "chinese": "智谱系中文顶级。"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "TokenSpeed",
+   "KTransformers",
+   "Transformers"
+  ],
+  "finetune": "Unsloth 指南；全参需多机",
+  "zh_docs": "有"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 50,
+  "latency_s": 1.49,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE + 混合注意力（KDA 线性 / DSA 稀疏 MLA），320B 总参 / 18B 激活，原生多模态。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 45 = 11 × (3 × KDA → MoE + 1 × DSA → MoE) |\n| 隐藏维 | 4,096 |\n| Dense 层 | 前 3 层 Dense MLP（中间维 12,288） |\n| 专家 | 288 路由 + 1 共享，每 token 选 8，专家中间维 2,048 |\n| DSA 层（11 层） | MLA：kv_lora_rank 512、q_lora_rank 1536，64 头，qk/v head_dim 256，无 RoPE 分量；indexer 32 头 × 128，top-k 2048 |\n| KDA 层（34 层） | 64 头 × head_dim 128，short conv kernel 4 |\n| 超连接 | mHC（hc_mult 4，Sinkhorn 20 轮） |\n| 词表 | 154,880 |\n| 上下文 | config 1,048,576；官方评测按 300K |\n| MTP | 1 层 |\n| 视觉编码器 | 24 层，hidden 1024，patch 14，spatial merge 2 |\n\n`config.json` 中 `architectures: Glm5NextForConditionalGeneration`，`model_type: glm5_next_text`。\n\n参考：zai-org/GLM-5.3-Flash config.json。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| FP8 | 328 GB | 4–8×H100 | 官方 safetensors，62 分片（BF16 / F8_E4M3 混合） |\n| BF16 | ≈640 GB | 8×H200+ | 按 320B × 2 B 估算，官方未发布 |\n| Q4 | 200 GB | 3×80GB | unsloth UD-Q4_K_XL；UD-IQ4_XS 157 GB |\n| 低比特 | 93–148 GB | 2×80GB | unsloth UD-IQ1_S 93.1 / UD-Q2_K_XL 109 / UD-Q3_K_XL 148 |\n\n**KV Cache**：仅 11 层 DSA 层产生 KV，MLA 潜向量 512 维 × 2 B = 1 KiB/层，共 11 KiB/token；34 层 KDA 为固定递归状态。1M 上下文 KV ≈ 11 GB，是同级模型中最省的。\n\n**参考配置**：\n- 24GB / 80GB 单卡：不可行\n- 4×H100：官方 FP8 最低配置\n- 8×H100：FP8 高并发 + 1M 上下文\n\n警示：权重体积远大于「Flash」之名；视觉 token 另占显存。",
+  "training_md": "- 新底座：30T token 多模态预训练语料（模型卡）\n- 思考默认开启，可关；训练带 1 层 MTP 头可做投机解码\n- 后训练细节、RL 配方：官方未披露\n- 官方评测最大上下文 300K；BabyVision 评测用 164K",
+  "ecosystem_md": "- HF：zai-org/GLM-5.3-Flash（FP8 328 GB）；GGUF：unsloth/GLM-5.3-Flash-GGUF（仅 UD 动态量化，93–200 GB）\n- 引擎：SGLang、vLLM、TokenSpeed、KTransformers、Transformers（模型卡列出）\n- 微调：Unsloth 指南；全参微调需多机\n- 中文文档：有（智谱开放平台）",
+  "versions_md": "- 同代：GLM-5.3（744B-A40B，API；权重预告 2026-08-28）\n- 上代：GLM-5.2、GLM-5 / GLM-5-FP8（754B）\n- 关系：GLM-5.3-Flash 为全新底座（非 GLM-5.2 蒸馏），是 GLM-5 系列首个原生多模态模型"
+ }
 }

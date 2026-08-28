@@ -15,6 +15,11 @@ export const OPTIONAL_COLS = [
 export type OptCol = typeof OPTIONAL_COLS[number][0]
 
 function num(v?: number, d = 1) { return v == null ? <span className="text-muted">—</span> : v.toFixed(d) }
+const KEY_TAG: Record<string, string> = { swe_verified: 'SWE', livecodebench: 'LCB', scicode: 'Sci', tau2_bench: 'τ²', terminal_bench: 'TB', tb_hard: 'TBh', tau2_telecom: 'τ²T', tau3_banking: 'τ³' }
+function tagged(v?: number, key?: string) {
+  if (v == null) return <span className="text-muted">—</span>
+  return <span title={key}>{v.toFixed(1)}<span className="ml-1 text-[9px] text-muted align-top">{key ? KEY_TAG[key] : ''}</span></span>
+}
 
 export function LeaderboardTable({ rows, selected, onToggle, showValue, cols: colsProp }: {
   rows: Row[]; selected: string[]; onToggle: (id: string) => void; showValue?: boolean; cols?: OptCol[]
@@ -68,10 +73,10 @@ export function LeaderboardTable({ rows, selected, onToggle, showValue, cols: co
                       {r.ref.partial && <span className="ml-1 text-[10px] text-community" title={`缺 ${r.ref.missing.join(', ')}`}>部分</span>}
                     </td>
                     {has.has('elo') && <td className="px-2 py-2.5 text-right num">{num(r.elo, 0)}</td>}
-                    {has.has('coding') && <td className="px-2 py-2.5 text-right num">{num(r.coding)}</td>}
+                    {has.has('coding') && <td className="px-2 py-2.5 text-right num">{tagged(r.coding, r.codingKey)}</td>}
                     {has.has('reasoning') && <td className="px-2 py-2.5 text-right num">{num(r.reasoning)}</td>}
                     {has.has('math') && <td className="px-2 py-2.5 text-right num">{num(r.math)}</td>}
-                    {has.has('agent') && <td className="px-2 py-2.5 text-right num">{num(r.agent)}</td>}
+                    {has.has('agent') && <td className="px-2 py-2.5 text-right num">{tagged(r.agent, r.agentKey)}</td>}
                     {has.has('mm') && <td className="px-2 py-2.5 text-right num">{num(r.mm)}</td>}
                     <td className="px-2 py-2.5 text-right num">{m.context.display}</td>
                     <td className="px-2 py-2.5 text-right num whitespace-nowrap">
@@ -80,7 +85,7 @@ export function LeaderboardTable({ rows, selected, onToggle, showValue, cols: co
                     </td>
                     {has.has('q4') && <td className="px-2 py-2.5 text-right num">{formatGB(m.memory.weight_gb.q4)}</td>}
                     {has.has('license') && <td className="px-2 py-2.5 text-xs truncate max-w-[140px]" title={m.license}>{m.license}</td>}
-                    {has.has('tok') && <td className="px-2 py-2.5 text-right num">{m.runtime?.tok_s ?? '—'}</td>}
+                    {has.has('tok') && <td className="px-2 py-2.5 text-right num" title={m.runtime?.latency_s != null ? `首 token ${m.runtime.latency_s}s · ${m.runtime.source ?? ''}` : undefined}>{m.runtime?.tok_s ?? '—'}</td>}
                     <td className="px-2 py-2.5 text-right num text-muted text-xs">{m.updated_at}</td>
                   </tr>
                   {isOpen && (

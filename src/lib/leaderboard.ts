@@ -11,6 +11,8 @@ export interface Row {
   elo?: number
   aa?: number
   coding?: number
+  codingKey?: string
+  agentKey?: string
   reasoning?: number
   math?: number
   agent?: number
@@ -39,13 +41,16 @@ export function buildRows(tab: Tab, scene: Scene, onlyVerified = false, includeS
   const rows: Row[] = peers.map((m) => {
     const ref = refs.get(m.id)!
     const g = (k: string) => getScore(scoreMap, m.id, k)?.value
+    const first = (ks: string[]) => ks.find((k) => g(k) != null)
     return {
+      codingKey: first(['swe_verified', 'livecodebench', 'scicode']),
+      agentKey: first(['tau2_bench', 'terminal_bench', 'tb_hard', 'tau2_telecom', 'tau3_banking']),
       m, rank: 0, ref, refScore: ref.score,
       value: valueScore(ref.score, m.pricing?.input_per_m),
       elo: g('arena_text'), aa: g('aa_index'),
-      coding: g('swe_verified') ?? g('livecodebench'),
-      reasoning: g('gpqa_diamond'), math: g('aime_2025'),
-      agent: g('tau2_bench') ?? g('terminal_bench'), mm: g('mmmu'),
+      coding: g('swe_verified') ?? g('livecodebench') ?? g('scicode'),
+      reasoning: g('gpqa_diamond'), math: g('aime_2025') ?? g('aime_2026'),
+      agent: g('tau2_bench') ?? g('terminal_bench') ?? g('tb_hard') ?? g('tau2_telecom') ?? g('tau3_banking'), mm: g('mmmu') ?? g('mmmu_pro'),
     }
   })
   const key: keyof Row = scene === 'value' ? 'value' : 'refScore'

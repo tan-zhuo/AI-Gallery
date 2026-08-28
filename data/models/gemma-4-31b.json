@@ -1,63 +1,128 @@
 {
-  "id": "gemma-4-31b",
-  "name": "Gemma 4 31B",
-  "name_zh": "谷歌 Gemma 4 · 31B",
-  "aliases": ["gemma-4-31B-it", "Gemma4 31B"],
-  "vendor": "Google",
-  "vendor_zh": "谷歌",
-  "family": "Gemma 4",
-  "license": "Apache 2.0",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/google/gemma-4-31B-it",
-  "status": "current",
-  "released_at": "2026-04-02",
-  "updated_at": "2026-08-28",
-  "modalities": ["text", "image", "video", "tools"],
-  "reasoning_mode": "optional",
-  "architecture": {
-    "type": "dense", "total_params": "30.7B", "total_params_b": 30.7,
-    "layers": 60, "kv_layers": 12, "hidden_size": 5376, "vocab_size": 262144, "kv_heads": 16, "head_dim": 256,
-    "attention": "GQA（32 Q 头 / 16 KV 头，head_dim 256），5:1 局部滑窗(1024) : 全局",
-    "notes": "60 层中 12 层全局注意力（每 6 层 1 层，末层为全局），其余 1024 token 滑窗。中间层维 21504。视觉编码器约 550M。最大位置 262,144。",
-    "undisclosed": false
+ "id": "gemma-4-31b",
+ "name": "Gemma 4 31B",
+ "name_zh": "谷歌 Gemma 4 · 31B",
+ "aliases": [
+  "gemma-4-31B-it",
+  "Gemma4 31B"
+ ],
+ "vendor": "Google",
+ "vendor_zh": "谷歌",
+ "family": "Gemma 4",
+ "license": "Apache 2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/google/gemma-4-31B-it",
+ "status": "current",
+ "released_at": "2026-04-02",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "dense",
+  "total_params": "30.7B",
+  "total_params_b": 30.7,
+  "layers": 60,
+  "kv_layers": 12,
+  "hidden_size": 5376,
+  "vocab_size": 262144,
+  "kv_heads": 16,
+  "head_dim": 256,
+  "attention": "GQA（32 Q 头 / 16 KV 头，head_dim 256），5:1 局部滑窗(1024) : 全局",
+  "notes": "60 层中 12 层全局注意力（每 6 层 1 层，末层为全局），其余 1024 token 滑窗。中间层维 21504。视觉编码器约 550M。最大位置 262,144。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K",
+  "max_output": 32768
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 61.4,
+   "fp8": 34.9,
+   "q8": 32.6,
+   "q4": 17.5
   },
-  "context": { "max_tokens": 262144, "display": "256K", "max_output": 32768 },
-  "memory": {
-    "weight_gb": { "bf16": 61.4, "fp8": 34.9, "q8": 32.6, "q4": 17.5 },
-    "kv_per_token_kib": 192,
-    "kv_note": "全局层 12 × 16 KV 头 × 256 × 2 × 2 B = 192 KiB/token；局部层 KV 上限 1024 token，可忽略。128K 上下文 ≈ 24 GB，比 Gemma 3 27B 高 4 倍以上（head_dim 翻倍）。",
-    "ref_hw_24gb": "官方 QAT Q4_0 17.5 GB（社区 Q4_K_M 18.3 GB）+ 视觉，剩余约 5 GB 给 KV，约 16–24K 上下文；长上下文需 Q3 或卸载",
-    "ref_hw_80gb": "BF16 61.4 GB + 64K 上下文 KV 约 12 GB，可行；FP8 34.9 GB 可跑满 256K",
-    "ref_hw_8x80gb": "过剩",
-    "estimated": false
-  },
-  "pricing": { "input_per_m": 0, "output_per_m": 0, "currency": "USD", "source": "Google AI 定价页（Gemma 4 仅免费层，无付费档）", "as_of": "2026-08-28", "note": "开源权重；Gemini API 仅提供免费层，商业调用走第三方托管或自建" },
-  "links": { "official": "https://ai.google.dev/gemma/docs/core", "hf": "https://huggingface.co/google/gemma-4-31B-it", "paper": "https://arxiv.org/abs/2607.02770" },
-  "copy": {
-    "one_liner": "Apache 2.0 的单卡 Dense 旗舰，带思考模式，256K 上下文。",
-    "highlights": ["Apache 2.0 许可，告别 Gemma 自定义条款，可商用闭包", "GPQA 84.3%、AIME 2026 89.2%、LiveCodeBench v6 80.0%，Arena 1451 开源前三", "256K 上下文 + 图像 / 视频输入 + 函数调用，官方 QAT Q4 版 17.5 GB"],
-    "pitfalls": ["head_dim 256，全局层 KV 192 KiB/token，24GB 卡上长上下文比 Gemma 3 更吃紧", "HLE 无工具仅 19.5%，前沿知识题距闭源旗舰差距大", "31B 不支持音频输入（仅 E2B / E4B 有）"],
-    "logic_ability": "带 <|think|> 开关的推理模型。考试型推理在开源同档领先：GPQA 84.3%、AIME 2026 89.2%、MMLU Pro 85.2%。工程型推理：LiveCodeBench v6 80.0%、Codeforces 2150，tau2-bench 均值 76.9%，agent 可用。弱项：HLE 19.5%，长上下文 MRCR v2 128K 66.4%，长程检索一般。",
-    "best_for": ["单卡私有化推理助手", "需要宽松许可的商业产品", "多语言 / 视觉问答"],
-    "not_for": ["前沿知识问答（HLE 类）", "24GB 卡上 100K+ 上下文"]
-  },
-  "capability_notes": {
-    "coding": "LiveCodeBench v6 80.0%、Codeforces Elo 2150（官方模型卡）。",
-    "reasoning": "GPQA Diamond 84.3%、HLE 19.5%（无工具）、BBEH 74.4%（官方）。",
-    "math": "AIME 2026 89.2%（无工具，官方）。",
-    "agent": "tau2-bench 三项均值 76.9%（官方）。",
-    "multimodal": "MMMU Pro（视觉）76.9%、MATH-Vision 85.6%（官方）。",
-    "chinese": "MMMLU 88.4%，140+ 语言训练，中文可用。"
-  },
-  "sheet": {
-    "architecture_md": "**类型**：Dense，30.7B 参数（含约 550M 视觉编码器）。\n\n- 60 层，隐藏维 5376，中间层维 21504，词表 262,144\n- GQA：32 Q 头 / 16 KV 头，head_dim 256\n- 注意力交替：5 层局部滑窗（1024）→ 1 层全局，共 12 层全局，末层固定全局\n- 上下文 256K（max_position_embeddings 262,144）\n- 多模态：图像 / 视频输入；31B 不含音频\n- 思考模式：系统提示中加 `<|think|>` 开启\n- 原生系统提示、函数调用、结构化 JSON 输出\n- 多 token 预测（MTP）草稿模型可用于投机解码\n\n参考：HF config.json（google/gemma-4-31B-it）、Gemma 4 技术报告（arXiv 2607.02770）。",
-    "memory_md": "| 精度 | 权重大小 | 来源 | 参考显存 |\n|---|---|---|---|\n| BF16 | 61.4 GB | 30.7B × 2 / GGUF BF16 | 80GB |\n| SFP8 | 34.9 GB | 官方文档 | 48GB |\n| Q8_0 | 32.6 GB | 社区 GGUF | 48GB |\n| Q4_0 (QAT) | 17.5 GB | 官方文档 | 24GB |\n| Q4_K_M | 18.3 GB | unsloth GGUF | 24GB |\n\n**KV Cache**：全局层 12 × 16 × 256 × 2 × 2 B = 192 KiB/token。32K ≈ 6 GB，128K ≈ 24 GB，256K ≈ 48 GB。\n\n**参考配置**：\n- 24GB：Q4 QAT + 16–24K 上下文；再长需 KV 量化或 Q3\n- 80GB：BF16 + 64K，或 FP8 + 256K\n- 官方提供 QAT 版（GGUF / 未量化 QAT / compressed-tensors），Q4 质量损失小于社区后量化",
-    "training_md": "- 数据截止 2025-01，网页 / 代码 / 图像 / 音频混合数据，训练 token 数未披露\n- 源自 Gemini 3 研究成果，140+ 语言\n- 可选思考模式（`<|think|>`）\n- 官方基准（模型卡）：MMLU Pro 85.2%、GPQA 84.3%、AIME 2026 89.2%、LiveCodeBench v6 80.0%、Codeforces 2150、tau2 76.9%、HLE 19.5% / 26.5%（带搜索）、MMMU Pro 76.9%、MRCR v2 128K 66.4%",
-    "ecosystem_md": "- HF：google/gemma-4-31B-it（+ 基座 gemma-4-31B、assistant 版）\n- 引擎：llama.cpp、Ollama、vLLM、MLX、LM Studio、NVIDIA NIM、Transformers 首日支持\n- 微调：LoRA 生态（Unsloth 等）已跟进\n- Gemini API 提供免费层调用\n- 中文文档：弱",
-    "versions_md": "- 同系列：Gemma 4 E2B / E4B（端侧，含音频）、12B、26B A4B（MoE）\n- 上代：Gemma 3 27B（2025-03，已被取代）\n- 发布：2026-04-02，Arena 开源第三"
-  },
-  "ecosystem": { "engines": ["llama.cpp", "Ollama", "vLLM", "MLX", "LM Studio"], "finetune": "LoRA 可用", "zh_docs": "弱" },
-  "complete": true
+  "kv_per_token_kib": 192,
+  "kv_note": "全局层 12 × 16 KV 头 × 256 × 2 × 2 B = 192 KiB/token；局部层 KV 上限 1024 token，可忽略。128K 上下文 ≈ 24 GB，比 Gemma 3 27B 高 4 倍以上（head_dim 翻倍）。",
+  "ref_hw_24gb": "官方 QAT Q4_0 17.5 GB（社区 Q4_K_M 18.3 GB）+ 视觉，剩余约 5 GB 给 KV，约 16–24K 上下文；长上下文需 Q3 或卸载",
+  "ref_hw_80gb": "BF16 61.4 GB + 64K 上下文 KV 约 12 GB，可行；FP8 34.9 GB 可跑满 256K",
+  "ref_hw_8x80gb": "过剩",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0,
+  "output_per_m": 0,
+  "currency": "USD",
+  "source": "Google AI 定价页（Gemma 4 仅免费层，无付费档）",
+  "as_of": "2026-08-28",
+  "note": "开源权重；Gemini API 仅提供免费层，商业调用走第三方托管或自建"
+ },
+ "links": {
+  "official": "https://ai.google.dev/gemma/docs/core",
+  "hf": "https://huggingface.co/google/gemma-4-31B-it",
+  "paper": "https://arxiv.org/abs/2607.02770"
+ },
+ "copy": {
+  "one_liner": "Apache 2.0 的单卡 Dense 旗舰，带思考模式，256K 上下文。",
+  "highlights": [
+   "Apache 2.0 许可，告别 Gemma 自定义条款，可商用闭包",
+   "GPQA 84.3%、AIME 2026 89.2%、LiveCodeBench v6 80.0%，Arena 1451 开源前三",
+   "256K 上下文 + 图像 / 视频输入 + 函数调用，官方 QAT Q4 版 17.5 GB"
+  ],
+  "pitfalls": [
+   "head_dim 256，全局层 KV 192 KiB/token，24GB 卡上长上下文比 Gemma 3 更吃紧",
+   "HLE 无工具仅 19.5%，前沿知识题距闭源旗舰差距大",
+   "31B 不支持音频输入（仅 E2B / E4B 有）"
+  ],
+  "logic_ability": "带 <|think|> 开关的推理模型。考试型推理在开源同档领先：GPQA 84.3%、AIME 2026 89.2%、MMLU Pro 85.2%。工程型推理：LiveCodeBench v6 80.0%、Codeforces 2150，tau2-bench 均值 76.9%，agent 可用。弱项：HLE 19.5%，长上下文 MRCR v2 128K 66.4%，长程检索一般。",
+  "best_for": [
+   "单卡私有化推理助手",
+   "需要宽松许可的商业产品",
+   "多语言 / 视觉问答"
+  ],
+  "not_for": [
+   "前沿知识问答（HLE 类）",
+   "24GB 卡上 100K+ 上下文"
+  ]
+ },
+ "capability_notes": {
+  "coding": "LiveCodeBench v6 80.0%、Codeforces Elo 2150（官方模型卡）。",
+  "reasoning": "GPQA Diamond 84.3%、HLE 19.5%（无工具）、BBEH 74.4%（官方）。",
+  "math": "AIME 2026 89.2%（无工具，官方）。",
+  "agent": "tau2-bench 三项均值 76.9%（官方）。",
+  "multimodal": "MMMU Pro（视觉）76.9%、MATH-Vision 85.6%（官方）。",
+  "chinese": "MMMLU 88.4%，140+ 语言训练，中文可用。"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：Dense，30.7B 参数（含约 550M 视觉编码器）。\n\n- 60 层，隐藏维 5376，中间层维 21504，词表 262,144\n- GQA：32 Q 头 / 16 KV 头，head_dim 256\n- 注意力交替：5 层局部滑窗（1024）→ 1 层全局，共 12 层全局，末层固定全局\n- 上下文 256K（max_position_embeddings 262,144）\n- 多模态：图像 / 视频输入；31B 不含音频\n- 思考模式：系统提示中加 `<|think|>` 开启\n- 原生系统提示、函数调用、结构化 JSON 输出\n- 多 token 预测（MTP）草稿模型可用于投机解码\n\n参考：HF config.json（google/gemma-4-31B-it）、Gemma 4 技术报告（arXiv 2607.02770）。",
+  "memory_md": "| 精度 | 权重大小 | 来源 | 参考显存 |\n|---|---|---|---|\n| BF16 | 61.4 GB | 30.7B × 2 / GGUF BF16 | 80GB |\n| SFP8 | 34.9 GB | 官方文档 | 48GB |\n| Q8_0 | 32.6 GB | 社区 GGUF | 48GB |\n| Q4_0 (QAT) | 17.5 GB | 官方文档 | 24GB |\n| Q4_K_M | 18.3 GB | unsloth GGUF | 24GB |\n\n**KV Cache**：全局层 12 × 16 × 256 × 2 × 2 B = 192 KiB/token。32K ≈ 6 GB，128K ≈ 24 GB，256K ≈ 48 GB。\n\n**参考配置**：\n- 24GB：Q4 QAT + 16–24K 上下文；再长需 KV 量化或 Q3\n- 80GB：BF16 + 64K，或 FP8 + 256K\n- 官方提供 QAT 版（GGUF / 未量化 QAT / compressed-tensors），Q4 质量损失小于社区后量化",
+  "training_md": "- 数据截止 2025-01，网页 / 代码 / 图像 / 音频混合数据，训练 token 数未披露\n- 源自 Gemini 3 研究成果，140+ 语言\n- 可选思考模式（`<|think|>`）\n- 官方基准（模型卡）：MMLU Pro 85.2%、GPQA 84.3%、AIME 2026 89.2%、LiveCodeBench v6 80.0%、Codeforces 2150、tau2 76.9%、HLE 19.5% / 26.5%（带搜索）、MMMU Pro 76.9%、MRCR v2 128K 66.4%",
+  "ecosystem_md": "- HF：google/gemma-4-31B-it（+ 基座 gemma-4-31B、assistant 版）\n- 引擎：llama.cpp、Ollama、vLLM、MLX、LM Studio、NVIDIA NIM、Transformers 首日支持\n- 微调：LoRA 生态（Unsloth 等）已跟进\n- Gemini API 提供免费层调用\n- 中文文档：弱",
+  "versions_md": "- 同系列：Gemma 4 E2B / E4B（端侧，含音频）、12B、26B A4B（MoE）\n- 上代：Gemma 3 27B（2025-03，已被取代）\n- 发布：2026-04-02，Arena 开源第三"
+ },
+ "ecosystem": {
+  "engines": [
+   "llama.cpp",
+   "Ollama",
+   "vLLM",
+   "MLX",
+   "LM Studio"
+  ],
+  "finetune": "LoRA 可用",
+  "zh_docs": "弱"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 35,
+  "latency_s": 1.05,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

@@ -1,4 +1,103 @@
-{"id":"command-a-plus","name":"Command A+","name_zh":"Cohere Command A+","aliases":["command-a-plus-05-2026","CohereLabs/command-a-plus-05-2026"],"vendor":"Cohere","family":"Command","license":"Apache-2.0","license_commercial":true,"openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/CohereLabs/command-a-plus-05-2026","status":"current","released_at":"2026-05-20","updated_at":"2026-08-28","modalities":["text","image","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"moe","total_params":"218B","active_params":"25B","total_params_b":218,"active_params_b":25,"experts":128,"active_experts":8,"shared_expert":true,"layers":32,"hidden_size":4096,"vocab_size":262144,"kv_heads":8,"head_dim":128,"attention":"混合：3 层 4096 滑窗 + 1 层全注意力交替，128 Q / 8 KV","notes":"Cohere 首个 MoE，sigmoid token-choice 路由，4 共享专家；SigLIP 视觉编码器。官方 W4A4 量化宣称无损。","undisclosed":false},"context":{"max_tokens":131072,"display":"128K","max_output":65536},"memory":{"weight_gb":{"bf16":436,"fp8":218,"q4":126},"estimated":true,"ref_hw_80gb":"官方 W4A4 需 2×H100 或 1×B200","ref_hw_8x80gb":"BF16 官方 8×H100"},
-"links":{"official":"https://huggingface.co/CohereLabs/command-a-plus-05-2026","hf":"https://huggingface.co/CohereLabs/command-a-plus-05-2026"},
-"copy":{"one_liner":"Cohere 首个 Apache-2.0 开源 MoE，218B，48 语言。","highlights":["Apache-2.0，Cohere 首个完全开源模型","原生引用溯源（citation），48 种语言含中文","AIME 2025 90%（AA 报道），W4A4 无损量化 2×H100 可跑"],"pitfalls":["AA 智能指数 23，通用推理仅 Haiku 4.5 级","128K 上下文，低于同级 256K+","官方未公布 API 价格与完整评测表"],"logic_ability":"考试型推理数学强（AIME 90%）但 GPQA 约 76%、HLE 约 11% 平平；工程型推理 Terminal-Bench Hard 约 25% 偏弱。","best_for":["企业 RAG / 引用溯源","多语言翻译与文档处理"],"not_for":["编程 agent 主力","单卡部署"]},"capability_notes":{"reasoning":"GPQA Diamond 约 76%、HLE 约 11%（Artificial Analysis 报道）。","math":"AIME 2025 90%（Artificial Analysis 报道）。","multimodal":"MMMU-Pro 63%（Artificial Analysis 报道）。","chinese":"官方 48 语言含中文。"},"ecosystem":{"engines":["vLLM","Transformers"],"zh_docs":"无"},"complete":false}
+{
+ "id": "command-a-plus",
+ "name": "Command A+",
+ "name_zh": "Cohere Command A+",
+ "aliases": [
+  "command-a-plus-05-2026",
+  "CohereLabs/command-a-plus-05-2026"
+ ],
+ "vendor": "Cohere",
+ "family": "Command",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/CohereLabs/command-a-plus-05-2026",
+ "status": "current",
+ "released_at": "2026-05-20",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "218B",
+  "active_params": "25B",
+  "total_params_b": 218,
+  "active_params_b": 25,
+  "experts": 128,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 32,
+  "hidden_size": 4096,
+  "vocab_size": 262144,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "混合：3 层 4096 滑窗 + 1 层全注意力交替，128 Q / 8 KV",
+  "notes": "Cohere 首个 MoE，sigmoid token-choice 路由，4 共享专家；SigLIP 视觉编码器。官方 W4A4 量化宣称无损。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 436,
+   "fp8": 218,
+   "q4": 126
+  },
+  "estimated": true,
+  "ref_hw_80gb": "官方 W4A4 需 2×H100 或 1×B200",
+  "ref_hw_8x80gb": "BF16 官方 8×H100"
+ },
+ "links": {
+  "official": "https://huggingface.co/CohereLabs/command-a-plus-05-2026",
+  "hf": "https://huggingface.co/CohereLabs/command-a-plus-05-2026"
+ },
+ "copy": {
+  "one_liner": "Cohere 首个 Apache-2.0 开源 MoE，218B，48 语言。",
+  "highlights": [
+   "Apache-2.0，Cohere 首个完全开源模型",
+   "原生引用溯源（citation），48 种语言含中文",
+   "AIME 2025 90%（AA 报道），W4A4 无损量化 2×H100 可跑"
+  ],
+  "pitfalls": [
+   "AA 智能指数 23，通用推理仅 Haiku 4.5 级",
+   "128K 上下文，低于同级 256K+",
+   "官方未公布 API 价格与完整评测表"
+  ],
+  "logic_ability": "考试型推理数学强（AIME 90%）但 GPQA 约 76%、HLE 约 11% 平平；工程型推理 Terminal-Bench Hard 约 25% 偏弱。",
+  "best_for": [
+   "企业 RAG / 引用溯源",
+   "多语言翻译与文档处理"
+  ],
+  "not_for": [
+   "编程 agent 主力",
+   "单卡部署"
+  ]
+ },
+ "capability_notes": {
+  "reasoning": "GPQA Diamond 约 76%、HLE 约 11%（Artificial Analysis 报道）。",
+  "math": "AIME 2025 90%（Artificial Analysis 报道）。",
+  "multimodal": "MMMU-Pro 63%（Artificial Analysis 报道）。",
+  "chinese": "官方 48 语言含中文。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "Transformers"
+  ],
+  "zh_docs": "无"
+ },
+ "complete": false,
+ "runtime": {
+  "tok_s": 254,
+  "latency_s": 0.39,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
+}

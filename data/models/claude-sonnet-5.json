@@ -1,83 +1,102 @@
 {
-  "id": "claude-sonnet-5",
-  "name": "Claude Sonnet 5",
-  "name_zh": "Claude 5 中档",
-  "aliases": [
-    "claude-sonnet-5",
-    "Sonnet 5",
-    "anthropic.claude-sonnet-5"
+ "id": "claude-sonnet-5",
+ "name": "Claude Sonnet 5",
+ "name_zh": "Claude 5 中档",
+ "aliases": [
+  "claude-sonnet-5",
+  "Sonnet 5",
+  "anthropic.claude-sonnet-5"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 5",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-06-30",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。adaptive thinking 默认开启（effort 默认 high，五档 low/medium/high/xhigh/max）；不再接受手动 extended thinking 与非默认 temperature/top_p/top_k（400 错误）；新分词器（同文本约多 30% token）。"
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "Anthropic 官方定价页（platform.claude.com）",
+  "as_of": "2026-08-28",
+  "note": "原定 2026-09-01 涨至 $3/$15 已取消，$2/$10 为永久标准价"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/claude/sonnet",
+  "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "paper": "https://www.anthropic.com/news/claude-sonnet-5"
+ },
+ "copy": {
+  "one_liner": "接近 Opus 4.8 的 agent 能力，$2 / $10 永久定价。",
+  "highlights": [
+   "Terminal-Bench 2.1 80.4%（Sonnet 4.6 为 67.0%，+13.4），OSWorld-Verified 81.2% 与 Opus 4.8 基本持平",
+   "$2 / $10 原为限时价，2026-08 起改为永久标准价，比 Sonnet 4.6 便宜 1/3",
+   "1M 上下文 + 128K 输出，AA 智能指数 55，Free / Pro 计划默认模型"
   ],
-  "vendor": "Anthropic",
-  "family": "Claude 5",
-  "license": "Proprietary",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
-  "status": "current",
-  "released_at": "2026-06-30",
-  "updated_at": "2026-08-28",
-  "modalities": [
-    "text",
-    "image",
-    "tools",
-    "computer-use"
+  "pitfalls": [
+   "新分词器使同文本 token 数多 1.0~1.35 倍，实际账单降幅小于标价降幅",
+   "temperature / top_p / top_k 非默认值直接 400，旧代码需清理采样参数",
+   "官方分数均为默认 effort；misalignment 率高于 Opus 4.8，漏洞利用类能力被刻意压低"
   ],
-  "reasoning_mode": "default-on",
-  "architecture": {
-    "type": "unknown",
-    "undisclosed": true,
-    "notes": "未披露。adaptive thinking 默认开启；不再接受手动 extended thinking 与非默认 temperature/top_p/top_k（400 错误）；新分词器。"
-  },
-  "context": {
-    "max_tokens": 1000000,
-    "display": "1M",
-    "max_output": 128000
-  },
-  "memory": {
-    "weight_gb": {},
-    "estimated": false
-  },
-  "pricing": {
-    "input_per_m": 2,
-    "output_per_m": 10,
-    "currency": "USD",
-    "source": "Anthropic 官方定价页（platform.claude.com）",
-    "as_of": "2026-08-28",
-    "note": "原定 2026-09-01 涨至 $3/$15 已取消，$2/$10 为永久标准价"
-  },
-  "links": {
-    "official": "https://www.anthropic.com/claude/sonnet",
-    "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
-    "paper": "https://www.anthropic.com/news/claude-sonnet-5"
-  },
-  "copy": {
-    "one_liner": "接近 Opus 4.8 的 agent 能力，$2 / $10 永久定价。",
-    "highlights": [
-      "Terminal-Bench 2.1 80.4%（+20.7 vs Sonnet 4.6），OSWorld-Verified 81.2% 与 Opus 4.8 基本持平",
-      "$2 / $10 原为限时价，2026-08 起改为永久标准价，比 Sonnet 4.6 便宜 1/3",
-      "1M 上下文 + 128K 输出，AA 智能指数 55，Free / Pro 计划默认模型"
-    ],
-    "pitfalls": [
-      "新分词器使同文本 token 数多 1.0~1.35 倍，实际账单降幅小于标价降幅",
-      "temperature / top_p / top_k 非默认值直接 400，旧代码需清理采样参数",
-      "官方分数均为默认 effort；misalignment 率高于 Opus 4.8，漏洞利用类能力被刻意压低"
-    ],
-    "logic_ability": "工程型推理接近 Opus 4.8：Terminal-Bench 2.1 80.4% 甚至高于 Opus 4.8 的 74.6%，HLE（带工具）57.4% 对 57.9%，GDPval-AA v2 1618 对 1615（官方公告表，Vellum 转录）。考试型推理略弱：SWE-bench Pro 63.2% 低于 Opus 4.8 的 69.2%，官方未公布 GPQA Diamond。失败模式：默认 effort 高时输出偏长；复杂多文件重构仍应上 Opus 5。",
-    "best_for": [
-      "生产环境 agent（浏览器 / 终端工具使用）",
-      "高吞吐编码助手",
-      "对话产品默认模型"
-    ],
-    "not_for": [
-      "最难的跨仓库重构",
-      "需要私有化部署的合规场景"
-    ]
-  },
-  "capability_notes": {
-    "coding": "Terminal-Bench 2.1 80.4%、SWE-bench Pro 63.2%（官方公告表，Vellum 转录）。",
-    "reasoning": "HLE（带工具）57.4%；AA 智能指数 55（max 档）。",
-    "agent": "OSWorld-Verified 81.2%；BrowseComp 相对 Sonnet 4.6 大幅提升。",
-    "chinese": "中文可用，缺少独立中文评测。"
-  },
-  "complete": false
+  "logic_ability": "工程型推理接近 Opus 4.8：Terminal-Bench 2.1 80.4% 甚至高于 Opus 4.8 的 74.6%，HLE（带工具）57.4% 对 57.9%，GDPval-AA v2 1618 对 1615（官方公告表，Vellum 转录）。考试型推理略弱：SWE-bench Pro 63.2% 低于 Opus 4.8 的 69.2%，官方未公布 GPQA Diamond。失败模式：默认 effort 高时输出偏长；复杂多文件重构仍应上 Opus 5。",
+  "best_for": [
+   "生产环境 agent（浏览器 / 终端工具使用）",
+   "高吞吐编码助手",
+   "对话产品默认模型"
+  ],
+  "not_for": [
+   "最难的跨仓库重构",
+   "需要私有化部署的合规场景"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal-Bench 2.1 80.4%、SWE-bench Pro 63.2%、CursorBench 57%（官方公告表，Vellum 转录）；AA 实测 Terminal-Bench 较 Sonnet 4.6 +9 分。",
+  "reasoning": "HLE（带工具）57.4%（官方公告表）；AA 智能指数 55（max 档，2026-08-28）；CritPt 17%，较 Sonnet 4.6 +14 分（AA）。",
+  "agent": "OSWorld-Verified 81.2%、GDPval-AA v2 1618（官方公告表，与 Opus 4.8 的 1615 持平）；BrowseComp 相对 Sonnet 4.6 大幅提升（官方）。",
+  "instruction": "官方称幻觉率与谄媚率均低于 Sonnet 4.6；不支持 assistant 预填，需改用 structured outputs（官方文档）。",
+  "multimodal": "支持文本 + 图像输入、文本输出；官方未公布 MMMU 等视觉基准。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "complete": true,
+ "sheet": {
+  "architecture_md": "**未披露**。Anthropic 未公布参数量、Dense/MoE、注意力类型。\n\n已知接口特性（官方文档，2026-08-28）：\n- **Adaptive thinking 默认开启**：不传 `thinking` 字段即带思考；关闭需显式 `thinking: {type: \"disabled\"}`\n- `effort` 五档 `low` / `medium` / `high`（默认）/ `xhigh` / `max`，与 Opus 4.8 对齐；`xhigh` 为 Sonnet 线新增\n- **三个破坏性变更**（相对 Sonnet 4.6）：手动 extended thinking（`budget_tokens`）返回 400；`temperature` / `top_p` / `top_k` 非默认值返回 400；assistant 预填仍不支持\n- 1M 上下文既是默认也是最大（无更小档），128K 最大输出；Batch API 加 `output-300k-2026-03-24` beta 头可到 300K 输出\n- 输入：文本 + 图像；输出：文本\n- **新分词器**：同文本约多 30%（官方公告口径 1.0~1.35×），`max_tokens`、缓存断点、上下文容量都要重新计算\n- 工具集与 Sonnet 4.6 相同，另支持 browser use 工具和稳定版 `computer_toolset_20260801`（Claude API / Google Cloud）；不提供 Priority Tier\n- 首个带实时网络安全防护的 Sonnet：被拦截时返回 HTTP 200 + `stop_reason: \"refusal\"`\n- 可靠知识截止 2026-01（训练数据截止同为 2026-01）",
+  "memory_md": "无自建选项。\n\n**成本模型**（官方定价页，2026-08-28）：\n- 输入 $2 / 输出 $10 / MTok；原定 2026-09-01 涨回 $3 / $15 的计划已于 2026-08-10 取消，$2 / $10 为永久标准价\n- 缓存写 $2.50（5 分钟）/ $4（1 小时），缓存读 $0.20（基价 10%）\n- Batch 五折：$1 / $5\n- 1M 长上下文不加价；Bedrock / Vertex / Foundry 按各自价目\n\n**什么时候会变贵**：\n- 新分词器让同一段文本多约 30% token，标价降 1/3 但等价请求账单降幅明显小于此\n- AA 实测 max 档单任务 $1.72~2.29，约为 Sonnet 4.6 的 2 倍、与 Opus 4.8 相当——因为输出 token 多 ~40%、知识工作类 agent 轮次约 3 倍；max 比 low 多约 6 倍轮次\n- 思考默认开启，`max_tokens` 是思考 + 正文总上限，旧的无思考预算会截断\n\n速度：AA 实测约 95 tok/s（max 档），高于均值；高 effort 下 TTFT 很长（AA 记录 max 档 225 s），交互场景请降 effort 或流式。",
+  "training_md": "- 训练细节未披露；训练数据截止 2026-01\n- 官方定位：Sonnet 4.6 的直接替代，最大提升在编码与 agent 任务，「接近 Opus 4.8 的能力、更低价格」\n- 官方公告表（默认 effort）：SWE-bench Pro 63.2%（4.6：58.1%）、Terminal-Bench 2.1 80.4%（4.6：67.0%；Opus 4.8：74.6%）、OSWorld-Verified 81.2%（4.6：78.5%）、HLE 带工具 57.4%（4.6：46.8%）、GDPval-AA v2 1618\n- 行为：幻觉率与谄媚率低于 Sonnet 4.6，对恶意请求的拒绝更准；整体「不良行为率」下降\n- 安全：默认开启网络安全防护；漏洞利用开发能力被刻意压低（Firefox 147 可用 exploit 0%）；系统卡见 anthropic.com/claude-sonnet-5-system-card\n- 已知取舍：misalignment 率高于 Opus 4.8；官方分数均为默认 effort，未公布 GPQA Diamond",
+  "ecosystem_md": "- **API 渠道**：Claude API（`claude-sonnet-5`，无日期后缀即固定快照）、Amazon Bedrock（`anthropic.claude-sonnet-5`，含 InvokeModel）、Claude Platform on AWS、Google Cloud Vertex AI、Microsoft Foundry\n- claude.ai：Free / Pro 计划默认模型，Max / Team / Enterprise 可用；Claude Code 默认 effort `high`\n- SDK：官方 Python / TypeScript / C# / Go / Java / PHP / Ruby，均有 `ModelClaudeSonnet5` 常量\n- 工具：bash、text editor、web search、code execution、memory、tool search、browser use、computer_toolset_20260801\n- 支持 ZDR（零数据保留）协议；**不可微调**\n- 中文文档：弱（platform.claude.com 仅英文，社区中文资料较多）",
+  "versions_md": "- 上代：Claude Sonnet 4.6（$3 / $15，仍可用，Legacy）；更早 Sonnet 4.5（2025-09）\n- 同代：Claude Opus 5（2026-07-24，$5 / $25）、Claude Fable 5（2026-06-09，$10 / $50）、Claude Haiku 4.5（$1 / $5，200K）\n- 版本策略：4.6 代起模型 ID 不带日期，`claude-sonnet-5` 本身就是固定快照\n- 退役承诺：不早于 2027-06-30（Bedrock / Google Cloud 自行定）"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "runtime": {
+  "tok_s": 95,
+  "latency_s": 225.59,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

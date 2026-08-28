@@ -1572,7 +1572,7 @@
  {
   "model_id": "gpt-oss-20b",
   "key": "hle",
-  "value": 17.3,
+  "value": 10.9,
   "unit": "percent",
   "source": "gpt-oss 模型卡",
   "source_url": "https://openai.com/index/introducing-gpt-oss/",
@@ -1743,6 +1743,36 @@
   "model_id": "nemotron-3-nano-30b-a3b",
   "key": "gpqa_diamond",
   "value": 73.7,
+  "unit": "percent",
+  "source": "NVIDIA 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+  "as_of": "2025-12-20",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "hle",
+  "value": 10.6,
+  "unit": "percent",
+  "source": "NVIDIA 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+  "as_of": "2025-12-20",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "aime_2025",
+  "value": 89.1,
+  "unit": "percent",
+  "source": "NVIDIA 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+  "as_of": "2025-12-20",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "tau2_bench",
+  "value": 49,
   "unit": "percent",
   "source": "NVIDIA 模型卡",
   "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
@@ -2791,8 +2821,28 @@
  },
  {
   "model_id": "mistral-small-4",
+  "key": "livecodebench",
+  "value": 64,
+  "unit": "percent",
+  "source": "Mistral Small 4 模型卡",
+  "source_url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mistral-small-4",
   "key": "gpqa_diamond",
   "value": 71.2,
+  "unit": "percent",
+  "source": "Mistral Small 4 模型卡",
+  "source_url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "aime_2025",
+  "value": 84,
   "unit": "percent",
   "source": "Mistral Small 4 模型卡",
   "source_url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
@@ -2921,8 +2971,28 @@
  },
  {
   "model_id": "nemotron-3-super-120b-a12b",
+  "key": "hle",
+  "value": 18.3,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Super 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
   "key": "aime_2025",
   "value": 90.2,
+  "unit": "percent",
+  "source": "NVIDIA Nemotron 3 Super 模型卡",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
+  "as_of": "2026-08-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "tau2_bench",
+  "value": 61.2,
   "unit": "percent",
   "source": "NVIDIA Nemotron 3 Super 模型卡",
   "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
@@ -3108,6 +3178,4186 @@
   "source_url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
   "as_of": "2026-08-28",
   "evidence": "official"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "aa_index",
+  "value": 62,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "gpqa_diamond",
+  "value": 92.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "hle",
+  "value": 55.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "scicode",
+  "value": 60.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "tb_hard",
+  "value": 62.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "tau2_telecom",
+  "value": 98.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "ifbench",
+  "value": 63.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "aa_index",
+  "value": 30,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "gpqa_diamond",
+  "value": 67.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "hle",
+  "value": 10.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "aime_2025",
+  "value": 83.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "livecodebench",
+  "value": 61.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "scicode",
+  "value": 43.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "tb_hard",
+  "value": 27.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "tau2_telecom",
+  "value": 54.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "mmmu_pro",
+  "value": 58.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "ifbench",
+  "value": 54.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "aa_index",
+  "value": 63,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-opus-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "gpqa_diamond",
+  "value": 93.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-opus-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "hle",
+  "value": 54.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-opus-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "scicode",
+  "value": 55.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-opus-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "mmmu_pro",
+  "value": 84.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-opus-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "aa_index",
+  "value": 55,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-sonnet-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "gpqa_diamond",
+  "value": 91.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-sonnet-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "hle",
+  "value": 41.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-sonnet-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "scicode",
+  "value": 53.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-sonnet-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "mmmu_pro",
+  "value": 77.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/claude-sonnet-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "aa_index",
+  "value": 23,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "gpqa_diamond",
+  "value": 76.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "hle",
+  "value": 12,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "scicode",
+  "value": 37.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "tb_hard",
+  "value": 25,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "tau2_telecom",
+  "value": 80.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "mmmu_pro",
+  "value": 63.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "ifbench",
+  "value": 73.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "aa_index",
+  "value": 52,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "gpqa_diamond",
+  "value": 90.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "hle",
+  "value": 38.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "scicode",
+  "value": 49.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "aa_index",
+  "value": 53,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "gpqa_diamond",
+  "value": 92.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "hle",
+  "value": 41,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "scicode",
+  "value": 49.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "aa_index",
+  "value": 48,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "gpqa_diamond",
+  "value": 94.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "hle",
+  "value": 47,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "scicode",
+  "value": 58.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "tb_hard",
+  "value": 53.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "tau2_telecom",
+  "value": 95.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "mmmu_pro",
+  "value": 82.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "ifbench",
+  "value": 77.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "aa_index",
+  "value": 37,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "gpqa_diamond",
+  "value": 83.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "hle",
+  "value": 18.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "scicode",
+  "value": 40.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "mmmu_pro",
+  "value": 79,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "aa_index",
+  "value": 56,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "gpqa_diamond",
+  "value": 94.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "hle",
+  "value": 47.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "scicode",
+  "value": 56.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "mmmu_pro",
+  "value": 85.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "aa_index",
+  "value": 26,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "gpqa_diamond",
+  "value": 79.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "hle",
+  "value": 19.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "scicode",
+  "value": 40,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "tb_hard",
+  "value": 13.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "tau2_telecom",
+  "value": 43.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "mmmu_pro",
+  "value": 69.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "ifbench",
+  "value": 72.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "aa_index",
+  "value": 30,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "gpqa_diamond",
+  "value": 85.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "hle",
+  "value": 23.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "scicode",
+  "value": 43.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "tb_hard",
+  "value": 36.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "tau2_telecom",
+  "value": 59.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "mmmu_pro",
+  "value": 73.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "ifbench",
+  "value": 75.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "aa_index",
+  "value": 53,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "gpqa_diamond",
+  "value": 89.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "hle",
+  "value": 41.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "scicode",
+  "value": 50.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "tb_hard",
+  "value": 50.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "tau2_telecom",
+  "value": 99.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "ifbench",
+  "value": 73.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3-flash",
+  "key": "aa_index",
+  "value": 57,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3-flash",
+  "key": "gpqa_diamond",
+  "value": 91.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3-flash",
+  "key": "hle",
+  "value": 39.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3-flash",
+  "key": "scicode",
+  "value": 46.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3",
+  "key": "aa_index",
+  "value": 60,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3",
+  "key": "gpqa_diamond",
+  "value": 91.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3",
+  "key": "hle",
+  "value": 42.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3",
+  "key": "scicode",
+  "value": 56.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "aa_index",
+  "value": 56,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "gpqa_diamond",
+  "value": 93.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "hle",
+  "value": 45.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "scicode",
+  "value": 56.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "tb_hard",
+  "value": 60.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "tau2_telecom",
+  "value": 93.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "mmmu_pro",
+  "value": 79.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "ifbench",
+  "value": 75.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-luna",
+  "key": "aa_index",
+  "value": 52,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-luna",
+  "key": "gpqa_diamond",
+  "value": 91.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-luna",
+  "key": "hle",
+  "value": 39.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-luna",
+  "key": "scicode",
+  "value": 52.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-luna",
+  "key": "mmmu_pro",
+  "value": 78.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "aa_index",
+  "value": 61,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "gpqa_diamond",
+  "value": 94.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "hle",
+  "value": 49.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "scicode",
+  "value": 56.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "tb_hard",
+  "value": 65.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "tau2_telecom",
+  "value": 85.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "mmmu_pro",
+  "value": 83.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "ifbench",
+  "value": 72.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "aa_index",
+  "value": 57,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "gpqa_diamond",
+  "value": 92.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "hle",
+  "value": 42.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "scicode",
+  "value": 53.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "tb_hard",
+  "value": 57.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "tau2_telecom",
+  "value": 86.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "mmmu_pro",
+  "value": 80.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "ifbench",
+  "value": 71.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "aa_index",
+  "value": 24,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "gpqa_diamond",
+  "value": 78.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "hle",
+  "value": 19.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "aime_2025",
+  "value": 93.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "livecodebench",
+  "value": 87.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "scicode",
+  "value": 38.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "tb_hard",
+  "value": 23.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "tau2_telecom",
+  "value": 65.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "ifbench",
+  "value": 69,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "aa_index",
+  "value": 15,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "gpqa_diamond",
+  "value": 68.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "hle",
+  "value": 11,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "aime_2025",
+  "value": 89.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "livecodebench",
+  "value": 77.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "scicode",
+  "value": 34.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "tb_hard",
+  "value": 10.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "tau2_telecom",
+  "value": 60.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "ifbench",
+  "value": 65.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "aa_index",
+  "value": 24,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/granite-4-2-30b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "gpqa_diamond",
+  "value": 64.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/granite-4-2-30b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "hle",
+  "value": 11.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/granite-4-2-30b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "scicode",
+  "value": 36.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/granite-4-2-30b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "aa_index",
+  "value": 38,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "gpqa_diamond",
+  "value": 90.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "hle",
+  "value": 37.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "scicode",
+  "value": 47.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "tb_hard",
+  "value": 37.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "tau2_telecom",
+  "value": 97.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "mmmu_pro",
+  "value": 78.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "ifbench",
+  "value": 81.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "aa_index",
+  "value": 56,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "gpqa_diamond",
+  "value": 93.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "hle",
+  "value": 42.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "scicode",
+  "value": 54.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "mmmu_pro",
+  "value": 80.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-6",
+  "key": "aa_index",
+  "value": 61,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-6",
+  "key": "gpqa_diamond",
+  "value": 94.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-6",
+  "key": "hle",
+  "value": 42.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-6",
+  "key": "scicode",
+  "value": 53.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "aa_index",
+  "value": 42,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/hy3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "gpqa_diamond",
+  "value": 89.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/hy3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "hle",
+  "value": 33.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/hy3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "scicode",
+  "value": 47.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/hy3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "aa_index",
+  "value": 45,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "gpqa_diamond",
+  "value": 91.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "hle",
+  "value": 37.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "scicode",
+  "value": 53.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "tb_hard",
+  "value": 43.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "tau2_telecom",
+  "value": 95.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "mmmu_pro",
+  "value": 79.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "ifbench",
+  "value": 76,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "aa_index",
+  "value": 43,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "gpqa_diamond",
+  "value": 89.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "hle",
+  "value": 35,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "scicode",
+  "value": 47.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "tb_hard",
+  "value": 44.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "tau2_telecom",
+  "value": 90.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "ifbench",
+  "value": 63.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "aa_index",
+  "value": 60,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "gpqa_diamond",
+  "value": 93.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "hle",
+  "value": 46.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "scicode",
+  "value": 58.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "mmmu_pro",
+  "value": 80.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "aa_index",
+  "value": 38,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "gpqa_diamond",
+  "value": 84.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "hle",
+  "value": 27.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "scicode",
+  "value": 43.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "tb_hard",
+  "value": 41.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "tau2_telecom",
+  "value": 90.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "mmmu_pro",
+  "value": 75.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "ifbench",
+  "value": 67.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "aa_index",
+  "value": 39,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "gpqa_diamond",
+  "value": 87.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "hle",
+  "value": 29.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "scicode",
+  "value": 47,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "tb_hard",
+  "value": 39.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "tau2_telecom",
+  "value": 84.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "ifbench",
+  "value": 75.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "aa_index",
+  "value": 45,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "gpqa_diamond",
+  "value": 92.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "hle",
+  "value": 39,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "scicode",
+  "value": 45.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "tb_hard",
+  "value": 42.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "tau2_telecom",
+  "value": 88.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "mmmu_pro",
+  "value": 78.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "ifbench",
+  "value": 82.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "aa_index",
+  "value": 16,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "gpqa_diamond",
+  "value": 68,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "hle",
+  "value": 4.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "aime_2025",
+  "value": 38,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "livecodebench",
+  "value": 46.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "scicode",
+  "value": 36.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "tb_hard",
+  "value": 15.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "tau2_telecom",
+  "value": 24.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "mmmu_pro",
+  "value": 55.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "ifbench",
+  "value": 36.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "aa_index",
+  "value": 30,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "gpqa_diamond",
+  "value": 74.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "hle",
+  "value": 13.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "scicode",
+  "value": 39.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "tb_hard",
+  "value": 33.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "tau2_telecom",
+  "value": 94.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "mmmu_pro",
+  "value": 64.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "ifbench",
+  "value": 68.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "aa_index",
+  "value": 20,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "gpqa_diamond",
+  "value": 76.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "hle",
+  "value": 9.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "scicode",
+  "value": 38,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "tb_hard",
+  "value": 17.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "tau2_telecom",
+  "value": 41.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "mmmu_pro",
+  "value": 56.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "ifbench",
+  "value": 48.2,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "aa_index",
+  "value": 35,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-glimmer",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "gpqa_diamond",
+  "value": 83.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-glimmer",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "hle",
+  "value": 22,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-glimmer",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "scicode",
+  "value": 43.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-glimmer",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "mmmu_pro",
+  "value": 74.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-glimmer",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "aa_index",
+  "value": 44,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-spark",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "gpqa_diamond",
+  "value": 88.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-spark",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "hle",
+  "value": 40.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-spark",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "scicode",
+  "value": 51.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-spark",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "tb_hard",
+  "value": 45.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-spark",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "tau2_telecom",
+  "value": 91.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-spark",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "mmmu_pro",
+  "value": 80.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-spark",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "ifbench",
+  "value": 75.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/muse-spark",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "aa_index",
+  "value": 15,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "gpqa_diamond",
+  "value": 75.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "hle",
+  "value": 11.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "aime_2025",
+  "value": 91,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "livecodebench",
+  "value": 74.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "scicode",
+  "value": 29.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "tb_hard",
+  "value": 13.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "tau2_telecom",
+  "value": 40.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "ifbench",
+  "value": 71.1,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "aa_index",
+  "value": 26,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "gpqa_diamond",
+  "value": 80,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "hle",
+  "value": 20.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "scicode",
+  "value": 36,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "tb_hard",
+  "value": 28.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "tau2_telecom",
+  "value": 67.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "ifbench",
+  "value": 71.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "aa_index",
+  "value": 38,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "gpqa_diamond",
+  "value": 86.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "hle",
+  "value": 28.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "scicode",
+  "value": 39.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "tb_hard",
+  "value": 36.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "tau2_telecom",
+  "value": 83.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "ifbench",
+  "value": 81.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "aa_index",
+  "value": 58,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "gpqa_diamond",
+  "value": 93.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "hle",
+  "value": 42.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "scicode",
+  "value": 51.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "aa_index",
+  "value": 52,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "gpqa_diamond",
+  "value": 90.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "hle",
+  "value": 33.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "scicode",
+  "value": 44.7,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "mmmu_pro",
+  "value": 76.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "aa_index",
+  "value": 18,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "gpqa_diamond",
+  "value": 61.8,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "hle",
+  "value": 4.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "aime_2025",
+  "value": 39.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "livecodebench",
+  "value": 58.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "scicode",
+  "value": 35.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "tb_hard",
+  "value": 18.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "tau2_telecom",
+  "value": 43.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "ifbench",
+  "value": 40.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-coder-480b-a35b-instruct",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "aa_index",
+  "value": 31,
+  "unit": "index",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "gpqa_diamond",
+  "value": 80.9,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "hle",
+  "value": 21.4,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "scicode",
+  "value": 40,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "tb_hard",
+  "value": 35.6,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "tau2_telecom",
+  "value": 98.5,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "mmmu_pro",
+  "value": 75.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "ifbench",
+  "value": 67.3,
+  "unit": "percent",
+  "source": "Artificial Analysis (v4.1.1)",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "terminal_bench",
+  "value": 84.6,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "tau3_banking",
+  "value": 38.1,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/claude-fable-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "terminal_bench",
+  "value": 44.2,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "tau3_banking",
+  "value": 9.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/claude-4-5-haiku-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "terminal_bench",
+  "value": 89.1,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/claude-opus-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "tau3_banking",
+  "value": 42.1,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/claude-opus-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "terminal_bench",
+  "value": 80.5,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/claude-sonnet-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "tau3_banking",
+  "value": 37.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/claude-sonnet-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "terminal_bench",
+  "value": 22.8,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "command-a-plus",
+  "key": "tau3_banking",
+  "value": 6,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/command-a-plus",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "terminal_bench",
+  "value": 78.7,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "tau3_banking",
+  "value": 39.4,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "terminal_bench",
+  "value": 78.7,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "tau3_banking",
+  "value": 39.6,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/deepseek-v4-pro",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "terminal_bench",
+  "value": 73.8,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "tau3_banking",
+  "value": 21.4,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-1-pro-preview",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "terminal_bench",
+  "value": 53.6,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "tau3_banking",
+  "value": 17.5,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-5-flash-lite",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "terminal_bench",
+  "value": 85.8,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "tau3_banking",
+  "value": 32.8,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gemini-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "terminal_bench",
+  "value": 39,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "tau3_banking",
+  "value": 12,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-26b-a4b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "terminal_bench",
+  "value": 43.4,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "tau3_banking",
+  "value": 14.8,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gemma-4-31b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "terminal_bench",
+  "value": 77.9,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "tau3_banking",
+  "value": 34.6,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-2",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3-flash",
+  "key": "terminal_bench",
+  "value": 84.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3-flash",
+  "key": "tau3_banking",
+  "value": 47.2,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3",
+  "key": "terminal_bench",
+  "value": 83.9,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3",
+  "key": "tau3_banking",
+  "value": 50.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/glm-5-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "terminal_bench",
+  "value": 84.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "tau3_banking",
+  "value": 39,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-luna",
+  "key": "terminal_bench",
+  "value": 80.9,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-luna",
+  "key": "tau3_banking",
+  "value": 31.1,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-luna",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "terminal_bench",
+  "value": 88,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "tau3_banking",
+  "value": 44.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-sol",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "terminal_bench",
+  "value": 88,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "tau3_banking",
+  "value": 40.2,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gpt-5-6-terra",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "terminal_bench",
+  "value": 26.2,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "tau3_banking",
+  "value": 12.8,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-120b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "terminal_bench",
+  "value": 13.9,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "tau3_banking",
+  "value": 7,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/gpt-oss-20b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "terminal_bench",
+  "value": 26.6,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/granite-4-2-30b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "granite-4-2-30b",
+  "key": "tau3_banking",
+  "value": 14.4,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/granite-4-2-30b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "terminal_bench",
+  "value": 39.7,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "tau3_banking",
+  "value": 12.4,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "terminal_bench",
+  "value": 81.6,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "tau3_banking",
+  "value": 42.1,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-6",
+  "key": "terminal_bench",
+  "value": 88.4,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-6",
+  "key": "tau3_banking",
+  "value": 50.7,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/grok-4-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "terminal_bench",
+  "value": 64.4,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/hy3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "tau3_banking",
+  "value": 22.9,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/hy3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "terminal_bench",
+  "value": 65.9,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "tau3_banking",
+  "value": 23.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-6",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "terminal_bench",
+  "value": 67.4,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-7-code",
+  "key": "tau3_banking",
+  "value": 20.2,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k2-7-code",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "terminal_bench",
+  "value": 85,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "tau3_banking",
+  "value": 46,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/kimi-k3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "terminal_bench",
+  "value": 63.7,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "tau3_banking",
+  "value": 8.7,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/mimo-v2-5-0424",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "terminal_bench",
+  "value": 55.4,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "tau3_banking",
+  "value": 9.9,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m2-7",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "terminal_bench",
+  "value": 65.2,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "tau3_banking",
+  "value": 15.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/minimax-m3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "terminal_bench",
+  "value": 12,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "tau3_banking",
+  "value": 5.8,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/mistral-large-3",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "terminal_bench",
+  "value": 50.6,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "tau3_banking",
+  "value": 15.1,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/mistral-medium-3-5",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "terminal_bench",
+  "value": 21,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-small-4",
+  "key": "tau3_banking",
+  "value": 4.9,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/mistral-small-4",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "terminal_bench",
+  "value": 51.7,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/muse-glimmer",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "tau3_banking",
+  "value": 23.5,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/muse-glimmer",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "terminal_bench",
+  "value": 62.2,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/muse-spark",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "terminal_bench",
+  "value": 6.7,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "tau3_banking",
+  "value": 6,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-nano-30b-a3b-reasoning",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "terminal_bench",
+  "value": 38.6,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "tau3_banking",
+  "value": 10.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-super-120b-a12b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "terminal_bench",
+  "value": 53.9,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "tau3_banking",
+  "value": 14.2,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/nvidia-nemotron-3-ultra-550b-a55b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "terminal_bench",
+  "value": 82,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "tau3_banking",
+  "value": 49.1,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-2-4t-a95b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "terminal_bench",
+  "value": 79.8,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "tau3_banking",
+  "value": 48,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/qwen3-8-27b",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "terminal_bench",
+  "value": 39.3,
+  "unit": "percent",
+  "source": "Artificial Analysis · Terminal-Bench 2.1",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "step-3-7-flash",
+  "key": "tau3_banking",
+  "value": 12,
+  "unit": "percent",
+  "source": "Artificial Analysis · τ³-Bench Banking",
+  "source_url": "https://artificialanalysis.ai/models/step-3-7-flash",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-fable-5",
+  "key": "arena_zh",
+  "value": 1555,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "arena_zh",
+  "value": 1434,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-opus-5",
+  "key": "arena_zh",
+  "value": 1564,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "claude-sonnet-5",
+  "key": "arena_zh",
+  "value": 1503,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-flash",
+  "key": "arena_zh",
+  "value": 1480,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "deepseek-v4-pro",
+  "key": "arena_zh",
+  "value": 1500,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-1-pro",
+  "key": "arena_zh",
+  "value": 1531,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-5-flash-lite",
+  "key": "arena_zh",
+  "value": 1485,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemini-3-7-flash",
+  "key": "arena_zh",
+  "value": 1554,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-26b-a4b",
+  "key": "arena_zh",
+  "value": 1481,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gemma-4-31b",
+  "key": "arena_zh",
+  "value": 1476,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-2",
+  "key": "arena_zh",
+  "value": 1515,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "glm-5-3",
+  "key": "arena_zh",
+  "value": 1530,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-5",
+  "key": "arena_zh",
+  "value": 1529,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-luna",
+  "key": "arena_zh",
+  "value": 1478,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-sol",
+  "key": "arena_zh",
+  "value": 1538,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-5-6-terra",
+  "key": "arena_zh",
+  "value": 1517,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-120b",
+  "key": "arena_zh",
+  "value": 1377,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "gpt-oss-20b",
+  "key": "arena_zh",
+  "value": 1350,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-3",
+  "key": "arena_zh",
+  "value": 1479,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-5",
+  "key": "arena_zh",
+  "value": 1513,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "grok-4-6",
+  "key": "arena_zh",
+  "value": 1539,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "hunyuan-hy3",
+  "key": "arena_zh",
+  "value": 1463,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k2-6",
+  "key": "arena_zh",
+  "value": 1526,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "kimi-k3",
+  "key": "arena_zh",
+  "value": 1531,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mimo-v2-5",
+  "key": "arena_zh",
+  "value": 1483,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m2-7",
+  "key": "arena_zh",
+  "value": 1443,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "minimax-m3",
+  "key": "arena_zh",
+  "value": 1467,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-large-3",
+  "key": "arena_zh",
+  "value": 1430,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "mistral-medium-3-5",
+  "key": "arena_zh",
+  "value": 1448,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-glimmer-30b",
+  "key": "arena_zh",
+  "value": 1477,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "muse-spark",
+  "key": "arena_zh",
+  "value": 1536,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-nano-30b-a3b",
+  "key": "arena_zh",
+  "value": 1347,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-super-120b-a12b",
+  "key": "arena_zh",
+  "value": 1399,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "nemotron-3-ultra-550b-a55b",
+  "key": "arena_zh",
+  "value": 1458,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-27b",
+  "key": "arena_zh",
+  "value": 1508,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-8-2-4t-a95b",
+  "key": "arena_zh",
+  "value": 1538,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
+ },
+ {
+  "model_id": "qwen3-coder-480b-a35b",
+  "key": "arena_zh",
+  "value": 1404,
+  "unit": "elo",
+  "source": "LMArena Text · Chinese (style control)",
+  "source_url": "https://arena.ai/leaderboard/text/chinese",
+  "as_of": "2026-08-28",
+  "evidence": "independent"
  },
  {
   "model_id": "deepseek-v3-2",

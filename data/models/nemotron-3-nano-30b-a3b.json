@@ -1,4 +1,101 @@
-{"id":"nemotron-3-nano-30b-a3b","name":"Nemotron 3 Nano 30B-A3B","aliases":["NVIDIA-Nemotron-3-Nano-30B-A3B","Nemotron Nano 3"],"vendor":"NVIDIA","family":"Nemotron 3","license":"NVIDIA Open Model License","license_commercial":true,"openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16","status":"current","released_at":"2025-12-15","updated_at":"2025-12-20","modalities":["text","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"hybrid","total_params":"31.6B","active_params":"3.2B","total_params_b":31.6,"active_params_b":3.2,"attention":"Mamba-2 + 稀疏注意力 混合 MoE","notes":"混合 Mamba-Transformer MoE；训练数据、配方开放。KV 未建模（Mamba 状态为主）。","undisclosed":false},"context":{"max_tokens":1048576,"display":"1M"},"memory":{"weight_gb":{"bf16":63,"q4":19},"estimated":true,"ref_hw_24gb":"Q4 约 19 GB（估）","ref_hw_80gb":"BF16 舒适"},
-"links":{"official":"https://developer.nvidia.com/nemotron","hf":"https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16"},
-"copy":{"one_liner":"NVIDIA 开放数据与配方的混合 Mamba MoE，1M 上下文。","highlights":["训练数据 / 配方开放","Mamba 混合，长上下文吞吐高","3.2B 激活"],"pitfalls":["新架构，llama.cpp 支持滞后","新模型，独立评测少","NVIDIA 许可非 Apache（但允许商用）"],"logic_ability":"考试型推理相对体量良好，思考可开关；工程型待验证。","best_for":["长上下文低延迟推理","架构研究"],"not_for":["成熟生态依赖"]},"capability_notes":{},"ecosystem":{"engines":["vLLM","TensorRT-LLM"],"zh_docs":"无"},"complete":false}
+{
+ "id": "nemotron-3-nano-30b-a3b",
+ "name": "Nemotron 3 Nano 30B-A3B",
+ "aliases": [
+  "NVIDIA-Nemotron-3-Nano-30B-A3B",
+  "Nemotron Nano 3"
+ ],
+ "vendor": "NVIDIA",
+ "family": "Nemotron 3",
+ "license": "NVIDIA Open Model License",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+ "status": "current",
+ "released_at": "2025-12-15",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "31.6B",
+  "active_params": "3.2B",
+  "total_params_b": 31.6,
+  "active_params_b": 3.2,
+  "attention": "Mamba-2 + 稀疏注意力 混合 MoE",
+  "notes": "混合 Mamba-Transformer MoE；训练数据、配方开放。KV 未建模（Mamba 状态为主）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 63,
+   "q4": 19
+  },
+  "estimated": true,
+  "ref_hw_24gb": "Q4 约 19 GB（估）",
+  "ref_hw_80gb": "BF16 舒适"
+ },
+ "links": {
+  "official": "https://developer.nvidia.com/nemotron",
+  "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16"
+ },
+ "copy": {
+  "one_liner": "NVIDIA 开放数据与配方的混合 Mamba MoE，1M 上下文。",
+  "highlights": [
+   "训练数据 / 配方开放",
+   "Mamba 混合，长上下文吞吐高",
+   "3.2B 激活"
+  ],
+  "pitfalls": [
+   "新架构，llama.cpp 支持滞后",
+   "新模型，独立评测少",
+   "NVIDIA 许可非 Apache（但允许商用）"
+  ],
+  "logic_ability": "考试型推理相对体量良好，思考可开关；工程型待验证。",
+  "best_for": [
+   "长上下文低延迟推理",
+   "架构研究"
+  ],
+  "not_for": [
+   "成熟生态依赖"
+  ]
+ },
+ "capability_notes": {
+  "coding": "LiveCodeBench v6 68.3、SWE-bench（OpenHands）38.8、Terminal-Bench hard 8.5（官方模型卡）。",
+  "reasoning": "GPQA 73.0（无工具）/ 75.0（工具）、HLE 10.6 / 15.5（工具）、MMLU-Pro 78.3（官方模型卡）。",
+  "math": "AIME 2025 89.1（无工具）/ 99.2（工具）、MiniF2F pass@1 50.0（官方模型卡）。",
+  "agent": "tau2-bench 均值 49.0、BFCL v4 53.8（官方模型卡）。",
+  "instruction": "IFBench 71.5、Arena-Hard-V2 均值 67.7（官方模型卡）。",
+  "chinese": "官方语言列表为英德西法意日，不含中文；MMLU-ProX 59.5。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "TensorRT-LLM"
+  ],
+  "zh_docs": "无"
+ },
+ "complete": false,
+ "runtime": {
+  "tok_s": 227,
+  "latency_s": 1.19,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "name_zh": "NVIDIA Nemotron 3 Nano · 30B A3B",
+ "pricing": {
+  "input_per_m": 0.05,
+  "output_per_m": 0.2,
+  "currency": "USD",
+  "source": "第三方托管常见价（OpenRouter）",
+  "as_of": "2026-08-28",
+  "note": "DeepInfra / Crusoe / Nebius / Novita 托管；缓存读取 $0.025"
+ }
+}

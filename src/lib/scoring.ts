@@ -5,11 +5,11 @@ import { fitsIn } from './vram'
 export const COMPONENT_KEYS = {
   independent_index: ['aa_index'],
   arena_elo: ['arena_text'],
-  coding: ['swe_verified', 'livecodebench'],
+  coding: ['swe_verified', 'livecodebench', 'scicode'],
   reasoning: ['gpqa_diamond', 'hle'],
-  math: ['aime_2025'],
-  agent: ['tau2_bench', 'terminal_bench'],
-  multimodal: ['mmmu'],
+  math: ['aime_2025', 'aime_2026'],
+  agent: ['tau2_bench', 'terminal_bench', 'tb_hard', 'tau2_telecom', 'tau3_banking'],
+  multimodal: ['mmmu', 'mmmu_pro'],
   chinese: ['arena_zh', 'ceval'],
   long_context: ['mrcr_128k'],
 } as const
@@ -51,7 +51,9 @@ export function buildScoreMap(rows: ScoreRow[]): ScoreMap {
   const m: ScoreMap = new Map()
   for (const r of rows) {
     if (!m.has(r.model_id)) m.set(r.model_id, new Map())
-    m.get(r.model_id)!.set(r.key, r)
+    const cur = m.get(r.model_id)!.get(r.key)
+    // 同一基准多条记录：独立复测优先，其次取较新的
+    if (!cur || (r.evidence === 'independent' && cur.evidence !== 'independent') || (r.evidence === cur.evidence && r.as_of > cur.as_of)) m.get(r.model_id)!.set(r.key, r)
   }
   return m
 }

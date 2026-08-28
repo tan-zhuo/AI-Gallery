@@ -92,5 +92,10 @@
   ],
   "zh_docs": "无"
  },
- "complete": false
+ "complete": false,
+ "runtime": {
+  "tok_s": 75,
+  "latency_s": 0.92,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
 }

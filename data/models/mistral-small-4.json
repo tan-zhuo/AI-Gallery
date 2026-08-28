@@ -1,5 +1,128 @@
-{"id":"mistral-small-4","name":"Mistral Small 4","name_zh":"Mistral Small 4","aliases":["mistral-small-2603","Mistral-Small-4-119B-2603"],"vendor":"Mistral AI","family":"Mistral Small","license":"Apache-2.0","license_commercial":true,"openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/mistralai/Mistral-Small-4-119B-2603","status":"current","released_at":"2026-03-16","updated_at":"2026-08-28","modalities":["text","image","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"moe","total_params":"119B","active_params":"6.5B","total_params_b":119,"active_params_b":6.5,"experts":128,"active_experts":4,"shared_expert":true,"layers":36,"hidden_size":4096,"vocab_size":131072,"kv_heads":32,"head_dim":128,"attention":"MLA（kv_lora_rank 256，32 头）","notes":"与 Large 3 同构的细粒度 MoE：128 路由 + 1 共享专家，专家隐藏维 2048。合并 Magistral 推理、Pixtral 视觉、Devstral 编程于一体。官方权重为 FP8。","undisclosed":false},"context":{"max_tokens":262144,"display":"256K"},"memory":{"weight_gb":{"bf16":238,"fp8":119,"q4":69},"estimated":true,"ref_hw_24gb":"不可行","ref_hw_80gb":"Q4 约 69 GB 单卡可跑短上下文；官方最低 4×H100 / 1×B200","ref_hw_8x80gb":"FP8 高并发"},
-"pricing":{"input_per_m":0.15,"output_per_m":0.6,"currency":"USD","source":"Mistral 定价页","as_of":"2026-08-28"},
-"links":{"official":"https://mistral.ai/news/mistral-small-4/","hf":"https://huggingface.co/mistralai/Mistral-Small-4-119B-2603","pricing":"https://docs.mistral.ai/inference/pricing"},
-"copy":{"one_liner":"119B MoE 仅 6.5B 激活，推理 / 视觉 / 编程三合一。","highlights":["Apache-2.0，指令 + 推理 + 多模态 + 编程 agent 单一权重","6.5B 激活，官方称比 Small 3 吞吐 3 倍","GPQA Diamond 71.2（官方），输出比 gpt-oss-120b 短 20%"],"pitfalls":["名为 Small 实为 119B，24GB 单卡跑不了","AA 智能指数 20，推理深度不及同期国产 MoE","新架构（mistral4 / MLA）引擎适配仍在跟进"],"logic_ability":"考试型推理中游（GPQA 71.2），reasoning_effort=high 时可用；工程型推理继承 Devstral 但官方未给 SWE-bench 数字。","best_for":["低成本 API 多模态 agent","80GB 单卡本地推理"],"not_for":["24GB 消费卡","高难度数学 / 推理"]},"capability_notes":{"reasoning":"GPQA Diamond 71.2（官方）。","chinese":"官方支持中文，独立数据少。"},"ecosystem":{"engines":["vLLM","SGLang","llama.cpp"],"zh_docs":"无"},"complete":false}
+{
+ "id": "mistral-small-4",
+ "name": "Mistral Small 4",
+ "name_zh": "Mistral Small 4",
+ "aliases": [
+  "mistral-small-2603",
+  "Mistral-Small-4-119B-2603"
+ ],
+ "vendor": "Mistral AI",
+ "family": "Mistral Small",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+ "status": "current",
+ "released_at": "2026-03-16",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "119B",
+  "active_params": "6.5B",
+  "total_params_b": 119,
+  "active_params_b": 6.5,
+  "experts": 128,
+  "active_experts": 4,
+  "shared_expert": true,
+  "layers": 36,
+  "hidden_size": 4096,
+  "vocab_size": 131072,
+  "kv_heads": 32,
+  "head_dim": 128,
+  "attention": "MLA（kv_lora_rank 256 + RoPE 64，q_lora_rank 1024，32 头，head_dim 128）",
+  "notes": "与 Large 3 同构的细粒度 MoE：128 路由 + 1 共享专家，每 token 选 4，专家中间维 2048，全部 36 层均为 MoE（first_k_dense_replace 0）。MLA：qk_nope 64 + qk_rope 64、v_head 128，YaRN factor 128（原始 8K → config 1M，官方上下文 256K）。Pixtral 视觉编码器 24 层、hidden 1024、patch 14、image 1540。合并 Magistral 推理、Pixtral 视觉、Devstral 编程于一体。官方权重为 FP8（静态激活量化）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 238,
+   "fp8": 121,
+   "q8": 126,
+   "q4": 73.8
+  },
+  "kv_per_token_kib": 22.5,
+  "kv_note": "MLA 压缩缓存：(256 潜向量 + 64 RoPE) × 2 B = 640 B/层 × 36 层 ≈ 22.5 KiB/token。若引擎不做 MLA 吸收而缓存完整 K/V（32 头 × 128 × 2 × 2 B），则为 576 KiB/token。256K 上下文 MLA 缓存 ≈ 5.6 GB。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "UD-Q4_K_M 73.8 GB 单卡勉强可载，仅短上下文；官方最低 4×H100 / 2×H200 / 1×B200",
+  "ref_hw_8x80gb": "官方 FP8 121 GB，4×H100 推荐配置，8×H100 高并发",
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.15,
+  "output_per_m": 0.6,
+  "currency": "USD",
+  "source": "Mistral 定价页",
+  "as_of": "2026-08-28"
+ },
+ "links": {
+  "official": "https://mistral.ai/news/mistral-small-4/",
+  "hf": "https://huggingface.co/mistralai/Mistral-Small-4-119B-2603",
+  "pricing": "https://docs.mistral.ai/inference/pricing"
+ },
+ "copy": {
+  "one_liner": "119B MoE 仅 6.5B 激活，推理 / 视觉 / 编程三合一。",
+  "highlights": [
+   "Apache-2.0，指令 + 推理 + 多模态 + 编程 agent 单一权重，reasoning_effort 可切",
+   "6.5B 激活，官方称比 Small 3 吞吐 3 倍、端到端延迟降 40%",
+   "GPQA Diamond 71.2、AIME 2025 84、LiveCodeBench 64（high），输出比 gpt-oss-120b 短 20%"
+  ],
+  "pitfalls": [
+   "名为 Small 实为 119B，FP8 121 GB，24GB 单卡跑不了，官方最低 4×H100",
+   "推理档输出很长（AIME 均 27.9K 字符），关思考后 GPQA 掉到 59.1、AIME 36",
+   "Agent 类官方未给 SWE-bench / Terminal-Bench / tau2 数字，IFBench 仅 48"
+  ],
+  "logic_ability": "考试型推理中游：reasoning_effort=high 时 GPQA Diamond 71.2、AIME 2025 84（另一张图 83.8）、MMLU Pro 78，与 Magistral Medium 1.2 持平；instruct 模式下 GPQA 59.1、AIME 36、LiveCodeBench 32，差距很大。工程型推理：LiveCodeBench 64（high），继承 Devstral 但官方未给 SWE-bench 数字。长上下文 AA LCR 72。指令遵循偏弱（IFBench 48）。",
+  "best_for": [
+   "低成本 API 多模态 agent",
+   "80GB 单卡本地推理"
+  ],
+  "not_for": [
+   "24GB 消费卡",
+   "高难度数学 / 推理"
+  ]
+ },
+ "capability_notes": {
+  "coding": "LiveCodeBench 64（high）/ 32（instruct）（官方模型卡图表）；SWE-bench 未披露。",
+  "reasoning": "GPQA Diamond 71.2（high）/ 59.1（instruct）、MMLU Pro 78（官方模型卡图表）；HLE 未披露。",
+  "math": "AIME 2025 84（high，图 1）/ 83.8（图 2）/ 36（instruct）（官方模型卡图表）。",
+  "agent": "tau2 / Terminal-Bench 官方未披露；Collie 62.9。",
+  "instruction": "AllenAI IFBench 48（high）/ 35.7（instruct）、Arena Hard 58.3（官方模型卡图表）。",
+  "multimodal": "MMMU-Pro 60（high）/ 46.3（instruct）（官方模型卡图表）。",
+  "chinese": "官方支持中文，独立数据少。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Transformers"
+  ],
+  "finetune": "mistral-finetune / Unsloth；全参需 ≥ 4×80GB",
+  "zh_docs": "无"
+ },
+ "complete": true,
+ "runtime": {
+  "tok_s": 164,
+  "latency_s": 0.89,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "vendor_zh": "Mistral AI",
+ "sheet": {
+  "architecture_md": "**类型**：细粒度 MoE + MLA，119B 总参 / 6.5B 激活，图像输入。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 36（全部 MoE） |\n| 隐藏维 | 4,096 |\n| 专家 | 128 路由 + 1 共享，每 token 选 4，专家中间维 2,048 |\n| 注意力 | MLA：32 头，q_lora_rank 1024，kv_lora_rank 256，qk_nope 64 + qk_rope 64，v_head 128 |\n| RoPE | YaRN factor 128，原始 8,192，theta 1e4 |\n| 词表 | 131,072（Tekken） |\n| 上下文 | 官方 256K（config max_position 1,048,576） |\n| 视觉编码器 | Pixtral 24 层，hidden 1024，patch 14，image 1540，spatial merge 2 |\n\n`config.json` 中 `model_type: mistral3` / `text_config.model_type: mistral4`，`quant_method: fp8`。\n\n参考：mistralai/Mistral-Small-4-119B-2603 config.json。",
+  "memory_md": "| 精度 | 权重大小 | 参考显存 | 说明 |\n|---|---|---|---|\n| BF16 | 238 GB | 4×80GB | unsloth GGUF BF16（官方未发布 BF16） |\n| FP8 | 121 GB | 2×80GB | 官方 safetensors，3 分片 120.9 GB（另有 7 分片 consolidated 格式 141 GB） |\n| Q8 | 126 GB | 2×80GB | unsloth GGUF Q8_0 |\n| Q4 | 73.8 GB | 80GB 单卡 | unsloth UD-Q4_K_M；UD-Q4_K_S 69.5 GB |\n\n**KV Cache**：MLA 压缩缓存 ≈ 22.5 KiB/token（(256 + 64) × 2 B × 36 层）；非吸收实现 576 KiB/token。256K 上下文 MLA 缓存 ≈ 5.6 GB。\n\n**参考配置**：\n- 24GB：不可行\n- 80GB 单卡：Q4 勉强可载，短上下文\n- 4×H100 / 2×H200 / 1×B200：官方最低；4×H200 / 2×B200：官方推荐\n\n警示：high 推理档输出很长，预留输出 KV；vLLM 需 tensor-parallel ≥ 2。",
+  "training_md": "- 预训练 token 数：**未披露**\n- 单一权重同时覆盖指令、推理（Magistral）、视觉（Pixtral）、编程 agent（Devstral）\n- reasoning_effort：high（深度推理，推荐 temperature 0.7）/ none（快速响应）\n- 官方发布即 FP8（静态激活量化），无 BF16 官方权重\n- 官方评测：AA LCR 0.72 且平均输出仅 1.6K 字符",
+  "ecosystem_md": "- HF：mistralai/Mistral-Small-4-119B-2603（FP8 121 GB）；GGUF：unsloth/Mistral-Small-4-119B-2603-GGUF\n- 引擎：vLLM（官方推荐）、SGLang、llama.cpp、LM Studio、Transformers（main 分支）\n- 微调：mistral-finetune / Unsloth；MoE 全参需 ≥ 4×80GB\n- 中文文档：无",
+  "versions_md": "- 同代：Mistral Large 3（同构更大 MoE）、Magistral Medium 1.2 / Small 1.2（纯推理）、Devstral 2\n- 上代：Mistral Small 3.2（24B Dense）、Mistral Medium 3.1\n- 本代把 Small 从 24B Dense 改为 119B-A6.5B MoE，并合并推理 / 视觉 / 编程分支"
+ }
+}

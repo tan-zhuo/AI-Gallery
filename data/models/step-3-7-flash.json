@@ -1,5 +1,115 @@
-{"id":"step-3-7-flash","name":"Step 3.7 Flash","name_zh":"阶跃星辰 Step 3.7 Flash","aliases":["Step-3.7-Flash","stepfun-ai/Step-3.7-Flash","step-3.7-flash"],"vendor":"StepFun","vendor_zh":"阶跃星辰","family":"Step","license":"Apache-2.0","license_commercial":true,"openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/stepfun-ai/Step-3.7-Flash","status":"current","released_at":"2026-05-29","updated_at":"2026-08-28","modalities":["text","image","video","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"moe","total_params":"198B","active_params":"11B","total_params_b":198,"active_params_b":11,"experts":288,"active_experts":8,"shared_expert":true,"layers":45,"hidden_size":4096,"vocab_size":128896,"kv_heads":8,"head_dim":128,"attention":"混合：全注意力 / 512 滑窗交替，GQA（64 Q / 8 KV）","notes":"196B 语言骨干 + 1.8B 视觉编码器；42 层 MoE，共享专家维 1280。推理强度 low / medium / high。","undisclosed":false},"context":{"max_tokens":262144,"display":"256K"},"memory":{"weight_gb":{"bf16":396,"fp8":198,"q4":115},"estimated":true,"ref_hw_80gb":"不可行（官方最低 120GB 统一内存，如 Mac Studio / DGX Station）","ref_hw_8x80gb":"FP8 多卡"},
-"pricing":{"input_per_m":0.2,"output_per_m":1.15,"currency":"USD","source":"StepFun 开放平台定价","as_of":"2026-08-28","note":"缓存命中输入 $0.04"},
-"links":{"official":"https://huggingface.co/stepfun-ai/Step-3.7-Flash","hf":"https://huggingface.co/stepfun-ai/Step-3.7-Flash"},
-"copy":{"one_liner":"阶跃 198B 视觉 MoE，11B 激活，图 / 视频 / 编程 agent。","highlights":["Terminal-Bench 2.1 59.5、SWE-bench Pro 56.3、HLE 带工具 48.1（官方）","Apache-2.0，图片 + 视频理解 + 编程 agent 一体","官方放 BF16 / FP8 / NVFP4 / GGUF，Mac 128GB 可跑"],"pitfalls":["198B 总参，80GB 单卡跑不了","官方未给 SWE-bench Verified / GPQA 等常见指标","StepFun 海外生态与工具链较弱"],"logic_ability":"工程型推理不错（TB 2.1 59.5），考试型推理官方主要给 HLE 带工具 48.1，纯推理指标缺。","best_for":["视觉 + 搜索 agent","Mac / 大内存工作站本地"],"not_for":["24GB / 80GB 单卡","纯数学竞赛"]},"capability_notes":{"coding":"Terminal-Bench 2.1 59.5、SWE-bench Pro 56.3（官方）。","reasoning":"HLE 带工具 48.1（官方）。","multimodal":"图片 + 视频理解，V* 95.3（官方）。","chinese":"强，国产模型。"},"ecosystem":{"engines":["vLLM","SGLang","llama.cpp","Transformers"],"zh_docs":"有"},"complete":false}
+{
+ "id": "step-3-7-flash",
+ "name": "Step 3.7 Flash",
+ "name_zh": "阶跃星辰 Step 3.7 Flash",
+ "aliases": [
+  "Step-3.7-Flash",
+  "stepfun-ai/Step-3.7-Flash",
+  "step-3.7-flash"
+ ],
+ "vendor": "StepFun",
+ "vendor_zh": "阶跃星辰",
+ "family": "Step",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+ "status": "current",
+ "released_at": "2026-05-29",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "198B",
+  "active_params": "11B",
+  "total_params_b": 198,
+  "active_params_b": 11,
+  "experts": 288,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 45,
+  "hidden_size": 4096,
+  "vocab_size": 128896,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "混合：全注意力 / 512 滑窗交替，GQA（64 Q / 8 KV）",
+  "notes": "196B 语言骨干 + 1.8B 视觉编码器；42 层 MoE，共享专家维 1280。推理强度 low / medium / high。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 396,
+   "fp8": 198,
+   "q4": 115
+  },
+  "estimated": true,
+  "ref_hw_80gb": "不可行（官方最低 120GB 统一内存，如 Mac Studio / DGX Station）",
+  "ref_hw_8x80gb": "FP8 多卡"
+ },
+ "pricing": {
+  "input_per_m": 0.2,
+  "output_per_m": 1.15,
+  "currency": "USD",
+  "source": "StepFun 开放平台定价",
+  "as_of": "2026-08-28",
+  "note": "缓存命中输入 $0.04"
+ },
+ "links": {
+  "official": "https://huggingface.co/stepfun-ai/Step-3.7-Flash",
+  "hf": "https://huggingface.co/stepfun-ai/Step-3.7-Flash"
+ },
+ "copy": {
+  "one_liner": "阶跃 198B 视觉 MoE，11B 激活，图 / 视频 / 编程 agent。",
+  "highlights": [
+   "Terminal-Bench 2.1 59.5、SWE-bench Pro 56.3、HLE 带工具 48.1（官方）",
+   "Apache-2.0，图片 + 视频理解 + 编程 agent 一体",
+   "官方放 BF16 / FP8 / NVFP4 / GGUF，Mac 128GB 可跑"
+  ],
+  "pitfalls": [
+   "198B 总参，80GB 单卡跑不了",
+   "官方未给 SWE-bench Verified / GPQA 等常见指标",
+   "StepFun 海外生态与工具链较弱"
+  ],
+  "logic_ability": "工程型推理不错（TB 2.1 59.5），考试型推理官方主要给 HLE 带工具 48.1，纯推理指标缺。",
+  "best_for": [
+   "视觉 + 搜索 agent",
+   "Mac / 大内存工作站本地"
+  ],
+  "not_for": [
+   "24GB / 80GB 单卡",
+   "纯数学竞赛"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal-Bench 2.1 59.5、SWE-bench Pro 56.3（官方）。",
+  "reasoning": "HLE 带工具 48.1（官方）。",
+  "multimodal": "图片 + 视频理解，V* 95.3（官方）。",
+  "chinese": "强，国产模型。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Transformers"
+  ],
+  "zh_docs": "有"
+ },
+ "complete": false,
+ "runtime": {
+  "tok_s": 86,
+  "latency_s": 2.78,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
+}

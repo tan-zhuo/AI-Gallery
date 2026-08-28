@@ -1,5 +1,112 @@
-{"id":"hunyuan-hy3","name":"Hunyuan Hy3","name_zh":"腾讯混元 Hy3","aliases":["Hy3","tencent/Hy3","混元 Hy3"],"vendor":"Tencent","vendor_zh":"腾讯","family":"Hunyuan","license":"Apache-2.0","license_commercial":true,"openness":"open-weights","weights_available":true,"weights_url":"https://huggingface.co/tencent/Hy3","status":"current","released_at":"2026-07-06","updated_at":"2026-08-28","modalities":["text","tools"],"reasoning_mode":"optional",
-"architecture":{"type":"moe","total_params":"295B","active_params":"21B","total_params_b":295,"active_params_b":21,"experts":192,"active_experts":8,"shared_expert":true,"layers":80,"hidden_size":4096,"vocab_size":120832,"kv_heads":8,"head_dim":128,"attention":"GQA（64 Q / 8 KV）","notes":"另带 3.8B 多 token 预测层（MTP）。快慢思考混合。","undisclosed":false},"context":{"max_tokens":262144,"display":"256K"},"memory":{"weight_gb":{"bf16":598,"fp8":299,"q4":173},"kv_per_token_kib":320,"estimated":true,"ref_hw_80gb":"不可行","ref_hw_8x80gb":"FP8 8 卡（官方推荐 H20-3e 等大显存卡）"},
-"pricing":{"input_per_m":0.14,"output_per_m":0.58,"currency":"USD","source":"第三方托管常见价（OpenRouter）","as_of":"2026-08-28","note":"腾讯云官方价 ¥1 / ¥4 每百万 token"},
-"links":{"official":"https://www.tencent.com/en-us/articles/2202386.html","hf":"https://huggingface.co/tencent/Hy3"},
-"copy":{"one_liner":"腾讯 295B MoE 开源，SWE-bench 78%、GPQA 90。","highlights":["SWE-bench Verified 78%、GPQA Diamond 90.4%、Terminal-Bench 2.1 71.7%（官方）","Apache-2.0，21B 激活，256K 上下文","国产模型，中文与微信 / 腾讯生态原生"],"pitfalls":["295B 需 8 卡，官方还建议 H20-3e 级大显存","Arena 1456 排 59 名，对话体验不及榜单数字","文本 only，无视觉"],"logic_ability":"考试型推理顶级（GPQA 90.4），工程型推理同样一流（SWE-bench 78%、TB 71.7%），AA 智能指数 42 居开源前列。","best_for":["国产合规编程 / 办公 agent","腾讯云部署"],"not_for":["单机部署","多模态"]},"capability_notes":{"coding":"SWE-bench Verified 78%、Terminal-Bench 2.1 71.7%（官方）。","reasoning":"GPQA Diamond 90.4%（官方）。","chinese":"强，国产模型主场。"},"ecosystem":{"engines":["vLLM","SGLang","TensorRT-LLM"],"zh_docs":"有"},"complete":false}
+{
+ "id": "hunyuan-hy3",
+ "name": "Hunyuan Hy3",
+ "name_zh": "腾讯混元 Hy3",
+ "aliases": [
+  "Hy3",
+  "tencent/Hy3",
+  "混元 Hy3"
+ ],
+ "vendor": "Tencent",
+ "vendor_zh": "腾讯",
+ "family": "Hunyuan",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/tencent/Hy3",
+ "status": "current",
+ "released_at": "2026-07-06",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "295B",
+  "active_params": "21B",
+  "total_params_b": 295,
+  "active_params_b": 21,
+  "experts": 192,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 80,
+  "hidden_size": 4096,
+  "vocab_size": 120832,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（64 Q / 8 KV）",
+  "notes": "另带 3.8B 多 token 预测层（MTP）。快慢思考混合。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 598,
+   "fp8": 299,
+   "q4": 173
+  },
+  "kv_per_token_kib": 320,
+  "estimated": true,
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "FP8 8 卡（官方推荐 H20-3e 等大显存卡）"
+ },
+ "pricing": {
+  "input_per_m": 0.14,
+  "output_per_m": 0.58,
+  "currency": "USD",
+  "source": "第三方托管常见价（OpenRouter）",
+  "as_of": "2026-08-28",
+  "note": "腾讯云官方价 ¥1 / ¥4 每百万 token"
+ },
+ "links": {
+  "official": "https://www.tencent.com/en-us/articles/2202386.html",
+  "hf": "https://huggingface.co/tencent/Hy3"
+ },
+ "copy": {
+  "one_liner": "腾讯 295B MoE 开源，SWE-bench 78%、GPQA 90。",
+  "highlights": [
+   "SWE-bench Verified 78%、GPQA Diamond 90.4%、Terminal-Bench 2.1 71.7%（官方）",
+   "Apache-2.0，21B 激活，256K 上下文",
+   "国产模型，中文与微信 / 腾讯生态原生"
+  ],
+  "pitfalls": [
+   "295B 需 8 卡，官方还建议 H20-3e 级大显存",
+   "Arena 1456 排 59 名，对话体验不及榜单数字",
+   "文本 only，无视觉"
+  ],
+  "logic_ability": "考试型推理顶级（GPQA 90.4），工程型推理同样一流（SWE-bench 78%、TB 71.7%），AA 智能指数 42 居开源前列。",
+  "best_for": [
+   "国产合规编程 / 办公 agent",
+   "腾讯云部署"
+  ],
+  "not_for": [
+   "单机部署",
+   "多模态"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 78%、Terminal-Bench 2.1 71.7%（官方）。",
+  "reasoning": "GPQA Diamond 90.4%（官方）。",
+  "chinese": "强，国产模型主场。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "TensorRT-LLM"
+  ],
+  "zh_docs": "有"
+ },
+ "complete": false,
+ "runtime": {
+  "tok_s": 67,
+  "latency_s": 2.81,
+  "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ }
+}
