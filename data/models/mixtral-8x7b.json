@@ -1,0 +1,118 @@
+{
+ "aliases": [
+  "Mixtral-8x7B-Instruct-v0.1"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "HumanEval 40.2%（官方基座）。",
+  "math": "GSM8K 74.4%（官方基座，8-shot）。",
+  "knowledge": "MMLU 70.6%（官方）。",
+  "chinese": "弱。"
+ },
+ "complete": true,
+ "id": "mixtral-8x7b",
+ "name": "Mixtral 8x7B",
+ "name_zh": "Mixtral · 8x7B",
+ "vendor": "Mistral AI",
+ "family": "Mixtral",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1",
+ "superseded_by": "mistral-small-3-2",
+ "released_at": "2023-12-11",
+ "architecture": {
+  "type": "moe",
+  "total_params": "46.7B",
+  "active_params": "12.9B",
+  "total_params_b": 46.7,
+  "active_params_b": 12.9,
+  "experts": 8,
+  "active_experts": 2,
+  "shared_expert": false,
+  "layers": 32,
+  "hidden_size": 4096,
+  "vocab_size": 32000,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 8 KV 头）",
+  "notes": "第一款广泛流行的开源 MoE：8 专家 top-2，FFN 14,336；上下文 32K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 32768,
+  "display": "32K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 93.4,
+   "q8": 49.5,
+   "q4": 26.4
+  },
+  "estimated": false,
+  "kv_per_token_kib": 128.0,
+  "kv_note": "128 KiB/token（与 7B 相同，MoE 不增加 KV）；32K 约 4 GB。",
+  "ref_hw_24gb": "Q4_K_M 26.4 GB 略超 24GB，需 Q3 或 CPU 卸载部分专家",
+  "ref_hw_80gb": "BF16 93 GB 需 2×80GB；Q8 单卡 80GB",
+  "ref_hw_8x80gb": "高并发"
+ },
+ "pricing": {
+  "input_per_m": 0.24,
+  "output_per_m": 0.24,
+  "currency": "USD",
+  "source": "第三方托管常见价（DeepInfra）",
+  "as_of": "2026-08-28",
+  "note": "开源权重，社区托管价"
+ },
+ "links": {
+  "official": "https://mistral.ai/news/mixtral-of-experts",
+  "paper": "https://arxiv.org/abs/2401.04088",
+  "github": "https://github.com/mistralai/mistral-inference",
+  "hf": "https://huggingface.co/mistralai/Mixtral-8x7B-Instruct-v0.1"
+ },
+ "copy": {
+  "one_liner": "把 MoE 带进开源主流的里程碑，12.9B 激活打平 Llama 2 70B。",
+  "highlights": [
+   "首个大规模流行的开源稀疏 MoE，推理速度接近 13B Dense",
+   "Apache-2.0 无限制商用，当年 Arena 开源第一",
+   "32K 上下文，法德西意多语言"
+  ],
+  "pitfalls": [
+   "总参 46.7B，显存按 47B 算，24GB 卡放不下 Q4",
+   "中文弱、无工具调用原生格式",
+   "2025 年 24B Dense（Mistral Small 3）已全面超过它"
+  ],
+  "logic_ability": "2023 年末开源顶级：MMLU 70.6%、GSM8K 74.4%（官方基座数据），推理与 Llama 2 70B 相当。无 CoT 专训，复杂题目会错但格式稳定。",
+  "best_for": [
+   "MoE 研究 / 教学对照",
+   "已有部署的维护"
+  ],
+  "not_for": [
+   "中文",
+   "代码 / 数学新项目"
+  ]
+ },
+ "sheet": {
+  "architecture_md": "**类型**：稀疏 MoE Transformer，46.7B 总参 / 12.9B 激活。\n\n- 32 层，隐藏维 4096，词表 32,000\n- 每层 8 个专家 FFN（14,336），router top-2；无共享专家\n- GQA：32 Query 头 / 8 KV 头，head_dim 128；RoPE θ=1e6\n- 上下文 32,768（无滑窗）\n\n参考：《Mixtral of Experts》。",
+  "memory_md": "| 精度 | 权重大小 | 参考硬件 | 说明 |\n|---|---|---|---|\n| BF16 | 93.4 GB | 2×80GB | 官方 safetensors |\n| Q8 | ≈ 49.6 GB | 80GB 单卡 | GGUF Q8_0 |\n| Q4 | 26.4 GB | 32GB / 2×24GB | GGUF Q4_K_M（TheBloke） |\n\n**KV Cache**：128 KiB/token。\n\n**参考配置**：\n- RTX 4090 24GB：Q3_K_M 约 20 GB 或 Q4 + 专家 CPU 卸载\n- A100/H100 80GB：Q8 或 FP8，32K 上下文\n- 2×80GB：BF16",
+  "training_md": "- 预训练数据与 token 数未公开；多语言（英法德西意）\n- Instruct 版：SFT + DPO\n- 无原生 function-calling 模板（v0.1）\n- 官方推荐 temperature 0.7 以下",
+  "ecosystem_md": "- HF：mistralai/Mixtral-8x7B-Instruct-v0.1、-v0.1（基座）\n- 引擎：vLLM（MoE kernel 首个支持对象）、llama.cpp、Ollama、TGI\n- 微调：LoRA 可行，专家层微调需要 MoE 感知框架\n- 中文文档：弱",
+  "versions_md": "- 后继：Mixtral 8x22B（2024-04）→ Mistral Small 3 系列 Dense（2025）\n- 同期：Mistral 7B v0.2\n- Mistral 官方后来放弃开源 MoE 路线，转向 Dense 小模型与闭源 Large"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama",
+   "TGI"
+  ],
+  "finetune": "LoRA 可行",
+  "zh_docs": "弱"
+ }
+}

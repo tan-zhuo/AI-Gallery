@@ -118,5 +118,67 @@
   "tok_s": 147,
   "latency_s": 2.25,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Mistral Medium 3.5",
+   "one_liner": "Mistral's 128B dense open flagship, SWE-bench 77.6%.",
+   "highlights": [
+    "SWE-bench Verified 77.6%, τ³-Telecom 91.4% (official); Mistral's strongest engineering model",
+    "Instruct / reasoning / coding / vision in one; reasoning effort adjustable per request",
+    "Open weights, 256K context, with EAGLE speculative decoding"
+   ],
+   "pitfalls": [
+    "Modified MIT: companies whose global consolidated revenue exceeded $20M last month may not use it without a separate commercial license",
+    "128B dense; a single 80GB GPU barely runs Q4 with short context; realistically 4 GPUs minimum",
+    "API output $7.5/M is pricey; little independent data on Chinese ability"
+   ],
+   "logic_ability": "Strong engineering reasoning (SWE-bench 77.6%, AA Intelligence Index 30, upper-mid among open-source); exam-style reasoning has no official GPQA / AIME numbers and limited independent re-testing. With reasoning=none it degrades to a plain instruct model.",
+   "best_for": [
+    "Self-hosted coding agents / vibe-coding tools",
+    "Multi-tool long-task agents",
+    "European compliance scenarios"
+   ],
+   "not_for": [
+    "Self-deployment by large enterprises (revenue over threshold)",
+    "Local 24GB single GPU"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 77.6% (official).",
+    "agent": "τ³-Telecom 91.4% (official).",
+    "multimodal": "In-house vision encoder supporting variable-resolution images.",
+    "chinese": "Official multilingual support includes Chinese; little independent data."
+   }
+  },
+  "ja": {
+   "name_zh": "Mistral Medium 3.5",
+   "one_liner": "Mistral の 128B 稠密オープン旗艦。SWE-bench 77.6%。",
+   "highlights": [
+    "SWE-bench Verified 77.6%、τ³-Telecom 91.4%（公式）、Mistral 系で最強のエンジニアリングモデル",
+    "指示 / 推論 / コーディング / ビジョンを統合、reasoning effort はリクエストごとに調整可",
+    "オープンウェイト、256K コンテキスト、EAGLE 投機的デコーディング対応"
+   ],
+   "pitfalls": [
+    "Modified MIT：前月の全世界連結売上が 2000 万ドル超の企業は利用不可で、別途商用ライセンスが必要",
+    "128B 稠密、80GB 単一 GPU では Q4 で短コンテキストがやっと。実際は 4 GPU 以上",
+    "API 出力 $7.5/M はやや高い。中国語能力の独立データが少ない"
+   ],
+   "logic_ability": "エンジニアリング型推論は強い（SWE-bench 77.6%、AA 知能指数 30 でオープンソース中上位）。試験型推論は公式の GPQA / AIME 数値がなく、独立再検証も限定的。reasoning=none では通常の指示モデルに退化。",
+   "best_for": [
+    "自前ホスティングのコーディングエージェント / Vibe 系ツール",
+    "マルチツールの長時間タスクエージェント",
+    "欧州のコンプライアンス用途"
+   ],
+   "not_for": [
+    "大企業（売上が閾値超）の自前デプロイ",
+    "24GB 単一 GPU のローカル環境"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 77.6%（公式）。",
+    "agent": "τ³-Telecom 91.4%（公式）。",
+    "multimodal": "自社製ビジョンエンコーダ、可変解像度画像に対応。",
+    "chinese": "公式の多言語対応に中国語を含む。独立データは少ない。"
+   }
+  }
  }
 }

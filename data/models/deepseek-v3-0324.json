@@ -1,0 +1,115 @@
+{
+ "aliases": [
+  "DeepSeek V3 0324",
+  "deepseek-chat (2025-03)"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "LiveCodeBench 49.2%（官方）。",
+  "reasoning": "GPQA Diamond 68.4%（官方）。",
+  "math": "AIME 2024 59.4%（官方）。",
+  "agent": "函数调用较 V3 明显改善。",
+  "chinese": "中文顶级。"
+ },
+ "complete": false,
+ "id": "deepseek-v3-0324",
+ "name": "DeepSeek-V3-0324",
+ "name_zh": "DeepSeek-V3（0324）",
+ "vendor": "DeepSeek",
+ "vendor_zh": "深度求索",
+ "family": "DeepSeek-V3",
+ "license": "MIT",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3-0324",
+ "superseded_by": "deepseek-v3-1",
+ "released_at": "2025-03-24",
+ "architecture": {
+  "type": "moe",
+  "total_params": "671B",
+  "active_params": "37B",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "experts": 256,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 61,
+  "hidden_size": 7168,
+  "vocab_size": 129280,
+  "kv_heads": 128,
+  "head_dim": 192,
+  "attention": "MLA（kv_lora_rank 512 + rope 64）",
+  "notes": "结构同 V3；后训练吸收 R1 的 RL 方法；128K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 8192
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 1342,
+   "q8": 711.3,
+   "q4": 404.4,
+   "fp8": 671
+  },
+  "estimated": false,
+  "kv_per_token_kib": 68.6,
+  "kv_note": "MLA 压缩 KV：(512+64)×61×2 B ≈ 68.6 KiB/token；128K 上下文仅 8.6 GB。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）",
+  "ref_hw_8x80gb": "官方 FP8 671 GB 权重 8×H100 可服务（需 FP8 引擎）；BF16 需 16×80GB；Q4 404 GB 8×80GB 可跑"
+ },
+ "links": {
+  "official": "https://www.deepseek.com/",
+  "github": "https://github.com/deepseek-ai/DeepSeek-V3",
+  "hf": "https://huggingface.co/deepseek-ai/DeepSeek-V3-0324"
+ },
+ "copy": {
+  "one_liner": "V3 的大幅增强版，非推理模型中首次逼近 Claude 3.7。",
+  "highlights": [
+   "GPQA 59.1 → 68.4、LiveCodeBench 39.2 → 49.2（官方）",
+   "前端代码与函数调用明显改善",
+   "MIT 许可，权重与 V3 结构相同可直接替换"
+  ],
+  "pitfalls": [
+   "仍无推理模式",
+   "671B 部署门槛不变",
+   "被 V3.1（思考 + 非思考合一）取代"
+  ],
+  "logic_ability": "非推理模型顶级：GPQA 68.4%、AIME 2024 59.4%、LiveCodeBench 49.2%（官方）。吸收了 R1 的 RL 技巧，单次前向的推理能力大幅提升，工具调用可用。",
+  "best_for": [
+   "通用与代码",
+   "API 低成本调用"
+  ],
+  "not_for": [
+   "单机本地部署",
+   "多模态"
+  ]
+ },
+ "pricing": {
+  "input_per_m": 0.27,
+  "output_per_m": 1.1,
+  "currency": "USD",
+  "source": "DeepSeek 官方 API（deepseek-chat，2025-03 定价）",
+  "as_of": "2026-08-28"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "LMDeploy",
+   "llama.cpp"
+  ],
+  "finetune": "极困难",
+  "zh_docs": "有"
+ }
+}

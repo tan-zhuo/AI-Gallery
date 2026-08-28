@@ -102,5 +102,63 @@
   "tok_s": 66,
   "latency_s": 2.97,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Qwen3 Coder · 480B",
+   "one_liner": "Apache-2.0 MoE dedicated to coding agents, non-thinking mode.",
+   "highlights": [
+    "SWE-bench Verified 69.6% (official)",
+    "Apache-2.0, paired with Qwen Code CLI",
+    "256K context, up to 1M with YaRN"
+   ],
+   "pitfalls": [
+    "480B size; high self-hosting barrier",
+    "Non-thinking; weak on complex reasoning",
+    "A smaller 30B-A3B version already runs on a single GPU"
+   ],
+   "logic_ability": "Specialized in engineering reasoning with long-horizon agent RL training; exam-style reasoning is not the focus.",
+   "best_for": [
+    "Coding agents"
+   ],
+   "not_for": [
+    "General reasoning"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 69.6 (official blog); SWE-bench Pro 38.7, Terminal-Bench 2.0 23.9 (HF model card).",
+    "agent": "Long-horizon agent RL training, Qwen Code / CLINE tool calling; Evasion Bench 78.16 (HF model card).",
+    "reasoning": "Non-thinking mode; no official GPQA / HLE.",
+    "math": "Not officially disclosed.",
+    "chinese": "Top-tier Chinese (Qwen series)."
+   }
+  },
+  "ja": {
+   "name_zh": "Qwen3 Coder · 480B",
+   "one_liner": "Apache-2.0 のコーディングエージェント専用 MoE。非思考モード。",
+   "highlights": [
+    "SWE-bench Verified 69.6%（公式）",
+    "Apache-2.0、Qwen Code CLI と組み合わせ",
+    "256K コンテキスト、YaRN で 1M まで"
+   ],
+   "pitfalls": [
+    "480B 規模で自前ホスティングの敷居が高い",
+    "非思考で複雑な推論は弱い",
+    "単一 GPU で動く小型の 30B-A3B 版がすでにある"
+   ],
+   "logic_ability": "エンジニアリング型推論に特化、長期エージェント RL 学習。試験型推論は重点外。",
+   "best_for": [
+    "コーディングエージェント"
+   ],
+   "not_for": [
+    "汎用推論"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 69.6（公式ブログ）。SWE-bench Pro 38.7、Terminal-Bench 2.0 23.9（HF モデルカード）。",
+    "agent": "長期エージェント RL 学習、Qwen Code / CLINE のツール呼び出し。Evasion Bench 78.16（HF モデルカード）。",
+    "reasoning": "非思考モード、公式の GPQA / HLE なし。",
+    "math": "公式未開示。",
+    "chinese": "中国語は最上位（Qwen シリーズ）。"
+   }
+  }
  }
 }

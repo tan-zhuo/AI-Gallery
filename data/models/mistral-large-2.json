@@ -1,0 +1,85 @@
+{
+ "license": "Mistral Research License",
+ "license_commercial": "restricted",
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "dense",
+  "total_params": "123B",
+  "total_params_b": 123,
+  "undisclosed": false,
+  "notes": "123B 稠密模型，权重以 MRL 许可公开（研究 / 非商用），商用需另行授权。"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 246,
+   "fp8": 123,
+   "q4": 70
+  },
+  "kv_note": "128K 上下文 KV 占用大，单卡 80GB 需 q4 且限制上下文",
+  "ref_hw_80gb": "q4 可跑",
+  "ref_hw_8x80gb": "bf16 全上下文",
+  "estimated": true
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "mistral-large-2",
+ "name": "Mistral Large 2",
+ "aliases": [
+  "mistral-large-2407",
+  "mistral-large-2411",
+  "Mistral-Large-Instruct-2407"
+ ],
+ "vendor": "Mistral AI",
+ "family": "Mistral Large",
+ "superseded_by": "mistral-large-3",
+ "released_at": "2024-07-24",
+ "weights_url": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2407",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 8192
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 6,
+  "currency": "USD",
+  "source": "Mistral 定价页（2024-09 降价后）",
+  "as_of": "2024-09-17",
+  "note": "发布价 $3 / $9"
+ },
+ "links": {
+  "official": "https://mistral.ai/news/mistral-large-2407",
+  "hf": "https://huggingface.co/mistralai/Mistral-Large-Instruct-2407",
+  "pricing": "https://mistral.ai/pricing"
+ },
+ "copy": {
+  "one_liner": "123B 稠密开放权重旗舰，代码与多语言追平 GPT-4o。",
+  "highlights": [
+   "MMLU 84.0%、HumanEval 92%，与 GPT-4o / Llama 3.1 405B 同档",
+   "123B 稠密可单节点部署，权重公开",
+   "80+ 编程语言、强多语言支持"
+  ],
+  "pitfalls": [
+   "MRL 许可：商用需付费授权",
+   "无视觉（2411 版仍纯文本）",
+   "无推理模式，GPQA 未公布"
+  ],
+  "logic_ability": "非推理模型中的中上水平，MATH 71.5%；函数调用与多轮遵循较好。",
+  "best_for": [
+   "历史对照",
+   "研究用途的本地部署"
+  ],
+  "not_for": [
+   "未授权的商用",
+   "新项目"
+  ]
+ }
+}

@@ -1,0 +1,92 @@
+{
+ "aliases": [
+  "Baichuan2-13B-Chat"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "MMLU 59.2%（官方基座）。",
+  "chinese": "C-Eval 58.1%、CMMLU 62.0%（官方基座）。"
+ },
+ "complete": false,
+ "id": "baichuan2-13b",
+ "name": "Baichuan2-13B",
+ "name_zh": "百川 2 · 13B",
+ "vendor": "Baichuan",
+ "vendor_zh": "百川智能",
+ "family": "Baichuan2",
+ "license": "Baichuan 2 Community License（Apache-2.0 代码）",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/baichuan-inc/Baichuan2-13B-Chat",
+ "released_at": "2023-09-06",
+ "architecture": {
+  "type": "dense",
+  "total_params": "13.9B",
+  "total_params_b": 13.9,
+  "layers": 40,
+  "hidden_size": 5120,
+  "vocab_size": 125696,
+  "kv_heads": 40,
+  "head_dim": 128,
+  "attention": "MHA（40 头）+ ALiBi",
+  "notes": "2.6T 中英 token；ALiBi 位置编码；上下文 4K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 4096,
+  "display": "4K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 27.8,
+   "q8": 14.7,
+   "q4": 8.1
+  },
+  "estimated": true,
+  "kv_per_token_kib": 800.0,
+  "kv_note": "MHA：40×128×2×40×2 B = 800 KiB/token。",
+  "ref_hw_24gb": "BF16 27.8 GB 超 24GB；int8 官方版 14 GB 可跑",
+  "ref_hw_80gb": "BF16 单卡",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://www.baichuan-ai.com/",
+  "github": "https://github.com/baichuan-inc/Baichuan2",
+  "paper": "https://arxiv.org/abs/2309.10305",
+  "hf": "https://huggingface.co/baichuan-inc/Baichuan2-13B-Chat"
+ },
+ "copy": {
+  "one_liner": "2023 年中文开源热潮的代表，13B 中文当年领先。",
+  "highlights": [
+   "2.6T 中英 token，C-Eval / CMMLU 当年同尺寸最高",
+   "公开全部训练中间检查点，学术价值高",
+   "官方 int8 / int4 量化版"
+  ],
+  "pitfalls": [
+   "上下文 4K，MHA KV 大",
+   "自定义模型代码，新框架兼容差",
+   "商用需登记；百川后续转向闭源"
+  ],
+  "logic_ability": "2023 年 13B 水平：MMLU 59.2%、C-Eval 58.1%（官方基座）。",
+  "best_for": [
+   "历史对照 / 中文预训练研究"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp"
+  ],
+  "finetune": "LoRA 可行",
+  "zh_docs": "有"
+ }
+}

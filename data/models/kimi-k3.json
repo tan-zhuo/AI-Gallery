@@ -127,5 +127,75 @@
   "tok_s": 36,
   "latency_s": 8.6,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Moonshot Kimi K3",
+   "one_liner": "2.8T-parameter open multimodal agent flagship; #1 open-source on LMArena.",
+   "highlights": [
+    "2.8T / 104B active, KDA linear + Gated MLA hybrid, 1M context; LMArena text 1489 (#10, highest open-source), AA index 60",
+    "Terminal-Bench 2.1 88.3, BrowseComp 91.2, GPQA 93.5; officially benchmarked against Claude Fable 5 / GPT-5.6 Sol with only a small gap",
+    "Released natively as MXFP4 QAT, 1.56 TB counts as \"full precision\"; native text + image + video multimodal"
+   ],
+   "pitfalls": [
+    "Kimi K3 License: over 100M MAU or $20M monthly revenue requires displaying \"Kimi K3\" in the UI; MaaS with annual revenue over $20M needs a separate agreement",
+    "1.56 TB weights exceed a single 8×H200 node; self-hosting needs two nodes, so practically only cloud providers can run it",
+    "API price $3/$15 is 3–4× K2.6; thinking cannot be disabled and the max tier burns many tokens; multi-turn must return reasoning_content verbatim"
+   ],
+   "logic_ability": "Engineering and agent reasoning are the core: Terminal-Bench 2.1 88.3, DeepSWE 67.5, FrontierSWE 81.2, SWE-Marathon 42.0; BrowseComp 91.2 is the highest published. Exam-style reasoning is top-tier (GPQA 93.5, HLE-Full 43.5 / 56.0 with tools), but CritPt 23.4 is clearly below GPT-5.6 Sol. Thinking is on by default; reasoning_effort adjustable low/high/max. Common issues: at the low tier the AA index drops to 48, a big gap; tool-free plain-text chat tends to be verbose.",
+   "best_for": [
+    "Deep search / research agents",
+    "Long-horizon coding agents (Kimi Code CLI)",
+    "Vision + long-context document / video understanding",
+    "Cloud-provider-scale self-hosting"
+   ],
+   "not_for": [
+    "Any single-node deployment",
+    "Simple chat (costly; use K2.6)",
+    "Very high-MAU products unwilling to display the brand"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 88.3, DeepSWE 67.5, ProgramBench 77.8, SciCode 58.7, FrontierSWE 81.2 (official).",
+    "reasoning": "GPQA Diamond 93.5, HLE-Full 43.5 / 56.0 (with tools), CritPt 23.4 (official).",
+    "math": "AIME not officially disclosed; MathVision 94.3 / 97.8 (Python).",
+    "agent": "BrowseComp 91.2, MCP-Atlas 84.2, Toolathlon-Verified 76.5, OSWorld-Verified 84.8, τ³-Banking 33.4 (official).",
+    "multimodal": "MMMU-Pro 81.6 / 83.4 (with tools), Video-MME 90.0, OmniDocBench 91.1 (official).",
+    "chinese": "Top-tier Chinese."
+   }
+  },
+  "ja": {
+   "name_zh": "Moonshot Kimi K3",
+   "one_liner": "2.8T のオープン多モーダルエージェント旗艦。LMArena OSS 1 位。",
+   "highlights": [
+    "2.8T / 104B アクティブ、KDA 線形 + Gated MLA ハイブリッド、1M コンテキスト。LMArena テキスト榜 1489（10 位、オープンソース最高）、AA 指数 60",
+    "Terminal-Bench 2.1 88.3、BrowseComp 91.2、GPQA 93.5。公式は Claude Fable 5 / GPT-5.6 Sol と比較し、わずかな差にとどまる",
+    "ネイティブ MXFP4 QAT で公開、1.56 TB が「フル精度」。テキスト + 画像 + 動画のネイティブマルチモーダル"
+   ],
+   "pitfalls": [
+    "Kimi K3 License：MAU 1 億超または月収 2000 万ドル超は UI に「Kimi K3」を表示する必要あり。MaaS で年収 2000 万ドル超は別途契約が必要",
+    "1.56 TB の重みは単一 8×H200 ノードを超え、自前ホスティングには 2 ノード必要。実質クラウド事業者しか動かせない",
+    "API 価格 $3/$15 は K2.6 の 3–4 倍。思考は無効化不可で max 設定はトークン消費大。マルチターンでは reasoning_content をそのまま返す必要あり"
+   ],
+   "logic_ability": "エンジニアリング型とエージェント推論が中核：Terminal-Bench 2.1 88.3、DeepSWE 67.5、FrontierSWE 81.2、SWE-Marathon 42.0、BrowseComp 91.2 は公開値で最高。試験型推論も最上位（GPQA 93.5、HLE-Full 43.5 / ツールあり 56.0）だが、CritPt 23.4 は GPT-5.6 Sol を明確に下回る。思考はデフォルトでオン、reasoning_effort は low/high/max で調整可。よくある問題：low 設定では AA 指数が 48 まで落ち差が大きい。ツールなしの純テキスト対話はやや冗長。",
+   "best_for": [
+    "ディープサーチ / リサーチ型エージェント",
+    "長期コーディングエージェント（Kimi Code CLI）",
+    "ビジョン + 長コンテキストのドキュメント / 動画理解",
+    "クラウド事業者規模の自前ホスティング"
+   ],
+   "not_for": [
+    "あらゆる単一ノードデプロイ",
+    "シンプルな対話（コスト高、K2.6 を使う）",
+    "ブランド表示を望まない超大規模 MAU 製品"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 88.3、DeepSWE 67.5、ProgramBench 77.8、SciCode 58.7、FrontierSWE 81.2（公式）。",
+    "reasoning": "GPQA Diamond 93.5、HLE-Full 43.5 / 56.0（ツールあり）、CritPt 23.4（公式）。",
+    "math": "AIME は公式未開示。MathVision 94.3 / 97.8（Python）。",
+    "agent": "BrowseComp 91.2、MCP-Atlas 84.2、Toolathlon-Verified 76.5、OSWorld-Verified 84.8、τ³-Banking 33.4（公式）。",
+    "multimodal": "MMMU-Pro 81.6 / 83.4（ツールあり）、Video-MME 90.0、OmniDocBench 91.1（公式）。",
+    "chinese": "中国語は最上位。"
+   }
+  }
  }
 }

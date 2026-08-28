@@ -1,0 +1,125 @@
+{
+ "aliases": [
+  "DeepSeek-V3 671B",
+  "deepseek-chat (2024-12)"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "LiveCodeBench 40.5%（Pass@1-COT）、Codeforces 51.6 百分位（官方）。",
+  "reasoning": "GPQA Diamond 59.1%（官方）。",
+  "math": "MATH-500 90.2%、AIME 2024 39.2%（官方）。",
+  "knowledge": "MMLU-Pro 75.9%（官方）。",
+  "agent": "工具调用可用但不稳（0324 改善）。",
+  "chinese": "C-Eval 86.5%、中文 SimpleQA 64.8%（官方），中文顶级。"
+ },
+ "complete": true,
+ "id": "deepseek-v3",
+ "name": "DeepSeek-V3",
+ "name_zh": "DeepSeek-V3（1226）",
+ "vendor": "DeepSeek",
+ "vendor_zh": "深度求索",
+ "family": "DeepSeek-V3",
+ "license": "MIT",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3",
+ "superseded_by": "deepseek-v3-0324",
+ "released_at": "2024-12-26",
+ "architecture": {
+  "type": "moe",
+  "total_params": "671B",
+  "active_params": "37B",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "experts": 256,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 61,
+  "hidden_size": 7168,
+  "vocab_size": 129280,
+  "kv_heads": 128,
+  "head_dim": 192,
+  "attention": "MLA（kv_lora_rank 512 + rope 64）",
+  "notes": "14.8T token 预训练；FP8 混合精度；MTP 多 token 预测；256 路由专家 top-8 + 1 共享专家；128K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 8192
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 1342,
+   "q8": 711.3,
+   "q4": 404.4,
+   "fp8": 671
+  },
+  "estimated": false,
+  "kv_per_token_kib": 68.6,
+  "kv_note": "MLA 压缩 KV：(512+64)×61×2 B ≈ 68.6 KiB/token；128K 上下文仅 8.6 GB。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）",
+  "ref_hw_8x80gb": "官方 FP8 671 GB 权重 8×H100 可服务（需 FP8 引擎）；BF16 需 16×80GB；Q4 404 GB 8×80GB 可跑"
+ },
+ "links": {
+  "official": "https://www.deepseek.com/",
+  "github": "https://github.com/deepseek-ai/DeepSeek-V3",
+  "paper": "https://arxiv.org/abs/2412.19437",
+  "hf": "https://huggingface.co/deepseek-ai/DeepSeek-V3"
+ },
+ "copy": {
+  "one_liner": "560 万美元训出的开源 GPT-4o 级，MoE 时代的分水岭。",
+  "highlights": [
+   "官方称训练成本仅 2.788M H800 GPU 小时，性能对标 GPT-4o / Claude 3.5",
+   "MLA + 无辅助损失负载均衡 + MTP + FP8 训练",
+   "MIT 许可（权重），API 价格极低"
+  ],
+  "pitfalls": [
+   "671B 总参，本地部署需 8×80GB 以上",
+   "无推理模式，Agent 与工具调用弱于后续 0324",
+   "早期版本在英文长对话中偶有中文夹杂"
+  ],
+  "logic_ability": "非推理模型顶级：MATH-500 90.2%、GPQA 59.1%、LiveCodeBench 40.5%、Codeforces 51.6 百分位（官方）。逻辑与代码表现在 2024 年末开源第一，但没有长思考能力，复杂题目依赖单次前向。",
+  "best_for": [
+   "通用与代码",
+   "API 低成本调用"
+  ],
+  "not_for": [
+   "单机本地部署",
+   "多模态"
+  ]
+ },
+ "pricing": {
+  "input_per_m": 0.27,
+  "output_per_m": 1.1,
+  "currency": "USD",
+  "source": "DeepSeek 官方 API（deepseek-chat，2024-12 定价）",
+  "as_of": "2026-08-28"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE Transformer，671B 总参 / 37B 激活。\n\n- 61 层（前 3 层 Dense FFN），隐藏维 7168，词表 129,280\n- DeepSeekMoE：256 路由专家（FFN 2048）top-8 + 1 共享专家，无辅助损失负载均衡\n- MLA：128 头，kv_lora_rank 512，qk_nope 128 + qk_rope 64，v_head 128\n- MTP（多 token 预测）模块 1 层，推理可用作投机解码\n- 上下文 128K（YaRN 两阶段扩展）\n\n参考：DeepSeek-V3 技术报告（arXiv 2412.19437）。",
+  "memory_md": "| 精度 | 权重大小 | 参考硬件 | 说明 |\n|---|---|---|---|\n| FP8 | ≈ 671 GB | 8×H100/H200 | 官方原生 FP8 权重 |\n| BF16 | 1342 GB | 16×80GB | 需转换 |\n| Q4 | 404 GB | 8×80GB / 大内存 CPU | GGUF Q4_K_M（unsloth） |\n| 1.58-bit | ≈ 131 GB | 2×80GB | unsloth 动态量化，质量有损 |\n\n**KV Cache**：MLA ≈ 68.6 KiB/token，128K 仅 8.6 GB，是同规模 GQA 模型的 1/10。\n\n**参考配置**：\n- 8×H200 141GB：FP8 + 长上下文高并发（官方推荐）\n- 8×H100 80GB：FP8 勉强（640 GB 显存需专家卸载或 Q8）\n- Mac Studio 512GB：Q4 可跑，约 5–10 tok/s",
+  "training_md": "- 预训练 14.8T token，FP8 混合精度，2.664M H800 GPU 小时\n- DualPipe 流水线 + 跨节点 all-to-all 通信优化\n- 后训练：SFT（含 R1 蒸馏的推理数据）+ GRPO\n- 总成本官方估算 2.788M GPU 小时 ≈ 557.6 万美元（不含研发）",
+  "ecosystem_md": "- HF：deepseek-ai/DeepSeek-V3（FP8）、-Base\n- 引擎：SGLang（官方推荐）、vLLM、LMDeploy、TensorRT-LLM、llama.cpp（GGUF）\n- 微调：极困难（671B MoE + MLA），社区几乎只做 LoRA 实验\n- 中文文档：有",
+  "versions_md": "- 后继：DeepSeek-V3-0324（2025-03）→ V3.1（2025-08）→ V3.1-Terminus → V3.2\n- 推理分支：DeepSeek-R1（2025-01，基于 V3-Base）\n- 上代：DeepSeek-V2.5"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "LMDeploy",
+   "TensorRT-LLM",
+   "llama.cpp"
+  ],
+  "finetune": "极困难",
+  "zh_docs": "有"
+ }
+}

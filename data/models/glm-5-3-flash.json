@@ -115,6 +115,70 @@
   "finetune": "Unsloth 指南；全参需多机",
   "zh_docs": "有"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Zhipu GLM-5.3-Flash",
+   "one_liner": "320B/18B hybrid-attention multimodal open model at a very low price.",
+   "highlights": [
+    "MIT license; Terminal-Bench 2.1 84.3, DeepSWE 63.4, above GLM-5.2, officially priced at 1/10 of it",
+    "KDA linear + DSA sparse 3:1 hybrid, KV only 11 KiB/token; 1M context KV is about 11 GB",
+    "First natively multimodal GLM-5 model (new base on 30T multimodal corpus); launched anonymously on OpenRouter as Ox Alpha"
+   ],
+   "pitfalls": [
+    "320B total parameters, official FP8 328 GB, minimum 4x H100; even community 1-bit quantization is 93 GB, no single-GPU option",
+    "New architecture (glm5_next: KDA + DSA + mHC) needs the latest SGLang / vLLM / Transformers; llama.cpp only via Unsloth dynamic quants",
+    "Just released; official reports only 6 agent-type benchmarks, with GPQA / AIME / SWE-bench Verified / MMMU and other common boards undisclosed"
+   ],
+   "logic_ability": "Strong engineering reasoning: Terminal-Bench 2.1 84.3, DeepSWE v1.1 63.4, AutomationBench 48.8, Agents' Last Exam 26.3, all above GLM-5.2 (81.0 / 46.2 / 26.2 / 20.4) and approaching the Claude Opus 4.8 and GPT-5.6 Terra tier. HLE (with tools) 55.3. GDPVal-AA v2 1773 is the highest in its table. Exam-style benchmarks (GPQA, AIME) not officially disclosed, so pure math reasoning cannot be assessed. LMArena 1469 and AA index 57 are third-party figures.",
+   "best_for": [
+    "Low-cost coding agents",
+    "Self-hosted multimodal + long-context services"
+   ],
+   "not_for": [
+    "Single-GPU deployment",
+    "Fine-tuning that needs a mature ecosystem"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 84.3, DeepSWE v1.1 63.4 (official model card bench_53).",
+    "agent": "Agents' Last Exam 26.3, AutomationBench v1.0.6 48.8, GDPVal-AA v2 1773 (official model card).",
+    "reasoning": "HLE (with tools) 55.3 (official model card); HLE without tools and GPQA not disclosed.",
+    "math": "AIME not officially disclosed.",
+    "multimodal": "Native image input (24-layer vision encoder); official MMMU and similar figures not disclosed.",
+    "chinese": "Top-tier Chinese within the Zhipu family."
+   }
+  },
+  "ja": {
+   "name_zh": "智譜 GLM-5.3-Flash",
+   "one_liner": "320B/18B ハイブリッド注意のマルチモーダルオープンモデル、超低価格。",
+   "highlights": [
+    "MIT ライセンス、Terminal-Bench 2.1 84.3、DeepSWE 63.4 で GLM-5.2 を上回り、公式は価格をその 1/10 と表明",
+    "KDA 線形 + DSA スパースの 3:1 ハイブリッド、KV はわずか 11 KiB/token、1M コンテキストの KV ≈ 11 GB",
+    "GLM-5 系初のネイティブマルチモーダル（30T マルチモーダルコーパスの新ベース）。OpenRouter に Ox Alpha として匿名公開されていた"
+   ],
+   "pitfalls": [
+    "総パラメータ 320B、公式 FP8 で 328 GB、最低 4×H100。コミュニティの 1-bit 量子化でも 93 GB で単一 GPU は不可",
+    "新アーキテクチャ（glm5_next：KDA + DSA + mHC）のため SGLang / vLLM / Transformers の最新版が必要、llama.cpp は Unsloth 動的量子化のみ",
+    "公開直後で公式は agent 系 6 項目のベンチマークのみ。GPQA / AIME / SWE-bench Verified / MMMU などの一般的な指標は未公表"
+   ],
+   "logic_ability": "エンジニアリング型推論が強い：Terminal-Bench 2.1 84.3、DeepSWE v1.1 63.4、AutomationBench 48.8、Agents' Last Exam 26.3 と、いずれも GLM-5.2（81.0 / 46.2 / 26.2 / 20.4）を上回り、Claude Opus 4.8 と GPT-5.6 Terra のクラスに迫る。HLE（ツールあり）55.3。GDPVal-AA v2 1773 は同表最高。試験型ベンチマーク（GPQA、AIME）は公式未公表で、純粋な数学推論は評価不能。LMArena 1469、AA 指数 57 は第三者の数値。",
+   "best_for": [
+    "低コストのコーディング agent",
+    "マルチモーダル + 長文コンテキストの自前サービス"
+   ],
+   "not_for": [
+    "単一 GPU での展開",
+    "成熟したエコシステムが必要なファインチューニング"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 84.3、DeepSWE v1.1 63.4（公式モデルカード bench_53）。",
+    "agent": "Agents' Last Exam 26.3、AutomationBench v1.0.6 48.8、GDPVal-AA v2 1773（公式モデルカード）。",
+    "reasoning": "HLE（ツールあり）55.3（公式モデルカード）。ツールなし HLE、GPQA は未公表。",
+    "math": "AIME は公式未公表。",
+    "multimodal": "ネイティブ画像入力（24 層の視覚エンコーダ）。MMMU などの公式数値は未公表。",
+    "chinese": "智譜系で中国語は最上位。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 50,

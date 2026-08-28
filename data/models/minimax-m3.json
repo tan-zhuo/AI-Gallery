@@ -126,5 +126,71 @@
   "tok_s": 118,
   "latency_s": 1.13,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "MiniMax M3",
+   "one_liner": "428B/23B sparse-attention multimodal open model; cheap 1M context.",
+   "highlights": [
+    "MSA sparse attention: at 1M context, prefill 9× / decode 15× vs M2, per-token compute down to 1/20",
+    "Native multimodal (text + image + video); SWE-Bench Pro 59.0 on par with GPT-5.5; API price $0.3/$1.2",
+    "Optional thinking: enabled / adaptive / disabled; can be turned off for low-latency scenarios"
+   ],
+   "pitfalls": [
+    "MiniMax Community License: commercial use requires a \"Built with MiniMax M3\" notice; annual revenue over $20M needs written authorization; not MIT",
+    "428B total parameters, BF16 854 GB, nearly double M2; KV 120 KiB/token is not reduced by MSA",
+    "Weaker at pure-text coding than contemporaries GLM-5.2 / Kimi K3; LMArena 1442 and AA index 45 are low among flagships"
+   ],
+   "logic_ability": "Mainly engineering reasoning: SWE-Bench Pro 59.0, Terminal-Bench 2.1 66.0, MCP Atlas 74.2, BrowseComp 83.5. Exam-style benchmarks not officially disclosed (Z.ai's comparison table lists GPQA 93, HLE 37, a third-party citation). Thinking can default to adaptive. Common issues: long-horizon autonomous tasks (PostTrainBench 37.1) lag Opus 4.8; multimodal is stronger than pure-text reasoning.",
+   "best_for": [
+    "Image / video + long-context agents",
+    "Low-cost 1M-context services",
+    "Self-hosted 8×H100-class multimodal inference"
+   ],
+   "not_for": [
+    "Single-GPU deployment",
+    "Highest demands on pure-text coding (use GLM-5.2 / K3)",
+    "Commercial products unwilling to display the brand"
+   ],
+   "capability_notes": {
+    "coding": "SWE-Bench Pro 59.0, Terminal-Bench 2.1 66.0, SWE-fficiency 34.8, KernelBench Hard 28.8 (official).",
+    "reasoning": "GPQA / HLE not officially disclosed; Z.ai GLM-5.2 comparison table cites GPQA 93, HLE 37.",
+    "agent": "BrowseComp 83.5, MCP Atlas 74.2, PostTrainBench 37.1 (official).",
+    "multimodal": "Native image + video; official blog gives no MMMU number.",
+    "chinese": "Good Chinese."
+   }
+  },
+  "ja": {
+   "name_zh": "MiniMax M3",
+   "one_liner": "428B/23B スパース注意の多モーダル OSS。1M を低価格で。",
+   "highlights": [
+    "MSA スパースアテンション：1M コンテキストで prefill 9 倍 / decode 15 倍（M2 比）、トークンあたり計算量は 1/20 に",
+    "ネイティブマルチモーダル（テキスト + 画像 + 動画）、SWE-Bench Pro 59.0 で GPT-5.5 と同等、API 価格 $0.3/$1.2",
+    "思考は enabled / adaptive / disabled の 3 段階で選択可、低レイテンシ用途ではオフにできる"
+   ],
+   "pitfalls": [
+    "MiniMax Community License：商用は「Built with MiniMax M3」の表示が必要、年収 2000 万ドル超は書面許諾が必要。MIT ではない",
+    "総パラメータ 428B、BF16 854 GB で M2 の約 2 倍。KV 120 KiB/token は MSA でも減らない",
+    "純テキストのコーディングは同時期の GLM-5.2 / Kimi K3 より弱い。LMArena 1442、AA 指数 45 でフラッグシップの中では低め"
+   ],
+   "logic_ability": "エンジニアリング型推論が主：SWE-Bench Pro 59.0、Terminal-Bench 2.1 66.0、MCP Atlas 74.2、BrowseComp 83.5。試験型ベンチマークは公式未開示（Z.ai の比較表に GPQA 93、HLE 37 があるが第三者引用）。思考はデフォルトを adaptive に切替可。よくある問題：長期の自律タスク（PostTrainBench 37.1）は Opus 4.8 に後れ、純テキスト推論よりマルチモーダルが強い。",
+   "best_for": [
+    "画像 / 動画 + 長コンテキストのエージェント",
+    "低コストの 1M コンテキストサービス",
+    "8×H100 級の自前マルチモーダル推論"
+   ],
+   "not_for": [
+    "単一 GPU でのデプロイ",
+    "純テキストコーディングに最高水準を求める場合（GLM-5.2 / K3 を使う）",
+    "ブランド表示を望まない商用製品"
+   ],
+   "capability_notes": {
+    "coding": "SWE-Bench Pro 59.0、Terminal-Bench 2.1 66.0、SWE-fficiency 34.8、KernelBench Hard 28.8（公式）。",
+    "reasoning": "GPQA / HLE は公式未開示。Z.ai の GLM-5.2 比較表は GPQA 93、HLE 37 を引用。",
+    "agent": "BrowseComp 83.5、MCP Atlas 74.2、PostTrainBench 37.1（公式）。",
+    "multimodal": "ネイティブ画像 + 動画。公式ブログに MMMU の数値なし。",
+    "chinese": "中国語は良好。"
+   }
+  }
  }
 }

@@ -94,6 +94,74 @@
   "finetune": "不支持",
   "zh_docs": "弱"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Claude 5 flagship",
+   "one_liner": "#1 on AA Intelligence Index; Fable 5-level intelligence at half the price.",
+   "highlights": [
+    "AA Intelligence Index 63, ranked #1; SOTA on GDPval-AA v2, AA-Briefcase and Frontier-Bench",
+    "Five effort levels (low to max) trade cost against depth continuously; max reaches 89% on Terminal-Bench 2.1",
+    "$5 / $25, same as Opus 4.8 and half of Fable 5; 1M context at no extra charge"
+   ],
+   "pitfalls": [
+    "Thinking is on by default, so max_tokens must be re-budgeted; thinking cannot be turned off at xhigh/max (400 error)",
+    "Default replies and deliverables are noticeably longer and it self-verifies proactively; old prompts tend to cause \"over-verification\"",
+    "Biology and offensive cybersecurity still trail Mythos 5, and safety restrictions are stricter than Opus 4.8"
+   ],
+   "logic_ability": "One of the strongest overall reasoners today: ARC-AGI-3 officially verified 30.2% (runner-up GPT-5.6 Sol only 7.8%), HLE 53% (AA, no tools), Frontier-Bench v0.1 43.3%, more than 2x Opus 4.8. Officially emphasizes \"test-time compute scaling\": raising effort from low to max spreads GDPval-AA by 407 Elo with about 8x the output tokens. Failure modes: verbose output at high effort; with thinking off it occasionally writes tool calls into the body or leaks internal XML tags.",
+   "best_for": [
+    "Complex multi-file refactors and end-to-end feature development",
+    "Multi-agent orchestration (writer-verifier pattern)",
+    "Deep research and long reasoning chains",
+    "Office documents such as spreadsheets / slides"
+   ],
+   "not_for": [
+    "High-frequency low-value calls (downgrade to Sonnet 5 / Haiku 4.5)",
+    "Offensive security research",
+    "Compliance scenarios needing on-prem deployment"
+   ],
+   "capability_notes": {
+    "coding": "Frontier-Bench v0.1 43.3% (official announcement, transcribed by Vellum); CursorBench 3.2 within 0.5% of Fable 5; Terminal-Bench 2.1 at max 89% (AA).",
+    "reasoning": "AA Intelligence Index 63 (#1); HLE 53% (AA); ARC-AGI-3 30.2% (ARC Prize verified).",
+    "agent": "Zapier AutomationBench pass rate 1.5x the runner-up; beats Fable 5 on OSWorld 2.0 at 1/3 the cost; GDPval-AA v2 1861 Elo.",
+    "multimodal": "Officially improved vision; strong at charts / documents / UI replication, works best iterating with a crop tool.",
+    "chinese": "Chinese usable; no independent Chinese evaluation."
+   }
+  },
+  "ja": {
+   "name_zh": "Claude 5 フラッグシップ",
+   "one_liner": "AA 知能指数 1 位。Fable 5 級の知能を半額で。",
+   "highlights": [
+    "AA 知能指数 63 で 1 位。GDPval-AA v2、AA-Briefcase、Frontier-Bench いずれも SOTA",
+    "effort 5 段階（low→max）でコストと深さを連続的に調整可能。max では Terminal-Bench 2.1 89%",
+    "価格 $5 / $25 は Opus 4.8 と同じで Fable 5 の半額。1M コンテキストも追加料金なし"
+   ],
+   "pitfalls": [
+    "思考がデフォルトでオンのため max_tokens の再設定が必要。xhigh/max では思考をオフにできない（400 エラー）",
+    "デフォルトの応答と成果物が明らかに長くなり、自発的に自己検証する。旧プロンプト流用では「過剰検証」になりやすい",
+    "生物学・攻撃的サイバーセキュリティ能力は依然 Mythos 5 に劣り、安全制限は Opus 4.8 より厳しい"
+   ],
+   "logic_ability": "現時点で総合推論最強クラスの一つ：ARC-AGI-3 公式検証 30.2%（次点の GPT-5.6 Sol は 7.8%）、HLE 53%（AA、ツールなし）、Frontier-Bench v0.1 43.3% は Opus 4.8 の 2 倍超。公式は「test-time compute scaling」を強調：effort を low から max に上げると GDPval-AA で 407 Elo の差、出力トークンは約 8 倍。失敗モード：高 effort では出力が冗長。思考オフ時にツール呼び出しを本文に書いたり内部 XML タグを漏らすことがある。",
+   "best_for": [
+    "複雑な複数ファイルのリファクタリングとエンドツーエンドの機能開発",
+    "マルチ agent オーケストレーション（writer-verifier パターン）",
+    "深い調査と長い推論チェーン",
+    "表計算 / スライドなどのオフィス文書生成"
+   ],
+   "not_for": [
+    "高頻度・低価値の呼び出し（Sonnet 5 / Haiku 4.5 に下げる）",
+    "攻撃的セキュリティ研究",
+    "オンプレ展開が必要なコンプライアンス用途"
+   ],
+   "capability_notes": {
+    "coding": "Frontier-Bench v0.1 43.3%（公式発表、Vellum 転記）。CursorBench 3.2 で Fable 5 との差 0.5% 以内。Terminal-Bench 2.1 max で 89%（AA）。",
+    "reasoning": "AA 知能指数 63（1 位）。HLE 53%（AA）。ARC-AGI-3 30.2%（ARC Prize 検証）。",
+    "agent": "Zapier AutomationBench 通過率は次点モデルの 1.5 倍。OSWorld 2.0 で 1/3 のコストで Fable 5 を上回る。GDPval-AA v2 1861 Elo。",
+    "multimodal": "公式に視覚能力向上を主張。図表 / 文書 / UI 再現に強く、クロップツールと組み合わせた反復で最も効果的。",
+    "chinese": "中国語は利用可能。独立した中国語評価はなし。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 55,

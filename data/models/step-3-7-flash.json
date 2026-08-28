@@ -111,5 +111,65 @@
   "tok_s": 86,
   "latency_s": 2.78,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "StepFun Step 3.7 Flash",
+   "one_liner": "StepFun's 198B vision MoE, 11B active; image / video / coding agents.",
+   "highlights": [
+    "Terminal-Bench 2.1 59.5, SWE-bench Pro 56.3, HLE with tools 48.1 (official)",
+    "Apache-2.0; image + video understanding + coding agent in one",
+    "Official BF16 / FP8 / NVFP4 / GGUF releases; runs on a 128GB Mac"
+   ],
+   "pitfalls": [
+    "198B total parameters; will not run on an 80GB single GPU",
+    "No official common metrics such as SWE-bench Verified / GPQA",
+    "StepFun's overseas ecosystem and tooling are weak"
+   ],
+   "logic_ability": "Decent engineering reasoning (TB 2.1 59.5); for exam-style reasoning the official figure is mainly HLE with tools 48.1, pure reasoning metrics missing.",
+   "best_for": [
+    "Vision + search agents",
+    "Local use on Macs / large-memory workstations"
+   ],
+   "not_for": [
+    "24GB / 80GB single GPUs",
+    "Pure math competitions"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 59.5, SWE-bench Pro 56.3 (official).",
+    "reasoning": "HLE with tools 48.1 (official).",
+    "multimodal": "Image + video understanding, V* 95.3 (official).",
+    "chinese": "Strong; Chinese domestic model."
+   }
+  },
+  "ja": {
+   "name_zh": "StepFun Step 3.7 Flash",
+   "one_liner": "StepFun 198B 視覚 MoE、11B 活性。画像/動画/コード。",
+   "highlights": [
+    "Terminal-Bench 2.1 59.5、SWE-bench Pro 56.3、HLE ツールあり 48.1（公式）",
+    "Apache-2.0、画像 + 動画理解 + コーディングエージェントを一体化",
+    "公式が BF16 / FP8 / NVFP4 / GGUF を公開、128GB の Mac で動作"
+   ],
+   "pitfalls": [
+    "総パラメータ 198B、80GB 単一 GPU では動かない",
+    "SWE-bench Verified / GPQA などの定番指標は公式未開示",
+    "StepFun の海外エコシステムとツールチェーンが弱い"
+   ],
+   "logic_ability": "エンジニアリング型推論は良好（TB 2.1 59.5）。試験型推論は公式が主に HLE ツールあり 48.1 のみで、純粋な推論指標が欠落。",
+   "best_for": [
+    "ビジョン + 検索エージェント",
+    "Mac / 大容量メモリのワークステーションでのローカル利用"
+   ],
+   "not_for": [
+    "24GB / 80GB 単一 GPU",
+    "純粋な数学コンテスト"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 59.5、SWE-bench Pro 56.3（公式）。",
+    "reasoning": "HLE ツールあり 48.1（公式）。",
+    "multimodal": "画像 + 動画理解、V* 95.3（公式）。",
+    "chinese": "強い。中国産モデル。"
+   }
+  }
  }
 }

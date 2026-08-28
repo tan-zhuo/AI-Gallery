@@ -97,5 +97,67 @@
   "source": "第三方托管常见价（OpenRouter）",
   "as_of": "2026-08-28",
   "note": "DeepInfra / Crusoe / Nebius / Novita 托管；缓存读取 $0.025"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "NVIDIA Nemotron 3 Nano · 30B A3B",
+   "one_liner": "NVIDIA's hybrid Mamba MoE with open data and recipe, 1M context.",
+   "highlights": [
+    "Training data / recipe open",
+    "Mamba hybrid; high long-context throughput",
+    "3.2B active"
+   ],
+   "pitfalls": [
+    "New architecture; llama.cpp support lags",
+    "New model; few independent evaluations",
+    "NVIDIA license is not Apache (but allows commercial use)"
+   ],
+   "logic_ability": "Good exam-style reasoning for its size, thinking switchable; engineering reasoning yet to be verified.",
+   "best_for": [
+    "Long-context low-latency inference",
+    "Architecture research"
+   ],
+   "not_for": [
+    "Reliance on a mature ecosystem"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 68.3, SWE-bench (OpenHands) 38.8, Terminal-Bench hard 8.5 (official model card).",
+    "reasoning": "GPQA 73.0 (no tools) / 75.0 (tools), HLE 10.6 / 15.5 (tools), MMLU-Pro 78.3 (official model card).",
+    "math": "AIME 2025 89.1 (no tools) / 99.2 (tools), MiniF2F pass@1 50.0 (official model card).",
+    "agent": "tau2-bench average 49.0, BFCL v4 53.8 (official model card).",
+    "instruction": "IFBench 71.5, Arena-Hard-V2 average 67.7 (official model card).",
+    "chinese": "Official language list is English, German, Spanish, French, Italian, Japanese; no Chinese. MMLU-ProX 59.5."
+   }
+  },
+  "ja": {
+   "name_zh": "NVIDIA Nemotron 3 Nano · 30B A3B",
+   "one_liner": "NVIDIA のデータ・レシピ公開 Mamba 混合 MoE。1M。",
+   "highlights": [
+    "学習データ / レシピを公開",
+    "Mamba ハイブリッドで長コンテキストのスループットが高い",
+    "3.2B アクティブ"
+   ],
+   "pitfalls": [
+    "新アーキテクチャで llama.cpp の対応が遅れている",
+    "新モデルで独立評価が少ない",
+    "NVIDIA ライセンスは Apache ではない（商用は可）"
+   ],
+   "logic_ability": "サイズの割に試験型推論は良好、思考はオン/オフ可。エンジニアリング型は要検証。",
+   "best_for": [
+    "長コンテキストの低レイテンシ推論",
+    "アーキテクチャ研究"
+   ],
+   "not_for": [
+    "成熟したエコシステムへの依存"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 68.3、SWE-bench（OpenHands）38.8、Terminal-Bench hard 8.5（公式モデルカード）。",
+    "reasoning": "GPQA 73.0（ツールなし）/ 75.0（ツールあり）、HLE 10.6 / 15.5（ツールあり）、MMLU-Pro 78.3（公式モデルカード）。",
+    "math": "AIME 2025 89.1（ツールなし）/ 99.2（ツールあり）、MiniF2F pass@1 50.0（公式モデルカード）。",
+    "agent": "tau2-bench 平均 49.0、BFCL v4 53.8（公式モデルカード）。",
+    "instruction": "IFBench 71.5、Arena-Hard-V2 平均 67.7（公式モデルカード）。",
+    "chinese": "公式の対応言語は英・独・西・仏・伊・日で、中国語を含まない。MMLU-ProX 59.5。"
+   }
+  }
  }
 }

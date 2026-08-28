@@ -1,0 +1,70 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "claude-3-opus",
+ "name": "Claude 3 Opus",
+ "aliases": [
+  "claude-3-opus-20240229"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 3",
+ "superseded_by": "claude-3-5-sonnet",
+ "released_at": "2024-03-04",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K",
+  "max_output": 4096
+ },
+ "pricing": {
+  "input_per_m": 15,
+  "output_per_m": 75,
+  "currency": "USD",
+  "source": "Anthropic 定价页",
+  "as_of": "2024-03-04"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/news/claude-3-family",
+  "paper": "https://www.anthropic.com/claude-3-model-card",
+  "pricing": "https://www.anthropic.com/pricing"
+ },
+ "copy": {
+  "one_liner": "首个在 LMArena 超越 GPT-4 的模型，写作口碑极佳。",
+  "highlights": [
+   "MMLU 86.8%、GPQA 50.4%、GSM8K 95.0%",
+   "200K 上下文 needle 召回 99%，还\"察觉\"到测试",
+   "写作自然度与长文分析被广泛推崇"
+  ],
+  "pitfalls": [
+   "$15 / $75 且速度慢",
+   "最大输出仅 4K",
+   "3 个月后被 1/5 价格的 3.5 Sonnet 超越"
+  ],
+  "logic_ability": "2024 年初最强非推理模型之一，复杂指令与长链条分析稳定；数学 MATH 60.1% 一般。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

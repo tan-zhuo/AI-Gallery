@@ -1,0 +1,97 @@
+{
+ "aliases": [
+  "MiMo-7B-RL"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "default-on",
+ "capability_notes": {
+  "coding": "LiveCodeBench v5 57.8%（官方）。",
+  "reasoning": "GPQA Diamond 54.4%（官方）。",
+  "math": "AIME 2025 55.4%（官方）。"
+ },
+ "complete": false,
+ "id": "mimo-7b",
+ "name": "MiMo-7B",
+ "name_zh": "小米 MiMo · 7B",
+ "vendor": "Xiaomi",
+ "vendor_zh": "小米",
+ "family": "MiMo",
+ "license": "MIT",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/XiaomiMiMo/MiMo-7B-RL",
+ "superseded_by": "mimo-v2-5",
+ "released_at": "2025-04-30",
+ "architecture": {
+  "type": "dense",
+  "total_params": "7B",
+  "total_params_b": 7.3,
+  "layers": 36,
+  "hidden_size": 4096,
+  "vocab_size": 151680,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 8 KV 头）",
+  "notes": "从零预训练 25T token + MTP；推理 RL；上下文 32K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 32768,
+  "display": "32K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 14.6,
+   "q8": 7.7,
+   "q4": 4.2
+  },
+  "estimated": true,
+  "kv_per_token_kib": 144.0,
+  "kv_note": "144 KiB/token。",
+  "ref_hw_24gb": "BF16 14.6 GB 单卡可跑",
+  "ref_hw_80gb": "高并发",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://github.com/XiaomiMiMo/MiMo",
+  "github": "https://github.com/XiaomiMiMo/MiMo",
+  "paper": "https://arxiv.org/abs/2505.07608",
+  "hf": "https://huggingface.co/XiaomiMiMo/MiMo-7B-RL"
+ },
+ "copy": {
+  "one_liner": "小米首个开源推理模型，7B 数学超 o1-mini。",
+  "highlights": [
+   "AIME 2025 55.4%、LiveCodeBench v5 57.8%（官方）超 o1-mini",
+   "MIT 许可，从零预训练而非蒸馏",
+   "MTP 层可加速推理"
+  ],
+  "pitfalls": [
+   "通用对话与知识弱（推理专精）",
+   "上下文 32K",
+   "思考链长，7B 优势被抵消"
+  ],
+  "logic_ability": "7B 中推理最强档：AIME 2025 55.4%、GPQA 54.4%、LCB v5 57.8%（官方 RL 版）。",
+  "best_for": [
+   "边缘数学 / 代码推理",
+   "推理 RL 研究"
+  ],
+  "not_for": [
+   "通用助手",
+   "知识问答"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM（官方 fork）",
+   "SGLang",
+   "llama.cpp"
+  ],
+  "finetune": "LoRA 可行",
+  "zh_docs": "有"
+ }
+}

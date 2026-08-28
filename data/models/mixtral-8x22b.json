@@ -1,0 +1,102 @@
+{
+ "aliases": [
+  "Mixtral-8x22B-Instruct-v0.1"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "HumanEval 45.1%（官方基座）。",
+  "math": "GSM8K 78.6%（官方）。",
+  "knowledge": "MMLU 77.8%（官方）。",
+  "chinese": "弱。"
+ },
+ "complete": false,
+ "id": "mixtral-8x22b",
+ "name": "Mixtral 8x22B",
+ "name_zh": "Mixtral · 8x22B",
+ "vendor": "Mistral AI",
+ "family": "Mixtral",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1",
+ "superseded_by": "mistral-large-3",
+ "released_at": "2024-04-17",
+ "architecture": {
+  "type": "moe",
+  "total_params": "141B",
+  "active_params": "39B",
+  "total_params_b": 141,
+  "active_params_b": 39,
+  "experts": 8,
+  "active_experts": 2,
+  "shared_expert": false,
+  "layers": 56,
+  "hidden_size": 6144,
+  "vocab_size": 32768,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（48 Q 头 / 8 KV 头）",
+  "notes": "64K 上下文；原生函数调用；数学与多语言强化。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 65536,
+  "display": "64K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 282,
+   "q8": 149.5,
+   "q4": 85.6
+  },
+  "estimated": false,
+  "kv_per_token_kib": 224.0,
+  "kv_note": "224 KiB/token；64K 约 14 GB。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "Q4_K_M 85.6 GB 略超单卡，需 2×80GB；BF16 4×80GB",
+  "ref_hw_8x80gb": "BF16 高并发"
+ },
+ "links": {
+  "official": "https://mistral.ai/news/mixtral-8x22b",
+  "github": "https://github.com/mistralai/mistral-inference",
+  "hf": "https://huggingface.co/mistralai/Mixtral-8x22B-Instruct-v0.1"
+ },
+ "copy": {
+  "one_liner": "Mistral 最后一款开源大 MoE，Apache-2.0 的 141B。",
+  "highlights": [
+   "Apache-2.0，2024 年初最大的无限制商用模型之一",
+   "64K 上下文 + 原生函数调用",
+   "39B 激活，吞吐远高于同期 70B Dense"
+  ],
+  "pitfalls": [
+   "141B 总参显存压力大，至少 2×80GB",
+   "中文弱，词表 32K",
+   "被随后的 Llama 3 70B / Qwen2 72B 迅速超过"
+  ],
+  "logic_ability": "非推理模型中游偏上：MMLU 77.8%、GSM8K 78.6%（官方）。多语言与函数调用是亮点，复杂推理一般。",
+  "best_for": [
+   "需 Apache-2.0 的大模型私有化",
+   "欧洲多语言"
+  ],
+  "not_for": [
+   "中文",
+   "单卡部署"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "TGI"
+  ],
+  "finetune": "LoRA 可行，成本高",
+  "zh_docs": "弱"
+ }
+}

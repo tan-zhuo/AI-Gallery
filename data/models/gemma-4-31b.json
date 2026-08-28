@@ -119,6 +119,72 @@
   "finetune": "LoRA 可用",
   "zh_docs": "弱"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Google Gemma 4 31B",
+   "one_liner": "Apache 2.0 single-GPU dense flagship with thinking mode and 256K context.",
+   "highlights": [
+    "Apache 2.0 license, no more custom Gemma terms; commercial closed-source use allowed",
+    "GPQA 84.3%, AIME 2026 89.2%, LiveCodeBench v6 80.0%; Arena 1451, top three among open models",
+    "256K context + image / video input + function calling; official QAT Q4 build is 17.5 GB"
+   ],
+   "pitfalls": [
+    "head_dim 256, global-layer KV 192 KiB/token; long context on a 24GB GPU is tighter than Gemma 3",
+    "HLE only 19.5% without tools; large gap to closed flagships on frontier knowledge questions",
+    "The 31B does not support audio input (only E2B / E4B do)"
+   ],
+   "logic_ability": "A reasoning model with a <|think|> switch. Exam-style reasoning leads its open-source tier: GPQA 84.3%, AIME 2026 89.2%, MMLU Pro 85.2%. Engineering reasoning: LiveCodeBench v6 80.0%, Codeforces 2150, tau2-bench average 76.9%, usable for agents. Weaknesses: HLE 19.5%, long-context MRCR v2 128K 66.4%, mediocre long-range retrieval.",
+   "best_for": [
+    "Single-GPU on-prem reasoning assistants",
+    "Commercial products needing a permissive license",
+    "Multilingual / visual QA"
+   ],
+   "not_for": [
+    "Frontier knowledge QA (HLE-type)",
+    "100K+ context on a 24GB GPU"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 80.0%, Codeforces Elo 2150 (official model card).",
+    "reasoning": "GPQA Diamond 84.3%, HLE 19.5% (no tools), BBEH 74.4% (official).",
+    "math": "AIME 2026 89.2% (no tools, official).",
+    "agent": "tau2-bench three-task average 76.9% (official).",
+    "multimodal": "MMMU Pro (vision) 76.9%, MATH-Vision 85.6% (official).",
+    "chinese": "MMMLU 88.4%, trained on 140+ languages; Chinese usable."
+   }
+  },
+  "ja": {
+   "name_zh": "Google Gemma 4 31B",
+   "one_liner": "Apache 2.0 の単一 GPU Dense 旗艦。思考モード、256K。",
+   "highlights": [
+    "Apache 2.0 ライセンスで Gemma 独自規約から脱却、商用クローズド利用も可能",
+    "GPQA 84.3%、AIME 2026 89.2%、LiveCodeBench v6 80.0%、Arena 1451 でオープンソース上位 3 位",
+    "256K コンテキスト + 画像 / 動画入力 + 関数呼び出し、公式 QAT Q4 版は 17.5 GB"
+   ],
+   "pitfalls": [
+    "head_dim 256、グローバル層の KV は 192 KiB/token で、24GB GPU の長文コンテキストは Gemma 3 より厳しい",
+    "HLE ツールなしはわずか 19.5%、最先端知識問題では閉源フラッグシップとの差が大きい",
+    "31B は音声入力非対応（E2B / E4B のみ対応）"
+   ],
+   "logic_ability": "<|think|> スイッチ付きの推論モデル。試験型推論はオープンソース同クラスでトップ：GPQA 84.3%、AIME 2026 89.2%、MMLU Pro 85.2%。エンジニアリング型推論：LiveCodeBench v6 80.0%、Codeforces 2150、tau2-bench 平均 76.9% で agent 用途も可。弱点：HLE 19.5%、長文コンテキスト MRCR v2 128K 66.4% と長距離検索は平凡。",
+   "best_for": [
+    "単一 GPU のオンプレ推論アシスタント",
+    "寛容なライセンスが必要な商用製品",
+    "多言語 / 視覚 QA"
+   ],
+   "not_for": [
+    "最先端の知識 QA（HLE 系）",
+    "24GB GPU での 100K 以上のコンテキスト"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 80.0%、Codeforces Elo 2150（公式モデルカード）。",
+    "reasoning": "GPQA Diamond 84.3%、HLE 19.5%（ツールなし）、BBEH 74.4%（公式）。",
+    "math": "AIME 2026 89.2%（ツールなし、公式）。",
+    "agent": "tau2-bench 3 項目平均 76.9%（公式）。",
+    "multimodal": "MMMU Pro（視覚）76.9%、MATH-Vision 85.6%（公式）。",
+    "chinese": "MMMLU 88.4%、140 以上の言語で学習、中国語は利用可能。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 35,

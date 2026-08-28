@@ -1,0 +1,76 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "官方称由 1.5 Pro 蒸馏而来。"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "gemini-1-5-flash",
+ "name": "Gemini 1.5 Flash",
+ "aliases": [
+  "gemini-1.5-flash-001",
+  "gemini-1.5-flash-002",
+  "gemini-1.5-flash-8b"
+ ],
+ "vendor": "Google",
+ "family": "Gemini 1.5",
+ "superseded_by": "gemini-2-0-flash",
+ "released_at": "2024-05-14",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 8192
+ },
+ "pricing": {
+  "input_per_m": 0.075,
+  "output_per_m": 0.3,
+  "currency": "USD",
+  "source": "Google AI 定价页（2024-08 降价后，≤128K）",
+  "as_of": "2024-08-08",
+  "note": "发布价 $0.35 / $1.05；>128K 翻倍"
+ },
+ "links": {
+  "official": "https://blog.google/technology/developers/gemini-gemini-1-5-pro-updates-google-io-2024/",
+  "paper": "https://arxiv.org/abs/2403.05530",
+  "pricing": "https://ai.google.dev/pricing"
+ },
+ "copy": {
+  "one_liner": "1M 上下文的低价小模型，开启 Flash 产品线。",
+  "highlights": [
+   "$0.075 / $0.30，1M 上下文，多模态全支持",
+   "MMLU 78.9%，速度快，适合高并发",
+   "8B 版进一步减半价格"
+  ],
+  "pitfalls": [
+   "GPQA 39.5%，推理弱",
+   "代理 / 代码任务不可靠",
+   "已被 2.0 Flash 全面替代"
+  ],
+  "logic_ability": "轻量级推理，适合摘要、抽取、分类；多步逻辑与数学（MATH 54.9%）弱。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

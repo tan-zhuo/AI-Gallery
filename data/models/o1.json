@@ -1,0 +1,74 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。强化学习训练的推理模型，API 提供 reasoning_effort 参数。"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "o1",
+ "name": "OpenAI o1",
+ "aliases": [
+  "o1-2024-12-17",
+  "o1-preview",
+  "o1-preview-2024-09-12"
+ ],
+ "vendor": "OpenAI",
+ "family": "o 系列",
+ "superseded_by": "o3",
+ "released_at": "2024-12-05",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K",
+  "max_output": 100000
+ },
+ "pricing": {
+  "input_per_m": 15,
+  "output_per_m": 60,
+  "currency": "USD",
+  "source": "OpenAI 定价页",
+  "as_of": "2024-12-17",
+  "note": "缓存输入 $7.5；o1-preview 同价"
+ },
+ "links": {
+  "official": "https://openai.com/o1/",
+  "paper": "https://openai.com/index/openai-o1-system-card/",
+  "pricing": "https://openai.com/api/pricing"
+ },
+ "copy": {
+  "one_liner": "首个正式版推理模型，AIME 2024 83.3%。",
+  "highlights": [
+   "GPQA 78.0%、AIME 2024 83.3%，开创推理模型范式",
+   "200K 上下文、100K 最大输出",
+   "正式版比 o1-preview 快、错误率降低 34%（官方）"
+  ],
+  "pitfalls": [
+   "$15 / $60，推理 token 不可见但计费",
+   "不支持流式 / system 提示的早期限制",
+   "SWE-bench Verified 48.9%，工程能力不及后来 o3"
+  ],
+  "logic_ability": "考试型推理跃迁：数学、物理、化学博士级问题上首次超过人类专家均值。工程型推理仍一般。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

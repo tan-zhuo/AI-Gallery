@@ -124,5 +124,71 @@
   "training_md": "- 预训练 token 数：**未披露**\n- 单一权重同时覆盖指令、推理（Magistral）、视觉（Pixtral）、编程 agent（Devstral）\n- reasoning_effort：high（深度推理，推荐 temperature 0.7）/ none（快速响应）\n- 官方发布即 FP8（静态激活量化），无 BF16 官方权重\n- 官方评测：AA LCR 0.72 且平均输出仅 1.6K 字符",
   "ecosystem_md": "- HF：mistralai/Mistral-Small-4-119B-2603（FP8 121 GB）；GGUF：unsloth/Mistral-Small-4-119B-2603-GGUF\n- 引擎：vLLM（官方推荐）、SGLang、llama.cpp、LM Studio、Transformers（main 分支）\n- 微调：mistral-finetune / Unsloth；MoE 全参需 ≥ 4×80GB\n- 中文文档：无",
   "versions_md": "- 同代：Mistral Large 3（同构更大 MoE）、Magistral Medium 1.2 / Small 1.2（纯推理）、Devstral 2\n- 上代：Mistral Small 3.2（24B Dense）、Mistral Medium 3.1\n- 本代把 Small 从 24B Dense 改为 119B-A6.5B MoE，并合并推理 / 视觉 / 编程分支"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Mistral Small 4",
+   "one_liner": "119B MoE with only 6.5B active; reasoning / vision / coding in one.",
+   "highlights": [
+    "Apache-2.0; instruct + reasoning + multimodal + coding agent in a single set of weights, reasoning_effort switchable",
+    "6.5B active; officially 3× the throughput of Small 3 with 40% lower end-to-end latency",
+    "GPQA Diamond 71.2, AIME 2025 84, LiveCodeBench 64 (high); outputs 20% shorter than gpt-oss-120b"
+   ],
+   "pitfalls": [
+    "Called Small but actually 119B, FP8 121 GB; will not run on a 24GB single GPU, official minimum 4×H100",
+    "Reasoning-tier outputs are very long (AIME avg 27.9K chars); with thinking off GPQA drops to 59.1, AIME to 36",
+    "No official SWE-bench / Terminal-Bench / tau2 numbers for agent tasks; IFBench only 48"
+   ],
+   "logic_ability": "Mid-pack exam-style reasoning: at reasoning_effort=high, GPQA Diamond 71.2, AIME 2025 84 (83.8 in another chart), MMLU Pro 78, on par with Magistral Medium 1.2; in instruct mode GPQA 59.1, AIME 36, LiveCodeBench 32, a large gap. Engineering reasoning: LiveCodeBench 64 (high); inherits Devstral but no official SWE-bench number. Long context AA LCR 72. Instruction following is weak (IFBench 48).",
+   "best_for": [
+    "Low-cost API multimodal agents",
+    "Local inference on an 80GB single GPU"
+   ],
+   "not_for": [
+    "24GB consumer GPUs",
+    "Hard math / reasoning"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench 64 (high) / 32 (instruct) (official model card charts); SWE-bench not disclosed.",
+    "reasoning": "GPQA Diamond 71.2 (high) / 59.1 (instruct), MMLU Pro 78 (official model card charts); HLE not disclosed.",
+    "math": "AIME 2025 84 (high, chart 1) / 83.8 (chart 2) / 36 (instruct) (official model card charts).",
+    "agent": "tau2 / Terminal-Bench not officially disclosed; Collie 62.9.",
+    "instruction": "AllenAI IFBench 48 (high) / 35.7 (instruct), Arena Hard 58.3 (official model card charts).",
+    "multimodal": "MMMU-Pro 60 (high) / 46.3 (instruct) (official model card charts).",
+    "chinese": "Chinese officially supported; little independent data."
+   }
+  },
+  "ja": {
+   "name_zh": "Mistral Small 4",
+   "one_liner": "119B MoE、6.5B 活性。推論 / 視覚 / コーディングを統合。",
+   "highlights": [
+    "Apache-2.0、指示 + 推論 + マルチモーダル + コーディングエージェントを単一の重みで、reasoning_effort 切替可",
+    "6.5B アクティブ、公式は Small 3 比でスループット 3 倍、エンドツーエンド遅延 40% 減と主張",
+    "GPQA Diamond 71.2、AIME 2025 84、LiveCodeBench 64（high）、出力は gpt-oss-120b より 20% 短い"
+   ],
+   "pitfalls": [
+    "Small の名だが実際は 119B、FP8 121 GB。24GB 単一 GPU では動かず、公式最低構成は 4×H100",
+    "推論設定の出力は非常に長い（AIME 平均 27.9K 文字）。思考オフでは GPQA 59.1、AIME 36 に低下",
+    "エージェント系は SWE-bench / Terminal-Bench / tau2 の公式数値なし、IFBench はわずか 48"
+   ],
+   "logic_ability": "試験型推論は中位：reasoning_effort=high で GPQA Diamond 71.2、AIME 2025 84（別の図では 83.8）、MMLU Pro 78 で Magistral Medium 1.2 と同等。instruct モードでは GPQA 59.1、AIME 36、LiveCodeBench 32 と差が大きい。エンジニアリング型推論：LiveCodeBench 64（high）、Devstral を継承するが公式 SWE-bench 数値なし。長コンテキスト AA LCR 72。指示追従はやや弱い（IFBench 48）。",
+   "best_for": [
+    "低コスト API のマルチモーダルエージェント",
+    "80GB 単一 GPU でのローカル推論"
+   ],
+   "not_for": [
+    "24GB コンシューマー GPU",
+    "高難度の数学 / 推論"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench 64（high）/ 32（instruct）（公式モデルカード図表）。SWE-bench 未開示。",
+    "reasoning": "GPQA Diamond 71.2（high）/ 59.1（instruct）、MMLU Pro 78（公式モデルカード図表）。HLE 未開示。",
+    "math": "AIME 2025 84（high、図 1）/ 83.8（図 2）/ 36（instruct）（公式モデルカード図表）。",
+    "agent": "tau2 / Terminal-Bench は公式未開示。Collie 62.9。",
+    "instruction": "AllenAI IFBench 48（high）/ 35.7（instruct）、Arena Hard 58.3（公式モデルカード図表）。",
+    "multimodal": "MMMU-Pro 60（high）/ 46.3（instruct）（公式モデルカード図表）。",
+    "chinese": "公式に中国語対応、独立データは少ない。"
+   }
+  }
  }
 }

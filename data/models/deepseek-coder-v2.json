@@ -1,0 +1,100 @@
+{
+ "aliases": [
+  "DeepSeek-Coder-V2-Instruct"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "HumanEval 90.2%、LiveCodeBench 43.4%（官方）。",
+  "math": "MATH 75.7%（官方）。"
+ },
+ "complete": false,
+ "id": "deepseek-coder-v2",
+ "name": "DeepSeek-Coder-V2",
+ "name_zh": "DeepSeek-Coder-V2 · 236B",
+ "vendor": "DeepSeek",
+ "vendor_zh": "深度求索",
+ "family": "DeepSeek-Coder",
+ "license": "DeepSeek License（代码 MIT）",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct",
+ "superseded_by": "deepseek-v3",
+ "released_at": "2024-06-17",
+ "architecture": {
+  "type": "moe",
+  "total_params": "236B",
+  "active_params": "21B",
+  "total_params_b": 236,
+  "active_params_b": 21,
+  "experts": 160,
+  "active_experts": 6,
+  "shared_expert": true,
+  "layers": 60,
+  "hidden_size": 5120,
+  "vocab_size": 102400,
+  "kv_heads": 128,
+  "head_dim": 192,
+  "attention": "MLA",
+  "notes": "DeepSeek-V2 中间检查点续训 6T 代码/数学；338 种语言；128K。另有 16B Lite 版。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 472,
+   "q8": 250.2,
+   "q4": 142.5
+  },
+  "estimated": false,
+  "kv_per_token_kib": 67.5,
+  "kv_note": "MLA ≈ 67.5 KiB/token。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "Q4 142.5 GB 需 2×80GB",
+  "ref_hw_8x80gb": "BF16 8×80GB"
+ },
+ "links": {
+  "official": "https://www.deepseek.com/",
+  "paper": "https://arxiv.org/abs/2406.11931",
+  "github": "https://github.com/deepseek-ai/DeepSeek-Coder-V2",
+  "hf": "https://huggingface.co/deepseek-ai/DeepSeek-Coder-V2-Instruct"
+ },
+ "copy": {
+  "one_liner": "首个代码能力宣称超过 GPT-4 Turbo 的开源模型。",
+  "highlights": [
+   "官方称 HumanEval / MBPP / LiveCodeBench 超越 GPT-4 Turbo",
+   "338 种编程语言，128K 上下文",
+   "16B Lite 版单卡可跑，性价比极高"
+  ],
+  "pitfalls": [
+   "Instruct 版通用对话较弱",
+   "236B 版部署门槛高",
+   "V2.5 合并了 Chat 与 Coder，此版本停更"
+  ],
+  "logic_ability": "代码与数学强（HumanEval 90.2%、MATH 75.7%，官方），通用推理属 V2 水平。",
+  "best_for": [
+   "代码生成 / 补全",
+   "数学"
+  ],
+  "not_for": [
+   "通用助手"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp"
+  ],
+  "finetune": "困难",
+  "zh_docs": "有"
+ }
+}

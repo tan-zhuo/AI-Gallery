@@ -92,6 +92,68 @@
   ],
   "zh_docs": "无"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "IBM Granite 4.2 30B",
+   "one_liner": "IBM 30B dense reasoning model, Apache-2.0, runs on 24GB.",
+   "highlights": [
+    "AIME 2025 89.2, LiveCodeBench v6 75.8, MMLU-Pro 77.6 (official)",
+    "Apache-2.0, enterprise-friendly, 12 languages including Chinese",
+    "About 17 GB at Q4, local on a single 24GB GPU"
+   ],
+   "pitfalls": [
+    "Released only 3 days ago; AA Intelligence Index 24, below Muse Glimmer (35)",
+    "SWE-bench Pro 33.3, weak as a coding agent",
+    "No vision (Granite Vision is a separate release)"
+   ],
+   "logic_ability": "Exam-style reasoning strong in math (AIME 89.2), GPQA 66.4 mid-pack; engineering reasoning mediocre (SWE-bench Pro 33.3).",
+   "best_for": [
+    "Compliant deployment on enterprise intranets",
+    "24GB local inference / tool calling"
+   ],
+   "not_for": [
+    "Primary coding agent",
+    "Multimodal"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 75.77, SWE-bench Pro 33.29 (official).",
+    "reasoning": "GPQA 66.41, MMLU-Pro 77.60 (official).",
+    "math": "AIME 2025 89.17 (official).",
+    "agent": "BFCL v4 61.39 (official).",
+    "chinese": "Officially 12 languages including Chinese."
+   }
+  },
+  "ja": {
+   "name_zh": "IBM Granite 4.2 30B",
+   "one_liner": "IBM 30B Dense 推論モデル、Apache-2.0、24GB で動作。",
+   "highlights": [
+    "AIME 2025 89.2、LiveCodeBench v6 75.8、MMLU-Pro 77.6（公式）",
+    "Apache-2.0、企業向け、中国語を含む 12 言語",
+    "Q4 で約 17 GB、24GB 単一 GPU でローカル動作"
+   ],
+   "pitfalls": [
+    "公開から 3 日で AA 知能指数 24、Muse Glimmer（35）を下回る",
+    "SWE-bench Pro 33.3、コーディング agent としては弱い",
+    "視覚なし（Granite Vision は別リリース）"
+   ],
+   "logic_ability": "試験型推論は数学が強く（AIME 89.2）、GPQA 66.4 は中位。エンジニアリング型推論は平凡（SWE-bench Pro 33.3）。",
+   "best_for": [
+    "企業イントラネットでのコンプライアンス準拠展開",
+    "24GB ローカル推論 / ツール呼び出し"
+   ],
+   "not_for": [
+    "コーディング agent の主力",
+    "マルチモーダル"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 75.77、SWE-bench Pro 33.29（公式）。",
+    "reasoning": "GPQA 66.41、MMLU-Pro 77.60（公式）。",
+    "math": "AIME 2025 89.17（公式）。",
+    "agent": "BFCL v4 61.39（公式）。",
+    "chinese": "公式に中国語を含む 12 言語対応。"
+   }
+  }
+ },
  "complete": false,
  "runtime": {
   "tok_s": 75,

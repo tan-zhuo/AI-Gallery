@@ -1,0 +1,98 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。2024-10-22 版（同名升级，社区称 3.6）首次加入 computer use（beta）。"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {
+  "coding": "HumanEval 92.0%（0620）；SWE-bench Verified 33.4%（0620）→ 49.0%（1022）（官方）。",
+  "reasoning": "GPQA Diamond 59.4%（0620）→ 65.0%（1022）（官方）。",
+  "math": "MATH 71.1%、GSM8K 96.4%（0620，官方）。",
+  "agent": "TAU-bench retail 69.2%、airline 46.0%（1022，官方）；OSWorld 14.9%。",
+  "multimodal": "MMMU 68.3%（0620）→ 70.4%（1022）（官方）。",
+  "chinese": "中文良好，缺独立榜单。"
+ },
+ "complete": true,
+ "id": "claude-3-5-sonnet",
+ "name": "Claude 3.5 Sonnet",
+ "name_zh": "Claude 3.5 Sonnet（含 10-22 新版）",
+ "aliases": [
+  "claude-3-5-sonnet-20240620",
+  "claude-3-5-sonnet-20241022",
+  "Claude 3.6"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 3.5",
+ "superseded_by": "claude-3-7-sonnet",
+ "released_at": "2024-06-20",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K",
+  "max_output": 8192
+ },
+ "pricing": {
+  "input_per_m": 3,
+  "output_per_m": 15,
+  "currency": "USD",
+  "source": "Anthropic 定价页",
+  "as_of": "2024-10-22",
+  "note": "缓存写 $3.75 / 读 $0.30"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/news/claude-3-5-sonnet",
+  "paper": "https://www.anthropic.com/news/3-5-models-and-computer-use",
+  "pricing": "https://www.anthropic.com/pricing"
+ },
+ "copy": {
+  "one_liner": "确立 Claude 编程口碑的一代，首个 computer use 模型。",
+  "highlights": [
+   "10-22 版 SWE-bench Verified 49.0%，当时闭源第一",
+   "Artifacts + 代码体验让其成为开发者首选",
+   "首个官方 computer use（OSWorld 14.9%）"
+  ],
+  "pitfalls": [
+   "同名两版（0620 / 1022）行为差异大，易混淆",
+   "无推理模式，AIME 类竞赛数学弱",
+   "最大输出 8K"
+  ],
+  "logic_ability": "工程型推理在非推理模型中最强，代码修改与多文件重构可靠；考试型推理 GPQA 59.4% → 65.0%（新版）。常见问题：长代理任务中偶尔\"偷懒\"省略代码。",
+  "best_for": [
+   "代理编程（当年）",
+   "文档分析与写作",
+   "历史对照"
+  ],
+  "not_for": [
+   "竞赛数学",
+   "新项目"
+  ]
+ },
+ "sheet": {
+  "architecture_md": "**未披露**。Anthropic 未公开参数量。\n\n已知信息：\n- 200K 上下文，最大输出 8K（0620 版初期 4K，后放开到 8K）\n- 支持视觉输入、工具调用、提示缓存（2024-08）\n- 1022 版新增 computer use API（beta）：截图 + 鼠标键盘动作\n- 速度约为 Claude 3 Opus 的 2 倍",
+  "memory_md": "无自建选项。\n\n成本参考：输入 $3 / 输出 $15；缓存写 $3.75、读 $0.30；Batch API 半价。",
+  "training_md": "- 训练细节未披露，知识截止 2024-04\n- 无推理模式\n- 支持工具调用、JSON 输出（通过工具）、PDF 输入（1022 版）\n- 1022 版与 0620 版同价同名，通过日期后缀区分",
+  "ecosystem_md": "- 官方 API、AWS Bedrock、Google Vertex AI\n- 不支持微调\n- 中文文档：弱（官方英文）",
+  "versions_md": "- 上代：Claude 3 Opus / Sonnet\n- 版本：20240620（首发）/ 20241022（升级，社区称 3.6）\n- 同代：Claude 3.5 Haiku（2024-11）\n- 继任：Claude 3.7 Sonnet（2025-02）"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ }
+}

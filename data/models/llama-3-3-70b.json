@@ -1,0 +1,107 @@
+{
+ "aliases": [
+  "Llama-3.3-70B-Instruct"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "HumanEval 88.4%（官方）。",
+  "reasoning": "GPQA Diamond 50.5%（CoT，官方模型卡）。",
+  "math": "MATH 77.0%（官方）。",
+  "knowledge": "MMLU 86.0%（官方）。",
+  "agent": "BFCL v2 77.3%（官方）。"
+ },
+ "complete": false,
+ "id": "llama-3-3-70b",
+ "name": "Llama 3.3 70B",
+ "name_zh": "Llama 3.3 · 70B",
+ "vendor": "Meta",
+ "family": "Llama 3.3",
+ "license": "Llama 3.3 Community License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct",
+ "superseded_by": "llama-4-maverick",
+ "released_at": "2024-12-06",
+ "architecture": {
+  "type": "dense",
+  "total_params": "70.6B",
+  "total_params_b": 70.6,
+  "layers": 80,
+  "hidden_size": 8192,
+  "vocab_size": 128256,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（64 Q 头 / 8 KV 头）",
+  "notes": "结构同 3.1 70B，仅后训练升级（在线 RL），接近 405B 表现。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 141.2,
+   "q8": 74.8,
+   "q4": 42.5
+  },
+  "estimated": false,
+  "kv_per_token_kib": 320.0,
+  "kv_note": "320 KiB/token；32K 上下文约 10 GB。",
+  "ref_hw_24gb": "Q4_K_M 42.5 GB 需 2×24GB",
+  "ref_hw_80gb": "Q4 单卡 80GB 可跑 32K；BF16 2×80GB",
+  "ref_hw_8x80gb": "BF16 高并发服务"
+ },
+ "pricing": {
+  "input_per_m": 0.23,
+  "output_per_m": 0.4,
+  "currency": "USD",
+  "source": "第三方托管常见价（DeepInfra）",
+  "as_of": "2026-08-28",
+  "note": "开源权重，社区托管价"
+ },
+ "links": {
+  "official": "https://ai.meta.com/blog/future-of-ai-built-with-llama/",
+  "hf": "https://huggingface.co/meta-llama/Llama-3.3-70B-Instruct"
+ },
+ "copy": {
+  "one_liner": "用 70B 达到 405B 水平，2024 年末最划算的开源通用模型。",
+  "highlights": [
+   "官方称多数基准追平 3.1 405B，成本仅 1/6",
+   "128K 上下文，原生工具调用，8 语言",
+   "Q4 单张 80GB 卡即可服务"
+  ],
+  "pitfalls": [
+   "无推理模式，2025 年后数学 / 代码榜被 DeepSeek / Qwen 拉开",
+   "中文不是官方语言，质量一般",
+   "Llama 许可对大企业与再分发有限制"
+  ],
+  "logic_ability": "非推理模型中上：GPQA Diamond 50.5%、MATH 77.0%（官方）。指令遵循与对话稳定，但复杂数学与 agent 任务不及 2025 年推理模型。",
+  "best_for": [
+   "英文通用助手私有化",
+   "替代 405B 的低成本方案"
+  ],
+  "not_for": [
+   "竞赛数学 / 深度代码",
+   "中文优先场景"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Ollama",
+   "TensorRT-LLM"
+  ],
+  "finetune": "LoRA 成熟",
+  "zh_docs": "弱"
+ }
+}

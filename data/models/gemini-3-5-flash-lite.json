@@ -77,6 +77,64 @@
   "coding": "SWE-Bench Pro 54.2%（官方模型卡）。",
   "agent": "Terminal-Bench 2.1 54.0%、OSWorld-Verified 74.0%（官方）。"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Gemini 3.5 Flash-Lite",
+   "one_liner": "Google's cheapest 1M-context multimodal model, built for throughput.",
+   "highlights": [
+    "$0.30 / $2.50, 1M context, all-modality input",
+    "AA-measured about 350 tok/s; Terminal-Bench 2.1 54.0% (previous 3.1 Flash-Lite 31.0%)",
+    "GDM-MRCR v2 128K 72.2%; long-context retrieval far ahead of Haiku 4.5 / GPT-5.4 mini"
+   ],
+   "pitfalls": [
+    "AA Intelligence Index 37; complex reasoning clearly weaker than the main Flash",
+    "Output price $2.50 is 67% above the previous 3.1 Flash-Lite ($1.50); not necessarily worthwhile for light text-only tasks",
+    "No official GPQA / HLE / MMMU or other general benchmarks published"
+   ],
+   "logic_ability": "Lightweight tier, mainly for agent / extraction / classification tasks. SWE-Bench Pro 54.2%, OSWorld-Verified 74.0%. Deep reasoning should go to Flash or Pro.",
+   "best_for": [
+    "Large-scale document extraction / translation",
+    "Agentic search",
+    "Low-latency high-concurrency"
+   ],
+   "not_for": [
+    "Complex reasoning and math",
+    "On-prem deployment"
+   ],
+   "capability_notes": {
+    "coding": "SWE-Bench Pro 54.2% (official model card).",
+    "agent": "Terminal-Bench 2.1 54.0%, OSWorld-Verified 74.0% (official)."
+   }
+  },
+  "ja": {
+   "name_zh": "Gemini 3.5 Flash-Lite",
+   "one_liner": "Google 最安の 1M コンテキスト・マルチモーダル、スループット優先。",
+   "highlights": [
+    "$0.30 / $2.50、1M コンテキスト、全モダリティ入力",
+    "AA 実測約 350 tok/s、Terminal-Bench 2.1 54.0%（前世代 3.1 Flash-Lite は 31.0%）",
+    "GDM-MRCR v2 128K 72.2%、長文コンテキスト検索は Haiku 4.5 / GPT-5.4 mini を大きく上回る"
+   ],
+   "pitfalls": [
+    "AA 知能指数 37、複雑な推論は主力 Flash より明らかに弱い",
+    "出力価格 $2.50 は前世代 3.1 Flash-Lite（$1.50）より 67% 高く、テキストのみの軽タスクでは割に合わないことも",
+    "GPQA / HLE / MMMU などの汎用ベンチマークは公式未公表"
+   ],
+   "logic_ability": "軽量クラスで、agent / 抽出 / 分類系タスクが主用途。SWE-Bench Pro 54.2%、OSWorld-Verified 74.0%。深い推論は Flash か Pro に任せるべき。",
+   "best_for": [
+    "大規模な文書抽出 / 翻訳",
+    "agentic search",
+    "低遅延・高並行"
+   ],
+   "not_for": [
+    "複雑な推論と数学",
+    "オンプレ展開"
+   ],
+   "capability_notes": {
+    "coding": "SWE-Bench Pro 54.2%（公式モデルカード）。",
+    "agent": "Terminal-Bench 2.1 54.0%、OSWorld-Verified 74.0%（公式）。"
+   }
+  }
+ },
  "complete": false,
  "runtime": {
   "tok_s": 346,

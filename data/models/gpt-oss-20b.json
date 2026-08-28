@@ -109,6 +109,70 @@
   "finetune": "官方指南 + Unsloth / TRL；LoRA 24GB 可行",
   "zh_docs": "无"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "OpenAI open-weight 20B",
+   "one_liner": "A reasoning model that runs in 16GB VRAM with surprising math ability.",
+   "highlights": [
+    "Official MXFP4 13.8 GB, runs on a 16GB GPU / laptop; only 12 full-attention layers, KV 24 KiB/token",
+    "AIME 2025 91.7 (no tools) / 98.7 (tools), GPQA 71.5; exam-style reasoning far beyond its size",
+    "Apache-2.0, three adjustable reasoning levels, SWE-bench Verified 60.7"
+   ],
+   "pitfalls": [
+    "Weak knowledge and Chinese (MMLU 85.3, MMMLU 75.7); HLE only 10.9 without tools",
+    "High hallucination rate; tau-bench Airline 38.0, Aider Polyglot 34.2, mediocre agent stability",
+    "Strict Harmony format requirements; a wrong chat template loses noticeable points"
+   ],
+   "logic_ability": "Exam-style reasoning is very strong for its size: AIME 2025 91.7 (no tools) / 98.7 (tools), AIME 2024 92.1, GPQA Diamond 71.5, Codeforces 2230 (model card, high). HLE 10.9 / 17.3 (tools) shows shallow frontier knowledge. Engineering reasoning is middling: SWE-bench Verified 60.7, tau-bench Retail 54.8 / Airline 38.0. At low reasoning the chain is very short and scores drop markedly.",
+   "best_for": [
+    "Local reasoning assistants",
+    "Edge STEM reasoning"
+   ],
+   "not_for": [
+    "Chinese products",
+    "Knowledge QA"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 60.7, Codeforces Elo 2230, Aider Polyglot 34.2 (OpenAI model card arXiv 2508.10925, high).",
+    "reasoning": "GPQA Diamond 71.5 (no tools) / 74.2 (tools), HLE 10.9 / 17.3 (tools) (OpenAI model card).",
+    "math": "AIME 2025 91.7 (no tools) / 98.7 (tools), AIME 2024 92.1 / 96.0 (OpenAI model card).",
+    "agent": "tau-bench Retail 54.8, Airline 38.0 (OpenAI model card).",
+    "knowledge": "MMLU 85.3, MMMLU 75.7, HealthBench 42.5 (OpenAI model card).",
+    "chinese": "Weak Chinese, MMMLU 75.7; not recommended as the primary model for Chinese products."
+   }
+  },
+  "ja": {
+   "name_zh": "OpenAI オープンウェイト 20B",
+   "one_liner": "16GB VRAM で動く推論モデル、数学能力が驚異的。",
+   "highlights": [
+    "公式 MXFP4 13.8 GB、16GB GPU / ノート PC で動作。全アテンション層は 12 層のみで KV 24 KiB/token",
+    "AIME 2025 91.7（ツールなし）/ 98.7（ツールあり）、GPQA 71.5、試験型推論はサイズをはるかに超える",
+    "Apache-2.0、reasoning は 3 段階で調整可能、SWE-bench Verified 60.7"
+   ],
+   "pitfalls": [
+    "知識と中国語が弱い（MMLU 85.3、MMMLU 75.7）、HLE ツールなしはわずか 10.9",
+    "ハルシネーション率が高く、tau-bench Airline 38.0、Aider Polyglot 34.2 と agent の安定性は平凡",
+    "Harmony フォーマットの要件が厳格で、chat template が違うと明らかにスコアが落ちる"
+   ],
+   "logic_ability": "試験型推論はサイズに対して極めて強い：AIME 2025 91.7（ツールなし）/ 98.7（ツールあり）、AIME 2024 92.1、GPQA Diamond 71.5、Codeforces 2230（モデルカード、high）。HLE 10.9 / 17.3（ツールあり）は最先端知識の浅さを示す。エンジニアリング型推論は中程度：SWE-bench Verified 60.7、tau-bench Retail 54.8 / Airline 38.0。reasoning が低段階だと推論チェーンが非常に短く、スコアが明らかに下がる。",
+   "best_for": [
+    "ローカル推論アシスタント",
+    "エッジでの STEM 推論"
+   ],
+   "not_for": [
+    "中国語製品",
+    "知識 QA"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 60.7、Codeforces Elo 2230、Aider Polyglot 34.2（OpenAI モデルカード arXiv 2508.10925、high）。",
+    "reasoning": "GPQA Diamond 71.5（ツールなし）/ 74.2（ツールあり）、HLE 10.9 / 17.3（ツールあり）（OpenAI モデルカード）。",
+    "math": "AIME 2025 91.7（ツールなし）/ 98.7（ツールあり）、AIME 2024 92.1 / 96.0（OpenAI モデルカード）。",
+    "agent": "tau-bench Retail 54.8、Airline 38.0（OpenAI モデルカード）。",
+    "knowledge": "MMLU 85.3、MMMLU 75.7、HealthBench 42.5（OpenAI モデルカード）。",
+    "chinese": "中国語は弱く MMMLU 75.7。中国語製品の主力には非推奨。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 119,

@@ -95,6 +95,74 @@
   "finetune": "不支持",
   "zh_docs": "有"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Gemini 3.1 Pro",
+   "one_liner": "Google's current Pro flagship (still preview), #1 in abstract reasoning.",
+   "highlights": [
+    "ARC-AGI-2 77.1%, GPQA Diamond 94.3%; first tier in exam-style and abstract reasoning",
+    "SWE-bench Verified 80.6%, Terminal-Bench 2.0 68.5%; engineering and agent ability much improved over Gemini 3 Pro",
+    "1M context + native audio/video input, MRCR v2 128K 84.9%"
+   ],
+   "pitfalls": [
+    "Still a preview endpoint half a year after launch, no GA commitment; quotas and behavior may change",
+    "Price doubles above 200K context; 1M is a capability ceiling, not a default budget",
+    "High first-token latency (AA-measured TTFT about 24 s), unsuited to interactive low-latency use"
+   ],
+   "logic_ability": "Top-tier exam-style reasoning: HLE 44.4% without tools (51.4% with search + code), GPQA 94.3%, ARC-AGI-2 77.1%. Engineering reasoning rose from Gemini 3 Pro's 76.2% to 80.6% (SWE-bench Verified); tau2-bench retail 90.8% / telecom 99.3%, agent reliability notably improved. Long-horizon agent tasks (APEX-Agents 33.5%) remain a weakness. Failure modes: occasional loss of mid-context information at very long contexts; occasional tool-call format deviations; heavy token use at high thinking_level.",
+   "best_for": [
+    "Science / math / abstract reasoning",
+    "Video / audio / bulk image understanding",
+    "Million-token document analysis"
+   ],
+   "not_for": [
+    "Production lines needing a GA endpoint and SLA",
+    "Low-latency chat products",
+    "On-prem deployment"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 80.6%, LiveCodeBench Pro Elo 2887, Terminal-Bench 2.0 68.5% (official model card).",
+    "reasoning": "GPQA Diamond 94.3%, HLE 44.4% (no tools), ARC-AGI-2 77.1% (official).",
+    "math": "AIME 2025 not listed separately; official reporting centers on ARC-AGI-2 and HLE.",
+    "agent": "tau2-bench retail 90.8% / telecom 99.3%, BrowseComp 85.9%, APEX-Agents 33.5% (official).",
+    "multimodal": "MMMU-Pro 80.5% (official).",
+    "chinese": "MMMLU 92.6% (official); strong Chinese ability."
+   }
+  },
+  "ja": {
+   "name_zh": "Gemini 3.1 Pro",
+   "one_liner": "Google 現行 Pro 旗艦（まだ preview）、抽象推論 1 位。",
+   "highlights": [
+    "ARC-AGI-2 77.1%、GPQA Diamond 94.3%、試験型推論と抽象推論で最上位グループ",
+    "SWE-bench Verified 80.6%、Terminal-Bench 2.0 68.5%、エンジニアリングと agent 能力は Gemini 3 Pro から大幅向上",
+    "1M コンテキスト + ネイティブの音声・動画入力、MRCR v2 128K 84.9%"
+   ],
+   "pitfalls": [
+    "公開から半年経っても preview エンドポイントのままで GA の約束なし。クォータや挙動が変わる可能性あり",
+    "200K 超のコンテキストは価格が 2 倍。1M は能力の上限であってデフォルト予算ではない",
+    "初回トークン遅延が大きい（AA 実測 TTFT 約 24 s）、対話型の低遅延用途には不向き"
+   ],
+   "logic_ability": "試験型推論はトップ級：HLE ツールなし 44.4%（検索 + コードありで 51.4%）、GPQA 94.3%、ARC-AGI-2 77.1%。エンジニアリング型推論は Gemini 3 Pro の 76.2% から 80.6% に向上（SWE-bench Verified）、tau2-bench リテール 90.8% / テレコム 99.3% で agent の信頼性が大きく改善。長期的な agent タスク（APEX-Agents 33.5%）は依然弱点。失敗モード：超長コンテキストで中盤の情報を時折見落とす、ツール呼び出しのフォーマットが時折ずれる、高 thinking_level ではトークン消費が大きい。",
+   "best_for": [
+    "科学 / 数学 / 抽象推論",
+    "動画 / 音声 / 大量画像の理解",
+    "100 万トークン級の長文書分析"
+   ],
+   "not_for": [
+    "GA エンドポイントと SLA が必要な本番ライン",
+    "低遅延の対話製品",
+    "オンプレ展開"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 80.6%、LiveCodeBench Pro Elo 2887、Terminal-Bench 2.0 68.5%（公式モデルカード）。",
+    "reasoning": "GPQA Diamond 94.3%、HLE 44.4%（ツールなし）、ARC-AGI-2 77.1%（公式）。",
+    "math": "AIME 2025 は公式に個別掲載なし。公式は ARC-AGI-2 と HLE を中心に報告。",
+    "agent": "tau2-bench リテール 90.8% / テレコム 99.3%、BrowseComp 85.9%、APEX-Agents 33.5%（公式）。",
+    "multimodal": "MMMU-Pro 80.5%（公式）。",
+    "chinese": "MMMLU 92.6%（公式）、中国語能力は高い。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 115,

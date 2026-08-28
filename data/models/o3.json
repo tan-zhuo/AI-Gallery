@@ -1,0 +1,95 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。强化学习规模化训练的推理模型，可在推理链中调用工具（搜索、Python、图像操作）。"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 69.1%、Aider Polyglot 81.3%、Codeforces 2706（官方）。",
+  "reasoning": "GPQA 83.3%、HLE 20.32%（无工具）/ 24.90%（Python + 浏览）（官方）。",
+  "math": "AIME 2024 91.6%、AIME 2025 88.9%（无工具，官方）。",
+  "agent": "Tau-bench airline 52.0%、retail 70.4%（官方）。",
+  "multimodal": "MMMU 82.9%、MathVista 86.8%（官方）。",
+  "chinese": "中文良好，缺独立榜单。"
+ },
+ "complete": true,
+ "id": "o3",
+ "name": "OpenAI o3",
+ "aliases": [
+  "o3-2025-04-16",
+  "o3-pro"
+ ],
+ "vendor": "OpenAI",
+ "family": "o 系列",
+ "superseded_by": "gpt-5",
+ "released_at": "2025-04-16",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K",
+  "max_output": 100000
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 8,
+  "currency": "USD",
+  "source": "OpenAI 定价页（2025-06-10 降价）",
+  "as_of": "2025-06-10",
+  "note": "发布价 $10 / $40，2025-06-10 降 80%；缓存输入 $0.5"
+ },
+ "links": {
+  "official": "https://openai.com/index/introducing-o3-and-o4-mini/",
+  "paper": "https://openai.com/index/o3-o4-mini-system-card/",
+  "pricing": "https://openai.com/api/pricing"
+ },
+ "copy": {
+  "one_liner": "首个能在思考中用工具的旗舰推理模型。",
+  "highlights": [
+   "AIME 2025 88.9%、GPQA 83.3%、HLE 20.3%（无工具）",
+   "推理链内调用搜索 / Python / 图像缩放，\"用图思考\"",
+   "SWE-bench Verified 69.1%，Codeforces 2706"
+  ],
+  "pitfalls": [
+   "系统卡显示幻觉率高于 o1（PersonQA 33%）",
+   "推理 token 不可见，长任务成本难预估",
+   "2025-08 被 GPT-5 替代"
+  ],
+  "logic_ability": "考试型与工程型推理在 2025 年上半年均为第一梯队。工具增强推理是关键：HLE 带 Python + 浏览可到 24.9%。问题：过度自信，会编造工具执行过程。",
+  "best_for": [
+   "数学 / 科学研究",
+   "多步工具调用的分析任务",
+   "历史对照"
+  ],
+  "not_for": [
+   "低延迟场景",
+   "新项目"
+  ]
+ },
+ "sheet": {
+  "architecture_md": "**未披露**。OpenAI 未公开 o3 的参数量或结构。\n\n已知接口层信息：\n- `reasoning_effort`：low / medium / high\n- 200K 上下文，100K 最大输出\n- 推理链中可自主调用工具：网页搜索、Python、文件分析、图像处理\n- 支持视觉输入，可在推理中裁剪 / 旋转图像\n- o3-pro（2025-06）为更多算力的版本",
+  "memory_md": "无自建选项。\n\n成本参考（2025-06-10 后）：输入 $2 / 输出 $8；缓存输入 $0.5。发布时为 $10 / $40。\n\n**警示**：推理 token 计入输出计费，high effort 下单次请求可达数万 token。",
+  "training_md": "- 训练细节未披露，官方称 RL 算力较 o1 提升约 10 倍\n- 默认推理开启，无法关闭\n- 支持函数调用、结构化输出、图像输入\n- 系统卡指出幻觉率高于 o1",
+  "ecosystem_md": "- 官方 API、Azure OpenAI\n- 不支持微调\n- 中文文档：弱（官方英文）",
+  "versions_md": "- 上代：o1（2024-12）\n- 同代：o4-mini、o3-pro（2025-06）\n- 2025-06-10 降价 80%\n- 继任：GPT-5（2025-08）"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ }
+}

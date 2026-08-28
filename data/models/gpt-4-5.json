@@ -1,0 +1,70 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "gpt-4-5",
+ "name": "GPT-4.5",
+ "aliases": [
+  "gpt-4.5-preview",
+  "gpt-4.5-preview-2025-02-27"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-4",
+ "superseded_by": "gpt-4-1",
+ "released_at": "2025-02-27",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 128000,
+  "display": "128K",
+  "max_output": 16384
+ },
+ "pricing": {
+  "input_per_m": 75,
+  "output_per_m": 150,
+  "currency": "USD",
+  "source": "OpenAI 定价页（预览）",
+  "as_of": "2025-02-27"
+ },
+ "links": {
+  "official": "https://openai.com/index/introducing-gpt-4-5/",
+  "pricing": "https://openai.com/api/pricing"
+ },
+ "copy": {
+  "one_liner": "最大的非推理模型，情商与写作强，价格离谱。",
+  "highlights": [
+   "GPQA 71.4%、SimpleQA 幻觉率大幅降低",
+   "写作、情商、审美是当时最佳",
+   "LMArena 发布即登顶"
+  ],
+  "pitfalls": [
+   "$75 / $150，是 GPT-4o 的 30 倍",
+   "AIME 2024 36.7%，不适合数学 / 推理",
+   "2025-07-14 已从 API 退役"
+  ],
+  "logic_ability": "靠规模提升的直觉式推理，知识与常识判断强，但无推理链，数学与代码弱于 o 系列。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

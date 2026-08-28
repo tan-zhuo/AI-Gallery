@@ -1,0 +1,70 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "o3-mini",
+ "name": "OpenAI o3-mini",
+ "aliases": [
+  "o3-mini-2025-01-31",
+  "o3-mini-high"
+ ],
+ "vendor": "OpenAI",
+ "family": "o 系列",
+ "superseded_by": "o4-mini",
+ "released_at": "2025-01-31",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K",
+  "max_output": 100000
+ },
+ "pricing": {
+  "input_per_m": 1.1,
+  "output_per_m": 4.4,
+  "currency": "USD",
+  "source": "OpenAI 定价页",
+  "as_of": "2025-01-31",
+  "note": "缓存输入 $0.55"
+ },
+ "links": {
+  "official": "https://openai.com/index/openai-o3-mini/",
+  "pricing": "https://openai.com/api/pricing"
+ },
+ "copy": {
+  "one_liner": "廉价版推理模型，high 档 AIME 87.3%。",
+  "highlights": [
+   "$1.1 / $4.4，推理模型价格降至 o1 的 1/14",
+   "AIME 2024（high）87.3%、GPQA 79.7%",
+   "支持函数调用、结构化输出、三档 reasoning_effort"
+  ],
+  "pitfalls": [
+   "不支持图像输入",
+   "SWE-bench Verified 49.3%，代理编程一般",
+   "发布 2.5 个月即被 o4-mini 替代"
+  ],
+  "logic_ability": "考试型推理接近 o1，工程型推理中等；medium 档是速度与准确率的折中。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

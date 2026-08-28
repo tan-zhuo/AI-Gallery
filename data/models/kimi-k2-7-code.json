@@ -109,5 +109,61 @@
   "tok_s": 45,
   "latency_s": 2.82,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Moonshot Kimi K2.7 Code",
+   "one_liner": "Coding-specialized K2.6 with higher success on long-horizon coding tasks.",
+   "highlights": [
+    "Kimi Code Bench v2 62.0 (K2.6: 50.9), MCP Mark Verified 81.1",
+    "About 30% fewer thinking tokens than K2.6; highspeed version 180–260 tok/s",
+    "AA index 43; same weight size as K2.6, INT4 595 GB"
+   ],
+   "pitfalls": [
+    "Text only, no vision; thinking and preserve_thinking are forced on and cannot be disabled",
+    "Modified MIT branding clause same as K2.6",
+    "Officially discloses only a few benchmarks such as its own Kimi Code Bench"
+   ],
+   "logic_ability": "Dedicated to engineering reasoning: ProgramBench 53.6, MLS Bench Lite 35.1; official comparisons still below GPT-5.5 / Opus 4.8.",
+   "best_for": [
+    "Backend for Kimi Code CLI / Claude Code",
+    "Long-horizon multi-file coding"
+   ],
+   "not_for": [
+    "General chat and multimodal",
+    "Single-machine deployment"
+   ],
+   "capability_notes": {
+    "coding": "Kimi Code Bench v2 62.0, ProgramBench 53.6 (official).",
+    "agent": "MCP Atlas 76.0, MCP Mark Verified 81.1 (official)."
+   }
+  },
+  "ja": {
+   "name_zh": "Moonshot Kimi K2.7 Code",
+   "one_liner": "K2.6 のコーディング特化版。長期コーディングタスクの成功率が向上。",
+   "highlights": [
+    "Kimi Code Bench v2 62.0（K2.6 は 50.9）、MCP Mark Verified 81.1",
+    "思考トークンは K2.6 より約 30% 少なく、highspeed 版は 180–260 tok/s",
+    "AA 指数 43。K2.6 と同じ重みサイズで INT4 595 GB"
+   ],
+   "pitfalls": [
+    "テキストのみでビジョン非対応。思考と preserve_thinking は強制オンで無効化不可",
+    "Modified MIT のブランド表示条項は K2.6 と同じ",
+    "公式が開示するのは自社の Kimi Code Bench など少数のベンチマークのみ"
+   ],
+   "logic_ability": "エンジニアリング型推論専用：ProgramBench 53.6、MLS Bench Lite 35.1。公式比較でも GPT-5.5 / Opus 4.8 には及ばない。",
+   "best_for": [
+    "Kimi Code CLI / Claude Code のバックエンド",
+    "長期のマルチファイルコーディング"
+   ],
+   "not_for": [
+    "汎用対話とマルチモーダル",
+    "単一マシンでのデプロイ"
+   ],
+   "capability_notes": {
+    "coding": "Kimi Code Bench v2 62.0、ProgramBench 53.6（公式）。",
+    "agent": "MCP Atlas 76.0、MCP Mark Verified 81.1（公式）。"
+   }
+  }
  }
 }

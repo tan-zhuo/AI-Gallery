@@ -67,6 +67,54 @@
   ]
  },
  "capability_notes": {},
+ "i18n": {
+  "en": {
+   "name_zh": "Claude 4.5 lightweight",
+   "one_liner": "Near Sonnet 4 coding ability at 1/3 the price and 2x the speed.",
+   "highlights": [
+    "SWE-bench Verified 73.3%, strongest code among small models",
+    "$1 / $5, supports extended thinking",
+    "Low latency, suited to sub-agents"
+   ],
+   "pitfalls": [
+    "Knowledge breadth and complex reasoning weaker than Sonnet 4.5",
+    "Limited long-task planning ability",
+    "No self-hosting"
+   ],
+   "logic_ability": "Engineering-style reasoning leads its price bracket; exam-style reasoning is middling. Suited to being the executor in multi-agent systems.",
+   "best_for": [
+    "High-frequency code completion / small tasks",
+    "Multi-agent subtasks"
+   ],
+   "not_for": [
+    "Complex long tasks"
+   ],
+   "capability_notes": {}
+  },
+  "ja": {
+   "name_zh": "Claude 4.5 軽量版",
+   "one_liner": "Sonnet 4 に迫るコーディング力を 1/3 の価格、2 倍の速度で。",
+   "highlights": [
+    "SWE-bench Verified 73.3%、小型モデル最強のコード力",
+    "$1 / $5、extended thinking 対応",
+    "低遅延でサブ agent 向き"
+   ],
+   "pitfalls": [
+    "知識の広さと複雑な推論は Sonnet 4.5 に劣る",
+    "長時間タスクの計画能力は限定的",
+    "セルフホスト不可"
+   ],
+   "logic_ability": "エンジニアリング型推論は同価格帯でトップ。試験型推論は中程度。マルチ agent システムの実行役に向く。",
+   "best_for": [
+    "高頻度のコード補完 / 小タスク",
+    "マルチ agent のサブタスク"
+   ],
+   "not_for": [
+    "複雑な長時間タスク"
+   ],
+   "capability_notes": {}
+  }
+ },
  "complete": false,
  "runtime": {
   "tok_s": 119,

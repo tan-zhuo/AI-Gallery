@@ -76,6 +76,64 @@
   "agent": "OSWorld-Verified 78.7%。",
   "reasoning": "HLE（带工具）52.2%。"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "GPT-5.5",
+   "one_liner": "The flagship before GPT-5.6; 1M context, $5 / $30.",
+   "highlights": [
+    "LMArena text 1482 (GPT-5.5 High), level with GPT-5.6 Sol",
+    "Terminal-Bench 2.1 88.0%, OSWorld-Verified 78.7%",
+    "1.05M context + 128K output; gpt-5.5-pro also available ($30 / $180)"
+   ],
+   "pitfalls": [
+    "$5 / $30 is pricier than GPT-5.6 Sol's promotional price and there is no max reasoning level; Sol now wins on value",
+    "SWE-bench Pro 58.6% clearly trails Opus 4.8 (69.2%)",
+    "No self-hosting"
+   ],
+   "logic_ability": "The flagship before GPT-5.6: Terminal-Bench 2.1 88.0% (OpenAI announcement comparison table), HLE (with tools) 52.2%, GDPval-AA 1769 (Anthropic Opus 4.8 announcement table, transcribed by Vellum). Overall comparable to Opus 4.7, now fully covered by GPT-5.6 Sol at the same price.",
+   "best_for": [
+    "Existing systems already tuned on GPT-5.5",
+    "Scenarios needing the high-precision gpt-5.5-pro tier"
+   ],
+   "not_for": [
+    "New projects (use GPT-5.6 Sol instead)",
+    "On-prem deployment"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 88.0%; SWE-bench Pro 58.6%.",
+    "agent": "OSWorld-Verified 78.7%.",
+    "reasoning": "HLE (with tools) 52.2%."
+   }
+  },
+  "ja": {
+   "name_zh": "GPT-5.5",
+   "one_liner": "GPT-5.6 以前のフラッグシップ、1M コンテキスト、$5 / $30。",
+   "highlights": [
+    "LMArena テキスト部門 1482（GPT-5.5 High）、GPT-5.6 Sol と同等",
+    "Terminal-Bench 2.1 88.0%、OSWorld-Verified 78.7%",
+    "1.05M コンテキスト + 128K 出力。別途 gpt-5.5-pro（$30 / $180）あり"
+   ],
+   "pitfalls": [
+    "$5 / $30 は GPT-5.6 Sol の優遇価格より高く max 推論段階もないため、コスパは Sol に逆転された",
+    "SWE-bench Pro 58.6% は Opus 4.8（69.2%）に明らかに劣る",
+    "セルフホスト不可"
+   ],
+   "logic_ability": "GPT-5.6 発表前のフラッグシップ：Terminal-Bench 2.1 88.0%（OpenAI 発表の比較表）、HLE（ツールあり）52.2%、GDPval-AA 1769（Anthropic Opus 4.8 発表表、Vellum 転記）。総合能力は Opus 4.7 相当で、同価格帯では GPT-5.6 Sol に全面的にカバーされた。",
+   "best_for": [
+    "GPT-5.5 向けに調整済みの既存システム",
+    "gpt-5.5-pro の高精度段階が必要な用途"
+   ],
+   "not_for": [
+    "新規プロジェクト（GPT-5.6 Sol に変更）",
+    "オンプレ展開"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 88.0%。SWE-bench Pro 58.6%。",
+    "agent": "OSWorld-Verified 78.7%。",
+    "reasoning": "HLE（ツールあり）52.2%。"
+   }
+  }
+ },
  "complete": false,
  "runtime": {
   "tok_s": 81,

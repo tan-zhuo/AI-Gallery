@@ -94,5 +94,69 @@
   "finetune": "不支持",
   "zh_docs": "无"
  },
- "complete": true
+ "complete": true,
+ "i18n": {
+  "en": {
+   "name_zh": "Grok 4.5",
+   "one_liner": "xAI's coding & agent flagship, only $6 output price, Arena 1470.",
+   "highlights": [
+    "Terminal-Bench 2.1 83.3%, SWE-Bench Pro 64.7%; coding agents enter the top tier",
+    "$2 / $6 pricing; output price is half of Gemini 3.1 Pro",
+    "Arena text leaderboard 1470, higher than the later Grok 4.6 (1461)"
+   ],
+   "pitfalls": [
+    "Replaced by Grok 4.6 as the \"recommended\" model less than a month after release; xAI iterates extremely fast",
+    "Official announcement only gives coding / agent benchmarks; general reasoning data such as GPQA / HLE / AIME is missing",
+    "AA measured 51.6 tok/s and TTFT about 14 s, on the slow side; text + image only, no audio/video"
+   ],
+   "logic_ability": "Engineering-style reasoning is the focus: DeepSWE 1.0 62.0%, SWE Marathon 29.0% (claimed #1 in the announcement), Terminal-Bench 2.1 83.3%, SWE-Bench Pro 64.7%. Exam-style reasoning not officially published; AA Intelligence Index 56 (tied with Gemini 3.7 Flash, below Grok 4.6 at 61). Failure modes: long-horizon autonomous software engineering still falls short of GPT-5.5 / Opus level; good token efficiency but high latency.",
+   "best_for": [
+    "Coding agents / IDE integration",
+    "Long knowledge-work tasks",
+    "Budget-sensitive flagship-level calls"
+   ],
+   "not_for": [
+    "Low-latency interaction",
+    "Audio/video input",
+    "Self-hosted deployment"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 83.3%, SWE-Bench Pro 64.7%, DeepSWE 1.0 62.0% (xAI announcement).",
+    "reasoning": "GPQA / HLE not officially published; AA Intelligence Index 56.",
+    "agent": "SWE Marathon 29.0% (xAI announcement).",
+    "multimodal": "Text + image input."
+   }
+  },
+  "ja": {
+   "name_zh": "Grok 4.5",
+   "one_liner": "xAI のコーディング・エージェント旗艦。出力 $6、Arena 1470。",
+   "highlights": [
+    "Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%、コーディングエージェントで第一集団入り",
+    "$2 / $6 の価格設定、出力価格は Gemini 3.1 Pro の半分",
+    "Arena テキスト榜 1470、後継の Grok 4.6（1461）より高い"
+   ],
+   "pitfalls": [
+    "公開から 1 か月足らずで Grok 4.6 に「推奨」モデルの座を譲り、xAI の更新ペースが極めて速い",
+    "公式発表はコーディング / エージェント系ベンチマークのみで、GPQA / HLE / AIME などの汎用推論データが欠けている",
+    "AA 実測 51.6 tok/s、TTFT 約 14 秒とやや遅い。テキスト + 画像のみで音声・動画は非対応"
+   ],
+   "logic_ability": "エンジニアリング型推論が主力：DeepSWE 1.0 62.0%、SWE Marathon 29.0%（発表では 1 位と主張）、Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%。試験型推論は公式未公開、AA 知能指数 56（Gemini 3.7 Flash と同等、Grok 4.6 の 61 より低い）。弱点：長期の自律的ソフトウェアエンジニアリングタスクでは GPT-5.5 / Opus 級に及ばない。トークン効率は良いがレイテンシが高い。",
+   "best_for": [
+    "コーディングエージェント / IDE 統合",
+    "ナレッジワーク系の長時間タスク",
+    "予算重視のフラッグシップ級呼び出し"
+   ],
+   "not_for": [
+    "低レイテンシの対話",
+    "音声・動画入力",
+    "プライベート環境へのデプロイ"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 83.3%、SWE-Bench Pro 64.7%、DeepSWE 1.0 62.0%（xAI 発表）。",
+    "reasoning": "GPQA / HLE は公式未公開。AA 知能指数 56。",
+    "agent": "SWE Marathon 29.0%（xAI 発表）。",
+    "multimodal": "テキスト + 画像入力。"
+   }
+  }
+ }
 }

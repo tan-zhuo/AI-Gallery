@@ -76,6 +76,64 @@
   "reasoning": "AA 智能指数 51（max 档）。",
   "coding": "AA Coding Agent Index 75。"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "GPT-5.6 economy tier",
+   "one_liner": "Cheapest GPT-5.6 tier, $0.20 / $1.20, AA index 51.",
+   "highlights": [
+    "$0.20 / $1.20, 80% price cut on 2026-07-30; per-task cost about 1/5 of Sol",
+    "AA Intelligence Index 51, Coding Agent Index 75, still with 1.05M context and all tools",
+    "Supports the max reasoning level to dial up depth as needed"
+   ],
+   "pitfalls": [
+    "Knowledge breadth and complex agent ability clearly weaker than Sol / Terra",
+    "No separately published official benchmark scores",
+    "No self-hosting, and fine-tuning unsupported"
+   ],
+   "logic_ability": "AA Intelligence Index 51 (max); suited to batch classification, extraction and light reasoning; complex agent tasks should go to Terra or Sol.",
+   "best_for": [
+    "Batch classification / extraction",
+    "High-concurrency low-value calls",
+    "Light reasoning"
+   ],
+   "not_for": [
+    "Complex agents",
+    "On-prem deployment"
+   ],
+   "capability_notes": {
+    "reasoning": "AA Intelligence Index 51 (max).",
+    "coding": "AA Coding Agent Index 75."
+   }
+  },
+  "ja": {
+   "name_zh": "GPT-5.6 エコノミー",
+   "one_liner": "GPT-5.6 最安クラス、$0.20 / $1.20、AA 指数 51。",
+   "highlights": [
+    "$0.20 / $1.20、2026-07-30 に 80% 値下げ、タスク単価は Sol の約 1/5",
+    "AA 知能指数 51、Coding Agent Index 75、1.05M コンテキストと全ツールを維持",
+    "max 推論段階に対応、必要に応じて深さを引き上げ可能"
+   ],
+   "pitfalls": [
+    "知識の広さと複雑な agent 能力は Sol / Terra より明らかに弱い",
+    "公式のベンチマークスコアは個別公表なし",
+    "セルフホスト不可、ファインチューニングも非対応"
+   ],
+   "logic_ability": "AA 知能指数 51（max）。大量の分類・抽出・軽量推論に向く。複雑な agent タスクは Terra か Sol に任せるべき。",
+   "best_for": [
+    "大量の分類 / 抽出",
+    "高並行・低価値の呼び出し",
+    "軽量推論"
+   ],
+   "not_for": [
+    "複雑な agent",
+    "オンプレ展開"
+   ],
+   "capability_notes": {
+    "reasoning": "AA 知能指数 51（max）。",
+    "coding": "AA Coding Agent Index 75。"
+   }
+  }
+ },
  "complete": false,
  "runtime": {
   "tok_s": 126,

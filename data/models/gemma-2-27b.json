@@ -1,0 +1,105 @@
+{
+ "aliases": [
+  "gemma-2-27b-it"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "HumanEval 51.8%（官方基座）。",
+  "math": "GSM8K 74.0%、MATH 42.3%（官方基座）。",
+  "knowledge": "MMLU 75.2%（官方基座）。",
+  "chinese": "中文可用，弱于 Qwen。"
+ },
+ "complete": true,
+ "id": "gemma-2-27b",
+ "name": "Gemma 2 27B",
+ "name_zh": "Gemma 2 · 27B",
+ "vendor": "Google",
+ "family": "Gemma 2",
+ "license": "Gemma Terms of Use",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/google/gemma-2-27b-it",
+ "superseded_by": "gemma-3-27b",
+ "released_at": "2024-06-27",
+ "architecture": {
+  "type": "dense",
+  "total_params": "27.2B",
+  "total_params_b": 27.2,
+  "layers": 46,
+  "hidden_size": 4608,
+  "vocab_size": 256000,
+  "kv_heads": 16,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 16 KV 头）；局部 4K 滑窗与全局注意力逐层交替",
+  "notes": "13T token；logit soft-capping；上下文 8K；从零训练（非蒸馏，9B 才是蒸馏）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 8192,
+  "display": "8K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 54.4,
+   "q8": 28.8,
+   "q4": 16.6
+  },
+  "estimated": false,
+  "kv_per_token_kib": 368.0,
+  "kv_note": "16×128×2×46×2 B = 368 KiB/token（一半层为 4K 滑窗，长文实际更小）；8K 上限约 2.9 GB。",
+  "ref_hw_24gb": "Q4_K_M 16.6 GB，RTX 4090 可跑满 8K 上下文",
+  "ref_hw_80gb": "BF16 54.4 GB 单卡",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://blog.google/technology/developers/google-gemma-2/",
+  "paper": "https://arxiv.org/abs/2408.00118",
+  "hf": "https://huggingface.co/google/gemma-2-27b-it"
+ },
+ "copy": {
+  "one_liner": "27B 打到 70B 级对话质量，单卡 24GB 的甜点。",
+  "highlights": [
+   "Arena 一度超过 Llama 3 70B，同尺寸对话质量当年第一",
+   "Q4 16.6 GB 单张 24GB 卡跑满上下文",
+   "多语言与写作风格好，官方 TPU / GPU 全支持"
+  ],
+  "pitfalls": [
+   "上下文仅 8K，是最大硬伤",
+   "无 system prompt、无原生工具调用",
+   "Gemma Terms 含禁用政策，非 OSI 许可"
+  ],
+  "logic_ability": "非推理模型中游偏上：MMLU 75.2%、GSM8K 74.0%、MATH 42.3%（官方基座）。对话与写作优秀，数学 / 代码明显不及 Qwen2.5-32B。",
+  "best_for": [
+   "单卡英文 / 多语言对话助手",
+   "写作与总结"
+  ],
+  "not_for": [
+   "长文档",
+   "代码 / 数学"
+  ]
+ },
+ "sheet": {
+  "architecture_md": "**类型**：Dense Transformer，27.2B 参数。\n\n- 46 层，隐藏维 4608，FFN 36,864（GeGLU），词表 256,000\n- GQA：32 Query 头 / 16 KV 头，head_dim 128\n- 局部滑窗（4096）与全局注意力逐层交替\n- Logit soft-capping（attn 50 / final 30），RMSNorm 前后双归一化\n- 上下文 8192\n\n参考：Gemma 2 技术报告（arXiv 2408.00118）。",
+  "memory_md": "| 精度 | 权重大小 | 参考硬件 | 说明 |\n|---|---|---|---|\n| BF16 | 54.4 GB | 80GB 单卡 | 官方 safetensors |\n| Q8 | ≈ 28.9 GB | 32GB / 48GB | GGUF Q8_0 |\n| Q4 | 16.6 GB | 24GB | GGUF Q4_K_M（bartowski） |\n\n**KV Cache**：368 KiB/token（全局层），滑窗层封顶 4K。8K 上下文最多约 2.9 GB。\n\n**参考配置**：\n- RTX 4090 24GB：Q4_K_M + 8K 全上下文，余量充足\n- A100 80GB：BF16，多并发\n- 注意：soft-capping 要求 eager attention 或 flash-attn ≥ 2.6，早期 vLLM 需 flashinfer",
+  "training_md": "- 预训练 13T token（27B），主要英文网页 / 代码 / 科学\n- 27B 从零训练；2B / 9B 用 27B 作教师蒸馏\n- 后训练：SFT + RLHF（奖励模型比策略大一个数量级）+ 模型合并（WARP）\n- 无 system 角色；对话模板 `<start_of_turn>user`",
+  "ecosystem_md": "- HF：google/gemma-2-27b-it、-27b（基座）\n- 引擎：vLLM、llama.cpp、Ollama、MLX、Keras / JAX、TensorRT-LLM\n- 微调：LoRA 友好（Unsloth、LLaMA-Factory），注意 soft-capping\n- 中文文档：弱（官方英文为主）",
+  "versions_md": "- 同系列：Gemma 2 9B（蒸馏）、2B（2024-07）\n- 后继：Gemma 3 27B（2025-03，128K + 多模态）→ Gemma 4\n- 衍生：ShieldGemma、DataGemma、日语特化版"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama",
+   "MLX",
+   "TensorRT-LLM"
+  ],
+  "finetune": "LoRA 友好",
+  "zh_docs": "弱"
+ }
+}

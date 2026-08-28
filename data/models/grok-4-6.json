@@ -95,5 +95,69 @@
   "engines": [],
   "finetune": "不支持",
   "zh_docs": "无"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Grok 4.6 (further-trained)",
+   "one_liner": "Further-trained Grok 4.5: stronger long-horizon agents and knowledge work.",
+   "highlights": [
+    "AA Intelligence Index 61, GDPval-AA v2 1753; leads on knowledge-work benchmarks",
+    "New xhigh reasoning tier; DeepSWE v1.1 65.9%, APEX-Agents 57.5%",
+    "Same $2 / $6 price as 4.5; xAI's current recommended model"
+   ],
+   "pitfalls": [
+    "Terminal-Bench v3.0 only 26%; still behind rivals on autonomous software-engineering benchmarks",
+    "Arena text 1461, actually below Grok 4.5's 1470",
+    "No audio/video input; general reasoning benchmarks such as GPQA / HLE still not officially published"
+   ],
+   "logic_ability": "Strengthens long-horizon agents on top of 4.5; leads on knowledge work, no edge on pure software engineering.",
+   "best_for": [
+    "Multi-step research / analysis agents",
+    "Visualization and interactive app generation",
+    "Long-context codebase work"
+   ],
+   "not_for": [
+    "Low-latency interaction",
+    "Self-hosted deployment"
+   ],
+   "capability_notes": {
+    "coding": "DeepSWE v1.1 65.9%, CursorBench v3.2 69.9%, FrontierCode v1.1 61.3% (xAI announcement).",
+    "agent": "APEX-Agents 57.5%, Terminal-Bench v3.0 26% (xAI announcement); Terminal-Bench v2.1 88.4%, τ³-Banking 50.7%, AA-Briefcase 1577 (AA).",
+    "reasoning": "AA Intelligence Index 61 (high tier, 2026-08-28, tied with GPT-5.6 Sol, behind Opus 5 at 63); +5 over Grok 4.5.",
+    "knowledge": "GDPval-AA v2 1753 (AA, second only to Opus 5); knowledge cutoff 2026-02-01 (docs.x.ai).",
+    "multimodal": "Text + image input, text output; no audio/video."
+   }
+  },
+  "ja": {
+   "name_zh": "Grok 4.6 追加学習版",
+   "one_liner": "Grok 4.5 の追加学習版。長期エージェントとナレッジワークが強化、同価格。",
+   "highlights": [
+    "AA 知能指数 61、GDPval-AA v2 1753、ナレッジワーク系ベンチマークで首位",
+    "xhigh 推論レベルを新設、DeepSWE v1.1 65.9%、APEX-Agents 57.5%",
+    "4.5 と同じ $2 / $6、xAI の現行推奨モデル"
+   ],
+   "pitfalls": [
+    "Terminal-Bench v3.0 はわずか 26%、自律的ソフトウェアエンジニアリング系ベンチマークでは競合に後れ",
+    "Arena テキスト 1461 で、Grok 4.5 の 1470 を下回る",
+    "音声・動画入力なし。GPQA / HLE などの汎用推論ベンチマークは依然公式未公開"
+   ],
+   "logic_ability": "4.5 をベースに長期エージェントを強化。ナレッジワーク系では首位だが、純粋なソフトウェアエンジニアリングでは優位性なし。",
+   "best_for": [
+    "多段階のリサーチ / 分析エージェント",
+    "可視化・インタラクティブアプリ生成",
+    "長コンテキストのコードベース作業"
+   ],
+   "not_for": [
+    "低レイテンシの対話",
+    "プライベート環境へのデプロイ"
+   ],
+   "capability_notes": {
+    "coding": "DeepSWE v1.1 65.9%、CursorBench v3.2 69.9%、FrontierCode v1.1 61.3%（xAI 発表）。",
+    "agent": "APEX-Agents 57.5%、Terminal-Bench v3.0 26%（xAI 発表）。Terminal-Bench v2.1 88.4%、τ³-Banking 50.7%、AA-Briefcase 1577（AA）。",
+    "reasoning": "AA 知能指数 61（high 設定、2026-08-28、GPT-5.6 Sol と同等、Opus 5 の 63 に次ぐ）。Grok 4.5 比 +5 点。",
+    "knowledge": "GDPval-AA v2 1753（AA、Opus 5 に次ぐ 2 位）。知識カットオフ 2026-02-01（docs.x.ai）。",
+    "multimodal": "テキスト + 画像入力、テキスト出力。音声・動画なし。"
+   }
+  }
  }
 }

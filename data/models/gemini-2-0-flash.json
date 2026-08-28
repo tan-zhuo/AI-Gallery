@@ -1,0 +1,98 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。2024-12-11 发布实验版，2025-02-05 GA；原生工具使用、原生图像 / 音频输出（实验）。"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {
+  "coding": "LiveCodeBench v5 34.5%（官方，GA 表）；实验版 SWE-bench Verified 51.8%（2024-12 官方表）。",
+  "reasoning": "GPQA Diamond 60.1%、MMLU-Pro 77.6%（官方 GA 表）。",
+  "math": "MATH 90.9%、HiddenMath 63.5%（官方）。",
+  "agent": "原生工具使用、Multimodal Live API；Project Astra / Mariner 底座。",
+  "multimodal": "MMMU 71.7%（官方）；音频 / 视频输入。",
+  "chinese": "Global MMLU Lite 83.4%（官方），中文良好。"
+ },
+ "complete": true,
+ "id": "gemini-2-0-flash",
+ "name": "Gemini 2.0 Flash",
+ "aliases": [
+  "gemini-2.0-flash-001",
+  "gemini-2.0-flash-exp",
+  "gemini-2.0-flash-lite"
+ ],
+ "vendor": "Google",
+ "family": "Gemini 2.0",
+ "superseded_by": "gemini-2-5-flash",
+ "released_at": "2025-02-05",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 8192
+ },
+ "pricing": {
+  "input_per_m": 0.1,
+  "output_per_m": 0.4,
+  "currency": "USD",
+  "source": "Google AI 定价页",
+  "as_of": "2025-02-05",
+  "note": "音频输入 $0.7；Flash-Lite $0.075 / $0.30"
+ },
+ "links": {
+  "official": "https://blog.google/technology/google-deepmind/gemini-model-updates-february-2025/",
+  "paper": "https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/",
+  "pricing": "https://ai.google.dev/pricing"
+ },
+ "copy": {
+  "one_liner": "代理时代的低价主力，$0.1 输入超越 1.5 Pro。",
+  "highlights": [
+   "以 Flash 价格超越 1.5 Pro，GPQA 60.1%、MMMU 71.7%",
+   "原生工具调用（搜索、代码执行）、Multimodal Live API",
+   "1M 上下文，$0.1 / $0.4 的价格带来大规模应用采用"
+  ],
+  "pitfalls": [
+   "无推理模式，LiveCodeBench 34.5%",
+   "最大输出 8K",
+   "原生图像生成等功能长期停留实验阶段"
+  ],
+  "logic_ability": "非推理小模型中的强者，MATH 90.9%；复杂多步推理需要 2.5 系列的 thinking。常见问题：长代理任务中容易偏离指令。",
+  "best_for": [
+   "高并发低成本应用（当年）",
+   "多模态输入理解",
+   "历史对照"
+  ],
+  "not_for": [
+   "复杂推理",
+   "新项目"
+  ]
+ },
+ "sheet": {
+  "architecture_md": "**未披露**。Google 未公开参数量。\n\n已知信息：\n- 1M 上下文，8K 最大输出\n- 原生工具使用：Google 搜索接地、代码执行\n- Multimodal Live API：实时双向音视频流\n- 实验版支持原生图像输出与多语言 TTS\n- Flash-Lite 为更低价变体（2025-02）",
+  "memory_md": "无自建选项。\n\n成本参考：文本 / 图像 / 视频输入 $0.10、音频输入 $0.70、输出 $0.40；缓存输入 $0.025。",
+  "training_md": "- 训练细节未披露，知识截止 2024-08\n- 无推理模式（Flash Thinking 为独立实验模型）\n- 支持函数调用、结构化输出、搜索接地\n- 2025-02-05 GA 版相对 12 月实验版 GPQA 略降、MMMU 略升",
+  "ecosystem_md": "- Google AI Studio / Gemini API、Vertex AI\n- 支持微调（Vertex AI 监督微调）\n- 中文文档：有（Google 官方中文文档）",
+  "versions_md": "- 上代：Gemini 1.5 Flash\n- 版本：2.0-flash-exp（2024-12-11）/ 2.0-flash-001（2025-02-05 GA）\n- 同代：2.0 Flash-Lite、2.0 Pro（实验）、2.0 Flash Thinking（实验）\n- 继任：Gemini 2.5 Flash（2025-04 预览，06 GA）"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "支持（Vertex AI）",
+  "zh_docs": "有"
+ }
+}

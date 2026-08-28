@@ -1,0 +1,71 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "o4-mini",
+ "name": "OpenAI o4-mini",
+ "aliases": [
+  "o4-mini-2025-04-16",
+  "o4-mini-high"
+ ],
+ "vendor": "OpenAI",
+ "family": "o 系列",
+ "superseded_by": "gpt-5-mini",
+ "released_at": "2025-04-16",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K",
+  "max_output": 100000
+ },
+ "pricing": {
+  "input_per_m": 1.1,
+  "output_per_m": 4.4,
+  "currency": "USD",
+  "source": "OpenAI 定价页",
+  "as_of": "2025-04-16",
+  "note": "缓存输入 $0.275"
+ },
+ "links": {
+  "official": "https://openai.com/index/introducing-o3-and-o4-mini/",
+  "pricing": "https://openai.com/api/pricing"
+ },
+ "copy": {
+  "one_liner": "小推理模型，AIME 2025 92.7% 超过 o3。",
+  "highlights": [
+   "AIME 2025 92.7%（无工具），数学超越 o3",
+   "$1.1 / $4.4，与 o3-mini 同价但带视觉与工具",
+   "SWE-bench Verified 68.1%，接近 o3"
+  ],
+  "pitfalls": [
+   "GPQA 81.4%、HLE 14.3%，知识面弱于 o3",
+   "幻觉率偏高（PersonQA 48%）",
+   "4 个月后被 GPT-5 mini 替代"
+  ],
+  "logic_ability": "考试型推理极强（数学、竞赛编程），知识型推理和长任务稳定性弱于 o3。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

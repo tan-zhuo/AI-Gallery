@@ -1,0 +1,118 @@
+{
+ "aliases": [
+  "Qwen3-235B-A22B (April 2025)",
+  "Qwen3 235B"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "capability_notes": {
+  "coding": "LiveCodeBench v5 70.7%（思考，官方）。",
+  "reasoning": "GPQA Diamond 71.1%（思考，官方）。",
+  "math": "AIME 2025 81.5%（思考，官方）。",
+  "agent": "BFCL v3 70.8%（官方）。",
+  "chinese": "中文顶级。"
+ },
+ "complete": false,
+ "id": "qwen3-235b-a22b",
+ "name": "Qwen3-235B-A22B",
+ "name_zh": "通义千问 3 · 235B-A22B（原版）",
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen3",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/Qwen/Qwen3-235B-A22B",
+ "superseded_by": "qwen3-235b-a22b-thinking-2507",
+ "released_at": "2025-04-29",
+ "architecture": {
+  "type": "moe",
+  "total_params": "235B",
+  "active_params": "22B",
+  "total_params_b": 235,
+  "active_params_b": 22,
+  "experts": 128,
+  "active_experts": 8,
+  "shared_expert": false,
+  "layers": 94,
+  "hidden_size": 4096,
+  "vocab_size": 151936,
+  "kv_heads": 4,
+  "head_dim": 128,
+  "attention": "GQA（64 Q 头 / 4 KV 头）+ QK-Norm",
+  "notes": "原版混合思考（/think 与 /no_think 同一权重）；原生 32K，YaRN 至 128K；128 专家 top-8，无共享专家。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 32768
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 470,
+   "q8": 249.1,
+   "q4": 142.2,
+   "fp8": 235
+  },
+  "estimated": false,
+  "kv_per_token_kib": 188.0,
+  "kv_note": "4×128×2×94×2 B = 188 KiB/token，MoE 大模型中最省。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）；Q4 142 GB 需 2×80GB",
+  "ref_hw_8x80gb": "BF16 470 GB 或 FP8 235 GB 高并发"
+ },
+ "pricing": {
+  "input_per_m": 0.13,
+  "output_per_m": 0.6,
+  "currency": "USD",
+  "source": "第三方托管常见价（DeepInfra）",
+  "as_of": "2026-08-28",
+  "note": "开源权重，社区托管价"
+ },
+ "links": {
+  "official": "https://qwenlm.github.io/blog/qwen3/",
+  "github": "https://github.com/QwenLM/Qwen3",
+  "paper": "https://arxiv.org/abs/2505.09388",
+  "hf": "https://huggingface.co/Qwen/Qwen3-235B-A22B"
+ },
+ "copy": {
+  "one_liner": "Qwen3 首发旗舰，一套权重同时支持思考与非思考。",
+  "highlights": [
+   "混合思考首创：/think 与 /no_think 软开关",
+   "22B 激活对标 DeepSeek-R1 / o1，Apache-2.0",
+   "119 种语言，KV 极省（4 KV 头）"
+  ],
+  "pitfalls": [
+   "混合模式导致两种模式都略逊于专训版，2507 拆成 Instruct / Thinking 两套后各自更强",
+   "原生 32K，128K 需 YaRN",
+   "235B 总参需多卡"
+  ],
+  "logic_ability": "思考模式：AIME 2025 81.5%、GPQA 71.1%、LiveCodeBench 70.7%（官方）。非思考模式退化为强指令模型。混合训练使它在 agent 长任务上稳定性略逊于 2507 Thinking。",
+  "best_for": [
+   "单模型两用（对话 + 推理）",
+   "多语言"
+  ],
+  "not_for": [
+   "单卡部署",
+   "极致推理（用 2507 Thinking）"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Ollama",
+   "MLX"
+  ],
+  "finetune": "LoRA 可行（MoE 感知框架）",
+  "zh_docs": "有"
+ }
+}

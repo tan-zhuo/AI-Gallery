@@ -1,0 +1,102 @@
+{
+ "aliases": [
+  "QwQ 32B",
+  "Qwen QwQ"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "capability_notes": {
+  "coding": "LiveCodeBench 63.4%（官方）。",
+  "math": "AIME 2024 79.5%（官方）。",
+  "agent": "BFCL 66.4%（官方）。",
+  "chinese": "中文推理好。"
+ },
+ "complete": false,
+ "id": "qwq-32b",
+ "name": "QwQ-32B",
+ "name_zh": "通义千问 QwQ · 32B",
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "QwQ",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/Qwen/QwQ-32B",
+ "superseded_by": "qwen3-32b",
+ "released_at": "2025-03-05",
+ "architecture": {
+  "type": "dense",
+  "total_params": "32.5B",
+  "total_params_b": 32.5,
+  "layers": 64,
+  "hidden_size": 5120,
+  "vocab_size": 152064,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（40 Q 头 / 8 KV 头）",
+  "notes": "基于 Qwen2.5-32B 用 RL 训练的推理模型；131K 上下文（YaRN）；始终输出 <think>。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 32768
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 65.0,
+   "q8": 34.5,
+   "q4": 19.9
+  },
+  "estimated": false,
+  "kv_per_token_kib": 256.0,
+  "kv_note": "256 KiB/token；思考链常达 10K+，KV 预留要大。",
+  "ref_hw_24gb": "Q4_K_M 19.9 GB 可加载，但长思考易 OOM，建议 IQ4_XS + 16K",
+  "ref_hw_80gb": "BF16 单卡，32K 上下文",
+  "ref_hw_8x80gb": "高并发"
+ },
+ "links": {
+  "official": "https://qwenlm.github.io/blog/qwq-32b/",
+  "github": "https://github.com/QwenLM/Qwen2.5",
+  "hf": "https://huggingface.co/Qwen/QwQ-32B"
+ },
+ "copy": {
+  "one_liner": "32B 追平 DeepSeek-R1 的推理模型，单卡可跑。",
+  "highlights": [
+   "官方基准与 671B 的 R1 相当（AIME24 79.5%、LCB 63.4%）",
+   "Apache-2.0，24GB 卡 Q4 可跑",
+   "RL 阶段加入工具调用，agent 能力比蒸馏版好"
+  ],
+  "pitfalls": [
+   "无法关闭思考，简单问题也输出长链",
+   "思考经常上万 token，吞吐与显存压力大",
+   "采样参数敏感（需 temp 0.6、top-p 0.95），否则死循环"
+  ],
+  "logic_ability": "考试型推理极强：AIME 2024 79.5%、LiveCodeBench 63.4%（官方）。数学与算法题可靠，但通用知识与写作弱于同尺寸 Qwen2.5，且常出现过度思考。",
+  "best_for": [
+   "本地数学 / 算法求解",
+   "推理蒸馏数据生成"
+  ],
+  "not_for": [
+   "低延迟对话",
+   "知识问答 / 写作"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Ollama",
+   "MLX"
+  ],
+  "finetune": "LoRA 可行，建议保留思考格式",
+  "zh_docs": "有"
+ }
+}

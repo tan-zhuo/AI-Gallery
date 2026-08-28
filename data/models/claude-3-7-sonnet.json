@@ -1,0 +1,72 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "首个混合推理模型：同一模型可选择即时回答或扩展思考，思考预算可控。"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "claude-3-7-sonnet",
+ "name": "Claude 3.7 Sonnet",
+ "aliases": [
+  "claude-3-7-sonnet-20250219"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 3.7",
+ "superseded_by": "claude-sonnet-4",
+ "released_at": "2025-02-24",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "optional",
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K",
+  "max_output": 64000
+ },
+ "pricing": {
+  "input_per_m": 3,
+  "output_per_m": 15,
+  "currency": "USD",
+  "source": "Anthropic 定价页",
+  "as_of": "2025-02-24",
+  "note": "思考 token 按输出计费"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/news/claude-3-7-sonnet",
+  "pricing": "https://www.anthropic.com/pricing"
+ },
+ "copy": {
+  "one_liner": "首个混合推理模型，与 Claude Code 一同发布。",
+  "highlights": [
+   "SWE-bench Verified 62.3%（脚手架 70.3%），当时第一",
+   "扩展思考可控预算，GPQA 78.2%",
+   "Claude Code 命令行工具同日发布"
+  ],
+  "pitfalls": [
+   "过度工程化倾向，会擅自改动未要求的代码",
+   "AIME 2024 61.3%，数学不及 o3-mini",
+   "128K 输出为 beta"
+  ],
+  "logic_ability": "工程型推理里程碑，思考模式开启后考试型推理也进入第一梯队；关掉思考时与 3.5 Sonnet 相当。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

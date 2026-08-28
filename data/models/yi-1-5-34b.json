@@ -1,0 +1,94 @@
+{
+ "aliases": [
+  "Yi-1.5-34B-Chat"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "MMLU 76.8%（官方基座）。",
+  "math": "GSM8K 78.5%（官方基座）。",
+  "chinese": "中文好。"
+ },
+ "complete": false,
+ "id": "yi-1-5-34b",
+ "name": "Yi-1.5-34B",
+ "name_zh": "零一万物 Yi-1.5 · 34B",
+ "vendor": "01.AI",
+ "vendor_zh": "零一万物",
+ "family": "Yi-1.5",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/01-ai/Yi-1.5-34B-Chat",
+ "released_at": "2024-05-13",
+ "architecture": {
+  "type": "dense",
+  "total_params": "34.4B",
+  "total_params_b": 34.4,
+  "layers": 60,
+  "hidden_size": 7168,
+  "vocab_size": 64000,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（56 Q 头 / 8 KV 头）",
+  "notes": "Yi 续训 500B token；4K（另有 16K / 32K 版）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 4096,
+  "display": "4K（16K/32K 版另发）"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 68.8,
+   "q8": 36.5,
+   "q4": 20.7
+  },
+  "estimated": false,
+  "kv_per_token_kib": 240.0,
+  "kv_note": "240 KiB/token。",
+  "ref_hw_24gb": "Q4_K_M 20.7 GB 可跑",
+  "ref_hw_80gb": "BF16 单卡",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://01.ai/",
+  "github": "https://github.com/01-ai/Yi-1.5",
+  "hf": "https://huggingface.co/01-ai/Yi-1.5-34B-Chat"
+ },
+ "copy": {
+  "one_liner": "Yi 的续训升级版，代码与数学补课。",
+  "highlights": [
+   "Apache-2.0",
+   "官方称接近 Llama 3 70B 的多数基准",
+   "24GB 卡 Q4 可跑"
+  ],
+  "pitfalls": [
+   "默认 4K 上下文",
+   "零一万物 2024 年底转向闭源与 API，系列停更",
+   "被 Qwen2.5-32B 全面超过"
+  ],
+  "logic_ability": "34B 中游：MMLU 76.8%、GSM8K 78.5%（官方基座）。",
+  "best_for": [
+   "中英双语微调"
+  ],
+  "not_for": [
+   "长文本",
+   "新项目"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "finetune": "LoRA 成熟",
+  "zh_docs": "有"
+ }
+}

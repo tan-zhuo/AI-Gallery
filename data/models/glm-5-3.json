@@ -106,6 +106,68 @@
   "finetune": "待权重发布",
   "zh_docs": "有"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Zhipu GLM-5.3",
+   "one_liner": "Post-trained upgrade on the GLM-5.2 base; weights promised open.",
+   "highlights": [
+    "Open-source pledge: official says weights will be released within two weeks of safety review, HF page teases 2026-08-28; as of today API only",
+    "Same base, post-training only: Z.ai Code Bench +50% over GLM-5.2, DeepSWE v1.1 46.2 -> 66.9, Terminal-Bench 3.0 4.6 -> 28.3",
+    "Standout cybersecurity: CyberGym 84.5, ExploitBench 54.4 (GLM-5.2 was 24.4)"
+   ],
+   "pitfalls": [
+    "Weights not yet released; this entry is recorded as API-only, recheck files and license after open-sourcing",
+    "Reasoning cannot be disabled, only reasoning_effort is adjustable; at max a single question can output ~75K tokens",
+    "Exploit capability is officially described as \"unexpectedly emergent\" and rolled out first to security partners; enterprise compliance should take note"
+   ],
+   "logic_ability": "Engineering reasoning: officially claimed as the strongest open-source coding model, with the biggest gains on agentic tasks (DeepSWE 66.9, SWE-Marathon 42.5, Agents' Last Exam 28.5). LMArena text 1484 (#15), AA index 60. Exam-style benchmarks not separately disclosed; presumably close to GLM-5.2 (same base).",
+   "best_for": [
+    "Coding agents (ZCode / Claude Code / OpenCode)",
+    "Vulnerability discovery and security audits",
+    "GLM-5.2 open-source users waiting to upgrade"
+   ],
+   "not_for": [
+    "Scenarios that need self-hosting today (weights unreleased)",
+    "Multimodal (use GLM-5.3-Flash)"
+   ],
+   "capability_notes": {
+    "coding": "DeepSWE v1.1 66.9, Terminal-Bench 3.0 28.3, SWE-Marathon v1.1 42.5, Z.ai Code Bench 34.5 (max) (official).",
+    "agent": "Agents' Last Exam 28.5; CyberGym 84.5, ExploitBench 54.4 (official).",
+    "reasoning": "Not separately disclosed; refer to GLM-5.2 on the same base.",
+    "chinese": "Top-tier Chinese."
+   }
+  },
+  "ja": {
+   "name_zh": "智譜 GLM-5.3",
+   "one_liner": "GLM-5.2 と同じベースの後学習強化版。重みの公開を約束。",
+   "highlights": [
+    "オープンソース公約：公式は安全審査後 2 週間以内に重み公開と表明、HF ページは 2026-08-28 を予告。本日時点では API のみ",
+    "同ベースの純後学習：Z.ai Code Bench は GLM-5.2 比 50% 向上、DeepSWE v1.1 46.2→66.9、Terminal-Bench 3.0 4.6→28.3",
+    "サイバーセキュリティ能力が突出：CyberGym 84.5、ExploitBench 54.4（GLM-5.2 は 24.4）"
+   ],
+   "pitfalls": [
+    "重みは未公開で本項目は API-only として記録。公開後にファイルとライセンスの再確認が必要",
+    "推論はオフ不可で reasoning_effort の調整のみ。max では 1 問の出力が約 75K トークンに達することも",
+    "脆弱性悪用能力は公式に「予期せぬ創発」とされ、まずセキュリティパートナーに段階的に開放。企業のコンプライアンスは要注意"
+   ],
+   "logic_ability": "エンジニアリング型推論：公式はオープンソース最強のコーディングモデルを主張し、agent 系タスクの向上が最大（DeepSWE 66.9、SWE-Marathon 42.5、Agents' Last Exam 28.5）。LMArena テキスト部門 1484（15 位）、AA 指数 60。試験型ベンチマークは公式に個別公表なし、同ベースのため GLM-5.2 に近いと推測。",
+   "best_for": [
+    "コーディング agent（ZCode / Claude Code / OpenCode）",
+    "脆弱性発見とセキュリティ監査",
+    "GLM-5.2 オープンソース利用者のアップグレード待ち"
+   ],
+   "not_for": [
+    "今日すぐ自前運用が必要な用途（重み未公開）",
+    "マルチモーダル（GLM-5.3-Flash を使う）"
+   ],
+   "capability_notes": {
+    "coding": "DeepSWE v1.1 66.9、Terminal-Bench 3.0 28.3、SWE-Marathon v1.1 42.5、Z.ai Code Bench 34.5（max）（公式）。",
+    "agent": "Agents' Last Exam 28.5。CyberGym 84.5、ExploitBench 54.4（公式）。",
+    "reasoning": "公式に個別公表なし。同ベースの GLM-5.2 を参照。",
+    "chinese": "中国語は最上位。"
+   }
+  }
+ },
  "complete": false,
  "runtime": {
   "tok_s": 72,

@@ -1,0 +1,96 @@
+{
+ "aliases": [
+  "Phi-3-medium-128k-instruct",
+  "Phi-3-medium-4k-instruct"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "math": "GSM8K 91.0%（官方）。",
+  "knowledge": "MMLU 78.0%（官方）。",
+  "chinese": "弱。"
+ },
+ "complete": false,
+ "id": "phi-3-medium",
+ "name": "Phi-3 Medium",
+ "name_zh": "Phi-3 Medium · 14B",
+ "vendor": "Microsoft",
+ "family": "Phi-3",
+ "license": "MIT",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct",
+ "superseded_by": "phi-4",
+ "released_at": "2024-05-21",
+ "architecture": {
+  "type": "dense",
+  "total_params": "14B",
+  "total_params_b": 14,
+  "layers": 40,
+  "hidden_size": 5120,
+  "vocab_size": 32064,
+  "kv_heads": 10,
+  "head_dim": 128,
+  "attention": "GQA（40 Q 头 / 10 KV 头）",
+  "notes": "4.8T「教科书级」合成 + 过滤数据；4K 与 128K（LongRoPE）两版。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 28,
+   "q8": 14.8,
+   "q4": 8.6
+  },
+  "estimated": false,
+  "kv_per_token_kib": 200.0,
+  "kv_note": "200 KiB/token。",
+  "ref_hw_24gb": "BF16 28 GB 超 24GB；Q8 15 GB 可跑",
+  "ref_hw_80gb": "BF16 单卡",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://azure.microsoft.com/en-us/blog/new-models-added-to-the-phi-3-family-available-now/",
+  "paper": "https://arxiv.org/abs/2404.14219",
+  "hf": "https://huggingface.co/microsoft/Phi-3-medium-128k-instruct"
+ },
+ "copy": {
+  "one_liner": "合成数据路线的 14B，MMLU 78% 逼近 70B 级。",
+  "highlights": [
+   "MIT 许可",
+   "MMLU 78.0% 当年 14B 最高（官方）",
+   "128K 上下文（LongRoPE）"
+  ],
+  "pitfalls": [
+   "知识面窄、多语言与中文弱",
+   "对话自然度与指令遵循被批「刷榜」",
+   "被 Phi-4 取代"
+  ],
+  "logic_ability": "考试型强：MMLU 78.0%、GSM8K 91.0%（官方）；开放式对话与常识弱。",
+  "best_for": [
+   "英文考试 / 教育类任务"
+  ],
+  "not_for": [
+   "中文",
+   "开放对话"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama",
+   "ONNX Runtime"
+  ],
+  "finetune": "LoRA 友好",
+  "zh_docs": "弱"
+ }
+}

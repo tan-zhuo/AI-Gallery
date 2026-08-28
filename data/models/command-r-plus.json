@@ -1,0 +1,102 @@
+{
+ "aliases": [
+  "c4ai-command-r-plus",
+  "Command R+ 08-2024"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "agent": "多步工具调用、引用溯源原生。",
+  "chinese": "中文为 10 语言之一，可用。"
+ },
+ "complete": false,
+ "id": "command-r-plus",
+ "name": "Command R+",
+ "name_zh": "Command R+ · 104B",
+ "vendor": "Cohere",
+ "family": "Command R",
+ "license": "CC-BY-NC-4.0（附 Cohere 可接受使用政策）",
+ "license_commercial": false,
+ "weights_url": "https://huggingface.co/CohereLabs/c4ai-command-r-plus",
+ "superseded_by": "command-a-plus",
+ "released_at": "2024-04-04",
+ "architecture": {
+  "type": "dense",
+  "total_params": "104B",
+  "total_params_b": 104,
+  "layers": 64,
+  "hidden_size": 12288,
+  "vocab_size": 256000,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（96 Q 头 / 8 KV 头）",
+  "notes": "RAG 与工具调用原生模板（引用溯源）；10 语言；128K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 208,
+   "q8": 110.2,
+   "q4": 62.8
+  },
+  "estimated": false,
+  "kv_per_token_kib": 256.0,
+  "kv_note": "256 KiB/token。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "Q4 62.8 GB 单卡可跑；BF16 3×80GB",
+  "ref_hw_8x80gb": "BF16 高并发"
+ },
+ "pricing": {
+  "input_per_m": 2.5,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "Cohere 官方 API（command-r-plus-08-2024）",
+  "as_of": "2026-08-28"
+ },
+ "links": {
+  "official": "https://cohere.com/blog/command-r-plus-microsoft-azure",
+  "hf": "https://huggingface.co/CohereLabs/c4ai-command-r-plus"
+ },
+ "copy": {
+  "one_liner": "企业 RAG 专用的 104B，带引用溯源的工具调用先驱。",
+  "highlights": [
+   "RAG 引用（grounded generation）与多步工具调用原生模板",
+   "128K 上下文，10 种商业语言",
+   "发布时 Arena 开源第一，击败 GPT-4 早期版"
+  ],
+  "pitfalls": [
+   "CC-BY-NC，权重禁止商用（只能走 API）",
+   "104B Dense 显存大",
+   "被 Command A（111B，2025-03）取代"
+  ],
+  "logic_ability": "非推理模型 2024 年中游：MMLU 75.7%（社区测），RAG 场景表现优于同期开源，纯推理一般。",
+  "best_for": [
+   "企业 RAG 原型（非商用）",
+   "多语言检索问答"
+  ],
+  "not_for": [
+   "商用自部署",
+   "数学 / 代码"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "finetune": "LoRA 可行（非商用）",
+  "zh_docs": "弱"
+ }
+}

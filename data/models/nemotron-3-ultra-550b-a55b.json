@@ -106,5 +106,65 @@
   "tok_s": 150,
   "latency_s": 2.09,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "NVIDIA Nemotron 3 Ultra",
+   "one_liner": "NVIDIA's 550B open flagship: GPQA 87, LCB 89, 1M context.",
+   "highlights": [
+    "GPQA 87.0, LiveCodeBench v6 89.0, SWE-bench Verified 70.7% (official)",
+    "OpenMDW license; weights + data + recipe open",
+    "1M context; hybrid Mamba architecture keeps long-sequence cost low"
+   ],
+   "pitfalls": [
+    "Needs 8×B200 or 16×H100 class; not deployable by individuals / small teams",
+    "AA Intelligence Index 38, below Hy3 (42) and MiMo-V2.5-Pro (43)",
+    "llama.cpp / Ollama support depends on community GGUFs"
+   ],
+   "logic_ability": "Strong exam-style reasoning (GPQA 87.0, MMLU-Pro 86.8), decent engineering reasoning (SWE-bench 70.7, Terminal-Bench 2.1 56.4).",
+   "best_for": [
+    "Enterprise long-horizon agents",
+    "Ultra-long-context codebase analysis"
+   ],
+   "not_for": [
+    "Single-machine deployment",
+    "Cost-sensitive scenarios"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 89.0, SWE-bench Verified 70.7, Terminal-Bench 2.1 56.4 (official).",
+    "reasoning": "GPQA 87.0, MMLU-Pro 86.8 (official).",
+    "agent": "TauBench average 70.9 (official).",
+    "chinese": "Chinese officially supported (one of 10 languages)."
+   }
+  },
+  "ja": {
+   "name_zh": "NVIDIA Nemotron 3 Ultra",
+   "one_liner": "NVIDIA の 550B オープン旗艦。GPQA 87、LCB 89、1M。",
+   "highlights": [
+    "GPQA 87.0、LiveCodeBench v6 89.0、SWE-bench Verified 70.7%（公式）",
+    "OpenMDW ライセンス、重み + データ + レシピを公開",
+    "1M コンテキスト、ハイブリッド Mamba アーキテクチャで長系列コストが低い"
+   ],
+   "pitfalls": [
+    "8×B200 または 16×H100 級が必要で、個人 / 小規模チームではデプロイ不可",
+    "AA 知能指数 38 で Hy3（42）、MiMo-V2.5-Pro（43）を下回る",
+    "llama.cpp / Ollama 対応はコミュニティ GGUF 頼み"
+   ],
+   "logic_ability": "試験型推論は強い（GPQA 87.0、MMLU-Pro 86.8）、エンジニアリング型推論も良好（SWE-bench 70.7、Terminal-Bench 2.1 56.4）。",
+   "best_for": [
+    "エンタープライズの長期エージェント",
+    "超長コンテキストのコードベース分析"
+   ],
+   "not_for": [
+    "単一マシンでのデプロイ",
+    "コスト重視の用途"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 89.0、SWE-bench Verified 70.7、Terminal-Bench 2.1 56.4（公式）。",
+    "reasoning": "GPQA 87.0、MMLU-Pro 86.8（公式）。",
+    "agent": "TauBench 平均 70.9（公式）。",
+    "chinese": "公式に中国語対応（10 言語の 1 つ）。"
+   }
+  }
  }
 }

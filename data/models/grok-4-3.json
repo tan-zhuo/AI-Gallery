@@ -77,5 +77,57 @@
   ]
  },
  "capability_notes": {},
- "complete": false
+ "complete": false,
+ "i18n": {
+  "en": {
+   "name_zh": "Grok 4.3",
+   "one_liner": "xAI's budget tier: 1M context, $1.25 / $2.50, reasoning can be turned off.",
+   "highlights": [
+    "1M context, $2.50 output price, 1/2.4 of Grok 4.5",
+    "reasoning none tier works as a non-reasoning model; AA measured 126 tok/s",
+    "Supports video input and document (PDF / spreadsheet / slides) generation"
+   ],
+   "pitfalls": [
+    "AA Intelligence Index 38, far below Grok 4.5 / 4.6; do not expect it on complex tasks",
+    "No standalone official announcement page; benchmark data is scattered",
+    "Arena 1442, on par with the open-source Gemma 4 31B"
+   ],
+   "logic_ability": "Mid-tier; xAI emphasizes low hallucination rate and cost-effectiveness, with configurable reasoning depth.",
+   "best_for": [
+    "High-concurrency, low-cost calls",
+    "Long-document / large-codebase retrieval",
+    "Simple agent tool calling"
+   ],
+   "not_for": [
+    "Frontier reasoning and math",
+    "Self-hosted deployment"
+   ],
+   "capability_notes": {}
+  },
+  "ja": {
+   "name_zh": "Grok 4.3",
+   "one_liner": "xAI の低価格帯。1M コンテキスト、$1.25 / $2.50、推論オフ可。",
+   "highlights": [
+    "1M コンテキスト、出力価格 $2.50 で Grok 4.5 の 1/2.4",
+    "reasoning none 設定で非推論モデルとして利用可能、AA 実測 126 tok/s",
+    "動画入力とドキュメント（PDF / 表 / スライド）生成に対応"
+   ],
+   "pitfalls": [
+    "AA 知能指数 38 で Grok 4.5 / 4.6 を大きく下回り、複雑なタスクには期待できない",
+    "独立した公式発表ページがなく、ベンチマークデータが散在",
+    "Arena 1442、オープンソースの Gemma 4 31B と同等"
+   ],
+   "logic_ability": "中堅クラス。xAI は低ハルシネーション率とコスパを強調、推論の深さは設定可能。",
+   "best_for": [
+    "高並列・低コストの呼び出し",
+    "長文ドキュメント / 大規模コードベース検索",
+    "シンプルなエージェントのツール呼び出し"
+   ],
+   "not_for": [
+    "最先端の推論と数学",
+    "プライベート環境へのデプロイ"
+   ],
+   "capability_notes": {}
+  }
+ }
 }

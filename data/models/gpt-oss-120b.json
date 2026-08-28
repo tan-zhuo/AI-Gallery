@@ -117,6 +117,70 @@
   "finetune": "LoRA（官方示例）",
   "zh_docs": "无"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "OpenAI open-weight 120B",
+   "one_liner": "OpenAI open reasoning model on one 80GB GPU; 5B active, very fast.",
+   "highlights": [
+    "Apache-2.0, OpenAI's first open weights in six years",
+    "MXFP4 native 63 GB; deploys on a single H100 / dual 4090 class",
+    "5.1B active, very high throughput; three adjustable reasoning levels"
+   ],
+   "pitfalls": [
+    "The Harmony format must be followed strictly; an old chat template degrades quality noticeably",
+    "Weak knowledge breadth and multilinguality (training skews English, STEM); Chinese clearly below Qwen / GLM",
+    "High hallucination rate (official PersonQA hallucination rate 49%); use with care for factual QA"
+   ],
+   "logic_ability": "Exam-style reasoning is very strong for its size (AIME 2025 97.9% with tools, GPQA 80.1%), thanks to an RL recipe shared with the o-series. Engineering reasoning (SWE-bench 62.4%) is middling. Reasoning effort is key: at low it barely thinks, at high the chain can reach tens of thousands of tokens. Common issues: reasoning quality drops outside English; frequent hallucinations.",
+   "best_for": [
+    "Single-GPU high-throughput inference services",
+    "Math / STEM reasoning",
+    "English agent prototypes"
+   ],
+   "not_for": [
+    "Chinese-first products",
+    "Knowledge QA / fact checking"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 62.4%, Codeforces 2622 (tools, official).",
+    "reasoning": "GPQA Diamond 80.1%, HLE 19.0% (no tools, official).",
+    "math": "AIME 2025 97.9% (tools), 92.5% (no tools, official).",
+    "agent": "τ-bench Retail 67.8% (official).",
+    "chinese": "Weak; Chinese is not a focus language."
+   }
+  },
+  "ja": {
+   "name_zh": "OpenAI オープンウェイト 120B",
+   "one_liner": "80GB 単一 GPU で動く OpenAI オープン推論モデル、5B 活性。",
+   "highlights": [
+    "Apache-2.0、OpenAI が 6 年ぶりに公開したオープンウェイト",
+    "MXFP4 ネイティブ 63 GB、H100 1 枚 / 4090 2 枚クラスで展開可能",
+    "5.1B アクティブでスループットが極めて高い。推論強度は 3 段階で調整可能"
+   ],
+   "pitfalls": [
+    "Harmony フォーマットを厳密に守る必要があり、旧版の chat template では品質が大きく低下",
+    "知識の広さと多言語性が弱い（学習は英語・STEM 寄り）、中国語は Qwen / GLM に明らかに劣る",
+    "ハルシネーション率が高め（公式 PersonQA ハルシネーション率 49%）、事実 QA は慎重に"
+   ],
+   "logic_ability": "試験型推論はサイズに対して極めて強い（AIME 2025 ツールあり 97.9%、GPQA 80.1%）。o シリーズと同系統の RL レシピの恩恵。エンジニアリング型推論（SWE-bench 62.4%）は中程度。reasoning effort が鍵：low ではほぼ思考せず、high では思考チェーンが数万トークンに達する。よくある問題：英語以外の言語で推論品質が低下、ハルシネーションが多い。",
+   "best_for": [
+    "単一 GPU の高スループット推論サービス",
+    "数学 / STEM 推論",
+    "英語 agent のプロトタイプ"
+   ],
+   "not_for": [
+    "中国語中心の製品",
+    "知識 QA / ファクトチェック"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 62.4%、Codeforces 2622（ツールあり、公式）。",
+    "reasoning": "GPQA Diamond 80.1%、HLE 19.0%（ツールなし、公式）。",
+    "math": "AIME 2025 97.9%（ツールあり）、92.5%（ツールなし、公式）。",
+    "agent": "τ-bench Retail 67.8%（公式）。",
+    "chinese": "弱い。中国語は重点言語ではない。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 152,

@@ -104,5 +104,59 @@
   "tok_s": 30,
   "latency_s": 1.88,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Mistral Large 3",
+   "one_liner": "Mistral's 675B MoE open multimodal model, Apache-2.0, non-reasoning.",
+   "highlights": [
+    "Apache-2.0, Europe's largest open-source MoE, trained from scratch on 3000 H200s",
+    "41B active, multimodal + 40-plus languages",
+    "Cheap API: $0.5 / $1.5"
+   ],
+   "pitfalls": [
+    "Non-reasoning model, AA Intelligence Index only 16; fully surpassed by Medium 3.5",
+    "675B needs a full 8-GPU node; not deployable by individuals",
+    "8 months after release, Mistral has moved on to Medium 3.5 / Small 4"
+   ],
+   "logic_ability": "Non-reasoning model; mid-pack on both exam-style and engineering reasoning; #2 among open-source non-reasoning models on LMArena (official claim at release).",
+   "best_for": [
+    "Large fine-tuning base requiring Apache-2.0",
+    "Multilingual non-reasoning chat"
+   ],
+   "not_for": [
+    "Primary reasoning / coding model",
+    "Single-machine deployment"
+   ],
+   "capability_notes": {
+    "chinese": "Chinese officially supported; little independent data."
+   }
+  },
+  "ja": {
+   "name_zh": "Mistral Large 3",
+   "one_liner": "Mistral の 675B MoE 多モーダル。Apache-2.0、非推論。",
+   "highlights": [
+    "Apache-2.0、欧州最大のオープンソース MoE、3000 枚の H200 でゼロから学習",
+    "41B アクティブ、マルチモーダル + 40 超の言語",
+    "API が安い：$0.5 / $1.5"
+   ],
+   "pitfalls": [
+    "非推論モデルで AA 知能指数はわずか 16、Medium 3.5 に全面的に抜かれた",
+    "675B はフル 8 GPU ノードが必要で、個人ではデプロイ不可",
+    "公開から 8 か月、Mistral はすでに Medium 3.5 / Small 4 に軸足を移している"
+   ],
+   "logic_ability": "非推論モデル。試験型・エンジニアリング型とも中位。LMArena のオープンソース非推論部門 2 位（公開時の公式主張）。",
+   "best_for": [
+    "Apache-2.0 が必要な大型ファインチューニング基盤",
+    "多言語の非推論対話"
+   ],
+   "not_for": [
+    "推論 / コーディングの主力",
+    "単一マシンでのデプロイ"
+   ],
+   "capability_notes": {
+    "chinese": "公式に中国語対応、独立データは少ない。"
+   }
+  }
  }
 }

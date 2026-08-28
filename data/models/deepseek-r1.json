@@ -1,0 +1,123 @@
+{
+ "aliases": [
+  "DeepSeek R1",
+  "deepseek-reasoner (2025-01)"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "default-on",
+ "capability_notes": {
+  "coding": "LiveCodeBench 65.9%、Codeforces 2029 分、SWE-bench Verified 49.2%（官方）。",
+  "reasoning": "GPQA Diamond 71.5%（官方）。",
+  "math": "AIME 2024 79.8%、MATH-500 97.3%（官方）。",
+  "knowledge": "MMLU-Pro 84.0%（官方）。",
+  "agent": "弱：工具调用不在训练目标内。",
+  "chinese": "C-Eval 91.8%（官方）。"
+ },
+ "complete": true,
+ "id": "deepseek-r1",
+ "name": "DeepSeek-R1",
+ "name_zh": "DeepSeek-R1（0120）",
+ "vendor": "DeepSeek",
+ "vendor_zh": "深度求索",
+ "family": "DeepSeek-R1",
+ "license": "MIT",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-R1",
+ "superseded_by": "deepseek-r1-0528",
+ "released_at": "2025-01-20",
+ "architecture": {
+  "type": "moe",
+  "total_params": "671B",
+  "active_params": "37B",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "experts": 256,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 61,
+  "hidden_size": 7168,
+  "vocab_size": 129280,
+  "kv_heads": 128,
+  "head_dim": 192,
+  "attention": "MLA（kv_lora_rank 512 + rope 64）",
+  "notes": "基于 V3-Base，GRPO 纯强化学习 + 冷启动 SFT 两阶段；始终输出 <think>；128K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 1342,
+   "q8": 711.3,
+   "q4": 404.4,
+   "fp8": 671
+  },
+  "estimated": false,
+  "kv_per_token_kib": 68.6,
+  "kv_note": "MLA 压缩 KV：(512+64)×61×2 B ≈ 68.6 KiB/token；128K 上下文仅 8.6 GB。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）",
+  "ref_hw_8x80gb": "官方 FP8 671 GB 权重 8×H100 可服务（需 FP8 引擎）；BF16 需 16×80GB；Q4 404 GB 8×80GB 可跑"
+ },
+ "links": {
+  "official": "https://www.deepseek.com/",
+  "github": "https://github.com/deepseek-ai/DeepSeek-R1",
+  "paper": "https://arxiv.org/abs/2501.12948",
+  "hf": "https://huggingface.co/deepseek-ai/DeepSeek-R1"
+ },
+ "copy": {
+  "one_liner": "开源推理模型的引爆点，纯 RL 训出 o1 级能力。",
+  "highlights": [
+   "首个开源 o1 级推理模型，AIME 2024 79.8%、GPQA 71.5%（官方）",
+   "MIT 许可，思维链完整公开",
+   "同时发布 6 个蒸馏小模型（1.5B–70B）"
+  ],
+  "pitfalls": [
+   "工具调用与 JSON 输出弱，agent 场景不稳",
+   "思考链极长且偶有语言混杂，0528 版才修复",
+   "671B 本地门槛高，API 高峰期不稳定"
+  ],
+  "logic_ability": "考试型推理 2025 年初开源第一：AIME 2024 79.8%、MATH-500 97.3%、GPQA 71.5%、LiveCodeBench 65.9%、SWE-bench Verified 49.2%（官方）。逻辑严密、善于自我纠错，但不擅长工具调用与结构化输出，且过度思考简单问题。",
+  "best_for": [
+   "推理 / 数学 / 代码",
+   "API 低成本调用"
+  ],
+  "not_for": [
+   "单机本地部署",
+   "低延迟对话"
+  ]
+ },
+ "pricing": {
+  "input_per_m": 0.55,
+  "output_per_m": 2.19,
+  "currency": "USD",
+  "source": "DeepSeek 官方 API（deepseek-reasoner，2025-01 定价）",
+  "as_of": "2026-08-28"
+ },
+ "sheet": {
+  "architecture_md": "**类型**：MoE Transformer，与 DeepSeek-V3 完全相同的结构，671B 总参 / 37B 激活。\n\n- 61 层，隐藏维 7168，256 路由专家 top-8 + 1 共享专家\n- MLA 注意力，KV ≈ 68.6 KiB/token\n- 输出格式：`<think>…</think>` 后接答案，思考链不可关闭\n- 上下文 128K，官方建议最大输出 32K（0528 版 64K）\n\n参考：《DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL》。",
+  "memory_md": "| 精度 | 权重大小 | 参考硬件 | 说明 |\n|---|---|---|---|\n| FP8 | ≈ 671 GB | 8×H100/H200 | 官方原生 FP8 |\n| BF16 | 1342 GB | 16×80GB | 需转换 |\n| Q4 | 404 GB | 8×80GB | GGUF Q4_K_M（unsloth） |\n| 1.58-bit | ≈ 131 GB | 2×80GB / 大内存 | unsloth 动态量化 |\n\n**KV Cache**：≈ 68.6 KiB/token；推理链常达 10–30K token，KV 预算按此规划。\n\n**参考配置**：\n- 8×H200：FP8 高并发\n- 本地：只能靠蒸馏版（R1-Distill-Qwen-32B 单卡 24GB Q4）",
+  "training_md": "- R1-Zero：V3-Base 直接 GRPO 强化学习，无 SFT，出现「顿悟时刻」\n- R1：冷启动少量长 CoT SFT → 推理 RL → 拒绝采样 SFT（80 万样本）→ 全场景 RL\n- 奖励：规则奖励（准确性 + 格式），不用神经奖励模型\n- 蒸馏：用 80 万样本 SFT Qwen2.5 / Llama 3 得到 6 个小模型\n- 官方建议 temperature 0.6，不要加 system prompt",
+  "ecosystem_md": "- HF：deepseek-ai/DeepSeek-R1、R1-Zero、R1-Distill-{Qwen,Llama}-{1.5B…70B}\n- 引擎：SGLang、vLLM、LMDeploy、llama.cpp\n- 微调：本体极困难；蒸馏版 LoRA 友好\n- 中文文档：有（GitHub 中文 README、API 文档中文）",
+  "versions_md": "- 后继：DeepSeek-R1-0528（2025-05，AIME 2025 87.5%，工具调用改善）→ V3.1 混合思考\n- 蒸馏系列：R1-Distill-Qwen-32B 是 2025 上半年最常用的本地推理模型\n- 上代：DeepSeek-R1-Lite-Preview（2024-11，仅 API）"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "LMDeploy",
+   "llama.cpp"
+  ],
+  "finetune": "极困难（本体）",
+  "zh_docs": "有"
+ }
+}

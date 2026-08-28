@@ -1,0 +1,103 @@
+{
+ "aliases": [
+  "Devstral-Small-2505"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "SWE-bench Verified 46.8%（OpenHands，官方）。",
+  "agent": "OpenHands 专用微调，工具调用可靠。"
+ },
+ "complete": false,
+ "id": "devstral-small",
+ "name": "Devstral Small",
+ "name_zh": "Devstral Small · 24B",
+ "vendor": "Mistral AI",
+ "family": "Devstral",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/mistralai/Devstral-Small-2505",
+ "superseded_by": "devstral-small-2",
+ "released_at": "2025-05-21",
+ "architecture": {
+  "type": "dense",
+  "total_params": "24B",
+  "total_params_b": 24,
+  "layers": 40,
+  "hidden_size": 5120,
+  "vocab_size": 131072,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 8 KV 头）",
+  "notes": "基于 Mistral Small 3.1 去掉视觉编码器，针对 OpenHands 代码 agent 微调。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 48,
+   "q8": 25.4,
+   "q4": 14.3
+  },
+  "estimated": false,
+  "kv_per_token_kib": 160.0,
+  "kv_note": "160 KiB/token。",
+  "ref_hw_24gb": "Q4_K_M 14.3 GB，RTX 4090 可跑 agent 任务",
+  "ref_hw_80gb": "BF16 单卡",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "pricing": {
+  "input_per_m": 0.1,
+  "output_per_m": 0.3,
+  "currency": "USD",
+  "source": "Mistral 官方 API（devstral-small）",
+  "as_of": "2026-08-28",
+  "note": "官方托管价"
+ },
+ "links": {
+  "official": "https://mistral.ai/news/devstral",
+  "hf": "https://huggingface.co/mistralai/Devstral-Small-2505"
+ },
+ "copy": {
+  "one_liner": "首个单卡可跑的开源代码 agent 模型，SWE-bench 46.8%。",
+  "highlights": [
+   "发布时开源 SWE-bench Verified 第一（46.8%）",
+   "24B 可在 RTX 4090 / Mac 32GB 本地跑 agent",
+   "Apache-2.0，与 OpenHands 深度整合"
+  ],
+  "pitfalls": [
+   "为 agent 场景微调，普通对话与知识不如通用模型",
+   "无视觉，无推理模式",
+   "2507 版（Devstral Small 1.1）已把 SWE-bench 提到 53.6%"
+  ],
+  "logic_ability": "代码 agent 专精，SWE-bench Verified 46.8%（OpenHands 脚手架，官方）。通用推理没有单独报告，按 Small 3.1 水平估计。",
+  "best_for": [
+   "本地代码 agent（OpenHands / Cline）",
+   "私有仓库自动修 bug"
+  ],
+  "not_for": [
+   "通用对话",
+   "数学 / 知识问答"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama",
+   "LM Studio"
+  ],
+  "finetune": "LoRA 可行",
+  "zh_docs": "弱"
+ }
+}

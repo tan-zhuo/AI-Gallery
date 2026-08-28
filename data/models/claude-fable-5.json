@@ -94,6 +94,74 @@
   "finetune": "不支持",
   "zh_docs": "弱"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Claude Fable 5 (public Mythos-class)",
+   "one_liner": "Anthropic's public Mythos-class model; runs agents for days on end.",
+   "highlights": [
+    "#1 on LMArena text (1507, 2026-08-27), AA Intelligence Index 62",
+    "1M context + 128K output, thinking always on, can delegate sub-agents across stages and work for days",
+    "Official pricing $10 / $50, under half of Mythos Preview; cache reads $1"
+   ],
+   "pitfalls": [
+    "Cybersecurity / bio-chem / distillation requests are refused by a classifier and fall back to Opus 4.8; integrations must handle stop_reason=refusal",
+    "High first-token latency (AA-measured TTFT about 80 s); thinking cannot be disabled and raw chain-of-thought is not returned",
+    "2x the price of Opus 5, which already matches or beats it on most leaderboards; mandatory 30-day data retention, no ZDR"
+   ],
+   "logic_ability": "Top tier among current public models: GDP.pdf visual reasoning 29.8 and SWE-bench Pro 80.3 (official announcement table) lead all rivals; beat Pokemon FireRed on vision alone, and with persistent memory scores 3x Opus 4.8 on Slay the Spire. Since the Opus 5 launch, however, it has been overtaken by Opus 5 on GDPval-AA v2, AA-Briefcase and ARC-AGI-3; Fable 5's edge is concentrated in very long task chains with very high autonomy. Failure modes: the classifier is conservative, about 5% of sessions trigger the fallback; outputs run long with many thinking tokens.",
+   "best_for": [
+    "Multi-stage agent projects that run across days",
+    "Large-scale code migrations / repo-level refactors",
+    "Advanced knowledge work such as finance and law",
+    "Vision-heavy tasks"
+   ],
+   "not_for": [
+    "High-frequency low-value calls",
+    "Security research / biology content (falls back)",
+    "Compliance scenarios that need ZDR or on-prem deployment"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Pro 80.3% (official announcement table, transcribed by Vellum); top score on Cognition FrontierCode; Stripe used it to migrate 50M lines of Ruby in one day.",
+    "reasoning": "AA Intelligence Index 62 (2026-08); Frontier-Bench v0.1 33.7%, below Opus 5's 43.3%.",
+    "agent": "Officially positioned as a \"long-running agent\"; works for days under Claude Code / Managed Agents; AA-measured cost per task $3.14.",
+    "multimodal": "Officially claimed vision SOTA: GDP.pdf (vision, no tools) 29.8 vs GPT-5.5 24.9.",
+    "chinese": "Chinese usable; no independent Chinese evaluation."
+   }
+  },
+  "ja": {
+   "name_zh": "Claude Fable 5（Mythos 級公開版）",
+   "one_liner": "Anthropic 公開の Mythos 級。agent を数日連続実行可能。",
+   "highlights": [
+    "LMArena テキスト部門 1 位（1507、2026-08-27）、AA 知能指数 62",
+    "1M コンテキスト + 128K 出力、思考は常時オン、段階をまたいでサブ agent に委譲し数日連続で稼働可能",
+    "公式価格 $10 / $50、Mythos Preview の半額未満、キャッシュ読み取り $1"
+   ],
+   "pitfalls": [
+    "サイバーセキュリティ / 生化学 / 蒸留系リクエストは分類器に拒否され Opus 4.8 にフォールバック。統合側で stop_reason=refusal の処理が必須",
+    "初回トークン遅延が大きい（AA 実測 TTFT 約 80 s）。思考はオフにできず生の思考過程も返らない",
+    "価格は Opus 5 の 2 倍だが、Opus 5 は多くのリーダーボードで既に同等かそれ以上。30 日間の強制データ保持、ZDR なし"
+   ],
+   "logic_ability": "現行公開モデルの最上位：GDP.pdf 視覚推論 29.8、SWE-bench Pro 80.3（公式発表表）で全競合をリード。純粋な視覚のみで『ポケットモンスター ファイアレッド』をクリア、永続メモリ下の Slay the Spire では Opus 4.8 の 3 倍の成績。ただし Opus 5 発表後は GDPval-AA v2、AA-Briefcase、ARC-AGI-3 で Opus 5 に逆転され、Fable 5 の強みは極めて長いタスクチェーンと高い自律性を要する場面に集中。失敗モード：分類器が保守的で約 5% のセッションでフォールバックが発生。出力が長く思考トークンが多い。",
+   "best_for": [
+    "日をまたいで動く多段階 agent プロジェクト",
+    "大規模コード移行 / リポジトリ級リファクタリング",
+    "金融・法務などの高度な知識労働",
+    "視覚中心のタスク"
+   ],
+   "not_for": [
+    "高頻度・低価値の呼び出し",
+    "セキュリティ研究 / 生物系コンテンツ（フォールバックする）",
+    "ZDR やオンプレ展開が必要なコンプライアンス用途"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Pro 80.3%（公式発表表、Vellum 転記）。Cognition FrontierCode 最高スコア。Stripe は 5000 万行の Ruby 移行を 1 日で完了。",
+    "reasoning": "AA 知能指数 62（2026-08）。Frontier-Bench v0.1 33.7%、Opus 5 の 43.3% を下回る。",
+    "agent": "公式の位置づけは「長時間稼働 agent」。Claude Code / Managed Agents 下で数日稼働可能。AA 測定のタスク単価 $3.14。",
+    "multimodal": "公式に視覚 SOTA を主張：GDP.pdf（視覚、ツールなし）29.8 vs GPT-5.5 24.9。",
+    "chinese": "中国語は利用可能。独立した中国語評価はなし。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 65,

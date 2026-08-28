@@ -1,0 +1,115 @@
+{
+ "aliases": [
+  "MiniMax-M1-80k",
+  "MiniMax-M1-40k"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "capability_notes": {
+  "coding": "LiveCodeBench 65.0%、SWE-bench Verified 56.0%（官方）。",
+  "reasoning": "GPQA Diamond 70.0%、HLE 8.4%（官方）。",
+  "math": "AIME 2025 76.9%（官方）。",
+  "agent": "TAU-bench airline 62.0 / retail 63.5（官方）。",
+  "chinese": "中文强。"
+ },
+ "complete": false,
+ "id": "minimax-m1",
+ "name": "MiniMax-M1",
+ "name_zh": "MiniMax-M1 · 456B-A46B",
+ "vendor": "MiniMax",
+ "vendor_zh": "MiniMax",
+ "family": "MiniMax-M1",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/MiniMaxAI/MiniMax-M1-80k",
+ "superseded_by": "minimax-m2",
+ "released_at": "2025-06-16",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "456B",
+  "active_params": "45.9B",
+  "total_params_b": 456,
+  "active_params_b": 45.9,
+  "experts": 32,
+  "active_experts": 2,
+  "shared_expert": false,
+  "layers": 80,
+  "hidden_size": 6144,
+  "vocab_size": 200064,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "混合：7 层 Lightning Attention（线性）+ 1 层 softmax GQA，循环",
+  "notes": "基于 MiniMax-Text-01；1M 上下文；CISPO 强化学习；80K 思考预算版。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M",
+  "max_output": 80000
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 912,
+   "q8": 483.4,
+   "q4": 264.5,
+   "fp8": 456
+  },
+  "estimated": true,
+  "kv_per_token_kib": 40.0,
+  "kv_note": "仅 1/8 的层是 softmax 注意力（10 层），KV ≈ 40 KiB/token，1M 上下文约 40 GB；线性层状态固定。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "BF16 912 GB 需 16×80GB；官方推荐 8×H800/H20 跑 FP8 / int8"
+ },
+ "pricing": {
+  "input_per_m": 0.4,
+  "output_per_m": 2.2,
+  "currency": "USD",
+  "source": "MiniMax 官方 API（M1，≤200K 输入档）",
+  "as_of": "2026-08-28"
+ },
+ "links": {
+  "official": "https://www.minimax.io/news/minimaxm1",
+  "github": "https://github.com/MiniMax-AI/MiniMax-M1",
+  "paper": "https://arxiv.org/abs/2506.13585",
+  "hf": "https://huggingface.co/MiniMaxAI/MiniMax-M1-80k"
+ },
+ "copy": {
+  "one_liner": "首个开源混合线性注意力推理模型，1M 上下文。",
+  "highlights": [
+   "Lightning Attention 让 100K 生成的 FLOPs 仅为 R1 的 25%",
+   "1M 上下文 + 80K 思考输出，Apache-2.0",
+   "RL 成本仅 53.5 万美元（官方）"
+  ],
+  "pitfalls": [
+   "456B 需多机部署，社区量化少",
+   "考试型推理弱于 R1-0528 / Qwen3-235B",
+   "被 M2（2025-10，更小更强）取代"
+  ],
+  "logic_ability": "AIME 2025 76.9%、GPQA 70.0%、LiveCodeBench 65.0%、SWE-bench Verified 56.0%（官方，80k 版）。长上下文与 agent 是强项。",
+  "best_for": [
+   "超长上下文推理",
+   "长程 agent 任务"
+  ],
+  "not_for": [
+   "本地部署",
+   "极致数学"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "Transformers"
+  ],
+  "finetune": "极困难",
+  "zh_docs": "有"
+ }
+}

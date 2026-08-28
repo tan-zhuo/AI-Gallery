@@ -94,6 +94,66 @@
   ],
   "zh_docs": "无"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Cohere Command A+",
+   "one_liner": "Cohere's first Apache-2.0 open MoE, 218B, 48 languages.",
+   "highlights": [
+    "Apache-2.0, Cohere's first fully open model",
+    "Native citation grounding, 48 languages including Chinese",
+    "AIME 2025 90% (AA report); lossless W4A4 quantization runs on 2x H100"
+   ],
+   "pitfalls": [
+    "AA Intelligence Index 23; general reasoning only at Haiku 4.5 level",
+    "128K context, below the 256K+ of peers",
+    "No official API price or full evaluation table published"
+   ],
+   "logic_ability": "Exam-style reasoning strong in math (AIME 90%) but GPQA about 76% and HLE about 11% are unremarkable; engineering reasoning weak at about 25% on Terminal-Bench Hard.",
+   "best_for": [
+    "Enterprise RAG / citation grounding",
+    "Multilingual translation and document processing"
+   ],
+   "not_for": [
+    "Primary coding agent",
+    "Single-GPU deployment"
+   ],
+   "capability_notes": {
+    "reasoning": "GPQA Diamond about 76%, HLE about 11% (Artificial Analysis report).",
+    "math": "AIME 2025 90% (Artificial Analysis report).",
+    "multimodal": "MMMU-Pro 63% (Artificial Analysis report).",
+    "chinese": "Officially 48 languages including Chinese."
+   }
+  },
+  "ja": {
+   "name_zh": "Cohere Command A+",
+   "one_liner": "Cohere 初の Apache-2.0 オープン MoE、218B、48 言語",
+   "highlights": [
+    "Apache-2.0、Cohere 初の完全オープンモデル",
+    "ネイティブの引用（citation）機能、中国語を含む 48 言語",
+    "AIME 2025 90%（AA 報道）。W4A4 無損失量子化で 2×H100 で動作"
+   ],
+   "pitfalls": [
+    "AA 知能指数 23、汎用推論は Haiku 4.5 級",
+    "128K コンテキストで同クラスの 256K+ に劣る",
+    "公式 API 価格と完全な評価表は未公表"
+   ],
+   "logic_ability": "試験型推論は数学が強い（AIME 90%）が GPQA 約 76%、HLE 約 11% は平凡。エンジニアリング型推論は Terminal-Bench Hard 約 25% と弱め。",
+   "best_for": [
+    "企業 RAG / 引用付き回答",
+    "多言語翻訳と文書処理"
+   ],
+   "not_for": [
+    "コーディング agent の主力",
+    "単一 GPU での展開"
+   ],
+   "capability_notes": {
+    "reasoning": "GPQA Diamond 約 76%、HLE 約 11%（Artificial Analysis 報道）。",
+    "math": "AIME 2025 90%（Artificial Analysis 報道）。",
+    "multimodal": "MMMU-Pro 63%（Artificial Analysis 報道）。",
+    "chinese": "公式に中国語を含む 48 言語対応。"
+   }
+  }
+ },
  "complete": false,
  "runtime": {
   "tok_s": 254,

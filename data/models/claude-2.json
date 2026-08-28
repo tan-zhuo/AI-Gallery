@@ -1,0 +1,69 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "claude-2",
+ "name": "Claude 2",
+ "aliases": [
+  "claude-2.0",
+  "claude-2.1"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 2",
+ "superseded_by": "claude-3-opus",
+ "released_at": "2023-07-11",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 100000,
+  "display": "100K（2.1 版 200K）",
+  "max_output": 4096
+ },
+ "pricing": {
+  "input_per_m": 8,
+  "output_per_m": 24,
+  "currency": "USD",
+  "source": "Anthropic 定价页（Claude 2.1）",
+  "as_of": "2023-11-21",
+  "note": "Claude 2.0 发布价 $11.02 / $32.68"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/news/claude-2",
+  "pricing": "https://www.anthropic.com/pricing"
+ },
+ "copy": {
+  "one_liner": "100K 上下文的早期 Claude，长文档处理先驱。",
+  "highlights": [
+   "100K 上下文（2.1 版 200K），当年远超 GPT-4",
+   "律师考试 76.5%、GSM8K 88.0%",
+   "2.1 版幻觉率减半、引入工具调用（beta）"
+  ],
+  "pitfalls": [
+   "过度拒答，\"Claude 太谨慎\"成梗",
+   "HumanEval 71.2%，代码弱于 GPT-4",
+   "无视觉、无 JSON 模式"
+  ],
+  "logic_ability": "逻辑推理接近 GPT-3.5 到 GPT-4 之间，长文档归纳强，数学一般。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

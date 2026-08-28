@@ -1,0 +1,121 @@
+{
+ "aliases": [
+  "Qwen2.5-72B-Instruct"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "LiveCodeBench 55.5%、HumanEval 86.6%（官方）。",
+  "reasoning": "GPQA 49.0%（官方）。",
+  "math": "MATH 83.1%（官方）。",
+  "knowledge": "MMLU-Pro 71.1%（官方）。",
+  "agent": "工具调用 Hermes 格式，Qwen-Agent 支持。",
+  "chinese": "中文顶级，长期作为中文开源基准。"
+ },
+ "complete": true,
+ "id": "qwen2-5-72b",
+ "name": "Qwen2.5-72B",
+ "name_zh": "通义千问 2.5 · 72B",
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen2.5",
+ "license": "Qwen License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct",
+ "superseded_by": "qwen3-235b-a22b-thinking-2507",
+ "released_at": "2024-09-19",
+ "architecture": {
+  "type": "dense",
+  "total_params": "72.7B",
+  "total_params_b": 72.7,
+  "layers": 80,
+  "hidden_size": 8192,
+  "vocab_size": 152064,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（64 Q 头 / 8 KV 头）",
+  "notes": "18T token 预训练；128K 上下文（YaRN），最大输出 8K；结构与 Qwen2-72B 相同。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 8192
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 145.4,
+   "q8": 77.1,
+   "q4": 47.4
+  },
+  "estimated": false,
+  "kv_per_token_kib": 320.0,
+  "kv_note": "8×128×2×80×2 B = 320 KiB/token；32K 上下文约 10 GB。",
+  "ref_hw_24gb": "Q4_K_M 47.4 GB 需 2×24GB；单卡只能 IQ2 级",
+  "ref_hw_80gb": "Q4 / FP8 单卡 80GB 可跑 32K；BF16 2×80GB",
+  "ref_hw_8x80gb": "BF16 高并发服务"
+ },
+ "pricing": {
+  "input_per_m": 0.13,
+  "output_per_m": 0.4,
+  "currency": "USD",
+  "source": "第三方托管常见价（DeepInfra）",
+  "as_of": "2026-08-28",
+  "note": "开源权重，社区托管价"
+ },
+ "links": {
+  "official": "https://qwenlm.github.io/blog/qwen2.5/",
+  "github": "https://github.com/QwenLM/Qwen2.5",
+  "paper": "https://arxiv.org/abs/2412.15115",
+  "hf": "https://huggingface.co/Qwen/Qwen2.5-72B-Instruct"
+ },
+ "copy": {
+  "one_liner": "2024 下半年开源 Dense 王者，无数微调与蒸馏的底座。",
+  "highlights": [
+   "发布时综合超越 Llama 3.1 405B（官方多项基准）",
+   "18T token 预训练，数学 / 代码专项数据注入",
+   "DeepSeek-R1 蒸馏、大量学术工作的默认底座"
+  ],
+  "pitfalls": [
+   "72B 用 Qwen License（1 亿月活限制），32B 及以下才是 Apache",
+   "无思考模式，2025 年推理榜落后于 Qwen3 / R1",
+   "最大输出仅 8K，长生成需改配置"
+  ],
+  "logic_ability": "非推理模型顶级：MATH 83.1%、GPQA 49.0%、LiveCodeBench 55.5%、MMLU-Pro 71.1%（官方）。逻辑清晰、指令遵循极稳，多轮与结构化输出可靠；但没有内在的长思考能力，竞赛题会自信地给错答案。",
+  "best_for": [
+   "中英双语通用私有化",
+   "微调 / 蒸馏底座",
+   "结构化输出与工具调用"
+  ],
+  "not_for": [
+   "竞赛数学 / 深度代码 agent",
+   "单张 24GB 卡"
+  ]
+ },
+ "sheet": {
+  "architecture_md": "**类型**：Dense Transformer，72.7B 参数（70.0B 非 embedding）。\n\n- 80 层，隐藏维 8192，FFN 29,568，词表 152,064\n- GQA：64 Query 头 / 8 KV 头，head_dim 128；QKV bias\n- RoPE θ=1e6；原生 32K，YaRN factor 4 → 131,072\n- 与 Qwen2-72B 结构相同，差异全在数据与训练\n\n参考：Qwen2.5 技术报告（arXiv 2412.15115）。",
+  "memory_md": "| 精度 | 权重大小 | 参考硬件 | 说明 |\n|---|---|---|---|\n| BF16 | 145.4 GB | 2×80GB | 官方 safetensors |\n| Q8 | ≈ 77 GB | 80GB 单卡 | GGUF Q8_0 |\n| Q4 | 47.4 GB | 2×24GB / 80GB | GGUF Q4_K_M（官方 + bartowski） |\n| AWQ/GPTQ int4 | ≈ 41 GB | 48GB | 官方量化版 |\n\n**KV Cache**：320 KiB/token（BF16）。\n\n**参考配置**：\n- 2×RTX 4090：Q4_K_M 拆分，上下文 8–16K\n- A100/H100 80GB：官方 AWQ / FP8，32K 上下文\n- 2×80GB：BF16",
+  "training_md": "- 预训练 18T token（Qwen2 为 7T），数学与代码合成数据大量加入\n- 后训练：百万级 SFT + DPO + GRPO 两阶段 RL\n- 工具调用：Hermes 风格 JSON；支持 system prompt 灵活角色\n- 长上下文：YaRN 需在 config 中手动启用（rope_scaling）",
+  "ecosystem_md": "- HF：Qwen/Qwen2.5-72B-Instruct、-AWQ、-GPTQ-Int4/Int8、-GGUF\n- 引擎：vLLM、SGLang、llama.cpp、Ollama、TensorRT-LLM、MLX\n- 微调：LLaMA-Factory、Unsloth、ms-swift、Axolotl 全支持\n- 中文文档：有（官方文档 qwen.readthedocs.io 中英双语）",
+  "versions_md": "- 同系列：Qwen2.5-32B（Apache-2.0）、Qwen2.5-Coder-32B、Qwen2.5-Math\n- 后继：QwQ-32B（推理）→ Qwen3-235B-A22B（2025-04）→ Qwen3 2507 系列\n- 上代：Qwen2-72B（2024-06）"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Ollama",
+   "TensorRT-LLM",
+   "MLX"
+  ],
+  "finetune": "LoRA / 全参均友好",
+  "zh_docs": "有"
+ }
+}

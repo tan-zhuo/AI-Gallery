@@ -1,0 +1,100 @@
+{
+ "aliases": [
+  "DeepSeek-V2-Chat",
+  "DeepSeek-V2 236B"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "LiveCodeBench(0901-0401) 32.5%（Chat，官方）。",
+  "knowledge": "MMLU 78.5%（官方基座）。",
+  "chinese": "C-Eval 81.7%（官方）。"
+ },
+ "complete": false,
+ "id": "deepseek-v2",
+ "name": "DeepSeek-V2",
+ "name_zh": "DeepSeek-V2",
+ "vendor": "DeepSeek",
+ "vendor_zh": "深度求索",
+ "family": "DeepSeek-V2",
+ "license": "DeepSeek License（代码 MIT）",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat",
+ "superseded_by": "deepseek-v3",
+ "released_at": "2024-05-06",
+ "architecture": {
+  "type": "moe",
+  "total_params": "236B",
+  "active_params": "21B",
+  "total_params_b": 236,
+  "active_params_b": 21,
+  "experts": 160,
+  "active_experts": 6,
+  "shared_expert": true,
+  "layers": 60,
+  "hidden_size": 5120,
+  "vocab_size": 102400,
+  "kv_heads": 128,
+  "head_dim": 192,
+  "attention": "MLA（kv_lora_rank 512 + rope 64）",
+  "notes": "MLA 与 DeepSeekMoE 首次亮相：160 路由专家 top-6 + 2 共享专家；上下文 128K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 472,
+   "q8": 250.2,
+   "q4": 136.9
+  },
+  "estimated": true,
+  "kv_per_token_kib": 67.5,
+  "kv_note": "MLA 压缩 KV：(512+64)×60×2 B ≈ 67.5 KiB/token，比同规模 GQA 小 10 倍以上。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）；Q4 约 137 GB 需 2×80GB",
+  "ref_hw_8x80gb": "BF16 472 GB，8×80GB 可服务"
+ },
+ "links": {
+  "official": "https://www.deepseek.com/",
+  "paper": "https://arxiv.org/abs/2405.04434",
+  "github": "https://github.com/deepseek-ai/DeepSeek-V2",
+  "hf": "https://huggingface.co/deepseek-ai/DeepSeek-V2-Chat"
+ },
+ "copy": {
+  "one_liner": "MLA + DeepSeekMoE 的首秀，引爆中国 API 价格战。",
+  "highlights": [
+   "首创 MLA，KV 缓存减少 93%",
+   "236B 总参仅 21B 激活，训练成本比 67B Dense 低 42.5%",
+   "API 定价 1 元/百万 token 掀起价格战"
+  ],
+  "pitfalls": [
+   "自定义架构，早期推理框架支持慢",
+   "非 Apache/MIT 权重许可（含使用限制条款）",
+   "被 V2.5 / V3 快速取代"
+  ],
+  "logic_ability": "2024 年中开源一线：MMLU 78.5%、GSM8K 79.2%（基座，官方）。无推理链训练。",
+  "best_for": [
+   "MLA / MoE 架构研究"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang"
+  ],
+  "finetune": "困难（MLA + MoE）",
+  "zh_docs": "有"
+ }
+}

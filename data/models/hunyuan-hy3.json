@@ -108,5 +108,63 @@
   "tok_s": 67,
   "latency_s": 2.81,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Tencent Hunyuan Hy3",
+   "one_liner": "Tencent's open-source 295B MoE: SWE-bench 78%, GPQA 90.",
+   "highlights": [
+    "SWE-bench Verified 78%, GPQA Diamond 90.4%, Terminal-Bench 2.1 71.7% (official)",
+    "Apache-2.0, 21B active, 256K context",
+    "Chinese domestic model, native to Chinese and the WeChat / Tencent ecosystem"
+   ],
+   "pitfalls": [
+    "295B needs 8 GPUs; official guidance also recommends H20-3e-class large memory",
+    "Arena 1456, ranked 59th; chat experience falls short of the leaderboard numbers",
+    "Text only, no vision"
+   ],
+   "logic_ability": "Top-tier exam-style reasoning (GPQA 90.4) and equally first-rate engineering reasoning (SWE-bench 78%, TB 71.7%); AA Intelligence Index 42, among the open-source leaders.",
+   "best_for": [
+    "China-compliant coding / office agents",
+    "Tencent Cloud deployment"
+   ],
+   "not_for": [
+    "Single-machine deployment",
+    "Multimodal"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 78%, Terminal-Bench 2.1 71.7% (official).",
+    "reasoning": "GPQA Diamond 90.4% (official).",
+    "chinese": "Strong; home turf for a Chinese domestic model."
+   }
+  },
+  "ja": {
+   "name_zh": "Tencent 混元 Hy3",
+   "one_liner": "Tencent 295B MoE。SWE-bench 78%、GPQA 90。",
+   "highlights": [
+    "SWE-bench Verified 78%、GPQA Diamond 90.4%、Terminal-Bench 2.1 71.7%（公式）",
+    "Apache-2.0、21B アクティブ、256K コンテキスト",
+    "中国産モデルで、中国語と WeChat / Tencent エコシステムにネイティブ対応"
+   ],
+   "pitfalls": [
+    "295B は 8 GPU が必要で、公式は H20-3e 級の大容量メモリを推奨",
+    "Arena 1456 で 59 位、対話体験はリーダーボードの数値に届かない",
+    "テキストのみ、ビジョン非対応"
+   ],
+   "logic_ability": "試験型推論は最上位（GPQA 90.4）、エンジニアリング型推論も一流（SWE-bench 78%、TB 71.7%）。AA 知能指数 42 でオープンソース上位。",
+   "best_for": [
+    "中国のコンプライアンスに沿ったコーディング / オフィスエージェント",
+    "Tencent Cloud へのデプロイ"
+   ],
+   "not_for": [
+    "単一マシンでのデプロイ",
+    "マルチモーダル"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 78%、Terminal-Bench 2.1 71.7%（公式）。",
+    "reasoning": "GPQA Diamond 90.4%（公式）。",
+    "chinese": "強い。中国産モデルのホームグラウンド。"
+   }
+  }
  }
 }

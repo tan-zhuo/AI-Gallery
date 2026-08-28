@@ -1,0 +1,118 @@
+{
+ "aliases": [
+  "Meta-Llama-3.1-405B-Instruct",
+  "Llama 3.1 405B Instruct"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "HumanEval 89.0%（官方）；无 SWE-bench 官方数。",
+  "reasoning": "GPQA 50.7%（0-shot，官方模型卡）。",
+  "math": "MATH 73.8%（官方）；AIME 未报告。",
+  "knowledge": "MMLU 87.3%（官方）。",
+  "agent": "BFCL 88.5%（官方），原生 tool-calling 模板。",
+  "chinese": "官方 8 语言不含中文，中文可用但不强。"
+ },
+ "complete": true,
+ "id": "llama-3-1-405b",
+ "name": "Llama 3.1 405B",
+ "name_zh": "Llama 3.1 · 405B",
+ "vendor": "Meta",
+ "family": "Llama 3.1",
+ "license": "Llama 3.1 Community License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct",
+ "superseded_by": "llama-4-maverick",
+ "released_at": "2024-07-23",
+ "architecture": {
+  "type": "dense",
+  "total_params": "405.9B",
+  "total_params_b": 405.9,
+  "layers": 126,
+  "hidden_size": 16384,
+  "vocab_size": 128256,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（128 Q 头 / 8 KV 头）",
+  "notes": "史上最大开放 Dense 模型；15.6T token；上下文 128K；官方另发 FP8 版。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 811.8,
+   "fp8": 405.9,
+   "q8": 430,
+   "q4": 243
+  },
+  "kv_per_token_kib": 504.0,
+  "kv_note": "8×128×2×126×2 B = 504 KiB/token；128K 上下文约 63 GB。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）",
+  "ref_hw_8x80gb": "FP8 官方版 8×H100 可服务（405 GB 权重 + KV）；BF16 需 16×80GB",
+  "estimated": true
+ },
+ "pricing": {
+  "input_per_m": 0.8,
+  "output_per_m": 0.8,
+  "currency": "USD",
+  "source": "第三方托管常见价（DeepInfra）",
+  "as_of": "2026-08-28",
+  "note": "开源权重，社区托管价，供参考"
+ },
+ "links": {
+  "official": "https://ai.meta.com/blog/meta-llama-3-1/",
+  "paper": "https://arxiv.org/abs/2407.21783",
+  "github": "https://github.com/meta-llama/llama-models",
+  "hf": "https://huggingface.co/meta-llama/Llama-3.1-405B-Instruct"
+ },
+ "copy": {
+  "one_liner": "首个正面对标 GPT-4o 的开放权重旗舰，Dense 405B。",
+  "highlights": [
+   "2024 年 7 月开源首次在多项基准追平 GPT-4o / Claude 3.5 Sonnet",
+   "许可明确允许用其输出做蒸馏，成为大量小模型的教师",
+   "128K 上下文 + 原生工具调用格式，8 种语言官方支持"
+  ],
+  "pitfalls": [
+   "Dense 405B 推理成本极高，FP8 也要 8×H100，性价比已被 MoE 碾压",
+   "无推理模式，数学 / 代码在 2025 年后明显落后",
+   "月活 7 亿以上企业需单独授权"
+  ],
+  "logic_ability": "非推理模型的天花板级别：GPQA 50.7%、MATH 73.8%（官方）。逻辑链条稳定、指令遵循强，但遇到需要长思考的题目会直接给出错误答案而非停下来推演。今天 30B 级推理模型在数学 / 代码上已能超过它。",
+  "best_for": [
+   "蒸馏教师 / 合成数据",
+   "需要许可清晰的大模型私有化"
+  ],
+  "not_for": [
+   "成本敏感推理",
+   "数学 / 竞赛代码"
+  ]
+ },
+ "sheet": {
+  "architecture_md": "**类型**：Dense Transformer，405.9B 参数。\n\n- 126 层，隐藏维 16,384，FFN 53,248，词表 128,256\n- GQA：128 Query 头 / 8 KV 头，head_dim 128\n- RoPE θ=500,000，llama3 型 RoPE scaling（8K 原生 → 128K）\n- 预训练 15.6T token，训练 FLOPs 3.8×10²⁵，16K H100\n\n参考：《The Llama 3 Herd of Models》。",
+  "memory_md": "| 精度 | 权重大小 | 参考硬件 | 说明 |\n|---|---|---|---|\n| BF16 | 812 GB | 16×80GB | 官方 safetensors |\n| FP8 | 406 GB | 8×H100 | 官方 FP8 版（动态量化） |\n| Q4 | ≈ 243 GB（估） | 4×80GB 起 | GGUF 需拆分，社区 Q4_K_M 约 243 GB |\n\n**KV Cache**：504 KiB/token（BF16）。\n\n**参考配置**：\n- 8×H100 80GB：FP8 权重 406 GB，剩余 ~230 GB 给 KV，可服务 128K 少量并发\n- 单卡任何消费级：不可行",
+  "training_md": "- 预训练 15.6T token，多阶段退火 + 长上下文扩展至 128K\n- 后训练：SFT → 拒绝采样 → DPO，6 轮迭代\n- 原生支持 tool-calling（brave_search / wolfram_alpha / code_interpreter 内置模板）\n- 官方 8 语言：英、德、法、意、葡、印地、西、泰",
+  "ecosystem_md": "- HF：meta-llama/Llama-3.1-405B-Instruct、-FP8\n- 引擎：vLLM（FP8 推荐）、SGLang、TensorRT-LLM、llama.cpp（多机）\n- 微调：全参需 64+ 卡；LoRA / QLoRA 可在 8×80GB\n- 中文文档：弱",
+  "versions_md": "- 同系列：Llama 3.1 70B、8B（同日发布）\n- 后继：Llama 3.3 70B（2024-12，接近 405B 水平）→ Llama 4 Maverick（2025-04，MoE）\n- 衍生：Hermes 3 405B、Nemotron 系列"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "TensorRT-LLM",
+   "llama.cpp"
+  ],
+  "finetune": "LoRA 可行，全参需集群",
+  "zh_docs": "弱"
+ }
+}

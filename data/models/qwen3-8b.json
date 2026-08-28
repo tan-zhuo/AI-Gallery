@@ -1,0 +1,111 @@
+{
+ "aliases": [
+  "Qwen3 8B"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "capability_notes": {
+  "coding": "LiveCodeBench v5 57.5%（思考，技术报告）。",
+  "reasoning": "GPQA Diamond 62.0%（思考，技术报告）。",
+  "math": "AIME 2025 67.3%（思考，技术报告）。",
+  "chinese": "中文好。"
+ },
+ "complete": false,
+ "id": "qwen3-8b",
+ "name": "Qwen3-8B",
+ "name_zh": "通义千问 3 · 8B",
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen3",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/Qwen/Qwen3-8B",
+ "superseded_by": "qwen3-8-27b",
+ "released_at": "2025-04-29",
+ "architecture": {
+  "type": "dense",
+  "total_params": "8.2B",
+  "total_params_b": 8.2,
+  "layers": 36,
+  "hidden_size": 4096,
+  "vocab_size": 151936,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 8 KV 头）+ QK-Norm",
+  "notes": "混合思考；原生 32K，YaRN 至 128K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 32768
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 16.4,
+   "q8": 8.7,
+   "q4": 5.0,
+   "fp8": 8.2
+  },
+  "estimated": false,
+  "kv_per_token_kib": 144.0,
+  "kv_note": "144 KiB/token。",
+  "ref_hw_24gb": "BF16 16.4 GB 单卡可跑 32K；Q4 5 GB 留大量 KV",
+  "ref_hw_80gb": "高并发",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "pricing": {
+  "input_per_m": 0.035,
+  "output_per_m": 0.138,
+  "currency": "USD",
+  "source": "第三方托管常见价（DeepInfra）",
+  "as_of": "2026-08-28",
+  "note": "开源权重，社区托管价"
+ },
+ "links": {
+  "official": "https://qwenlm.github.io/blog/qwen3/",
+  "github": "https://github.com/QwenLM/Qwen3",
+  "paper": "https://arxiv.org/abs/2505.09388",
+  "hf": "https://huggingface.co/Qwen/Qwen3-8B"
+ },
+ "copy": {
+  "one_liner": "8B 里带思考模式的全能选手，本地部署首选之一。",
+  "highlights": [
+   "思考模式下数学 / 代码超过 Qwen2.5-14B 乃至部分 32B",
+   "Apache-2.0，消费卡 BF16 直接跑",
+   "119 语言，工具调用与 MCP 生态完善"
+  ],
+  "pitfalls": [
+   "思考链长，8B 吞吐优势被抵消",
+   "原生 32K，128K 需 YaRN 且质量下降",
+   "知识量受尺寸限制，幻觉多"
+  ],
+  "logic_ability": "思考模式：AIME 2025 67.3%、GPQA 62.0%、LiveCodeBench v5 57.5%（Qwen3 技术报告）。8B 中推理最强档，但知识型任务仍受限。",
+  "best_for": [
+   "本地 / 边缘推理助手",
+   "微调底座"
+  ],
+  "not_for": [
+   "知识密集问答",
+   "高并发低延迟"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Ollama",
+   "MLX"
+  ],
+  "finetune": "LoRA / 全参极友好",
+  "zh_docs": "有"
+ }
+}

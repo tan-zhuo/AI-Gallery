@@ -1,0 +1,95 @@
+{
+ "aliases": [
+  "gemma-2-9b-it"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "MMLU 71.3%（官方基座）。",
+  "math": "GSM8K 68.6%（官方基座）。"
+ },
+ "complete": false,
+ "id": "gemma-2-9b",
+ "name": "Gemma 2 9B",
+ "name_zh": "Gemma 2 · 9B",
+ "vendor": "Google",
+ "family": "Gemma 2",
+ "license": "Gemma Terms of Use",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/google/gemma-2-9b-it",
+ "superseded_by": "gemma-4-26b-a4b",
+ "released_at": "2024-06-27",
+ "architecture": {
+  "type": "dense",
+  "total_params": "9.2B",
+  "total_params_b": 9.2,
+  "layers": 42,
+  "hidden_size": 3584,
+  "vocab_size": 256000,
+  "kv_heads": 8,
+  "head_dim": 256,
+  "attention": "GQA（16 Q 头 / 8 KV 头）；4K 滑窗交替",
+  "notes": "8T token，由 27B 蒸馏；上下文 8K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 8192,
+  "display": "8K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 18.4,
+   "q8": 9.8,
+   "q4": 5.8
+  },
+  "estimated": false,
+  "kv_per_token_kib": 336.0,
+  "kv_note": "8×256×2×42×2 B = 336 KiB/token。",
+  "ref_hw_24gb": "BF16 18.4 GB 单卡可跑",
+  "ref_hw_80gb": "高并发",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://blog.google/technology/developers/google-gemma-2/",
+  "paper": "https://arxiv.org/abs/2408.00118",
+  "hf": "https://huggingface.co/google/gemma-2-9b-it"
+ },
+ "copy": {
+  "one_liner": "蒸馏出的 9B，对话质量一度超过 Llama 3 8B。",
+  "highlights": [
+   "知识蒸馏使 9B 逼近 27B 的一半以上能力",
+   "Q4 5.8 GB，笔记本可跑",
+   "多语言与写作优秀"
+  ],
+  "pitfalls": [
+   "上下文 8K",
+   "无工具调用 / system prompt",
+   "Gemma Terms 非 OSI 许可"
+  ],
+  "logic_ability": "9B 中上：MMLU 71.3%、GSM8K 68.6%（官方基座）。",
+  "best_for": [
+   "轻量多语言对话",
+   "教学"
+  ],
+  "not_for": [
+   "长文本",
+   "代码"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama",
+   "MLX"
+  ],
+  "finetune": "LoRA 友好",
+  "zh_docs": "弱"
+ }
+}

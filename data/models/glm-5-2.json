@@ -122,6 +122,72 @@
   "finetune": "Unsloth / 全参（多节点）",
   "zh_docs": "有"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Zhipu GLM-5.2",
+   "one_liner": "MIT-licensed 744B open coding flagship with 1M context.",
+   "highlights": [
+    "MIT license, 744B / 40B active, no regional restrictions, commercial use without extra conditions",
+    "Official 1M \"lossless\" context; IndexShare sparse attention cuts per-token FLOPs 2.9x at 1M length",
+    "SWE-bench Pro 62.1, Terminal-Bench 2.1 81.0 (Terminus-2); highest among open models at launch"
+   ],
+   "pitfalls": [
+    "At 744B even FP8 needs an 8x H200-class node; self-hosting bar is double that of GLM-4.6",
+    "Thinking is on by default and the API no longer lets you disable it (only reasoning_effort low/high/max); heavy token use on simple tasks",
+    "API price $1.4/$4.4, more than 2x GLM-4.6; long-context KV storage is not reduced by DSA"
+   ],
+   "logic_ability": "Engineering reasoning is the focus: SWE-bench Pro 62.1, Terminal-Bench 2.1 81.0, FrontierSWE 74.4; officially benchmarked against Claude Opus 4.8 / GPT-5.5 and level on some agentic coding benchmarks. Exam-style reasoning is also top-tier (AIME 2026 99.2, GPQA 91.2, HLE 40.5 / 54.7 with tools). Thinking cannot be disabled; output is very long at reasoning_effort=max. Common issue: ultra-long tasks such as SWE-Marathon score only 13.0; long autonomous tasks still trail closed models clearly.",
+   "best_for": [
+    "Coding agent backend (Claude Code / ZCode / OpenCode)",
+    "Repo-wide 1M-context code understanding",
+    "Self-hosted replacement for Opus-class coding services"
+   ],
+   "not_for": [
+    "Single-machine / single-node 80GB deployment (use GLM-5.3-Flash)",
+    "Multimodal input (use GLM-5.3-Flash or the GLM-5V series)",
+    "Cost-sensitive simple chat"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Pro 62.1, Terminal-Bench 2.1 81.0 (Terminus-2) / 82.7 (best harness), DeepSWE 46.2, NL2Repo 48.9 (official).",
+    "reasoning": "GPQA Diamond 91.2, HLE 40.5, HLE (tools) 54.7 (official).",
+    "math": "AIME 2026 99.2, HMMT Feb 2026 92.5, IMOAnswerBench 91.0 (official).",
+    "agent": "MCP-Atlas 76.8, Tool-Decathlon 48.2, FrontierSWE 74.4 (official).",
+    "chinese": "Top-tier Chinese."
+   }
+  },
+  "ja": {
+   "name_zh": "智譜 GLM-5.2",
+   "one_liner": "MIT ライセンス、1M コンテキストの 744B オープンコーディング旗艦。",
+   "highlights": [
+    "MIT ライセンス、744B / 40B アクティブ、地域制限なし、商用利用に追加条件なし",
+    "公式 1M「無損失」コンテキスト。IndexShare スパースアテンションで 1M 長のトークンあたり FLOPs を 2.9 倍削減",
+    "SWE-bench Pro 62.1、Terminal-Bench 2.1 81.0（Terminus-2）、公開時点でオープンソース最高"
+   ],
+   "pitfalls": [
+    "744B の規模で FP8 でも 8×H200 級が必要、自前運用のハードルは GLM-4.6 の 2 倍",
+    "思考がデフォルトでオンで API からオフにできない（reasoning_effort low/high/max の調整のみ）、単純タスクでもトークン消費が大きい",
+    "API 価格 $1.4/$4.4 は GLM-4.6 の 2 倍超。長文コンテキストの KV ストレージは DSA でも減らない"
+   ],
+   "logic_ability": "エンジニアリング型推論が主軸：SWE-bench Pro 62.1、Terminal-Bench 2.1 81.0、FrontierSWE 74.4、公式は Claude Opus 4.8 / GPT-5.5 を比較対象とし、一部の agent コーディングベンチマークで同等。試験型推論もトップ級（AIME 2026 99.2、GPQA 91.2、HLE 40.5 / ツールあり 54.7）。思考はオフ不可、reasoning_effort=max では出力が非常に長い。よくある問題：SWE-Marathon のような超長タスクは 13.0 にとどまり、長時間の自律タスクは依然閉源に明らかに劣る。",
+   "best_for": [
+    "コーディング agent のバックエンド（Claude Code / ZCode / OpenCode）",
+    "リポジトリ全体の 1M コンテキストコード理解",
+    "Opus 級コーディングサービスの自前代替"
+   ],
+   "not_for": [
+    "単一マシン / 単一ノード 80GB 展開（GLM-5.3-Flash を使う）",
+    "マルチモーダル入力（GLM-5.3-Flash か GLM-5V 系を使う）",
+    "コスト重視の単純な対話"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Pro 62.1、Terminal-Bench 2.1 81.0（Terminus-2）/ 82.7（最良ハーネス）、DeepSWE 46.2、NL2Repo 48.9（公式）。",
+    "reasoning": "GPQA Diamond 91.2、HLE 40.5、HLE（ツールあり）54.7（公式）。",
+    "math": "AIME 2026 99.2、HMMT Feb 2026 92.5、IMOAnswerBench 91.0（公式）。",
+    "agent": "MCP-Atlas 76.8、Tool-Decathlon 48.2、FrontierSWE 74.4（公式）。",
+    "chinese": "中国語は最上位。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 69,

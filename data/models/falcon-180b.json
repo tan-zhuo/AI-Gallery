@@ -1,0 +1,92 @@
+{
+ "aliases": [
+  "falcon-180B-chat"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "MMLU 70.6%（官方）。",
+  "chinese": "弱。"
+ },
+ "complete": false,
+ "id": "falcon-180b",
+ "name": "Falcon 180B",
+ "name_zh": "Falcon · 180B",
+ "vendor": "TII",
+ "vendor_zh": "阿联酋 TII",
+ "family": "Falcon",
+ "license": "Falcon-180B TII License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/tiiuae/falcon-180B-chat",
+ "released_at": "2023-09-06",
+ "architecture": {
+  "type": "dense",
+  "total_params": "180B",
+  "total_params_b": 180,
+  "layers": 80,
+  "hidden_size": 14848,
+  "vocab_size": 65024,
+  "kv_heads": 8,
+  "head_dim": 64,
+  "attention": "多组查询注意力（232 Q 头 / 8 KV 头，head_dim 64）",
+  "notes": "3.5T RefinedWeb token；并行注意力 + FFN；上下文 2K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 2048,
+  "display": "2K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 360,
+   "q8": 190.8,
+   "q4": 108.6
+  },
+  "estimated": false,
+  "kv_per_token_kib": 160.0,
+  "kv_note": "8×64×2×80×2 B = 160 KiB/token。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "Q4 108.6 GB 需 2×80GB；BF16 5×80GB",
+  "ref_hw_8x80gb": "BF16 高并发"
+ },
+ "links": {
+  "official": "https://falconllm.tii.ae/",
+  "paper": "https://arxiv.org/abs/2311.16867",
+  "hf": "https://huggingface.co/tiiuae/falcon-180B-chat"
+ },
+ "copy": {
+  "one_liner": "2023 年最大开放权重 Dense，RefinedWeb 数据的代表。",
+  "highlights": [
+   "发布时 HF 开源榜第一，规模 2.5 倍于 Llama 2 70B",
+   "RefinedWeb 证明纯网页数据可训出强模型",
+   "多组查询注意力早期实践"
+  ],
+  "pitfalls": [
+   "上下文仅 2K",
+   "许可禁止托管服务（需单独授权）",
+   "能力被 Llama 2 70B 微调版轻松追平，性价比极差"
+  ],
+  "logic_ability": "MMLU 70.6%（官方基座），推理能力 2023 年水平。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "任何生产场景"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "TGI"
+  ],
+  "finetune": "成本极高",
+  "zh_docs": "无"
+ }
+}

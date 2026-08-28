@@ -129,5 +129,73 @@
   "tok_s": 25,
   "latency_s": 2.53,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Qwen 3.8 · 2.4T-A95B (open Max-class)",
+   "one_liner": "First downloadable Max-class Qwen, 2.4T MoE, custom license.",
+   "highlights": [
+    "Qwen's first open Max-class weights: 2.4T / 95B active; official leaderboard Terminal Bench 2.1 86.6, GPQA Diamond 92.6",
+    "Artificial Analysis Intelligence Index 58; Agentic Index was briefly #1 worldwide; Text Arena 1479 (qwen3.8-max)",
+    "3:1 DeltaNet hybrid attention, KV only 92 KiB/token; long-context memory far below same-size GQA"
+   ],
+   "pitfalls": [
+    "Not Apache-2.0: the Qwen3.8-Max License requires displaying the model name above 100M MAU / $20M monthly revenue; MaaS with annual revenue over $50M needs a separate license",
+    "Open weights are text-only and thinking cannot be disabled; vision, non-thinking, 1M default context and built-in tools are only in the API version Qwen3.8-Max",
+    "BF16 4.89 TB / FP8 2.5 TB; self-hosting requires a multi-node cluster; official leaderboard numbers come from the API Qwen3.8-Max, and open-weight reproduction may differ"
+   ],
+   "logic_ability": "Closed-flagship class: GPQA Diamond 92.6, HLE 43.6 (no tools) / 56.2 (with tools); Artificial Analysis Intelligence Index 58, behind only the Anthropic and OpenAI flagships. Strength is long-horizon agents: Terminal Bench 2.1 86.6, PaperBench 93.0, DeepSWE 1.1 56.6, all far above the previous Qwen3.7-Max. Thinking is forced on, reasoning_effort defaults to xhigh; AA measured about 21 tok/s with extremely verbose output, unsuitable for low-latency scenarios. Common issue: Agents' Last Exam Pass@1 only 27.0; very long multi-step tasks still fail.",
+   "best_for": [
+    "Very-large-scale self-hosted flagship inference (with a cluster)",
+    "Long-horizon coding / office agents",
+    "Cheap replacement for closed flagships via the Qwen3.8-Max API"
+   ],
+   "not_for": [
+    "Single-machine deployment",
+    "Open self-hosting that needs vision input (use 27B)",
+    "Large MaaS providers (license restriction)"
+   ],
+   "capability_notes": {
+    "coding": "Terminal Bench 2.1 86.6, SWE-bench Pro 67.7, DeepSWE 1.1 56.6, NL2Repo 55.9 (official model card, Qwen3.8-Max).",
+    "reasoning": "GPQA Diamond 92.6, HLE 43.6 / 56.2 (with tools) (official model card).",
+    "math": "AIME not officially disclosed.",
+    "agent": "Toolathlon Verified 72.5, WideSearch 81.9, Agents' Last Exam 27.0 Pass@1, CoWorkBench 74.8 (official model card).",
+    "instruction": "IFBench 82.8 (official model card).",
+    "chinese": "Flagship-class Chinese; PLawBench 73.2."
+   }
+  },
+  "ja": {
+   "name_zh": "Qwen 3.8 · 2.4T-A95B（オープン Max 級）",
+   "one_liner": "初のダウンロード可能な Max 級 Qwen。2.4T MoE、独自ライセンス。",
+   "highlights": [
+    "Qwen 初の Max 級オープンウェイト：2.4T / 95B アクティブ、公式榜で Terminal Bench 2.1 86.6、GPQA Diamond 92.6",
+    "Artificial Analysis 知能指数 58、Agentic 指数は一時世界 1 位。Text Arena 1479（qwen3.8-max）",
+    "3:1 DeltaNet ハイブリッドアテンション、KV わずか 92 KiB/token、長コンテキストの VRAM は同規模 GQA よりはるかに少ない"
+   ],
+   "pitfalls": [
+    "Apache-2.0 ではない：Qwen3.8-Max License は MAU 1 億超 / 月収 2000 万ドル超でモデル名表示を要求、MaaS で年収 5000 万ドル超は別途ライセンスが必要",
+    "オープンウェイトはテキストのみで思考は無効化不可。ビジョン、非思考、1M デフォルトコンテキスト、内蔵ツールは API 版 Qwen3.8-Max 限定",
+    "BF16 4.89 TB / FP8 2.5 TB で自前ホスティングはマルチノードクラスタが前提。公式榜の数値は API 版 Qwen3.8-Max 由来で、オープンウェイトでの再現は差が出る可能性あり"
+   ],
+   "logic_ability": "クローズド旗艦級：GPQA Diamond 92.6、HLE 43.6（ツールなし）/ 56.2（ツールあり）、Artificial Analysis 知能指数 58 で Anthropic と OpenAI の旗艦に次ぐ。強みは長期エージェント：Terminal Bench 2.1 86.6、PaperBench 93.0、DeepSWE 1.1 56.6 で、いずれも前世代 Qwen3.7-Max を大きく上回る。思考は強制オン、reasoning_effort はデフォルト xhigh。AA 実測約 21 tok/s で出力が極めて冗長、低レイテンシ用途には不向き。よくある問題：Agents' Last Exam Pass@1 はわずか 27.0、超長い多段階タスクでは依然ミスが出る。",
+   "best_for": [
+    "超大規模な自前旗艦推論（クラスタあり）",
+    "長期のコーディング / オフィスエージェント",
+    "Qwen3.8-Max API 経由でクローズド旗艦を低価格に代替"
+   ],
+   "not_for": [
+    "単一マシンでのデプロイ",
+    "ビジョン入力が必要なオープン自前運用（27B を使う）",
+    "大手 MaaS 事業者（ライセンス制限）"
+   ],
+   "capability_notes": {
+    "coding": "Terminal Bench 2.1 86.6、SWE-bench Pro 67.7、DeepSWE 1.1 56.6、NL2Repo 55.9（公式モデルカード、Qwen3.8-Max）。",
+    "reasoning": "GPQA Diamond 92.6、HLE 43.6 / 56.2（ツールあり）（公式モデルカード）。",
+    "math": "AIME は公式未開示。",
+    "agent": "Toolathlon Verified 72.5、WideSearch 81.9、Agents' Last Exam 27.0 Pass@1、CoWorkBench 74.8（公式モデルカード）。",
+    "instruction": "IFBench 82.8（公式モデルカード）。",
+    "chinese": "中国語は旗艦級。PLawBench 73.2。"
+   }
+  }
  }
 }

@@ -1,0 +1,106 @@
+{
+ "aliases": [
+  "Mistral-Small-3.1-24B-Instruct-2503"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "HumanEval 88.41%（官方）。",
+  "reasoning": "GPQA Diamond 45.96%（5-shot CoT，官方）。",
+  "math": "MATH 69.3%（官方）。",
+  "multimodal": "MMMU 64.0%（官方）。",
+  "chinese": "一般。"
+ },
+ "complete": false,
+ "id": "mistral-small-3-1",
+ "name": "Mistral Small 3.1",
+ "name_zh": "Mistral Small 3.1 · 24B",
+ "vendor": "Mistral AI",
+ "family": "Mistral Small",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503",
+ "superseded_by": "mistral-small-3-2",
+ "released_at": "2025-03-17",
+ "architecture": {
+  "type": "dense",
+  "total_params": "24B",
+  "total_params_b": 24,
+  "layers": 40,
+  "hidden_size": 5120,
+  "vocab_size": 131072,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 8 KV 头）",
+  "notes": "在 Small 3 基础上加入视觉编码器（Pixtral 式）与 128K 上下文。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 48,
+   "q8": 25.4,
+   "q4": 14.3
+  },
+  "estimated": false,
+  "kv_per_token_kib": 160.0,
+  "kv_note": "160 KiB/token；32K 约 5 GB。",
+  "ref_hw_24gb": "Q4_K_M ≈14 GB，可跑 32K+；BF16 48 GB 需 2 卡",
+  "ref_hw_80gb": "BF16 单卡 + 大 KV",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "pricing": {
+  "input_per_m": 0.1,
+  "output_per_m": 0.3,
+  "currency": "USD",
+  "source": "Mistral 官方 API（mistral-small-latest）",
+  "as_of": "2026-08-28",
+  "note": "官方托管价"
+ },
+ "links": {
+  "official": "https://mistral.ai/news/mistral-small-3-1",
+  "hf": "https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503"
+ },
+ "copy": {
+  "one_liner": "24B 多模态 Apache-2.0，单卡跑图文 128K 上下文。",
+  "highlights": [
+   "Apache-2.0，图文多模态 + 128K，24GB 卡可跑 Q4",
+   "官方称超越 Gemma 3 / GPT-4o mini",
+   "函数调用与 JSON 输出稳定"
+  ],
+  "pitfalls": [
+   "无推理模式，GPQA Diamond 46%",
+   "中文一般，欧洲语言更强",
+   "3.2 版（2025-06）修复了重复输出等问题，建议直接用 3.2"
+  ],
+  "logic_ability": "非推理 24B 档中游：GPQA Diamond 45.96%、MATH 69.3%（官方）。日常逻辑够用，复杂推理让位给 Magistral / Qwen3。",
+  "best_for": [
+   "单卡多模态助手",
+   "低延迟函数调用"
+  ],
+  "not_for": [
+   "深度推理",
+   "中文优先"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "finetune": "LoRA 友好",
+  "zh_docs": "弱"
+ }
+}

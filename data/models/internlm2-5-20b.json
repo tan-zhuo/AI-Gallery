@@ -1,0 +1,97 @@
+{
+ "aliases": [
+  "internlm2_5-20b-chat"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "math": "MATH 64.7%（官方）。",
+  "knowledge": "MMLU 73.5%（官方）。",
+  "agent": "工具调用与 Lagent 框架集成。",
+  "chinese": "中文强。"
+ },
+ "complete": false,
+ "id": "internlm2-5-20b",
+ "name": "InternLM2.5-20B",
+ "name_zh": "书生·浦语 2.5 · 20B",
+ "vendor": "Shanghai AI Lab",
+ "vendor_zh": "上海人工智能实验室",
+ "family": "InternLM2.5",
+ "license": "Apache-2.0（权重需申请商用授权，免费）",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/internlm/internlm2_5-20b-chat",
+ "released_at": "2024-08-05",
+ "architecture": {
+  "type": "dense",
+  "total_params": "19.9B",
+  "total_params_b": 19.9,
+  "layers": 48,
+  "hidden_size": 6144,
+  "vocab_size": 92544,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（48 Q 头 / 8 KV 头）",
+  "notes": "1M 上下文能力（需 LMDeploy）；工具调用与 MindSearch 集成。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K（1M 需 LMDeploy）"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 39.8,
+   "q8": 21.1,
+   "q4": 12.0
+  },
+  "estimated": false,
+  "kv_per_token_kib": 192.0,
+  "kv_note": "192 KiB/token。",
+  "ref_hw_24gb": "Q4 12 GB 可跑 32K；BF16 39.8 GB 超 24GB",
+  "ref_hw_80gb": "BF16 单卡长上下文",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://internlm.intern-ai.org.cn/",
+  "github": "https://github.com/InternLM/InternLM",
+  "hf": "https://huggingface.co/internlm/internlm2_5-20b-chat"
+ },
+ "copy": {
+  "one_liner": "上海 AI Lab 的 20B，主打百万上下文与工具调用。",
+  "highlights": [
+   "1M 上下文（LMDeploy），大海捞针接近满分",
+   "MATH 64.7%（官方）当年 20B 领先",
+   "LMDeploy / XTuner / OpenCompass 全套自研工具链"
+  ],
+  "pitfalls": [
+   "商用需邮件申请授权（免费）",
+   "国际生态与社区量化较少",
+   "InternLM3 仅出 8B，20B 无后续"
+  ],
+  "logic_ability": "20B 中上：MATH 64.7%、MMLU 73.5%（官方）。",
+  "best_for": [
+   "中文长文本",
+   "国产工具链部署"
+  ],
+  "not_for": [
+   "需 Apache 无条件商用"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "LMDeploy",
+   "vLLM",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "finetune": "XTuner / LLaMA-Factory",
+  "zh_docs": "有"
+ }
+}

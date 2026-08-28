@@ -1,0 +1,95 @@
+{
+ "aliases": [
+  "Qwen1.5-72B-Chat"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "MMLU 77.5%（官方）。",
+  "math": "GSM8K 79.5%（官方）。",
+  "chinese": "C-Eval 84.1%（官方），当年中文开源最强。"
+ },
+ "complete": false,
+ "id": "qwen1-5-72b",
+ "name": "Qwen1.5-72B",
+ "name_zh": "通义千问 1.5 · 72B",
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen1.5",
+ "license": "Tongyi Qianwen License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/Qwen/Qwen1.5-72B-Chat",
+ "superseded_by": "qwen2-5-72b",
+ "released_at": "2024-02-05",
+ "architecture": {
+  "type": "dense",
+  "total_params": "72.3B",
+  "total_params_b": 72.3,
+  "layers": 80,
+  "hidden_size": 8192,
+  "vocab_size": 152064,
+  "kv_heads": 64,
+  "head_dim": 128,
+  "attention": "MHA（64 头，无 GQA）",
+  "notes": "仍用 MHA，KV 缓存极大；上下文 32K；首个并入 HF transformers 的 Qwen 版本。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 32768,
+  "display": "32K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 144.6,
+   "q8": 76.6,
+   "q4": 44.2
+  },
+  "estimated": false,
+  "kv_per_token_kib": 2560.0,
+  "kv_note": "MHA：64×128×2×80×2 B = 2.5 MiB/token，32K 上下文要 80 GB KV！",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "Q4 权重可放，但 KV 巨大只能短上下文",
+  "ref_hw_8x80gb": "BF16 + 长上下文"
+ },
+ "links": {
+  "official": "https://qwenlm.github.io/blog/qwen1.5/",
+  "github": "https://github.com/QwenLM/Qwen1.5",
+  "hf": "https://huggingface.co/Qwen/Qwen1.5-72B-Chat"
+ },
+ "copy": {
+  "one_liner": "Qwen 系列进入 HF 主线的第一代 72B，中文开源当年最强。",
+  "highlights": [
+   "2024 年初中文开源综合第一，Arena 开源前列",
+   "全尺寸（0.5B–72B）统一模板，生态起步",
+   "32K 上下文，词表 152K 中文效率高"
+  ],
+  "pitfalls": [
+   "MHA 无 GQA，KV 每 token 2.5 MiB，长文本显存爆炸",
+   "自有许可，月活 1 亿以上需授权",
+   "Qwen2 起改用 GQA 且更强，无理由再用 1.5"
+  ],
+  "logic_ability": "2024 年初开源一线：MMLU 77.5%、GSM8K 79.5%（官方基座）。无 CoT 训练，复杂推理弱。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "长上下文",
+   "新项目"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "finetune": "LoRA 成熟",
+  "zh_docs": "有"
+ }
+}

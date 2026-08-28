@@ -116,5 +116,67 @@
   "tok_s": 39,
   "latency_s": 2.75,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Moonshot Kimi K2.6",
+   "one_liner": "1T/32B multimodal agent model; the value pick below K3.",
+   "highlights": [
+    "SWE-Bench Verified 80.2, SWE-Bench Pro 58.6, LiveCodeBench v6 89.6 (official)",
+    "Agent Swarm can run 300 sub-agents / 4000 steps in parallel; supports image and video input",
+    "Thinking can be turned off (Instant mode); API price only 1/3 of K3"
+   ],
+   "pitfalls": [
+    "Modified MIT: over 100M MAU or $20M monthly revenue requires displaying \"Kimi K2.6\"",
+    "INT4 595 GB still needs 8×H100 or more",
+    "Flagship spot taken by K3; officially K3 / K2.7 Code are the recommended models"
+   ],
+   "logic_ability": "GPQA 90.5, HLE-Full 34.7 / 54.0 (with tools), AIME 2026 96.4, BrowseComp 83.2. LMArena 1461.",
+   "best_for": [
+    "Budget-constrained multimodal agents",
+    "Smooth upgrade for K2-series users"
+   ],
+   "not_for": [
+    "Single-machine deployment",
+    "Needing 1M context (use K3)"
+   ],
+   "capability_notes": {
+    "coding": "SWE-Bench Verified 80.2, SWE-Bench Pro 58.6, Terminal-Bench 2.0 66.7, LiveCodeBench v6 89.6 (official).",
+    "reasoning": "GPQA Diamond 90.5, HLE-Full 34.7 / 54.0 (with tools) (official).",
+    "math": "AIME 2026 96.4, HMMT Feb 2026 92.7 (official).",
+    "agent": "BrowseComp 83.2, OSWorld-Verified 73.1, Toolathlon 50.0 (official).",
+    "multimodal": "MMMU-Pro 79.4, MathVision 87.4 (official)."
+   }
+  },
+  "ja": {
+   "name_zh": "Moonshot Kimi K2.6",
+   "one_liner": "1T/32B マルチモーダルエージェント。K3 の下のコスパ選択肢。",
+   "highlights": [
+    "SWE-Bench Verified 80.2、SWE-Bench Pro 58.6、LiveCodeBench v6 89.6（公式）",
+    "Agent Swarm で 300 サブエージェント / 4000 ステップを並列実行可能。画像・動画入力対応",
+    "思考オフ可（Instant モード）、API 価格は K3 の 1/3"
+   ],
+   "pitfalls": [
+    "Modified MIT：MAU 1 億超または月収 2000 万ドル超の場合「Kimi K2.6」の表示が必要",
+    "INT4 595 GB でも 8×H100 以上が必要",
+    "フラッグシップの座は K3 に移り、公式の推奨は K3 / K2.7 Code"
+   ],
+   "logic_ability": "GPQA 90.5、HLE-Full 34.7 / 54.0（ツールあり）、AIME 2026 96.4、BrowseComp 83.2。LMArena 1461。",
+   "best_for": [
+    "予算が限られたマルチモーダルエージェント",
+    "K2 シリーズユーザーのスムーズなアップグレード"
+   ],
+   "not_for": [
+    "単一マシンでのデプロイ",
+    "1M コンテキストが必要な場合（K3 を使う）"
+   ],
+   "capability_notes": {
+    "coding": "SWE-Bench Verified 80.2、SWE-Bench Pro 58.6、Terminal-Bench 2.0 66.7、LiveCodeBench v6 89.6（公式）。",
+    "reasoning": "GPQA Diamond 90.5、HLE-Full 34.7 / 54.0（ツールあり）（公式）。",
+    "math": "AIME 2026 96.4、HMMT Feb 2026 92.7（公式）。",
+    "agent": "BrowseComp 83.2、OSWorld-Verified 73.1、Toolathlon 50.0（公式）。",
+    "multimodal": "MMMU-Pro 79.4、MathVision 87.4（公式）。"
+   }
+  }
  }
 }

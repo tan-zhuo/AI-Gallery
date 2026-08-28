@@ -1,0 +1,72 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "gpt-4",
+ "name": "GPT-4",
+ "aliases": [
+  "gpt-4-0314",
+  "gpt-4-0613",
+  "gpt-4-32k"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-4",
+ "superseded_by": "gpt-4-turbo",
+ "released_at": "2023-03-14",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 8192,
+  "display": "8K（32K 版）",
+  "max_output": 8192
+ },
+ "pricing": {
+  "input_per_m": 30,
+  "output_per_m": 60,
+  "currency": "USD",
+  "source": "OpenAI 发布时定价（8K 版）",
+  "as_of": "2023-03-14",
+  "note": "32K 版 $60 / $120"
+ },
+ "links": {
+  "official": "https://openai.com/index/gpt-4-research/",
+  "paper": "https://arxiv.org/abs/2303.08774",
+  "pricing": "https://openai.com/api/pricing"
+ },
+ "copy": {
+  "one_liner": "开启大模型时代的里程碑，首个通过律师考试级别的模型。",
+  "highlights": [
+   "MMLU 86.4%、HumanEval 67%，发布时全面领先",
+   "模拟律师考试前 10%",
+   "首次支持图像输入（GPT-4V，2023-09 开放）"
+  ],
+  "pitfalls": [
+   "$30 / $60 极贵，8K 上下文很短",
+   "速度慢、2023-09 前无函数调用/JSON 模式",
+   "已于 2025 年从 API 退役"
+  ],
+  "logic_ability": "2023 年最强通用推理，多步数学与代码远超 GPT-3.5，但无原生思维链，复杂推理需靠提示词引导。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

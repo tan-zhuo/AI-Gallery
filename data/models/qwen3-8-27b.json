@@ -126,5 +126,73 @@
   "tok_s": 47,
   "latency_s": 3.77,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Qwen 3.8 · 27B",
+   "one_liner": "Natively multimodal 27B that runs on a 24GB single GPU, Apache-2.0.",
+   "highlights": [
+    "Apache-2.0; Q4 only 16.5 GB, runs on a single RTX 4090 / 5090; native image and video input",
+    "3:1 DeltaNet hybrid attention, KV only 64 KiB/token; full 256K native context fits on a single 80GB GPU",
+    "Official leaderboard beats the closed Qwen3.7-Plus overall: SWE-bench Pro 61.7, OSWorld-Verified 84.3, LiveCodeBench v6 90.3"
+   ],
+   "pitfalls": [
+    "Thinking on by default and very \"chatty\" (rated very verbose by AA); high reasoning-token cost and latency",
+    "Hybrid DeltaNet architecture is new; llama.cpp / MLX need the latest versions; older engines and some fine-tuning frameworks unsupported",
+    "No official pretraining token count or post-training details; no official numbers on common leaderboards such as SWE-bench Verified and AIME"
+   ],
+   "logic_ability": "One of the strongest open-source logical reasoners at the 27B tier: GPQA Diamond 89.2, HLE 30.8 (no tools), LiveCodeBench v6 90.3, all near or above the previous-generation closed Qwen3.7-Plus API. Artificial Analysis Intelligence Index 52, #1 among open models of the same size. reasoning_effort offers xhigh / medium / low; reasoning chains are very long at xhigh; medium shortens them noticeably but exam-style scores drop. Agent scenarios (Terminal Bench 2.1 73.0, DeepSWE 1.1 42.2) lead the 30B tier by a wide margin. Common issue: verbose thinking output; even simple questions trigger long chains.",
+   "best_for": [
+    "Single-GPU local multimodal assistants / desktop agents",
+    "Base for self-hosted coding agents",
+    "Visual document and chart understanding (OmniDocBench 91.1)"
+   ],
+   "not_for": [
+    "Real-time chat sensitive to first-token latency",
+    "Legacy deployments that cannot upgrade the inference engine"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Pro 61.7, LiveCodeBench v6 90.3, Terminal Bench 2.1 73.0 (official model card).",
+    "reasoning": "GPQA Diamond 89.2, HLE 30.8 (official model card).",
+    "math": "MathVision 90.0 (no code interpreter) / 94.6 (with); AIME not officially disclosed.",
+    "agent": "OSWorld-Verified 84.3, AndroidWorld 81.9, Agents' Last Exam 20.4 Pass@1 (official model card).",
+    "multimodal": "Native image + video; OmniDocBench 1.5 91.1, RealWorldQA 85.9, CharXiv RQ 83.7 (official model card).",
+    "instruction": "IFBench 79.5 (official model card).",
+    "chinese": "Top-tier Chinese at the 27B level, a consistent Qwen strength."
+   }
+  },
+  "ja": {
+   "name_zh": "Qwen 3.8 · 27B",
+   "one_liner": "24GB GPU で動くネイティブ多モーダル 27B。Apache-2.0。",
+   "highlights": [
+    "Apache-2.0、Q4 でわずか 16.5 GB、RTX 4090 / 5090 単一 GPU で動作。ネイティブ画像・動画入力",
+    "3:1 DeltaNet ハイブリッドアテンション、KV わずか 64 KiB/token、256K ネイティブコンテキストを 80GB 単一 GPU でフルに使える",
+    "公式榜で全体的にクローズドの Qwen3.7-Plus を上回る：SWE-bench Pro 61.7、OSWorld-Verified 84.3、LiveCodeBench v6 90.3"
+   ],
+   "pitfalls": [
+    "思考はデフォルトオンで非常に「おしゃべり」（AA 評価は very verbose）、推論トークンのコストとレイテンシが高い",
+    "ハイブリッド DeltaNet 構造は新しく、llama.cpp / MLX は最新版が必要。旧版エンジンや一部ファインチューニングフレームワークは未対応",
+    "事前学習トークン数や事後学習の詳細は公式未開示。SWE-bench Verified、AIME などの定番榜も公式数値なし"
+   ],
+   "logic_ability": "27B クラスで現在最強級のオープンソース論理推論：GPQA Diamond 89.2、HLE 30.8（ツールなし）、LiveCodeBench v6 90.3 で、いずれも前世代クローズドの Qwen3.7-Plus API に迫るか上回る。Artificial Analysis 知能指数 52 で同規模オープンモデル中 1 位。reasoning_effort は xhigh / medium / low の 3 段階、xhigh では推論チェーンが非常に長く、medium は大幅に短縮できるが試験型スコアは低下。エージェント用途（Terminal Bench 2.1 73.0、DeepSWE 1.1 42.2）は 30B クラスで大きくリード。よくある問題：思考出力が冗長で、簡単な質問でも長いチェーンを展開する。",
+   "best_for": [
+    "単一 GPU のローカルマルチモーダルアシスタント / デスクトップエージェント",
+    "プライベート環境のコーディングエージェント基盤",
+    "ビジュアルドキュメント・図表理解（OmniDocBench 91.1）"
+   ],
+   "not_for": [
+    "初回トークン遅延に敏感なリアルタイム対話",
+    "推論エンジンを更新できない古いデプロイ環境"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Pro 61.7、LiveCodeBench v6 90.3、Terminal Bench 2.1 73.0（公式モデルカード）。",
+    "reasoning": "GPQA Diamond 89.2、HLE 30.8（公式モデルカード）。",
+    "math": "MathVision 90.0（コードインタプリタなし）/ 94.6（あり）。AIME は公式未開示。",
+    "agent": "OSWorld-Verified 84.3、AndroidWorld 81.9、Agents' Last Exam 20.4 Pass@1（公式モデルカード）。",
+    "multimodal": "ネイティブ画像 + 動画。OmniDocBench 1.5 91.1、RealWorldQA 85.9、CharXiv RQ 83.7（公式モデルカード）。",
+    "instruction": "IFBench 79.5（公式モデルカード）。",
+    "chinese": "27B クラスで中国語は最上位、Qwen シリーズ一貫の強み。"
+   }
+  }
  }
 }

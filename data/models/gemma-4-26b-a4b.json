@@ -107,6 +107,74 @@
   "knowledge": "MMLU Pro 82.6、MMMLU 86.3（官方模型卡）。",
   "chinese": "140+ 语言训练，MMMLU 86.3；中文独立数据少。"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Google Gemma 4 26B A4B",
+   "one_liner": "3.8B-active MoE; fast on a 24GB GPU with room for long context.",
+   "highlights": [
+    "Apache-2.0, 25.2B total / 3.8B active; single-GPU throughput far above the 31B dense model",
+    "GPQA 82.3, AIME 2026 88.3, LiveCodeBench v6 77.1, only 2-3 points below the 31B",
+    "Only 6 global-attention layers with shared K=V, KV 12 KiB/token; a 24GB GPU runs 256K context at Q4"
+   ],
+   "pitfalls": [
+    "All 25B MoE parameters must fit in VRAM; this is not a 4B model's memory footprint",
+    "HLE 8.7 without tools, MRCR v2 128K 44.1; knowledge and long-range retrieval clearly weaker than the 31B",
+    "tau2 average 68.2, Codeforces 1718; the gap in agent / competitive coding is wider than on exams; no official SWE-bench figure"
+   ],
+   "logic_ability": "MoE with an optional thinking mode. Exam-style reasoning close to the 31B (GPQA Diamond 82.3, AIME 2026 88.3, MMLU Pro 82.6, BigBench Extra Hard 64.8), but HLE 8.7 (no tools) / 17.2 (with search) and 128K long-context retrieval 44.1 lag well behind. Engineering reasoning is middling: LiveCodeBench v6 77.1, Codeforces 1718, tau2 68.2; no official SWE-bench / Terminal-Bench. Multimodal reasoning is strong: MMMU Pro 73.8, MATH-Vision 82.4.",
+   "best_for": [
+    "High-throughput local assistants on one GPU",
+    "Edge-server batch processing",
+    "Low-cost products needing a permissive license"
+   ],
+   "not_for": [
+    "Frontier knowledge QA",
+    "Complex long-horizon agents"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 77.1, Codeforces Elo 1718 (official model card); SWE-bench not disclosed.",
+    "reasoning": "GPQA Diamond 82.3, HLE 8.7 (no tools) / 17.2 (with search), BigBench Extra Hard 64.8 (official model card).",
+    "math": "AIME 2026 88.3 (no tools, official model card); AIME 2025 not disclosed.",
+    "agent": "tau2-bench three-task average 68.2 (official model card).",
+    "multimodal": "MMMU Pro 73.8, MATH-Vision 82.4, MedXPertQA MM 58.1, OmniDocBench 1.5 0.149 (official model card).",
+    "knowledge": "MMLU Pro 82.6, MMMLU 86.3 (official model card).",
+    "chinese": "Trained on 140+ languages, MMMLU 86.3; little Chinese-specific data."
+   }
+  },
+  "ja": {
+   "name_zh": "Google Gemma 4 26B A4B",
+   "one_liner": "アクティブ 3.8B の MoE。24GB GPU で高速、長文も収まる。",
+   "highlights": [
+    "Apache-2.0、総パラメータ 25.2B / アクティブ 3.8B、単一 GPU のスループットは 31B Dense を大きく上回る",
+    "GPQA 82.3、AIME 2026 88.3、LiveCodeBench v6 77.1 で 31B との差はわずか 2〜3 点",
+    "グローバルアテンションは 6 層のみで K=V 共有、KV 12 KiB/token。24GB GPU の Q4 で 256K コンテキストが動く"
+   ],
+   "pitfalls": [
+    "MoE の 25B パラメータ全体を VRAM に載せる必要があり、4B モデル並みのメモリ要件ではない",
+    "HLE ツールなし 8.7、MRCR v2 128K 44.1 と、知識と長距離検索は 31B より明らかに弱い",
+    "tau2 平均 68.2、Codeforces 1718 と agent / 競技コードの差は試験問題より大きい。SWE-bench の公式値なし"
+   ],
+   "logic_ability": "任意の思考モード付き MoE。試験型推論は 31B に近い（GPQA Diamond 82.3、AIME 2026 88.3、MMLU Pro 82.6、BigBench Extra Hard 64.8）が、HLE 8.7（ツールなし）/ 17.2（検索あり）と 128K 長文コンテキスト検索 44.1 の差は大きい。エンジニアリング型推論は中程度：LiveCodeBench v6 77.1、Codeforces 1718、tau2 68.2。SWE-bench / Terminal-Bench は公式値なし。マルチモーダル推論は強い：MMMU Pro 73.8、MATH-Vision 82.4。",
+   "best_for": [
+    "単一 GPU の高スループットなローカルアシスタント",
+    "エッジサーバーのバッチ処理",
+    "寛容なライセンスが必要な低コスト製品"
+   ],
+   "not_for": [
+    "最先端の知識 QA",
+    "複雑な長期 agent"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench v6 77.1、Codeforces Elo 1718（公式モデルカード）。SWE-bench は未公表。",
+    "reasoning": "GPQA Diamond 82.3、HLE 8.7（ツールなし）/ 17.2（検索あり）、BigBench Extra Hard 64.8（公式モデルカード）。",
+    "math": "AIME 2026 88.3（ツールなし、公式モデルカード）。AIME 2025 は未公表。",
+    "agent": "tau2-bench 3 項目平均 68.2（公式モデルカード）。",
+    "multimodal": "MMMU Pro 73.8、MATH-Vision 82.4、MedXPertQA MM 58.1、OmniDocBench 1.5 0.149（公式モデルカード）。",
+    "knowledge": "MMLU Pro 82.6、MMMLU 86.3（公式モデルカード）。",
+    "chinese": "140 以上の言語で学習、MMMLU 86.3。中国語単独のデータは少ない。"
+   }
+  }
+ },
  "complete": true,
  "sheet": {
   "architecture_md": "**类型**：MoE + 局部/全局交错注意力，25.2B 总参 / 3.8B 激活，原生图像 / 视频输入。\n\n| 项目 | 数值 |\n|---|---|\n| 层数 | 30 = 6 × (5 × 滑窗 1024 + 1 × 全局) |\n| 隐藏维 | 2,816 |\n| 稠密 FFN | 2,112 |\n| 专家 | 128 路由 + 1 共享，每 token 选 8，专家中间维 704 |\n| 滑窗层（24 层） | 16 Q / 8 KV，head_dim 256，theta 1e4 |\n| 全局层（6 层） | 16 Q / 2 KV，head_dim 512，K=V 共享，partial_rotary 0.25，theta 1e6 |\n| 词表 | 262,144 |\n| 上下文 | 262,144 |\n| logit softcap | 30 |\n| 视觉编码器 | 27 层，hidden 1152，patch 16，280 soft token / 图 |\n\n`config.json` 中 `model_type: gemma4`，`architectures: Gemma4ForConditionalGeneration`。\n\n参考：google/gemma-4-26B-A4B-it config.json 与 Gemma 4 模型卡。",

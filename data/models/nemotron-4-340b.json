@@ -1,0 +1,94 @@
+{
+ "aliases": [
+  "Nemotron-4-340B-Instruct"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "math": "GSM8K 92.3%（官方）。",
+  "knowledge": "MMLU 78.7%（官方）。",
+  "chinese": "弱。"
+ },
+ "complete": false,
+ "id": "nemotron-4-340b",
+ "name": "Nemotron-4 340B",
+ "name_zh": "Nemotron-4 · 340B",
+ "vendor": "NVIDIA",
+ "family": "Nemotron-4",
+ "license": "NVIDIA Open Model License",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/nvidia/Nemotron-4-340B-Instruct",
+ "superseded_by": "nemotron-3-ultra-550b-a55b",
+ "released_at": "2024-06-14",
+ "architecture": {
+  "type": "dense",
+  "total_params": "340B",
+  "total_params_b": 340,
+  "layers": 96,
+  "hidden_size": 18432,
+  "vocab_size": 256000,
+  "kv_heads": 8,
+  "head_dim": 192,
+  "attention": "GQA（96 Q 头 / 8 KV 头）",
+  "notes": "9T token；NeMo 格式发布（非 HF 原生）；4K 上下文；同发 Reward 模型。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 4096,
+  "display": "4K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 680,
+   "q8": 360.4,
+   "q4": 197.2
+  },
+  "estimated": true,
+  "kv_per_token_kib": 576.0,
+  "kv_note": "8×192×2×96×2 B = 576 KiB/token。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "BF16 680 GB 需 16×80GB；官方推荐 8×H200 或 FP8 8×H100"
+ },
+ "links": {
+  "official": "https://blogs.nvidia.com/blog/nemotron-4-synthetic-data-generation-llm-training/",
+  "paper": "https://arxiv.org/abs/2406.11704",
+  "hf": "https://huggingface.co/nvidia/Nemotron-4-340B-Instruct"
+ },
+ "copy": {
+  "one_liner": "NVIDIA 为合成数据而生的 340B Dense，许可允许用输出训练。",
+  "highlights": [
+   "Open Model License 明确允许用其输出训练商业模型",
+   "配套 Reward 模型，RewardBench 当年第一",
+   "98% 对齐数据为合成，展示合成数据流水线"
+  ],
+  "pitfalls": [
+   "上下文仅 4K",
+   "NeMo 格式，HF 生态支持弱",
+   "340B Dense 部署成本极高，实用价值被 Llama 3.1 405B 覆盖"
+  ],
+  "logic_ability": "非推理模型一线：MMLU 78.7%、GSM8K 92.3%（官方 Instruct）。",
+  "best_for": [
+   "合成数据生成",
+   "奖励模型研究"
+  ],
+  "not_for": [
+   "长文本",
+   "日常部署"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "NeMo",
+   "TensorRT-LLM"
+  ],
+  "finetune": "NeMo 框架",
+  "zh_docs": "无"
+ }
+}

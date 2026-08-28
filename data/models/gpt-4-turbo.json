@@ -1,0 +1,71 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "gpt-4-turbo",
+ "name": "GPT-4 Turbo",
+ "aliases": [
+  "gpt-4-1106-preview",
+  "gpt-4-0125-preview",
+  "gpt-4-turbo-2024-04-09"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-4",
+ "superseded_by": "gpt-4o",
+ "released_at": "2023-11-06",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 128000,
+  "display": "128K",
+  "max_output": 4096
+ },
+ "pricing": {
+  "input_per_m": 10,
+  "output_per_m": 30,
+  "currency": "USD",
+  "source": "OpenAI 发布时定价",
+  "as_of": "2023-11-06"
+ },
+ "links": {
+  "official": "https://openai.com/index/new-models-and-developer-products-announced-at-devday/",
+  "pricing": "https://openai.com/api/pricing"
+ },
+ "copy": {
+  "one_liner": "128K 上下文 + 降价三分之二的 GPT-4，2024-04 正式版带视觉。",
+  "highlights": [
+   "128K 上下文，价格降到 $10 / $30",
+   "JSON 模式、并行函数调用、可复现 seed",
+   "2024-04-09 GA 版集成视觉，GPQA 48.0%"
+  ],
+  "pitfalls": [
+   "最大输出仅 4K",
+   "preview 期间\"变懒\"问题被广泛吐槽",
+   "推出半年即被 GPT-4o 以一半价格替代"
+  ],
+  "logic_ability": "与 GPT-4 同级的推理，长文档理解提升；数学 MATH 72.6%。无内置推理链。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

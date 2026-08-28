@@ -1,0 +1,98 @@
+{
+ "aliases": [
+  "Mistral-7B-Instruct-v0.3",
+  "Mistral-7B-v0.1"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "MMLU 60.1%（v0.1 官方论文）。",
+  "chinese": "弱。"
+ },
+ "complete": false,
+ "id": "mistral-7b",
+ "name": "Mistral 7B",
+ "name_zh": "Mistral · 7B",
+ "vendor": "Mistral AI",
+ "family": "Mistral",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3",
+ "superseded_by": "mistral-small-3-2",
+ "released_at": "2023-09-27",
+ "architecture": {
+  "type": "dense",
+  "total_params": "7.25B",
+  "total_params_b": 7.25,
+  "layers": 32,
+  "hidden_size": 4096,
+  "vocab_size": 32768,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 8 KV 头）；v0.1 用 4K 滑窗",
+  "notes": "v0.1（2023-09）4K 滑窗 8K 上下文；v0.3（2024-05）词表 32,768 并支持函数调用，上下文 32K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 32768,
+  "display": "32K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 14.5,
+   "q8": 7.7,
+   "q4": 4.4
+  },
+  "estimated": false,
+  "kv_per_token_kib": 128.0,
+  "kv_note": "128 KiB/token。",
+  "ref_hw_24gb": "BF16 14.5 GB 单卡随便跑",
+  "ref_hw_80gb": "高并发",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://mistral.ai/news/announcing-mistral-7b",
+  "paper": "https://arxiv.org/abs/2310.06825",
+  "github": "https://github.com/mistralai/mistral-inference",
+  "hf": "https://huggingface.co/mistralai/Mistral-7B-Instruct-v0.3"
+ },
+ "copy": {
+  "one_liner": "7B 击败 Llama 2 13B 的 2023 年经典，Apache-2.0。",
+  "highlights": [
+   "Apache-2.0，无任何商用限制",
+   "GQA + 滑窗注意力，推理快、显存省",
+   "衍生了 Zephyr、OpenHermes 等大量微调"
+  ],
+  "pitfalls": [
+   "能力属 2023 年水平，早已被 Qwen / Gemma 小模型超过",
+   "中文弱，词表 32K",
+   "v0.1 与 v0.3 上下文与模板不同，易混淆"
+  ],
+  "logic_ability": "入门级：无 CoT 训练，MMLU 60% 档。适合简单指令与分类，复杂推理不可靠。",
+  "best_for": [
+   "教学 / 微调实验",
+   "低资源英文任务"
+  ],
+  "not_for": [
+   "新项目",
+   "中文"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama",
+   "MLX"
+  ],
+  "finetune": "LoRA 极成熟",
+  "zh_docs": "弱"
+ }
+}

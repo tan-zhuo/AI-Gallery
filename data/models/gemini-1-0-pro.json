@@ -1,0 +1,72 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "gemini-1-0-pro",
+ "name": "Gemini 1.0 Pro",
+ "aliases": [
+  "gemini-pro",
+  "gemini-1.0-pro"
+ ],
+ "vendor": "Google",
+ "family": "Gemini 1.0",
+ "superseded_by": "gemini-1-5-pro",
+ "released_at": "2023-12-13",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 32768,
+  "display": "32K",
+  "max_output": 8192
+ },
+ "pricing": {
+  "input_per_m": 0.5,
+  "output_per_m": 1.5,
+  "currency": "USD",
+  "source": "Google AI 定价页（付费层）",
+  "as_of": "2024-02-15",
+  "note": "发布初期免费；Ultra 版未开放 API"
+ },
+ "links": {
+  "official": "https://blog.google/technology/ai/google-gemini-ai/",
+  "paper": "https://arxiv.org/abs/2312.11805",
+  "pricing": "https://ai.google.dev/pricing"
+ },
+ "copy": {
+  "one_liner": "Gemini 系列首款开放 API 模型，Bard 底座。",
+  "highlights": [
+   "原生多模态训练，MMMU 47.9%",
+   "2023-12 免费开放 API，Bard 同步升级",
+   "同期 Gemini Ultra MMLU 90.0% 首超人类专家（未开放 API）"
+  ],
+  "pitfalls": [
+   "MMLU 71.8%，落后 GPT-4 一代",
+   "32K 上下文",
+   "发布视频演示被指剪辑夸大"
+  ],
+  "logic_ability": "约 GPT-3.5 水平的推理，GSM8K 86.5%，复杂多步任务不稳定。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

@@ -1,0 +1,96 @@
+{
+ "aliases": [
+  "gemma-7b-it",
+  "gemma-1.1-7b-it"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "MMLU 64.3%（官方）。",
+  "math": "GSM8K 46.4%（官方）。",
+  "chinese": "弱。"
+ },
+ "complete": false,
+ "id": "gemma-7b",
+ "name": "Gemma 7B",
+ "name_zh": "Gemma · 7B",
+ "vendor": "Google",
+ "family": "Gemma",
+ "license": "Gemma Terms of Use",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/google/gemma-7b-it",
+ "superseded_by": "gemma-2-9b",
+ "released_at": "2024-02-21",
+ "architecture": {
+  "type": "dense",
+  "total_params": "8.5B",
+  "total_params_b": 8.5,
+  "layers": 28,
+  "hidden_size": 3072,
+  "vocab_size": 256000,
+  "kv_heads": 16,
+  "head_dim": 256,
+  "attention": "MHA（16 头，head_dim 256）",
+  "notes": "256K 大词表（embedding 占 0.8B）；上下文 8K；GeGLU；1.1 版（2024-04）改进 RLHF。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 8192,
+  "display": "8K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 17.0,
+   "q8": 9.0,
+   "q4": 5.3
+  },
+  "estimated": false,
+  "kv_per_token_kib": 448.0,
+  "kv_note": "16×256×2×28×2 B = 448 KiB/token，MHA 使 KV 偏大。",
+  "ref_hw_24gb": "BF16 17 GB 单卡",
+  "ref_hw_80gb": "高并发",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://blog.google/technology/developers/gemma-open-models/",
+  "paper": "https://arxiv.org/abs/2403.08295",
+  "hf": "https://huggingface.co/google/gemma-7b-it"
+ },
+ "copy": {
+  "one_liner": "Google 首个开放权重模型，Gemini 技术下放的起点。",
+  "highlights": [
+   "Gemini 同源技术与 tokenizer，256K 词表多语言好",
+   "6T token 训练，MMLU 64.3% 超同期 Llama 2 7B",
+   "Keras / JAX / PyTorch 全栈官方支持"
+  ],
+  "pitfalls": [
+   "实际 8.5B 参数、MHA 大 KV，跑起来比 7B 重",
+   "上下文仅 8K，无 system prompt",
+   "Gemma Terms 含使用政策限制，对话质量当年被批"
+  ],
+  "logic_ability": "入门级：MMLU 64.3%、GSM8K 46.4%（官方基座）。逻辑推理弱，主要历史意义。",
+  "best_for": [
+   "历史对照",
+   "Google 生态教学"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama",
+   "Keras"
+  ],
+  "finetune": "LoRA 友好",
+  "zh_docs": "弱"
+ }
+}

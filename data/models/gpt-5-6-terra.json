@@ -79,6 +79,68 @@
   "knowledge": "知识截止 2026-02-16（官方模型页）；GDM-MRCR 128K 93.5%（Google 模型卡对照列）。",
   "multimodal": "文本 + 图像输入、文本输出；新增原始分辨率图像处理（不缩放）；不含音频。"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "GPT-5.6 balanced tier",
+   "one_liner": "GPT-5.6 production default at half of Sol's price, AA index 57.",
+   "highlights": [
+    "AA Intelligence Index 57, Coding Agent Index 77; per-task cost about half of Sol",
+    "1.05M context + 128K output; supports the max reasoning level and all built-in tools",
+    "20% price cut on 2026-07-30 to $2 / $12 (launch price $2.5 / $15), more than half cheaper than GPT-5.5"
+   ],
+   "pitfalls": [
+    "Inputs above 272K billed at 2x input / 1.5x output",
+    "No separately published SWE-bench / GPQA scores for Terra, only the AA composite index",
+    "Cybersecurity / bio-chem Preparedness rated High, with safety blocks"
+   ],
+   "logic_ability": "AA Intelligence Index 57, between Sol (61) and Luna (51); Coding Agent Index 77, only 3 points below Sol. Suited to most production workloads.",
+   "best_for": [
+    "Default model for production",
+    "Medium-complexity agents"
+   ],
+   "not_for": [
+    "Frontier-hard problems",
+    "On-prem deployment"
+   ],
+   "capability_notes": {
+    "reasoning": "AA Intelligence Index 57 (max, 2026-08-28; 55 on launch day), xhigh 52 / high 49 / medium 46 / no reasoning 34 (AA).",
+    "coding": "AA Coding Agent Index 77 (Sol 80, Luna 75); DeepSWE v1.1 69.6%, FrontierCode 1.1 41.3% (comparison column in Google's Gemini 3.7 Flash model card).",
+    "agent": "Agents' Last Exam: officially \"beats Claude Fable 5 at about 1/16 the cost\" (OpenAI announcement, relayed by Simon Willison); AA per-task cost $0.53, about half of Sol.",
+    "knowledge": "Knowledge cutoff 2026-02-16 (official model page); GDM-MRCR 128K 93.5% (comparison column in Google's model card).",
+    "multimodal": "Text + image input, text output; new native-resolution image processing (no downscaling); no audio."
+   }
+  },
+  "ja": {
+   "name_zh": "GPT-5.6 バランス",
+   "one_liner": "GPT-5.6 の本番デフォルト、Sol の半額、AA 指数 57。",
+   "highlights": [
+    "AA 知能指数 57、Coding Agent Index 77、タスク単価は Sol の約半分",
+    "1.05M コンテキスト + 128K 出力、max 推論段階と全内蔵ツールに対応",
+    "2026-07-30 に 20% 値下げで $2 / $12（発売価格 $2.5 / $15）、GPT-5.5 より半額以上安い"
+   ],
+   "pitfalls": [
+    "272K 超の入力は入力 2 倍 / 出力 1.5 倍で課金",
+    "Terra 単体の SWE-bench / GPQA などのスコアは公式未公表で、AA 総合指数のみ",
+    "サイバーセキュリティ / 生化学の Preparedness 評価は High、安全ブロックあり"
+   ],
+   "logic_ability": "AA 知能指数 57 で Sol（61）と Luna（51）の中間。Coding Agent Index 77 は Sol より 3 点低いだけ。大多数の本番ワークロードに向く。",
+   "best_for": [
+    "本番環境のデフォルトモデル",
+    "中程度の複雑さの agent"
+   ],
+   "not_for": [
+    "最先端の難問",
+    "オンプレ展開"
+   ],
+   "capability_notes": {
+    "reasoning": "AA 知能指数 57（max、2026-08-28。発表当日は 55）、xhigh 52 / high 49 / medium 46 / 推論なし 34（AA）。",
+    "coding": "AA Coding Agent Index 77（Sol 80、Luna 75）。DeepSWE v1.1 69.6%、FrontierCode 1.1 41.3%（Google Gemini 3.7 Flash モデルカードの比較列）。",
+    "agent": "Agents' Last Exam は公式に「約 1/16 のコストで Claude Fable 5 を上回る」（OpenAI 発表、Simon Willison 転述）。AA タスク単価 $0.53 で Sol の約半分。",
+    "knowledge": "知識カットオフ 2026-02-16（公式モデルページ）。GDM-MRCR 128K 93.5%（Google モデルカードの比較列）。",
+    "multimodal": "テキスト + 画像入力、テキスト出力。原寸解像度の画像処理（縮小なし）を新たに対応。音声は非対応。"
+   }
+  }
+ },
  "complete": true,
  "sheet": {
   "architecture_md": "**未披露**。OpenAI 未公布参数量与架构。\n\n已知接口特性（developers.openai.com 模型页，2026-08-28）：\n- 上下文 1,050,000 token，最大输出 128K\n- `reasoning.effort`：`none` / `low` / `medium`（默认）/ `high` / `xhigh` / `max`；`none` 即无推理模式（AA 指数 34）\n- 端点：Responses、Chat Completions、Batch；不支持 Realtime、Assistants、Fine-tuning、Embeddings、图像生成、音频\n- 输入：文本 + 图像；输出：文本。图像可按原始分辨率处理\n- 内置工具：web search、file search、code interpreter、computer use、image generation、hosted shell、MCP；支持 streaming、structured outputs、function calling、prompt caching\n- 5.6 系列新增：Programmatic Tool Calling（JS 编排工具组合）、多 agent 并行子 agent、显式缓存断点\n- 单一快照 `gpt-5.6-terra`；知识截止 2026-02-16\n- 速率限制：Tier 1 500 RPM / 500K TPM，Tier 5 15,000 RPM / 40M TPM",

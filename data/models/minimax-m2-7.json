@@ -109,5 +109,61 @@
   "tok_s": 61,
   "latency_s": 1.56,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "MiniMax M2.7",
+   "one_liner": "10B-active agentic coding model, but weights are non-commercial only.",
+   "highlights": [
+    "SWE-Pro 56.22, Terminal Bench 2 57.0, GDPval-AA Elo 1495 (highest open-source at release)",
+    "10B active for low latency; FP8 230 GB runs on 4×H100",
+    "Native Agent Teams multi-agent collaboration"
+   ],
+   "pitfalls": [
+    "Non-commercial license: commercial use requires written authorization from MiniMax and a \"Built with MiniMax M2.7\" notice, unlike M2's MIT",
+    "Flagship spot taken by M3; use M3 for multimodal",
+    "General reasoning benchmarks (GPQA / AIME) not officially disclosed"
+   ],
+   "logic_ability": "Mainly engineering reasoning: SWE-Pro 56.22, Multi-SWE 52.7, NL2Repo 39.8, MLE Bench Lite 66.6% medal rate.",
+   "best_for": [
+    "Non-commercial / research self-hosted coding agents",
+    "Low-cost agent services via API"
+   ],
+   "not_for": [
+    "Commercial self-hosting (license restriction)",
+    "Multimodal"
+   ],
+   "capability_notes": {
+    "coding": "SWE-Pro 56.22, Terminal Bench 2 57.0, SWE Multilingual 76.5, Multi-SWE 52.7 (official).",
+    "agent": "Toolathon 46.3, GDPval-AA 1495, MM Claw 62.7 (official)."
+   }
+  },
+  "ja": {
+   "name_zh": "MiniMax M2.7",
+   "one_liner": "10B アクティブのエージェント型コーディングモデル。重みは非商用限定。",
+   "highlights": [
+    "SWE-Pro 56.22、Terminal Bench 2 57.0、GDPval-AA Elo 1495（公開時オープンソース最高）",
+    "10B アクティブで低レイテンシ、FP8 230 GB で 4×H100 で動作",
+    "ネイティブの Agent Teams マルチエージェント協調"
+   ],
+   "pitfalls": [
+    "ライセンスは非商用：商用には MiniMax の書面許諾と「Built with MiniMax M2.7」表示が必要で、M2 の MIT とは異なる",
+    "フラッグシップの座は M3 に移行。マルチモーダルは M3 を使う",
+    "汎用推論ベンチマーク（GPQA / AIME）は公式未開示"
+   ],
+   "logic_ability": "エンジニアリング型推論が主：SWE-Pro 56.22、Multi-SWE 52.7、NL2Repo 39.8、MLE Bench Lite メダル率 66.6%。",
+   "best_for": [
+    "非商用 / 研究目的の自前コーディングエージェント",
+    "API 経由の低コストエージェントサービス"
+   ],
+   "not_for": [
+    "商用の自前ホスティング（ライセンス制限）",
+    "マルチモーダル"
+   ],
+   "capability_notes": {
+    "coding": "SWE-Pro 56.22、Terminal Bench 2 57.0、SWE Multilingual 76.5、Multi-SWE 52.7（公式）。",
+    "agent": "Toolathon 46.3、GDPval-AA 1495、MM Claw 62.7（公式）。"
+   }
+  }
  }
 }

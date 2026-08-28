@@ -1,0 +1,94 @@
+{
+ "aliases": [
+  "Llama-3.1-Nemotron-70B-Instruct-HF"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "instruction": "Arena Hard 85.0、MT-Bench 8.98（官方）。",
+  "chinese": "弱。"
+ },
+ "complete": false,
+ "id": "llama-3-1-nemotron-70b",
+ "name": "Llama-3.1-Nemotron-70B",
+ "name_zh": "Llama-3.1-Nemotron · 70B",
+ "vendor": "NVIDIA",
+ "family": "Nemotron",
+ "license": "Llama 3.1 Community License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/nvidia/Llama-3.1-Nemotron-70B-Instruct-HF",
+ "superseded_by": "nemotron-3-super-120b-a12b",
+ "released_at": "2024-10-15",
+ "architecture": {
+  "type": "dense",
+  "total_params": "70.6B",
+  "total_params_b": 70.6,
+  "layers": 80,
+  "hidden_size": 8192,
+  "vocab_size": 128256,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（64 Q 头 / 8 KV 头）",
+  "notes": "Llama 3.1 70B 用 HelpSteer2 + REINFORCE RLHF 对齐；128K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 141.2,
+   "q8": 74.8,
+   "q4": 42.5
+  },
+  "estimated": false,
+  "kv_per_token_kib": 320.0,
+  "kv_note": "320 KiB/token。",
+  "ref_hw_24gb": "Q4 需 2×24GB",
+  "ref_hw_80gb": "Q4 单卡；BF16 2×80GB",
+  "ref_hw_8x80gb": "高并发"
+ },
+ "links": {
+  "official": "https://build.nvidia.com/nvidia/llama-3_1-nemotron-70b-instruct",
+  "paper": "https://arxiv.org/abs/2410.01257",
+  "hf": "https://huggingface.co/nvidia/Llama-3.1-Nemotron-70B-Instruct-HF"
+ },
+ "copy": {
+  "one_liner": "RLHF 强化版 Llama 3.1 70B，对话榜一度超 GPT-4o。",
+  "highlights": [
+   "Arena Hard 85.0、AlpacaEval 2 LC 57.6（官方），当时开源第一",
+   "Arena Elo 1267（2024-10-24，官方引用）",
+   "展示了奖励模型 + REINFORCE 的高效对齐"
+  ],
+  "pitfalls": [
+   "回答冗长，「strawberry 有几个 r」式炫技",
+   "基础能力未变，数学 / 代码等于 Llama 3.1 70B",
+   "Llama 许可限制"
+  ],
+  "logic_ability": "对话偏好榜强，硬推理与 Llama 3.1 70B 同级（无额外训练）。",
+  "best_for": [
+   "英文对话助手",
+   "对齐研究"
+  ],
+  "not_for": [
+   "需简洁输出的场景",
+   "中文"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "TensorRT-LLM"
+  ],
+  "finetune": "LoRA 成熟",
+  "zh_docs": "弱"
+ }
+}

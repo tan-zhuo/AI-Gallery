@@ -1,0 +1,115 @@
+{
+ "aliases": [
+  "Kimi-K2-Instruct",
+  "Kimi K2 (July 2025)"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "SWE-bench Verified 65.8%、LiveCodeBench v6 53.7%（官方）。",
+  "reasoning": "GPQA Diamond 75.1%、HLE 4.7%（官方）。",
+  "math": "AIME 2025 49.5%（官方）。",
+  "agent": "Tau2 retail 70.6 / airline 56.5 / telecom 65.8，Terminal-bench 30.0（官方）。",
+  "chinese": "中文顶级。"
+ },
+ "complete": false,
+ "id": "kimi-k2-instruct",
+ "name": "Kimi K2 Instruct",
+ "name_zh": "Kimi K2（0711 原版）",
+ "vendor": "Moonshot AI",
+ "vendor_zh": "月之暗面",
+ "family": "Kimi K2",
+ "license": "Modified MIT License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/moonshotai/Kimi-K2-Instruct",
+ "superseded_by": "kimi-k2-0905",
+ "released_at": "2025-07-11",
+ "architecture": {
+  "type": "moe",
+  "total_params": "1T",
+  "active_params": "32B",
+  "total_params_b": 1026,
+  "active_params_b": 32,
+  "experts": 384,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 61,
+  "hidden_size": 7168,
+  "vocab_size": 163840,
+  "kv_heads": 64,
+  "head_dim": 192,
+  "attention": "MLA（kv_lora_rank 512 + rope 64，64 头）",
+  "notes": "DeepSeek-V3 式结构放大：384 专家 top-8 + 1 共享；MuonClip 优化器；128K；非推理。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 2052,
+   "q8": 1087.6,
+   "q4": 620.8,
+   "fp8": 1026
+  },
+  "estimated": false,
+  "kv_per_token_kib": 68.6,
+  "kv_note": "MLA ≈ 68.6 KiB/token。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "官方 FP8 ≈ 1 TB 需 16×80GB 或 8×H200；Q4 621 GB 8×80GB 勉强"
+ },
+ "pricing": {
+  "input_per_m": 0.6,
+  "output_per_m": 2.5,
+  "currency": "USD",
+  "source": "Moonshot 官方 API（kimi-k2）",
+  "as_of": "2026-08-28"
+ },
+ "links": {
+  "official": "https://moonshotai.github.io/Kimi-K2/",
+  "github": "https://github.com/MoonshotAI/Kimi-K2",
+  "paper": "https://arxiv.org/abs/2507.20534",
+  "hf": "https://huggingface.co/moonshotai/Kimi-K2-Instruct"
+ },
+ "copy": {
+  "one_liner": "首个万亿参数开放权重，非推理 agent 模型的高峰。",
+  "highlights": [
+   "1T 总参 / 32B 激活，SWE-bench Verified 65.8%（官方）",
+   "非思考模式即达强 agent 能力，延迟低",
+   "MuonClip 优化器，15.5T token 训练零 loss spike"
+  ],
+  "pitfalls": [
+   "Modified MIT：月活 1 亿或月收 2000 万美元以上需标注 Kimi K2",
+   "1T 权重本地几乎不可行",
+   "0905 版把上下文扩到 256K 并提升前端代码，建议直接用新版"
+  ],
+  "logic_ability": "非推理模型中顶级：GPQA 75.1%、AIME 2025 49.5%、LiveCodeBench v6 53.7%、SWE-bench Verified 65.8%（官方）。工具调用与多步 agent 稳定，但没有思考链，深度数学不及推理模型。",
+  "best_for": [
+   "agent / 工具调用后端",
+   "代码 agent"
+  ],
+  "not_for": [
+   "本地部署",
+   "竞赛数学"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "KTransformers",
+   "TensorRT-LLM"
+  ],
+  "finetune": "极困难",
+  "zh_docs": "有"
+ }
+}

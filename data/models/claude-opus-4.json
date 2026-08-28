@@ -1,0 +1,70 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "claude-opus-4",
+ "name": "Claude Opus 4",
+ "aliases": [
+  "claude-opus-4-20250514"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 4",
+ "superseded_by": "claude-opus-4-1",
+ "released_at": "2025-05-22",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "optional",
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K",
+  "max_output": 32000
+ },
+ "pricing": {
+  "input_per_m": 15,
+  "output_per_m": 75,
+  "currency": "USD",
+  "source": "Anthropic 定价页",
+  "as_of": "2025-05-22"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/news/claude-4",
+  "pricing": "https://www.anthropic.com/pricing"
+ },
+ "copy": {
+  "one_liner": "长时间自主编程的旗舰，Terminal-bench 43.2%。",
+  "highlights": [
+   "SWE-bench Verified 72.5%、Terminal-bench 43.2%",
+   "可连续自主工作数小时的代理稳定性",
+   "思考中可交替调用工具、记忆文件"
+  ],
+  "pitfalls": [
+   "$15 / $75，SWE-bench 与 Sonnet 4 几乎一样",
+   "系统卡披露\"告密\"等高能动性行为引发讨论",
+   "2.5 个月后被 Opus 4.1 替代"
+  ],
+  "logic_ability": "工程型推理第一梯队，长程任务保持目标；考试型 GPQA 79.6%、AIME 2025 75.5%（扩展思考）。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

@@ -1,0 +1,107 @@
+{
+ "aliases": [
+  "Hunyuan-A13B-Instruct"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "capability_notes": {
+  "coding": "LiveCodeBench 63.9%（官方）。",
+  "reasoning": "GPQA-Diamond 71.2%（官方）。",
+  "math": "AIME 2025 76.8%（官方）。",
+  "agent": "BFCL v3 78.3、τ-Bench 54.7（官方）。",
+  "chinese": "中文强。"
+ },
+ "complete": false,
+ "id": "hunyuan-a13b",
+ "name": "Hunyuan-A13B",
+ "name_zh": "混元 A13B · 80B-A13B",
+ "vendor": "Tencent",
+ "vendor_zh": "腾讯",
+ "family": "Hunyuan",
+ "license": "Tencent Hunyuan Community License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/tencent/Hunyuan-A13B-Instruct",
+ "superseded_by": "hunyuan-hy3",
+ "released_at": "2025-06-27",
+ "architecture": {
+  "type": "moe",
+  "total_params": "80B",
+  "active_params": "13B",
+  "total_params_b": 80,
+  "active_params_b": 13,
+  "experts": 64,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 32,
+  "hidden_size": 4096,
+  "vocab_size": 128167,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 8 KV 头）",
+  "notes": "64 专家 top-8 + 1 共享；快慢思考双模式；256K 上下文；20T token。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 160,
+   "q8": 84.8,
+   "q4": 48.8,
+   "fp8": 80
+  },
+  "estimated": false,
+  "kv_per_token_kib": 128.0,
+  "kv_note": "128 KiB/token。",
+  "ref_hw_24gb": "不可行（Q4 48.8 GB）",
+  "ref_hw_80gb": "Q4 / FP8 单卡 80GB 可跑",
+  "ref_hw_8x80gb": "BF16 高并发"
+ },
+ "links": {
+  "official": "https://hunyuan.tencent.com/",
+  "github": "https://github.com/Tencent-Hunyuan/Hunyuan-A13B",
+  "paper": "https://arxiv.org/abs/2508.08088",
+  "hf": "https://huggingface.co/tencent/Hunyuan-A13B-Instruct"
+ },
+ "copy": {
+  "one_liner": "13B 激活的 MoE，单卡 80GB 跑 256K 上下文与双模思考。",
+  "highlights": [
+   "快 / 慢思考切换（/no_think），256K 上下文",
+   "AIME 2025 76.8%、GPQA-Diamond 71.2%（官方）",
+   "单张 80GB 卡可部署，腾讯云原生"
+  ],
+  "pitfalls": [
+   "许可禁止欧盟 / 英国 / 韩国使用，月活 1 亿限制",
+   "社区生态与量化明显少于 Qwen",
+   "BF16 160 GB，24GB 卡无解"
+  ],
+  "logic_ability": "慢思考模式：AIME 2025 76.8%、GPQA-Diamond 71.2%、LiveCodeBench 63.9%（官方）。agent 榜 BFCL v3 78.3 突出。",
+  "best_for": [
+   "单卡 80GB 中文 agent",
+   "腾讯云生态"
+  ],
+  "not_for": [
+   "欧盟合规场景",
+   "消费级显卡"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "TensorRT-LLM",
+   "llama.cpp"
+  ],
+  "finetune": "LLaMA-Factory 支持",
+  "zh_docs": "有"
+ }
+}

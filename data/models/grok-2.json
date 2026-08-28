@@ -1,0 +1,72 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "grok-2",
+ "name": "Grok-2",
+ "aliases": [
+  "grok-2-1212",
+  "grok-2-beta",
+  "grok-2-mini",
+  "sus-column-r"
+ ],
+ "vendor": "xAI",
+ "family": "Grok 2",
+ "superseded_by": "grok-3",
+ "released_at": "2024-08-13",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 8192
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "xAI API 定价（2024-10 开放）",
+  "as_of": "2024-10-21"
+ },
+ "links": {
+  "official": "https://x.ai/news/grok-2",
+  "pricing": "https://x.ai/api"
+ },
+ "copy": {
+  "one_liner": "xAI 首个追平 GPT-4 级的模型，X 平台内置。",
+  "highlights": [
+   "GPQA 56.0%、MMLU 87.5%，追平 GPT-4 Turbo",
+   "LMArena 上以 sus-column-r 匿名测试排名靠前",
+   "集成 Flux 图像生成，限制少"
+  ],
+  "pitfalls": [
+   "API 2024-10 才开放",
+   "长上下文与代码能力一般",
+   "权重 2025-08 以 Grok 2.5 名义开源，但许可证受限"
+  ],
+  "logic_ability": "与 GPT-4 Turbo / Claude 3.5 Sonnet 同档的推理，MATH 76.1%，无推理链。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

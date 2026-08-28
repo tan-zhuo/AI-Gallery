@@ -108,5 +108,63 @@
   "tok_s": 68,
   "latency_s": 2.82,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Xiaomi MiMo-V2.5",
+   "one_liner": "Xiaomi's 310B omni-modal MoE, 15B active, MIT license, 1M context.",
+   "highlights": [
+    "MIT license; omni-modal input across text / image / video / audio",
+    "Terminal-Bench 2.0 65.8, SWE-bench Pro 56.1 (official)",
+    "1M context; 5:1 sliding-window hybrid attention saves KV; AA Intelligence Index 38"
+   ],
+   "pitfalls": [
+    "310B total parameters; multi-GPU deployment",
+    "No official GPQA / AIME / SWE-bench Verified numbers",
+    "V2.5 not seen on the Arena text leaderboard (Pro version 1468)"
+   ],
+   "logic_ability": "Strong engineering reasoning (TB 2.0 65.8); official exam-style reasoning numbers missing; the stronger V2.5-Pro (1T-A42B) scores AA 43.",
+   "best_for": [
+    "Omni-modal agents",
+    "Low-cost ultra-long-context API"
+   ],
+   "not_for": [
+    "Single-machine deployment",
+    "Scenarios needing authoritative reasoning benchmark backing"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.0 65.8, SWE-bench Pro 56.1 (official).",
+    "multimodal": "Image / video / audio understanding.",
+    "chinese": "Strong; Chinese domestic model."
+   }
+  },
+  "ja": {
+   "name_zh": "Xiaomi MiMo-V2.5",
+   "one_liner": "Xiaomi の 310B 全モーダル MoE。15B 活性、MIT、1M。",
+   "highlights": [
+    "MIT ライセンス、テキスト / 画像 / 動画 / 音声の全モーダル入力",
+    "Terminal-Bench 2.0 65.8、SWE-bench Pro 56.1（公式）",
+    "1M コンテキスト、5:1 スライディングウィンドウ混合アテンションで KV を節約。AA 知能指数 38"
+   ],
+   "pitfalls": [
+    "総パラメータ 310B、マルチ GPU デプロイが必要",
+    "公式の GPQA / AIME / SWE-bench Verified の数値なし",
+    "Arena テキスト榜に V2.5 は見当たらない（Pro 版は 1468）"
+   ],
+   "logic_ability": "エンジニアリング型推論は強い（TB 2.0 65.8）、試験型推論は公式数値が欠落。上位の V2.5-Pro（1T-A42B）は AA 43。",
+   "best_for": [
+    "全モーダルエージェント",
+    "超長コンテキストの低コスト API"
+   ],
+   "not_for": [
+    "単一マシンでのデプロイ",
+    "権威ある推論評価の裏付けが必要な場面"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.0 65.8、SWE-bench Pro 56.1（公式）。",
+    "multimodal": "画像 / 動画 / 音声理解。",
+    "chinese": "強い。中国産モデル。"
+   }
+  }
  }
 }

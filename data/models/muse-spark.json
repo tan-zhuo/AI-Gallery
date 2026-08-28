@@ -1,5 +1,134 @@
-{"id":"muse-spark","name":"Muse Spark 1.2","name_zh":"Meta Muse Spark","aliases":["muse-spark-1.2","muse-spark-1.1","Muse Spark"],"vendor":"Meta","family":"Muse","license":"专有（Meta Model API 服务条款）","license_commercial":true,"openness":"api-only","weights_available":false,"status":"current","released_at":"2026-08-05","updated_at":"2026-08-28","modalities":["text","image","tools","computer-use"],"reasoning_mode":"default-on",
-"architecture":{"type":"unknown","notes":"未披露。原生多模态推理模型，Contemplating 模式可编排多个并行 agent。","undisclosed":true},"context":{"max_tokens":1048576,"display":"1M"},"memory":{"weight_gb":{},"estimated":true},
-"pricing":{"input_per_m":1.25,"output_per_m":4.25,"currency":"USD","source":"Meta Model API 定价页","as_of":"2026-08-28","note":"Standard 档；缓存输入 $0.15；Contributor 档（允许 Meta 用数据训练）$0.10 / $0.20"},
-"links":{"official":"https://developer.meta.com/ai/models/muse-spark/","pricing":"https://developer.meta.com/ai/models/muse-spark/"},
-"copy":{"one_liner":"Meta 超级智能实验室闭源旗舰，1M 上下文，Arena 前十。","highlights":["LMArena 文本 1498（1.2 xHigh，第 4 名）","HLE 58%（Contemplating 模式，官方）","1M 上下文，编程 / 计算机使用优化，$1.25 / $4.25"],"pitfalls":["Meta 首个闭源旗舰，无权重","Contributor 低价档会拿数据训练，慎用","API 2026-07 才开放，生态与 SDK 尚新"],"logic_ability":"考试型推理顶级（HLE 58% 带多 agent 编排）；工程型推理官方图表未给数字。","best_for":["编程 agent / Muse Code","超长上下文研究任务"],"not_for":["自托管","数据敏感场景用 Contributor 档"]},"capability_notes":{"reasoning":"HLE 58%、FrontierScience Research 38%（Contemplating，官方）。"},"ecosystem":{"zh_docs":"无"},"complete":false}
+{
+ "id": "muse-spark",
+ "name": "Muse Spark 1.2",
+ "name_zh": "Meta Muse Spark",
+ "aliases": [
+  "muse-spark-1.2",
+  "muse-spark-1.1",
+  "Muse Spark"
+ ],
+ "vendor": "Meta",
+ "family": "Muse",
+ "license": "专有（Meta Model API 服务条款）",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-08-05",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "notes": "未披露。原生多模态推理模型，Contemplating 模式可编排多个并行 agent。",
+  "undisclosed": true
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": true
+ },
+ "pricing": {
+  "input_per_m": 1.25,
+  "output_per_m": 4.25,
+  "currency": "USD",
+  "source": "Meta Model API 定价页",
+  "as_of": "2026-08-28",
+  "note": "Standard 档；缓存输入 $0.15；Contributor 档（允许 Meta 用数据训练）$0.10 / $0.20"
+ },
+ "links": {
+  "official": "https://developer.meta.com/ai/models/muse-spark/",
+  "pricing": "https://developer.meta.com/ai/models/muse-spark/"
+ },
+ "copy": {
+  "one_liner": "Meta 超级智能实验室闭源旗舰，1M 上下文，Arena 前十。",
+  "highlights": [
+   "LMArena 文本 1498（1.2 xHigh，第 4 名）",
+   "HLE 58%（Contemplating 模式，官方）",
+   "1M 上下文，编程 / 计算机使用优化，$1.25 / $4.25"
+  ],
+  "pitfalls": [
+   "Meta 首个闭源旗舰，无权重",
+   "Contributor 低价档会拿数据训练，慎用",
+   "API 2026-07 才开放，生态与 SDK 尚新"
+  ],
+  "logic_ability": "考试型推理顶级（HLE 58% 带多 agent 编排）；工程型推理官方图表未给数字。",
+  "best_for": [
+   "编程 agent / Muse Code",
+   "超长上下文研究任务"
+  ],
+  "not_for": [
+   "自托管",
+   "数据敏感场景用 Contributor 档"
+  ]
+ },
+ "capability_notes": {
+  "reasoning": "HLE 58%、FrontierScience Research 38%（Contemplating，官方）。"
+ },
+ "ecosystem": {
+  "zh_docs": "无"
+ },
+ "complete": false,
+ "i18n": {
+  "en": {
+   "name_zh": "Meta Muse Spark",
+   "one_liner": "Meta Superintelligence Labs' closed flagship, 1M context, Arena top 10.",
+   "highlights": [
+    "LMArena text 1498 (1.2 xHigh, #4)",
+    "HLE 58% (Contemplating mode, official)",
+    "1M context, optimized for coding / computer use, $1.25 / $4.25"
+   ],
+   "pitfalls": [
+    "Meta's first closed flagship; no weights",
+    "The cheaper Contributor tier uses your data for training; use with caution",
+    "API only opened in 2026-07; ecosystem and SDK still new"
+   ],
+   "logic_ability": "Top-tier exam-style reasoning (HLE 58% with multi-agent orchestration); official charts give no engineering-reasoning numbers.",
+   "best_for": [
+    "Coding agents / Muse Code",
+    "Ultra-long-context research tasks"
+   ],
+   "not_for": [
+    "Self-hosting",
+    "Data-sensitive scenarios on the Contributor tier"
+   ],
+   "capability_notes": {
+    "reasoning": "HLE 58%, FrontierScience Research 38% (Contemplating, official)."
+   }
+  },
+  "ja": {
+   "name_zh": "Meta Muse Spark",
+   "one_liner": "Meta 超知能ラボのクローズド旗艦。1M、Arena トップ 10。",
+   "highlights": [
+    "LMArena テキスト 1498（1.2 xHigh、4 位）",
+    "HLE 58%（Contemplating モード、公式）",
+    "1M コンテキスト、コーディング / コンピュータ操作に最適化、$1.25 / $4.25"
+   ],
+   "pitfalls": [
+    "Meta 初のクローズド旗艦で重みなし",
+    "低価格の Contributor 帯はデータが学習に使われるため注意",
+    "API 公開は 2026-07 で、エコシステムと SDK はまだ新しい"
+   ],
+   "logic_ability": "試験型推論は最上位（マルチエージェント編成込みで HLE 58%）。エンジニアリング型推論は公式図表に数値なし。",
+   "best_for": [
+    "コーディングエージェント / Muse Code",
+    "超長コンテキストのリサーチタスク"
+   ],
+   "not_for": [
+    "自前ホスティング",
+    "データ機密性の高い用途での Contributor 帯利用"
+   ],
+   "capability_notes": {
+    "reasoning": "HLE 58%、FrontierScience Research 38%（Contemplating、公式）。"
+   }
+  }
+ }
+}

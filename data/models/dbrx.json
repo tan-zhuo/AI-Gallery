@@ -1,0 +1,98 @@
+{
+ "aliases": [
+  "dbrx-instruct"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "HumanEval 70.1%（官方）。",
+  "math": "GSM8K 66.9%（官方）。",
+  "knowledge": "MMLU 73.7%（官方）。"
+ },
+ "complete": false,
+ "id": "dbrx",
+ "name": "DBRX",
+ "name_zh": "DBRX · 132B-A36B",
+ "vendor": "Databricks",
+ "family": "DBRX",
+ "license": "Databricks Open Model License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/databricks/dbrx-instruct",
+ "released_at": "2024-03-27",
+ "architecture": {
+  "type": "moe",
+  "total_params": "132B",
+  "active_params": "36B",
+  "total_params_b": 132,
+  "active_params_b": 36,
+  "experts": 16,
+  "active_experts": 4,
+  "shared_expert": false,
+  "layers": 40,
+  "hidden_size": 6144,
+  "vocab_size": 100352,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（48 Q 头 / 8 KV 头）",
+  "notes": "细粒度 MoE：16 专家 top-4（组合数 65 倍于 Mixtral）；12T token；32K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 32768,
+  "display": "32K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 264,
+   "q8": 139.9,
+   "q4": 76.6
+  },
+  "estimated": true,
+  "kv_per_token_kib": 160.0,
+  "kv_note": "160 KiB/token。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "Q4 约 77 GB 单卡勉强；BF16 4×80GB",
+  "ref_hw_8x80gb": "BF16 高并发"
+ },
+ "links": {
+  "official": "https://www.databricks.com/blog/introducing-dbrx-new-state-art-open-llm",
+  "github": "https://github.com/databricks/dbrx",
+  "hf": "https://huggingface.co/databricks/dbrx-instruct"
+ },
+ "copy": {
+  "one_liner": "Databricks 的 132B 细粒度 MoE，短暂的开源榜首。",
+  "highlights": [
+   "发布时超越 Mixtral 8x7B / Grok-1，代码 HumanEval 70.1%",
+   "16 选 4 细粒度专家设计早于 DeepSeek 流行",
+   "Databricks 平台原生集成"
+  ],
+  "pitfalls": [
+   "许可限制月活 7 亿并禁止用输出训练他模",
+   "仅 Databricks 生态活跃，社区量化少",
+   "三周后被 Llama 3 70B 超越，系列无后续"
+  ],
+  "logic_ability": "2024 年初一线：MMLU 73.7%、GSM8K 66.9%、HumanEval 70.1%（官方）。",
+  "best_for": [
+   "MoE 设计研究",
+   "Databricks 平台用户"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "TensorRT-LLM",
+   "llama.cpp"
+  ],
+  "finetune": "困难",
+  "zh_docs": "无"
+ }
+}

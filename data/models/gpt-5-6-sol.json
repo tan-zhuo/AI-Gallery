@@ -95,6 +95,74 @@
   "finetune": "不支持",
   "zh_docs": "弱"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "GPT-5.6 flagship",
+   "one_liner": "OpenAI's flagship, #1 on Terminal-Bench, limited-time $4/$20.",
+   "highlights": [
+    "Terminal-Bench 2.1 88.8% (91.9% in ultra mode) leads the field; FrontierMath v2 89.1%",
+    "New max reasoning level and ultra sub-agent mode; 1.05M context + 128K output",
+    "Price cut to $4 / $20 from 2026-08-21 (was $5 / $30), through 11-21"
+   ],
+   "pitfalls": [
+    "$4 / $20 is a three-month promotion and may revert to $5 / $30 after 11-21; inputs above 272K billed at 2x input / 1.5x output",
+    "AA-measured first-token latency at max about 122 s; deep reasoning is costly and slow",
+    "LMArena 1482 trails Claude Fable 5 / Opus 5; cybersecurity and bio-chem both rated High risk with safety blocks"
+   ],
+   "logic_ability": "Extremely strong at math and command-line agents: FrontierMath v2 89.1% (max), Terminal-Bench 2.1 88.8%, GPQA Diamond 93.5% (DataLearner compilation). ARC-AGI-2 92.5% (ARC Prize verified) shows pattern reasoning near saturation, but ARC-AGI-3 is only 7.8%, far below Opus 5's 30.2%; reasoning in interactive novel environments is a weakness. AA Intelligence Index 61, slightly below Opus 5 (63) and Fable 5 (62); highest AA-Briefcase Elo but rubric score 42% below Fable 5's 56%. Failure modes: the system card admits instances of task gaming and fabricated research results.",
+   "best_for": [
+    "Terminal / Codex-style coding agents",
+    "Math and formal reasoning",
+    "High-concurrency enterprise workflows (tier 5 reaches 40M TPM)"
+   ],
+   "not_for": [
+    "Interactive exploratory reasoning (ARC-AGI-3)",
+    "Bio / security-sensitive scenarios",
+    "Compliance scenarios needing on-prem deployment"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 88.8% (official announcement, ultra 91.9%); SWE-bench Pro Public 64.6% (DataLearner); AA Coding Agent Index 80.",
+    "reasoning": "AA Intelligence Index 61; ARC-AGI-2 92.5% (ARC Prize verified); ARC-AGI-3 7.8%.",
+    "math": "FrontierMath v2 89.1% (max, DataLearner compilation).",
+    "agent": "OSWorld 2.0 62.6% (xhigh + tools); ultra mode speeds up complex tasks with sub-agents.",
+    "multimodal": "Text + image input; MMMU not officially published.",
+    "chinese": "Chinese usable; no independent Chinese evaluation."
+   }
+  },
+  "ja": {
+   "name_zh": "GPT-5.6 フラッグシップ",
+   "one_liner": "OpenAI 旗艦、Terminal-Bench 1 位、期間限定 $4/$20",
+   "highlights": [
+    "Terminal-Bench 2.1 88.8%（ultra モードで 91.9%）で全体をリード、FrontierMath v2 89.1%",
+    "max 推論段階と ultra サブ agent モードを新設、1.05M コンテキスト + 128K 出力",
+    "2026-08-21 から $4 / $20 に値下げ（旧 $5 / $30）、11-21 まで"
+   ],
+   "pitfalls": [
+    "$4 / $20 は 3 か月の優遇価格で 11-21 以降は $5 / $30 に戻る可能性。272K 超の入力は入力 2 倍 / 出力 1.5 倍で課金",
+    "AA 実測で max の初回トークン遅延約 122 s、深い推論はコストも遅延も大きい",
+    "LMArena 1482 は Claude Fable 5 / Opus 5 に劣る。サイバーセキュリティと生化学はいずれも High リスク評価で安全ブロックあり"
+   ],
+   "logic_ability": "数学とコマンドライン agent が極めて強い：FrontierMath v2 89.1%（max）、Terminal-Bench 2.1 88.8%、GPQA Diamond 93.5%（DataLearner 集計）。ARC-AGI-2 92.5%（ARC Prize 検証）はパターン推論が飽和に近いことを示すが、ARC-AGI-3 はわずか 7.8% で Opus 5 の 30.2% を大きく下回り、対話的な新環境での推論が弱点。AA 知能指数 61 は Opus 5（63）と Fable 5（62）をやや下回る。AA-Briefcase は Elo 最高だがルーブリック得点 42% は Fable 5 の 56% より低い。失敗モード：システムカードはタスクの不正攻略と研究結果の捏造事例を認めている。",
+   "best_for": [
+    "ターミナル / Codex 型のコーディング agent",
+    "数学と形式的推論",
+    "高並行の企業ワークフロー（tier 5 で 40M TPM）"
+   ],
+   "not_for": [
+    "対話的な探索型推論（ARC-AGI-3）",
+    "生物 / セキュリティに敏感な用途",
+    "オンプレ展開が必要なコンプライアンス用途"
+   ],
+   "capability_notes": {
+    "coding": "Terminal-Bench 2.1 88.8%（公式発表、ultra 91.9%）。SWE-bench Pro Public 64.6%（DataLearner）。AA Coding Agent Index 80。",
+    "reasoning": "AA 知能指数 61。ARC-AGI-2 92.5%（ARC Prize 検証）。ARC-AGI-3 7.8%。",
+    "math": "FrontierMath v2 89.1%（max、DataLearner 集計）。",
+    "agent": "OSWorld 2.0 62.6%（xhigh + ツール）。ultra モードはサブ agent で複雑なタスクを高速化。",
+    "multimodal": "テキスト + 画像入力に対応。MMMU は公式未公表。",
+    "chinese": "中国語は利用可能。独立した中国語評価はなし。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 70,

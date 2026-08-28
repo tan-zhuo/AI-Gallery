@@ -1,0 +1,95 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "混合推理模型，扩展思考可选、预算可控；2025-08 起 API 提供 1M 上下文 beta。"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 72.7%（并行计算 80.2%）、Terminal-bench 35.5%（官方）。",
+  "reasoning": "GPQA Diamond 75.4%（扩展思考；并行 83.8%）（官方）。",
+  "math": "AIME 2025 70.5%（并行 85.0%）（官方）。",
+  "agent": "TAU-bench retail 80.5%、airline 60.0%（官方）。",
+  "multimodal": "MMMU 74.4%（官方）。",
+  "chinese": "MMMLU 86.5%（官方），中文良好。"
+ },
+ "complete": true,
+ "id": "claude-sonnet-4",
+ "name": "Claude Sonnet 4",
+ "aliases": [
+  "claude-sonnet-4-20250514"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 4",
+ "superseded_by": "claude-sonnet-4-5",
+ "released_at": "2025-05-22",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "optional",
+ "context": {
+  "max_tokens": 200000,
+  "display": "200K（后 1M beta）",
+  "max_output": 64000
+ },
+ "pricing": {
+  "input_per_m": 3,
+  "output_per_m": 15,
+  "currency": "USD",
+  "source": "Anthropic 定价页",
+  "as_of": "2025-05-22",
+  "note": ">200K 输入 $6 / $22.5（1M beta）"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/news/claude-4",
+  "paper": "https://www.anthropic.com/claude-4-system-card",
+  "pricing": "https://www.anthropic.com/pricing"
+ },
+ "copy": {
+  "one_liner": "与 Opus 4 同分的性价比编程主力，GitHub Copilot 默认。",
+  "highlights": [
+   "SWE-bench Verified 72.7%，与 Opus 4 持平、价格 1/5",
+   "被 GitHub Copilot 选为新 coding agent 底座",
+   "2025-08 起 1M 上下文 beta"
+  ],
+  "pitfalls": [
+   "Terminal-bench 35.5%，长程代理稳定性不及 Opus",
+   "考试型推理 AIME 2025 70.5%，落后 o3 / Gemini 2.5 Pro",
+   "扩展思考 token 按输出计费，实际成本可能翻倍"
+  ],
+  "logic_ability": "工程型推理极佳：代码导航、精确编辑、减少 3.7 版的\"过度工程化\"。考试型推理中上，扩展思考下 GPQA 75.4%。常见问题：思考预算过小时推理浅、过大时啰嗦。",
+  "best_for": [
+   "代理编程（当年主力）",
+   "工具调用与结构化任务",
+   "历史对照"
+  ],
+  "not_for": [
+   "竞赛数学",
+   "新项目"
+  ]
+ },
+ "sheet": {
+  "architecture_md": "**未披露**。Anthropic 未公开参数量。\n\n已知接口层信息：\n- 200K 上下文（2025-08 起 1M beta），64K 最大输出\n- 扩展思考：`budget_tokens` 控制，思考摘要返回\n- 思考中可交替调用工具（interleaved thinking，beta）\n- 支持 computer use、文件 API、代码执行工具",
+  "memory_md": "无自建选项。\n\n成本参考：输入 $3 / 输出 $15；缓存写 $3.75、读 $0.30；Batch 半价。1M beta 超过 200K 部分 $6 / $22.5。\n\n**警示**：思考 token 计入输出，长思考预算下费用显著上升。",
+  "training_md": "- 训练细节未披露，知识截止 2025-03\n- 混合推理：默认不思考，按需开启\n- 支持工具调用、并行工具、结构化输出（通过工具）\n- 系统卡：ASL-2 部署（Opus 4 为 ASL-3）",
+  "ecosystem_md": "- 官方 API、AWS Bedrock、Google Vertex AI、GitHub Copilot\n- 不支持微调\n- 中文文档：弱（官方英文）",
+  "versions_md": "- 上代：Claude 3.7 Sonnet（2025-02）\n- 同代：Claude Opus 4（同日发布）\n- 2025-08：1M 上下文 beta\n- 继任：Claude Sonnet 4.5（2025-09）"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ }
+}

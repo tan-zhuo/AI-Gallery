@@ -1,0 +1,70 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "gpt-4-1",
+ "name": "GPT-4.1",
+ "aliases": [
+  "gpt-4.1-2025-04-14"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-4",
+ "superseded_by": "gpt-5",
+ "released_at": "2025-04-14",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 1047576,
+  "display": "1M",
+  "max_output": 32768
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 8,
+  "currency": "USD",
+  "source": "OpenAI 定价页",
+  "as_of": "2025-04-14",
+  "note": "缓存输入 $0.5；mini $0.4 / $1.6，nano $0.1 / $0.4"
+ },
+ "links": {
+  "official": "https://openai.com/index/gpt-4-1/",
+  "pricing": "https://openai.com/api/pricing"
+ },
+ "copy": {
+  "one_liner": "API 专属的 GPT-4o 升级版，1M 上下文，代码大幅提升。",
+  "highlights": [
+   "SWE-bench Verified 54.6%，比 GPT-4o 高 21 个百分点",
+   "1M 上下文，长文档 needle 检索稳定",
+   "指令遵循与 diff 生成明显改进"
+  ],
+  "pitfalls": [
+   "无推理模式，GPQA 66.3%",
+   "起初仅 API，不在 ChatGPT",
+   "4 个月后被 GPT-5 替代"
+  ],
+  "logic_ability": "非推理模型中的工程型推理强者，Aider Polyglot 52.9%；复杂数学需要 o 系列。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

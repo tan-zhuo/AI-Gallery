@@ -1,0 +1,102 @@
+{
+ "aliases": [
+  "ERNIE-4.5-300B-A47B-PT"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "官方称 MMLU-Pro、SimpleQA 等领先 DeepSeek-V3。",
+  "chinese": "C-Eval、CMMLU 官方领先。"
+ },
+ "complete": false,
+ "id": "ernie-4-5-300b-a47b",
+ "name": "ERNIE 4.5 300B-A47B",
+ "name_zh": "文心 4.5 · 300B-A47B",
+ "vendor": "Baidu",
+ "vendor_zh": "百度",
+ "family": "ERNIE 4.5",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/baidu/ERNIE-4.5-300B-A47B-PT",
+ "released_at": "2025-06-30",
+ "architecture": {
+  "type": "moe",
+  "total_params": "300B",
+  "active_params": "47B",
+  "total_params_b": 300,
+  "active_params_b": 47,
+  "experts": 64,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 54,
+  "hidden_size": 8192,
+  "vocab_size": 103424,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（64 Q 头 / 8 KV 头）",
+  "notes": "异构多模态 MoE 预训练后的纯文本后训练版；64 文本专家 top-8 + 共享；128K；PaddlePaddle 原生。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 600,
+   "q8": 318.0,
+   "q4": 180.2,
+   "fp8": 300
+  },
+  "estimated": false,
+  "kv_per_token_kib": 216.0,
+  "kv_note": "216 KiB/token。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）；官方 W4A8 版 4×80GB",
+  "ref_hw_8x80gb": "BF16 600 GB 需 8×80GB（紧）；官方 2-bit 版单机可跑"
+ },
+ "links": {
+  "official": "https://ernie.baidu.com/blog/posts/ernie4.5/",
+  "github": "https://github.com/PaddlePaddle/ERNIE",
+  "paper": "https://ernie.baidu.com/blog/publication/ERNIE_Technical_Report.pdf",
+  "hf": "https://huggingface.co/baidu/ERNIE-4.5-300B-A47B-PT"
+ },
+ "copy": {
+  "one_liner": "百度首次开源旗舰，Apache-2.0 的 300B MoE。",
+  "highlights": [
+   "Apache-2.0，10 个模型全系开源",
+   "官方称多数基准超 DeepSeek-V3-671B",
+   "官方提供 2-bit / W4A8 量化，单机可跑"
+  ],
+  "pitfalls": [
+   "PaddlePaddle / FastDeploy 为主，vLLM 支持滞后",
+   "非推理模型，2025 年中推理榜不占优",
+   "社区量化与微调生态薄弱"
+  ],
+  "logic_ability": "非推理模型：官方基准对标 DeepSeek-V3-0324 / GPT-4.1；中文知识与指令遵循强。",
+  "best_for": [
+   "中文知识问答私有化",
+   "百度 / 飞桨生态"
+  ],
+  "not_for": [
+   "推理密集任务",
+   "非飞桨部署"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "FastDeploy",
+   "vLLM",
+   "Transformers"
+  ],
+  "finetune": "ERNIEKit",
+  "zh_docs": "有"
+ }
+}

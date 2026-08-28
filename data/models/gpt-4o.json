@@ -1,0 +1,98 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方称为端到端训练的单一模型，统一处理文本、图像、音频输入输出（\"omni\"）。"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {
+  "coding": "HumanEval 90.2%（官方）；SWE-bench Verified 33.2%（OpenAI 2024-08 SWE-bench Verified 博文）。",
+  "reasoning": "GPQA 53.6%（官方）。",
+  "math": "MATH 76.6%、MGSM 90.5%（官方）。",
+  "multimodal": "MMMU 69.1%、MathVista 63.8%（官方），原生音频输入输出。",
+  "chinese": "中文良好，新分词器使中文 token 数减少约 1.4 倍。"
+ },
+ "complete": true,
+ "id": "gpt-4o",
+ "name": "GPT-4o",
+ "name_zh": "GPT-4o（omni）",
+ "aliases": [
+  "gpt-4o-2024-05-13",
+  "gpt-4o-2024-08-06",
+  "gpt-4o-2024-11-20",
+  "chatgpt-4o-latest"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-4",
+ "superseded_by": "gpt-4-1",
+ "released_at": "2024-05-13",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 128000,
+  "display": "128K",
+  "max_output": 16384
+ },
+ "pricing": {
+  "input_per_m": 2.5,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "OpenAI 定价页（2024-08-06 版）",
+  "as_of": "2024-08-06",
+  "note": "2024-05 发布价 $5 / $15；缓存输入 $1.25"
+ },
+ "links": {
+  "official": "https://openai.com/index/hello-gpt-4o/",
+  "pricing": "https://openai.com/api/pricing",
+  "paper": "https://openai.com/index/gpt-4o-system-card/"
+ },
+ "copy": {
+  "one_liner": "原生多模态的 GPT-4 平替，速度翻倍价格减半。",
+  "highlights": [
+   "原生文本 / 图像 / 音频统一模型，实时语音延迟 320ms",
+   "MMLU 88.7%、MMMU 69.1%，发布时多模态第一",
+   "价格从 GPT-4 Turbo 的 $10 / $30 降到 $5 / $15（后再降至 $2.5 / $10）"
+  ],
+  "pitfalls": [
+   "无推理模式，SWE-bench Verified 仅 33.2%",
+   "版本迭代多（05-13 / 08-06 / 11-20），行为差异大",
+   "2025-08 随 GPT-5 发布从 ChatGPT 下线，引发用户反弹"
+  ],
+  "logic_ability": "非推理模型的天花板级别：GPQA 53.6%、MATH 76.6%。多步推理靠提示词，复杂代理任务容易半途放弃。1120 版本的写作与指令遵循更好但数学略退。",
+  "best_for": [
+   "多模态 / 语音交互",
+   "高性价比通用对话（当年）",
+   "历史对照"
+  ],
+  "not_for": [
+   "复杂推理与代理编程",
+   "新项目"
+  ]
+ },
+ "sheet": {
+  "architecture_md": "**未披露**。OpenAI 未公开参数量。\n\n已知信息：\n- 单一端到端模型，文本、视觉、音频共用一套网络（官方称之为 \"omni\"）\n- 新分词器 o200k_base，非英语语言 token 数明显减少\n- 128K 上下文；08-06 版起最大输出 16K\n- 支持结构化输出（Structured Outputs，08-06 版起）",
+  "memory_md": "无自建选项。\n\n成本参考（08-06 版）：输入 $2.5 / 输出 $10；缓存输入 $1.25；Batch API 半价。\n\n发布时（05-13 版）为 $5 / $15。",
+  "training_md": "- 训练细节未披露，知识截止 2023-10\n- 无推理模式\n- 支持函数调用、并行工具、JSON / 结构化输出、视觉输入\n- Realtime API（2024-10）提供语音对语音",
+  "ecosystem_md": "- 官方 API、Azure OpenAI\n- 支持微调（2024-08 起开放 GPT-4o 微调）\n- 中文文档：弱（官方英文）",
+  "versions_md": "- 上代：GPT-4 Turbo\n- 版本：2024-05-13 / 2024-08-06（结构化输出、降价）/ 2024-11-20（写作提升）\n- 同代：GPT-4o mini（2024-07）\n- 继任：GPT-4.1（2025-04 API）、GPT-5（2025-08 ChatGPT）"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "支持（官方微调）",
+  "zh_docs": "弱"
+ }
+}

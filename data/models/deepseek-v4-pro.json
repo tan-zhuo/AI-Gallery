@@ -121,6 +121,72 @@
   "finetune": "多节点；社区 LoRA 极少",
   "zh_docs": "有"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "DeepSeek V4 Pro",
+   "one_liner": "MIT-licensed 1.6T flagship, 1M context, matches closed models on agent boards.",
+   "highlights": [
+    "MIT-licensed 1.6T / 49B-active weights downloadable; 0813 release Terminal Bench 2.1 87.9, DeepSWE 62.7, same tier as Opus 4.8",
+    "CSA + HCA hybrid compressed attention: at 1M context FLOPs are 27% of V3.2 and KV 10%",
+    "API $0.66 / $1.98 (off-peak), Text Arena 1462; DSpark speculative decoding module ships with the weights"
+   ],
+   "pitfalls": [
+    "893 GB native FP4/FP8; does not fit a single 8x80GB node, entry point is 8x H200 or B200 class",
+    "0813 API price rose versus the April preview (AA says about 3.6x), with peak / off-peak pricing",
+    "Text only; exam-style boards such as HLE 42.7 and GPQA 90.1 trail Opus 4.8 / Fable 5 by a few points; SWE-bench Verified 80.6 is a preview figure"
+   ],
+   "logic_ability": "Stronger at engineering than exams: preview model card SWE-bench Verified 80.6, LiveCodeBench 93.5, Codeforces 3206 already put it in the open-source first tier; the 0813 release focused on agents, lifting Terminal Bench 2.1 from 72.1 to 87.9, DeepSWE from 12.8 to 62.7, Cybergym 83.3. Exam-style GPQA Diamond 90.1 and HLE 42.7 (no tools) / 60.0 (with tools) still trail Fable 5. Three reasoning_effort levels (low / high / max); max recommends a 384K+ output window; non-thinking mode collapses on HLE-type questions (preview 7.7). AA Intelligence Index 53, only 1 point above V4-Flash-0731, so less cost-effective than Flash.",
+   "best_for": [
+    "Self-hosted flagship-class coding / terminal agents",
+    "1M ultra-long-context documents and codebases",
+    "Low-cost API replacement for closed flagships"
+   ],
+   "not_for": [
+    "Deployments on a single 8x80GB node or smaller",
+    "Vision input",
+    "Scenarios where Flash already suffices (only 1 AA point apart)"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 80.6, LiveCodeBench 93.5, Codeforces 3206 (preview model card, Max); Terminal Bench 2.1 87.9, NL2Repo 61.5 (0813 model card).",
+    "reasoning": "GPQA Diamond 90.1 (preview); HLE 42.7 / 60.0 with tools (0813 model card).",
+    "math": "HMMT 2026 Feb 95.2, IMOAnswerBench 89.8 (preview model card); AIME 2025 not disclosed.",
+    "agent": "DeepSWE 62.7, Toolathlon-Verified 74.1, Cybergym 83.3, DSBench-FullStack 71.1 (0813 model card); BrowseComp 83.4 (preview).",
+    "chinese": "Chinese-SimpleQA 84.4 (preview model card), top-tier Chinese factual knowledge."
+   }
+  },
+  "ja": {
+   "name_zh": "DeepSeek V4 Pro",
+   "one_liner": "MIT の 1.6T 旗艦、1M コンテキスト、agent 系で閉源に並ぶ。",
+   "highlights": [
+    "MIT ライセンスで 1.6T / 49B アクティブの重みをダウンロード可能。0813 正式版は Terminal Bench 2.1 87.9、DeepSWE 62.7 で Opus-4.8 と同格",
+    "CSA + HCA ハイブリッド圧縮アテンション：1M コンテキストで FLOPs は V3.2 の 27%、KV は 10%",
+    "API $0.66 / $1.98（オフピーク）、Text Arena 1462。DSpark 投機的デコードモジュールが重みに同梱"
+   ],
+   "pitfalls": [
+    "ネイティブ FP4/FP8 で 893 GB。8×80GB の単一ノードには収まらず、最低でも 8×H200 か B200 クラス",
+    "0813 版の API 価格は 4 月プレビュー版より値上げ（AA によると約 3.6 倍）、ピーク / オフピーク別料金",
+    "テキストのみ。HLE 42.7、GPQA 90.1 などの試験型では Opus 4.8 / Fable 5 に数点劣る。SWE-bench Verified 80.6 はプレビュー版の数値"
+   ],
+   "logic_ability": "試験型よりエンジニアリング型が強い：プレビュー版モデルカードで SWE-bench Verified 80.6、LiveCodeBench 93.5、Codeforces 3206 と既にオープンソース最上位。0813 正式版は agent を重点強化し、Terminal Bench 2.1 が 72.1→87.9、DeepSWE が 12.8→62.7、Cybergym 83.3。試験型の GPQA Diamond 90.1、HLE 42.7（ツールなし）/ 60.0（ツールあり）は Fable 5 との差が残る。reasoning_effort は 3 段階（low / high / max）で、max は 384K 以上の出力ウィンドウ推奨。非思考モードでは HLE などで急落（プレビュー版 7.7）。AA 知能指数 53 は V4-Flash-0731 より 1 点高いだけで、コスパは Flash に劣る。",
+   "best_for": [
+    "自前運用のフラッグシップ級 Coding / Terminal Agent",
+    "1M 超長コンテキストの文書・コードベース",
+    "閉源フラッグシップの低コスト API 代替"
+   ],
+   "not_for": [
+    "8×80GB 以下の単一ノード展開",
+    "視覚入力",
+    "Flash で十分な用途（AA 指数差はわずか 1 点）"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 80.6、LiveCodeBench 93.5、Codeforces 3206（プレビュー版モデルカード、Max）。Terminal Bench 2.1 87.9、NL2Repo 61.5（0813 モデルカード）。",
+    "reasoning": "GPQA Diamond 90.1（プレビュー版）。HLE 42.7 / ツールあり 60.0（0813 モデルカード）。",
+    "math": "HMMT 2026 Feb 95.2、IMOAnswerBench 89.8（プレビュー版モデルカード）。AIME 2025 は未公表。",
+    "agent": "DeepSWE 62.7、Toolathlon-Verified 74.1、Cybergym 83.3、DSBench-FullStack 71.1（0813 モデルカード）。BrowseComp 83.4（プレビュー版）。",
+    "chinese": "Chinese-SimpleQA 84.4（プレビュー版モデルカード）、中国語の事実知識は最上位。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 66,

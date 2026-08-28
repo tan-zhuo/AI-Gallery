@@ -1,0 +1,115 @@
+{
+ "aliases": [
+  "DeepSeek V3.1",
+  "deepseek-chat / deepseek-reasoner (2025-08)"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "capability_notes": {
+  "coding": "LiveCodeBench 74.8%（思考）、SWE-bench Verified 66.0%（非思考 agent，官方）。",
+  "reasoning": "GPQA Diamond 80.1%、HLE 15.9%（思考，官方）。",
+  "math": "AIME 2025 88.4%（思考，官方）。",
+  "agent": "Terminal-bench 31.3%、BrowseComp 30.0%（官方）。",
+  "chinese": "中文顶级。"
+ },
+ "complete": false,
+ "id": "deepseek-v3-1",
+ "name": "DeepSeek-V3.1",
+ "name_zh": "DeepSeek-V3.1",
+ "vendor": "DeepSeek",
+ "vendor_zh": "深度求索",
+ "family": "DeepSeek-V3",
+ "license": "MIT",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1",
+ "superseded_by": "deepseek-v3-2",
+ "released_at": "2025-08-21",
+ "architecture": {
+  "type": "moe",
+  "total_params": "671B",
+  "active_params": "37B",
+  "total_params_b": 671,
+  "active_params_b": 37,
+  "experts": 256,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 61,
+  "hidden_size": 7168,
+  "vocab_size": 129280,
+  "kv_heads": 128,
+  "head_dim": 192,
+  "attention": "MLA（kv_lora_rank 512 + rope 64）",
+  "notes": "结构同 V3；两阶段长上下文扩展（32K 630B token + 128K 209B token）；混合思考模板；128K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 1342,
+   "q8": 711.3,
+   "q4": 405.4,
+   "fp8": 671
+  },
+  "estimated": false,
+  "kv_per_token_kib": 68.6,
+  "kv_note": "MLA 压缩 KV：(512+64)×61×2 B ≈ 68.6 KiB/token；128K 上下文仅 8.6 GB。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行（单卡）",
+  "ref_hw_8x80gb": "官方 FP8 671 GB 权重 8×H100 可服务（需 FP8 引擎）；BF16 需 16×80GB；Q4 404 GB 8×80GB 可跑"
+ },
+ "links": {
+  "official": "https://www.deepseek.com/",
+  "github": "https://github.com/deepseek-ai/DeepSeek-V3",
+  "hf": "https://huggingface.co/deepseek-ai/DeepSeek-V3.1"
+ },
+ "copy": {
+  "one_liner": "思考与非思考合一，面向 agent 时代的首个 DeepSeek。",
+  "highlights": [
+   "一套权重两种模式（思考 / 非思考），思考效率比 R1-0528 高",
+   "SWE-bench Verified 66.0%、Terminal-bench 31.3%（官方，agent 模式）",
+   "续训 840B token 扩展 128K；UE8M0 FP8 适配国产芯片"
+  ],
+  "pitfalls": [
+   "思考模式不支持工具调用（需切非思考）",
+   "部分用户反馈中文回答中夹杂「极」字等 token 异常",
+   "2025-09 即被 V3.1-Terminus 修正，再被 V3.2 取代"
+  ],
+  "logic_ability": "思考模式：AIME 2025 88.4%、GPQA 80.1%、LiveCodeBench 74.8%、HLE 15.9%（官方）；非思考模式 SWE-bench Verified 66.0%。推理接近 R1-0528 但 token 用量更少，agent 能力是 DeepSeek 首次达到实用水平。",
+  "best_for": [
+   "通用与代码",
+   "API 低成本调用"
+  ],
+  "not_for": [
+   "单机本地部署",
+   "多模态"
+  ]
+ },
+ "pricing": {
+  "input_per_m": 0.56,
+  "output_per_m": 1.68,
+  "currency": "USD",
+  "source": "DeepSeek 官方 API（2025-09-06 起统一定价）",
+  "as_of": "2026-08-28"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "LMDeploy",
+   "llama.cpp"
+  ],
+  "finetune": "极困难",
+  "zh_docs": "有"
+ }
+}

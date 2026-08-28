@@ -1,0 +1,69 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "gpt-4o-mini",
+ "name": "GPT-4o mini",
+ "aliases": [
+  "gpt-4o-mini-2024-07-18"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-4",
+ "superseded_by": "gpt-5-mini",
+ "released_at": "2024-07-18",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "context": {
+  "max_tokens": 128000,
+  "display": "128K",
+  "max_output": 16384
+ },
+ "pricing": {
+  "input_per_m": 0.15,
+  "output_per_m": 0.6,
+  "currency": "USD",
+  "source": "OpenAI 发布时定价",
+  "as_of": "2024-07-18"
+ },
+ "links": {
+  "official": "https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
+  "pricing": "https://openai.com/api/pricing"
+ },
+ "copy": {
+  "one_liner": "替代 GPT-3.5 的超低价小模型，MMLU 82%。",
+  "highlights": [
+   "$0.15 / $0.60，比 GPT-3.5 Turbo 便宜 60%+",
+   "MMLU 82.0%、HumanEval 87.2%，小模型中领先",
+   "128K 上下文、支持视觉与微调"
+  ],
+  "pitfalls": [
+   "推理能力弱，GPQA 40.2%",
+   "复杂代理任务不稳定",
+   "已被 GPT-4.1 mini / GPT-5 mini 替代"
+  ],
+  "logic_ability": "轻量级推理，简单多步任务可用，MATH 70.2%；复杂逻辑与长链条推理明显不如 GPT-4o。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

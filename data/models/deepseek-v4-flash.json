@@ -122,6 +122,72 @@
   "finetune": "多卡 LoRA；Unsloth 跟进中",
   "zh_docs": "有"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "DeepSeek V4 Flash",
+   "one_liner": "Flagship-level agent scores from 13B active; MIT, 167 GB self-hostable.",
+   "highlights": [
+    "MIT, 284B / 13B active, 167 GB native; a 2x H100 or 128 GB-RAM machine runs the 1M-context model",
+    "0731 release: Terminal Bench 2.1 82.7, DeepSWE 54.4, AA Intelligence Index 52, only 1 point below V4-Pro",
+    "API $0.22 / $0.66 (off-peak), cache hit $0.007; AA-measured about 119 tok/s"
+   ],
+   "pitfalls": [
+    "Experts are native FP4, so Q4 GGUF (155 GB) is barely smaller than the original; \"quantize to save VRAM\" does not apply, even IQ3 needs 103 GB",
+    "Text only; HLE 37.8, SimpleQA-Verified 34.1, knowledge clearly weaker than Pro",
+    "Peak / off-peak dual pricing; Think Max output is extremely long (AA rates it highly verbose), real cost is driven by output"
+   ],
+   "logic_ability": "Flagship-class reasoning from only 13B active: preview model card GPQA Diamond 88.1, LiveCodeBench 91.6, HMMT 2026 Feb 94.8, SWE-bench Verified 79.0 (Max), mostly within 1-3 points of V4-Pro. The 0731 release strengthened agents to Terminal Bench 2.1 82.7 (preview 61.8), DeepSWE 54.4 (preview 7.3), Toolathlon-Verified 70.3. Weak spots are knowledge and long-tail facts (SimpleQA-Verified 34.1 vs Pro 57.9) and HLE. Reasoning collapses in non-thinking mode (GPQA 71.2, HLE 8.1), so use high / max. Common issues: verbose output at max; occasional format drift in long tool-call chains.",
+   "best_for": [
+    "Cost-effective self-hosted coding / terminal agents",
+    "High-throughput low-cost API batch processing",
+    "1M long-context retrieval QA (LongBench-V2 44.7)"
+   ],
+   "not_for": [
+    "Consumer single 24GB GPU",
+    "Knowledge-intensive QA (use Pro)",
+    "Vision input"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 79.0, LiveCodeBench 91.6, Codeforces 3052 (preview model card, Max); Terminal Bench 2.1 82.7, NL2Repo 54.2 (0731 model card).",
+    "reasoning": "GPQA Diamond 88.1 (preview); HLE 37.8 / 51.5 with tools (0731 model card, from the Pro-0813 comparison table).",
+    "math": "HMMT 2026 Feb 94.8, IMOAnswerBench 88.4 (preview model card); AIME 2025 not disclosed.",
+    "agent": "DeepSWE 54.4, Toolathlon-Verified 70.3, Cybergym 76.7, DSBench-FullStack 68.7 (0731 model card); BrowseComp 73.2 (preview).",
+    "chinese": "Chinese-SimpleQA 78.9 (preview model card)."
+   }
+  },
+  "ja": {
+   "name_zh": "DeepSeek V4 Flash",
+   "one_liner": "13B 活性で旗艦級 agent スコア。MIT、167 GB で自前運用可。",
+   "highlights": [
+    "MIT、284B / 13B アクティブ、ネイティブ 167 GB。2×H100 か 128 GB メモリのマシンで 1M コンテキストモデルが動く",
+    "0731 正式版は Terminal Bench 2.1 82.7、DeepSWE 54.4、AA 知能指数 52 で V4-Pro との差はわずか 1 点",
+    "API $0.22 / $0.66（オフピーク）、キャッシュヒット $0.007。AA 実測約 119 tok/s"
+   ],
+   "pitfalls": [
+    "エキスパートがネイティブ FP4 のため Q4 GGUF（155 GB）は元とほぼ同サイズ。「量子化で VRAM 節約」は成立せず、最小の IQ3 でも 103 GB",
+    "テキストのみ。HLE 37.8、SimpleQA-Verified 34.1 と知識面は Pro より明らかに弱い",
+    "ピーク / オフピークの二重価格。Think Max の出力は極めて長く（AA は高冗長と評価）、実コストは出力量で決まる"
+   ],
+   "logic_ability": "13B アクティブながらフラッグシップ級の推論：プレビュー版モデルカードで GPQA Diamond 88.1、LiveCodeBench 91.6、HMMT 2026 Feb 94.8、SWE-bench Verified 79.0（Max）、V4-Pro との差は多くが 1〜3 点。0731 正式版で agent を強化し Terminal Bench 2.1 82.7（プレビュー 61.8）、DeepSWE 54.4（プレビュー 7.3）、Toolathlon-Verified 70.3。弱点は知識とロングテールの事実（SimpleQA-Verified 34.1 vs Pro 57.9）と HLE。非思考モードでは推論が急落（GPQA 71.2、HLE 8.1）するため high / max が必須。よくある問題：max では出力が冗長、長いツール呼び出しチェーンで時折フォーマットがずれる。",
+   "best_for": [
+    "コスパ重視の自前 Coding / Terminal Agent",
+    "高スループット低価格 API のバッチ処理",
+    "1M 長文コンテキスト検索 QA（LongBench-V2 44.7）"
+   ],
+   "not_for": [
+    "コンシューマー向け 24GB 単一 GPU",
+    "知識集約型 QA（Pro を使う）",
+    "視覚入力"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 79.0、LiveCodeBench 91.6、Codeforces 3052（プレビュー版モデルカード、Max）。Terminal Bench 2.1 82.7、NL2Repo 54.2（0731 モデルカード）。",
+    "reasoning": "GPQA Diamond 88.1（プレビュー版）。HLE 37.8 / ツールあり 51.5（0731 モデルカード、Pro-0813 比較表より）。",
+    "math": "HMMT 2026 Feb 94.8、IMOAnswerBench 88.4（プレビュー版モデルカード）。AIME 2025 は未公表。",
+    "agent": "DeepSWE 54.4、Toolathlon-Verified 70.3、Cybergym 76.7、DSBench-FullStack 68.7（0731 モデルカード）。BrowseComp 73.2（プレビュー版）。",
+    "chinese": "Chinese-SimpleQA 78.9（プレビュー版モデルカード）。"
+   }
+  }
+ },
  "complete": true,
  "runtime": {
   "tok_s": 119,

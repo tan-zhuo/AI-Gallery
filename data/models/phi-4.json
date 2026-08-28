@@ -1,0 +1,97 @@
+{
+ "aliases": [
+  "phi-4 14B"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "coding": "HumanEval 82.6%（官方）。",
+  "reasoning": "GPQA 56.1%（官方）。",
+  "math": "MATH 80.4%（官方）。",
+  "knowledge": "MMLU 84.8%（官方）。",
+  "chinese": "一般。"
+ },
+ "complete": false,
+ "id": "phi-4",
+ "name": "Phi-4",
+ "name_zh": "Phi-4 · 14B",
+ "vendor": "Microsoft",
+ "family": "Phi-4",
+ "license": "MIT",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/microsoft/phi-4",
+ "released_at": "2024-12-12",
+ "architecture": {
+  "type": "dense",
+  "total_params": "14.7B",
+  "total_params_b": 14.7,
+  "layers": 40,
+  "hidden_size": 5120,
+  "vocab_size": 100352,
+  "kv_heads": 10,
+  "head_dim": 128,
+  "attention": "GQA（40 Q 头 / 10 KV 头）",
+  "notes": "9.8T token，合成数据为主；tiktoken 词表；上下文 16K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 16384,
+  "display": "16K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 29.4,
+   "q8": 15.6,
+   "q4": 9.1
+  },
+  "estimated": false,
+  "kv_per_token_kib": 200.0,
+  "kv_note": "200 KiB/token。",
+  "ref_hw_24gb": "Q8 15.6 GB / Q4 9.1 GB 单卡轻松；BF16 29.4 GB 超 24GB",
+  "ref_hw_80gb": "BF16 单卡",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://techcommunity.microsoft.com/blog/aiplatformblog/introducing-phi-4-microsoft%E2%80%99s-newest-small-language-model-specializing-in-comple/4357090",
+  "paper": "https://arxiv.org/abs/2412.08905",
+  "hf": "https://huggingface.co/microsoft/phi-4"
+ },
+ "copy": {
+  "one_liner": "14B 拿到 GPQA 56%，合成数据路线的代表作。",
+  "highlights": [
+   "GPQA 56.1%、MATH 80.4%（官方），超越 GPT-4o-mini",
+   "MIT 许可，24GB 卡 Q8 可跑",
+   "后续衍生 Phi-4-reasoning / mini / multimodal"
+  ],
+  "pitfalls": [
+   "上下文仅 16K",
+   "事实知识与多语言弱，中文一般",
+   "指令遵循 IFEval 63% 偏弱（官方）"
+  ],
+  "logic_ability": "考试型推理在 14B 中极强：GPQA 56.1%、MATH 80.4%、HumanEval 82.6%（官方）。但没有思考链，复杂多步与开放式任务不稳。",
+  "best_for": [
+   "STEM 问答 / 教育",
+   "本地轻量推理"
+  ],
+  "not_for": [
+   "长文本",
+   "中文对话"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama",
+   "ONNX Runtime"
+  ],
+  "finetune": "LoRA 友好",
+  "zh_docs": "弱"
+ }
+}

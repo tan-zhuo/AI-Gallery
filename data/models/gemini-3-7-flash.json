@@ -81,6 +81,70 @@
   "knowledge": "GDM-MRCR 128K 97.0%（官方模型卡，同表最高）；GDP.pdf 文档任务 34.0%（官方博客）。",
   "multimodal": "支持文本 / 图像 / 音频 / 视频 / PDF 输入，仅文本输出；官方未公布 MMMU。"
  },
+ "i18n": {
+  "en": {
+   "name_zh": "Gemini 3.7 Flash",
+   "one_liner": "Google's current main Flash; strong code / agent, half price through year-end.",
+   "highlights": [
+    "Terminal-Bench 2.1 85.8%, DeepSWE v1.1 65.3%; a Flash tier approaching Sonnet 5 level",
+    "AA Intelligence Index 56, level with Grok 4.5, output speed about 300 tok/s",
+    "Arena text 1490, above Gemini 3.1 Pro"
+   ],
+   "pitfalls": [
+    "$0.75 / $3.75 is a promotional price through end of 2026; doubles to $1.50 / $7.50 from 2027",
+    "The Flash line iterates every three weeks (3.5 -> 3.6 -> 3.7); model IDs and behavior drift fast, pin versions",
+    "Official model card omits GPQA / HLE / SWE-bench Verified and other general benchmarks; cross-comparison relies on third parties"
+   ],
+   "logic_ability": "Engineering reasoning is the focus: DeepSWE 65.3%, FrontierCode 43.6%, Terminal-Bench 2.1 85.8%; long-context MRCR v2 8-needle 97.0%. No official exam-style reasoning figures.",
+   "best_for": [
+    "High-frequency code / agent tasks",
+    "Long-document batch processing",
+    "Cost-effective multimodal"
+   ],
+   "not_for": [
+    "Budget planning that needs long-term stable pricing",
+    "On-prem deployment"
+   ],
+   "capability_notes": {
+    "coding": "DeepSWE v1.1 65.3%, FrontierCode 1.1 43.6% (official model card; Sonnet 5 at 53.8% / 42.7%); WebDev Arena 1588 (official blog).",
+    "agent": "Terminal-Bench 2.1 85.8%, OSWorld-2.0 47.9%, AutomationBench 30.4% (official model card / blog).",
+    "reasoning": "AA Intelligence Index 56 (high, 2026-08-28; 3.6 Flash was 52); GPQA / HLE not officially published.",
+    "knowledge": "GDM-MRCR 128K 97.0% (official model card, highest in the table); GDP.pdf document tasks 34.0% (official blog).",
+    "multimodal": "Text / image / audio / video / PDF input, text output only; MMMU not officially published."
+   }
+  },
+  "ja": {
+   "name_zh": "Gemini 3.7 Flash",
+   "one_liner": "Google 現行主力 Flash。コード / agent に強く年内半額。",
+   "highlights": [
+    "Terminal-Bench 2.1 85.8%、DeepSWE v1.1 65.3%、Flash クラスで Sonnet 5 に迫る水準",
+    "AA 知能指数 56 で Grok 4.5 と同等、出力速度約 300 tok/s",
+    "Arena テキスト部門 1490、Gemini 3.1 Pro を上回る"
+   ],
+   "pitfalls": [
+    "$0.75 / $3.75 は 2026 年末までの優遇価格で、2027 年からは $1.50 / $7.50 に倍増",
+    "Flash 系は 3 週間ごとに更新（3.5 → 3.6 → 3.7）、モデル ID と挙動の変化が速いためバージョン固定が必要",
+    "公式モデルカードに GPQA / HLE / SWE-bench Verified などの汎用ベンチマークがなく、横比較は第三者頼み"
+   ],
+   "logic_ability": "エンジニアリング型推論が主軸：DeepSWE 65.3%、FrontierCode 43.6%、Terminal-Bench 2.1 85.8%。長文コンテキスト MRCR v2 8-needle 97.0%。試験型推論は公式データなし。",
+   "best_for": [
+    "高頻度のコード / agent タスク",
+    "長文書のバッチ処理",
+    "コスパの良いマルチモーダル"
+   ],
+   "not_for": [
+    "長期的に安定した価格が必要な予算計画",
+    "オンプレ展開"
+   ],
+   "capability_notes": {
+    "coding": "DeepSWE v1.1 65.3%、FrontierCode 1.1 43.6%（公式モデルカード。Sonnet 5 は 53.8% / 42.7%）。WebDev Arena 1588（公式ブログ）。",
+    "agent": "Terminal-Bench 2.1 85.8%、OSWorld-2.0 47.9%、AutomationBench 30.4%（公式モデルカード / ブログ）。",
+    "reasoning": "AA 知能指数 56（high、2026-08-28。3.6 Flash は 52）。GPQA / HLE は公式未公表。",
+    "knowledge": "GDM-MRCR 128K 97.0%（公式モデルカード、同表最高）。GDP.pdf 文書タスク 34.0%（公式ブログ）。",
+    "multimodal": "テキスト / 画像 / 音声 / 動画 / PDF 入力、出力はテキストのみ。MMMU は公式未公表。"
+   }
+  }
+ },
  "complete": true,
  "sheet": {
   "architecture_md": "**未披露**。Google 未公布参数量与架构，模型卡只说明「基于 Gemini 3.6 Flash」，细节引用 3.6 Flash 模型卡。\n\n已知接口特性（ai.google.dev 模型页，2026-08-28）：\n- 输入 1,048,576 token，输出 65,536 token\n- 输入：文本、图像、视频、音频、PDF；输出：仅文本（无图像 / 音频生成，无 Live API）\n- `thinking_level`：`low` / `medium`（默认）/ `high`；**不支持 `minimal`**，思考不可完全关闭\n- 能力：function calling、code execution、Google Search grounding、Google Maps grounding、URL context、file search、structured outputs、context caching、Batch API、computer use（预览）\n- 模型 ID `gemini-3.7-flash`，状态 Stable（GA）\n- 知识截止 2026-03（部分领域仅到 2025-01）",

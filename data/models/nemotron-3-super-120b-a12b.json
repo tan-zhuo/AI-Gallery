@@ -125,5 +125,69 @@
   "training_md": "- 预训练：25T+ token（模型卡），预训练截止 2025-06，后训练截止 2026-02\n- 训练精度 NVFP4；带 MTP 头（另发 MTPv2 版本）\n- 数据与配方：Nemotron 系列公开预训练 / 后训练数据集与训练脚本（NeMo）\n- 思考模式可开关（reasoning on/off）\n- 支持 7 种语言：英、法、德、意、日、西、中",
   "ecosystem_md": "- HF：nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16（247 GB）、-FP8（128 GB）、NVFP4；GGUF：unsloth/NVIDIA-Nemotron-3-Super-120B-A12B-GGUF\n- 引擎：vLLM（≥ 0.18.1）、SGLang、TensorRT-LLM、Transformers（≥ 5.3）；llama.cpp 经 GGUF\n- 微调：NeMo / Megatron 官方脚本；社区 LoRA 需 ≥ 2×80GB\n- 中文文档：无",
   "versions_md": "- 同代：Nemotron 3 Nano 30B-A3B（52 层同构小版）、Nemotron 3 Ultra（更大）\n- 后续：Nemotron 3.5 Lightning（已上线 OpenRouter）\n- 上代：Nemotron 2 Nano 9B / 12B（Mamba 混合 Dense）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "NVIDIA Nemotron 3 Super · 120B A12B",
+   "one_liner": "NVIDIA's 120B hybrid Mamba-MoE, 12B active, 1M context.",
+   "highlights": [
+    "AIME 2025 90.2, LiveCodeBench 81.2, GPQA 79.2, RULER@1M 91.75 (official)",
+    "Only 8 attention layers + 2 KV heads; KV 8 KiB/token, about 8 GB of KV at 1M context",
+    "Nemotron open license allows commercial use; 25T-token pretraining data / recipe highly open"
+   ],
+   "pitfalls": [
+    "SWE-bench Verified 60.5, Terminal-Bench Core 2.0 31.0, tau2 average 61.2; mid-pack on engineering and agents",
+    "AA Intelligence Index 26; HLE no-tools 18.3 and Arena-Hard-V2 73.9 below gpt-oss-120b",
+    "Hybrid Mamba-MoE needs recent vLLM (≥ 0.18.1) / TRT-LLM; llama.cpp support lags; even Q4 exceeds 80GB"
+   ],
+   "logic_ability": "Strong exam-style reasoning: AIME 2025 90.21 (no tools), HMMT Feb25 93.67 / 94.73 (tools), GPQA 79.23 / 82.70 (tools), MMLU-Pro 83.73. HLE 18.26 / 22.82 (tools) is moderate. Engineering reasoning mid-pack: LiveCodeBench 81.19 is high, but SWE-bench Verified 60.47 (OpenHands), Terminal-Bench Core 2.0 31.00 / hard 25.78, tau2 average 61.15. Long context is a strength (RULER 256K 96.3, 1M 91.75, AA-LCR 58.31). Thinking switchable.",
+   "best_for": [
+    "Ultra-long-context RAG / document agents",
+    "High-throughput inference services"
+   ],
+   "not_for": [
+    "24GB consumer GPUs",
+    "Hard coding agents"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench 81.19, SWE-bench Verified 60.47 (OpenHands) / 59.20 (OpenCode), Terminal-Bench Core 2.0 31.00, SciCode 42.05 (official model card).",
+    "reasoning": "GPQA 79.23 (no tools) / 82.70 (tools), HLE 18.26 / 22.82 (tools), MMLU-Pro 83.73 (official model card).",
+    "math": "AIME 2025 90.21 (no tools), HMMT Feb25 93.67 / 94.73 (tools) (official model card).",
+    "agent": "tau2-bench average 61.15 (Airline 56.25 / Retail 62.83 / Telecom 64.36), BrowseComp (search) 31.28, BIRD 41.80 (official model card).",
+    "instruction": "IFBench 72.56, Arena-Hard-V2 73.88, Multi-Challenge 55.23 (official model card).",
+    "chinese": "Chinese officially supported (one of 7 languages); MMLU-ProX average 79.36, WMT24++ 86.67 (official model card)."
+   }
+  },
+  "ja": {
+   "name_zh": "NVIDIA Nemotron 3 Super · 120B A12B",
+   "one_liner": "NVIDIA の 120B Mamba-MoE 混合。12B 活性、1M。",
+   "highlights": [
+    "AIME 2025 90.2、LiveCodeBench 81.2、GPQA 79.2、RULER@1M 91.75（公式）",
+    "アテンション層はわずか 8 層 + 2 KV ヘッド、KV 8 KiB/token で 1M コンテキストの KV は約 8 GB",
+    "Nemotron オープンライセンスで商用可、25T トークンの事前学習データ / レシピの公開度が高い"
+   ],
+   "pitfalls": [
+    "SWE-bench Verified 60.5、Terminal-Bench Core 2.0 31.0、tau2 平均 61.2 でエンジニアリングとエージェントは中位",
+    "AA 知能指数 26。HLE ツールなし 18.3、Arena-Hard-V2 73.9 は gpt-oss-120b を下回る",
+    "Mamba-MoE ハイブリッドは新版 vLLM（≥ 0.18.1）/ TRT-LLM が必要で llama.cpp 対応は遅れ。Q4 でも 80GB 超"
+   ],
+   "logic_ability": "試験型推論は強い：AIME 2025 90.21（ツールなし）、HMMT Feb25 93.67 / 94.73（ツールあり）、GPQA 79.23 / 82.70（ツールあり）、MMLU-Pro 83.73。HLE 18.26 / 22.82（ツールあり）は中程度。エンジニアリング型推論は中位：LiveCodeBench 81.19 は高いが、SWE-bench Verified 60.47（OpenHands）、Terminal-Bench Core 2.0 31.00 / hard 25.78、tau2 平均 61.15。長コンテキストが強み（RULER 256K 96.3、1M 91.75、AA-LCR 58.31）。thinking はオン/オフ可。",
+   "best_for": [
+    "超長コンテキストの RAG / ドキュメントエージェント",
+    "高スループットの推論サービス"
+   ],
+   "not_for": [
+    "24GB コンシューマー GPU",
+    "高難度のコーディングエージェント"
+   ],
+   "capability_notes": {
+    "coding": "LiveCodeBench 81.19、SWE-bench Verified 60.47（OpenHands）/ 59.20（OpenCode）、Terminal-Bench Core 2.0 31.00、SciCode 42.05（公式モデルカード）。",
+    "reasoning": "GPQA 79.23（ツールなし）/ 82.70（ツールあり）、HLE 18.26 / 22.82（ツールあり）、MMLU-Pro 83.73（公式モデルカード）。",
+    "math": "AIME 2025 90.21（ツールなし）、HMMT Feb25 93.67 / 94.73（ツールあり）（公式モデルカード）。",
+    "agent": "tau2-bench 平均 61.15（Airline 56.25 / Retail 62.83 / Telecom 64.36）、BrowseComp（検索）31.28、BIRD 41.80（公式モデルカード）。",
+    "instruction": "IFBench 72.56、Arena-Hard-V2 73.88、Multi-Challenge 55.23（公式モデルカード）。",
+    "chinese": "公式に中国語対応（7 言語の 1 つ）、MMLU-ProX 平均 79.36、WMT24++ 86.67（公式モデルカード）。"
+   }
+  }
  }
 }

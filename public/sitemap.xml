@@ -25,20 +25,42 @@
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/architecture/quantization</loc><lastmod>2026-08-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/architecture/thinking</loc><lastmod>2026-08-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/architecture/openness</loc><lastmod>2026-08-28</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/baichuan2-13b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-2</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-3-5-sonnet</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-3-7-sonnet</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-3-opus</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-fable-5</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-haiku-4-5</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-opus-4-1</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-opus-4-5</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-opus-4-8</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-opus-4</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-opus-5</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-sonnet-4-5</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-sonnet-4</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/claude-sonnet-5</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/command-a-plus</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/command-r-plus</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/dbrx</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-coder-v2</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-r1-0528</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-r1</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-v2</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-v3-0324</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-v3-1</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-v3-2</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-v3</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-v4-flash</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/deepseek-v4-pro</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/devstral-small-2</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/devstral-small</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/ernie-4-5-300b-a47b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/falcon-180b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-1-0-pro</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-1-5-flash</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-1-5-pro</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-2-0-flash</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-2-5-flash</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-2-5-pro</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-3-1-pro</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -46,14 +68,25 @@
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-3-7-flash</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-3-flash</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemini-3-pro</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemma-2-27b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemma-2-9b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemma-3-27b</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemma-4-26b-a4b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemma-4-31b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gemma-7b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/glm-4-5-air</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/glm-4-5</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/glm-4-6</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/glm-4-9b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/glm-5-2</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/glm-5-3-flash</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/glm-5-3</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-4-1</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-4-5</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-4-turbo</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-4</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-4o-mini</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-4o</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-5-1</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-5-5</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-5-6-luna</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
@@ -64,40 +97,74 @@
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-oss-120b</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/gpt-oss-20b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/granite-4-2-30b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/grok-2</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/grok-3</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/grok-4-1-fast</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/grok-4-3</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/grok-4-5</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/grok-4-6</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/grok-4</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/hunyuan-a13b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/hunyuan-hy3</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/internlm2-5-20b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/kimi-k2-0905</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/kimi-k2-6</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/kimi-k2-7-code</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/kimi-k2-instruct</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/kimi-k2-thinking</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/kimi-k3</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/llama-2-70b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/llama-3-1-405b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/llama-3-1-8b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/llama-3-1-nemotron-70b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/llama-3-3-70b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/llama-3-70b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/llama-4-maverick</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/llama-4-scout</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mimo-7b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mimo-v2-5</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/minimax-m1</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/minimax-m2-7</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/minimax-m2</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/minimax-m3</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mistral-7b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mistral-large-2</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mistral-large-3</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mistral-medium-3-1</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mistral-medium-3-5</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mistral-small-3-1</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mistral-small-3-2</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mistral-small-4</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mixtral-8x22b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/mixtral-8x7b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/muse-glimmer-30b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/muse-spark</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/nemotron-3-nano-30b-a3b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/nemotron-3-super-120b-a12b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/nemotron-3-ultra-550b-a55b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/nemotron-4-340b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/o1</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/o3-mini</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/o3</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/o4-mini</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/phi-3-medium</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/phi-4</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen1-5-72b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen2-5-72b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen2-5-coder-32b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen2-72b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-235b-a22b-thinking-2507</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-235b-a22b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-30b-a3b-thinking-2507</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-32b</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-8-2-4t-a95b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-8-27b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-8b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-coder-480b-a35b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-max</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwen3-next-80b-a3b-thinking</loc><lastmod>2025-12-20</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/qwq-32b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
   <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/step-3-7-flash</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/yi-1-5-34b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://tan-zhuo.github.io/AI-Gallery/models/yi-34b</loc><lastmod>2026-08-28</lastmod><changefreq>weekly</changefreq><priority>0.4</priority></url>
 </urlset>

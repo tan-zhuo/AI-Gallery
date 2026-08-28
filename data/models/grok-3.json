@@ -1,0 +1,73 @@
+{
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。Colossus 20 万卡集群训练；Think 模式为推理版本，API 2025-04-09 开放。"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "capability_notes": {},
+ "complete": false,
+ "id": "grok-3",
+ "name": "Grok 3",
+ "aliases": [
+  "grok-3-beta",
+  "grok-3-mini",
+  "grok-3-latest"
+ ],
+ "vendor": "xAI",
+ "family": "Grok 3",
+ "superseded_by": "grok-4",
+ "released_at": "2025-02-17",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K（宣称 1M）",
+  "max_output": 16384
+ },
+ "pricing": {
+  "input_per_m": 3,
+  "output_per_m": 15,
+  "currency": "USD",
+  "source": "xAI API 定价",
+  "as_of": "2025-04-09",
+  "note": "Grok 3 mini $0.30 / $0.50"
+ },
+ "links": {
+  "official": "https://x.ai/news/grok-3",
+  "pricing": "https://x.ai/api"
+ },
+ "copy": {
+  "one_liner": "首个 LMArena 破 1400 的模型，Think 版 AIME 93%。",
+  "highlights": [
+   "LMArena Elo 1402（\"chocolate\"），首个破 1400",
+   "Think 模式 AIME 2025 93.3%（cons@64）、GPQA 84.6%",
+   "DeepSearch 联网研究功能"
+  ],
+  "pitfalls": [
+   "官方图表 cons@64 与他家 pass@1 对比引发争议",
+   "API 上下文 131K，非宣称的 1M",
+   "API 比产品晚近两个月"
+  ],
+  "logic_ability": "非推理版 GPQA 75.4%、LCB 57.0%；Think 版考试型推理进入第一梯队，工程型无官方数据。",
+  "best_for": [
+   "历史对照"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ }
+}

@@ -119,5 +119,71 @@
   "tok_s": 102,
   "latency_s": 0.84,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Meta Muse Glimmer 30B",
+   "one_liner": "Meta returns to open source: 30B dense agent model that runs on a 24GB GPU.",
+   "highlights": [
+    "Apache-2.0; Meta's first open-weight Muse-series model, distilled from Muse Spark",
+    "SWE-bench Verified 76.0%, GPQA Diamond 83.5, AIME 2026 94.7 (official)",
+    "Under 20 GB at 4-bit; 2 KV heads make KV extremely lean; with DFlash speculative decoding, 3.1× faster on RTX 5090"
+   ],
+   "pitfalls": [
+    "Released less than a month ago; independent re-testing and long-term stability still to be observed",
+    "128K context, below the 256K+ of same-tier Qwen / Gemma",
+    "Officially claims 100+ languages but no Chinese-specific data"
+   ],
+   "logic_ability": "Top exam-style reasoning at the 30B level (GPQA 83.5, AIME 2026 94.7, HLE text 22.0), with equally standout engineering reasoning (SWE-bench Verified 76.0%, Terminal-Bench 2.1 51.7%); AA Intelligence Index 35 beats Nemotron 3 Super. Reasoning effort adjustable; capability drops when thinking is off.",
+   "best_for": [
+    "Local coding agents on a 24GB single GPU",
+    "Local multimodal assistants / tool calling",
+    "MCP / long-task agents"
+   ],
+   "not_for": [
+    "Ultra-long context (>128K)",
+    "First choice for Chinese-first products"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 76.0%, SWE-bench Pro 51.2%, Terminal-Bench 2.1 51.7% (official).",
+    "reasoning": "GPQA Diamond 83.5, HLE text 22.0 (official).",
+    "math": "AIME 2026 94.7 (official; AIME 2025 not disclosed).",
+    "agent": "MCP-Atlas 75.5, OSWorld-Verified 65.9 (official).",
+    "multimodal": "MMMU-Pro 74 (official).",
+    "chinese": "Officially supports 100+ languages; Chinese not separately evaluated."
+   }
+  },
+  "ja": {
+   "name_zh": "Meta Muse Glimmer 30B",
+   "one_liner": "Meta が OSS 回帰。24GB GPU で動く 30B 稠密エージェント。",
+   "highlights": [
+    "Apache-2.0、Meta 初の Muse 系オープンウェイト、Muse Spark から蒸留",
+    "SWE-bench Verified 76.0%、GPQA Diamond 83.5、AIME 2026 94.7（公式）",
+    "4-bit で 20 GB 未満、2 KV ヘッドで KV が極めて省メモリ。DFlash 投機的デコーディングで RTX 5090 は 3.1 倍高速化"
+   ],
+   "pitfalls": [
+    "公開から 1 か月未満で、独立再検証と長期的な安定性は要観察",
+    "コンテキスト 128K、同クラスの Qwen / Gemma の 256K+ を下回る",
+    "公式は 100+ 言語対応と謳うが中国語の個別データなし"
+   ],
+   "logic_ability": "試験型推論は 30B クラス最上位（GPQA 83.5、AIME 2026 94.7、HLE テキスト 22.0）、エンジニアリング型推論も突出（SWE-bench Verified 76.0%、Terminal-Bench 2.1 51.7%）。AA 知能指数 35 で Nemotron 3 Super を上回る。reasoning effort 調整可、思考オフでは能力が低下。",
+   "best_for": [
+    "24GB 単一 GPU でのローカルコーディングエージェント",
+    "ローカルのマルチモーダルアシスタント / ツール呼び出し",
+    "MCP / 長時間タスクのエージェント"
+   ],
+   "not_for": [
+    "超長コンテキスト（>128K）",
+    "中国語中心製品の第一選択"
+   ],
+   "capability_notes": {
+    "coding": "SWE-bench Verified 76.0%、SWE-bench Pro 51.2%、Terminal-Bench 2.1 51.7%（公式）。",
+    "reasoning": "GPQA Diamond 83.5、HLE テキスト 22.0（公式）。",
+    "math": "AIME 2026 94.7（公式。AIME 2025 は未開示）。",
+    "agent": "MCP-Atlas 75.5、OSWorld-Verified 65.9（公式）。",
+    "multimodal": "MMMU-Pro 74（公式）。",
+    "chinese": "公式に 100+ 言語対応、中国語は個別に評価されていない。"
+   }
+  }
  }
 }

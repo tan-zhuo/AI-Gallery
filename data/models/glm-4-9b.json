@@ -1,0 +1,100 @@
+{
+ "aliases": [
+  "glm-4-9b-chat",
+  "GLM-4-9B-Chat-1M"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "math": "MATH 50.6%（官方）。",
+  "knowledge": "MMLU 72.4%（官方）。",
+  "agent": "函数调用原生，Berkeley FC 榜同期领先。",
+  "chinese": "C-Eval 75.6%（官方），中文强。"
+ },
+ "complete": false,
+ "id": "glm-4-9b",
+ "name": "GLM-4-9B",
+ "name_zh": "智谱 GLM-4 · 9B",
+ "vendor": "Z.ai",
+ "vendor_zh": "智谱",
+ "family": "GLM-4",
+ "license": "GLM-4 License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/zai-org/glm-4-9b-chat",
+ "superseded_by": "glm-4-5-air",
+ "released_at": "2024-06-05",
+ "architecture": {
+  "type": "dense",
+  "total_params": "9.4B",
+  "total_params_b": 9.4,
+  "layers": 40,
+  "hidden_size": 4096,
+  "vocab_size": 151552,
+  "kv_heads": 2,
+  "head_dim": 128,
+  "attention": "GQA（32 Q 头 / 2 KV 头）",
+  "notes": "10T 多语言 token；128K 上下文（另有 1M 版）；原生函数调用；26 语言。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 18.8,
+   "q8": 10.0,
+   "q4": 6.3
+  },
+  "estimated": false,
+  "kv_per_token_kib": 40.0,
+  "kv_note": "2×128×2×40×2 B = 40 KiB/token，极省，128K 仅 5 GB。",
+  "ref_hw_24gb": "BF16 18.8 GB 单卡可跑 32K+",
+  "ref_hw_80gb": "高并发 / 1M 版",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://www.zhipuai.cn/",
+  "github": "https://github.com/zai-org/GLM-4",
+  "paper": "https://arxiv.org/abs/2406.12793",
+  "hf": "https://huggingface.co/zai-org/glm-4-9b-chat"
+ },
+ "copy": {
+  "one_liner": "2024 年中文 9B 最强之一，128K/1M 长文本单卡可跑。",
+  "highlights": [
+   "2 KV 头，KV 极省，1M 上下文版本单卡可用",
+   "中文与函数调用当年同尺寸领先",
+   "GLM-4V-9B 同期提供视觉版"
+  ],
+  "pitfalls": [
+   "自有许可需登记，商用有条件",
+   "chatglm 自定义代码，框架兼容偶有问题",
+   "被 GLM-4-0414 / 4.5-Air 取代"
+  ],
+  "logic_ability": "9B 中上：MMLU 72.4%、GSM8K 79.6%、MATH 50.6%（官方）。",
+  "best_for": [
+   "中文长文本",
+   "轻量 agent"
+  ],
+  "not_for": [
+   "复杂推理"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "finetune": "LoRA 友好",
+  "zh_docs": "有"
+ }
+}

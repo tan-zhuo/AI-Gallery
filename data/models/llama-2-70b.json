@@ -1,0 +1,95 @@
+{
+ "aliases": [
+  "Llama-2-70b-chat-hf",
+  "Llama 2 70B Chat"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "MMLU 68.9%（官方论文，基座）。",
+  "chinese": "中文弱，词表几乎无中文 token。"
+ },
+ "complete": false,
+ "id": "llama-2-70b",
+ "name": "Llama 2 70B",
+ "name_zh": "Llama 2 · 70B",
+ "vendor": "Meta",
+ "family": "Llama 2",
+ "license": "Llama 2 Community License",
+ "license_commercial": "restricted",
+ "weights_url": "https://huggingface.co/meta-llama/Llama-2-70b-chat-hf",
+ "superseded_by": "llama-3-1-405b",
+ "released_at": "2023-07-18",
+ "architecture": {
+  "type": "dense",
+  "total_params": "70B",
+  "total_params_b": 69,
+  "layers": 80,
+  "hidden_size": 8192,
+  "vocab_size": 32000,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（64 Q 头 / 8 KV 头）",
+  "notes": "2023 年开源社区的基石模型；词表仅 32K，中文效率低；上下文 4K。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 4096,
+  "display": "4K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 138,
+   "q8": 73.1,
+   "q4": 41.4
+  },
+  "estimated": false,
+  "kv_per_token_kib": 320.0,
+  "kv_note": "8×128×2×80×2 B = 320 KiB/token；4K 上下文约 1.3 GB。",
+  "ref_hw_24gb": "Q4_K_M 41.4 GB 装不下，需两张 24GB 卡或 Q2 级量化",
+  "ref_hw_80gb": "Q4 单卡 80GB 可跑；BF16 需 2×80GB",
+  "ref_hw_8x80gb": "BF16 高并发服务"
+ },
+ "links": {
+  "official": "https://ai.meta.com/llama/",
+  "paper": "https://arxiv.org/abs/2307.09288",
+  "hf": "https://huggingface.co/meta-llama/Llama-2-70b-chat-hf"
+ },
+ "copy": {
+  "one_liner": "2023 年开源浪潮的起点，首个可商用的 70B 级开放权重。",
+  "highlights": [
+   "首个允许商用的主流 70B 开放权重，催生海量微调衍生",
+   "GQA + RLHF 对话版，当年开源对话质量标杆",
+   "llama.cpp / vLLM 等生态几乎围绕它建立"
+  ],
+  "pitfalls": [
+   "上下文仅 4K，词表 32K，中文分词效率极低",
+   "能力已被后续每一代 8B 级模型全面超越",
+   "许可禁止月活 7 亿以上企业使用，且不许用其输出训练他模"
+  ],
+  "logic_ability": "无推理链训练，逻辑与数学在今天看属入门水平（当年 GSM8K 56.8%）。多步推理容易失败，主要价值为历史坐标与微调底座。",
+  "best_for": [
+   "历史对照 / 学术复现",
+   "旧有微调流水线"
+  ],
+  "not_for": [
+   "任何新项目",
+   "中文任务"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "finetune": "LoRA 生态最成熟的老模型",
+  "zh_docs": "弱"
+ }
+}

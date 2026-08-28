@@ -1,0 +1,96 @@
+{
+ "aliases": [
+  "Yi-34B-Chat",
+  "Yi-34B-200K"
+ ],
+ "openness": "open-weights",
+ "weights_available": true,
+ "status": "superseded",
+ "updated_at": "2026-08-28",
+ "modalities": [
+  "text"
+ ],
+ "reasoning_mode": "none",
+ "capability_notes": {
+  "knowledge": "MMLU 76.3%（官方基座）。",
+  "chinese": "C-Eval 81.4%（官方）。"
+ },
+ "complete": false,
+ "id": "yi-34b",
+ "name": "Yi-34B",
+ "name_zh": "零一万物 Yi · 34B",
+ "vendor": "01.AI",
+ "vendor_zh": "零一万物",
+ "family": "Yi",
+ "license": "Apache-2.0（2024-03 起，原为 Yi License）",
+ "license_commercial": true,
+ "weights_url": "https://huggingface.co/01-ai/Yi-34B-Chat",
+ "superseded_by": "yi-1-5-34b",
+ "released_at": "2023-11-02",
+ "architecture": {
+  "type": "dense",
+  "total_params": "34.4B",
+  "total_params_b": 34.4,
+  "layers": 60,
+  "hidden_size": 7168,
+  "vocab_size": 64000,
+  "kv_heads": 8,
+  "head_dim": 128,
+  "attention": "GQA（56 Q 头 / 8 KV 头）",
+  "notes": "Llama 结构，3T 中英 token；Chat 版 4K，另有 200K 长文本版。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 4096,
+  "display": "4K（200K 版另发）"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 68.8,
+   "q8": 36.5,
+   "q4": 20.7
+  },
+  "estimated": false,
+  "kv_per_token_kib": 240.0,
+  "kv_note": "240 KiB/token。",
+  "ref_hw_24gb": "Q4_K_M 20.7 GB，24GB 卡可跑短上下文",
+  "ref_hw_80gb": "BF16 68.8 GB 单卡",
+  "ref_hw_8x80gb": "过剩"
+ },
+ "links": {
+  "official": "https://01.ai/",
+  "github": "https://github.com/01-ai/Yi",
+  "paper": "https://arxiv.org/abs/2403.04652",
+  "hf": "https://huggingface.co/01-ai/Yi-34B-Chat"
+ },
+ "copy": {
+  "one_liner": "2023 年末登顶 HF 开源榜的中英双语 34B。",
+  "highlights": [
+   "发布时 Open LLM Leaderboard 第一，超 Llama 2 70B",
+   "200K 上下文版当年罕见",
+   "2024-03 改为 Apache-2.0"
+  ],
+  "pitfalls": [
+   "Chat 版仅 4K 上下文",
+   "早期因张量命名照搬 Llama 引发争议",
+   "被 Yi-1.5 与 Qwen 系列超过"
+  ],
+  "logic_ability": "2023 年末开源一线：MMLU 76.3%、C-Eval 81.4%（官方基座）。无 CoT 训练。",
+  "best_for": [
+   "历史对照",
+   "中英双语微调实验"
+  ],
+  "not_for": [
+   "新项目"
+  ]
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama"
+  ],
+  "finetune": "LoRA 成熟（Llama 结构）",
+  "zh_docs": "有"
+ }
+}
