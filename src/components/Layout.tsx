@@ -74,10 +74,6 @@ export default function Layout() {
               <a href={meta.repo_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 hover:text-text"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>GitHub</a>
               <span aria-hidden>·</span>
               <a href={meta.author_url} target="_blank" rel="noreferrer" className="hover:text-text">{t('博客')} tanzhuo.xyz</a>
-              <span aria-hidden>·</span>
-              <span>{t('纯静态站 · 无后端')}</span>
-              <span aria-hidden>·</span>
-              <span className="num">v{meta.version}</span>
             </div>
           </div>
           <div>
@@ -100,15 +96,12 @@ export default function Layout() {
               <div className="flex justify-between gap-3"><dt className="text-muted">{t('价格单位')}</dt><dd className="num">USD / 1M tok</dd></div>
             </dl>
             <div className="text-xs text-muted leading-relaxed">{t('来源：官方模型卡与定价页、LMArena、Artificial Analysis、Hugging Face 配置文件。')}</div>
-            <div className="flex flex-wrap gap-x-3 gap-y-1 text-[11px]">
-              <span className="text-official">{t('○ 厂商公布')}</span><span className="text-independent">{t('● 独立复测')}</span><span className="text-community">{t('◐ 社区 / 估计')}</span>
-            </div>
           </div>
         </div>
         <div className="border-t border-border">
           <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col md:flex-row gap-2 md:items-center justify-between text-[11px] text-muted">
             <span>{t('排名供选型参考，基准会饱和、会泄漏、会过时。所有规格以官方来源为准；闭源参数量一律「未披露」。')}</span>
-            <span>© 2026 <a href={meta.author_url} target="_blank" rel="noreferrer" className="hover:text-text">{meta.author}</a> · <a href={meta.repo_url} target="_blank" rel="noreferrer" className="hover:text-text">{t('开源 MIT')}</a> · {t('模型名称与 logo 归各厂商所有')}</span>
+            <span>© 2026 AI-Gallery · <a href={meta.repo_url} target="_blank" rel="noreferrer" className="hover:text-text">{t('开源 MIT')}</a> · {t('模型名称与 logo 归各厂商所有')}</span>
           </div>
         </div>
       </footer>
