@@ -63,6 +63,8 @@ export interface Model {
   }
   runtime?: { tok_s?: number; latency_s?: number; source?: string }
   links: { official?: string; hf?: string; github?: string; paper?: string; pricing?: string }
+  /** 下载版本（量化 / 格式变体），仅开源模型；kind 用于分组与筛选 */
+  variants?: Array<{ kind: 'gguf' | 'fp8' | 'nvfp4' | 'awq' | 'gptq' | 'mlx' | 'exl2' | 'bnb' | 'other'; publisher: string; repo: string; url: string; note?: string; sizes?: Partial<Record<'q4' | 'q5' | 'q6' | 'q8' | 'fp8' | 'bf16', number>> }>
   copy: {
     one_liner: string
     highlights: string[]
