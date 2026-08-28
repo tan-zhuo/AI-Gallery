@@ -94,4 +94,7 @@ Models without modeled KV (missing layers / heads): fit judged by weights only
   '消费级': 'Consumer', '工作站': 'Workstation', '数据中心': 'Data center', '统一内存': 'Unified memory',
   // NotFound
   '页面不存在': 'Page not found', '回首页': 'Back to home',
+  '只看当前代': 'Current generation only',
+  '已隐藏 {n} 个旧代': '{n} superseded hidden',
+  '第 {a}–{b} 条，共 {c} 条': '{a}–{b} of {c}',
 }

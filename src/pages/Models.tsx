@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { models, scoreMap, vendors } from '@/lib/catalog'
 import { filterModels } from '@/lib/search'
@@ -27,7 +27,9 @@ export default function Models() {
   const [mod, setMod] = useState<string[]>([])
   const [hw, setHw] = useState<0 | 16 | 24 | 80>(0)
   const [think, setThink] = useState(false)
-  const [old, setOld] = useState(false)
+  const [old, setOld] = useState(true)
+  const [page, setPage] = useState(1)
+  const PAGE = 40
   const [sort, setSort] = useState<Sort>('ref')
   const refs = useMemo(() => computeReferenceScores(models, scoreMap), [])
   const list = useMemo(() => {
@@ -67,12 +69,16 @@ export default function Models() {
     if (!q.trim()) ms = [...ms].sort(cmp[sort])
     return ms
   }, [q, open, vendor, size, lic, mod, hw, think, old, sort, refs])
-  const reset = () => { setQ(''); setOpen('all'); setVendor([]); setSize([]); setLic('all'); setMod([]); setHw(0); setThink(false); setOld(false) }
+  useEffect(() => { setPage(1) }, [q, open, vendor, size, lic, mod, hw, think, old, sort])
+  const pages = Math.max(1, Math.ceil(list.length / PAGE))
+  const cur = Math.min(page, pages)
+  const paged = list.slice((cur - 1) * PAGE, cur * PAGE)
+  const reset = () => { setQ(''); setOpen('all'); setVendor([]); setSize([]); setLic('all'); setMod([]); setHw(0); setThink(false); setOld(true) }
   const tog = (arr: string[], set: (v: string[]) => void, v: string) => set(arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v])
   return (
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
-        <div><h1 className="text-2xl font-semibold tracking-tight">{t('模型库')}</h1><p className="text-xs text-muted mt-1">{t('{a} / {b} 个模型', { a: list.length, b: models.length })}</p></div>
+        <div><h1 className="text-2xl font-semibold tracking-tight">{t('模型库')}</h1><p className="text-xs text-muted mt-1">{t('{a} / {b} 个模型', { a: list.length, b: models.length })}{!old && <> · {t('已隐藏 {n} 个旧代', { n: models.filter((m) => m.status === 'superseded').length })}</>}</p></div>
         <div className="flex items-center gap-2 text-xs">
           <span className="text-muted">{t('排序')}</span>
           <select value={sort} onChange={(e) => setSort(e.target.value as Sort)} className="ctl">
@@ -94,7 +100,7 @@ export default function Models() {
           <F title={t('模态')}><Chip active={mod.includes('image')} onClick={() => tog(mod, setMod, 'image')}>{t('视觉')}</Chip><Chip active={mod.includes('tools')} onClick={() => tog(mod, setMod, 'tools')}>{t('工具调用')}</Chip></F>
           <F title={t('硬件（开源 Q4）')}>{([16, 24, 80] as const).map((g) => <Chip key={g} active={hw === g} onClick={() => setHw(hw === g ? 0 : g)}>{t('能进 {g}GB', { g })}</Chip>)}</F>
           <F title={t('推理')}><Chip active={think} onClick={() => setThink(!think)}>{t('推理模型 (thinking)')}</Chip></F>
-          <F title={t('代际')}><Chip active={old} onClick={() => setOld(!old)}>{t('包含已被替代的旧代')}</Chip></F>
+          <F title={t('代际')}><Chip active={!old} onClick={() => setOld(!old)}>{t('只看当前代')}</Chip></F>
           <Button variant="outline" onClick={reset} className="w-full">{t('清空筛选')}</Button>
         </aside>
         <div>
@@ -105,8 +111,8 @@ export default function Models() {
                   <th className="px-3 py-2 text-left">{t('模型')}</th><th className="px-2 py-2 text-left">{t('开闭源')}</th><th className="px-2 py-2 text-right">{t('参考分')}</th><th className="px-2 py-2 text-right num">{t('发布')}</th><th className="px-2 py-2 text-left hidden md:table-cell">{t('参数')}</th><th className="px-2 py-2 text-right hidden sm:table-cell">{t('上下文')}</th><th className="px-2 py-2 text-right">{t('价格')}</th><th className="px-2 py-2 text-right hidden md:table-cell">Q4</th><th className="px-2 py-2 text-left hidden lg:table-cell">{t('许可证')}</th>
                 </tr></thead>
                 <tbody>
-                  {list.map((m) => (
-                    <tr key={m.id} className="border-b border-border/60 hover:bg-surface-2/60">
+                  {paged.map((m) => (
+                    <tr key={m.id} className={cx('border-b border-border/60', m.status === 'superseded' && 'opacity-70')}>
                       <td className="px-3 py-2 min-w-[200px]">
                         <ModelName m={m} />
                         <div className="mt-1 flex gap-1">{m.complete ? <Badge tone="info">{t('完整说明书')}</Badge> : <Badge>{t('速览')}</Badge>}{m.status === 'superseded' && <Badge tone="warn">{t('已被替代')}</Badge>}{m.reasoning_mode !== 'none' && <Badge>{t('推理')}</Badge>}{m.modalities.includes('image') && <Badge>{t('视觉')}</Badge>}</div>
@@ -123,6 +129,16 @@ export default function Models() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          )}
+          {pages > 1 && (
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+              <span className="text-xs text-muted num">{t('第 {a}–{b} 条，共 {c} 条', { a: (cur - 1) * PAGE + 1, b: Math.min(cur * PAGE, list.length), c: list.length })}</span>
+              <div className="seg seg-sm">
+                <button type="button" onClick={() => setPage(cur - 1)} disabled={cur === 1} className="disabled:opacity-40">‹</button>
+                {Array.from({ length: pages }, (_, i) => i + 1).map((n) => <button key={n} type="button" aria-pressed={n === cur} onClick={() => setPage(n)} className="num">{n}</button>)}
+                <button type="button" onClick={() => setPage(cur + 1)} disabled={cur === pages} className="disabled:opacity-40">›</button>
+              </div>
             </div>
           )}
           <p className="mt-3 text-xs text-muted">{t('「速览」模型只有顶栏、分数与链接，说明书缺节显示「完善中」。')}<Link to="/about" className="link">{t('如何贡献')}</Link></p>
