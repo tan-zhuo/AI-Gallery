@@ -1,0 +1,90 @@
+{
+ "id": "qwen3-8-max-0902",
+ "name": "Qwen3.8-Max-0902",
+ "name_zh": "通义千问 Qwen3.8-Max-0902",
+ "aliases": [
+  "qwen3.8-max-0902",
+  "qwen3.8-max-2026-09-02",
+  "Qwen3.8-Max"
+ ],
+ "vendor": "Alibaba",
+ "vendor_zh": "阿里巴巴",
+ "family": "Qwen3.8",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-01",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "2.4T",
+  "total_params_b": 2400,
+  "notes": "官方公布 2.4T 稀疏 MoE，与 8 月的 Qwen3.8-Max 同底座，本次只是进一步在 Coding & Cowork 上后训练。0902 公告未重述激活参数量（8 月基座公告为 95B 激活），因此本条目不单独标注激活量。API id qwen3.8-max-0902，别名 qwen3.8-max-2026-09-02；QwenCloud 列 1M 上下文、991K 最大输入、131K 最大输出；thinking 默认开启。注意：可下载的开源版是 Qwen3.8-2.4T-A95B（纯文本），与这个托管 Max 是两回事，本次 0902 重调没有开源计划说明。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 131072
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 6,
+  "currency": "USD",
+  "source": "QwenCloud 模型页",
+  "as_of": "2026-09-28",
+  "note": "与初版 Qwen3.8-Max 同价。隐式缓存命中 $0.25、显式缓存读 $0.17、显式缓存创建 $2.50；显式缓存有效期约 5 分钟"
+ },
+ "links": {
+  "official": "https://qwen.ai/blog?id=qwen3.8-max-0902",
+  "pricing": "https://qwencloud.com/pricing"
+ },
+ "copy": {
+  "one_liner": "2.4T 旗舰原地升级，编码与办公大幅补课，价格没动。",
+  "highlights": [
+   "相对上一版全面上移：TerminalBench 3.0 11.3 → 29.0、ProgramBench 10.5 → 28.0、JobBench 53.4 → 64.0、WorkArena Elo 1348 → 1468（官方对照表）",
+   "仓库级代码理解 SWE-Atlas QnA 66.3 领先官方表内所有模型（Opus 5 为 63.2、Fable 5 为 39.0）；Automation Bench 50.8 微超 Opus 5 的 50.3",
+   "价格一分未动（$2 / $6），显式缓存读只要 $0.17（比普通输入便宜 91.5%），1M 上下文"
+  ],
+  "pitfalls": [
+   "硬编码 agent 任务上 Opus 5 仍全面领先：TerminalBench 3.0 42.7 对 29.0、ProgramBench 41.5 对 28.0、DeepSWE 1.1 73.6 对 69.3",
+   "官方对照表里有三项是自家基准（QwenSWEBench V2、CoWorkBench、WorkArena），且脚注说明竞品数字可能取自不同 harness 的最佳公开结果",
+   "WorkArena 是 Qwen 自己的专家评分 Elo，不要与 ServiceNow 的同名浏览器基准混淆",
+   "0902 是闭源快照，官方未说明这次编码重调是否会开源；截至收录日 Artificial Analysis 与 LMArena 都还没单独复测这一版"
+  ],
+  "logic_ability": "补课幅度是真的，绝对位置还差一截。八月那版在 TerminalBench 3.0（11.3）与 ProgramBench（10.5）上的成绩基本不能用，0902 把它们翻了一到两倍；专业岗位任务 JobBench 涨十分，专家评分 Elo 涨 120。对手侧：与 Claude Fable 5 在双方都有分的 16 行里 9 胜 7 负，与 Opus 5 在 15 行里 7 胜 8 负 —— 但 Opus 5 的优势集中在 8 个编码行里的 5 个，且差距在 4 到 14 分。多模态与 agent SaaS 工作流是 Qwen 明确的胜场。",
+  "best_for": [
+   "仓库级代码理解与问答",
+   "SaaS 工作流自动化",
+   "图表 / 文档解析与视觉推理"
+  ],
+  "not_for": [
+   "长时程硬编码 agent（差几分就完不成任务的场景）",
+   "需要自建部署（这一版闭源）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "TerminalBench 3.0 29.0、DeepSWE 1.1 69.3、NL2Repo-Bench 64.9、ProgramBench 28.0、SWE-Marathon 44.8、SWE-Atlas QnA 66.3（官方对照表）。",
+  "agent": "Automation Bench v1.0.6 50.8、Toolathlon Verified 73.3、JobBench 64.0（官方对照表）。",
+  "multimodal": "ERQA 78.3、BabyVision 93.8（官方对照表）。",
+  "chinese": "中文顶级；CodeArena 前端得分升 22 分到 1691，官方称居榜首。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "有"
+ },
+ "complete": false
+}

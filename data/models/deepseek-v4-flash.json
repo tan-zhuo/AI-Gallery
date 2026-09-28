@@ -15,9 +15,9 @@
  "openness": "open-weights",
  "weights_available": true,
  "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
- "status": "current",
+ "status": "superseded",
  "released_at": "2026-07-31",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-09-28",
  "modalities": [
   "text",
   "tools"
@@ -230,5 +230,6 @@
   "tok_s": 119,
   "latency_s": 1.12,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
- }
+ },
+ "superseded_by": "deepseek-v4-1-flash"
 }

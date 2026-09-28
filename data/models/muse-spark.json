@@ -13,9 +13,9 @@
  "license_commercial": true,
  "openness": "api-only",
  "weights_available": false,
- "status": "current",
+ "status": "superseded",
  "released_at": "2026-08-05",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-09-28",
  "modalities": [
   "text",
   "image",
@@ -130,5 +130,6 @@
     "reasoning": "HLE 58%、FrontierScience Research 38%（Contemplating、公式）。"
    }
   }
- }
+ },
+ "superseded_by": "muse-spark-1-3"
 }

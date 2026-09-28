@@ -13,9 +13,9 @@
  "license_commercial": true,
  "openness": "api-only",
  "weights_available": false,
- "status": "current",
+ "status": "superseded",
  "released_at": "2026-08-13",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-09-28",
  "modalities": [
   "text",
   "image",
@@ -162,5 +162,6 @@
   "tok_s": 306,
   "latency_s": 11.73,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
- }
+ },
+ "superseded_by": "gemini-3-8-flash"
 }

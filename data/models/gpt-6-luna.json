@@ -1,0 +1,81 @@
+{
+ "id": "gpt-6-luna",
+ "name": "GPT-6 Luna",
+ "name_zh": "GPT-6 轻量",
+ "aliases": [
+  "gpt-6-luna",
+  "GPT-6 Luna"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-6",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-22",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方模型页：1,050,000 上下文（最大输入 922K、最大输出 128K），knowledge cutoff 2026-05-18；reasoning.effort 六档 none/low/medium（默认）/high/xhigh/max。"
+ },
+ "context": {
+  "max_tokens": 1050000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.1,
+  "output_per_m": 0.5,
+  "currency": "USD",
+  "source": "OpenAI 发布公告 + API 模型页",
+  "as_of": "2026-09-28",
+  "note": "比 GPT-5.6 Luna（$0.20 / $1.20）低 50% 以上；官方明确为默认价。>272K 输入的请求整单按长上下文费率计费"
+ },
+ "links": {
+  "official": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+  "pricing": "https://developers.openai.com/api/docs/pricing"
+ },
+ "copy": {
+  "one_liner": "$0.10 / $0.50 的高并发档，免费用户也能用。",
+  "highlights": [
+   "$0.10 / $0.50 是目前主流厂商前沿家族里最低的一档，比 GPT-5.6 Luna 低 50% 以上",
+   "1.05M 上下文 + 128K 输出，规格与 Sol 完全一致；知识截止 2026-05-18，比 Sol 还新 28 天",
+   "ChatGPT Free 与 Go 用户可在桌面端直接使用"
+  ],
+  "pitfalls": [
+   "官方定位是「目标明确的高频任务」（摘要、抽取、快速问答），不是复杂 agent 编码",
+   "OpenAI 未公布该模型的完整基准表，能力横向对比暂无官方数据",
+   "上线时只进 ChatGPT Work 与 Codex，不进 Chat"
+  ],
+  "logic_ability": "官方把它定位为高频事务型模型：文档摘要、信息抽取、快速问答。与 Sol 共用规格（1.05M 上下文 / 128K 输出 / 六档 effort），差异在能力与价格档位。截至收录日 OpenAI 尚未发布完整基准表，本条目不代填分数。",
+  "best_for": [
+   "高并发摘要 / 抽取 / 分类",
+   "成本极敏感的长上下文批处理"
+  ],
+  "not_for": [
+   "复杂 agent 编码（用 Sol 或 Astra）",
+   "需要私有化部署的合规场景"
+  ]
+ },
+ "capability_notes": {
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": false
+}

@@ -3180,6 +3180,56 @@
   "evidence": "official"
  },
  {
+  "model_id": "claude-fable-5-1",
+  "key": "hle",
+  "value": 60.9,
+  "unit": "percent",
+  "source": "Anthropic 发布公告（HLE 无工具）",
+  "source_url": "https://www.anthropic.com/claude-fable-and-mythos-5-1",
+  "as_of": "2026-09-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "gemini-3-8-flash",
+  "key": "terminal_bench",
+  "value": 89.4,
+  "unit": "percent",
+  "source": "Google DeepMind 模型卡（Terminal-Bench 2.1）",
+  "source_url": "https://deepmind.google/models/model-cards/gemini-3-8-flash/",
+  "as_of": "2026-09-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-1-flash",
+  "key": "gpqa_diamond",
+  "value": 90.9,
+  "unit": "percent",
+  "source": "DeepSeek-V4.1-Flash 模型卡（max effort，Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+  "as_of": "2026-09-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-1-flash",
+  "key": "hle",
+  "value": 36.8,
+  "unit": "percent",
+  "source": "DeepSeek-V4.1-Flash 模型卡（max effort，Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+  "as_of": "2026-09-28",
+  "evidence": "official"
+ },
+ {
+  "model_id": "deepseek-v4-1-flash",
+  "key": "terminal_bench",
+  "value": 90.6,
+  "unit": "percent",
+  "source": "DeepSeek-V4.1-Flash 模型卡（max effort，Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+  "as_of": "2026-09-28",
+  "evidence": "official"
+ },
+ {
   "model_id": "gpt-4-turbo",
   "key": "gpqa_diamond",
   "value": 48,

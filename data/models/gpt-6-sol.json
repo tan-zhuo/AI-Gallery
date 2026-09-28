@@ -1,0 +1,83 @@
+{
+ "id": "gpt-6-sol",
+ "name": "GPT-6 Sol",
+ "name_zh": "GPT-6 主力",
+ "aliases": [
+  "gpt-6-sol",
+  "GPT-6 Sol"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-6",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-22",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方模型页：1,050,000 上下文（最大输入 922K、最大输出 128K），knowledge cutoff 2026-04-20；reasoning.effort 六档 none/low/medium（默认）/high/xhigh/max。官方称与 Astra 用相同方法训练。"
+ },
+ "context": {
+  "max_tokens": 1050000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "OpenAI 发布公告 + API 模型页",
+  "as_of": "2026-09-28",
+  "note": "比 GPT-5.6 Sol 促销价（$4 / $20）低 50%；OpenAI 明确这是默认价而非促销价。>272K 输入的请求整单按长上下文费率计费"
+ },
+ "links": {
+  "official": "https://openai.com/index/introducing-gpt-6-sol-and-luna/",
+  "pricing": "https://developers.openai.com/api/docs/pricing"
+ },
+ "copy": {
+  "one_liner": "Astra 同方法训练的主力档，单价砍半到 $2 / $10。",
+  "highlights": [
+   "API 价格比 GPT-5.6 Sol 促销价低 50%，且官方确认是默认价不是促销价",
+   "官方内部事实性评测（基于用户标记过错误的真实对话）中出错率约为 GPT-5.6 Sol 的一半，被描述为「以低得多的成本达到 Astra 级可靠性」",
+   "1.05M 上下文 + 128K 输出，effort 六档含 none 与 max"
+  ],
+  "pitfalls": [
+   "知识截止 2026-04-20，比更便宜的 Luna（2026-05-18）还早 28 天",
+   "上线时只进 ChatGPT Work 与 Codex，不进 Chat；Enterprise 需管理员手动开启",
+   "OpenAI 未公布这两个模型的完整基准表，横向对比目前只能靠第三方；GPT-6 没有 Terra 档"
+  ],
+  "logic_ability": "官方定位是「复杂编码与 agent 工作流」，主张把 Astra 在专业工作、事实性、编码、计算机使用与对齐上的进展下沉到更便宜的一档，并称每任务 token 消耗低于同级 GPT-5.6。截至收录日 OpenAI 尚未发布该模型的完整基准表，本条目不代填分数。",
+  "best_for": [
+   "复杂编码与 agent 工作流",
+   "替换 GPT-5.6 Sol 的存量负载（同档位半价）"
+  ],
+  "not_for": [
+   "需要最强能力的任务（用 Astra）",
+   "极高并发的低成本清洗（用 Luna）",
+   "需要私有化部署的合规场景"
+  ]
+ },
+ "capability_notes": {
+  "knowledge": "官方内部事实性评测出错率约为 GPT-5.6 Sol 的一半（官方，未公布数值）。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": false
+}

@@ -1,0 +1,86 @@
+{
+ "id": "grok-4-7",
+ "name": "Grok 4.7",
+ "name_zh": "Grok 4.7",
+ "aliases": [
+  "grok-4.7",
+  "Grok 4.7"
+ ],
+ "vendor": "SpaceXAI",
+ "vendor_zh": "xAI",
+ "family": "Grok 4",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-21",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方只说「相比 Grok 4.6 换用了更大的新底座」，并以更长的强化学习跑程、偏向需要数小时完成的难任务训练；未公布参数量。reasoning effort 四档 low/medium/high（默认）/xhigh；500K 上下文、无文本输出上限；工具含 function calling、web search、X search、code execution。另有 2× 输出速度、2× 价格的 fast 变体（grok-4.7-fast，仅 Cursor 与 Grok Build，不在公开 API）。"
+ },
+ "context": {
+  "max_tokens": 500000,
+  "display": "500K"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 6,
+  "currency": "USD",
+  "source": "SpaceXAI 官方定价页（docs.x.ai）",
+  "as_of": "2026-09-28",
+  "note": "与 Grok 4.6 完全同价：<200K 提示时 $2 / 缓存 $0.50 / $6；≥200K 提示时整单按 $4 / $1 / $12 计费。fast 变体单价翻倍；美国区域端点另加 10%"
+ },
+ "links": {
+  "official": "https://x.ai/news/grok-4-7",
+  "pricing": "https://docs.x.ai/developers/models"
+ },
+ "copy": {
+  "one_liner": "同价换更大底座，便宜好用但仍不是第一。",
+  "highlights": [
+   "同价升级：$2 / $6 与 Grok 4.6 一致，编码基准全面上移（CursorBench 4.0 40.4% → 46.3%、Terminal-Bench 4.0 20.3% → 38.0%、SWE-Marathon 31.9% → 46.0%）",
+   "官方称是迄今在拒答与越狱抵抗上最强的模型，在 LatchBio 生物安全基准上以 62.4% 居首",
+   "原生理解 Grok Bot harness，对话与通用知识工作变强；GDPval 与 AA-Briefcase 均较 4.6 提升"
+  ],
+  "pitfalls": [
+   "xAI 自己的对照表大多仍把 Claude Fable 5.1 排在前面；Musk 发布前就把预期定在「大致与 Claude Opus 5.0 持平」，并承认多模态还需改进",
+   "500K 上下文低于同期 $2 档对手（GPT-6 Sol 与 Qwen3.8-Max 都是 1M）",
+   "≥200K 提示的请求按高档费率计费全部 token，不只超出部分 —— 长上下文实际单价翻倍",
+   "自 7 月底起至少 5 次推迟发布；官方文档的知识截止写 2026-05，模型卡却称预训练数据到 2026-06、补充数据到 2026-08，两处不一致"
+  ],
+  "logic_ability": "定位是「同价干更久的活」而不是刷榜第一：官方强调它更会自查、更能管住长上下文，训练偏重需要数小时完成的任务。编码类基准相对 4.6 普遍上移十几个百分点，但 Terminal-Bench 4.0 38.0% 仍明显落后 Opus 5.5 的 66.4% 与 GPT-6 Astra 的 57.9%。Musk 同时给出了后续路线：4.8 为「有意义的一步」、4.9 进入「Astra / Fable 级」、Grok 5 才可能领先前沿，均无日期。",
+  "best_for": [
+   "成本敏感的编码与 agent 负载",
+   "需要 X / web 实时检索的任务",
+   "对拒答与越狱抵抗有要求的部署"
+  ],
+  "not_for": [
+   "需要 1M 上下文的场景",
+   "多模态为核心的任务",
+   "追求单项最高分的评测型选型"
+  ]
+ },
+ "capability_notes": {
+  "coding": "CursorBench 4.0 46.3%（4.6 为 40.4%）、Terminal-Bench 4.0 38.0%（4.6 高档为 20.3%）、SWE-Marathon 46.0%（4.6 为 31.9%）（官方）。",
+  "agent": "GDPval 与 AA-Briefcase 均较 Grok 4.6 提升，官方称与其他前沿模型相当（官方，未公布数值）。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

@@ -9,14 +9,14 @@
  "vendor": "Z.ai",
  "vendor_zh": "智谱",
  "family": "GLM-5",
- "license": "MIT（承诺；权重未发布）",
- "license_commercial": true,
- "openness": "api-only",
- "weights_available": false,
+ "license": "GLM-5.3 License（自定义，非 MIT）",
+ "license_commercial": "restricted",
+ "openness": "open-weights",
+ "weights_available": true,
  "weights_url": "https://huggingface.co/zai-org/GLM-5.3",
  "status": "current",
  "released_at": "2026-08-14",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-09-28",
  "modalities": [
   "text",
   "tools"
@@ -37,7 +37,7 @@
   "kv_heads": 1,
   "head_dim": 288,
   "attention": "MLA + DSA 稀疏注意力（同 GLM-5.2）",
-  "notes": "官方明确「与 GLM-5.2 同一底座，所有提升来自后训练」，结构参数沿用 GLM-5.2（GitHub 标注 744B-A40B）。权重截至 2026-08-28 未发布，HF 页面为倒计时预告。",
+  "notes": "官方明确「与 GLM-5.2 同一底座，所有提升来自后训练」，结构参数沿用 GLM-5.2（GitHub 标注 744B-A40B）。权重已于 2026-08-28 发布：zai-org/GLM-5.3 共 141 个 safetensors 分片，另有独立的 GLM-5.3-BF16 仓库，无门禁。许可换成了自定义的 glm-5.3 License —— GLM-5.1 / 5.2 是 MIT，这一版不是。",
   "undisclosed": false
  },
  "context": {
@@ -48,10 +48,10 @@
  "memory": {
   "weight_gb": {},
   "kv_per_token_kib": 88,
-  "kv_note": "同 GLM-5.2 结构，MLA ≈ 88 KiB/token；权重未发布，暂无官方文件大小。",
+  "kv_note": "同 GLM-5.2 结构，MLA ≈ 88 KiB/token。权重已发布（141 分片 + BF16 仓库），官方未给单文件体积汇总。",
   "ref_hw_24gb": "不可行",
   "ref_hw_80gb": "不可行",
-  "ref_hw_8x80gb": "开源后预期同 GLM-5.2：FP8 8×H200",
+  "ref_hw_8x80gb": "参考 GLM-5.2：FP8 8×H200",
   "estimated": true
  },
  "pricing": {
@@ -70,14 +70,14 @@
   "pricing": "https://docs.z.ai/guides/overview/pricing"
  },
  "copy": {
-  "one_liner": "GLM-5.2 同底座后训练加强版，权重承诺开源。",
+  "one_liner": "GLM-5.2 同底座后训练加强版，权重已开源（自定义许可）。",
   "highlights": [
-   "承诺开源：官方称安全审查后两周内开源权重，HF 页面预告 2026-08-28；截至今日仍只有 API",
+   "权重已于 2026-08-28 按承诺发布：zai-org/GLM-5.3，141 个 safetensors 分片 + 独立 BF16 仓库，无门禁",
    "同底座纯后训练：Z.ai Code Bench 比 GLM-5.2 提升 50%，DeepSWE v1.1 46.2→66.9，Terminal-Bench 3.0 4.6→28.3",
    "网络安全能力突出：CyberGym 84.5、ExploitBench 54.4（GLM-5.2 为 24.4）"
   ],
   "pitfalls": [
-   "权重尚未发布，本条目按 API-only 记录；开源后需重新核对文件与许可",
+   "许可从 GLM-5.2 的 MIT 换成自定义 glm-5.3 License：托管该模型且任意 12 个月营收超 100 亿美元的公司，商用前需通过 Z.ai 安全审查 —— 商用前务必逐字读 LICENSE",
    "推理不可关闭，只能调 reasoning_effort；max 档单题输出可达 ~75K token",
    "漏洞利用能力被官方列为「意外涌现」，分阶段先向安全伙伴开放，企业合规需留意"
   ],
@@ -88,12 +88,12 @@
    "等 GLM-5.2 开源用户升级"
   ],
   "not_for": [
-   "需要今天就能自建的场景（权重未发布）",
-   "多模态（用 GLM-5.3-Flash）"
+   "多模态（用 GLM-5.3-Flash）",
+   "单机 / 消费级硬件自建（744B 级）"
   ]
  },
  "capability_notes": {
-  "coding": "DeepSWE v1.1 66.9、Terminal-Bench 3.0 28.3、SWE-Marathon v1.1 42.5、Z.ai Code Bench 34.5（max）（官方）。",
+  "coding": "DeepSWE v1.1 66.9、Terminal-Bench 3.0 28.3、SWE-Marathon v1.1 42.5、Z.ai Code Bench 34.5（max）（官方）。DeepSeek 官方对照表另给 Terminal-Bench 2.1 88.2、Terminal-Bench 4.0 37.9。",
   "agent": "Agents' Last Exam 28.5；CyberGym 84.5、ExploitBench 54.4（官方）。",
   "reasoning": "官方未单独披露；同底座参考 GLM-5.2。",
   "chinese": "中文顶级。"
@@ -103,20 +103,20 @@
    "SGLang",
    "vLLM"
   ],
-  "finetune": "待权重发布",
+  "finetune": "支持（自定义 glm-5.3 许可，注意营收门槛）",
   "zh_docs": "有"
  },
  "i18n": {
   "en": {
    "name_zh": "Zhipu GLM-5.3",
-   "one_liner": "Post-trained upgrade on the GLM-5.2 base; weights promised open.",
+   "one_liner": "Post-trained upgrade on the GLM-5.2 base; weights now open under a custom license.",
    "highlights": [
-    "Open-source pledge: official says weights will be released within two weeks of safety review, HF page teases 2026-08-28; as of today API only",
+    "Weights shipped on 2026-08-28 as promised: zai-org/GLM-5.3, 141 safetensors shards plus a separate BF16 repo, ungated",
     "Same base, post-training only: Z.ai Code Bench +50% over GLM-5.2, DeepSWE v1.1 46.2 -> 66.9, Terminal-Bench 3.0 4.6 -> 28.3",
     "Standout cybersecurity: CyberGym 84.5, ExploitBench 54.4 (GLM-5.2 was 24.4)"
    ],
    "pitfalls": [
-    "Weights not yet released; this entry is recorded as API-only, recheck files and license after open-sourcing",
+    "License moved from GLM-5.2’s MIT to a custom glm-5.3 License: companies hosting the model with over $10B revenue in any 12 months need a Z.ai security review before commercial use — read the LICENSE verbatim",
     "Reasoning cannot be disabled, only reasoning_effort is adjustable; at max a single question can output ~75K tokens",
     "Exploit capability is officially described as \"unexpectedly emergent\" and rolled out first to security partners; enterprise compliance should take note"
    ],
@@ -127,8 +127,8 @@
     "GLM-5.2 open-source users waiting to upgrade"
    ],
    "not_for": [
-    "Scenarios that need self-hosting today (weights unreleased)",
-    "Multimodal (use GLM-5.3-Flash)"
+    "Multimodal (use GLM-5.3-Flash)",
+    "Single-machine / consumer-hardware self-hosting (744B class)"
    ],
    "capability_notes": {
     "coding": "DeepSWE v1.1 66.9, Terminal-Bench 3.0 28.3, SWE-Marathon v1.1 42.5, Z.ai Code Bench 34.5 (max) (official).",
@@ -139,14 +139,14 @@
   },
   "ja": {
    "name_zh": "智譜 GLM-5.3",
-   "one_liner": "GLM-5.2 と同じベースの後学習強化版。重みの公開を約束。",
+   "one_liner": "GLM-5.2 と同じベースの後学習強化版。重みは公開済み（独自ライセンス）。",
    "highlights": [
-    "オープンソース公約：公式は安全審査後 2 週間以内に重み公開と表明、HF ページは 2026-08-28 を予告。本日時点では API のみ",
+    "重みは公約どおり 2026-08-28 に公開：zai-org/GLM-5.3、141 個の safetensors シャードと独立した BF16 リポジトリ、ゲートなし",
     "同ベースの純後学習：Z.ai Code Bench は GLM-5.2 比 50% 向上、DeepSWE v1.1 46.2→66.9、Terminal-Bench 3.0 4.6→28.3",
     "サイバーセキュリティ能力が突出：CyberGym 84.5、ExploitBench 54.4（GLM-5.2 は 24.4）"
    ],
    "pitfalls": [
-    "重みは未公開で本項目は API-only として記録。公開後にファイルとライセンスの再確認が必要",
+    "ライセンスが GLM-5.2 の MIT から独自の glm-5.3 License に変更：モデルをホストし任意の 12 か月で売上 100 億ドルを超える企業は、商用利用前に Z.ai の安全審査が必要。LICENSE を逐語で確認すること",
     "推論はオフ不可で reasoning_effort の調整のみ。max では 1 問の出力が約 75K トークンに達することも",
     "脆弱性悪用能力は公式に「予期せぬ創発」とされ、まずセキュリティパートナーに段階的に開放。企業のコンプライアンスは要注意"
    ],
@@ -157,8 +157,8 @@
     "GLM-5.2 オープンソース利用者のアップグレード待ち"
    ],
    "not_for": [
-    "今日すぐ自前運用が必要な用途（重み未公開）",
-    "マルチモーダル（GLM-5.3-Flash を使う）"
+    "マルチモーダル（GLM-5.3-Flash を使う）",
+    "単一マシン / コンシューマ向けハードウェアでの自前運用（744B 級）"
    ],
    "capability_notes": {
     "coding": "DeepSWE v1.1 66.9、Terminal-Bench 3.0 28.3、SWE-Marathon v1.1 42.5、Z.ai Code Bench 34.5（max）（公式）。",

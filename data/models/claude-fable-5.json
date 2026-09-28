@@ -13,9 +13,9 @@
  "license_commercial": true,
  "openness": "api-only",
  "weights_available": false,
- "status": "current",
+ "status": "superseded",
  "released_at": "2026-06-09",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-09-28",
  "modalities": [
   "text",
   "image",
@@ -167,5 +167,6 @@
   "tok_s": 65,
   "latency_s": 79.92,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
- }
+ },
+ "superseded_by": "claude-fable-5-1"
 }

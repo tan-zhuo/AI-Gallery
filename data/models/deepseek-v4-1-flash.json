@@ -1,0 +1,113 @@
+{
+ "id": "deepseek-v4-1-flash",
+ "name": "DeepSeek-V4.1-Flash",
+ "name_zh": "DeepSeek-V4.1-Flash",
+ "aliases": [
+  "deepseek-v4.1-flash",
+  "deepseek-flash",
+  "deepseek-ai/DeepSeek-V4.1-Flash"
+ ],
+ "vendor": "DeepSeek",
+ "vendor_zh": "深度求索",
+ "family": "DeepSeek-V4",
+ "license": "MIT",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+ "status": "current",
+ "released_at": "2026-09-10",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "552B",
+  "active_params": "8B（prefill）/ 16B（decode）",
+  "total_params_b": 552,
+  "active_params_b": 16,
+  "experts": 384,
+  "active_experts": 6,
+  "shared_expert": true,
+  "layers": 40,
+  "attention": "CSA2 压缩稀疏注意力（Full / Reindex / Reuse 三种静态模式）+ 分层稀疏索引器 + FP4 主 KV 缓存",
+  "notes": "Causal Encoder-Decoder（CED）：40 层拆成 20 层因果编码器 + 20 层解码器，解码器的全局 KV 缓存由编码器末层隐状态投影而来，因此 prefill 每 token 只激活 8B、decode 16B。每 MoE 层 1 个共享专家 + 384 个路由专家，每 token 激活 6 个路由专家。全局 KV 缓存 890 字节/token，官方称约为 V4-Flash 的 1/4、V1 的 1/437；SWA Bounded Replay 把持久化 KV 压到 V4-Flash 的约 1/8。另含 Engram 条件记忆（196B 参数，按 token 稀疏查表，不在 552B 骨干内）与 DSpark 投机解码。预训练 45T 多模态 token，稀疏注意力在 64K 序列长度训练、在 34T token 处扩到 1M。reasoning effort 为 1–100 的连续整数。注意：HF 侧边栏显示 763B、权重分片合计约 510GB，与 552B 骨干口径不同，容量规划前请看 config。"
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 393216
+ },
+ "memory": {
+  "weight_gb": {},
+  "kv_per_token_kib": 0.87,
+  "kv_note": "官方给出全局 KV 缓存 890 字节/token（FP4 主 KV，E2M1 格式、每 16 通道一个 E4M3 scale），约为 DeepSeek-V4-Flash 的 1/4。",
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "权重分片约 510GB，已量化发布；vLLM / SGLang 已有多卡部署路径",
+  "estimated": true
+ },
+ "pricing": {
+  "input_per_m": 0.15,
+  "output_per_m": 0.6,
+  "currency": "USD",
+  "source": "DeepSeek 官方定价页",
+  "as_of": "2026-09-28",
+  "note": "API id deepseek-flash。表内为非高峰价，缓存命中输入 $0.003；高峰价整体翻倍（$0.30 / $1.20 / $0.006），高峰时段为周一至周五 01:00–04:00 与 06:00–10:00 UTC"
+ },
+ "links": {
+  "official": "https://www.deepseek.com/en/news/deepseek-v4-1-flash/",
+  "hf": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+  "pricing": "https://api-docs.deepseek.com/quick_start/pricing",
+  "paper": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash/blob/main/DeepSeek_V41_Tech_Report.pdf"
+ },
+ "copy": {
+  "one_liner": "把 KV 缓存压到 890 字节/token 的 MIT 开源多模态 MoE，agent 长跑成本杀手。",
+  "highlights": [
+   "Terminal-Bench 2.1 90.6%、DeepSWE v1.1 74.2%、AutomationBench 54.8%、CyberGym 88.1% 均超过官方对照表里的 Opus 5.0（89.1 / 74.0 / 50.3）（官方模型卡，max effort）",
+   "全局 KV 缓存 890 字节/token，官方称约为 V4-Flash 的 1/4、初代 V1 的 1/437；prefill 每 token 只激活 8B 参数",
+   "MIT 许可、权重无门槛发布，原生多模态（图像 + 文本输入），1M 上下文 / 384K 最大输出",
+   "API 非高峰价 $0.15 / $0.60，缓存命中输入 $0.003"
+  ],
+  "pitfalls": [
+   "参数量有三个口径：官方骨干 552B、加上 Engram 条件记忆约 748B、HF 侧边栏显示 763B，权重分片合计约 510GB（已量化）。做容量规划别直接用 552B",
+   "高峰时段（周一至周五 01:00–04:00 与 06:00–10:00 UTC）所有费率精确翻倍，按非高峰价做预算会严重低估",
+   "长时程通用 agent 仍落后：Terminal-Bench 3.0 30.0% 与 4.0 31.2% 都明显低于 Opus 5 的 43.3% / 51.8%；HLE 36.8% 也低于 V4-Pro 的 42.7%",
+   "Engram 196B 条件记忆官方未给出每 token 激活量，也无第三方验证；不是单机能跑的模型（V4-Flash 284B 尚可单节点，这一版不行）",
+   "llama.cpp / Ollama 暂无对应路径，约 510GB 的检查点在消费级硬件上基本无解"
+  ],
+  "logic_ability": "工程型推理是强项、考试型推理反而退步，这个反差是这一版的特征。agent 类：Terminal-Bench 2.1 90.6% 是官方对照表第一，DeepSWE v1.1 74.2% 微超 Opus 5，AutomationBench 54.8% 与 Agent's Last Exam 31.8% 都是表内最高，Codeforces Rating 3471 超过 V4-Pro 的 3348。考试类：GPQA Diamond 90.9% 低于 V4-Pro 的 92.4% 与 GPT-5.6 Sol 的 94.1%，HLE 36.8% 更是全表偏低。架构上的取舍很清楚——为输入密集的 agent 负载优化 prefill 成本，代价是深度知识推理没跟上。",
+  "best_for": [
+   "长会话、输入密集的编码 agent",
+   "自建部署的成本敏感场景（MIT）",
+   "网络安全防御类任务（CyberGym 88.1%）"
+  ],
+  "not_for": [
+   "单机 / 消费级硬件自建",
+   "深度知识推理与竞赛型考试任务（看 V4-Pro）",
+   "开放式长时程通用 agent"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal-Bench 2.1 90.6%、Terminal-Bench 3.0 30.0%、Terminal-Bench 4.0 31.2%、DeepSWE v1.1 74.2%、NL2Repo-Bench 64.0、ProgramBench 20.3%（官方模型卡，max effort，DeepSeek Harness Minimal 模式）。",
+  "reasoning": "GPQA Diamond 90.9%、HLE 36.8%（纯文本子集 39.1%）、HLE 带工具 63.9%（官方模型卡）。",
+  "math": "Codeforces Rating 3471、MathArena Apex 65.6%（官方模型卡）。",
+  "agent": "AutomationBench 54.8%、Agent's Last Exam 31.8%、CyberGym 88.1%、SEC-Bench Pro 62.8%、ExploitGym 15.3%（官方模型卡）。",
+  "multimodal": "基座 MMMU-Pro 56.5%、DocVQA 95.6%（官方）；指令版 Chartography 带工具 78.9%、BabyVision 带工具 89.6%。",
+  "chinese": "基座 C-Eval 92.1%（官方）；中文顶级。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "Transformers"
+  ],
+  "finetune": "支持（MIT）",
+  "zh_docs": "有"
+ },
+ "complete": false
+}

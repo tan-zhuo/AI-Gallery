@@ -1,0 +1,86 @@
+{
+ "id": "muse-spark-1-3",
+ "name": "Muse Spark 1.3",
+ "name_zh": "Meta Muse Spark 1.3",
+ "aliases": [
+  "muse-spark-1.3",
+  "Muse Spark 1.3"
+ ],
+ "vendor": "Meta",
+ "family": "Muse Spark",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-02",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方未公布参数量与结构。1M 上下文，输入支持文本 / 图像 / 视频。发布时公开可用档位只到 xhigh，更高的 max 档要等 Meta 完成额外安全测试；官方发布记分卡用的正是 max 档，即当天开发者调不到的那一档。Meta 路线图上列有 Muse Spark 开源权重发布，但未给日期。"
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 1.25,
+  "output_per_m": 4.25,
+  "currency": "USD",
+  "source": "Meta Model API 定价（dev.meta.ai）",
+  "as_of": "2026-09-28",
+  "note": "与 1.2 同价，缓存输入 $0.15。另有 Contributor 档 $0.10 / $0.20、缓存输入 $0.002，代价是 Meta 可用你的提示与回复训练后续模型"
+ },
+ "links": {
+  "official": "https://research.meta.ai/blog/introducing-muse-spark-1-3",
+  "pricing": "https://dev.meta.ai"
+ },
+ "copy": {
+  "one_liner": "五个月里第四版 Muse Spark，同价、少烧 token，Contributor 档白菜价。",
+  "highlights": [
+   "Meta 工程实测相比 1.2 少约 20% 工具调用、少约 25% token；官方称这是 Muse Spark 在编码与 agent 上最大的一次跃升",
+   "标准价与 1.2 持平（$1.25 / $4.25），Contributor 档 $0.10 / $0.20 是同能力段位里最低的一档",
+   "1M 上下文，输入支持文本 / 图像 / 视频；改进点集中在复杂指令遵循、多任务与与用户协作"
+  ],
+  "pitfalls": [
+   "官方发布记分卡用的是 max 档，而 max 档发布时还被安全测试挡着——开发者当天能调的最高只有 xhigh，记分卡与可用档位不是一回事",
+   "Contributor 档便宜的代价是 Meta 可用你的提示与回复训练后续模型；Meta AI 负责人称已有两位数百分比的程序员在用这一档",
+   "权重仍是闭源，Meta 只是在路线图上列了开源发布、没给日期",
+   "按标准价算 AA 智能指数单任务 $0.55，比 1.2 的约 $0.40 更贵：AA 实测 1.3 xhigh 在 agent 测试里比 1.2 多用约 57% 输入、8% 输出 token"
+  ],
+  "logic_ability": "这一版的主题是「可用性」而不是峰值分数：官方叙述围绕撑住长线程、与用户协作、以及知道自己什么时候卡住了。Meta 自己的工程数据（少 20% 工具调用、少 25% token）是相对 1.2 的效率提升，不是与其他厂商的横向对比。注意第三方观察到的反向信号——AA 实测 xhigh 档反而比 1.2 更费 token，单任务成本从约 $0.40 升到 $0.55；Meta 的省 token 结论来自 max 档。硬编码 agent 任务上，同周更新的三家（Meta、Google、阿里）都没能在 TerminalBench / DeepSWE 类基准上越过 Claude Opus 5。",
+  "best_for": [
+   "长线程 agent 与协作式编码",
+   "愿意用数据换价格的 Contributor 档用户",
+   "多模态输入（含视频）的 agent 任务"
+  ],
+  "not_for": [
+   "需要自建部署（权重闭源）",
+   "需要 max 档能力的生产负载（发布时未开放）",
+   "数据不能用于厂商训练的合规场景（别用 Contributor 档）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "官方称编码与 agent 任务为历史最大跃升；Meta 工程实测相比 1.2 少约 20% 工具调用、少约 25% token（官方，记分卡基于 max 档）。",
+  "agent": "改进集中在复杂指令遵循、多任务与用户协作（官方）。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

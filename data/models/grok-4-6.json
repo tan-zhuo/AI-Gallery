@@ -14,9 +14,9 @@
  "license_commercial": true,
  "openness": "api-only",
  "weights_available": false,
- "status": "current",
+ "status": "superseded",
  "released_at": "2026-08-12",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-09-28",
  "modalities": [
   "text",
   "image",
@@ -159,5 +159,6 @@
     "multimodal": "テキスト + 画像入力、テキスト出力。音声・動画なし。"
    }
   }
- }
+ },
+ "superseded_by": "grok-4-7"
 }

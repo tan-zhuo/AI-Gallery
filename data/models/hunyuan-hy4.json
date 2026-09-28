@@ -1,0 +1,100 @@
+{
+ "id": "hunyuan-hy4",
+ "name": "Hunyuan Hy4 (preview)",
+ "name_zh": "腾讯混元 Hy4 预览版",
+ "aliases": [
+  "Hy4",
+  "hunyuan-hy4",
+  "tencent/Hy4"
+ ],
+ "vendor": "Tencent",
+ "vendor_zh": "腾讯",
+ "family": "Hunyuan",
+ "license": "Apache-2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/tencent/Hy4",
+ "status": "preview",
+ "released_at": "2026-08-28",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "770B",
+  "active_params": "49B",
+  "total_params_b": 770,
+  "active_params_b": 49,
+  "notes": "稀疏 MoE，770B 总参数 / 49B 激活，1M+ 上下文，纯文本。官方同时发布 BF16 与 FP8 变体及量化工具；其自研 Sherry 量化把权重从约 1.5 TB 压到 214 GB（2.38 bit/权重）。腾讯称 Hy4 参与了自身开发，自主优化推理栈带来 31.8% 吞吐提升（厂商单方面说法，无第三方验证）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M+"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 1540,
+   "fp8": 770
+  },
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "FP8 约 770 GB，需 8 卡 B300 或 16 卡 B200 级整机；Sherry 2.38-bit 量化约 214 GB",
+  "estimated": true
+ },
+ "pricing": {
+  "currency": "USD",
+  "source": "腾讯云 TokenHub",
+  "as_of": "2026-09-28",
+  "note": "官方 API 定价未在公开公告中给出（第三方报道 $0.83 / $2.50，本站不作为官方数据收录）。可自建，或经腾讯云 TokenHub 调用"
+ },
+ "links": {
+  "official": "https://huggingface.co/tencent/Hy4",
+  "hf": "https://huggingface.co/tencent/Hy4"
+ },
+ "copy": {
+  "one_liner": "Apache-2.0 的 770B 前沿级开源权重，许可最宽松、门槛也最高。",
+  "highlights": [
+   "Apache-2.0 + 770B / 49B 激活 + 1M+ 上下文，是目前许可最宽松的前沿规模开源模型",
+   "BF16 与 FP8 同时发布，另带量化工具；Sherry 量化把 1.5 TB 压到 214 GB（2.38 bit/权重）",
+   "腾讯内部 203 项工程任务盲测得 2.99 / 4.00（同一对照里 GLM-5.3 为 2.92）",
+   "镜像齐全：Hugging Face、ModelScope、GitCode、CNB；Transformers / vLLM / SGLang 都有部署路径"
+  ],
+  "pitfalls": [
+   "是 preview 而非正式版，且纯文本无多模态",
+   "自建门槛极高：FP8 约 770 GB，要 8 卡 B300 或 16 卡 B200 级整机，没有可用的小尺寸版本",
+   "官方公告未给出 API 定价，第三方报道的数字本站不收；能力数据目前主要是腾讯自家盲测，缺第三方复测",
+   "2-bit 量化虽可用，但社区经验是会掉多语言等能力，上生产前要按自己的用例实测",
+   "「Hy4 参与自身开发、自主优化推理栈带来 31.8% 吞吐提升」是厂商单方面说法，无第三方验证"
+  ],
+  "logic_ability": "目前公开可验证的能力证据主要是腾讯自己的 203 项工程任务盲测（2.99 / 4.00，同对照下 GLM-5.3 为 2.92），第三方复测尚未跟上，因此本条目不给横向排名。真正的差异化在许可与规模的组合：同规模级别里，Kimi K3 与 GLM-5.3 都换成了带营收门槛的自定义许可，Hy4 是 Apache-2.0。对能自建整机、且在意许可洁净度的团队，这是当前唯一的前沿规模选项。",
+  "best_for": [
+   "对许可洁净度有硬要求的自建部署",
+   "有整机算力的私有化前沿推理",
+   "中文工程类任务"
+  ],
+  "not_for": [
+   "单机 / 消费级硬件",
+   "多模态任务",
+   "需要稳定正式版与第三方复测数据的选型"
+  ]
+ },
+ "capability_notes": {
+  "coding": "腾讯内部 203 项工程任务盲测 2.99 / 4.00（厂商自测，同对照 GLM-5.3 为 2.92）。",
+  "chinese": "中文顶级（腾讯自研，产品线含 WorkBuddy / CodeBuddy / 元宝 / ima）。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "Transformers"
+  ],
+  "finetune": "支持（Apache-2.0）",
+  "zh_docs": "有"
+ },
+ "complete": false
+}

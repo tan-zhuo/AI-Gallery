@@ -1,0 +1,94 @@
+{
+ "id": "gemini-3-8-flash",
+ "name": "Gemini 3.8 Flash",
+ "name_zh": "Gemini 3.8 Flash",
+ "aliases": [
+  "gemini-3.8-flash",
+  "Gemini 3.8 Flash"
+ ],
+ "vendor": "Google",
+ "family": "Gemini 3",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-02",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。模型卡称其为 Gemini 3.7 Flash 的「下一次迭代」，同一架构族，提升归因于「在长周期 agent 循环上训练、递归评估并精炼底层模型」。API id gemini-3.8-flash；thinking 三档 low/medium/high（默认 medium），思考 token 按输出计费；输入含文本 / 图像 / 音频 / 视频 / PDF，输出文本；computer use 为预览；不支持 Live API。"
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 0.75,
+  "output_per_m": 3.75,
+  "currency": "USD",
+  "source": "Google 官方公告（blog.google）",
+  "as_of": "2026-09-28",
+  "note": "与 3.7 Flash 同为引导期价格，2026-12-31 到期；2027-01-01 起标准价 $1.50 / $7.50。思考 token 按输出计费"
+ },
+ "links": {
+  "official": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
+  "pricing": "https://ai.google.dev/gemini-api/docs/pricing",
+  "paper": "https://deepmind.google/models/model-cards/gemini-3-8-flash/"
+ },
+ "copy": {
+  "one_liner": "Flash 价位摸到前沿：Terminal-Bench 2.1 89.4%，输出只要 $3.75。",
+  "highlights": [
+   "Terminal-Bench 2.1 89.4%（3.7 Flash 85.8%、Opus 5 89.1%）、DeepSWE v1.1 73.7%（Opus 5 74.0%）、OSWorld 2.0 59.0%（官方模型卡）",
+   "Vals Finance Agent v2 61.4% 与 Harvey 法律 agent 10.0% 在官方对照表里领先所有列出的模型，包括 Opus 5 与 GPT-5.6 Sol",
+   "价格一分未动，仍是 $0.75 / $3.75，1M 上下文 + 65K 输出，输入支持文本 / 图像 / 音频 / 视频 / PDF"
+  ],
+  "pitfalls": [
+   "引导期价格 2026-12-31 到期，2027-01-01 输入输出双双翻倍到 $1.50 / $7.50 —— 这是写在官方脚注里的硬日期",
+   "长时程通用 agent 仍是短板：Terminal-Bench 4.0 只有 19.1%（Opus 5 为 51.8%），GDPval-AA v2 1545 Elo（Opus 5 为 1824）",
+   "Google 两份官方文档对同一项 Terminal-Bench 2.1 给出不同数字（模型卡 89.4% vs 开发者指南 90.8%），本站取模型卡口径",
+   "官方明确提示 3.8 Flash「更用力干活」，高 effort 下可能消耗更多 token —— 同单价不等于同账单",
+   "Gemini 3.8 Flash Cyber 为 Fairwind 计划内受限变体，无公开定价与 API id，本站未收录"
+  ],
+  "logic_ability": "这一版把「有边界的 agent 任务」推到了前沿水平，而「开放式长时程任务」还是 Flash 水平——这条界线值得记住。前者：Terminal-Bench 2.1 89.4% 与 Opus 5 的 89.1% 打平，DeepSWE v1.1 73.7% 差 Opus 5 仅 0.3 pp，HLE-Verified 54.9% 略高于 Opus 5 的 54.4%。后者：Terminal-Bench 4.0 19.1% 对 Opus 5 的 51.8%，是官方表里最宽的差距；OSWorld 2.0 落后 16 pp；知识工作 Elo 差近 280 分。而输出单价是 Opus 5 的 15%。",
+  "best_for": [
+   "有明确边界的编码 agent（成本敏感）",
+   "金融 / 法律等垂直 agent 工作流",
+   "长上下文多模态解析（含音频与视频）"
+  ],
+  "not_for": [
+   "开放式长时程通用 agent（看 Opus 5.5 / GPT-6 Astra）",
+   "计算机使用为核心的任务",
+   "需要私有化部署的合规场景"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal-Bench 2.1 89.4%、DeepSWE v1.1 73.7%、Terminal-Bench 4.0 19.1%（官方模型卡）；开发者指南另给 SWE-Bench Pro 61.6%、SWE-Atlas 51.9%。",
+  "reasoning": "HLE-Verified 54.9%（官方模型卡）；开发者指南的 HLE 45.4% 为不同测试集，非同一口径。",
+  "agent": "OSWorld 2.0 partial 59.0%、Vals Finance Agent v2 61.4%、Harvey 法律 agent all-pass 10.0%、τ³-bench Banking 38.1%（官方）。",
+  "knowledge": "GDPval-AA v2 1545 Elo（官方模型卡）。",
+  "multimodal": "CharXiv Reasoning 86.2%（官方）；输入支持文本 / 图像 / 音频 / 视频 / PDF。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": false
+}

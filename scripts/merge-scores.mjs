@@ -4,6 +4,7 @@ import { AA, AA_TBV21, ZH } from './aa-2026-08.mjs'
 import { rowsHist } from './hist-scores.mjs'
 const AS_OLD = '2025-12-20'
 const AS_NEW = '2026-08-28'
+const AS_SEP = '2026-09-28'
 const SRC = {
   arena: { source: 'LMArena Text (style control)', url: 'https://lmarena.ai/leaderboard/text', evidence: 'independent' },
   aa: { source: 'Artificial Analysis Intelligence Index v3', url: 'https://artificialanalysis.ai/leaderboards/models', evidence: 'independent' },
@@ -90,8 +91,16 @@ const rowsNew = [
   ['command-a-plus', null, 23, null, null, null, null, null, null, null, null, 'Command A+ 模型卡', 'https://huggingface.co/CohereLabs/command-a-plus-05-2026'],
   ['granite-4-2-30b', null, 24, null, 75.8, 66.4, null, 89.2, null, null, null, 'Granite 4.2 30B 模型卡', 'https://huggingface.co/ibm-granite/granite-4.2-30b'],
 ]
+// ---- 2026-09 快照（新增层，不覆盖 AS_NEW）。只收官方公告 / 模型卡里能对上本站列口径的数字 ----
+// 9 月新机型多数只公布 Terminal-Bench 4.0、DeepSWE、GDPval-AA 等本站无对应列的基准，
+// 混进 terminal_bench（本站为 2.x 口径）会让总榜跨版本比较，因此宁缺不填。
+const rowsSep = [
+  ['claude-fable-5-1', null, null, null, null, null, 60.9, null, null, null, null, 'Anthropic 发布公告（HLE 无工具）', 'https://www.anthropic.com/claude-fable-and-mythos-5-1'],
+  ['gemini-3-8-flash', null, null, null, null, null, null, null, null, 89.4, null, 'Google DeepMind 模型卡（Terminal-Bench 2.1）', 'https://deepmind.google/models/model-cards/gemini-3-8-flash/'],
+  ['deepseek-v4-1-flash', null, null, null, null, 90.9, 36.8, null, null, 90.6, null, 'DeepSeek-V4.1-Flash 模型卡（max effort，Terminal-Bench 2.1）', 'https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash'],
+]
 // ---- 历史模型（2023–2025-08）：每行第 14 个元素为 as_of ----
-const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
+const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
 const keys = ['arena_text', 'aa_index', 'swe_verified', 'livecodebench', 'gpqa_diamond', 'hle', 'aime_2025', 'tau2_bench', 'terminal_bench', 'mmmu']
 const units = { arena_text: 'elo', aa_index: 'index' }
 const out = []

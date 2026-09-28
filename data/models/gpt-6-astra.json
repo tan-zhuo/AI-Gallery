@@ -1,0 +1,93 @@
+{
+ "id": "gpt-6-astra",
+ "name": "GPT-6 Astra",
+ "name_zh": "GPT-6 旗舰",
+ "aliases": [
+  "gpt-6-astra",
+  "gpt-6",
+  "GPT-6",
+  "Astra"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-6",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-03",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方接口特性：reasoning.effort 五档 low/medium/high/xhigh/max；1,050,000 上下文（最大输入 922K、最大输出 128K）；知识截止 2026-04-30；模态为文本 + 图像输入、文本输出。生产版限制了部分网络安全能力，完整能力走验证计划。"
+ },
+ "context": {
+  "max_tokens": 1050000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 10,
+  "output_per_m": 50,
+  "currency": "USD",
+  "source": "OpenAI API 模型页",
+  "as_of": "2026-09-28",
+  "note": "缓存输入 $1.00、缓存写入 $12.50；为 GPT-5.6 Sol 促销价（$4 / $20）的 2.5 倍"
+ },
+ "links": {
+  "official": "https://openai.com/index/gpt-6-astra/",
+  "pricing": "https://developers.openai.com/api/docs/pricing",
+  "paper": "https://deploymentsafety.openai.com/gpt-6-astra/model-safety"
+ },
+ "copy": {
+  "one_liner": "OpenAI 换代旗舰，首个触发「关键级」网络安全门槛的模型。",
+  "highlights": [
+   "结束 GPT-5 代际，官方称在计算机使用、浏览、软件工程、网络安全、科研、专业工作上全面 SOTA",
+   "ARC-AGI-3 在 OpenAI Provider Adapter harness 下 99.9%；ARC Prize 自家 Standard harness 复测为 62.7%，两种口径都是该系列最高验证分",
+   "1.05M 上下文 + 128K 输出，effort 五档到 max；Terminal-Bench-Science 0.1 64.6%（官方，高于 Opus 5.5 的 58.7%）"
+  ],
+  "pitfalls": [
+   "$10 / $50 是 GPT-5.6 Sol 促销价的 2.5 倍，也是同期 Opus 5.5（$4 / $20）的 2.5 倍",
+   "OpenAI Preparedness Framework 下首个达到网络安全「Critical」级的模型：无护栏测试中可在少量人工介入下发现并利用真实系统漏洞；生产版直接拒答部分安全类提问",
+   "官方在同一篇公告里承认其内部推理链的可监控性相对 GPT-5.6 有可测量的下降",
+   "9 月 3 日起分批放量（先可信访问计划，再 Pro/Enterprise，最后 Plus/Business），上线初期出现过访问补偿"
+  ],
+  "logic_ability": "交互式探索推理是这一代补上的短板：ARC-AGI-3 在 2026-03-25 上线时全部前沿模型都在 1% 以下、而普通人能 100% 通关，Astra 把这一项推到 62.7%（ARC Prize Standard harness）～99.9%（OpenAI 自家 harness）。科研 agent 上 Terminal-Bench-Science 0.1 64.6% 是目前公开最高。但在 Anthropic 公布的对照表里，Terminal-Bench 4.0 57.9%（high）与 FrontierCode 53.3% 都被 Opus 5.5 反超，且 Opus 5.5 单任务成本只有其 1/5～2/5。",
+  "best_for": [
+   "计算机使用与浏览类 agent",
+   "科研型长时程任务",
+   "获授权的网络安全防御工作"
+  ],
+  "not_for": [
+   "成本敏感的量产负载（看 GPT-6 Sol / Luna）",
+   "未获验证的攻防安全场景",
+   "需要私有化部署的合规场景"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal-Bench 4.0 57.9%（high，OpenAI 公布，经 Anthropic 对照表转引）、FrontierCode v1.1 Main 53.3%。",
+  "reasoning": "ARC-AGI-3 62.7%（ARC Prize Standard harness 验证）/ 99.9%（OpenAI Provider Adapter harness）；HLE 带工具 57.2%。",
+  "agent": "AutomationBench 41.4%（Zapier 公开榜）；Terminal-Bench-Science 0.1 64.6%（官方）。",
+  "knowledge": "GDPval-AA v2.1 1542 Elo（Anthropic 对照表）。",
+  "multimodal": "支持文本 + 图像输入；官方未公布 MMMU。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": false
+}

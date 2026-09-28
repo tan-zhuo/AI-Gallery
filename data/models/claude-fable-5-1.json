@@ -1,0 +1,150 @@
+{
+ "id": "claude-fable-5-1",
+ "name": "Claude Fable 5.1",
+ "name_zh": "Claude Fable 5.1（Mythos 级公开版）",
+ "aliases": [
+  "claude-fable-5-1",
+  "Fable 5.1",
+  "anthropic.claude-fable-5-1"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 5",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-01",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。与 Claude Mythos 5.1 为同一底层模型，Fable 5.1 额外挂载安全分类器；Mythos 5.1 仅向受信任访问计划开放。同期推出 Enterprise Frontier Safeguards（EFS），允许企业把监控数据留在自己掌控的基础设施内。"
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 10,
+  "output_per_m": 50,
+  "currency": "USD",
+  "source": "Anthropic 官方定价页（platform.claude.com）",
+  "as_of": "2026-09-28",
+  "note": "缓存读 $0.25（降价 75%，倍率 0.025×，全系唯一例外）；5 分钟缓存写 $12.50、1 小时 $20 不变；Batch 五折 $5 / $25。官方称典型负载总成本降约 25%，重度 agent 负载最高约 45%"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/claude/fable",
+  "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "paper": "https://www.anthropic.com/claude-fable-and-mythos-5-1"
+ },
+ "copy": {
+  "one_liner": "Fable 5 的同价升级：缓存读直降 75% 到 $0.25，长 agent 会话便宜一大截。",
+  "highlights": [
+   "缓存读 $1 → $0.25，倍率 0.025×，是 Anthropic 全系唯一不按 0.1× 计价的模型",
+   "缓存读比 Opus 5 的 $0.50 还便宜一半，尽管基础输入价是它的两倍",
+   "官方口径：典型负载成本降约 25%，重度 agent 负载最高约 45%；$10 / $50 与 1M 上下文不变"
+  ],
+  "pitfalls": [
+   "只有缓存读降了，输入 / 输出 / 缓存写一分没动 —— 省多少完全取决于缓存读在你账单里的占比，上限 75%",
+   "缓存写仍是 $12.50 / $20，写读比高达 50:1（其他模型 12.5:1），一次缓存未命中相当于 50 次读取",
+   "短会话、每次重建上下文的请求响应式服务吃不到这个优惠，仍按 Opus 5 两倍的价钱付"
+  ],
+  "logic_ability": "承接 Fable 5 的能力定位，面向长周期高自主 agent。官方对照表：Terminal-Bench-Science 0.1 52.6（Fable 5 为 24.7、Opus 5 为 29.0）、Terminal-Bench 4.0 55.8、CursorBench 4.0 51.8、GDPval-AA v2 1853 Elo，在 GDPval 与 AA-Briefcase 上领先 Grok 4.7。注意这些是 4.0 版基准，与站内 Terminal-Bench 2.x 列不可直接比较。Anthropic 官方文档仍建议多数负载先用 Opus 5，Fable 留给高强度推理与长周期 agent。",
+  "best_for": [
+   "长会话、高缓存命中率的 agent 循环",
+   "仓库级代码迁移与重构",
+   "上下文前缀远大于每轮输出的场景（前缀/输出比 > 100 时相对 Opus 5 更划算）"
+  ],
+  "not_for": [
+   "短对话、每次重建上下文的请求响应式服务",
+   "缓存命中率低的负载（写读比 50:1 会放大损失）",
+   "需要 ZDR 或私有化部署的合规场景"
+  ]
+ },
+ "capability_notes": {
+  "coding": "CursorBench 4.0 51.8、Terminal-Bench 4.0 55.8（Anthropic 官方对照表），均高于 Grok 4.7。",
+  "agent": "官方定位长周期 agent；缓存读降价后长会话成本相对 Opus 5 的溢价从 2× 收窄到约 22%。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "i18n": {
+  "en": {
+   "name_zh": "Claude Fable 5.1 (public Mythos-class)",
+   "one_liner": "Same-price upgrade over Fable 5: cache reads cut 75% to $0.25, making long agent sessions much cheaper.",
+   "highlights": [
+    "Cache reads $1 → $0.25, a 0.025x multiplier — the only model in Anthropic's lineup not priced at 0.1x",
+    "A cache read costs half of Opus 5's $0.50 despite Fable's base input price being double",
+    "Official figures: ~25% lower cost on typical workloads, up to ~45% on highly agentic ones; $10 / $50 and 1M context unchanged"
+   ],
+   "pitfalls": [
+    "Only cache reads changed — input, output and cache writes are untouched, so your saving is 75% of whatever share cache reads held; the ceiling is 75%",
+    "Cache writes remain $12.50 / $20, a 50:1 write-to-read ratio versus 12.5:1 elsewhere, so one miss costs 50 reads",
+    "Short sessions and request-response services that rebuild context each call see no benefit and still pay 2x Opus 5"
+   ],
+   "logic_ability": "Inherits Fable 5's positioning for long-horizon, high-autonomy agents. Anthropic's own table: Terminal-Bench-Science 0.1 52.6 (Fable 5 at 24.7, Opus 5 at 29.0), Terminal-Bench 4.0 55.8, CursorBench 4.0 51.8, GDPval-AA v2 1853 Elo, ahead of Grok 4.7 on GDPval and AA-Briefcase. These are 4.0-series benchmarks and are not directly comparable to this site's Terminal-Bench 2.x column. Anthropic's own docs still recommend starting with Opus 5 for most workloads.",
+   "best_for": [
+    "Long agent loops with high cache hit rates",
+    "Repo-level code migration and refactoring",
+    "Workloads where the cached prefix far exceeds per-turn output (prefix/output > 100 beats Opus 5)"
+   ],
+   "not_for": [
+    "Short chats and request-response services that rebuild context each call",
+    "Low cache-hit workloads, where the 50:1 write-to-read ratio amplifies losses",
+    "Compliance scenarios needing ZDR or on-prem deployment"
+   ],
+   "capability_notes": {
+    "coding": "CursorBench 4.0 51.8 and Terminal-Bench 4.0 55.8 (Anthropic's own comparison table), both above Grok 4.7.",
+    "agent": "Positioned for long-horizon agents; after the cache cut, the long-session premium over Opus 5 narrows from 2x to about 22%.",
+    "chinese": "Chinese usable; no independent Chinese evaluation."
+   }
+  },
+  "ja": {
+   "name_zh": "Claude Fable 5.1（Mythos 級公開版）",
+   "one_liner": "Fable 5 と同価格の改良版。キャッシュ読みが 75% 下がり $0.25、長時間 agent セッションが大幅に安くなる。",
+   "highlights": [
+    "キャッシュ読みが $1 → $0.25、倍率 0.025×。Anthropic 全系列で 0.1× でない唯一の例外",
+    "基本入力価格は 2 倍なのに、キャッシュ読みは Opus 5 の $0.50 の半額",
+    "公式値：一般的な負荷で約 25%、高度に agent 的な負荷で最大約 45% のコスト削減。$10 / $50 と 1M コンテキストは不変"
+   ],
+   "pitfalls": [
+    "下がったのはキャッシュ読みのみ。入力・出力・キャッシュ書き込みは据え置きで、削減幅は請求に占めるキャッシュ読みの比率次第（上限 75%）",
+    "キャッシュ書き込みは $12.50 / $20 のまま。書き読み比は 50:1（他モデルは 12.5:1）で、1 回のミスが 50 回の読みに相当",
+    "短い会話や毎回コンテキストを再構築するリクエスト応答型サービスは恩恵を受けられず、Opus 5 の 2 倍を払い続ける"
+   ],
+   "logic_ability": "Fable 5 の位置づけを継承し、長期・高自律の agent 向け。公式対照表：Terminal-Bench-Science 0.1 52.6（Fable 5 は 24.7、Opus 5 は 29.0）、Terminal-Bench 4.0 55.8、CursorBench 4.0 51.8、GDPval-AA v2 1853 Elo。GDPval と AA-Briefcase で Grok 4.7 を上回る。いずれも 4.0 系基準で、本サイトの Terminal-Bench 2.x 列とは直接比較できない。Anthropic 公式文書は依然、多くの負荷では Opus 5 から始めることを推奨。",
+   "best_for": [
+    "キャッシュヒット率の高い長時間 agent ループ",
+    "リポジトリ規模のコード移行・リファクタリング",
+    "キャッシュ前置が 1 ターン出力を大きく上回る場面（前置/出力比 > 100 で Opus 5 より有利）"
+   ],
+   "not_for": [
+    "短い会話、毎回コンテキストを再構築するサービス",
+    "キャッシュヒット率が低い負荷（50:1 の比率が損失を増幅）",
+    "ZDR やオンプレ展開が必要なコンプライアンス用途"
+   ],
+   "capability_notes": {
+    "coding": "CursorBench 4.0 51.8、Terminal-Bench 4.0 55.8（Anthropic 公式対照表）、いずれも Grok 4.7 超。",
+    "agent": "長期 agent 向け。キャッシュ値下げ後、長セッションでの Opus 5 に対する割高幅は 2 倍から約 22% に縮小。",
+    "chinese": "中国語は利用可能。独立した中国語評価はなし。"
+   }
+  }
+ },
+ "complete": false
+}

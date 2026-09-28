@@ -1,0 +1,92 @@
+{
+ "id": "claude-opus-5-5",
+ "name": "Claude Opus 5.5",
+ "name_zh": "Claude 5.5 顶配",
+ "aliases": [
+  "claude-opus-5-5",
+  "Opus 5.5",
+  "anthropic.claude-opus-5-5"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 5.5",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-22",
+ "updated_at": "2026-09-28",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方接口特性：adaptive thinking 常开不可关闭，effort 五档 low/medium/high/xhigh/max，默认档从 Opus 5 的 high 下调为 medium；知识截止 2026-06；Batch API 加 output-300k-2026-03-24 beta 头可到 300K 输出；fast mode 最高 2.5× 速度（$8 / $40）。"
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 4,
+  "output_per_m": 20,
+  "currency": "USD",
+  "source": "Anthropic 发布公告",
+  "as_of": "2026-09-28",
+  "note": "比 Opus 5 单价低 20%；缓存读取 $0.20（Opus 5 为 $0.50）、缓存写入 $5.00；官方称默认档典型负载总成本低 40%。Fast mode $8 / $40"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/claude-opus-5-5",
+  "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "paper": "https://anthropic.com/claude-opus-5-5-system-card"
+ },
+ "copy": {
+  "one_liner": "Fable 5.1 级智能，比 Opus 5 便宜四成。",
+  "highlights": [
+   "Terminal-Bench 4.0 66.4%（Fable 5.1 55.8%、GPT-6 Astra 57.9%）、GDPval-AA v2.1 1846 Elo、HLE 带工具 67.7%（官方）",
+   "$4 / $20 比 Opus 5 低 20%，缓存读取 $0.20 低 60%，官方称典型负载总成本低 40%、输出速度快 30% 以上",
+   "官方自动化行为审计得分为 Anthropic 历史最佳；Gray Swan 提示注入测试中与 Fable 5.1 并列最低攻击成功率"
+  ],
+  "pitfalls": [
+   "官方自己提醒这个能力段位「基准差值已不再可靠指示真实差异」，并说自用体感里与 Fable 5.1 的差距比分数看起来更小",
+   "生物与网络安全能力已接近 Mythos 5.1，因此按 Fable 5.1 同级护栏部署；网络安全验证计划要「未来几周」才扩容",
+   "默认 effort 从 high 改成 medium，且 max_tokens 现在含思考 token——照 Opus 5 参数直接迁移会被截断",
+   "AutomationBench 40.0% 落后 GPT-6 Astra 的 41.4%（该项由 Zapier 跑，护栏拦截计失败）"
+  ],
+  "logic_ability": "这一代的卖点是每 token 效率而非峰值分数：官方在 FrontierCode 上以约 GPT-6 Astra 20% 的单任务成本胜出，Terminal-Bench 4.0 以约 40% 成本打平。工程实测例子密集且可检验——早期测试者用它在 3 小时内审计并修完 20 万行代码库（Opus 5 花了 20 小时、用了 2.5 倍 token），内部把 HAProxy 从 C 翻译到 Rust 用 9.5 小时、比 Fable 5.1 快且便宜 51%。知识工作上 18 次季报写作有 16 次通过「任何编造数字即失败」的严苛评分，而 Fable 5.1 与 Opus 5 一次都没通过。",
+  "best_for": [
+   "大规模代码迁移与仓库级审计",
+   "长时程自主 agent（成本敏感）",
+   "金融 / 咨询类知识工作"
+  ],
+  "not_for": [
+   "需要私有化部署的合规场景",
+   "未获验证的攻防安全与生物研究（走 Mythos 或验证计划）",
+   "极低单价的高并发清洗类任务（看 GPT-6 Luna）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal-Bench 4.0 66.4%（xhigh）、FrontierCode v1.1 Main 54.4%、CursorBench 4.0 57.8%（官方）。",
+  "reasoning": "HLE 带工具 67.7%、Terminal-Bench-Science 0.1 58.7%（官方）。",
+  "agent": "AutomationBench 40.0%（Zapier 运行）、OSWorld 2.0 partial 81.8%（官方）。",
+  "knowledge": "GDPval-AA v2.1 1846 Elo（Artificial Analysis 评测集，官方公布）。",
+  "multimodal": "Chartography 带工具 89.0%（官方）；支持文本 + 图像输入。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": false
+}
