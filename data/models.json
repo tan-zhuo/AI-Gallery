@@ -1627,6 +1627,101 @@
   }
  },
  {
+  "id": "claude-sonnet-5-5",
+  "name": "Claude Sonnet 5.5",
+  "name_zh": "Claude 5.5 中档",
+  "aliases": [
+   "claude-sonnet-5-5",
+   "Sonnet 5.5",
+   "anthropic.claude-sonnet-5-5"
+  ],
+  "vendor": "Anthropic",
+  "family": "Claude 5.5",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-09-28",
+  "updated_at": "2026-09-29",
+  "modalities": [
+   "text",
+   "image",
+   "tools",
+   "computer-use"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+   "type": "unknown",
+   "undisclosed": true,
+   "notes": "未披露。官方接口特性（platform.claude.com 模型总览，2026-09-29）：adaptive thinking，effort 五档 low/medium/high/xhigh/max，Claude API 默认 high，Claude Code 与各端应用默认 medium；知识截止与训练数据截止均为 2026-06；退役承诺不早于 2027-09-28。关思考不再用旧写法，需改用新的 between_tools 设置。"
+  },
+  "context": {
+   "max_tokens": 1000000,
+   "display": "1M",
+   "max_output": 128000
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false
+  },
+  "pricing": {
+   "input_per_m": 2,
+   "output_per_m": 10,
+   "currency": "USD",
+   "source": "Anthropic 发布公告 + 官方模型总览",
+   "as_of": "2026-09-29",
+   "note": "与 Sonnet 5 同价（$2 / $10），缓存读取 $0.20、缓存写入 $2.50；官方称同样工作所需 token 更少，单任务成本比 Sonnet 5 低最多 30%。Batch 五折"
+  },
+  "links": {
+   "official": "https://www.anthropic.com/claude-sonnet-5-5",
+   "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
+   "paper": "https://www.anthropic.com/claude-sonnet-5-5-system-card"
+  },
+  "copy": {
+   "one_liner": "$2 / $10 不变，Terminal-Bench 4.0 反超 Opus 5.5。",
+   "highlights": [
+    "Terminal-Bench 4.0 70.6%，高于 Opus 5.5 的 66.4%，而 Sonnet 5 只有 10.3%（官方）",
+    "GDPval-AA v2.1 1844 对 Opus 5.5 的 1846，AA-Briefcase v1.1 1811 对 1822，知识工作几乎打平单价两倍的旗舰（官方）",
+    "定价与 Sonnet 5 完全相同（$2 / $10，缓存读 $0.20），输出速度快 30% 以上，官方实测单任务成本低最多 30%"
+   ],
+   "pitfalls": [
+    "Artificial Analysis 实测 max 档每任务约 19.3 万输出 token——它测过的最高值，约为 Opus 5.5 的 1.6 倍、GPT-6 Astra 的 7 倍；单任务 $7.60 反而高于 Opus 5.5 的 $5.98，「单价便宜一半」不等于账单便宜",
+    "关思考的写法变了：原来 thinking off 的调用要改用新的 between_tools 设置才能迁到 5.5，照旧代码直接切会出问题（官方迁移指南）",
+    "首个带前沿级网络安全护栏的 Sonnet：高风险安全请求会「可见地」回落到 Sonnet 5，AA 观察到约 0.1% 任务触发回落，集中在 Terminal-Bench 4.0",
+    "首个带「推理提取」防蒸馏分类器的 Sonnet，preserved thinking 范围扩大——跨账号搬运会话（含 Claude Code 中途换号）行为有变",
+    "AA 的分数跑在预发布部署上，Anthropic 事后确认该版本有影响 structured outputs 的 bug，AA 表示会重跑",
+    "事实知识仍明显落后 Opus 5.5：AA-Omniscience 事实准确率 54% 对 66%，HLE 与 SciCode 也低约 6 分"
+   ],
+   "logic_ability": "这一代 Sonnet 的性质变了：它不再是「便宜版旗舰」，而是用更多 token 换到接近旗舰的分数。官方表里 Terminal-Bench 4.0 70.6% 直接反超 Opus 5.5 的 66.4%，FrontierCode 1.1 Main 在 Max 档 46.2%（Xhigh 52.1%）仍低于 Opus 5.5 的 54.4%，CursorBench 4.0 55.5% 距 Opus 5.5 的 57.8% 约两分。知识工作侧 GDPval-AA v2.1 与 AA-Briefcase v1.1 基本打平旗舰，而 Sonnet 5 在同两项只有 1449 / 1359。官方自己划的界线很清楚：开放式、需要持续判断的复杂工作，Opus 5.5 仍明显更强。失败模式是话太多——AA 记录的输出 token 是它测过最高的，低 effort 档反而在「智能 / 输出 token」权衡上被 GPT-6 Sol 压住。",
+   "best_for": [
+    "终端 / 工具型 agent（有边界、可批量）",
+    "高吞吐编码与 bug 修复",
+    "文档、幻灯片、表格类交付物"
+   ],
+   "not_for": [
+    "开放式长时程判断类工作（走 Opus 5.5）",
+    "输出 token 成本敏感的高并发场景",
+    "需要私有化部署的合规场景",
+    "未获验证的攻防安全研究（会回落到 Sonnet 5）"
+   ]
+  },
+  "capability_notes": {
+   "coding": "Terminal-Bench 4.0 70.6%、FrontierCode 1.1 Main 46.2%（Max）/ 52.1%（Xhigh）、CursorBench 4.0 55.5%（官方公告表）；AA 独立复测 Terminal-Bench 4.0 约 64%，为其榜上前列。",
+   "reasoning": "HLE 带工具 64.5%（官方，Opus 5.5 为 67.7%）；AA 智能指数 56（max 档，v4.3），仅落后 Opus 5.5 两分、居第二。",
+   "agent": "OSWorld 2.1 partial 80.1%（官方，Opus 5.5 为 81.8%）；AA 的 AutomationBench-AA 71% 略高于 Opus 5.5 的 70%。",
+   "knowledge": "GDPval-AA v2.1 1844 Elo、AA-Briefcase v1.1 1811 Elo（官方公告表）；AA-Omniscience 事实准确率 54%、幻觉率 47%（AA，Opus 5.5 为 66% / 59%）。",
+   "multimodal": "Chartography 无工具 61.6%（官方，Opus 5.5 为 64.4%）；官方称是首个仅凭截图通关 Pokémon Red 的 Sonnet。支持文本 + 图像输入。",
+   "chinese": "中文可用，缺少独立中文评测。"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "弱"
+  },
+  "complete": false
+ },
+ {
   "id": "claude-sonnet-5",
   "name": "Claude Sonnet 5",
   "name_zh": "Claude 5 中档",
@@ -1641,9 +1736,10 @@
   "license_commercial": true,
   "openness": "api-only",
   "weights_available": false,
-  "status": "current",
+  "status": "superseded",
+  "superseded_by": "claude-sonnet-5-5",
   "released_at": "2026-06-30",
-  "updated_at": "2026-08-28",
+  "updated_at": "2026-09-29",
   "modalities": [
    "text",
    "image",
@@ -12778,9 +12874,10 @@
   "openness": "open-weights",
   "weights_available": true,
   "weights_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
-  "status": "current",
+  "status": "superseded",
+  "superseded_by": "mimo-v2-6-flash",
   "released_at": "2026-04-22",
-  "updated_at": "2026-08-28",
+  "updated_at": "2026-09-29",
   "modalities": [
    "text",
    "image",
@@ -12823,11 +12920,12 @@
    "ref_hw_8x80gb": "FP8 多卡"
   },
   "pricing": {
-   "input_per_m": 0.119,
-   "output_per_m": 0.238,
+   "input_per_m": 0.14,
+   "output_per_m": 0.28,
    "currency": "USD",
-   "source": "第三方托管常见价（OpenRouter）",
-   "as_of": "2026-08-28"
+   "source": "小米 MiMo 开放平台官方定价页（海外美元档，模型 id mimo-v2.5）",
+   "as_of": "2026-09-29",
+   "note": "原记录的 $0.119 / $0.238 为 OpenRouter 第三方托管价，已改用官方定价页数字；缓存命中输入 $0.0028，国内档 ¥1.00 / ¥2.00"
   },
   "links": {
    "official": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
@@ -12965,6 +13063,238 @@
     }
    }
   }
+ },
+ {
+  "id": "mimo-v2-6-flash",
+  "name": "MiMo-V2.6-Flash",
+  "name_zh": "小米 MiMo-V2.6-Flash",
+  "aliases": [
+   "XiaomiMiMo/MiMo-V2.6-Flash-RL",
+   "mimo-v2.6-flash",
+   "MiMo V2.6 Flash"
+  ],
+  "vendor": "Xiaomi",
+  "vendor_zh": "小米",
+  "family": "MiMo",
+  "license": "MIT",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL",
+  "status": "current",
+  "released_at": "2026-09-22",
+  "updated_at": "2026-09-29",
+  "modalities": [
+   "text",
+   "image",
+   "video",
+   "audio",
+   "tools",
+   "computer-use"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "moe",
+   "total_params": "309B",
+   "active_params": "15B",
+   "total_params_b": 309,
+   "active_params_b": 15,
+   "experts": 256,
+   "active_experts": 8,
+   "shared_expert": false,
+   "layers": 48,
+   "hidden_size": 4096,
+   "kv_heads": 8,
+   "head_dim": 192,
+   "attention": "混合：39 层 128 滑窗 + 9 层全注意力，64 Q 头（SWA 8 KV / 全注意力 4 KV），QK 192 / V 128",
+   "notes": "首层全注意力 + 稠密 FFN，其余层交替 SWA / 全注意力，均为无共享专家的稀疏 MoE。与 Pro 共用 681M MiMo ViT 视觉编码器与 308M + 127M 音频编码器，全模态输入。5 层 SWA MTP 投机解码器（窗口 1024）。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false,
+   "ref_hw_80gb": "不可行",
+   "ref_hw_8x80gb": "官方 SGLang 示例为 tp8 / dp2，vLLM 示例 tp4",
+   "kv_note": "官方未公布自建显存需求，只给了推理并行参数"
+  },
+  "pricing": {
+   "input_per_m": 0.14,
+   "output_per_m": 0.28,
+   "currency": "USD",
+   "source": "小米 MiMo 开放平台官方定价页（海外美元档）",
+   "as_of": "2026-09-29",
+   "note": "与 V2.5 同价（官方称 V2.6 系列 API 价格不变），缓存命中输入 $0.0028、缓存写入限时免费；国内档 ¥1.00 / ¥2.00"
+  },
+  "links": {
+   "official": "https://mimo.mi.com/docs/en-US/news/latest/v2-6",
+   "hf": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL",
+   "paper": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL/blob/main/MiMo_V2_6_technical_report.pdf",
+   "pricing": "https://platform.xiaomimimo.com/static/docs/price/pay-as-you-go.md"
+  },
+  "copy": {
+   "one_liner": "$0.14 / $0.28 的 309B 全模态 MoE，MIT 许可，Terminal-Bench 2.1 87.6。",
+   "highlights": [
+    "MIT 许可，309B 总参 / 15B 激活，全模态输入 + 1M 上下文，$0.14 / $0.28",
+    "Terminal-Bench 2.1 87.6、AutomationBench v1.0.6 52.3、OSWorld-Verified 80.8，官方称全面超过上代旗舰 MiMo-V2.5-Pro（65.2 / 16.0）",
+    "CyberGym 95.1 比 Pro 的 94.0 还高（官方自建口径）；DeepSWE v1.1 从 SFT 基线 58.4 经 RL 提到 72.6"
+   ],
+   "pitfalls": [
+    "Terminal-Bench 4.0 只有 28.8，比 Pro 的 34.9 更低，离 Claude Opus 5 的 49.0 差距很大",
+    "攻防开发是明显短板：ExploitBench 25.3、ExploitGym 6.0、SEC Bench Pro 47.5，均远低于 Pro（47.9 / 17.8 / 66.3）",
+    "309B 总参依然要多卡，官方只给 tp8 / tp4 的推理参数，未公布自建显存需求",
+    "官方没给 GDPval-AA 数字（表里为空），也没给 GPQA / AIME / SWE-bench Verified 这类考试型基准",
+    "整张对比表由小米自己跑，属官方声明；AA 智能指数只公布了 Pro（46），Flash 的独立指数未见"
+   ],
+   "logic_ability": "定位是 V2.6 的效率档，能力形状与 Pro 同源、整体低一档：Terminal-Bench 2.1 87.6 对 Pro 的 89.9、DeepSWE v1.1 67.9 对 71.9、Toolathlon-Verified 73.6 对 76.9、JobBench 61.2 对 62.0——多数差距在 2~4 分内，价格却是 Pro 的三分之一左右。真正拉开的是安全攻防与更难口径：ExploitBench 25.3 对 47.9、Terminal-Bench 4.0 28.8 对 34.9。官方口径里它「全面超过 MiMo-V2.5-Pro」，对照表中 V2.5-Pro 的 Terminal-Bench 4.0 仅 1.5、AutomationBench 仅 16.0，这一代的跃升主要来自大规模混合 RL 而非换底座。",
+   "best_for": [
+    "高并发全模态 agent",
+    "超长上下文低成本批处理",
+    "需要 MIT 许可自建的中等规模部署"
+   ],
+   "not_for": [
+    "单机部署",
+    "攻防安全类任务（走 Pro 或闭源）",
+    "最难的长时程终端任务"
+   ]
+  },
+  "capability_notes": {
+   "coding": "DeepSWE v1.1 67.9、MiMo Code Bench 61.2、ProgramBench 26.0（官方模型卡）。",
+   "agent": "Terminal-Bench 2.1 87.6、Terminal-Bench 4.0 28.8、AutomationBench v1.0.6 52.3、Toolathlon-Verified 73.6、OSWorld-Verified 80.8、JobBench 61.2、Agents' Last Exam 27.6（官方模型卡）。",
+   "multimodal": "MiMo VisualCoding 71.5（官方自建基准）；图 / 视频 / 音频原生输入。",
+   "chinese": "强，国产模型，中文文档齐全。"
+  },
+  "ecosystem": {
+   "engines": [
+    "SGLang",
+    "vLLM"
+   ],
+   "finetune": "可微调（权重 MIT，官方另开源 RL 训练框架与任务环境）",
+   "zh_docs": "有"
+  },
+  "complete": false
+ },
+ {
+  "id": "mimo-v2-6-pro",
+  "name": "MiMo-V2.6-Pro",
+  "name_zh": "小米 MiMo-V2.6-Pro",
+  "aliases": [
+   "XiaomiMiMo/MiMo-V2.6-Pro-RL",
+   "mimo-v2.6-pro",
+   "mimo-v2.6-pro-ultraspeed",
+   "MiMo V2.6 Pro"
+  ],
+  "vendor": "Xiaomi",
+  "vendor_zh": "小米",
+  "family": "MiMo",
+  "license": "MIT",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL",
+  "status": "current",
+  "released_at": "2026-09-22",
+  "updated_at": "2026-09-29",
+  "modalities": [
+   "text",
+   "image",
+   "video",
+   "audio",
+   "tools",
+   "computer-use"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "moe",
+   "total_params": "1.02T",
+   "active_params": "42B",
+   "total_params_b": 1020,
+   "active_params_b": 42,
+   "experts": 384,
+   "active_experts": 8,
+   "shared_expert": false,
+   "layers": 70,
+   "hidden_size": 6144,
+   "kv_heads": 8,
+   "head_dim": 192,
+   "attention": "混合：60 层 128 滑窗 + 10 层全注意力，128 Q 头 / 8 KV 头，QK 192 / V 128",
+   "notes": "首层全注意力 + 稠密 FFN，其余层交替 SWA / 全注意力，均为无共享专家的稀疏 MoE。681M MiMo ViT 视觉编码器（28 层，24 SWA + 4 全）、308M AudioTokenizer + 127M 音频 patch 编码器，全模态输入。5 层 SWA MTP 投机解码器（窗口 1024），单次前向预测后续 7 个 token。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false,
+   "ref_hw_80gb": "不可行",
+   "ref_hw_8x80gb": "不足：官方 SGLang 示例为 2 节点、tp16 / ep16",
+   "kv_note": "官方未公布自建显存需求，只给了多节点推理参数（SGLang tp16 dp2 nnodes2 / vLLM tp8）"
+  },
+  "pricing": {
+   "input_per_m": 0.435,
+   "output_per_m": 0.87,
+   "currency": "USD",
+   "source": "小米 MiMo 开放平台官方定价页（海外美元档）",
+   "as_of": "2026-09-29",
+   "note": "与 V2.5-Pro 同价（官方称 V2.6 系列 API 价格不变），缓存命中输入 $0.0036、缓存写入限时免费；国内档 ¥3.00 / ¥6.00。开放平台另提供 UltraSpeed 模式，官方称最高 20× 推理速度"
+  },
+  "links": {
+   "official": "https://mimo.mi.com/docs/en-US/news/latest/v2-6",
+   "hf": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL",
+   "paper": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL/blob/main/MiMo_V2_6_technical_report.pdf",
+   "pricing": "https://platform.xiaomimimo.com/static/docs/price/pay-as-you-go.md"
+  },
+  "copy": {
+   "one_liner": "MIT 许可的 1.02T 全模态 MoE，官方称开源第一，$0.435 / $0.87。",
+   "highlights": [
+    "MIT 许可，1.02T 总参 / 42B 激活，文本 / 图 / 视频 / 音频全模态输入 + 1M 上下文",
+    "Terminal-Bench 2.1 89.9、AutomationBench v1.0.6 53.1、Toolathlon-Verified 76.9，前两项均高于 Claude Opus 5（89.1 / 50.3）（官方模型卡）",
+    "$0.435 / $0.87 与上代 V2.5-Pro 同价，缓存命中输入 $0.0036；官方称同智能档位下价格只有海外模型的 1/20 ~ 1/60",
+    "全量开源：权重 + 技术报告 + 端到端 RL 训练框架 + 7000 多个 RL 任务环境，另放出 MiMo-V2.6-Distill-Qwen-9B"
+   ],
+   "pitfalls": [
+    "Terminal-Bench 4.0 只有 34.9，远落后 Claude Opus 5 的 49.0 与 GPT-5.6 Sol 的 39.9 —— 它在 2.1 上的领先完全没有传导到 4.0 口径",
+    "1.02T 总参没有单机方案，官方只给多节点参数（SGLang tp16 / dp2 / 双节点），且没有公布任何自建显存需求",
+    "攻防类分数非常不均：自家 CyberGym 94.0、MiMo Cyber Bench 80.2 很高，但公开口径的 ExploitBench 47.9、ExploitGym 17.8 明显落后 Opus 5（70.0 / 22.1）与 GPT-5.6 Sol（78.5 / 30.3）",
+    "对比表里 MiMo Code Bench / MiMo Cyber Bench / MiMo VisualCoding 是厂商自建基准，且整张表由小米自己跑，属官方声明而非独立复测",
+    "AA 智能指数 46 是 v4.3 口径，与本站 aa 列（较早口径）不可直接比；离最强闭源（58）仍有明显差距",
+    "开源 checkpoint 名为 MiMo-V2.6-Pro-RL，托管 API 的 mimo-v2.6-pro 是否含额外后训练官方未说明"
+   ],
+   "logic_ability": "这是「把算力砸在 RL 上」的路线产物：官方说 Pro 与 Flash 各跑 30 步、累计约 75 万条轨迹，训练成本分别约 262 万与 85 万美元，六天完成；样本外的 DeepSWE v1.1 从 48.8 提到 65.7（Pro），说明 RL 确实泛化到了训练集之外。能力形状因此偏工程与 agent：Terminal-Bench 2.1 89.9、AutomationBench 53.1、Toolathlon-Verified 76.9、OSWorld-Verified 82.0、JobBench 62.0，多数贴近甚至超过 Claude Opus 5。短板是「更难口径」与硬推理：Terminal-Bench 4.0 34.9、ProgramBench 26.5、Agents' Last Exam 31.6，前两项距闭源旗舰差距很大。官方也没给 GPQA / AIME / SWE-bench Verified 这类考试型数字。",
+   "best_for": [
+    "全模态 agent 与计算机操作（CUA）",
+    "成本敏感的超长上下文批量任务",
+    "需要 MIT 许可、可自建的合规场景",
+    "RL / agent 训练研究（环境与框架一并开源）"
+   ],
+   "not_for": [
+    "单机或单卡自建",
+    "最难的长时程终端任务（看 Terminal-Bench 4.0 差距）",
+    "需要权威考试型推理评测背书的场景",
+    "攻防安全开发（公开口径分数落后闭源）"
+   ]
+  },
+  "capability_notes": {
+   "coding": "DeepSWE v1.1 71.9、MiMo Code Bench 63.2、ProgramBench 26.5（官方模型卡；Claude Opus 5 分别 74.0 / 68.6 / 37.0）。",
+   "agent": "Terminal-Bench 2.1 89.9、Terminal-Bench 4.0 34.9、AutomationBench v1.0.6 53.1、Toolathlon-Verified 76.9、OSWorld-Verified 82.0、JobBench 62.0、Agents' Last Exam 31.6（官方模型卡）。",
+   "knowledge": "GDPval-AA 2.1 1673 Elo（官方模型卡；Claude Opus 5 为 1708、GPT-5.6 Sol 1588）。",
+   "multimodal": "MiMo VisualCoding 72.3（官方自建基准）；图 / 视频 / 音频原生输入，另集成 3D 空间推理与计算机操作能力。",
+   "chinese": "强，国产模型，中文文档齐全。"
+  },
+  "ecosystem": {
+   "engines": [
+    "SGLang",
+    "vLLM"
+   ],
+   "finetune": "可微调（权重 MIT，官方另开源 RL 训练框架与任务环境）",
+   "zh_docs": "有"
+  },
+  "complete": false
  },
  {
   "aliases": [

@@ -13,9 +13,10 @@
  "license_commercial": true,
  "openness": "api-only",
  "weights_available": false,
- "status": "current",
+ "status": "superseded",
+ "superseded_by": "claude-sonnet-5-5",
  "released_at": "2026-06-30",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-09-29",
  "modalities": [
   "text",
   "image",

@@ -3230,6 +3230,26 @@
   "evidence": "official"
  },
  {
+  "model_id": "mimo-v2-6-pro",
+  "key": "terminal_bench",
+  "value": 89.9,
+  "unit": "percent",
+  "source": "MiMo-V2.6-Pro 模型卡（Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL",
+  "as_of": "2026-09-29",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mimo-v2-6-flash",
+  "key": "terminal_bench",
+  "value": 87.6,
+  "unit": "percent",
+  "source": "MiMo-V2.6-Flash 模型卡（Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL",
+  "as_of": "2026-09-29",
+  "evidence": "official"
+ },
+ {
   "model_id": "gpt-4-turbo",
   "key": "gpqa_diamond",
   "value": 48,

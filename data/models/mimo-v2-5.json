@@ -15,9 +15,10 @@
  "openness": "open-weights",
  "weights_available": true,
  "weights_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",
- "status": "current",
+ "status": "superseded",
+ "superseded_by": "mimo-v2-6-flash",
  "released_at": "2026-04-22",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-09-29",
  "modalities": [
   "text",
   "image",
@@ -60,11 +61,12 @@
   "ref_hw_8x80gb": "FP8 多卡"
  },
  "pricing": {
-  "input_per_m": 0.119,
-  "output_per_m": 0.238,
+  "input_per_m": 0.14,
+  "output_per_m": 0.28,
   "currency": "USD",
-  "source": "第三方托管常见价（OpenRouter）",
-  "as_of": "2026-08-28"
+  "source": "小米 MiMo 开放平台官方定价页（海外美元档，模型 id mimo-v2.5）",
+  "as_of": "2026-09-29",
+  "note": "原记录的 $0.119 / $0.238 为 OpenRouter 第三方托管价，已改用官方定价页数字；缓存命中输入 $0.0028，国内档 ¥1.00 / ¥2.00"
  },
  "links": {
   "official": "https://huggingface.co/XiaomiMiMo/MiMo-V2.5",

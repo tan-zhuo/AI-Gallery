@@ -5,6 +5,7 @@ import { rowsHist } from './hist-scores.mjs'
 const AS_OLD = '2025-12-20'
 const AS_NEW = '2026-08-28'
 const AS_SEP = '2026-09-28'
+const AS_SEP29 = '2026-09-29'
 const SRC = {
   arena: { source: 'LMArena Text (style control)', url: 'https://lmarena.ai/leaderboard/text', evidence: 'independent' },
   aa: { source: 'Artificial Analysis Intelligence Index v3', url: 'https://artificialanalysis.ai/leaderboards/models', evidence: 'independent' },
@@ -99,8 +100,17 @@ const rowsSep = [
   ['gemini-3-8-flash', null, null, null, null, null, null, null, null, 89.4, null, 'Google DeepMind 模型卡（Terminal-Bench 2.1）', 'https://deepmind.google/models/model-cards/gemini-3-8-flash/'],
   ['deepseek-v4-1-flash', null, null, null, null, 90.9, 36.8, null, null, 90.6, null, 'DeepSeek-V4.1-Flash 模型卡（max effort，Terminal-Bench 2.1）', 'https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash'],
 ]
+// ---- 2026-09-29 快照（新增层，不覆盖前两层）----
+// 小米 MiMo-V2.6 模型卡同时给了 Terminal-Bench 2.1 与 4.0，只取 2.1（本站 terminal 列口径）。
+// Claude Sonnet 5.5 官方表只有 Terminal-Bench 4.0 / FrontierCode / GDPval-AA / CursorBench 等本站无对应列的基准，
+// HLE 也是「带工具」口径（本站该列为无工具），因此这一层不给 Sonnet 5.5 填任何分数，详情见其模型页。
+// AA 智能指数 v4.3（Sonnet 5.5 = 56、MiMo-V2.6-Pro = 46）与本站 aa 列的较早口径不可混比，未并入。
+const rowsSep29 = [
+  ['mimo-v2-6-pro', null, null, null, null, null, null, null, null, 89.9, null, 'MiMo-V2.6-Pro 模型卡（Terminal-Bench 2.1）', 'https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL'],
+  ['mimo-v2-6-flash', null, null, null, null, null, null, null, null, 87.6, null, 'MiMo-V2.6-Flash 模型卡（Terminal-Bench 2.1）', 'https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL'],
+]
 // ---- 历史模型（2023–2025-08）：每行第 14 个元素为 as_of ----
-const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
+const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
 const keys = ['arena_text', 'aa_index', 'swe_verified', 'livecodebench', 'gpqa_diamond', 'hle', 'aime_2025', 'tau2_bench', 'terminal_bench', 'mmmu']
 const units = { arena_text: 'elo', aa_index: 'index' }
 const out = []

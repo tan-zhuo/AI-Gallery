@@ -1,0 +1,95 @@
+{
+ "id": "claude-sonnet-5-5",
+ "name": "Claude Sonnet 5.5",
+ "name_zh": "Claude 5.5 中档",
+ "aliases": [
+  "claude-sonnet-5-5",
+  "Sonnet 5.5",
+  "anthropic.claude-sonnet-5-5"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 5.5",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-28",
+ "updated_at": "2026-09-29",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方接口特性（platform.claude.com 模型总览，2026-09-29）：adaptive thinking，effort 五档 low/medium/high/xhigh/max，Claude API 默认 high，Claude Code 与各端应用默认 medium；知识截止与训练数据截止均为 2026-06；退役承诺不早于 2027-09-28。关思考不再用旧写法，需改用新的 between_tools 设置。"
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "Anthropic 发布公告 + 官方模型总览",
+  "as_of": "2026-09-29",
+  "note": "与 Sonnet 5 同价（$2 / $10），缓存读取 $0.20、缓存写入 $2.50；官方称同样工作所需 token 更少，单任务成本比 Sonnet 5 低最多 30%。Batch 五折"
+ },
+ "links": {
+  "official": "https://www.anthropic.com/claude-sonnet-5-5",
+  "pricing": "https://platform.claude.com/docs/en/about-claude/pricing",
+  "paper": "https://www.anthropic.com/claude-sonnet-5-5-system-card"
+ },
+ "copy": {
+  "one_liner": "$2 / $10 不变，Terminal-Bench 4.0 反超 Opus 5.5。",
+  "highlights": [
+   "Terminal-Bench 4.0 70.6%，高于 Opus 5.5 的 66.4%，而 Sonnet 5 只有 10.3%（官方）",
+   "GDPval-AA v2.1 1844 对 Opus 5.5 的 1846，AA-Briefcase v1.1 1811 对 1822，知识工作几乎打平单价两倍的旗舰（官方）",
+   "定价与 Sonnet 5 完全相同（$2 / $10，缓存读 $0.20），输出速度快 30% 以上，官方实测单任务成本低最多 30%"
+  ],
+  "pitfalls": [
+   "Artificial Analysis 实测 max 档每任务约 19.3 万输出 token——它测过的最高值，约为 Opus 5.5 的 1.6 倍、GPT-6 Astra 的 7 倍；单任务 $7.60 反而高于 Opus 5.5 的 $5.98，「单价便宜一半」不等于账单便宜",
+   "关思考的写法变了：原来 thinking off 的调用要改用新的 between_tools 设置才能迁到 5.5，照旧代码直接切会出问题（官方迁移指南）",
+   "首个带前沿级网络安全护栏的 Sonnet：高风险安全请求会「可见地」回落到 Sonnet 5，AA 观察到约 0.1% 任务触发回落，集中在 Terminal-Bench 4.0",
+   "首个带「推理提取」防蒸馏分类器的 Sonnet，preserved thinking 范围扩大——跨账号搬运会话（含 Claude Code 中途换号）行为有变",
+   "AA 的分数跑在预发布部署上，Anthropic 事后确认该版本有影响 structured outputs 的 bug，AA 表示会重跑",
+   "事实知识仍明显落后 Opus 5.5：AA-Omniscience 事实准确率 54% 对 66%，HLE 与 SciCode 也低约 6 分"
+  ],
+  "logic_ability": "这一代 Sonnet 的性质变了：它不再是「便宜版旗舰」，而是用更多 token 换到接近旗舰的分数。官方表里 Terminal-Bench 4.0 70.6% 直接反超 Opus 5.5 的 66.4%，FrontierCode 1.1 Main 在 Max 档 46.2%（Xhigh 52.1%）仍低于 Opus 5.5 的 54.4%，CursorBench 4.0 55.5% 距 Opus 5.5 的 57.8% 约两分。知识工作侧 GDPval-AA v2.1 与 AA-Briefcase v1.1 基本打平旗舰，而 Sonnet 5 在同两项只有 1449 / 1359。官方自己划的界线很清楚：开放式、需要持续判断的复杂工作，Opus 5.5 仍明显更强。失败模式是话太多——AA 记录的输出 token 是它测过最高的，低 effort 档反而在「智能 / 输出 token」权衡上被 GPT-6 Sol 压住。",
+  "best_for": [
+   "终端 / 工具型 agent（有边界、可批量）",
+   "高吞吐编码与 bug 修复",
+   "文档、幻灯片、表格类交付物"
+  ],
+  "not_for": [
+   "开放式长时程判断类工作（走 Opus 5.5）",
+   "输出 token 成本敏感的高并发场景",
+   "需要私有化部署的合规场景",
+   "未获验证的攻防安全研究（会回落到 Sonnet 5）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "Terminal-Bench 4.0 70.6%、FrontierCode 1.1 Main 46.2%（Max）/ 52.1%（Xhigh）、CursorBench 4.0 55.5%（官方公告表）；AA 独立复测 Terminal-Bench 4.0 约 64%，为其榜上前列。",
+  "reasoning": "HLE 带工具 64.5%（官方，Opus 5.5 为 67.7%）；AA 智能指数 56（max 档，v4.3），仅落后 Opus 5.5 两分、居第二。",
+  "agent": "OSWorld 2.1 partial 80.1%（官方，Opus 5.5 为 81.8%）；AA 的 AutomationBench-AA 71% 略高于 Opus 5.5 的 70%。",
+  "knowledge": "GDPval-AA v2.1 1844 Elo、AA-Briefcase v1.1 1811 Elo（官方公告表）；AA-Omniscience 事实准确率 54%、幻觉率 47%（AA，Opus 5.5 为 66% / 59%）。",
+  "multimodal": "Chartography 无工具 61.6%（官方，Opus 5.5 为 64.4%）；官方称是首个仅凭截图通关 Pokémon Red 的 Sonnet。支持文本 + 图像输入。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": false
+}

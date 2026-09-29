@@ -1,4 +1,10 @@
 [
+  {"date":"2026-09-29","type":"new","model_id":"claude-sonnet-5-5","text":"新增 Claude Sonnet 5.5：Terminal-Bench 4.0 70.6% 反超 Opus 5.5 的 66.4%，$2 / $10 与 Sonnet 5 同价，1M 上下文。"},
+  {"date":"2026-09-29","type":"down","model_id":"claude-sonnet-5","text":"Claude Sonnet 5 标记为已被 Sonnet 5.5 替代（官方模型总览已把它从当前阵容移除，仍作为高风险安全请求的回落目标可用）。"},
+  {"date":"2026-09-29","type":"new","model_id":"mimo-v2-6-pro","text":"补录小米 MiMo-V2.6-Pro（2026-09-22 发布）：MIT 许可的 1.02T / 42B 全模态 MoE，Terminal-Bench 2.1 89.9，$0.435 / $0.87 与上代同价。"},
+  {"date":"2026-09-29","type":"new","model_id":"mimo-v2-6-flash","text":"补录小米 MiMo-V2.6-Flash（2026-09-22 发布）：MIT 许可的 309B / 15B 全模态 MoE，Terminal-Bench 2.1 87.6，$0.14 / $0.28。"},
+  {"date":"2026-09-29","type":"down","model_id":"mimo-v2-5","text":"MiMo-V2.5 标记为已被 V2.6-Flash 替代（权重仍开源可自建），定价改用官方定价页的 $0.14 / $0.28，替换原先的 OpenRouter 第三方价。"},
+  {"date":"2026-09-29","type":"score","text":"新增 2026-09-29 分数快照层：MiMo-V2.6-Pro / Flash 的 Terminal-Bench 2.1 分别 89.9 / 87.6（官方模型卡）。Sonnet 5.5 的官方分数全为 Terminal-Bench 4.0、GDPval-AA 等本站无对应列的口径，未并入总榜，只写在模型页。"},
   {"date":"2026-09-28","type":"doc","text":"补录 8 月底至 9 月的模型发布，数据截止日推进到 2026-09-28。"},
   {"date":"2026-09-28","type":"score","text":"新增 2026-09-28 分数快照层：Fable 5.1 HLE 60.9、Gemini 3.8 Flash Terminal-Bench 2.1 89.4、DeepSeek-V4.1-Flash GPQA 90.9 / HLE 36.8 / Terminal-Bench 2.1 90.6，均取官方来源。"},
   {"date":"2026-09-22","type":"new","model_id":"claude-opus-5-5","text":"新增 Claude Opus 5.5：Terminal-Bench 4.0 66.4%，$4 / $20 比 Opus 5 低 20%，官方称典型负载总成本低 40%。"},

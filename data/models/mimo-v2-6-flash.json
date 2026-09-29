@@ -1,0 +1,113 @@
+{
+ "id": "mimo-v2-6-flash",
+ "name": "MiMo-V2.6-Flash",
+ "name_zh": "小米 MiMo-V2.6-Flash",
+ "aliases": [
+  "XiaomiMiMo/MiMo-V2.6-Flash-RL",
+  "mimo-v2.6-flash",
+  "MiMo V2.6 Flash"
+ ],
+ "vendor": "Xiaomi",
+ "vendor_zh": "小米",
+ "family": "MiMo",
+ "license": "MIT",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL",
+ "status": "current",
+ "released_at": "2026-09-22",
+ "updated_at": "2026-09-29",
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "audio",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "309B",
+  "active_params": "15B",
+  "total_params_b": 309,
+  "active_params_b": 15,
+  "experts": 256,
+  "active_experts": 8,
+  "shared_expert": false,
+  "layers": 48,
+  "hidden_size": 4096,
+  "kv_heads": 8,
+  "head_dim": 192,
+  "attention": "混合：39 层 128 滑窗 + 9 层全注意力，64 Q 头（SWA 8 KV / 全注意力 4 KV），QK 192 / V 128",
+  "notes": "首层全注意力 + 稠密 FFN，其余层交替 SWA / 全注意力，均为无共享专家的稀疏 MoE。与 Pro 共用 681M MiMo ViT 视觉编码器与 308M + 127M 音频编码器，全模态输入。5 层 SWA MTP 投机解码器（窗口 1024）。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false,
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "官方 SGLang 示例为 tp8 / dp2，vLLM 示例 tp4",
+  "kv_note": "官方未公布自建显存需求，只给了推理并行参数"
+ },
+ "pricing": {
+  "input_per_m": 0.14,
+  "output_per_m": 0.28,
+  "currency": "USD",
+  "source": "小米 MiMo 开放平台官方定价页（海外美元档）",
+  "as_of": "2026-09-29",
+  "note": "与 V2.5 同价（官方称 V2.6 系列 API 价格不变），缓存命中输入 $0.0028、缓存写入限时免费；国内档 ¥1.00 / ¥2.00"
+ },
+ "links": {
+  "official": "https://mimo.mi.com/docs/en-US/news/latest/v2-6",
+  "hf": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL",
+  "paper": "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL/blob/main/MiMo_V2_6_technical_report.pdf",
+  "pricing": "https://platform.xiaomimimo.com/static/docs/price/pay-as-you-go.md"
+ },
+ "copy": {
+  "one_liner": "$0.14 / $0.28 的 309B 全模态 MoE，MIT 许可，Terminal-Bench 2.1 87.6。",
+  "highlights": [
+   "MIT 许可，309B 总参 / 15B 激活，全模态输入 + 1M 上下文，$0.14 / $0.28",
+   "Terminal-Bench 2.1 87.6、AutomationBench v1.0.6 52.3、OSWorld-Verified 80.8，官方称全面超过上代旗舰 MiMo-V2.5-Pro（65.2 / 16.0）",
+   "CyberGym 95.1 比 Pro 的 94.0 还高（官方自建口径）；DeepSWE v1.1 从 SFT 基线 58.4 经 RL 提到 72.6"
+  ],
+  "pitfalls": [
+   "Terminal-Bench 4.0 只有 28.8，比 Pro 的 34.9 更低，离 Claude Opus 5 的 49.0 差距很大",
+   "攻防开发是明显短板：ExploitBench 25.3、ExploitGym 6.0、SEC Bench Pro 47.5，均远低于 Pro（47.9 / 17.8 / 66.3）",
+   "309B 总参依然要多卡，官方只给 tp8 / tp4 的推理参数，未公布自建显存需求",
+   "官方没给 GDPval-AA 数字（表里为空），也没给 GPQA / AIME / SWE-bench Verified 这类考试型基准",
+   "整张对比表由小米自己跑，属官方声明；AA 智能指数只公布了 Pro（46），Flash 的独立指数未见"
+  ],
+  "logic_ability": "定位是 V2.6 的效率档，能力形状与 Pro 同源、整体低一档：Terminal-Bench 2.1 87.6 对 Pro 的 89.9、DeepSWE v1.1 67.9 对 71.9、Toolathlon-Verified 73.6 对 76.9、JobBench 61.2 对 62.0——多数差距在 2~4 分内，价格却是 Pro 的三分之一左右。真正拉开的是安全攻防与更难口径：ExploitBench 25.3 对 47.9、Terminal-Bench 4.0 28.8 对 34.9。官方口径里它「全面超过 MiMo-V2.5-Pro」，对照表中 V2.5-Pro 的 Terminal-Bench 4.0 仅 1.5、AutomationBench 仅 16.0，这一代的跃升主要来自大规模混合 RL 而非换底座。",
+  "best_for": [
+   "高并发全模态 agent",
+   "超长上下文低成本批处理",
+   "需要 MIT 许可自建的中等规模部署"
+  ],
+  "not_for": [
+   "单机部署",
+   "攻防安全类任务（走 Pro 或闭源）",
+   "最难的长时程终端任务"
+  ]
+ },
+ "capability_notes": {
+  "coding": "DeepSWE v1.1 67.9、MiMo Code Bench 61.2、ProgramBench 26.0（官方模型卡）。",
+  "agent": "Terminal-Bench 2.1 87.6、Terminal-Bench 4.0 28.8、AutomationBench v1.0.6 52.3、Toolathlon-Verified 73.6、OSWorld-Verified 80.8、JobBench 61.2、Agents' Last Exam 27.6（官方模型卡）。",
+  "multimodal": "MiMo VisualCoding 71.5（官方自建基准）；图 / 视频 / 音频原生输入。",
+  "chinese": "强，国产模型，中文文档齐全。"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM"
+  ],
+  "finetune": "可微调（权重 MIT，官方另开源 RL 训练框架与任务环境）",
+  "zh_docs": "有"
+ },
+ "complete": false
+}
