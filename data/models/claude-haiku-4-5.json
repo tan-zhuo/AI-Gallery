@@ -11,9 +11,9 @@
  "license_commercial": true,
  "openness": "api-only",
  "weights_available": false,
- "status": "current",
+ "status": "superseded",
  "released_at": "2025-10-15",
- "updated_at": "2025-12-20",
+ "updated_at": "2026-10-10",
  "modalities": [
   "text",
   "image",
@@ -55,7 +55,8 @@
   "pitfalls": [
    "知识广度与复杂推理弱于 Sonnet 4.5",
    "长任务规划能力有限",
-   "无自建"
+   "无自建",
+   "已被 Claude Haiku 5.5 替代（2026-10-07）：官方模型总览把它移入 legacy，短提示单价是它的十分之一；官方给出的退役时间为「不早于 2026-10-15」"
   ],
   "logic_ability": "工程型推理在同价位里领先；考试型推理中等。适合做多 agent 系统里的执行者。",
   "best_for": [
@@ -120,5 +121,6 @@
   "tok_s": 119,
   "latency_s": 16.59,
   "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
- }
+ },
+ "superseded_by": "claude-haiku-5-5"
 }

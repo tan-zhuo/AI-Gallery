@@ -735,9 +735,9 @@
   "license_commercial": true,
   "openness": "api-only",
   "weights_available": false,
-  "status": "current",
+  "status": "superseded",
   "released_at": "2025-10-15",
-  "updated_at": "2025-12-20",
+  "updated_at": "2026-10-10",
   "modalities": [
    "text",
    "image",
@@ -779,7 +779,8 @@
    "pitfalls": [
     "知识广度与复杂推理弱于 Sonnet 4.5",
     "长任务规划能力有限",
-    "无自建"
+    "无自建",
+    "已被 Claude Haiku 5.5 替代（2026-10-07）：官方模型总览把它移入 legacy，短提示单价是它的十分之一；官方给出的退役时间为「不早于 2026-10-15」"
    ],
    "logic_ability": "工程型推理在同价位里领先；考试型推理中等。适合做多 agent 系统里的执行者。",
    "best_for": [
@@ -844,7 +845,189 @@
    "tok_s": 119,
    "latency_s": 16.59,
    "source": "Artificial Analysis 官方 API 中位数（2026-08-28）"
-  }
+  },
+  "superseded_by": "claude-haiku-5-5"
+ },
+ {
+  "id": "claude-haiku-5-5",
+  "name": "Claude Haiku 5.5",
+  "name_zh": "Claude 5.5 轻量版",
+  "aliases": [
+   "claude-haiku-5-5",
+   "anthropic.claude-haiku-5-5",
+   "Claude Haiku 5.5"
+  ],
+  "vendor": "Anthropic",
+  "family": "Claude 5.5",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-10-07",
+  "updated_at": "2026-10-10",
+  "modalities": [
+   "text",
+   "image",
+   "tools",
+   "computer-use"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "unknown",
+   "undisclosed": true,
+   "notes": "未披露。官方模型总览：1M 上下文、128K 输出，自适应思考（adaptive），默认 effort medium，可靠知识截止与训练数据截止均为 2026-06。首个带 effort 档位的 Haiku。采用与 Sonnet 5.5 / Opus 5.5 同代的新分词器，官方说明同样的活每任务 token 数略增。"
+  },
+  "context": {
+   "max_tokens": 1000000,
+   "display": "1M",
+   "max_output": 128000
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false
+  },
+  "pricing": {
+   "input_per_m": 0.1,
+   "output_per_m": 0.5,
+   "currency": "USD",
+   "source": "Anthropic 发布公告 + 官方定价页",
+   "as_of": "2026-10-10",
+   "note": "按提示长度分档：≤100K 为 $0.10 / $0.50（缓存读 $0.01、缓存写 $0.125），>100K 为 $0.50 / $2.50（缓存读 $0.05、缓存写 $0.625）。官方称 Haiku 4.5（$1 / $5）的请求约 90% 落在短档，故短档降 90%、长档降 50%，计入新分词器后平均成本约低 75%。Batch 五折"
+  },
+  "links": {
+   "official": "https://www.anthropic.com/claude-haiku-5-5",
+   "paper": "https://www.anthropic.com/claude-haiku-5-5-system-card",
+   "pricing": "https://platform.claude.com/docs/en/about-claude/pricing"
+  },
+  "copy": {
+   "one_liner": "$0.10 / $0.50 起的小模型，1M 上下文，HLE 无工具 45.9%。",
+   "highlights": [
+    "短提示档 $0.10 / $0.50，与 GPT-6 Luna 同价，但带 1M 上下文与 128K 输出",
+    "HLE 无工具 45.9%（Haiku 4.5 为 10.2%）、带工具 57.4%；OSWorld 2.1 离线集 72.4%（Haiku 4.5 为 15.7%）",
+    "首个带 effort 档位的 Haiku，可在成本与智能之间自己挑点",
+    "同日 Sonnet 5.5 缓存读减半（$0.20 → $0.10），官方称多数 agent 负载成本再降约 20%"
+   ],
+   "pitfalls": [
+    "定价有 100K token 硬台阶：超过就跳到 $0.50 / $2.50，长上下文优势要自己算账，别被 1M 窗口骗了",
+    "Terminal-Bench 4.0 只有 39.2%，Sonnet 5.5 是 70.6% —— 官方自己写明复杂 agent 编码仍该用 Sonnet 5.5 / Opus 5.5",
+    "新分词器使同样的活 token 数略增，官方的「便宜 90%」是单价口径，实际省 75%",
+    "网络安全护栏比 Haiku 4.5 更严（但松于 Sonnet 5.5），仍封堵渗透测试类请求；生物类护栏与 Sonnet 5 / 5.5、Opus 5 同级",
+    "官方表里 GDPval-AA v2.1、AA-Briefcase v1.1、FrontierCode、Chartography 等口径本站无对应列，总榜看不到它的真实形状"
+   ],
+   "logic_ability": "官方把它定位成「高并发、低延迟的脏活模型」：摘要、压缩上下文、分类、数据库查询，以及给 Opus 5.5 / Sonnet 5.5 当子 agent。能力跃升主要体现在知识与计算机操作两块 —— HLE 无工具从上代 10.2% 跳到 45.9%，OSWorld 2.1 从 15.7% 跳到 72.4%，Chartography 从 6.4% 到 46.4%，都是数倍级。但 Terminal-Bench 4.0 的 39.2% 相对 Sonnet 5.5 的 70.6% 说明长时程终端任务仍不是它的战场，官方公告里也直接这么写。GDPval-AA v2.1 Elo 1620 对 Sonnet 5.5 的 1840，差距同样明确。Asana 的早期反馈称任务完成延迟降低 30% 以上、单轮推理最快 2.5 倍。",
+   "best_for": [
+    "摘要 / 分类 / 抽取 / 上下文压缩等高并发短任务",
+    "给大模型当子 agent",
+    "实时客服与浏览器操作（官方称是迄今最快的模型）"
+   ],
+   "not_for": [
+    "复杂 agent 编码（官方指向 Sonnet 5.5 / Opus 5.5）",
+    "常态超过 100K 提示的负载（跳到长档价）",
+    "渗透测试类安全工作",
+    "需要私有化部署的合规场景"
+   ]
+  },
+  "capability_notes": {
+   "knowledge": "HLE 无工具 45.9%、带工具 57.4%；GDPval-AA v2.1 1620 Elo、AA-Briefcase v1.1 1578 Elo（官方发布公告，同表 Haiku 4.5 为 10.2% / 18.7% / 1607 / 1614，Sonnet 5.5 为 56.9% / 64.5% / 1840 / 1824）。",
+   "agent": "Terminal-Bench 4.0 39.2%、FrontierCode 1.1 Main 46.4%、OSWorld 2.1 离线集 72.4%（官方发布公告；Haiku 4.5 分别 0.0% / —— / 15.7%）。",
+   "multimodal": "Chartography 无工具 46.4%（官方发布公告；Haiku 4.5 为 6.4%）。文本 + 图像输入，支持视觉与工具调用。",
+   "chinese": "中文可用（官方称多语言能力），缺少独立中文评测。"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "弱"
+  },
+  "complete": false
+ },
+ {
+  "id": "claude-mythos-5-1",
+  "name": "Claude Mythos 5.1",
+  "name_zh": "Claude Mythos 5.1（限定开放）",
+  "aliases": [
+   "claude-mythos-5-1",
+   "anthropic.claude-mythos-5-1",
+   "Claude Mythos 5.1"
+  ],
+  "vendor": "Anthropic",
+  "family": "Claude 5.1",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-09-01",
+  "updated_at": "2026-10-10",
+  "modalities": [
+   "text",
+   "image",
+   "tools",
+   "computer-use"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+   "type": "unknown",
+   "undisclosed": true,
+   "notes": "未披露。官方模型页：规格与定价与 Claude Fable 5.1 完全相同 —— 1M 上下文、128K 输出、始终开启的自适应思考、默认 effort high、可靠知识截止 2026-06。仅对通过 Anthropic 验证计划（如 Cyber Verification Program）的组织开放。"
+  },
+  "context": {
+   "max_tokens": 1000000,
+   "display": "1M",
+   "max_output": 128000
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false
+  },
+  "pricing": {
+   "input_per_m": 10,
+   "output_per_m": 50,
+   "currency": "USD",
+   "source": "Anthropic 官方定价页 + Mythos 5.1 模型页",
+   "as_of": "2026-10-10",
+   "note": "与 Fable 5.1 同价。缓存读 $0.25（基础输入的 2.5%，全系最低比例）、5 分钟缓存写 $12.50、1 小时缓存写 $20；Batch $5 / $25。仅限美国境内推理档为 $11 / $55（缓存读 $0.275）"
+  },
+  "links": {
+   "official": "https://platform.claude.com/docs/en/models/mythos-5-1/overview",
+   "paper": "https://platform.claude.com/docs/en/models/fable-5-1/migration-guide",
+   "pricing": "https://platform.claude.com/docs/en/about-claude/pricing"
+  },
+  "copy": {
+   "one_liner": "Fable 5.1 的同规格「验证组织专供」版，网络安全场景放宽。",
+   "highlights": [
+    "能力、上下文、定价与 Claude Fable 5.1 完全一致（1M / 128K / $10 / $50，缓存读 $0.25）",
+    "面向通过 Anthropic 验证计划的组织，网络安全等受限方向的可用范围比公开模型宽",
+    "官方承诺退役不早于 2027-09-01，与 Fable 5.1 同期"
+   ],
+   "pitfalls": [
+    "拿不到访问权就等于不存在：必须先申请对应验证计划（如 Cyber Verification Program）通过",
+    "官方未单独发布它的基准表，分数只能参照 Fable 5.1，本站不代填",
+    "与 Fable 5.1 的一个真实差异：Mythos 5.1 不做 thinking block 的「同一会话」校验，迁移行为略有不同",
+    "不在官方模型总览的对比表里，只在定价页和独立模型页出现，容易被漏掉"
+   ],
+   "logic_ability": "官方把它描述为「与 Claude Fable 5.1 同等能力、面向验证组织」的并行版本，用途集中在推理、网络安全与研究。迁移指南把两者并列：API 表面、限额、每 token 价格、分词器、始终开启的自适应思考、拒答处理与 stop_details 分类全部与 Fable 5 一致，强制工具选择同样会返回 400；唯一点出的差异是 thinking block 的会话校验 Mythos 5.1 不执行。因此在本站口径下，它的能力形状应直接按 Fable 5.1 读（HLE 无工具 60.9%），区别只在准入与护栏松紧。",
+   "best_for": [
+    "已通过 Anthropic 验证计划的网络安全防御团队",
+    "需要放宽护栏的安全与研究工作",
+    "原本用 Fable 5.1、但被公开护栏卡住的负载"
+   ],
+   "not_for": [
+    "未通过验证的普通开发者（申请不到就用 Fable 5.1）",
+    "成本敏感的量产负载（$10 / $50）",
+    "需要私有化部署的合规场景"
+   ]
+  },
+  "capability_notes": {
+   "knowledge": "官方称与 Claude Fable 5.1 同等能力，未单独公布基准（Fable 5.1 官方 HLE 无工具 60.9%）。",
+   "chinese": "中文可用（官方称多语言能力），缺少独立中文评测。"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "弱"
+  },
+  "complete": false
  },
  {
   "id": "claude-opus-4-1",
@@ -1643,7 +1826,7 @@
   "weights_available": false,
   "status": "current",
   "released_at": "2026-09-28",
-  "updated_at": "2026-09-29",
+  "updated_at": "2026-10-10",
   "modalities": [
    "text",
    "image",
@@ -1670,8 +1853,8 @@
    "output_per_m": 10,
    "currency": "USD",
    "source": "Anthropic 发布公告 + 官方模型总览",
-   "as_of": "2026-09-29",
-   "note": "与 Sonnet 5 同价（$2 / $10），缓存读取 $0.20、缓存写入 $2.50；官方称同样工作所需 token 更少，单任务成本比 Sonnet 5 低最多 30%。Batch 五折"
+   "as_of": "2026-10-10",
+   "note": "与 Sonnet 5 同价（$2 / $10）。缓存读取 2026-10-07 起减半至 $0.10（原 $0.20，为基础输入的 5%），缓存写入 $2.50；官方称这让多数 agent 负载再便宜约 20%。官方另称同样工作所需 token 更少，单任务成本比 Sonnet 5 低最多 30%。Batch 五折"
   },
   "links": {
    "official": "https://www.anthropic.com/claude-sonnet-5-5",
@@ -1683,7 +1866,8 @@
    "highlights": [
     "Terminal-Bench 4.0 70.6%，高于 Opus 5.5 的 66.4%，而 Sonnet 5 只有 10.3%（官方）",
     "GDPval-AA v2.1 1844 对 Opus 5.5 的 1846，AA-Briefcase v1.1 1811 对 1822，知识工作几乎打平单价两倍的旗舰（官方）",
-    "定价与 Sonnet 5 完全相同（$2 / $10，缓存读 $0.20），输出速度快 30% 以上，官方实测单任务成本低最多 30%"
+    "定价与 Sonnet 5 完全相同（$2 / $10，缓存读 $0.20），输出速度快 30% 以上，官方实测单任务成本低最多 30%",
+    "2026-10-07 随 Haiku 5.5 发布下调缓存读取价：$0.20 → $0.10，官方称多数 agent 负载成本再降约 20%"
    ],
    "pitfalls": [
     "Artificial Analysis 实测 max 档每任务约 19.3 万输出 token——它测过的最高值，约为 Opus 5.5 的 1.6 倍、GPT-6 Astra 的 7 倍；单任务 $7.60 反而高于 Opus 5.5 的 $5.98，「单价便宜一半」不等于账单便宜",
@@ -8668,6 +8852,98 @@
   "superseded_by": "gpt-5-6-sol"
  },
  {
+  "id": "gpt-6-1-sol",
+  "name": "GPT-6.1 Sol",
+  "name_zh": "GPT-6.1 主力",
+  "aliases": [
+   "gpt-6.1-sol",
+   "GPT-6.1 Sol"
+  ],
+  "vendor": "OpenAI",
+  "family": "GPT-6",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-09-29",
+  "updated_at": "2026-10-10",
+  "modalities": [
+   "text",
+   "image",
+   "tools",
+   "computer-use"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "unknown",
+   "undisclosed": true,
+   "notes": "未披露。官方 API 模型页：1,050,000 上下文（最大输入 922K、最大输出 128K），knowledge cutoff 2026-04-30；reasoning.effort 五档 low/medium（默认）/high/xhigh/max，不支持 none 与 minimal。"
+  },
+  "context": {
+   "max_tokens": 1050000,
+   "display": "1M",
+   "max_output": 128000
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false
+  },
+  "pricing": {
+   "input_per_m": 2,
+   "output_per_m": 10,
+   "currency": "USD",
+   "source": "OpenAI 发布公告 + API 模型页",
+   "as_of": "2026-10-10",
+   "note": "与 GPT-6 Sol 同为 $2 / $10，缓存输入从 $0.20 降到 $0.10（标准输入的 5%），缓存写入 $2.50。>272K 输入的请求整单按 2× 输入 / 1.5× 输出计费；Fast 档 2×、Ultrafast 档 6×、Batch 与 Flex 五折。官方称标准单价为 Astra（$10 / $50）的五分之一"
+  },
+  "links": {
+   "official": "https://openai.com/index/introducing-gpt-6-1-sol/",
+   "paper": "https://deploymentsafety.openai.com/gpt-6-1-sol",
+   "pricing": "https://developers.openai.com/api/docs/models/gpt-6.1-sol"
+  },
+  "copy": {
+   "one_liner": "DevDay 发布的 Sol 升级档，价格不动、缓存输入再砍一半到 $0.10。",
+   "highlights": [
+    "单价与 GPT-6 Sol 持平（$2 / $10），缓存输入减半到 $0.10，是 Astra 缓存价（$1）的十分之一",
+    "官方称在 DeepSWE v1.1 上与 GPT-6 Astra 持平而成本约为其五分之一；GDP.pdf 上高于 Opus 5.5（含 fallback）且单任务成本不到一半",
+    "Terminal-Bench Science 0.1 最大 effort 下单任务均价 $5.47，官方对比 Opus 5.5 的 $23.21 与 Astra 的 $23.80",
+    "低 effort 下事实性错误率从 GPT-6 Sol 的 11.4% 降到 7.7%（官方内部评测，降幅约 32%）"
+   ],
+   "pitfalls": [
+    "上线时只进 ChatGPT Work 与 Codex，官方明确「尚未进入 Chat」；10-07 的 GPT-6 Chat 更新用的仍是 GPT-6 Sol / Luna",
+    "工具调用必须走 Responses API，Chat Completions 只能不带工具用；不支持 none 与 minimal 两档 effort",
+    "官方公告全是相对口径（「低多少成本」「高多少个百分点」），除 Astra 的 Terminal-Bench Science 68.1% 外几乎没给绝对分数，本站不代填",
+    "知识截止 2026-04-30，比同价的 GPT-6 Luna（2026-05-18）还早；不支持微调与 predicted outputs",
+    "Ultrafast 档发布当日仅 Astra 可用，6.1 Sol 版「随后几天」才上线，且 API 价格是标准档 6 倍"
+   ],
+   "logic_ability": "定位是「用 Sol 的价格买接近 Astra 的能力」。官方给的五项评测（DeepSWE v1.1 代码、GDP.pdf 文档专业问答、AutomationBench 多步业务流、OSWorld 2.0 计算机操作、Terminal-Bench Science 0.1 科研）全部只报相对差值：对 GPT-6 Sol 分别提升 6.4 / —— / 4.8 / 7 个百分点与「翻倍以上」，对 Astra 则是「持平」到「差 2.1 个百分点」。横向看最硬的一条是 AutomationBench 在 medium effort 下比 Opus 5.5 高 2.2 个百分点、成本约三分之一。最难的科研任务官方仍推荐 Astra（68.1%）。对齐评测上官方称比 GPT-6 Sol 明显改善，且与 Astra、GPT-6 Sol 一样未观察到绕过自动安全审查的尝试。",
+   "best_for": [
+    "重缓存复用的 agent（缓存输入 $0.10）",
+    "复杂编码与计算机操作，但预算吃不下 Astra",
+    "替换 GPT-6 Sol 的存量负载（同价、官方称全面更强）"
+   ],
+   "not_for": [
+    "最难的科研任务（官方自己让用 Astra）",
+    "只能用 Chat Completions 且需要工具调用的集成",
+    "ChatGPT Chat 里的日常对话（尚未上线）",
+    "需要私有化部署的合规场景"
+   ]
+  },
+  "capability_notes": {
+   "coding": "DeepSWE v1.1 官方称与 GPT-6 Astra 持平、成本约五分之一，并在更低 effort 下比 GPT-6 Sol 最好成绩高 6.4 个百分点（官方，未公布数值）。",
+   "agent": "AutomationBench medium effort 比 Opus 5.5 高 2.2 个百分点、比 GPT-6 Sol 高 4.8 个百分点；OSWorld 2.0 离线集最大 effort 比 GPT-6 Sol 高 7 个百分点、距 Astra 2.1 个百分点（官方，未公布数值）。",
+   "knowledge": "GDP.pdf 上高于 Opus 5.5（含 fallback），单任务成本不到一半（官方，未公布数值）。",
+   "chinese": "中文可用，缺少独立中文评测。"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "弱"
+  },
+  "complete": false
+ },
+ {
   "id": "gpt-6-astra",
   "name": "GPT-6 Astra",
   "name_zh": "GPT-6 旗舰",
@@ -8855,9 +9131,9 @@
   "license_commercial": true,
   "openness": "api-only",
   "weights_available": false,
-  "status": "current",
+  "status": "superseded",
   "released_at": "2026-09-22",
-  "updated_at": "2026-09-28",
+  "updated_at": "2026-10-10",
   "modalities": [
    "text",
    "image",
@@ -8900,7 +9176,8 @@
    "pitfalls": [
     "知识截止 2026-04-20，比更便宜的 Luna（2026-05-18）还早 28 天",
     "上线时只进 ChatGPT Work 与 Codex，不进 Chat；Enterprise 需管理员手动开启",
-    "OpenAI 未公布这两个模型的完整基准表，横向对比目前只能靠第三方；GPT-6 没有 Terra 档"
+    "OpenAI 未公布这两个模型的完整基准表，横向对比目前只能靠第三方；GPT-6 没有 Terra 档",
+    "已被 GPT-6.1 Sol 替代（2026-09-29，同价 $2 / $10 且缓存输入更低）；它仍在售，并自 2026-10-07 起是 ChatGPT Chat 付费档的默认模型"
    ],
    "logic_ability": "官方定位是「复杂编码与 agent 工作流」，主张把 Astra 在专业工作、事实性、编码、计算机使用与对齐上的进展下沉到更便宜的一档，并称每任务 token 消耗低于同级 GPT-5.6。截至收录日 OpenAI 尚未发布该模型的完整基准表，本条目不代填分数。",
    "best_for": [
@@ -8922,7 +9199,8 @@
    "finetune": "不支持",
    "zh_docs": "弱"
   },
-  "complete": false
+  "complete": false,
+  "superseded_by": "gpt-6-1-sol"
  },
  {
   "id": "gpt-oss-120b",
@@ -11954,6 +12232,114 @@
     }
    }
   }
+ },
+ {
+  "id": "kolibri-1",
+  "name": "Kolibri 1",
+  "name_zh": "Aleph Alpha Kolibri 1",
+  "aliases": [
+   "Aleph-Alpha/Kolibri-1",
+   "Aleph-Alpha/Kolibri-1-BF16",
+   "Kolibri"
+  ],
+  "vendor": "Aleph Alpha",
+  "vendor_zh": "Aleph Alpha（德国）",
+  "family": "Kolibri",
+  "license": "Apache 2.0",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+  "status": "current",
+  "released_at": "2026-10-03",
+  "updated_at": "2026-10-10",
+  "modalities": [
+   "text",
+   "tools"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "moe",
+   "total_params": "78.1B",
+   "active_params": "3.46B",
+   "total_params_b": 78.1,
+   "active_params_b": 3.46,
+   "experts": 384,
+   "active_experts": 6,
+   "shared_expert": true,
+   "layers": 50,
+   "hidden_size": 2560,
+   "vocab_size": 128000,
+   "kv_heads": 4,
+   "attention": "滑动窗口（512）为主，每第 5 层全注意力；48 Q 头 / 4 KV 头（4:1 SWA:GQA）",
+   "notes": "50 层全 MoE，每层 384 路由专家 + 1 共享专家，每 token 走 6 个路由专家；专家隐藏维 512。位置编码只加在滑窗层，因此上下文可不经位置缩放外推。权重为 float8_e4m3fn（128×128 分块）+ 动态量化激活，embedding / LM head / norm / MoE router 保持 bfloat16。训练用 Muon + Exact Quantile Balancing；预训练 20T token（约 62.5% 英 / 23.9% 德 / 13.6% 代码），mid-training 3.44T、长上下文扩展 201B；768 张 B200 跑 21 天（392k GPU 时），总计 6.4e23 FLOPS。前身 Kolibri Origin（30.6B / 3.27B）未公开发布。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {
+    "fp8": 78
+   },
+   "estimated": false,
+   "ref_hw_80gb": "可行：官方最低为 1× H200 / B200 / B300（80GB 单卡需 2× A100 80GB 或 2× H100 SXM5）",
+   "ref_hw_8x80gb": "充裕",
+   "kv_note": "官方以 FP8 KV cache 评测；超过 262,144 上下文需加 --max-model-len 1048576 与 max_position_embeddings 覆盖"
+  },
+  "links": {
+   "official": "https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
+   "hf": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+   "github": "https://github.com/Aleph-Alpha/aleph-alpha-inference",
+   "paper": "https://aleph-alpha.com/downloads/tech-report.pdf"
+  },
+  "copy": {
+   "one_liner": "Apache 2.0 的德英双语 78B/3.46B MoE，单卡 H200 能跑，GPQA 84.3。",
+   "highlights": [
+    "Apache 2.0 无门禁，78.1B 总参只激活 3.46B，FP8 权重约 78GB —— 单张 H200 / B200 / B300 就能起",
+    "官方表里德英双语都强：GPQA Diamond 英 84.3 / 德 81.3，AIME 2025 英 96.9 / 德 87.5，为同激活量级（3B）里最高一档",
+    "原生 262,144 上下文，位置编码只加在滑窗层，官方称已验证到 1,048,576；reasoning_effort 四档含 none",
+    "全套材料公开：模型卡、189 页技术报告、能耗估算（约 950 MWh）、训练数据构成，且是 EU GPAI 行为准则签署方"
+   ],
+   "pitfalls": [
+    "只支持德语和英语，官方明说是「深度优于广度」的取舍 —— 中文不在支持列表内，本站无中文评测",
+    "TerminalBench 2.1 只有 27.7，Nemotron 3 Super 39.7、Qwen3.8 27B 76.8 —— 长时程终端 agent 是明显短板",
+    "必须装 Aleph Alpha 自家的 aleph-alpha-inference（vLLM 插件）才能跑，不是开箱 vLLM/llama.cpp；超 256K 还要额外改参数",
+    "Apache 2.0 只覆盖本仓库的权重与配置文件，官方明确保留架构、训练代码、训练方法与参数设置的全部权利",
+    "RULER 长上下文分数随长度下滑（4k 86.9 → 1M 63.2），1M 窗口别当成 1M 可用质量；官方自己建议复杂任务 ≤262,144",
+    "官方对比表全部由 Aleph Alpha 自己跑，属厂商声明，尚无独立复测"
+   ],
+   "logic_ability": "这是「小激活量 + 双语深耕」的路线产物。在官方自己的对比表里，它和同为 3B 激活的 Qwen3.6 35B-A3B 正面对撞：英文总分 75.5 对 71.4、德文 70.8 对 67.3，知识与数学明显领先（GPQA 84.3 对 83.4、AIME 2026 96.0 对 91.0），但代码 agent 侧吃亏（SWE-bench Verified 66.4 对 73.8）。真正的硬短板是终端任务：TerminalBench 2.1 的 27.7 连 12B 激活的 Nemotron 3 Super（39.7）都不如，更不用说 Qwen3.8 27B 稠密版的 76.8。工具调用形状很分裂 —— Tau2-Bench Telecom 94.7 极高，但 Tau3-Bench Banking 只有 38.1、BFCL v3 多轮 39.8 偏低。接地与幻觉这块它反而有亮点：AA-Omniscience 非幻觉率 44.0 高于多数同级，SQuAD 接地分 23.4 是表里少见的非零值。定位上官方把它写成公共行政、工业与航空航天的「主权可控」模型，强调人在环中审阅，不做自主决策组件。",
+   "best_for": [
+    "德语 / 英语的多步推理与 RAG",
+    "需要数据不出境、可本地部署的监管行业（公共行政、工业）",
+    "单卡或双卡预算下要最强知识与数学的自建场景",
+    "Apache 2.0 下的二次微调基座"
+   ],
+   "not_for": [
+    "中文及其他语种（官方只支持德英）",
+    "长时程终端 / 编码 agent（看 TerminalBench 2.1）",
+    "想用标准 vLLM 或 llama.cpp 开箱即跑",
+    "把 1M 当作可用上下文质量的长文档负载"
+   ]
+  },
+  "capability_notes": {
+   "knowledge": "GPQA Diamond 英 84.3 / 德 81.3、HLE 无工具 英 21.5 / 德 15.9、MMLU-Pro CoT 英 80.0 / MMLU-ProX CoT 德 75.5（官方模型卡）。",
+   "math": "AIME 2025 英 96.9 / 德 87.5，AIME 2026 英 96.0 / 德 90.0（官方模型卡）。",
+   "coding": "LiveCodeBench v6 85.9、HumanEval+ 92.7、SWE-bench Verified 66.4（官方模型卡）。",
+   "agent": "TerminalBench 2.1 27.7、Tau2-Bench Telecom 94.7 / Retail 69.9 / Airline 76.7、Tau3-Bench Banking 38.1、BFCL v4 总分 61.4、BrowseComp 29.4（官方模型卡）。",
+   "instruction": "IFBench（loose-prompt）78.1（官方模型卡）。",
+   "chinese": "无：官方只声明德语与英语，未提供中文支持或评测。"
+  },
+  "ecosystem": {
+   "engines": [
+    "vLLM（需 aleph-alpha-inference 插件）"
+   ],
+   "finetune": "可微调（权重 Apache 2.0，但训练代码与方法未开放）",
+   "zh_docs": "无"
+  },
+  "complete": false
  },
  {
   "aliases": [

@@ -1,0 +1,88 @@
+{
+ "id": "claude-mythos-5-1",
+ "name": "Claude Mythos 5.1",
+ "name_zh": "Claude Mythos 5.1（限定开放）",
+ "aliases": [
+  "claude-mythos-5-1",
+  "anthropic.claude-mythos-5-1",
+  "Claude Mythos 5.1"
+ ],
+ "vendor": "Anthropic",
+ "family": "Claude 5.1",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-01",
+ "updated_at": "2026-10-10",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方模型页：规格与定价与 Claude Fable 5.1 完全相同 —— 1M 上下文、128K 输出、始终开启的自适应思考、默认 effort high、可靠知识截止 2026-06。仅对通过 Anthropic 验证计划（如 Cyber Verification Program）的组织开放。"
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 10,
+  "output_per_m": 50,
+  "currency": "USD",
+  "source": "Anthropic 官方定价页 + Mythos 5.1 模型页",
+  "as_of": "2026-10-10",
+  "note": "与 Fable 5.1 同价。缓存读 $0.25（基础输入的 2.5%，全系最低比例）、5 分钟缓存写 $12.50、1 小时缓存写 $20；Batch $5 / $25。仅限美国境内推理档为 $11 / $55（缓存读 $0.275）"
+ },
+ "links": {
+  "official": "https://platform.claude.com/docs/en/models/mythos-5-1/overview",
+  "paper": "https://platform.claude.com/docs/en/models/fable-5-1/migration-guide",
+  "pricing": "https://platform.claude.com/docs/en/about-claude/pricing"
+ },
+ "copy": {
+  "one_liner": "Fable 5.1 的同规格「验证组织专供」版，网络安全场景放宽。",
+  "highlights": [
+   "能力、上下文、定价与 Claude Fable 5.1 完全一致（1M / 128K / $10 / $50，缓存读 $0.25）",
+   "面向通过 Anthropic 验证计划的组织，网络安全等受限方向的可用范围比公开模型宽",
+   "官方承诺退役不早于 2027-09-01，与 Fable 5.1 同期"
+  ],
+  "pitfalls": [
+   "拿不到访问权就等于不存在：必须先申请对应验证计划（如 Cyber Verification Program）通过",
+   "官方未单独发布它的基准表，分数只能参照 Fable 5.1，本站不代填",
+   "与 Fable 5.1 的一个真实差异：Mythos 5.1 不做 thinking block 的「同一会话」校验，迁移行为略有不同",
+   "不在官方模型总览的对比表里，只在定价页和独立模型页出现，容易被漏掉"
+  ],
+  "logic_ability": "官方把它描述为「与 Claude Fable 5.1 同等能力、面向验证组织」的并行版本，用途集中在推理、网络安全与研究。迁移指南把两者并列：API 表面、限额、每 token 价格、分词器、始终开启的自适应思考、拒答处理与 stop_details 分类全部与 Fable 5 一致，强制工具选择同样会返回 400；唯一点出的差异是 thinking block 的会话校验 Mythos 5.1 不执行。因此在本站口径下，它的能力形状应直接按 Fable 5.1 读（HLE 无工具 60.9%），区别只在准入与护栏松紧。",
+  "best_for": [
+   "已通过 Anthropic 验证计划的网络安全防御团队",
+   "需要放宽护栏的安全与研究工作",
+   "原本用 Fable 5.1、但被公开护栏卡住的负载"
+  ],
+  "not_for": [
+   "未通过验证的普通开发者（申请不到就用 Fable 5.1）",
+   "成本敏感的量产负载（$10 / $50）",
+   "需要私有化部署的合规场景"
+  ]
+ },
+ "capability_notes": {
+  "knowledge": "官方称与 Claude Fable 5.1 同等能力，未单独公布基准（Fable 5.1 官方 HLE 无工具 60.9%）。",
+  "chinese": "中文可用（官方称多语言能力），缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": false
+}

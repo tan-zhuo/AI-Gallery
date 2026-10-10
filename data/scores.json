@@ -3250,6 +3250,86 @@
   "evidence": "official"
  },
  {
+  "model_id": "claude-haiku-5-5",
+  "key": "hle",
+  "value": 45.9,
+  "unit": "percent",
+  "source": "Anthropic Haiku 5.5 发布公告（HLE 无工具）",
+  "source_url": "https://www.anthropic.com/claude-haiku-5-5",
+  "as_of": "2026-10-10",
+  "evidence": "official"
+ },
+ {
+  "model_id": "claude-haiku-4-5",
+  "key": "hle",
+  "value": 10.2,
+  "unit": "percent",
+  "source": "Anthropic Haiku 5.5 发布公告对比表（HLE 无工具）",
+  "source_url": "https://www.anthropic.com/claude-haiku-5-5",
+  "as_of": "2026-10-10",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kolibri-1",
+  "key": "swe_verified",
+  "value": 66.4,
+  "unit": "percent",
+  "source": "Kolibri-1 模型卡（英文列，LiveCodeBench v6 / TerminalBench 2.1）",
+  "source_url": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+  "as_of": "2026-10-10",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kolibri-1",
+  "key": "livecodebench",
+  "value": 85.9,
+  "unit": "percent",
+  "source": "Kolibri-1 模型卡（英文列，LiveCodeBench v6 / TerminalBench 2.1）",
+  "source_url": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+  "as_of": "2026-10-10",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kolibri-1",
+  "key": "gpqa_diamond",
+  "value": 84.3,
+  "unit": "percent",
+  "source": "Kolibri-1 模型卡（英文列，LiveCodeBench v6 / TerminalBench 2.1）",
+  "source_url": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+  "as_of": "2026-10-10",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kolibri-1",
+  "key": "hle",
+  "value": 21.5,
+  "unit": "percent",
+  "source": "Kolibri-1 模型卡（英文列，LiveCodeBench v6 / TerminalBench 2.1）",
+  "source_url": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+  "as_of": "2026-10-10",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kolibri-1",
+  "key": "aime_2025",
+  "value": 96.9,
+  "unit": "percent",
+  "source": "Kolibri-1 模型卡（英文列，LiveCodeBench v6 / TerminalBench 2.1）",
+  "source_url": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+  "as_of": "2026-10-10",
+  "evidence": "official"
+ },
+ {
+  "model_id": "kolibri-1",
+  "key": "terminal_bench",
+  "value": 27.7,
+  "unit": "percent",
+  "source": "Kolibri-1 模型卡（英文列，LiveCodeBench v6 / TerminalBench 2.1）",
+  "source_url": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+  "as_of": "2026-10-10",
+  "evidence": "official"
+ },
+ {
   "model_id": "gpt-4-turbo",
   "key": "gpqa_diamond",
   "value": 48,

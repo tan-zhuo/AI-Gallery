@@ -1,0 +1,92 @@
+{
+ "id": "gpt-6-1-sol",
+ "name": "GPT-6.1 Sol",
+ "name_zh": "GPT-6.1 主力",
+ "aliases": [
+  "gpt-6.1-sol",
+  "GPT-6.1 Sol"
+ ],
+ "vendor": "OpenAI",
+ "family": "GPT-6",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-29",
+ "updated_at": "2026-10-10",
+ "modalities": [
+  "text",
+  "image",
+  "tools",
+  "computer-use"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方 API 模型页：1,050,000 上下文（最大输入 922K、最大输出 128K），knowledge cutoff 2026-04-30；reasoning.effort 五档 low/medium（默认）/high/xhigh/max，不支持 none 与 minimal。"
+ },
+ "context": {
+  "max_tokens": 1050000,
+  "display": "1M",
+  "max_output": 128000
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "OpenAI 发布公告 + API 模型页",
+  "as_of": "2026-10-10",
+  "note": "与 GPT-6 Sol 同为 $2 / $10，缓存输入从 $0.20 降到 $0.10（标准输入的 5%），缓存写入 $2.50。>272K 输入的请求整单按 2× 输入 / 1.5× 输出计费；Fast 档 2×、Ultrafast 档 6×、Batch 与 Flex 五折。官方称标准单价为 Astra（$10 / $50）的五分之一"
+ },
+ "links": {
+  "official": "https://openai.com/index/introducing-gpt-6-1-sol/",
+  "paper": "https://deploymentsafety.openai.com/gpt-6-1-sol",
+  "pricing": "https://developers.openai.com/api/docs/models/gpt-6.1-sol"
+ },
+ "copy": {
+  "one_liner": "DevDay 发布的 Sol 升级档，价格不动、缓存输入再砍一半到 $0.10。",
+  "highlights": [
+   "单价与 GPT-6 Sol 持平（$2 / $10），缓存输入减半到 $0.10，是 Astra 缓存价（$1）的十分之一",
+   "官方称在 DeepSWE v1.1 上与 GPT-6 Astra 持平而成本约为其五分之一；GDP.pdf 上高于 Opus 5.5（含 fallback）且单任务成本不到一半",
+   "Terminal-Bench Science 0.1 最大 effort 下单任务均价 $5.47，官方对比 Opus 5.5 的 $23.21 与 Astra 的 $23.80",
+   "低 effort 下事实性错误率从 GPT-6 Sol 的 11.4% 降到 7.7%（官方内部评测，降幅约 32%）"
+  ],
+  "pitfalls": [
+   "上线时只进 ChatGPT Work 与 Codex，官方明确「尚未进入 Chat」；10-07 的 GPT-6 Chat 更新用的仍是 GPT-6 Sol / Luna",
+   "工具调用必须走 Responses API，Chat Completions 只能不带工具用；不支持 none 与 minimal 两档 effort",
+   "官方公告全是相对口径（「低多少成本」「高多少个百分点」），除 Astra 的 Terminal-Bench Science 68.1% 外几乎没给绝对分数，本站不代填",
+   "知识截止 2026-04-30，比同价的 GPT-6 Luna（2026-05-18）还早；不支持微调与 predicted outputs",
+   "Ultrafast 档发布当日仅 Astra 可用，6.1 Sol 版「随后几天」才上线，且 API 价格是标准档 6 倍"
+  ],
+  "logic_ability": "定位是「用 Sol 的价格买接近 Astra 的能力」。官方给的五项评测（DeepSWE v1.1 代码、GDP.pdf 文档专业问答、AutomationBench 多步业务流、OSWorld 2.0 计算机操作、Terminal-Bench Science 0.1 科研）全部只报相对差值：对 GPT-6 Sol 分别提升 6.4 / —— / 4.8 / 7 个百分点与「翻倍以上」，对 Astra 则是「持平」到「差 2.1 个百分点」。横向看最硬的一条是 AutomationBench 在 medium effort 下比 Opus 5.5 高 2.2 个百分点、成本约三分之一。最难的科研任务官方仍推荐 Astra（68.1%）。对齐评测上官方称比 GPT-6 Sol 明显改善，且与 Astra、GPT-6 Sol 一样未观察到绕过自动安全审查的尝试。",
+  "best_for": [
+   "重缓存复用的 agent（缓存输入 $0.10）",
+   "复杂编码与计算机操作，但预算吃不下 Astra",
+   "替换 GPT-6 Sol 的存量负载（同价、官方称全面更强）"
+  ],
+  "not_for": [
+   "最难的科研任务（官方自己让用 Astra）",
+   "只能用 Chat Completions 且需要工具调用的集成",
+   "ChatGPT Chat 里的日常对话（尚未上线）",
+   "需要私有化部署的合规场景"
+  ]
+ },
+ "capability_notes": {
+  "coding": "DeepSWE v1.1 官方称与 GPT-6 Astra 持平、成本约五分之一，并在更低 effort 下比 GPT-6 Sol 最好成绩高 6.4 个百分点（官方，未公布数值）。",
+  "agent": "AutomationBench medium effort 比 Opus 5.5 高 2.2 个百分点、比 GPT-6 Sol 高 4.8 个百分点；OSWorld 2.0 离线集最大 effort 比 GPT-6 Sol 高 7 个百分点、距 Astra 2.1 个百分点（官方，未公布数值）。",
+  "knowledge": "GDP.pdf 上高于 Opus 5.5（含 fallback），单任务成本不到一半（官方，未公布数值）。",
+  "chinese": "中文可用，缺少独立中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "弱"
+ },
+ "complete": false
+}

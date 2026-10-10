@@ -15,7 +15,7 @@
  "weights_available": false,
  "status": "current",
  "released_at": "2026-09-28",
- "updated_at": "2026-09-29",
+ "updated_at": "2026-10-10",
  "modalities": [
   "text",
   "image",
@@ -42,8 +42,8 @@
   "output_per_m": 10,
   "currency": "USD",
   "source": "Anthropic 发布公告 + 官方模型总览",
-  "as_of": "2026-09-29",
-  "note": "与 Sonnet 5 同价（$2 / $10），缓存读取 $0.20、缓存写入 $2.50；官方称同样工作所需 token 更少，单任务成本比 Sonnet 5 低最多 30%。Batch 五折"
+  "as_of": "2026-10-10",
+  "note": "与 Sonnet 5 同价（$2 / $10）。缓存读取 2026-10-07 起减半至 $0.10（原 $0.20，为基础输入的 5%），缓存写入 $2.50；官方称这让多数 agent 负载再便宜约 20%。官方另称同样工作所需 token 更少，单任务成本比 Sonnet 5 低最多 30%。Batch 五折"
  },
  "links": {
   "official": "https://www.anthropic.com/claude-sonnet-5-5",
@@ -55,7 +55,8 @@
   "highlights": [
    "Terminal-Bench 4.0 70.6%，高于 Opus 5.5 的 66.4%，而 Sonnet 5 只有 10.3%（官方）",
    "GDPval-AA v2.1 1844 对 Opus 5.5 的 1846，AA-Briefcase v1.1 1811 对 1822，知识工作几乎打平单价两倍的旗舰（官方）",
-   "定价与 Sonnet 5 完全相同（$2 / $10，缓存读 $0.20），输出速度快 30% 以上，官方实测单任务成本低最多 30%"
+   "定价与 Sonnet 5 完全相同（$2 / $10，缓存读 $0.20），输出速度快 30% 以上，官方实测单任务成本低最多 30%",
+   "2026-10-07 随 Haiku 5.5 发布下调缓存读取价：$0.20 → $0.10，官方称多数 agent 负载成本再降约 20%"
   ],
   "pitfalls": [
    "Artificial Analysis 实测 max 档每任务约 19.3 万输出 token——它测过的最高值，约为 Opus 5.5 的 1.6 倍、GPT-6 Astra 的 7 倍；单任务 $7.60 反而高于 Opus 5.5 的 $5.98，「单价便宜一半」不等于账单便宜",

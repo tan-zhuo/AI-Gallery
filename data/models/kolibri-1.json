@@ -1,0 +1,108 @@
+{
+ "id": "kolibri-1",
+ "name": "Kolibri 1",
+ "name_zh": "Aleph Alpha Kolibri 1",
+ "aliases": [
+  "Aleph-Alpha/Kolibri-1",
+  "Aleph-Alpha/Kolibri-1-BF16",
+  "Kolibri"
+ ],
+ "vendor": "Aleph Alpha",
+ "vendor_zh": "Aleph Alpha（德国）",
+ "family": "Kolibri",
+ "license": "Apache 2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+ "status": "current",
+ "released_at": "2026-10-03",
+ "updated_at": "2026-10-10",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "78.1B",
+  "active_params": "3.46B",
+  "total_params_b": 78.1,
+  "active_params_b": 3.46,
+  "experts": 384,
+  "active_experts": 6,
+  "shared_expert": true,
+  "layers": 50,
+  "hidden_size": 2560,
+  "vocab_size": 128000,
+  "kv_heads": 4,
+  "attention": "滑动窗口（512）为主，每第 5 层全注意力；48 Q 头 / 4 KV 头（4:1 SWA:GQA）",
+  "notes": "50 层全 MoE，每层 384 路由专家 + 1 共享专家，每 token 走 6 个路由专家；专家隐藏维 512。位置编码只加在滑窗层，因此上下文可不经位置缩放外推。权重为 float8_e4m3fn（128×128 分块）+ 动态量化激活，embedding / LM head / norm / MoE router 保持 bfloat16。训练用 Muon + Exact Quantile Balancing；预训练 20T token（约 62.5% 英 / 23.9% 德 / 13.6% 代码），mid-training 3.44T、长上下文扩展 201B；768 张 B200 跑 21 天（392k GPU 时），总计 6.4e23 FLOPS。前身 Kolibri Origin（30.6B / 3.27B）未公开发布。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {
+   "fp8": 78
+  },
+  "estimated": false,
+  "ref_hw_80gb": "可行：官方最低为 1× H200 / B200 / B300（80GB 单卡需 2× A100 80GB 或 2× H100 SXM5）",
+  "ref_hw_8x80gb": "充裕",
+  "kv_note": "官方以 FP8 KV cache 评测；超过 262,144 上下文需加 --max-model-len 1048576 与 max_position_embeddings 覆盖"
+ },
+ "links": {
+  "official": "https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
+  "hf": "https://huggingface.co/Aleph-Alpha/Kolibri-1",
+  "github": "https://github.com/Aleph-Alpha/aleph-alpha-inference",
+  "paper": "https://aleph-alpha.com/downloads/tech-report.pdf"
+ },
+ "copy": {
+  "one_liner": "Apache 2.0 的德英双语 78B/3.46B MoE，单卡 H200 能跑，GPQA 84.3。",
+  "highlights": [
+   "Apache 2.0 无门禁，78.1B 总参只激活 3.46B，FP8 权重约 78GB —— 单张 H200 / B200 / B300 就能起",
+   "官方表里德英双语都强：GPQA Diamond 英 84.3 / 德 81.3，AIME 2025 英 96.9 / 德 87.5，为同激活量级（3B）里最高一档",
+   "原生 262,144 上下文，位置编码只加在滑窗层，官方称已验证到 1,048,576；reasoning_effort 四档含 none",
+   "全套材料公开：模型卡、189 页技术报告、能耗估算（约 950 MWh）、训练数据构成，且是 EU GPAI 行为准则签署方"
+  ],
+  "pitfalls": [
+   "只支持德语和英语，官方明说是「深度优于广度」的取舍 —— 中文不在支持列表内，本站无中文评测",
+   "TerminalBench 2.1 只有 27.7，Nemotron 3 Super 39.7、Qwen3.8 27B 76.8 —— 长时程终端 agent 是明显短板",
+   "必须装 Aleph Alpha 自家的 aleph-alpha-inference（vLLM 插件）才能跑，不是开箱 vLLM/llama.cpp；超 256K 还要额外改参数",
+   "Apache 2.0 只覆盖本仓库的权重与配置文件，官方明确保留架构、训练代码、训练方法与参数设置的全部权利",
+   "RULER 长上下文分数随长度下滑（4k 86.9 → 1M 63.2），1M 窗口别当成 1M 可用质量；官方自己建议复杂任务 ≤262,144",
+   "官方对比表全部由 Aleph Alpha 自己跑，属厂商声明，尚无独立复测"
+  ],
+  "logic_ability": "这是「小激活量 + 双语深耕」的路线产物。在官方自己的对比表里，它和同为 3B 激活的 Qwen3.6 35B-A3B 正面对撞：英文总分 75.5 对 71.4、德文 70.8 对 67.3，知识与数学明显领先（GPQA 84.3 对 83.4、AIME 2026 96.0 对 91.0），但代码 agent 侧吃亏（SWE-bench Verified 66.4 对 73.8）。真正的硬短板是终端任务：TerminalBench 2.1 的 27.7 连 12B 激活的 Nemotron 3 Super（39.7）都不如，更不用说 Qwen3.8 27B 稠密版的 76.8。工具调用形状很分裂 —— Tau2-Bench Telecom 94.7 极高，但 Tau3-Bench Banking 只有 38.1、BFCL v3 多轮 39.8 偏低。接地与幻觉这块它反而有亮点：AA-Omniscience 非幻觉率 44.0 高于多数同级，SQuAD 接地分 23.4 是表里少见的非零值。定位上官方把它写成公共行政、工业与航空航天的「主权可控」模型，强调人在环中审阅，不做自主决策组件。",
+  "best_for": [
+   "德语 / 英语的多步推理与 RAG",
+   "需要数据不出境、可本地部署的监管行业（公共行政、工业）",
+   "单卡或双卡预算下要最强知识与数学的自建场景",
+   "Apache 2.0 下的二次微调基座"
+  ],
+  "not_for": [
+   "中文及其他语种（官方只支持德英）",
+   "长时程终端 / 编码 agent（看 TerminalBench 2.1）",
+   "想用标准 vLLM 或 llama.cpp 开箱即跑",
+   "把 1M 当作可用上下文质量的长文档负载"
+  ]
+ },
+ "capability_notes": {
+  "knowledge": "GPQA Diamond 英 84.3 / 德 81.3、HLE 无工具 英 21.5 / 德 15.9、MMLU-Pro CoT 英 80.0 / MMLU-ProX CoT 德 75.5（官方模型卡）。",
+  "math": "AIME 2025 英 96.9 / 德 87.5，AIME 2026 英 96.0 / 德 90.0（官方模型卡）。",
+  "coding": "LiveCodeBench v6 85.9、HumanEval+ 92.7、SWE-bench Verified 66.4（官方模型卡）。",
+  "agent": "TerminalBench 2.1 27.7、Tau2-Bench Telecom 94.7 / Retail 69.9 / Airline 76.7、Tau3-Bench Banking 38.1、BFCL v4 总分 61.4、BrowseComp 29.4（官方模型卡）。",
+  "instruction": "IFBench（loose-prompt）78.1（官方模型卡）。",
+  "chinese": "无：官方只声明德语与英语，未提供中文支持或评测。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM（需 aleph-alpha-inference 插件）"
+  ],
+  "finetune": "可微调（权重 Apache 2.0，但训练代码与方法未开放）",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

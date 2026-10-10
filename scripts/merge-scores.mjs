@@ -6,6 +6,7 @@ const AS_OLD = '2025-12-20'
 const AS_NEW = '2026-08-28'
 const AS_SEP = '2026-09-28'
 const AS_SEP29 = '2026-09-29'
+const AS_OCT10 = '2026-10-10'
 const SRC = {
   arena: { source: 'LMArena Text (style control)', url: 'https://lmarena.ai/leaderboard/text', evidence: 'independent' },
   aa: { source: 'Artificial Analysis Intelligence Index v3', url: 'https://artificialanalysis.ai/leaderboards/models', evidence: 'independent' },
@@ -109,8 +110,19 @@ const rowsSep29 = [
   ['mimo-v2-6-pro', null, null, null, null, null, null, null, null, 89.9, null, 'MiMo-V2.6-Pro 模型卡（Terminal-Bench 2.1）', 'https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL'],
   ['mimo-v2-6-flash', null, null, null, null, null, null, null, null, 87.6, null, 'MiMo-V2.6-Flash 模型卡（Terminal-Bench 2.1）', 'https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL'],
 ]
+// ---- 2026-10-10 快照（新增层，不覆盖前三层）----
+// Haiku 5.5 官方发布公告的对比表里同时给了 Haiku 4.5 的数字，一并收录（Haiku 4.5 此前无 HLE 分）。
+// 该表的 HLE 有「无工具 / 带工具」两列，本站 hle 列为无工具口径，只取无工具值。
+// Terminal-Bench 4.0（Haiku 5.5 = 39.2）与 GDPval-AA / AA-Briefcase / FrontierCode / Chartography 本站无对应列，未并入。
+// GPT-6.1 Sol 官方公告只给相对差值（对 Astra / GPT-6 Sol 的百分点差与成本比），无可用绝对分数，故不列行。
+// Kolibri 取模型卡英文列；其 AIME 为 2025 与 2026 两套，只取 2025（本站 aime25 列口径）。
+const rowsOct10 = [
+  ['claude-haiku-5-5', null, null, null, null, null, 45.9, null, null, null, null, 'Anthropic Haiku 5.5 发布公告（HLE 无工具）', 'https://www.anthropic.com/claude-haiku-5-5'],
+  ['claude-haiku-4-5', null, null, null, null, null, 10.2, null, null, null, null, 'Anthropic Haiku 5.5 发布公告对比表（HLE 无工具）', 'https://www.anthropic.com/claude-haiku-5-5'],
+  ['kolibri-1', null, null, 66.4, 85.9, 84.3, 21.5, 96.9, null, 27.7, null, 'Kolibri-1 模型卡（英文列，LiveCodeBench v6 / TerminalBench 2.1）', 'https://huggingface.co/Aleph-Alpha/Kolibri-1'],
+]
 // ---- 历史模型（2023–2025-08）：每行第 14 个元素为 as_of ----
-const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
+const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsOct10.map((r) => ({ r, as: AS_OCT10 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
 const keys = ['arena_text', 'aa_index', 'swe_verified', 'livecodebench', 'gpqa_diamond', 'hle', 'aime_2025', 'tau2_bench', 'terminal_bench', 'mmmu']
 const units = { arena_text: 'elo', aa_index: 'index' }
 const out = []

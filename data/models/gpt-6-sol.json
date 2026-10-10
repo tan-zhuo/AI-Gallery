@@ -12,9 +12,9 @@
  "license_commercial": true,
  "openness": "api-only",
  "weights_available": false,
- "status": "current",
+ "status": "superseded",
  "released_at": "2026-09-22",
- "updated_at": "2026-09-28",
+ "updated_at": "2026-10-10",
  "modalities": [
   "text",
   "image",
@@ -57,7 +57,8 @@
   "pitfalls": [
    "知识截止 2026-04-20，比更便宜的 Luna（2026-05-18）还早 28 天",
    "上线时只进 ChatGPT Work 与 Codex，不进 Chat；Enterprise 需管理员手动开启",
-   "OpenAI 未公布这两个模型的完整基准表，横向对比目前只能靠第三方；GPT-6 没有 Terra 档"
+   "OpenAI 未公布这两个模型的完整基准表，横向对比目前只能靠第三方；GPT-6 没有 Terra 档",
+   "已被 GPT-6.1 Sol 替代（2026-09-29，同价 $2 / $10 且缓存输入更低）；它仍在售，并自 2026-10-07 起是 ChatGPT Chat 付费档的默认模型"
   ],
   "logic_ability": "官方定位是「复杂编码与 agent 工作流」，主张把 Astra 在专业工作、事实性、编码、计算机使用与对齐上的进展下沉到更便宜的一档，并称每任务 token 消耗低于同级 GPT-5.6。截至收录日 OpenAI 尚未发布该模型的完整基准表，本条目不代填分数。",
   "best_for": [
@@ -79,5 +80,6 @@
   "finetune": "不支持",
   "zh_docs": "弱"
  },
- "complete": false
+ "complete": false,
+ "superseded_by": "gpt-6-1-sol"
 }
