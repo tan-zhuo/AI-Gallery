@@ -1,0 +1,100 @@
+{
+ "id": "mistral-large-4",
+ "name": "Mistral Large 4 (preview)",
+ "name_zh": "Mistral Large 4 预览版",
+ "aliases": [
+  "mistral-large-4",
+  "mistral-large-4-0",
+  "ML4",
+  "le Chonk"
+ ],
+ "vendor": "Mistral AI",
+ "family": "Mistral Large",
+ "license": "未公布（预览 API 按 Mistral 服务条款；官方称权重将开放，许可文本尚未发布）",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "preview",
+ "released_at": "2026-10-06",
+ "updated_at": "2026-10-11",
+ "modalities": [
+  "text",
+  "image",
+  "tools"
+ ],
+ "reasoning_mode": "none",
+ "architecture": {
+  "type": "moe",
+  "total_params": "1.05T",
+  "active_params": "52B",
+  "total_params_b": 1050,
+  "active_params_b": 52,
+  "notes": "细粒度 MoE，原生多模态：官方模型卡写 1.05T 总参 / 52B 激活 + 1.6B 视觉编码器（发布公告则写「1 万亿参数 / 49B 激活」，两处口径不一，本站取模型卡）。版本号 v26.10，状态为 Public Preview，官方说模型仍在持续调优。在 Mistral 自有欧洲数据中心用 3,800 张 NVIDIA Grace Blackwell 从零训练，预览 API 也跑在同一批机器上；训练数据多语言占比高，覆盖 160 多种语言与全部欧盟官方语言。官方未说明是否带思考模式开关（Mistral 的推理线是 Magistral）。权重未发布，官方承诺「本月底」放出，期间先与安全厂商、受信伙伴和国家机构做红队测试，那批人拿到的是降低审查、放开网络安全能力的版本。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false,
+  "kv_note": "权重尚未发布，无官方文件体积与部署配置；1.05T 总参即便 FP8 也是整机级负载"
+ },
+ "pricing": {
+  "input_per_m": 1.36,
+  "output_per_m": 4.18,
+  "currency": "USD",
+  "source": "Mistral 官方定价页 + mistral-large-4 模型卡",
+  "as_of": "2026-10-11",
+  "note": "列表价 $1.36 / $4.18，缓存输入 $0.14。发布促销为五折 $0.68 / $2.09（缓存输入 $0.07），官方页面只把原价划掉，未给结束日期，故本站按列表价收录。Batch 五折"
+ },
+ "links": {
+  "official": "https://mistral.ai/news/mistral-large-4/",
+  "pricing": "https://docs.mistral.ai/inference/pricing"
+ },
+ "copy": {
+  "one_liner": "Mistral 1.05T / 52B 激活的多模态旗舰预览，$1.36 / $4.18，权重承诺 10 月底放。",
+  "highlights": [
+   "1.05T 总参 / 52B 激活 + 1.6B 视觉编码器，1M 上下文，欧洲自建数据中心 3,800 张 Grace Blackwell 从零训练",
+   "官方自测编码 / agent 成绩：DeepSWE v1.1 61.7%、SWE-Atlas-QnA 59.4%、Terminal-Bench 4 28.3%，Coding Agent Index 合计 49.8%，自称高于 DeepSeek V4-Pro-0813 与 Qwen3.8-Max",
+   "网络安全是主打：Artificial Analysis Cyber Index 全球前五、CyberGym-E2E 82%（官方称最高）、Cybench 93%，并明说 Claude Opus 5.5 与 GPT-6 Astra 在同一测试上因拒答接近 0 分",
+   "价格压在 $1.36 / $4.18（缓存输入 $0.14），比自家 Medium 3.5（$1.5 / $7.5）的输出价还低；当前促销五折 $0.68 / $2.09"
+  ],
+  "pitfalls": [
+   "权重现在拿不到：官方只说「本月底」，许可文本一个字没公布 —— 此刻的「open-weight」是承诺，不是能力，自建与合规方案都没法排期",
+   "Public Preview（v26.10），官方自己写模型仍在持续调整，分数和行为都可能变；促销价无结束日期，预算按列表价算",
+   "参数口径官方两处不一致：发布公告「1T / 49B 激活」，模型卡「1.05T / 52B 激活」，本站取模型卡",
+   "全部分数为厂商自测或厂商委托（Surge AI 盲评、vals.ai 法律金融评测），无独立复测；网络安全领先有一部分来自竞品直接拒答，不等于能力差距",
+   "本站总榜看不到它的真实形状：官方只给 DeepSWE、Terminal-Bench 4、Coding Agent Index、AA-Briefcase 等本站无对应列的口径，terminal 列为 2.x 口径不可混入",
+   "官方人工盲评里它自己排第二（3.74），落后 Claude Opus 5（4.22）—— 对标的是开源阵营，不是闭源前沿"
+  ],
+  "logic_ability": "定位是「欧洲主权 + 开源权重」的前沿多模态模型，强项集中在三块：网络安全、agent 化编码、视觉接地。官方把拒答问题摆到了台面上 —— CyberGym-E2E 这类「先复现真实漏洞再打补丁」的任务，闭源前沿模型常直接拒绝，ML4 不拒，于是拿到 82% 的最高分，这个优势是策略差异而非纯能力差异，看榜时要分清。agent 侧 AutomationBench 59.9%（657 个真实业务流程）高于 Kimi K3、MiMo-V2.6-Pro 与 DeepSeek V4-Pro，AA-Briefcase 1,393 Elo。视觉接地上 Dense 200 的 42% 略高于 GPT-6 Astra 的 41%，是官方唯一敢直接对标闭源旗舰的一项。科学与数学侧称在开源权重阵营 SciCode-Verified 最优。安全性自报也不错：Lakera B3 抗注入 93.3%、KORA 1.691。但人工盲评的 3.74 对 Claude Opus 5 的 4.22 说明代码质量观感上仍有代差，官方表述也始终是「开源最强」而不是「超越闭源」。",
+  "best_for": [
+   "需要不拒答的漏洞复现 / 补丁 / 恶意样本分析等防御向安全工作",
+   "数据必须留在欧洲、要求可审计与主权部署的企业负载",
+   "视觉接地（工程图、卫星影像、密集场景）与文档类多模态 agent",
+   "等开源权重落地后的自建基座候选"
+  ],
+  "not_for": [
+   "现在就要自建或要许可条款的场景（权重与许可都没出）",
+   "把它当闭源前沿替代品（官方自己只对标开源阵营）",
+   "需要稳定分数与稳定行为的生产主力（预览期仍在调）",
+   "依赖本站总榜横向比较的选型（官方口径与本站列对不上）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "DeepSWE v1.1 61.7%、SWE-Atlas-QnA 59.4%、Terminal-Bench 4 28.3%，Coding Agent Index 49.8%（Mistral 发布公告，厂商自测）。Terminal-Bench 4 与本站 terminal 列（2.x 口径）不可混比。",
+  "agent": "AutomationBench 59.9%（657 个业务流程，含 Gmail / Sheets / Slack / Salesforce）、AA-Briefcase 1,393 Elo（Mistral 发布公告）。",
+  "multimodal": "Dense 200 视觉接地 42%（官方称高于 GPT-6 Astra 的 41%）；原生图像输入，支持密集场景接地、工程图核验、PDF 取证与千兆像素卫星影像检索（Mistral 发布公告）。",
+  "knowledge": "官方委托 vals.ai 评测法律与金融任务，称两项均超过 GPT-6 Astra；HarveyAI Legal Agent 上称为开源第一；FinWorkBench 测表格类财会任务（Mistral 发布公告，无绝对分数公开）。",
+  "reasoning": "官方称 SciCode-Verified 在开源权重阵营为 SOTA，数学与物理长任务由内部评测对比 GLM-5.3（Mistral 发布公告，未给绝对分数）。",
+  "chinese": "官方称训练数据覆盖 160 多种语言（含全部欧盟官方语言），但未公布任何中文评测。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "暂不支持自建微调（权重未发布）；官方称 ML4 使用与 Mistral Forge 相同的训练、定制与 RL 环境",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

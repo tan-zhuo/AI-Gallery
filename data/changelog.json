@@ -1,4 +1,7 @@
 [
+  {"date":"2026-10-11","type":"new","model_id":"mistral-large-4","text":"新增 Mistral Large 4 预览版（2026-10-06 公开预览，模型代码 mistral-large-4）：1.05T 总参 / 52B 激活 + 1.6B 视觉编码器，1M 上下文，列表价 $1.36 / $4.18（缓存输入 $0.14），发布促销五折且官方未给结束日期。权重与许可均未发布（官方承诺「本月底」），故按 api-only + preview 收录，Mistral Large 3 保持 current。"},
+  {"date":"2026-10-11","type":"up","model_id":"glm-5-3-flash","text":"GLM-5.3-Flash 定价改为官方定价页现价 $0.15 / $0.50（缓存输入 $0.03），原发布期五折 $0.075 / $0.25 已于 2026-09-09 到期；同时记录官方加速档 GLM-5.3-FlashX（glm-5.3-flashx，$0.37 / $1.25，官方称约 200 tokens/s）。"},
+  {"date":"2026-10-11","type":"doc","text":"数据截止日推进到 2026-10-11。Mistral Large 4 的官方分数（DeepSWE v1.1 61.7、Terminal-Bench 4 28.3、Coding Agent Index 49.8、CyberGym-E2E 82）全为本站无对应列的口径，未并入总榜，只写在模型页，故本次无分数层新增。Gemini 4 Argon 仍只对 Fairwind 受信防御方开放、无公开模型 id，维持不建条目；Reflection Beam（10-05 预览）与 Z.ai GLM-5.3-Prime（第三方报道）无官方定价 / 模型页，未入库。"},
   {"date":"2026-10-10","type":"new","model_id":"gpt-6-1-sol","text":"新增 GPT-6.1 Sol（2026-09-29 DevDay 发布）：与 GPT-6 Sol 同价 $2 / $10，缓存输入减半到 $0.10，官方称标准单价为 Astra 的五分之一。"},
   {"date":"2026-10-10","type":"down","model_id":"gpt-6-sol","text":"GPT-6 Sol 标记为已被 GPT-6.1 Sol 替代（官方未宣布下线，且自 10-07 起是 ChatGPT Chat 付费档的默认模型）。"},
   {"date":"2026-10-10","type":"new","model_id":"claude-haiku-5-5","text":"新增 Claude Haiku 5.5（2026-10-07 发布）：≤100K 提示 $0.10 / $0.50、>100K $0.50 / $2.50，1M 上下文，HLE 无工具 45.9%。"},

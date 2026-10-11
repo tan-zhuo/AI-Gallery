@@ -17,7 +17,7 @@
  "weights_url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
  "status": "current",
  "released_at": "2026-08-26",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-10-11",
  "modalities": [
   "text",
   "image",
@@ -60,12 +60,12 @@
   "estimated": false
  },
  "pricing": {
-  "input_per_m": 0.075,
-  "output_per_m": 0.25,
+  "input_per_m": 0.15,
+  "output_per_m": 0.5,
   "currency": "USD",
-  "source": "Z.ai 开放平台",
-  "as_of": "2026-08-28",
-  "note": "50% 折扣价，促销至 2026-09-09；缓存命中 $0.015"
+  "source": "Z.ai 官方定价页",
+  "as_of": "2026-10-11",
+  "note": "官方定价页现价 $0.15 / $0.50（缓存输入 $0.03，缓存存储限时免费）；发布期五折 $0.075 / $0.25 已于 2026-09-09 到期。官方另有同源加速档 GLM-5.3-FlashX（模型代码 glm-5.3-flashx，官方称约 200 tokens/s）$0.37 / $1.25、缓存输入 $0.075，暂不在 GLM Coding Plan 内"
  },
  "links": {
   "official": "https://z.ai/blog/glm-5.3-flash",
