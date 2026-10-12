@@ -14,7 +14,7 @@
  "weights_available": false,
  "status": "current",
  "released_at": "2026-09-29",
- "updated_at": "2026-10-10",
+ "updated_at": "2026-10-12",
  "modalities": [
   "text",
   "image",
@@ -62,7 +62,7 @@
    "工具调用必须走 Responses API，Chat Completions 只能不带工具用；不支持 none 与 minimal 两档 effort",
    "官方公告全是相对口径（「低多少成本」「高多少个百分点」），除 Astra 的 Terminal-Bench Science 68.1% 外几乎没给绝对分数，本站不代填",
    "知识截止 2026-04-30，比同价的 GPT-6 Luna（2026-05-18）还早；不支持微调与 predicted outputs",
-   "Ultrafast 档发布当日仅 Astra 可用，6.1 Sol 版「随后几天」才上线，且 API 价格是标准档 6 倍"
+   "Ultrafast 档已于 2026-10-08 对全部 API 用户开放（官方模型页现写明用 service_tier: \"ultrafast\" 走 Responses API），但价格是标准档的 6 倍、Fast 档的 3 倍，且限流额度与标准 / Fast 档分开计"
   ],
   "logic_ability": "定位是「用 Sol 的价格买接近 Astra 的能力」。官方给的五项评测（DeepSWE v1.1 代码、GDP.pdf 文档专业问答、AutomationBench 多步业务流、OSWorld 2.0 计算机操作、Terminal-Bench Science 0.1 科研）全部只报相对差值：对 GPT-6 Sol 分别提升 6.4 / —— / 4.8 / 7 个百分点与「翻倍以上」，对 Astra 则是「持平」到「差 2.1 个百分点」。横向看最硬的一条是 AutomationBench 在 medium effort 下比 Opus 5.5 高 2.2 个百分点、成本约三分之一。最难的科研任务官方仍推荐 Astra（68.1%）。对齐评测上官方称比 GPT-6 Sol 明显改善，且与 Astra、GPT-6 Sol 一样未观察到绕过自动安全审查的尝试。",
   "best_for": [

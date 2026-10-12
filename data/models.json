@@ -8867,7 +8867,7 @@
   "weights_available": false,
   "status": "current",
   "released_at": "2026-09-29",
-  "updated_at": "2026-10-10",
+  "updated_at": "2026-10-12",
   "modalities": [
    "text",
    "image",
@@ -8915,7 +8915,7 @@
     "工具调用必须走 Responses API，Chat Completions 只能不带工具用；不支持 none 与 minimal 两档 effort",
     "官方公告全是相对口径（「低多少成本」「高多少个百分点」），除 Astra 的 Terminal-Bench Science 68.1% 外几乎没给绝对分数，本站不代填",
     "知识截止 2026-04-30，比同价的 GPT-6 Luna（2026-05-18）还早；不支持微调与 predicted outputs",
-    "Ultrafast 档发布当日仅 Astra 可用，6.1 Sol 版「随后几天」才上线，且 API 价格是标准档 6 倍"
+    "Ultrafast 档已于 2026-10-08 对全部 API 用户开放（官方模型页现写明用 service_tier: \"ultrafast\" 走 Responses API），但价格是标准档的 6 倍、Fast 档的 3 倍，且限流额度与标准 / Fast 档分开计"
    ],
    "logic_ability": "定位是「用 Sol 的价格买接近 Astra 的能力」。官方给的五项评测（DeepSWE v1.1 代码、GDP.pdf 文档专业问答、AutomationBench 多步业务流、OSWorld 2.0 计算机操作、Terminal-Bench Science 0.1 科研）全部只报相对差值：对 GPT-6 Sol 分别提升 6.4 / —— / 4.8 / 7 个百分点与「翻倍以上」，对 Astra 则是「持平」到「差 2.1 个百分点」。横向看最硬的一条是 AutomationBench 在 medium effort 下比 Opus 5.5 高 2.2 个百分点、成本约三分之一。最难的科研任务官方仍推荐 Astra（68.1%）。对齐评测上官方称比 GPT-6 Sol 明显改善，且与 Astra、GPT-6 Sol 一样未观察到绕过自动安全审查的尝试。",
    "best_for": [
@@ -13145,6 +13145,113 @@
   },
   "complete": false,
   "superseded_by": "muse-glimmer-30b"
+ },
+ {
+  "id": "mellum2-1",
+  "name": "Mellum2.1 Thinking",
+  "name_zh": "JetBrains Mellum2.1",
+  "aliases": [
+   "Mellum2.1",
+   "Mellum2.1-12B-A2.5B-Thinking",
+   "JetBrains/Mellum2.1-12B-A2.5B-Thinking"
+  ],
+  "vendor": "JetBrains",
+  "vendor_zh": "JetBrains（捷克）",
+  "family": "Mellum",
+  "license": "Apache 2.0",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking",
+  "status": "current",
+  "released_at": "2026-10-08",
+  "updated_at": "2026-10-12",
+  "modalities": [
+   "text",
+   "tools"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+   "type": "moe",
+   "total_params": "12B",
+   "active_params": "2.5B",
+   "total_params_b": 12,
+   "active_params_b": 2.5,
+   "experts": 64,
+   "active_experts": 8,
+   "layers": 28,
+   "hidden_size": 2304,
+   "vocab_size": 98304,
+   "kv_heads": 4,
+   "attention": "GQA，32 Q 头 / 4 KV 头；滑动窗口 1,024，每 4 层里有 3 层用滑窗",
+   "notes": "官方模型卡：28 层 MoE，64 路由专家每 token 走 8 个；FFN 中间维 7168、MoE 中间维 896；词表 98,304，权重精度 bfloat16。架构与 2026-06 开源的 Mellum2 完全一致，官方明说本次几乎全部改动都在后训练 —— RL 从最后一小段升级为训练主体，在真实仓库里带 shell 与文件编辑工具训练、以测试通过为奖励，训练期跑了数百万个沙箱。base_model 为 JetBrains/Mellum2-12B-A2.5B-Base。这是思考模型，先输出推理再给答案。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 131072,
+   "display": "128K"
+  },
+  "memory": {
+   "weight_gb": {
+    "bf16": 24
+   },
+   "estimated": true,
+   "ref_hw_24gb": "勉强不够：BF16 权重本身约 24GB 就占满单卡，要么上双卡要么等官方 GGUF",
+   "ref_hw_80gb": "充裕：单张 80GB 可跑满 131,072 上下文",
+   "ref_hw_8x80gb": "过剩",
+   "kv_note": "BF16 体积按 12B×2 字节推算，官方模型卡只给精度未给文件体积；官方 vLLM 命令为 --max-model-len 131072 --reasoning-parser qwen3，带工具再加 --enable-auto-tool-choice --tool-call-parser hermes。GGUF 与 vLLM 的 MTP 投机解码头官方写「coming soon」"
+  },
+  "links": {
+   "official": "https://blog.jetbrains.com/ai/2026/10/mellum2-1-gets-to-work-a-fast-open-model-for-coding-agents/",
+   "hf": "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking",
+   "paper": "https://arxiv.org/abs/2605.31268"
+  },
+  "copy": {
+   "one_liner": "Apache 2.0 的 12B/2.5B 激活编码 agent 小模型，SWE-bench Verified 从 2.0 干到 47.0。",
+   "highlights": [
+    "Apache 2.0、12B 总参只激活 2.5B，131,072 上下文 —— 定位是能跑在自己机器上的 agent 工人与子 agent",
+    "纯后训练换来的 agent 能力跃升：同一套评测管线下 SWE-bench Verified 2.0 → 47.0、Terminal-Bench 2.1 0.6 → 17.4、SWE-bench Pro 0.0 → 28.0",
+    "编码与工具调用在同级里领先：LiveCodeBench v6 82.0、HumanEval+ 91.5、MBPP+ 79.4、BFCL v4 62.3，四项都高于 Qwen3.5-9B 与 Gemma 4 E4B",
+    "官方称重载下是对比组里最快的，吞吐接近 Qwen3.5-9B 的两倍；单请求配 MTP 约快 1.6 倍"
+   ],
+   "pitfalls": [
+    "agent 分数的绝对水位仍然低：Terminal-Bench 2.1 只有 17.4，SWE-bench Pro 28.0，长时程终端任务远谈不上能独立干活，官方定位也是「agent 里的工人」而非主控",
+    "同级对比并非全胜：Qwen3.5-9B 在 SWE-bench Verified（50.0）、SWE-bench Pro（38.0）、GPQA Diamond（77.8 对 64.6）、AIME（86.7 对 83.3）上都更高",
+    "全部分数由 JetBrains 自己用同一管线跑出，模型卡里逐条标 verified: false，目前无独立复测",
+    "部署现在只有 vLLM 一条顺路：GGUF（llama.cpp / Ollama / LM Studio）与 MTP 头官方都写「coming soon」，24GB 单卡吃不下 BF16",
+    "官方语言标签只有英文（language: en），模型卡无任何中文评测，中文能力未知",
+    "安全侧有退步项：XSTest 合规率 88.8 低于 Mellum2 的 91.2 与对比组（Gemma 4 E4B 95.2、Qwen3.5-9B 95.6），只有 HarmBench 从 21.5 降到 8.5 是改善"
+   ],
+   "logic_ability": "这是「架构不动、把算力全砸进 RL」的典型样本，也是本站少见的能把前后代放在同一管线里直接对比的案例。JetBrains 自己把 Mellum2 用新管线重跑了一遍，所以 2.0 → 47.0 这种跃升不是换口径换出来的：agent 类评测统一用开源 Pi v0.73.1 harness（shell + 文件工具）、114K 上下文、每轮上限 16K token，对比组每个模型都跑同一套。形状上它是「编码强、知识弱」：LiveCodeBench v6 82.0 明显高过 Qwen3.5-9B 的 75.4，但 GPQA Diamond 64.6 对 77.8 差了 13 个点，MixEval-Hard 46.4 对 50.3 也落后 —— 2.5B 激活量换来的速度是有代价的，它不是通用知识模型。工具调用同样分裂：BFCL v4（五个子任务宏平均）62.3 领先，但 WorkBench 44.6 比自家上一代 45.1 还略降、ToolHop 49.1 低于 Qwen3.5-9B 的 52.0，说明多跳与真实业务工具链仍是弱项。数学上 AIME 取的是 2025 与 2026 两套各 30 题的均值，和本站 aime25 列不是同一口径，故未并入总榜。整体适合当「便宜、快、能自托管」的 agent 执行单元，不适合当需要广知识面的主模型。",
+   "best_for": [
+    "自托管的编码 agent 执行单元与子 agent（代码不出内网）",
+    "高吞吐、低延迟的代码补全与改写流水线",
+    "Apache 2.0 下做领域微调的小基座",
+    "单张 80GB 卡上跑满 128K 上下文的本地开发工具"
+   ],
+   "not_for": [
+    "需要广知识面或硬科学问答的主模型（看 GPQA Diamond 64.6）",
+    "独立完成长时程终端 / 仓库级任务（Terminal-Bench 2.1 17.4）",
+    "中文负载（官方只标英文，无中文评测）",
+    "24GB 单卡本地部署（GGUF 未发布，BF16 装不下）"
+   ]
+  },
+  "capability_notes": {
+   "coding": "LiveCodeBench v6 82.0、HumanEval+ 91.5、MBPP+ 79.4（官方模型卡，非 agent 项用 greedy 解码）。",
+   "agent": "SWE-bench Verified 47.0、SWE-bench Pro 28.0、Terminal-Bench 2.1 17.4（官方模型卡；agent 项统一用 Pi v0.73.1 harness、114K 上下文、每轮 ≤16K token、temperature 1.0）。工具调用 BFCL v4 62.3（五子任务宏平均）、WorkBench 44.6、ToolHop 49.1。",
+   "math": "AIME 83.3（官方模型卡，为 AIME 2025 与 2026 各 30 题的均值，与本站 aime25 列口径不同）、GSM-Plus 88.3。",
+   "knowledge": "GPQA Diamond 64.6、MMLU-Redux 87.8、MixEval-Hard 46.4（官方模型卡）。",
+   "instruction": "IFEval 90.6（官方模型卡）。",
+   "chinese": "无：官方模型卡语言标签仅 en，未提供中文支持声明或中文评测。"
+  },
+  "ecosystem": {
+   "engines": [
+    "vLLM"
+   ],
+   "finetune": "可微调（Apache 2.0，base_model 为 Mellum2-12B-A2.5B-Base）",
+   "zh_docs": "无"
+  },
+  "complete": false
  },
  {
   "aliases": [
@@ -19914,6 +20021,107 @@
     }
    }
   }
+ },
+ {
+  "id": "step-5-preview",
+  "name": "Step 5 Preview",
+  "name_zh": "阶跃 Step 5 预览版",
+  "aliases": [
+   "step-5-preview",
+   "Step-5-Preview",
+   "Step 5"
+  ],
+  "vendor": "StepFun",
+  "vendor_zh": "阶跃星辰（中国）",
+  "family": "Step 5",
+  "license": "未公布（预览期按阶跃开放平台服务条款；官方称 2026-10-15 发布开源权重，许可名称与文本尚未公布）",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "preview",
+  "released_at": "2026-09-20",
+  "updated_at": "2026-10-12",
+  "modalities": [
+   "text",
+   "image",
+   "video",
+   "tools"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+   "type": "moe",
+   "total_params": "600B",
+   "active_params": "27B",
+   "total_params_b": 600,
+   "active_params_b": 27,
+   "notes": "官方发布页写「稀疏 MoE，600B 总参 / 每 token 激活 27B」，原生支持图像与视频输入、1M 上下文。官方未公布层数、专家数、注意力结构、预训练 token 量与知识截止。权重未发布：官方发布页写「将于 2026-10-15 以开源权重发布」，截至 2026-10-12 阶跃官方 Hugging Face 组织（stepfun-ai）无 Step 5 仓库 —— 站外有若干第三方账号上传的同名 BF16 仓库并自称「权重已可下载」，非官方发布，本站不采信也不记录。计费口径上官方把它归入「多模态推理模型」，输出 token 含思考过程。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 1000000,
+   "display": "1M",
+   "max_output": 65536
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false,
+   "kv_note": "权重未发布，官方未给文件体积与部署配置；600B 总参即便 BF16 也是整机级负载"
+  },
+  "pricing": {
+   "input_per_m": 1,
+   "output_per_m": 2.7,
+   "currency": "USD",
+   "source": "阶跃开放平台定价文档（国际站 USD 价目表）",
+   "as_of": "2026-10-12",
+   "note": "国际站 $1.00 / $2.70，缓存命中输入 $0.10；缓存未命中的输入价已含写入缓存的费用，输出 token 同时计思考过程与最终答案。缓存命中价发布期为 $0.05，现官方文档为 $0.10（部分第三方价目表仍挂 $0.05）。中国站（platform.stepfun.com）为另一套独立价目 ¥7 / ¥0.35 / ¥20，两站密钥不通用。单一费率，官方文档未设长上下文、时段或促销条件"
+  },
+  "links": {
+   "official": "https://www.stepfun.com/step-5-preview",
+   "pricing": "https://platform.stepfun.ai/docs/en/guides/pricing/details"
+  },
+  "copy": {
+   "one_liner": "阶跃 600B / 27B 激活的 agent 旗舰，$1 / $2.70，权重承诺 10-15 放。",
+   "highlights": [
+    "稀疏 MoE 600B 总参 / 27B 激活，1M 上下文（最大输入 1M、最大输出 64k），原生吃文本 + 图像 + 视频",
+    "官方自测表（High 档）：GPQA Diamond 93.5%、Terminal-Bench v2.1 85.0%、DeepSWE v1.1 67.7%、AA-LCR v1.1 88.3%，自称与 Kimi K3、GLM-5.3 同档",
+    "价格是同级里的低位：$1.00 / $2.70，缓存命中 $0.10（输入价的 10%），单一费率无长上下文加价",
+    "工程接口齐全：OpenAI 兼容 + Anthropic Messages 兼容，effort 三档 low/medium/high，并行工具调用、JSON Schema 严格输出、提示缓存，官方给了 Claude Code 接入文档"
+   ],
+   "pitfalls": [
+    "权重现在拿不到：官方承诺 2026-10-15，截至 10-12 官方 HF 组织里没有 Step 5 仓库，许可名称与文本一个字没公布 —— 第三方上传的同名「BF16 权重」仓库不是官方发布，别当数据源",
+    "Preview 状态，官方未承诺行为与分数稳定；知识截止官方未公布",
+    "编码与 agent 分数全是厂商自测且 harness 不同口径：官方 DeepSWE 跑的是 SWE-agent，独立 DeepSWE 榜统一用 mini-swe-agent，不可直接对比；独立榜单当前只覆盖到 HLE、AA-AnalystAgent 与 Terminal-Bench 4.0 三项",
+    "官方表里 HLE 46.5% 一行的工具设定有争议（有追踪方指出该行混了「带工具」与「纯文本子集」口径），故本站未把 HLE 并入总榜，只记在这里",
+    "官方同时给 Terminal-Bench v2.1 85.0% 与 Terminal-Bench v4 33.3%，两套口径差距极大；本站 terminal 列是 2.x 口径，看 v4 的话它落在 GLM-5.3（41.9）之后",
+    "两个平台两套账号与价格：国际站 api.stepfun.ai 与中国站 api.stepfun.com 的密钥互相拒绝，价目也各自独立，跨区部署要分别开通"
+   ],
+   "logic_ability": "定位是「低价 agent 旗舰」：官方主打软件工程、专业知识工作与金融，发布页把对比列直接摆成 GLM-5.3、Kimi K3、GPT-6 Astra、Claude Fable 5.1 与 Claude Opus 5，自我定位是追开源头部而非超越闭源前沿。从官方表看形状比较清楚：知识与长上下文是强项（GPQA Diamond 93.5 与 Kimi K3 并列、AA-LCR v1.1 88.3 反超表里所有闭源列），编码与终端任务则贴着开源同档（DeepSWE 67.7 对 Kimi K3 67.5、GLM-5.3 66.9，而 GPT-6 Astra 74.1；Terminal-Bench v2.1 85.0 对 Kimi K3 85.0、GLM-5.3 83.9，闭源列都在 88 以上），物理推理的 CritPt 20.9 是表里最低一档。真正要留意的是口径：同一张表里 Terminal-Bench v4 只有 33.3，被 GLM-5.3 的 41.9 反超，说明换成更难的新版终端评测后它的排序会变。独立侧目前只有 Artificial Analysis 与 vals.ai 覆盖了少数几项，AA 另外测到它输出极为冗长（评测期生成约 1.6 亿 token，对比中位数约 9400 万），按 token 计费时这是直接的成本乘数。阶跃把它定义为新旗舰而非 Step 3.7 Flash 的替代，后者仍在官方价目表上。",
+   "best_for": [
+    "预算敏感的长上下文 agent 与编码负载（$1 / $2.70 + 缓存命中 $0.10）",
+    "需要原生视频理解的多模态分析（图像 ≤60 张 / 请求，视频 MP4 等 <128MB）",
+    "中文场景下要 1M 上下文的文档与跨源问答",
+    "等 10-15 权重落地后的自建基座候选"
+   ],
+   "not_for": [
+    "现在就要自建或要许可条款的场景（权重与许可都没出）",
+    "要稳定行为与稳定分数的生产主力（Preview 期）",
+    "按输出 token 严格控本的高频负载（AA 实测输出远高于中位数）",
+    "依赖独立复测数据选型（绝大多数分数仍是厂商自测）"
+   ]
+  },
+  "capability_notes": {
+   "knowledge": "GPQA Diamond 93.5%、AA-LCR v1.1 88.3%、CritPt 20.9%（阶跃官方发布页对比表，High 档）。官方表另列 HLE 46.5%，但该行工具设定存在争议，本站未并入总榜。",
+   "coding": "DeepSWE v1.1 67.7%（官方发布页，High 档，SWE-agent harness）。独立 DeepSWE 榜统一用 mini-swe-agent 且未收录本模型，不可直接对比。",
+   "agent": "Terminal-Bench v2.1 85.0%、Terminal-Bench v4 33.3%（均为官方发布页 High 档）。vals.ai 独立跑 Terminal-Bench 4.0 得 31.8%，与官方 v4 数值接近。",
+   "multimodal": "官方声明原生文本 + 图像 + 视频输入：图像支持 URL / Base64，JPG、PNG、WebP 与静态 GIF，单请求最多 60 张，detail 两档；视频支持 MP4、QuickTime、Matroska，单文件 <128MB、官方建议 ≤5 分钟。官方未公布 MMMU 等多模态评测分数。",
+   "chinese": "中文原生（阶跃为中国厂商，另有中国站平台），但官方未公布任何中文评测分数，本站无中文榜数据。"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "暂不支持自建微调（权重未发布）；官方未提供托管微调",
+   "zh_docs": "有"
+  },
+  "complete": false
  },
  {
   "aliases": [

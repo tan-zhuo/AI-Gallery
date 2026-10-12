@@ -3330,6 +3330,66 @@
   "evidence": "official"
  },
  {
+  "model_id": "step-5-preview",
+  "key": "gpqa_diamond",
+  "value": 93.5,
+  "unit": "percent",
+  "source": "阶跃 Step 5 Preview 官方发布页对比表（High 档，Terminal-Bench v2.1）",
+  "source_url": "https://www.stepfun.com/step-5-preview",
+  "as_of": "2026-10-12",
+  "evidence": "official"
+ },
+ {
+  "model_id": "step-5-preview",
+  "key": "terminal_bench",
+  "value": 85,
+  "unit": "percent",
+  "source": "阶跃 Step 5 Preview 官方发布页对比表（High 档，Terminal-Bench v2.1）",
+  "source_url": "https://www.stepfun.com/step-5-preview",
+  "as_of": "2026-10-12",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mellum2-1",
+  "key": "swe_verified",
+  "value": 47,
+  "unit": "percent",
+  "source": "Mellum2.1 官方模型卡评测表（LiveCodeBench v6 / GPQA Diamond / Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking",
+  "as_of": "2026-10-12",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mellum2-1",
+  "key": "livecodebench",
+  "value": 82,
+  "unit": "percent",
+  "source": "Mellum2.1 官方模型卡评测表（LiveCodeBench v6 / GPQA Diamond / Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking",
+  "as_of": "2026-10-12",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mellum2-1",
+  "key": "gpqa_diamond",
+  "value": 64.6,
+  "unit": "percent",
+  "source": "Mellum2.1 官方模型卡评测表（LiveCodeBench v6 / GPQA Diamond / Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking",
+  "as_of": "2026-10-12",
+  "evidence": "official"
+ },
+ {
+  "model_id": "mellum2-1",
+  "key": "terminal_bench",
+  "value": 17.4,
+  "unit": "percent",
+  "source": "Mellum2.1 官方模型卡评测表（LiveCodeBench v6 / GPQA Diamond / Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking",
+  "as_of": "2026-10-12",
+  "evidence": "official"
+ },
+ {
   "model_id": "gpt-4-turbo",
   "key": "gpqa_diamond",
   "value": 48,

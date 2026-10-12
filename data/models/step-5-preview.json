@@ -1,0 +1,101 @@
+{
+ "id": "step-5-preview",
+ "name": "Step 5 Preview",
+ "name_zh": "阶跃 Step 5 预览版",
+ "aliases": [
+  "step-5-preview",
+  "Step-5-Preview",
+  "Step 5"
+ ],
+ "vendor": "StepFun",
+ "vendor_zh": "阶跃星辰（中国）",
+ "family": "Step 5",
+ "license": "未公布（预览期按阶跃开放平台服务条款；官方称 2026-10-15 发布开源权重，许可名称与文本尚未公布）",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "preview",
+ "released_at": "2026-09-20",
+ "updated_at": "2026-10-12",
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "total_params": "600B",
+  "active_params": "27B",
+  "total_params_b": 600,
+  "active_params_b": 27,
+  "notes": "官方发布页写「稀疏 MoE，600B 总参 / 每 token 激活 27B」，原生支持图像与视频输入、1M 上下文。官方未公布层数、专家数、注意力结构、预训练 token 量与知识截止。权重未发布：官方发布页写「将于 2026-10-15 以开源权重发布」，截至 2026-10-12 阶跃官方 Hugging Face 组织（stepfun-ai）无 Step 5 仓库 —— 站外有若干第三方账号上传的同名 BF16 仓库并自称「权重已可下载」，非官方发布，本站不采信也不记录。计费口径上官方把它归入「多模态推理模型」，输出 token 含思考过程。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1000000,
+  "display": "1M",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false,
+  "kv_note": "权重未发布，官方未给文件体积与部署配置；600B 总参即便 BF16 也是整机级负载"
+ },
+ "pricing": {
+  "input_per_m": 1,
+  "output_per_m": 2.7,
+  "currency": "USD",
+  "source": "阶跃开放平台定价文档（国际站 USD 价目表）",
+  "as_of": "2026-10-12",
+  "note": "国际站 $1.00 / $2.70，缓存命中输入 $0.10；缓存未命中的输入价已含写入缓存的费用，输出 token 同时计思考过程与最终答案。缓存命中价发布期为 $0.05，现官方文档为 $0.10（部分第三方价目表仍挂 $0.05）。中国站（platform.stepfun.com）为另一套独立价目 ¥7 / ¥0.35 / ¥20，两站密钥不通用。单一费率，官方文档未设长上下文、时段或促销条件"
+ },
+ "links": {
+  "official": "https://www.stepfun.com/step-5-preview",
+  "pricing": "https://platform.stepfun.ai/docs/en/guides/pricing/details"
+ },
+ "copy": {
+  "one_liner": "阶跃 600B / 27B 激活的 agent 旗舰，$1 / $2.70，权重承诺 10-15 放。",
+  "highlights": [
+   "稀疏 MoE 600B 总参 / 27B 激活，1M 上下文（最大输入 1M、最大输出 64k），原生吃文本 + 图像 + 视频",
+   "官方自测表（High 档）：GPQA Diamond 93.5%、Terminal-Bench v2.1 85.0%、DeepSWE v1.1 67.7%、AA-LCR v1.1 88.3%，自称与 Kimi K3、GLM-5.3 同档",
+   "价格是同级里的低位：$1.00 / $2.70，缓存命中 $0.10（输入价的 10%），单一费率无长上下文加价",
+   "工程接口齐全：OpenAI 兼容 + Anthropic Messages 兼容，effort 三档 low/medium/high，并行工具调用、JSON Schema 严格输出、提示缓存，官方给了 Claude Code 接入文档"
+  ],
+  "pitfalls": [
+   "权重现在拿不到：官方承诺 2026-10-15，截至 10-12 官方 HF 组织里没有 Step 5 仓库，许可名称与文本一个字没公布 —— 第三方上传的同名「BF16 权重」仓库不是官方发布，别当数据源",
+   "Preview 状态，官方未承诺行为与分数稳定；知识截止官方未公布",
+   "编码与 agent 分数全是厂商自测且 harness 不同口径：官方 DeepSWE 跑的是 SWE-agent，独立 DeepSWE 榜统一用 mini-swe-agent，不可直接对比；独立榜单当前只覆盖到 HLE、AA-AnalystAgent 与 Terminal-Bench 4.0 三项",
+   "官方表里 HLE 46.5% 一行的工具设定有争议（有追踪方指出该行混了「带工具」与「纯文本子集」口径），故本站未把 HLE 并入总榜，只记在这里",
+   "官方同时给 Terminal-Bench v2.1 85.0% 与 Terminal-Bench v4 33.3%，两套口径差距极大；本站 terminal 列是 2.x 口径，看 v4 的话它落在 GLM-5.3（41.9）之后",
+   "两个平台两套账号与价格：国际站 api.stepfun.ai 与中国站 api.stepfun.com 的密钥互相拒绝，价目也各自独立，跨区部署要分别开通"
+  ],
+  "logic_ability": "定位是「低价 agent 旗舰」：官方主打软件工程、专业知识工作与金融，发布页把对比列直接摆成 GLM-5.3、Kimi K3、GPT-6 Astra、Claude Fable 5.1 与 Claude Opus 5，自我定位是追开源头部而非超越闭源前沿。从官方表看形状比较清楚：知识与长上下文是强项（GPQA Diamond 93.5 与 Kimi K3 并列、AA-LCR v1.1 88.3 反超表里所有闭源列），编码与终端任务则贴着开源同档（DeepSWE 67.7 对 Kimi K3 67.5、GLM-5.3 66.9，而 GPT-6 Astra 74.1；Terminal-Bench v2.1 85.0 对 Kimi K3 85.0、GLM-5.3 83.9，闭源列都在 88 以上），物理推理的 CritPt 20.9 是表里最低一档。真正要留意的是口径：同一张表里 Terminal-Bench v4 只有 33.3，被 GLM-5.3 的 41.9 反超，说明换成更难的新版终端评测后它的排序会变。独立侧目前只有 Artificial Analysis 与 vals.ai 覆盖了少数几项，AA 另外测到它输出极为冗长（评测期生成约 1.6 亿 token，对比中位数约 9400 万），按 token 计费时这是直接的成本乘数。阶跃把它定义为新旗舰而非 Step 3.7 Flash 的替代，后者仍在官方价目表上。",
+  "best_for": [
+   "预算敏感的长上下文 agent 与编码负载（$1 / $2.70 + 缓存命中 $0.10）",
+   "需要原生视频理解的多模态分析（图像 ≤60 张 / 请求，视频 MP4 等 <128MB）",
+   "中文场景下要 1M 上下文的文档与跨源问答",
+   "等 10-15 权重落地后的自建基座候选"
+  ],
+  "not_for": [
+   "现在就要自建或要许可条款的场景（权重与许可都没出）",
+   "要稳定行为与稳定分数的生产主力（Preview 期）",
+   "按输出 token 严格控本的高频负载（AA 实测输出远高于中位数）",
+   "依赖独立复测数据选型（绝大多数分数仍是厂商自测）"
+  ]
+ },
+ "capability_notes": {
+  "knowledge": "GPQA Diamond 93.5%、AA-LCR v1.1 88.3%、CritPt 20.9%（阶跃官方发布页对比表，High 档）。官方表另列 HLE 46.5%，但该行工具设定存在争议，本站未并入总榜。",
+  "coding": "DeepSWE v1.1 67.7%（官方发布页，High 档，SWE-agent harness）。独立 DeepSWE 榜统一用 mini-swe-agent 且未收录本模型，不可直接对比。",
+  "agent": "Terminal-Bench v2.1 85.0%、Terminal-Bench v4 33.3%（均为官方发布页 High 档）。vals.ai 独立跑 Terminal-Bench 4.0 得 31.8%，与官方 v4 数值接近。",
+  "multimodal": "官方声明原生文本 + 图像 + 视频输入：图像支持 URL / Base64，JPG、PNG、WebP 与静态 GIF，单请求最多 60 张，detail 两档；视频支持 MP4、QuickTime、Matroska，单文件 <128MB、官方建议 ≤5 分钟。官方未公布 MMMU 等多模态评测分数。",
+  "chinese": "中文原生（阶跃为中国厂商，另有中国站平台），但官方未公布任何中文评测分数，本站无中文榜数据。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "暂不支持自建微调（权重未发布）；官方未提供托管微调",
+  "zh_docs": "有"
+ },
+ "complete": false
+}
