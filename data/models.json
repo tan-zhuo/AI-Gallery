@@ -16201,6 +16201,114 @@
   }
  },
  {
+  "id": "muse-glimmer",
+  "name": "Muse Glimmer 30B",
+  "name_zh": "Meta Muse Glimmer 30B",
+  "aliases": [
+   "Muse Glimmer",
+   "Muse-Glimmer-30B",
+   "meta-models/Muse-Glimmer-30B"
+  ],
+  "vendor": "Meta",
+  "family": "Muse Glimmer",
+  "license": "Apache 2.0",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "status": "current",
+  "released_at": "2026-08-10",
+  "updated_at": "2026-10-13",
+  "modalities": [
+   "text",
+   "image",
+   "tools"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+   "type": "dense",
+   "total_params": "29.6B",
+   "total_params_b": 29.6,
+   "layers": 52,
+   "hidden_size": 6656,
+   "vocab_size": 202048,
+   "kv_heads": 2,
+   "attention": "GQA，32 Q 头 / 2 KV 头（16:1），head_dim 128；[局部 ×3 + 全局] 循环排布，滑动窗口 2,048，带门控注意力；RoPE θ=500,000 只用在局部层",
+   "notes": "稠密因果 Transformer + 独立感知编码器（约 1.8B 的 ViT-G/14，50 层、宽 1536、patch 14），29.6B 这个数字已含视觉编码器。FFN 为 SwiGLU、中间维 19,968；词表 202,048（200,000 BPE + 2,048 特殊 token）；单图最多 4,096 视觉 token；知识截止 2026-01-04。训练路径是从 Muse Spark 做 logit 蒸馏预训练 → 中期喂更长上下文与更重 agent 的数据 → 后训练把 SFT、on-policy 蒸馏与 RL 混着上。随权重一起放出的还有 DFlash 投机解码草稿头（5 层、每次预测 16 token 的块扩散模型）与感知编码器，全部 Apache 2.0。官方模型卡只写发布月份「August 2026」，HF 仓库与合集的日期为 2026-08-10。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 131072,
+   "display": "128K"
+  },
+  "memory": {
+   "weight_gb": {
+    "bf16": 60,
+    "q4": 17
+   },
+   "estimated": false,
+   "ref_hw_24gb": "可行：官方 K-Quant-17GB 就是按 24GB 显存做的档，17GB 权重之外还留得下 KV cache、感知编码器与草稿头；代价是官方自报平均精度损失 1.0%",
+   "ref_hw_80gb": "充裕：BF16 约 60GB 单卡装得下，官方给 64GB 显存作为全精度目标硬件",
+   "kv_note": "官方给三档：全精度（目标 64GB 显存）、K-Quant-Dynamic（32GB，损失 0.2%）、K-Quant-17GB（24GB，损失 1.0%），损失为 15 个常用基准准确率均值的差。BF16 体积取官方文档「约 60 GB」；官方博客另称全精度「超过 55 GB」。只装一个文件不够用 —— GGUF 路线还要单独下 mmproj 视觉投影与 dflash 草稿模型"
+  },
+  "links": {
+   "official": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
+   "hf": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+   "paper": "https://research.meta.ai/static/muse-glimmer-methodology"
+  },
+  "copy": {
+   "one_liner": "Meta 用 Apache 2.0 放出的 30B 端侧 agent 模型：4-bit 压到 17GB，24GB 单卡就能跑。",
+   "highlights": [
+    "Apache 2.0，且不是只给一份权重：BF16 检查点、两档 4-bit 量化、DFlash 投机解码草稿头、感知编码器、预编译 ExecuTorch 导出，全在许可范围内",
+    "官方实测投机解码收益很实在：RTX 5090 从 74.9 tok/s 提到 233.4 tok/s（3.1×），M5 Max 26.6 → 50.2，M4 Max 23.7 → 37.8",
+    "同级里 agent 项领先：MCP Atlas 75.5、DeepSearch QA 74.6、SWE-bench Pro 51.2、AA-LCR 80.0 都高过 Gemma4-31B 与 Qwen3.6-27B",
+    "多模态是原生的（文本 + 图像交错输入），面向截图 / 图表 / 文档类 agent 任务，不是事后贴的"
+   ],
+   "pitfalls": [
+    "同级对比并非全胜：Qwen3.6-27B 在 OSWorld-Verified（75.6 对 65.9）、TerminalBench 2.1（60.7 对 51.7）、SWE-bench Verified（77.2 对 76.0）、SkillsBench（46.6 对 44.3）上更高，GDPVal-AA v2 更是 1141 对 953",
+    "24GB 那一档不是免费的：K-Quant-17GB 官方自报平均精度损失 1.0%，32GB 的 K-Quant-Dynamic 只损失 0.2%",
+    "隐私安全项有退步：CI Memories 违规率 26.4 高于 Gemma4-31B 的 12.1（覆盖率 64.8 对 53.0），Siren AgentDojo 攻击成功率 28.4 也略高于 Gemma4-31B 的 25.6",
+    "全部分数由 Meta 自测，目前无独立复测；官方自己也写明它不属于 Meta 先进 AI 框架定义的「前沿 AI」，因为整体弱于 Muse Spark",
+    "官方称训练覆盖 100+ 语言，但模型卡没有任何中文评测，中文能力未知"
+   ],
+   "logic_ability": "这是「把大模型蒸成能揣进兜里的 agent 工人」的一次完整交付：架构上用 [局部×3 + 全局] 的注意力循环加 2,048 滑窗把长上下文的 KV 压下来，工程上把 4-bit 量化和块扩散投机解码一起打包发布，所以 3 倍加速和 17GB 体积不是社区事后做的，是官方给的。能力形状偏「工具与 agent 流程」而不是峰值知识：MCP Atlas、DeepSearch QA、AA-LCR 这类流程型评测明显领先同级，但 GPQA Diamond 83.5 与 HLE Text 22.0 和 Gemma4-31B（85.7 / 23.6）、Qwen3.6-27B（84.2 / 23.1）基本同水位，没有优势。桌面操作和终端任务是明确短板（OSWorld-Verified、TerminalBench 2.1 都输给 Qwen3.6-27B）。AIME 2026 的 94.7 与 MMMU Pro 的 74 因为和本站列的口径（AIME 2025 / MMMU）不一致，没有并入总榜。",
+   "best_for": [
+    "离线 / 断网的本地 agent 与函数调用",
+    "24–32GB 消费级显卡或 Apple Silicon 上的个人助理",
+    "LLM-as-a-judge 与批量评测（权重自持，不计 token）",
+    "Apache 2.0 下做领域微调（官方点名可用 PyTorch TorchTitan）"
+   ],
+   "not_for": [
+    "桌面 GUI 操作与长时程终端任务（OSWorld / TerminalBench 均落后同级）",
+    "硬科学知识问答（GPQA / HLE 无同级优势）",
+    "中文负载（官方无中文评测）",
+    "对隐私越权敏感且不加外层护栏的部署（CI Memories 违规率偏高）"
+   ]
+  },
+  "capability_notes": {
+   "agent": "MCP Atlas（公开集）75.5、DeepSearch QA 74.6、τ³-Banking 23.5、WildClawBench 47.6、Gaia2 43.3、OSWorld-Verified 65.9（官方模型卡，High 推理档）。",
+   "coding": "SWE-bench Verified 76.0、SWE-bench Pro 51.2、TerminalBench 2.1 51.7（terminus2 harness）、SciCode 43.6（官方模型卡）。",
+   "reasoning": "AIME 2026 94.7、GPQA Diamond（AA 口径）83.5、HLE Text（AA 口径）22.0、AA-LCR 80.0、IFBench 77.0（官方模型卡）。AIME 为 2026 套题，与本站 aime25 列口径不同，未并入总榜。",
+   "multimodal": "Charxiv Reasoning 78.8、ScreenSpot Pro 75.4、OmniDocBench v1.5 75.8、MMMU Pro 74（官方模型卡）。MMMU Pro 与本站 mmmu 列口径不同，未并入总榜。",
+   "safety": "CI Memories 违规率 26.4 / 覆盖率 64.8；Siren AgentDojo 攻击成功率 28.4 / 效用 94.2（官方模型卡，违规与攻击成功率越低越好）。",
+   "chinese": "官方称训练数据覆盖 100+ 语言，模型卡无中文评测。"
+  },
+  "ecosystem": {
+   "engines": [
+    "vLLM",
+    "SGLang",
+    "llama.cpp",
+    "ExecuTorch",
+    "MLX",
+    "Ollama",
+    "LM Studio"
+   ],
+   "finetune": "可微调（Apache 2.0，官方点名 PyTorch TorchTitan）",
+   "zh_docs": "无"
+  },
+  "complete": false
+ },
+ {
   "id": "muse-spark-1-3",
   "name": "Muse Spark 1.3",
   "name_zh": "Meta Muse Spark 1.3",
@@ -16420,6 +16528,179 @@
    }
   },
   "superseded_by": "muse-spark-1-3"
+ },
+ {
+  "id": "muse-wonder-full",
+  "name": "Muse Wonder Full",
+  "name_zh": "Meta Muse Wonder Full",
+  "aliases": [
+   "muse-wonder-full-1.0",
+   "Muse Wonder Full"
+  ],
+  "vendor": "Meta",
+  "family": "Muse Wonder",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-10-12",
+  "updated_at": "2026-10-13",
+  "modalities": [
+   "text",
+   "image",
+   "video",
+   "audio",
+   "tools"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+   "type": "unknown",
+   "undisclosed": true,
+   "notes": "未披露。与 Muse Wonder 共用一张模型卡，官方不给参数量与结构，只说 Full 是家族里最强的一档、跑在最高推理档上。模型 id 为 muse-wonder-full-1.0，但不上 Meta Model API —— 发布当天只能在 Muse Code 订阅里用。官方记分卡的数字全部来自 max 推理档。"
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false
+  },
+  "links": {
+   "official": "https://research.meta.ai/blog/muse-wonder",
+   "paper": "https://research.meta.ai/static/muse-wonder-model-card"
+  },
+  "copy": {
+   "one_liner": "Meta 最强的一档，不按 token 卖：只能在 Muse Code 订阅里用。",
+   "highlights": [
+    "AA 智能指数 v4.3 为 56，全球第二，只落后 Claude Opus 5.5（58）；比 6 周前的 Muse Spark 1.3（48）高 8 分",
+    "AA 十项评测里六项进前三：CritPt（33%）与 GDP.pdf（33%）第一，GDPval-AA v2.1（1857 Elo）第二，AA-Briefcase、AutomationBench-AA、SciCode 第三",
+    "幻觉率从上一代的 33% 降到 23%，是智能指数 45 分以上机型里第二低（仅次于 Gemini 4 Argon 的 15%）",
+    "比标准档 Wonder 更省 token：每任务输入 6.44M 对 7.69M，更聪明同时更省"
+   ],
+   "pitfalls": [
+    "不按 token 计价，也不在 API 上：发布当天只有 Muse Code 订阅可用（官方列 Power Usage / Maximum Usage 两档），拿不到单价就没法做成本对比",
+    "官方记分卡里最漂亮的行基本都是 Full 跑出来的，容易被当成 Wonder 的成绩读",
+    "本站无法给出 Cost per Task 这类成本指标 —— Artificial Analysis 同样因为没有单价而不计算",
+    "参数量、结构、是否与 Wonder 同一底座都未披露"
+   ],
+   "logic_ability": "Full 的形状是「agent 知识工作 + 科学推理」双强：AA 口径下它在 CritPt（物理研究级推理）与 GDP.pdf（基于 PDF 源材料的职业工作）拿第一，但两项都是窄幅领先（第二名 31–32%）；GDPval-AA v2.1 的 1857 Elo 落在 Opus 5.5（1866）与 Sonnet 5.5（1838）的置信区间里，说明这三者在职业产出上基本打平。最大的单项进步是 Terminal-Bench 4.0 从 33% 到 57%，和 Gemini 4 Argon 持平。知识面依旧是弱项（AA-Omniscience 30，Opus 5.5 为 46），但靠低幻觉率把「不知道就说不知道」这部分补了回来。由于本站总榜列在 Meta 这套记分卡上没有对应口径，这条目暂无入榜分数。",
+   "best_for": [
+    "Muse Code 订阅用户的最难 / 最长任务",
+    "职业知识工作（法律、金融、文档型产出）",
+    "科学与技术研究类推理"
+   ],
+   "not_for": [
+    "任何需要 API 调用的集成（发布时不提供）",
+    "要做单价成本核算的采购决策",
+    "私有化部署"
+   ]
+  },
+  "capability_notes": {
+   "agent": "官方记分卡领先项：SWE-Marathon、DeepSWE v1.1、MemoryBench、AutomationBench；AA 口径 AutomationBench-AA 71%、Terminal-Bench 4.0 57%（independent）。",
+   "coding": "AA 编码 agent 指数 68（在 Muse Code 里，max 档），与 Claude Code + Sonnet 5.5 并列，Opus 5.5 为 66。",
+   "reasoning": "AA 智能指数 v4.3 为 56（max 档，independent）；CritPt 33% 为该榜第一。官方未公布 GPQA / HLE / AIME。",
+   "knowledge": "AA-Omniscience 30（independent），低于 Opus 5.5 的 46；但幻觉率 23%，同段位第二低。",
+   "chinese": "官方称训练数据覆盖世界主要语言，模型卡明说未在全部语言上评测，无中文评测数据。"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "无"
+  },
+  "complete": false
+ },
+ {
+  "id": "muse-wonder",
+  "name": "Muse Wonder",
+  "name_zh": "Meta Muse Wonder",
+  "aliases": [
+   "muse-wonder-1.0",
+   "Muse Wonder",
+   "meta/muse-wonder"
+  ],
+  "vendor": "Meta",
+  "family": "Muse Wonder",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-10-12",
+  "updated_at": "2026-10-13",
+  "modalities": [
+   "text",
+   "image",
+   "video",
+   "audio",
+   "tools"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "unknown",
+   "undisclosed": true,
+   "notes": "未披露。官方模型卡只给模态、上下文与评测方法，不给参数量与结构，只说 Wonder 系列「建立在更大更强的底座上」。训练于 Meta 千兆瓦级 Prometheus 数据中心。模型 id 为 muse-wonder-1.0，走 Meta Model API（官方提供 OpenAI SDK 兼容接入）。两个官方命名的新特性：Active Memory（跨会话保留并主动取回相关上下文）与 Active Focus（长任务持续推进、受阻时换路、重要动作前先确认）。官方记分卡与模型卡的所有数字都跑在 max 推理档，对比组 GPT-6 Astra / Claude Fable 5.1 / Claude Opus 5.5 同为 max 档。"
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false
+  },
+  "pricing": {
+   "input_per_m": 4,
+   "output_per_m": 20,
+   "currency": "USD",
+   "source": "Artificial Analysis · Muse Wonder 发布日读数（$4 / 缓存 $0.20 / $20）",
+   "as_of": "2026-10-13",
+   "note": "缓存输入 $0.20。与 Claude Opus 5.5 同价，是 Claude Sonnet 5.5 / GPT-6.1 Sol（$2 / $10）的两倍、GPT-6 Astra 与 Fable 5.1（$10 / $50）的四成。比上一代 Muse Spark 1.3（$1.25 / $4.25）贵三倍以上，且没有 Spark 的 Contributor 便宜档。dev.meta.ai 定价页本次未能直接抓取核验，数字取自 Artificial Analysis 发布日读数"
+  },
+  "links": {
+   "official": "https://research.meta.ai/blog/muse-wonder",
+   "paper": "https://research.meta.ai/static/muse-wonder-model-card",
+   "pricing": "https://dev.meta.ai"
+  },
+  "copy": {
+   "one_liner": "Meta 第一次把自己摆到前沿：$4 / $20 与 Opus 5.5 同价，但最强的那一档不卖 API。",
+   "highlights": [
+    "1,048,576 上下文，输入吃文本 / 图像 / 视频 / 音频，输出纯文本（官方模型卡）",
+    "官方 14 行记分卡里 Muse 系列拿下 7 行，Claude Opus 5.5 拿 6 行、GPT-6 Astra 1 行；领先项集中在长时程 agent（SWE-Marathon、DeepSWE、MemoryBench、AutomationBench）",
+    "AA 智能指数 v4.3 为 52，6 周前的 Muse Spark 1.3 是 48；Terminal-Bench 4.0 从 33% 升到 52%（Artificial Analysis）"
+   ],
+   "pitfalls": [
+    "记分卡上最亮的数字大多属于 Muse Wonder Full，而 Full 不上 API，只有 Muse Code 订阅能用 —— 买 token 的人拿到的是 Wonder，不是 Full",
+    "官方模型卡自述取分规则：没有第三方或厂商公布结果时，取「内部复跑 / 自报分 / 官方榜」三者中最高的一个；竞品的内部复跑也自认未针对性调优",
+    "按 AA 实测单任务成本 $4.52，高于 GPT-6 Astra（$3.26）、Gemini 4 Argon（$1.99）、GPT-6.1 Sol（$0.72），是 Muse Spark 1.3（$1.60）的 2.8 倍 —— 便宜的不是它",
+    "知识面是相对弱项：AA-Omniscience 25，低于 Opus 5.5 的 46、GPT-6 Astra 的 43；参数量与结构一律未披露"
+   ],
+   "logic_ability": "定位很清楚：不是冲峰值智力，而是冲「长时间自己干活」。官方把能力拆成 Active Memory（记住该记的）与 Active Focus（卡住了换路、动手前确认），评测也围绕这两件事 —— MemoryBench 是 64K–100K token 多轮对话里的事实召回（带干扰与反转），FocusBench 与 SWE-Marathon 测的是长时程坚持。第三方口径里，AA 给 Wonder 52、Wonder Full 56，Opus 5.5 是 58；Wonder Full 的最大涨幅在 Terminal-Bench 4.0（33% → 57%）。另一个真实优点是幻觉率低：AA 测 Wonder Full 幻觉率从上一代的 33% 降到 23%，是智能指数 45 以上机型里第二低（仅次于 Gemini 4 Argon 的 15%）。本站总榜列（SWE-bench Verified / GPQA / HLE / Terminal-Bench 2.1 等）在 Meta 这套记分卡上没有对应项，所以这条目暂无入榜分数。",
+   "best_for": [
+    "长时程 agent 与跨应用自动化",
+    "需要跨会话记忆的个人 / 职场助理",
+    "多模态输入（含音频与视频）的 agent 任务"
+   ],
+   "not_for": [
+    "成本敏感的高频负载（单任务成本高于同智力段多数机型）",
+    "需要自建部署（权重闭源）",
+    "知识密集型问答（AA-Omniscience 明显落后）"
+   ]
+  },
+  "capability_notes": {
+   "agent": "官方称在个人与职场 agent 任务上达到 SOTA，领先项为 SWE-Marathon、DeepSWE v1.1、MemoryBench、AutomationBench；Opus 5.5 在 Terminal-Bench、OSWorld V2.1、ProgramBench 上领先（官方记分卡）。AA 口径 Terminal-Bench 4.0 52%、AutomationBench-AA 68%（independent）。",
+   "coding": "官方称为前沿编码水平，训练面向长时程任务；AA 编码 agent 指数 63（Wonder Full 在 Muse Code 里 68，与 Claude Code + Sonnet 5.5 并列）。",
+   "reasoning": "AA 智能指数 v4.3 52（max 档，independent）；官方未公布 GPQA / HLE / AIME 等通用考试型分数。",
+   "knowledge": "AA-Omniscience 25（independent），为相对弱项；幻觉率 27%，在同段位里偏低。",
+   "chinese": "官方称训练数据覆盖世界主要语言，但模型卡明说未在预训练涉及的所有语言上做评测，无中文评测数据。"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "无"
+  },
+  "complete": false
  },
  {
   "id": "nemotron-3-nano-30b-a3b",

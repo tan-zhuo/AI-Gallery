@@ -1,0 +1,91 @@
+{
+ "id": "muse-wonder",
+ "name": "Muse Wonder",
+ "name_zh": "Meta Muse Wonder",
+ "aliases": [
+  "muse-wonder-1.0",
+  "Muse Wonder",
+  "meta/muse-wonder"
+ ],
+ "vendor": "Meta",
+ "family": "Muse Wonder",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-10-12",
+ "updated_at": "2026-10-13",
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "audio",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "unknown",
+  "undisclosed": true,
+  "notes": "未披露。官方模型卡只给模态、上下文与评测方法，不给参数量与结构，只说 Wonder 系列「建立在更大更强的底座上」。训练于 Meta 千兆瓦级 Prometheus 数据中心。模型 id 为 muse-wonder-1.0，走 Meta Model API（官方提供 OpenAI SDK 兼容接入）。两个官方命名的新特性：Active Memory（跨会话保留并主动取回相关上下文）与 Active Focus（长任务持续推进、受阻时换路、重要动作前先确认）。官方记分卡与模型卡的所有数字都跑在 max 推理档，对比组 GPT-6 Astra / Claude Fable 5.1 / Claude Opus 5.5 同为 max 档。"
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 4,
+  "output_per_m": 20,
+  "currency": "USD",
+  "source": "Artificial Analysis · Muse Wonder 发布日读数（$4 / 缓存 $0.20 / $20）",
+  "as_of": "2026-10-13",
+  "note": "缓存输入 $0.20。与 Claude Opus 5.5 同价，是 Claude Sonnet 5.5 / GPT-6.1 Sol（$2 / $10）的两倍、GPT-6 Astra 与 Fable 5.1（$10 / $50）的四成。比上一代 Muse Spark 1.3（$1.25 / $4.25）贵三倍以上，且没有 Spark 的 Contributor 便宜档。dev.meta.ai 定价页本次未能直接抓取核验，数字取自 Artificial Analysis 发布日读数"
+ },
+ "links": {
+  "official": "https://research.meta.ai/blog/muse-wonder",
+  "paper": "https://research.meta.ai/static/muse-wonder-model-card",
+  "pricing": "https://dev.meta.ai"
+ },
+ "copy": {
+  "one_liner": "Meta 第一次把自己摆到前沿：$4 / $20 与 Opus 5.5 同价，但最强的那一档不卖 API。",
+  "highlights": [
+   "1,048,576 上下文，输入吃文本 / 图像 / 视频 / 音频，输出纯文本（官方模型卡）",
+   "官方 14 行记分卡里 Muse 系列拿下 7 行，Claude Opus 5.5 拿 6 行、GPT-6 Astra 1 行；领先项集中在长时程 agent（SWE-Marathon、DeepSWE、MemoryBench、AutomationBench）",
+   "AA 智能指数 v4.3 为 52，6 周前的 Muse Spark 1.3 是 48；Terminal-Bench 4.0 从 33% 升到 52%（Artificial Analysis）"
+  ],
+  "pitfalls": [
+   "记分卡上最亮的数字大多属于 Muse Wonder Full，而 Full 不上 API，只有 Muse Code 订阅能用 —— 买 token 的人拿到的是 Wonder，不是 Full",
+   "官方模型卡自述取分规则：没有第三方或厂商公布结果时，取「内部复跑 / 自报分 / 官方榜」三者中最高的一个；竞品的内部复跑也自认未针对性调优",
+   "按 AA 实测单任务成本 $4.52，高于 GPT-6 Astra（$3.26）、Gemini 4 Argon（$1.99）、GPT-6.1 Sol（$0.72），是 Muse Spark 1.3（$1.60）的 2.8 倍 —— 便宜的不是它",
+   "知识面是相对弱项：AA-Omniscience 25，低于 Opus 5.5 的 46、GPT-6 Astra 的 43；参数量与结构一律未披露"
+  ],
+  "logic_ability": "定位很清楚：不是冲峰值智力，而是冲「长时间自己干活」。官方把能力拆成 Active Memory（记住该记的）与 Active Focus（卡住了换路、动手前确认），评测也围绕这两件事 —— MemoryBench 是 64K–100K token 多轮对话里的事实召回（带干扰与反转），FocusBench 与 SWE-Marathon 测的是长时程坚持。第三方口径里，AA 给 Wonder 52、Wonder Full 56，Opus 5.5 是 58；Wonder Full 的最大涨幅在 Terminal-Bench 4.0（33% → 57%）。另一个真实优点是幻觉率低：AA 测 Wonder Full 幻觉率从上一代的 33% 降到 23%，是智能指数 45 以上机型里第二低（仅次于 Gemini 4 Argon 的 15%）。本站总榜列（SWE-bench Verified / GPQA / HLE / Terminal-Bench 2.1 等）在 Meta 这套记分卡上没有对应项，所以这条目暂无入榜分数。",
+  "best_for": [
+   "长时程 agent 与跨应用自动化",
+   "需要跨会话记忆的个人 / 职场助理",
+   "多模态输入（含音频与视频）的 agent 任务"
+  ],
+  "not_for": [
+   "成本敏感的高频负载（单任务成本高于同智力段多数机型）",
+   "需要自建部署（权重闭源）",
+   "知识密集型问答（AA-Omniscience 明显落后）"
+  ]
+ },
+ "capability_notes": {
+  "agent": "官方称在个人与职场 agent 任务上达到 SOTA，领先项为 SWE-Marathon、DeepSWE v1.1、MemoryBench、AutomationBench；Opus 5.5 在 Terminal-Bench、OSWorld V2.1、ProgramBench 上领先（官方记分卡）。AA 口径 Terminal-Bench 4.0 52%、AutomationBench-AA 68%（independent）。",
+  "coding": "官方称为前沿编码水平，训练面向长时程任务；AA 编码 agent 指数 63（Wonder Full 在 Muse Code 里 68，与 Claude Code + Sonnet 5.5 并列）。",
+  "reasoning": "AA 智能指数 v4.3 52（max 档，independent）；官方未公布 GPQA / HLE / AIME 等通用考试型分数。",
+  "knowledge": "AA-Omniscience 25（independent），为相对弱项；幻觉率 27%，在同段位里偏低。",
+  "chinese": "官方称训练数据覆盖世界主要语言，但模型卡明说未在预训练涉及的所有语言上做评测，无中文评测数据。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

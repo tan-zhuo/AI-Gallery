@@ -3390,6 +3390,46 @@
   "evidence": "official"
  },
  {
+  "model_id": "muse-glimmer",
+  "key": "swe_verified",
+  "value": 76,
+  "unit": "percent",
+  "source": "Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）",
+  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "as_of": "2026-10-13",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-glimmer",
+  "key": "gpqa_diamond",
+  "value": 83.5,
+  "unit": "percent",
+  "source": "Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）",
+  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "as_of": "2026-10-13",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-glimmer",
+  "key": "hle",
+  "value": 22,
+  "unit": "percent",
+  "source": "Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）",
+  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "as_of": "2026-10-13",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-glimmer",
+  "key": "terminal_bench",
+  "value": 51.7,
+  "unit": "percent",
+  "source": "Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）",
+  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
+  "as_of": "2026-10-13",
+  "evidence": "official"
+ },
+ {
   "model_id": "gpt-4-turbo",
   "key": "gpqa_diamond",
   "value": 48,

@@ -8,6 +8,7 @@ const AS_SEP = '2026-09-28'
 const AS_SEP29 = '2026-09-29'
 const AS_OCT10 = '2026-10-10'
 const AS_OCT12 = '2026-10-12'
+const AS_OCT13 = '2026-10-13'
 const SRC = {
   arena: { source: 'LMArena Text (style control)', url: 'https://lmarena.ai/leaderboard/text', evidence: 'independent' },
   aa: { source: 'Artificial Analysis Intelligence Index v3', url: 'https://artificialanalysis.ai/leaderboards/models', evidence: 'independent' },
@@ -133,8 +134,18 @@ const rowsOct12 = [
   ['step-5-preview', null, null, null, null, 93.5, null, null, null, 85.0, null, '阶跃 Step 5 Preview 官方发布页对比表（High 档，Terminal-Bench v2.1）', 'https://www.stepfun.com/step-5-preview'],
   ['mellum2-1', null, null, 47.0, 82.0, 64.6, null, null, null, 17.4, null, 'Mellum2.1 官方模型卡评测表（LiveCodeBench v6 / GPQA Diamond / Terminal-Bench 2.1）', 'https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking'],
 ]
+// ---- 2026-10-13 快照（新增层，不覆盖前五层）----
+// Muse Glimmer 取官方模型卡评测表（High 推理档）：只收与本站列同口径的四项。
+// 其 GPQA Diamond 与 HLE Text 在官方卡上标注为 AA 口径（HLE 为纯文本无工具），与本站列一致，故收录。
+// 未并入的：AIME 为 2026 套题（本站 aime25 列）、MMMU Pro（本站 mmmu 列为 MMMU）、
+// MCP Atlas / DeepSearch QA / Gaia2 / GDPVal-AA / WildClawBench / AA-LCR / SWE-bench Pro / IFBench 本站无对应列。
+// Muse Wonder 与 Muse Wonder Full 不列行：Meta 记分卡用的是 Terminal-Bench 4.0、DeepSWE v1.1、SWE-Marathon、
+// GDPval-AA、MemoryBench、OSWorld V2.1 等本站无对应列的口径；AA 智能指数 v4.3（52 / 56）与本站 aa 列的较早口径不可混比，均未并入。
+const rowsOct13 = [
+  ['muse-glimmer', null, null, 76.0, null, 83.5, 22.0, null, null, 51.7, null, 'Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）', 'https://huggingface.co/meta-models/Muse-Glimmer-30B'],
+]
 // ---- 历史模型（2023–2025-08）：每行第 14 个元素为 as_of ----
-const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsOct10.map((r) => ({ r, as: AS_OCT10 })), ...rowsOct12.map((r) => ({ r, as: AS_OCT12 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
+const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsOct10.map((r) => ({ r, as: AS_OCT10 })), ...rowsOct12.map((r) => ({ r, as: AS_OCT12 })), ...rowsOct13.map((r) => ({ r, as: AS_OCT13 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
 const keys = ['arena_text', 'aa_index', 'swe_verified', 'livecodebench', 'gpqa_diamond', 'hle', 'aime_2025', 'tau2_bench', 'terminal_bench', 'mmmu']
 const units = { arena_text: 'elo', aa_index: 'index' }
 const out = []
