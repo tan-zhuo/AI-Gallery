@@ -1,0 +1,111 @@
+{
+ "id": "lfm2-5-24b-a2b",
+ "name": "LFM2.5-24B-A2B",
+ "name_zh": "Liquid AI LFM2.5-24B-A2B",
+ "aliases": [
+  "LiquidAI/LFM2.5-24B-A2B",
+  "LFM2.5-24B-A2B",
+  "LFM2.5-24B-A2B-Base"
+ ],
+ "vendor": "Liquid AI",
+ "vendor_zh": "Liquid AI（美国）",
+ "family": "LFM2.5",
+ "license": "LFM Open License v1.0",
+ "license_commercial": "restricted",
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
+ "status": "current",
+ "released_at": "2026-10-13",
+ "updated_at": "2026-10-14",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "24B",
+  "active_params": "2.45B",
+  "total_params_b": 24,
+  "active_params_b": 2.45,
+  "experts": 64,
+  "active_experts": 4,
+  "layers": 40,
+  "vocab_size": 128000,
+  "attention": "混合结构：30 层双门控短卷积 + 10 层 GQA",
+  "notes": "官方模型卡：40 层，每个 MoE 块 64 专家 top-4 路由，总参 24.0B / 激活 2.45B，纯文本。架构沿用 LFM2-24B-A2B，两处改动是上下文从 32K 扩到 131,072、词表通过原地 tokenizer 扩展从 65K 翻到 128K（为非拉丁语系分词）。训练预算 36 万亿 token：预训练约 33T（上一代约 17T），中训练 2T 在 32K 上下文、再 300B 在 131K 长上下文，两阶段都掺入工具调用与多轮轨迹；后训练五段 —— SFT、教师专精、两轮多域 on-policy 蒸馏（先非 agent 再 agent）、最后在 OpenClaw / Hermes Agent / Pi / OpenCode 这些真实 agent harness 里做 agentic RL。与上一代不同，这是纯推理模型，chat template 直接塞 <think>，必定先思考再回答。官方同时放出 Base 预训练版、FP8、GGUF、ONNX、MLX-4bit 多种格式，DSpark 投机解码草稿头写「coming soon」。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 131072,
+  "display": "128K"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 48,
+   "fp8": 24
+  },
+  "estimated": true,
+  "ref_hw_24gb": "原生 BF16 装不下（约 48GB），但官方有 GGUF 与 MLX-4bit 量化版，24GB 档走量化可行",
+  "ref_hw_80gb": "充裕：单张 80GB 可跑 BF16 并开满 131,072 上下文",
+  "ref_hw_8x80gb": "过剩",
+  "kv_note": "体积按 23,971,585,280 参数推算（HF safetensors 元数据），官方模型卡只给格式不给文件体积。官方实测速度：Apple M5 Max 184 tok/s、Ryzen AI Max+ 395 114 tok/s，单张 NVIDIA B300 高并发下输出超 21K tok/s"
+ },
+ "links": {
+  "official": "https://www.liquid.ai/blog/lfm2-5-24b-a2b",
+  "hf": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B"
+ },
+ "copy": {
+  "one_liner": "2.45B 激活就能当 agent 用的 24B 端侧推理模型，M5 Max 上 184 tok/s。",
+  "highlights": [
+   "端侧 agent 取向的 MoE：24.0B 总参只激活 2.45B，131,072 上下文，纯推理模型（必定先思考），llama.cpp / MLX / vLLM / SGLang / ONNX 首日全支持",
+   "工具调用与指令遵循是强项：AutomationBench 27.69 是次优模型（Qwen3.6-35B-A3B 8.72）的三倍多，ToolSandbox 80.71、LiveClaw 48.09、BFCLv4 65.01，三项指令遵循（IFEval 96.75 / IFBench 74.69 / Multi-IF 84.38）全组第一",
+   "速度与内存是它的真卖点：官方实测 Apple M5 Max 184 tok/s、Ryzen AI Max+ 395 114 tok/s，同组 MoE 里最快（约 1.7 倍）且占内存最少；单张 B300 高并发输出超 21K tok/s",
+   "后训练直接在 agent harness 里做 RL（OpenClaw / Hermes Agent / Pi / OpenCode），学的是这些框架的工具与系统提示格式"
+  ],
+  "pitfalls": [
+   "许可证不是 Apache：LFM Open License v1.0 第 5 条明写，年营收达到或超过 1,000 万美元的法律实体的商业使用「不在本协议授权范围内」，需要另签；501(c)(3) 等合格非营利组织做非商业 / 研究用途不受此限",
+   "知识面弱是官方自己承认的：GPQA Diamond 74.42 落后 Qwen3.6-35B-A3B 的 83.69，AA-Omniscience -24.90、HLE 7.40，官方建议必须配检索或网搜",
+   "编码是短板：SWE-Bench Verified（OpenCode harness）51.00 低于 Qwen3.6-35B-A3B 的 66.20 与 Nemotron-3.5-Lightning 的 53.40，SciCode 32.71 也落后",
+   "浏览器 / 网页 agent 不行：WebArena Verified 26.75 对 Qwen3.6-35B-A3B 的 37.62，PinchBench 83.18 也低于对比组的 89.93",
+   "全部分数由 Liquid AI 自己用 vLLM 跑出，无第三方复测；对比组只挑了三个同级 MoE（Qwen3.6-35B-A3B、Gemma-4-26B-A4B-it、Nemotron-3.5-Lightning）",
+   "纯文本：上一代 LFM2-VL 那条视觉线没进这一代的 24B 档，要图像输入得换模型"
+  ],
+  "logic_ability": "这台机器是「用 2.45B 激活量换速度、把能力押在工具调用上」的极端样本。官方 16 项评测里的分布极其分裂：八项工具与 agent 基准里它领先或追平五项（AutomationBench、BFCLv4、ToolSandbox、LiveClaw、τ³-Bench Banking），三项指令遵循全部第一；但知识（GPQA 74.42、HLE 7.40、AA-Omniscience -24.90）、编码（SWE-Bench Verified 51.00、SciCode 32.71）、网页 agent（WebArena 26.75）这三类全部落后于参数量大 50% 的 Qwen3.6-35B-A3B。AutomationBench 那个 3 倍差值值得单独记：这是多步业务流程自动化，说明它在「按格式连续调工具」这件事上被专门训过 —— 后训练最后一段就是在真实 agent harness 里做 RL。所以合理用法是把它当本地 agent 的执行单元 + 工具调度器，知识部分交给检索。另一个现实优点是它真的能跑在自己机器上：M5 Max 184 tok/s 的推理速度意味着「一直开着的本地 agent」在消费级硬件上第一次成立。数学意外地没掉队（MATH-500 96.04，与对比组持平）。本站入榜的是官方表里与站内列同口径的三项：SWE-Bench Verified、GPQA Diamond、HLE。",
+  "best_for": [
+   "本地 / 端侧常驻 agent 与工具调度（Mac、Ryzen AI、单卡）",
+   "多步业务流程自动化（AutomationBench 领先三倍）",
+   "严格格式与指令遵循的任务（三项 IF 基准全组第一）",
+   "配检索或网搜的私有数据问答"
+  ],
+  "not_for": [
+   "年营收 ≥1,000 万美元实体的商业部署（许可证不授权，需另签）",
+   "不配检索的知识密集问答",
+   "仓库级编码 agent（SWE-Bench Verified 51.00）",
+   "图像 / 音频输入（纯文本模型）"
+  ]
+ },
+ "capability_notes": {
+  "agent": "AutomationBench 27.69、BFCLv4 65.01、ToolSandbox 80.71、LiveClaw 48.09、τ³-Bench Banking 8.04、PinchBench 83.18、WebArena Verified 26.75（官方发布博客，全部用 vLLM 按各基准推荐参数跑）。",
+  "coding": "SWE-Bench Verified（OpenCode harness）51.00、SciCode 32.71（官方发布博客）。",
+  "knowledge": "GPQA Diamond 74.42、HLE 7.40、AA-Omniscience -24.90（官方发布博客），官方明确建议配检索使用。",
+  "math": "MATH-500 96.04（官方发布博客，与对比组基本持平）。",
+  "instruction": "IFEval 96.75、IFBench 74.69、Multi-IF 84.38（官方发布博客，三项均为对比组第一）。",
+  "chinese": "官方语言列表含中文（英、阿、中、法、德、意、日、韩、葡、西、越、泰、印尼、印地、俄、波共 16 种），词表翻倍到 128K 即为改善非拉丁语系分词；但未提供中文专项评测分数。"
+ },
+ "ecosystem": {
+  "engines": [
+   "llama.cpp",
+   "MLX",
+   "vLLM",
+   "SGLang",
+   "ONNX Runtime",
+   "Transformers",
+   "LM Studio"
+  ],
+  "finetune": "可微调（官方提供 Base 预训练版与微调教程；受许可证商用门槛约束）",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

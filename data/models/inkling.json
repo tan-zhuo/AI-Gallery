@@ -1,0 +1,115 @@
+{
+ "id": "inkling",
+ "name": "Inkling",
+ "name_zh": "Thinking Machines Inkling",
+ "aliases": [
+  "thinkingmachines/Inkling",
+  "Inkling"
+ ],
+ "vendor": "Thinking Machines Lab",
+ "vendor_zh": "Thinking Machines（美国）",
+ "family": "Inkling",
+ "license": "Apache 2.0",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/thinkingmachines/Inkling",
+ "status": "current",
+ "released_at": "2026-07-15",
+ "updated_at": "2026-10-14",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "975B",
+  "active_params": "41B",
+  "total_params_b": 975,
+  "active_params_b": 41,
+  "experts": 256,
+  "active_experts": 6,
+  "shared_expert": true,
+  "layers": 66,
+  "attention": "局部层与全局层混合",
+  "notes": "官方模型卡：66 层 decoder-only，稀疏 MoE 前馈，每 token 路由到 256 个专家中的 6 个，另有 2 个专家对每个 token 常驻激活。原生多模态 —— 图像走分层 patch 编码器、音频走离散 token 编码，各模态投影到同一隐空间后由同一个 decoder 联合处理。预训练 45 万亿 token 的文本 / 图像 / 音频 / 视频。权重精度支持 BF16、MXFP8、NVFP4。评测分数报在 effort=0.99 档（存在可调推理预算）。同族还有 Inkling-Small（276B 总参 / 12B 激活，官方称多项基准追平甚至超过大号），本站暂未单列。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 2000,
+   "q4": 600
+  },
+  "estimated": true,
+  "ref_hw_24gb": "跑不动：官方 BF16 要求集群聚合显存 ≥2TB，NVFP4 也要 ≥600GB",
+  "ref_hw_80gb": "跑不动：单卡 80GB 连 NVFP4 都装不下",
+  "ref_hw_8x80gb": "可行但只能走量化：8×H200 跑 NVFP4（W4A16）是官方给的最低配之一；BF16 需 8×B300 或 16×H200",
+  "kv_note": "这里的数字是官方模型卡给的「聚合显存要求」而非权重文件体积：BF16 ≥2TB，NVFP4 ≥600GB。W4A4 模式额外要求 SM100+（Blackwell）架构。推理框架官方点名 SGLang、vLLM、TokenSpeed、Unsloth、Hugging Face，另有社区 ggml 量化可本地跑"
+ },
+ "links": {
+  "official": "https://thinkingmachines.ai/news/introducing-inkling/",
+  "hf": "https://huggingface.co/thinkingmachines/Inkling",
+  "paper": "https://thinkingmachines.ai/model-card/inkling/"
+ },
+ "copy": {
+  "one_liner": "Apache 2.0 的 975B 多模态开源权重，官方自己承认「不是最强」，卖点是能改。",
+  "highlights": [
+   "Apache 2.0 下的近万亿参数 MoE：975B 总参 / 41B 激活，1M 上下文，原生吃文本 + 图像 + 音频 —— 美国实验室目前最大的无条件许可开源权重",
+   "官方模型卡给了 24 行同管线对比（开源组 Nemotron 3 Ultra / Kimi K2.5 / K2.6 / GLM 5.2 / DeepSeek V4 Pro，闭源组 Gemini 3.1 Pro / Claude Fable 5 / GPT 5.6 Sol）：SWE-bench Verified 77.6%、GPQA Diamond 87.2%、HLE 纯文本 29.7%、Terminal Bench 2.1 63.8%、MCP Atlas 76.0%",
+   "音频是差异化项：Audio MC 56.6%、MMAU 77.2%、VoiceBench 91.4% —— 同代开源权重模型里几乎没有对手能填这三行",
+   "安全侧在开源组里偏硬：FORTRESS 对抗 78.0%（Kimi K2.5 54.1%、DeepSeek V4 Pro 36.0%）、良性 95.9%、StrongREJECT 98.6%",
+   "可微调路径是官方主推：Tinker 平台上提供 64K / 256K 两档上下文的微调，权重同时发 BF16 原版与 NVFP4 量化版"
+  ],
+  "pitfalls": [
+   "官方自己在发布博客里写明「Inkling 不是当今最强的模型，开源闭源都不是」 —— 它的定位是可定制的宽基座，不是跑分机器",
+   "硬件门槛是本站开源条目里最高的一档：BF16 要 8×B300 或 16×H200（聚合 ≥2TB 显存），NVFP4 也要 4×B300 或 8×H200，个人硬件无望",
+   "事实性是明显短板：SimpleQA Verified 43.9%、AA Omniscience 2.1，Gemini 3.1 Pro 同两项是 77.3% 与 33.0，用它做知识问答必须配检索",
+   "Terminal Bench 2.1 63.8% 落后 GLM 5.2 的 82.7% 与 Kimi K2.6 的 71.3%，长时程终端 agent 不是它的强项",
+   "全部对比分数由 Thinking Machines 自己跑（对照分生成于 2026-07-14），目前无第三方同管线复测；官方另注明 Terminal Bench 2.1 里被网搜污染的 rollout 一律按 0 分计",
+   "官方明说残余风险包括「对角色扮演与间接框定的有害提问偶有顺从」，建议外挂 Llama Guard 这类输入输出分类器，不要只靠模型自身拒答"
+  ],
+  "logic_ability": "把它放在 2026 年的开源权重坐标系里看：规模最大、许可最松、模态最全，但峰值能力不在第一梯队。官方同管线表里它的位置相当一致 —— 考试型推理（HLE 29.7%、GPQA 87.2%、AIME 2026 97.1%）大致贴着 Kimi K2.5，被 GLM 5.2（HLE 40.1%）和闭源组甩开；工程型（SWE-bench Verified 77.6%、SWE-bench Pro Public 54.3%）在开源组中游；通用 agent 里 MCP Atlas 76.0% 与 GLM 5.2 的 77.8% 接近，但 Toolathlon Verified 45.5% 明显落后 GLM 5.2 的 59.9% 与 Kimi K2.6 的 58.0%。两个真正的差异化点是音频（本站多数条目这一列是空的）与 IFBench 79.8%（指令遵循，这一项连 Claude Fable 5 的 63.5% 都比不过它）。短板很集中：事实性。SimpleQA Verified 与 AA Omniscience 两行都接近榜底，官方自己的建议就是配检索。本站入榜的是官方模型卡里与站内列同口径的四项：SWE-bench Verified、GPQA Diamond、HLE（纯文本）、Terminal Bench 2.1（Best Harness）；AIME 为 2026 套题、MMMU 为 Pro 口径，均未并入。",
+  "best_for": [
+   "Apache 2.0 下做领域微调的大基座（官方 Tinker 平台直接支持）",
+   "需要音频理解的多模态应用（Audio MC / MMAU / VoiceBench 三项有官方分）",
+   "配检索的长上下文多模态推理（1M 上下文）",
+   "对许可证零条件的商用自托管"
+  ],
+  "not_for": [
+   "单机 / 消费级硬件部署（最低也要 4×B300 或 8×H200）",
+   "不配检索的知识问答（SimpleQA Verified 43.9%、AA Omniscience 2.1）",
+   "长时程终端 agent（Terminal Bench 2.1 落后同代开源旗舰 7–19 个点）",
+   "追求峰值跑分的场景（官方自认不是最强）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "SWE-bench Verified 77.6%、SWE-bench Pro Public 54.3%、Terminal Bench 2.1（Best Harness）63.8%（官方模型卡，effort=0.99；被网搜污染的 rollout 计 0 分）。",
+  "reasoning": "HLE 纯文本 29.7%、带工具 46.0%、GPQA Diamond 87.2%（官方模型卡）。",
+  "math": "AIME 2026 97.1%（官方模型卡；本站 aime25 列为 2025 套题，口径不同未并入）。",
+  "agent": "MCP Atlas 76.0%、Toolathlon Verified 45.5%、Tau 3 Banking 23.7%、BrowseComp（带上下文管理）77.1%、GDPVal-AA v2 1238（官方模型卡）。",
+  "knowledge": "SimpleQA Verified 43.9%、AA Omniscience 2.1（官方模型卡），为明显短板。",
+  "multimodal": "MMMU Pro（Standard 10）73.5%、Charxiv RQ 78.1%（带 Python 82.0%）；音频 Audio MC 56.6%、MMAU 77.2%、VoiceBench 91.4%（官方模型卡）。",
+  "instruction": "IFBench 79.8%（官方模型卡，为该表全列第一，高于 Claude Fable 5 的 63.5%）。",
+  "chinese": "官方只写「英语及其他语言的通用多语支持」，Global-MMLU-Lite 88.7%；无单独中文评测。"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "TokenSpeed",
+   "Unsloth",
+   "Transformers",
+   "llama.cpp"
+  ],
+  "finetune": "可微调（Apache 2.0；官方 Tinker 平台提供 64K / 256K 两档上下文的微调）",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

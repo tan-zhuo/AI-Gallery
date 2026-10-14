@@ -3430,6 +3430,76 @@
   "evidence": "official"
  },
  {
+  "model_id": "inkling",
+  "key": "swe_verified",
+  "value": 77.6,
+  "unit": "percent",
+  "source": "Inkling 官方模型卡对比表（effort=0.99；HLE 纯文本、Terminal Bench 2.1 Best Harness）",
+  "source_url": "https://thinkingmachines.ai/model-card/inkling/",
+  "as_of": "2026-10-14",
+  "evidence": "official"
+ },
+ {
+  "model_id": "inkling",
+  "key": "gpqa_diamond",
+  "value": 87.2,
+  "unit": "percent",
+  "source": "Inkling 官方模型卡对比表（effort=0.99；HLE 纯文本、Terminal Bench 2.1 Best Harness）",
+  "source_url": "https://thinkingmachines.ai/model-card/inkling/",
+  "as_of": "2026-10-14",
+  "evidence": "official"
+ },
+ {
+  "model_id": "inkling",
+  "key": "hle",
+  "value": 29.7,
+  "unit": "percent",
+  "source": "Inkling 官方模型卡对比表（effort=0.99；HLE 纯文本、Terminal Bench 2.1 Best Harness）",
+  "source_url": "https://thinkingmachines.ai/model-card/inkling/",
+  "as_of": "2026-10-14",
+  "evidence": "official"
+ },
+ {
+  "model_id": "inkling",
+  "key": "terminal_bench",
+  "value": 63.8,
+  "unit": "percent",
+  "source": "Inkling 官方模型卡对比表（effort=0.99；HLE 纯文本、Terminal Bench 2.1 Best Harness）",
+  "source_url": "https://thinkingmachines.ai/model-card/inkling/",
+  "as_of": "2026-10-14",
+  "evidence": "official"
+ },
+ {
+  "model_id": "lfm2-5-24b-a2b",
+  "key": "swe_verified",
+  "value": 51,
+  "unit": "percent",
+  "source": "LFM2.5-24B-A2B 官方发布博客评测表（vLLM；SWE-bench Verified 用 OpenCode harness）",
+  "source_url": "https://www.liquid.ai/blog/lfm2-5-24b-a2b",
+  "as_of": "2026-10-14",
+  "evidence": "official"
+ },
+ {
+  "model_id": "lfm2-5-24b-a2b",
+  "key": "gpqa_diamond",
+  "value": 74.4,
+  "unit": "percent",
+  "source": "LFM2.5-24B-A2B 官方发布博客评测表（vLLM；SWE-bench Verified 用 OpenCode harness）",
+  "source_url": "https://www.liquid.ai/blog/lfm2-5-24b-a2b",
+  "as_of": "2026-10-14",
+  "evidence": "official"
+ },
+ {
+  "model_id": "lfm2-5-24b-a2b",
+  "key": "hle",
+  "value": 7.4,
+  "unit": "percent",
+  "source": "LFM2.5-24B-A2B 官方发布博客评测表（vLLM；SWE-bench Verified 用 OpenCode harness）",
+  "source_url": "https://www.liquid.ai/blog/lfm2-5-24b-a2b",
+  "as_of": "2026-10-14",
+  "evidence": "official"
+ },
+ {
   "model_id": "gpt-4-turbo",
   "key": "gpqa_diamond",
   "value": 48,

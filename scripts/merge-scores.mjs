@@ -9,6 +9,7 @@ const AS_SEP29 = '2026-09-29'
 const AS_OCT10 = '2026-10-10'
 const AS_OCT12 = '2026-10-12'
 const AS_OCT13 = '2026-10-13'
+const AS_OCT14 = '2026-10-14'
 const SRC = {
   arena: { source: 'LMArena Text (style control)', url: 'https://lmarena.ai/leaderboard/text', evidence: 'independent' },
   aa: { source: 'Artificial Analysis Intelligence Index v3', url: 'https://artificialanalysis.ai/leaderboards/models', evidence: 'independent' },
@@ -144,8 +145,22 @@ const rowsOct12 = [
 const rowsOct13 = [
   ['muse-glimmer', null, null, 76.0, null, 83.5, 22.0, null, null, 51.7, null, 'Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）', 'https://huggingface.co/meta-models/Muse-Glimmer-30B'],
 ]
+// ---- 2026-10-14 快照（新增层，不覆盖前六层）----
+// Inkling 取官方模型卡同管线对比表（effort=0.99）：只收与本站列同口径的四项。
+// 其 HLE 取纯文本列（本站 hle 列口径），Terminal Bench 2.1 取官方 Best Harness 列（官方注明被网搜污染的 rollout 计 0 分）。
+// 未并入的：AIME 为 2026 套题（本站 aime25 列）、MMMU 为 Pro Standard 10 口径（本站 mmmu 列为 MMMU）、
+// SWE-bench Pro / GDPVal-AA v2 / MCP Atlas / Tau 3 / Toolathlon / BrowseComp / SimpleQA / FORTRESS 本站无对应列。
+// LFM2.5-24B-A2B 取官方发布博客评测表（vLLM，各基准推荐生成参数）：SWE-bench Verified 为 OpenCode harness 口径。
+// 其 AutomationBench / BFCLv4 / ToolSandbox / LiveClaw / PinchBench / τ³-Bench / WebArena / IFEval / IFBench /
+// Multi-IF / MATH-500 / SciCode / AA-Omniscience 本站无对应列，未并入。
+// Gemini 4 Argon 不列行：谷歌官方记分卡全是 Vals Index、DeepSWE v1.1、FrontierSWE v2、Terminal-bench 4.0、
+// LABBench 2、GraphWalks、Chartography 等本站无对应列的口径，一项都对不上本站总榜列，详情见其模型页。
+const rowsOct14 = [
+  ['inkling', null, null, 77.6, null, 87.2, 29.7, null, null, 63.8, null, 'Inkling 官方模型卡对比表（effort=0.99；HLE 纯文本、Terminal Bench 2.1 Best Harness）', 'https://thinkingmachines.ai/model-card/inkling/'],
+  ['lfm2-5-24b-a2b', null, null, 51.0, null, 74.4, 7.4, null, null, null, null, 'LFM2.5-24B-A2B 官方发布博客评测表（vLLM；SWE-bench Verified 用 OpenCode harness）', 'https://www.liquid.ai/blog/lfm2-5-24b-a2b'],
+]
 // ---- 历史模型（2023–2025-08）：每行第 14 个元素为 as_of ----
-const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsOct10.map((r) => ({ r, as: AS_OCT10 })), ...rowsOct12.map((r) => ({ r, as: AS_OCT12 })), ...rowsOct13.map((r) => ({ r, as: AS_OCT13 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
+const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsOct10.map((r) => ({ r, as: AS_OCT10 })), ...rowsOct12.map((r) => ({ r, as: AS_OCT12 })), ...rowsOct13.map((r) => ({ r, as: AS_OCT13 })), ...rowsOct14.map((r) => ({ r, as: AS_OCT14 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
 const keys = ['arena_text', 'aa_index', 'swe_verified', 'livecodebench', 'gpqa_diamond', 'hle', 'aime_2025', 'tau2_bench', 'terminal_bench', 'mmmu']
 const units = { arena_text: 'elo', aa_index: 'index' }
 const out = []

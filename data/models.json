@@ -4826,9 +4826,10 @@
   "license_commercial": true,
   "openness": "api-only",
   "weights_available": false,
-  "status": "preview",
+  "status": "superseded",
+  "superseded_by": "gemini-4-argon",
   "released_at": "2026-02-19",
-  "updated_at": "2026-08-28",
+  "updated_at": "2026-10-14",
   "modalities": [
    "text",
    "image",
@@ -4865,7 +4866,7 @@
    "paper": "https://deepmind.google/models/model-cards/gemini-3-1-pro/"
   },
   "copy": {
-   "one_liner": "Google 当前 Pro 旗舰（仍 preview），抽象推理第一。",
+   "one_liner": "Gemini 3 代的 Pro 旗舰，始终停在 preview，已被 Gemini 4 Argon 接棒。",
    "highlights": [
     "ARC-AGI-2 77.1%、GPQA Diamond 94.3%，考试型推理与抽象推理第一梯队",
     "SWE-bench Verified 80.6%、Terminal-Bench 2.0 68.5%，工程与 agent 能力较 Gemini 3 Pro 大幅提升",
@@ -4901,7 +4902,7 @@
    "memory_md": "无自建选项。\n\n成本参考（2026-08-28 定价页）：\n\n| 档位 | 输入 $/M | 输出 $/M |\n|---|---|---|\n| 标准 ≤200K | 2.00 | 12.00 |\n| 标准 >200K | 4.00 | 18.00 |\n| Batch / Flex ≤200K | 1.00 | 6.00 |\n| Priority ≤200K | 3.60 | 21.60 |\n\n缓存输入 $0.20（≤200K）/ $0.40（>200K）。\n\n**警示**：单次 1M 上下文请求输入费可达 $4，务必配合 context caching；高 thinking_level 下输出 token 消耗显著。",
    "training_md": "- 训练细节未披露，TPU 训练\n- 默认开启推理；thinking_level 控制深度\n- 支持函数调用、结构化输出、多模态输入\n- 最大输出 64K\n- 官方基准（模型卡）：HLE 44.4% / 51.4%（带工具）、GPQA 94.3%、ARC-AGI-2 77.1%、SWE-bench Verified 80.6%、Terminal-Bench 2.0 68.5%、LiveCodeBench Pro 2887 Elo、MMMU-Pro 80.5%、MRCR v2 128K 84.9%",
    "ecosystem_md": "- Gemini API、Google AI Studio、Vertex AI\n- Antigravity、Gemini CLI、Gemini App 集成\n- 不支持微调（Pro 档）\n- 中文文档：有（Google 中文文档较全）",
-   "versions_md": "- 上代：Gemini 3 Pro（2025-11，已被 3.1 Pro 取代）\n- 同期 Flash 线迭代很快：3 Flash → 3.1 Flash-Lite → 3.5 Flash / 3.5 Flash-Lite（2026-07）→ 3.6 Flash → 3.7 Flash（2026-08-13）\n- 截至 2026-08-28，Pro 线仍停留在 3.1 Pro Preview，未见 3.5 / 3.7 Pro\n- Deep Think 模式另计"
+   "versions_md": "- 上代：Gemini 3 Pro（2025-11，已被 3.1 Pro 取代）\n- 同期 Flash 线迭代很快：3 Flash → 3.1 Flash-Lite → 3.5 Flash / 3.5 Flash-Lite（2026-07）→ 3.6 Flash → 3.7 Flash（2026-08-13）→ 3.8 Flash（2026-09-02）\n- Pro 线到此为止：路透报道谷歌砍掉了原定的 Gemini 3.5 Pro，3.1 Pro 始终没转 GA\n- **后继：Gemini 4 Argon**（2026-09-30 公布、2026-10-13 全量开放）。官方模型卡把 Argon 的全部安全对照组设为 Gemini 3.1 Pro，并称 Gemini 4 是「Gemini 系列的下一代」；谷歌未随发布公告宣布 3.1 Pro 的 API 退役日期，但其开发者论坛的官方回帖称 3.1 Pro 已在 Gemini Enterprise 下线不可选。本站据此把本条目翻为 superseded\n- Deep Think 模式另计"
   },
   "ecosystem": {
    "engines": [],
@@ -4911,7 +4912,7 @@
   "i18n": {
    "en": {
     "name_zh": "Gemini 3.1 Pro",
-    "one_liner": "Google's current Pro flagship (still preview), #1 in abstract reasoning.",
+    "one_liner": "The Gemini 3 generation's Pro flagship; never left preview, now succeeded by Gemini 4 Argon.",
     "highlights": [
      "ARC-AGI-2 77.1%, GPQA Diamond 94.3%; first tier in exam-style and abstract reasoning",
      "SWE-bench Verified 80.6%, Terminal-Bench 2.0 68.5%; engineering and agent ability much improved over Gemini 3 Pro",
@@ -4944,7 +4945,7 @@
    },
    "ja": {
     "name_zh": "Gemini 3.1 Pro",
-    "one_liner": "Google 現行 Pro 旗艦（まだ preview）、抽象推論 1 位。",
+    "one_liner": "Gemini 3 世代の Pro 旗艦。preview のままで終わり、Gemini 4 Argon が後継。",
     "highlights": [
      "ARC-AGI-2 77.1%、GPQA Diamond 94.3%、試験型推論と抽象推論で最上位グループ",
      "SWE-bench Verified 80.6%、Terminal-Bench 2.0 68.5%、エンジニアリングと agent 能力は Gemini 3 Pro から大幅向上",
@@ -5559,6 +5560,106 @@
   },
   "complete": true,
   "superseded_by": "gemini-3-1-pro"
+ },
+ {
+  "id": "gemini-4-argon",
+  "name": "Gemini 4 Argon",
+  "name_zh": "Gemini 4 Argon",
+  "aliases": [
+   "gemini-4-argon",
+   "gemini-4-argon-cyber-permissive",
+   "Gemini 4 Argon"
+  ],
+  "vendor": "Google",
+  "vendor_zh": "谷歌",
+  "family": "Gemini 4",
+  "license": "Proprietary",
+  "license_commercial": true,
+  "openness": "api-only",
+  "weights_available": false,
+  "status": "current",
+  "released_at": "2026-09-30",
+  "updated_at": "2026-10-14",
+  "modalities": [
+   "text",
+   "image",
+   "audio",
+   "video",
+   "tools"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+   "type": "moe",
+   "undisclosed": true,
+   "notes": "参数量与专家数一律未披露。官方模型卡只说是「大规模稀疏 MoE Transformer」，原生支持文本 / 视觉 / 音频输入，并明确「不是任何前代模型的改版或微调」。TPU 训练、JAX + ML Pathways。知识截止 2026 年 3 月。API 模型 id 为 gemini-4-argon（Fairwind 批准的安全防御项目另有 gemini-4-argon-cyber-permissive）。推理档 thinking_level 只接受 LOW / MEDIUM / HIGH，MEDIUM 为 gemini-4-argon 默认、HIGH 为 cyber-permissive 默认；thinking_budget 与 MINIMAL 会直接报 400，且不再接受 temperature / top_p / top_k / frequency_penalty / presence_penalty / candidate_count。缓存只有隐式缓存（≥6,144 token 的共享前缀自动命中，默认开启持久缓存），显式 context caching 不支持。时间线：2026-09-30 首次公布但只给 Fairwind 受信网络防御方与受邀测试者，2026-10-13 16:00 UTC 起全量开放（付费 Gemini API / AI Studio / Gemini for business / Antigravity，以及 AI Pro 与 Ultra 订阅者的 Gemini App 与 Search AI Mode）。"
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M",
+   "max_output": 65536
+  },
+  "memory": {
+   "weight_gb": {},
+   "estimated": false
+  },
+  "pricing": {
+   "input_per_m": 2,
+   "output_per_m": 10,
+   "currency": "USD",
+   "source": "Google 官方发布公告 + Gemini API 定价页",
+   "as_of": "2026-10-13",
+   "note": "这是引导期价，官方写明 2026-11-30 到期；2026-12-01 起 $4 / $20。缓存输入为输入价的 5%（引导期 $0.10，之后 $0.20）。Batch / Flex 半价（引导期 $1 / $5），Priority $3.60 / $18。输出价含思考 token。搜索接地每月 5,000 次免费，之后 $14 / 1,000 次。免费档与 Google AI Pro 计划（指 API / AI Studio 口径）不提供本模型"
+  },
+  "links": {
+   "official": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+   "paper": "https://deepmind.google/models/model-cards/gemini-4-argon/",
+   "pricing": "https://ai.google.dev/gemini-api/docs/pricing"
+  },
+  "copy": {
+   "one_liner": "谷歌一年来第一个前沿旗舰：$2 / $10 比同档便宜一半，但 11-30 之后翻倍。",
+   "highlights": [
+    "1,048,576 token 的「输入输出合一」窗口：输入、思考、函数调用、最终回答共享同一个 1M 预算，单次请求上限 65,536 token（非流式 REST 为 32,768），再往上靠 long decode 的 continuation_token 分段续写到 1M",
+    "官方记分卡 19 行里 Argon 拿下 11 行，知识工作类几乎全胜：Vals Index 68.9%、Vals Finance Agent v2 65.4%、Harvey 法律 agent 19.6%（对比组 GPT-6 Astra 5.4%、Opus 5.5 3.8%）、AutomationBench 51.3%",
+    "长上下文是最硬的一项：GraphWalks BFS F1 在 128K 内 99.7%、256K–1M 仍有 84.2%，对比组同档只有 65%–72%",
+    "引导期 $2 / $10 是 Claude Opus 5.5 与 Muse Wonder（$4 / $20）的一半、GPT-6 Astra（$10 / $50）的五分之一；缓存输入再打 5 折后只要 $0.10"
+   ],
+   "pitfalls": [
+    "定价有倒计时：引导期 2026-11-30 结束，12-01 起输入输出双双翻倍到 $4 / $20，按引导价做的成本模型到 12 月要重算一遍",
+    "不是「换个模型名就能跑」：显式 context caching 被取消、thinking_budget 与 thinking_level=MINIMAL 直接 400、temperature / top_p / top_k / candidate_count 等参数全部要删掉，多轮对话里预填的 assistant 回合也要去掉，SDK 还得升到 google-genai ≥ 2.30.1（JS ≥ 2.29.1）",
+    "long decode 的账要自己算：每一跳都会把前面已解码的内容当输入重新 prefill，usage_metadata 里的 prompt_token_count 会跨跳累加（官方明说不要拿它触发上下文压缩，要读 initial_prompt_token_count），隐式缓存只在 15–20 分钟 TTL 内连续调用时才给 95% 折扣",
+    "编码与终端类并非全面领先：FrontierSWE v2 55.0% 落后 GPT-6 Astra 的 65.5%，Terminal-Bench 4.0 57.4% 落后 Opus 5.5 的 66.4%，OSWorld-2.0 离线子集 69.2% 也低于 Astra 的 72.6%",
+    "前沿安全框架下有两项「无法排除」：官方模型卡写明不能排除 Argon 已触及生物信息风险 CCL 与网络安全 CCL，均依靠部署期缓解措施把残余风险压到阈值以下；另有「隐蔽性与情境意识」TCL 同样无法排除",
+    "免费用户与 API 免费档拿不到；Antigravity 需要 AI Ultra，谷歌未说明是否会下放到更低档位"
+   ],
+   "logic_ability": "这台机器的形状很清楚：企业知识工作与长上下文是强项，终端 / 计算机操作类不是。官方 19 行对比表里，它在 Vals Index、Finance Agent、Harvey 法律 agent、AutomationBench、DeepSWE v1.1（77.9%）、Vibe Code Bench（91.9%）、LABBench 2（88.8%）、RiemannBench（76.0%）、GraphWalks、Chartography（71.6%）、LVBench（91.7%）上领先，CWE-bench v1 与 GPT-6 Astra 并列 68.0%；但 FrontierSWE v2、Terminal-bench 4.0、PostTrainBench、Terminal-Bench Science 0.1、OSWorld-2.0、Agent's Last Exam 这六项都不是第一。换句话说：读长文档、做金融法律分析、写代码片段很强，长时程终端 agent 仍被 Opus 5.5 压着。注意这套表全是谷歌自己跑的（evidence: official），发布当天没有第三方复测可对照。本站总榜列（SWE-bench Verified / GPQA / HLE / AIME25 / Terminal-Bench 2.x / MMMU）在这张卡上一项都没有 —— 谷歌换用了 DeepSWE、FrontierSWE v2、Terminal-bench 4.0、LABBench 2、Vals Index 这类新口径，所以本条目暂无入榜分数，不是漏填。另有一个值得记的第三方读数：Artificial Analysis 在其 v4.3 口径下给 Argon 的幻觉率 15%，是当前智能指数 45 以上机型里最低的一档（口径与本站 aa 列不同，未并入）。",
+   "best_for": [
+    "百万 token 级长文档 / 多模态文档的分析与综合",
+    "金融、法律、科研这类知识密集的企业 agent 流程",
+    "网络安全防御（漏洞定位与修复，CWE-bench v1 68.0%）",
+    "需要一次性写出超长输出的深推理任务（long decode 到 1M）"
+   ],
+   "not_for": [
+    "2026-12 之后仍按引导价做预算的成本敏感负载",
+    "长时程终端 / 计算机操作 agent（Terminal-bench 4.0 与 OSWorld 均非第一）",
+    "依赖显式缓存、thinking_budget 或 temperature 等采样参数的既有代码（这些全被取消）",
+    "私有化部署与免费档用户"
+   ]
+  },
+  "capability_notes": {
+   "coding": "DeepSWE v1.1 77.9%、Vibe Code Bench 91.9%、FrontierSWE v2 55.0%、Terminal-bench 4.0 57.4%（官方模型卡，对比组 GPT-6 Astra / Claude Fable 5.1 / Claude Opus 5.5）。官方未公布 SWE-bench Verified 与 LiveCodeBench。",
+   "knowledge": "Vals Index 68.9%、Vals Finance Agent v2 65.4%、Harvey's Legal Agent Benchmark 19.6%（官方模型卡，三项均为对比组第一）。",
+   "reasoning": "LABBench 2 88.8%、RiemannBench 76.0%、Terminal-Bench Science 0.1 57.6%（官方模型卡；科学终端一项落后 GPT-6 Astra 的 68.1%）。官方未公布 GPQA Diamond / HLE / AIME。",
+   "agent": "AutomationBench 51.3%、Agent's Last Exam 通过率 39.5%、OSWorld-2.0 离线子集 69.2%、PostTrainBench 45.3%（官方模型卡）。",
+   "multimodal": "Chartography 71.6%、LVBench 91.7%（官方模型卡，均为对比组第一）；输入支持文本 / 图像 / 音频 / 视频。",
+   "instruction": "官方称比以往任何 Gemini 都更贴合风格指令，回答更直接、少对冲、少重复、不堆陈词滥调；内部评测里「无正当理由的拒答」比 Gemini 3.1 Pro 降 9.60pp，拒答语气评分升 5.50%。",
+   "chinese": "官方未公布中文或多语评测分数；安全侧的多语评测相对 Gemini 3.1 Pro 改善 3.16pp。"
+  },
+  "ecosystem": {
+   "engines": [],
+   "finetune": "不支持",
+   "zh_docs": "有"
+  },
+  "complete": false
  },
  {
   "aliases": [
@@ -11140,6 +11241,121 @@
   "complete": false
  },
  {
+  "id": "inkling",
+  "name": "Inkling",
+  "name_zh": "Thinking Machines Inkling",
+  "aliases": [
+   "thinkingmachines/Inkling",
+   "Inkling"
+  ],
+  "vendor": "Thinking Machines Lab",
+  "vendor_zh": "Thinking Machines（美国）",
+  "family": "Inkling",
+  "license": "Apache 2.0",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/thinkingmachines/Inkling",
+  "status": "current",
+  "released_at": "2026-07-15",
+  "updated_at": "2026-10-14",
+  "modalities": [
+   "text",
+   "image",
+   "audio",
+   "tools"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "moe",
+   "total_params": "975B",
+   "active_params": "41B",
+   "total_params_b": 975,
+   "active_params_b": 41,
+   "experts": 256,
+   "active_experts": 6,
+   "shared_expert": true,
+   "layers": 66,
+   "attention": "局部层与全局层混合",
+   "notes": "官方模型卡：66 层 decoder-only，稀疏 MoE 前馈，每 token 路由到 256 个专家中的 6 个，另有 2 个专家对每个 token 常驻激活。原生多模态 —— 图像走分层 patch 编码器、音频走离散 token 编码，各模态投影到同一隐空间后由同一个 decoder 联合处理。预训练 45 万亿 token 的文本 / 图像 / 音频 / 视频。权重精度支持 BF16、MXFP8、NVFP4。评测分数报在 effort=0.99 档（存在可调推理预算）。同族还有 Inkling-Small（276B 总参 / 12B 激活，官方称多项基准追平甚至超过大号），本站暂未单列。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {
+    "bf16": 2000,
+    "q4": 600
+   },
+   "estimated": true,
+   "ref_hw_24gb": "跑不动：官方 BF16 要求集群聚合显存 ≥2TB，NVFP4 也要 ≥600GB",
+   "ref_hw_80gb": "跑不动：单卡 80GB 连 NVFP4 都装不下",
+   "ref_hw_8x80gb": "可行但只能走量化：8×H200 跑 NVFP4（W4A16）是官方给的最低配之一；BF16 需 8×B300 或 16×H200",
+   "kv_note": "这里的数字是官方模型卡给的「聚合显存要求」而非权重文件体积：BF16 ≥2TB，NVFP4 ≥600GB。W4A4 模式额外要求 SM100+（Blackwell）架构。推理框架官方点名 SGLang、vLLM、TokenSpeed、Unsloth、Hugging Face，另有社区 ggml 量化可本地跑"
+  },
+  "links": {
+   "official": "https://thinkingmachines.ai/news/introducing-inkling/",
+   "hf": "https://huggingface.co/thinkingmachines/Inkling",
+   "paper": "https://thinkingmachines.ai/model-card/inkling/"
+  },
+  "copy": {
+   "one_liner": "Apache 2.0 的 975B 多模态开源权重，官方自己承认「不是最强」，卖点是能改。",
+   "highlights": [
+    "Apache 2.0 下的近万亿参数 MoE：975B 总参 / 41B 激活，1M 上下文，原生吃文本 + 图像 + 音频 —— 美国实验室目前最大的无条件许可开源权重",
+    "官方模型卡给了 24 行同管线对比（开源组 Nemotron 3 Ultra / Kimi K2.5 / K2.6 / GLM 5.2 / DeepSeek V4 Pro，闭源组 Gemini 3.1 Pro / Claude Fable 5 / GPT 5.6 Sol）：SWE-bench Verified 77.6%、GPQA Diamond 87.2%、HLE 纯文本 29.7%、Terminal Bench 2.1 63.8%、MCP Atlas 76.0%",
+    "音频是差异化项：Audio MC 56.6%、MMAU 77.2%、VoiceBench 91.4% —— 同代开源权重模型里几乎没有对手能填这三行",
+    "安全侧在开源组里偏硬：FORTRESS 对抗 78.0%（Kimi K2.5 54.1%、DeepSeek V4 Pro 36.0%）、良性 95.9%、StrongREJECT 98.6%",
+    "可微调路径是官方主推：Tinker 平台上提供 64K / 256K 两档上下文的微调，权重同时发 BF16 原版与 NVFP4 量化版"
+   ],
+   "pitfalls": [
+    "官方自己在发布博客里写明「Inkling 不是当今最强的模型，开源闭源都不是」 —— 它的定位是可定制的宽基座，不是跑分机器",
+    "硬件门槛是本站开源条目里最高的一档：BF16 要 8×B300 或 16×H200（聚合 ≥2TB 显存），NVFP4 也要 4×B300 或 8×H200，个人硬件无望",
+    "事实性是明显短板：SimpleQA Verified 43.9%、AA Omniscience 2.1，Gemini 3.1 Pro 同两项是 77.3% 与 33.0，用它做知识问答必须配检索",
+    "Terminal Bench 2.1 63.8% 落后 GLM 5.2 的 82.7% 与 Kimi K2.6 的 71.3%，长时程终端 agent 不是它的强项",
+    "全部对比分数由 Thinking Machines 自己跑（对照分生成于 2026-07-14），目前无第三方同管线复测；官方另注明 Terminal Bench 2.1 里被网搜污染的 rollout 一律按 0 分计",
+    "官方明说残余风险包括「对角色扮演与间接框定的有害提问偶有顺从」，建议外挂 Llama Guard 这类输入输出分类器，不要只靠模型自身拒答"
+   ],
+   "logic_ability": "把它放在 2026 年的开源权重坐标系里看：规模最大、许可最松、模态最全，但峰值能力不在第一梯队。官方同管线表里它的位置相当一致 —— 考试型推理（HLE 29.7%、GPQA 87.2%、AIME 2026 97.1%）大致贴着 Kimi K2.5，被 GLM 5.2（HLE 40.1%）和闭源组甩开；工程型（SWE-bench Verified 77.6%、SWE-bench Pro Public 54.3%）在开源组中游；通用 agent 里 MCP Atlas 76.0% 与 GLM 5.2 的 77.8% 接近，但 Toolathlon Verified 45.5% 明显落后 GLM 5.2 的 59.9% 与 Kimi K2.6 的 58.0%。两个真正的差异化点是音频（本站多数条目这一列是空的）与 IFBench 79.8%（指令遵循，这一项连 Claude Fable 5 的 63.5% 都比不过它）。短板很集中：事实性。SimpleQA Verified 与 AA Omniscience 两行都接近榜底，官方自己的建议就是配检索。本站入榜的是官方模型卡里与站内列同口径的四项：SWE-bench Verified、GPQA Diamond、HLE（纯文本）、Terminal Bench 2.1（Best Harness）；AIME 为 2026 套题、MMMU 为 Pro 口径，均未并入。",
+   "best_for": [
+    "Apache 2.0 下做领域微调的大基座（官方 Tinker 平台直接支持）",
+    "需要音频理解的多模态应用（Audio MC / MMAU / VoiceBench 三项有官方分）",
+    "配检索的长上下文多模态推理（1M 上下文）",
+    "对许可证零条件的商用自托管"
+   ],
+   "not_for": [
+    "单机 / 消费级硬件部署（最低也要 4×B300 或 8×H200）",
+    "不配检索的知识问答（SimpleQA Verified 43.9%、AA Omniscience 2.1）",
+    "长时程终端 agent（Terminal Bench 2.1 落后同代开源旗舰 7–19 个点）",
+    "追求峰值跑分的场景（官方自认不是最强）"
+   ]
+  },
+  "capability_notes": {
+   "coding": "SWE-bench Verified 77.6%、SWE-bench Pro Public 54.3%、Terminal Bench 2.1（Best Harness）63.8%（官方模型卡，effort=0.99；被网搜污染的 rollout 计 0 分）。",
+   "reasoning": "HLE 纯文本 29.7%、带工具 46.0%、GPQA Diamond 87.2%（官方模型卡）。",
+   "math": "AIME 2026 97.1%（官方模型卡；本站 aime25 列为 2025 套题，口径不同未并入）。",
+   "agent": "MCP Atlas 76.0%、Toolathlon Verified 45.5%、Tau 3 Banking 23.7%、BrowseComp（带上下文管理）77.1%、GDPVal-AA v2 1238（官方模型卡）。",
+   "knowledge": "SimpleQA Verified 43.9%、AA Omniscience 2.1（官方模型卡），为明显短板。",
+   "multimodal": "MMMU Pro（Standard 10）73.5%、Charxiv RQ 78.1%（带 Python 82.0%）；音频 Audio MC 56.6%、MMAU 77.2%、VoiceBench 91.4%（官方模型卡）。",
+   "instruction": "IFBench 79.8%（官方模型卡，为该表全列第一，高于 Claude Fable 5 的 63.5%）。",
+   "chinese": "官方只写「英语及其他语言的通用多语支持」，Global-MMLU-Lite 88.7%；无单独中文评测。"
+  },
+  "ecosystem": {
+   "engines": [
+    "SGLang",
+    "vLLM",
+    "TokenSpeed",
+    "Unsloth",
+    "Transformers",
+    "llama.cpp"
+   ],
+   "finetune": "可微调（Apache 2.0；官方 Tinker 平台提供 64K / 256K 两档上下文的微调）",
+   "zh_docs": "无"
+  },
+  "complete": false
+ },
+ {
   "aliases": [
    "internlm2_5-20b-chat"
   ],
@@ -12337,6 +12553,117 @@
     "vLLM（需 aleph-alpha-inference 插件）"
    ],
    "finetune": "可微调（权重 Apache 2.0，但训练代码与方法未开放）",
+   "zh_docs": "无"
+  },
+  "complete": false
+ },
+ {
+  "id": "lfm2-5-24b-a2b",
+  "name": "LFM2.5-24B-A2B",
+  "name_zh": "Liquid AI LFM2.5-24B-A2B",
+  "aliases": [
+   "LiquidAI/LFM2.5-24B-A2B",
+   "LFM2.5-24B-A2B",
+   "LFM2.5-24B-A2B-Base"
+  ],
+  "vendor": "Liquid AI",
+  "vendor_zh": "Liquid AI（美国）",
+  "family": "LFM2.5",
+  "license": "LFM Open License v1.0",
+  "license_commercial": "restricted",
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B",
+  "status": "current",
+  "released_at": "2026-10-13",
+  "updated_at": "2026-10-14",
+  "modalities": [
+   "text",
+   "tools"
+  ],
+  "reasoning_mode": "default-on",
+  "architecture": {
+   "type": "hybrid",
+   "total_params": "24B",
+   "active_params": "2.45B",
+   "total_params_b": 24,
+   "active_params_b": 2.45,
+   "experts": 64,
+   "active_experts": 4,
+   "layers": 40,
+   "vocab_size": 128000,
+   "attention": "混合结构：30 层双门控短卷积 + 10 层 GQA",
+   "notes": "官方模型卡：40 层，每个 MoE 块 64 专家 top-4 路由，总参 24.0B / 激活 2.45B，纯文本。架构沿用 LFM2-24B-A2B，两处改动是上下文从 32K 扩到 131,072、词表通过原地 tokenizer 扩展从 65K 翻到 128K（为非拉丁语系分词）。训练预算 36 万亿 token：预训练约 33T（上一代约 17T），中训练 2T 在 32K 上下文、再 300B 在 131K 长上下文，两阶段都掺入工具调用与多轮轨迹；后训练五段 —— SFT、教师专精、两轮多域 on-policy 蒸馏（先非 agent 再 agent）、最后在 OpenClaw / Hermes Agent / Pi / OpenCode 这些真实 agent harness 里做 agentic RL。与上一代不同，这是纯推理模型，chat template 直接塞 <think>，必定先思考再回答。官方同时放出 Base 预训练版、FP8、GGUF、ONNX、MLX-4bit 多种格式，DSpark 投机解码草稿头写「coming soon」。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 131072,
+   "display": "128K"
+  },
+  "memory": {
+   "weight_gb": {
+    "bf16": 48,
+    "fp8": 24
+   },
+   "estimated": true,
+   "ref_hw_24gb": "原生 BF16 装不下（约 48GB），但官方有 GGUF 与 MLX-4bit 量化版，24GB 档走量化可行",
+   "ref_hw_80gb": "充裕：单张 80GB 可跑 BF16 并开满 131,072 上下文",
+   "ref_hw_8x80gb": "过剩",
+   "kv_note": "体积按 23,971,585,280 参数推算（HF safetensors 元数据），官方模型卡只给格式不给文件体积。官方实测速度：Apple M5 Max 184 tok/s、Ryzen AI Max+ 395 114 tok/s，单张 NVIDIA B300 高并发下输出超 21K tok/s"
+  },
+  "links": {
+   "official": "https://www.liquid.ai/blog/lfm2-5-24b-a2b",
+   "hf": "https://huggingface.co/LiquidAI/LFM2.5-24B-A2B"
+  },
+  "copy": {
+   "one_liner": "2.45B 激活就能当 agent 用的 24B 端侧推理模型，M5 Max 上 184 tok/s。",
+   "highlights": [
+    "端侧 agent 取向的 MoE：24.0B 总参只激活 2.45B，131,072 上下文，纯推理模型（必定先思考），llama.cpp / MLX / vLLM / SGLang / ONNX 首日全支持",
+    "工具调用与指令遵循是强项：AutomationBench 27.69 是次优模型（Qwen3.6-35B-A3B 8.72）的三倍多，ToolSandbox 80.71、LiveClaw 48.09、BFCLv4 65.01，三项指令遵循（IFEval 96.75 / IFBench 74.69 / Multi-IF 84.38）全组第一",
+    "速度与内存是它的真卖点：官方实测 Apple M5 Max 184 tok/s、Ryzen AI Max+ 395 114 tok/s，同组 MoE 里最快（约 1.7 倍）且占内存最少；单张 B300 高并发输出超 21K tok/s",
+    "后训练直接在 agent harness 里做 RL（OpenClaw / Hermes Agent / Pi / OpenCode），学的是这些框架的工具与系统提示格式"
+   ],
+   "pitfalls": [
+    "许可证不是 Apache：LFM Open License v1.0 第 5 条明写，年营收达到或超过 1,000 万美元的法律实体的商业使用「不在本协议授权范围内」，需要另签；501(c)(3) 等合格非营利组织做非商业 / 研究用途不受此限",
+    "知识面弱是官方自己承认的：GPQA Diamond 74.42 落后 Qwen3.6-35B-A3B 的 83.69，AA-Omniscience -24.90、HLE 7.40，官方建议必须配检索或网搜",
+    "编码是短板：SWE-Bench Verified（OpenCode harness）51.00 低于 Qwen3.6-35B-A3B 的 66.20 与 Nemotron-3.5-Lightning 的 53.40，SciCode 32.71 也落后",
+    "浏览器 / 网页 agent 不行：WebArena Verified 26.75 对 Qwen3.6-35B-A3B 的 37.62，PinchBench 83.18 也低于对比组的 89.93",
+    "全部分数由 Liquid AI 自己用 vLLM 跑出，无第三方复测；对比组只挑了三个同级 MoE（Qwen3.6-35B-A3B、Gemma-4-26B-A4B-it、Nemotron-3.5-Lightning）",
+    "纯文本：上一代 LFM2-VL 那条视觉线没进这一代的 24B 档，要图像输入得换模型"
+   ],
+   "logic_ability": "这台机器是「用 2.45B 激活量换速度、把能力押在工具调用上」的极端样本。官方 16 项评测里的分布极其分裂：八项工具与 agent 基准里它领先或追平五项（AutomationBench、BFCLv4、ToolSandbox、LiveClaw、τ³-Bench Banking），三项指令遵循全部第一；但知识（GPQA 74.42、HLE 7.40、AA-Omniscience -24.90）、编码（SWE-Bench Verified 51.00、SciCode 32.71）、网页 agent（WebArena 26.75）这三类全部落后于参数量大 50% 的 Qwen3.6-35B-A3B。AutomationBench 那个 3 倍差值值得单独记：这是多步业务流程自动化，说明它在「按格式连续调工具」这件事上被专门训过 —— 后训练最后一段就是在真实 agent harness 里做 RL。所以合理用法是把它当本地 agent 的执行单元 + 工具调度器，知识部分交给检索。另一个现实优点是它真的能跑在自己机器上：M5 Max 184 tok/s 的推理速度意味着「一直开着的本地 agent」在消费级硬件上第一次成立。数学意外地没掉队（MATH-500 96.04，与对比组持平）。本站入榜的是官方表里与站内列同口径的三项：SWE-Bench Verified、GPQA Diamond、HLE。",
+   "best_for": [
+    "本地 / 端侧常驻 agent 与工具调度（Mac、Ryzen AI、单卡）",
+    "多步业务流程自动化（AutomationBench 领先三倍）",
+    "严格格式与指令遵循的任务（三项 IF 基准全组第一）",
+    "配检索或网搜的私有数据问答"
+   ],
+   "not_for": [
+    "年营收 ≥1,000 万美元实体的商业部署（许可证不授权，需另签）",
+    "不配检索的知识密集问答",
+    "仓库级编码 agent（SWE-Bench Verified 51.00）",
+    "图像 / 音频输入（纯文本模型）"
+   ]
+  },
+  "capability_notes": {
+   "agent": "AutomationBench 27.69、BFCLv4 65.01、ToolSandbox 80.71、LiveClaw 48.09、τ³-Bench Banking 8.04、PinchBench 83.18、WebArena Verified 26.75（官方发布博客，全部用 vLLM 按各基准推荐参数跑）。",
+   "coding": "SWE-Bench Verified（OpenCode harness）51.00、SciCode 32.71（官方发布博客）。",
+   "knowledge": "GPQA Diamond 74.42、HLE 7.40、AA-Omniscience -24.90（官方发布博客），官方明确建议配检索使用。",
+   "math": "MATH-500 96.04（官方发布博客，与对比组基本持平）。",
+   "instruction": "IFEval 96.75、IFBench 74.69、Multi-IF 84.38（官方发布博客，三项均为对比组第一）。",
+   "chinese": "官方语言列表含中文（英、阿、中、法、德、意、日、韩、葡、西、越、泰、印尼、印地、俄、波共 16 种），词表翻倍到 128K 即为改善非拉丁语系分词；但未提供中文专项评测分数。"
+  },
+  "ecosystem": {
+   "engines": [
+    "llama.cpp",
+    "MLX",
+    "vLLM",
+    "SGLang",
+    "ONNX Runtime",
+    "Transformers",
+    "LM Studio"
+   ],
+   "finetune": "可微调（官方提供 Base 预训练版与微调教程；受许可证商用门槛约束）",
    "zh_docs": "无"
   },
   "complete": false

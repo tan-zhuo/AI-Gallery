@@ -1,0 +1,100 @@
+{
+ "id": "gemini-4-argon",
+ "name": "Gemini 4 Argon",
+ "name_zh": "Gemini 4 Argon",
+ "aliases": [
+  "gemini-4-argon",
+  "gemini-4-argon-cyber-permissive",
+  "Gemini 4 Argon"
+ ],
+ "vendor": "Google",
+ "vendor_zh": "谷歌",
+ "family": "Gemini 4",
+ "license": "Proprietary",
+ "license_commercial": true,
+ "openness": "api-only",
+ "weights_available": false,
+ "status": "current",
+ "released_at": "2026-09-30",
+ "updated_at": "2026-10-14",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "default-on",
+ "architecture": {
+  "type": "moe",
+  "undisclosed": true,
+  "notes": "参数量与专家数一律未披露。官方模型卡只说是「大规模稀疏 MoE Transformer」，原生支持文本 / 视觉 / 音频输入，并明确「不是任何前代模型的改版或微调」。TPU 训练、JAX + ML Pathways。知识截止 2026 年 3 月。API 模型 id 为 gemini-4-argon（Fairwind 批准的安全防御项目另有 gemini-4-argon-cyber-permissive）。推理档 thinking_level 只接受 LOW / MEDIUM / HIGH，MEDIUM 为 gemini-4-argon 默认、HIGH 为 cyber-permissive 默认；thinking_budget 与 MINIMAL 会直接报 400，且不再接受 temperature / top_p / top_k / frequency_penalty / presence_penalty / candidate_count。缓存只有隐式缓存（≥6,144 token 的共享前缀自动命中，默认开启持久缓存），显式 context caching 不支持。时间线：2026-09-30 首次公布但只给 Fairwind 受信网络防御方与受邀测试者，2026-10-13 16:00 UTC 起全量开放（付费 Gemini API / AI Studio / Gemini for business / Antigravity，以及 AI Pro 与 Ultra 订阅者的 Gemini App 与 Search AI Mode）。"
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M",
+  "max_output": 65536
+ },
+ "memory": {
+  "weight_gb": {},
+  "estimated": false
+ },
+ "pricing": {
+  "input_per_m": 2,
+  "output_per_m": 10,
+  "currency": "USD",
+  "source": "Google 官方发布公告 + Gemini API 定价页",
+  "as_of": "2026-10-13",
+  "note": "这是引导期价，官方写明 2026-11-30 到期；2026-12-01 起 $4 / $20。缓存输入为输入价的 5%（引导期 $0.10，之后 $0.20）。Batch / Flex 半价（引导期 $1 / $5），Priority $3.60 / $18。输出价含思考 token。搜索接地每月 5,000 次免费，之后 $14 / 1,000 次。免费档与 Google AI Pro 计划（指 API / AI Studio 口径）不提供本模型"
+ },
+ "links": {
+  "official": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/",
+  "paper": "https://deepmind.google/models/model-cards/gemini-4-argon/",
+  "pricing": "https://ai.google.dev/gemini-api/docs/pricing"
+ },
+ "copy": {
+  "one_liner": "谷歌一年来第一个前沿旗舰：$2 / $10 比同档便宜一半，但 11-30 之后翻倍。",
+  "highlights": [
+   "1,048,576 token 的「输入输出合一」窗口：输入、思考、函数调用、最终回答共享同一个 1M 预算，单次请求上限 65,536 token（非流式 REST 为 32,768），再往上靠 long decode 的 continuation_token 分段续写到 1M",
+   "官方记分卡 19 行里 Argon 拿下 11 行，知识工作类几乎全胜：Vals Index 68.9%、Vals Finance Agent v2 65.4%、Harvey 法律 agent 19.6%（对比组 GPT-6 Astra 5.4%、Opus 5.5 3.8%）、AutomationBench 51.3%",
+   "长上下文是最硬的一项：GraphWalks BFS F1 在 128K 内 99.7%、256K–1M 仍有 84.2%，对比组同档只有 65%–72%",
+   "引导期 $2 / $10 是 Claude Opus 5.5 与 Muse Wonder（$4 / $20）的一半、GPT-6 Astra（$10 / $50）的五分之一；缓存输入再打 5 折后只要 $0.10"
+  ],
+  "pitfalls": [
+   "定价有倒计时：引导期 2026-11-30 结束，12-01 起输入输出双双翻倍到 $4 / $20，按引导价做的成本模型到 12 月要重算一遍",
+   "不是「换个模型名就能跑」：显式 context caching 被取消、thinking_budget 与 thinking_level=MINIMAL 直接 400、temperature / top_p / top_k / candidate_count 等参数全部要删掉，多轮对话里预填的 assistant 回合也要去掉，SDK 还得升到 google-genai ≥ 2.30.1（JS ≥ 2.29.1）",
+   "long decode 的账要自己算：每一跳都会把前面已解码的内容当输入重新 prefill，usage_metadata 里的 prompt_token_count 会跨跳累加（官方明说不要拿它触发上下文压缩，要读 initial_prompt_token_count），隐式缓存只在 15–20 分钟 TTL 内连续调用时才给 95% 折扣",
+   "编码与终端类并非全面领先：FrontierSWE v2 55.0% 落后 GPT-6 Astra 的 65.5%，Terminal-Bench 4.0 57.4% 落后 Opus 5.5 的 66.4%，OSWorld-2.0 离线子集 69.2% 也低于 Astra 的 72.6%",
+   "前沿安全框架下有两项「无法排除」：官方模型卡写明不能排除 Argon 已触及生物信息风险 CCL 与网络安全 CCL，均依靠部署期缓解措施把残余风险压到阈值以下；另有「隐蔽性与情境意识」TCL 同样无法排除",
+   "免费用户与 API 免费档拿不到；Antigravity 需要 AI Ultra，谷歌未说明是否会下放到更低档位"
+  ],
+  "logic_ability": "这台机器的形状很清楚：企业知识工作与长上下文是强项，终端 / 计算机操作类不是。官方 19 行对比表里，它在 Vals Index、Finance Agent、Harvey 法律 agent、AutomationBench、DeepSWE v1.1（77.9%）、Vibe Code Bench（91.9%）、LABBench 2（88.8%）、RiemannBench（76.0%）、GraphWalks、Chartography（71.6%）、LVBench（91.7%）上领先，CWE-bench v1 与 GPT-6 Astra 并列 68.0%；但 FrontierSWE v2、Terminal-bench 4.0、PostTrainBench、Terminal-Bench Science 0.1、OSWorld-2.0、Agent's Last Exam 这六项都不是第一。换句话说：读长文档、做金融法律分析、写代码片段很强，长时程终端 agent 仍被 Opus 5.5 压着。注意这套表全是谷歌自己跑的（evidence: official），发布当天没有第三方复测可对照。本站总榜列（SWE-bench Verified / GPQA / HLE / AIME25 / Terminal-Bench 2.x / MMMU）在这张卡上一项都没有 —— 谷歌换用了 DeepSWE、FrontierSWE v2、Terminal-bench 4.0、LABBench 2、Vals Index 这类新口径，所以本条目暂无入榜分数，不是漏填。另有一个值得记的第三方读数：Artificial Analysis 在其 v4.3 口径下给 Argon 的幻觉率 15%，是当前智能指数 45 以上机型里最低的一档（口径与本站 aa 列不同，未并入）。",
+  "best_for": [
+   "百万 token 级长文档 / 多模态文档的分析与综合",
+   "金融、法律、科研这类知识密集的企业 agent 流程",
+   "网络安全防御（漏洞定位与修复，CWE-bench v1 68.0%）",
+   "需要一次性写出超长输出的深推理任务（long decode 到 1M）"
+  ],
+  "not_for": [
+   "2026-12 之后仍按引导价做预算的成本敏感负载",
+   "长时程终端 / 计算机操作 agent（Terminal-bench 4.0 与 OSWorld 均非第一）",
+   "依赖显式缓存、thinking_budget 或 temperature 等采样参数的既有代码（这些全被取消）",
+   "私有化部署与免费档用户"
+  ]
+ },
+ "capability_notes": {
+  "coding": "DeepSWE v1.1 77.9%、Vibe Code Bench 91.9%、FrontierSWE v2 55.0%、Terminal-bench 4.0 57.4%（官方模型卡，对比组 GPT-6 Astra / Claude Fable 5.1 / Claude Opus 5.5）。官方未公布 SWE-bench Verified 与 LiveCodeBench。",
+  "knowledge": "Vals Index 68.9%、Vals Finance Agent v2 65.4%、Harvey's Legal Agent Benchmark 19.6%（官方模型卡，三项均为对比组第一）。",
+  "reasoning": "LABBench 2 88.8%、RiemannBench 76.0%、Terminal-Bench Science 0.1 57.6%（官方模型卡；科学终端一项落后 GPT-6 Astra 的 68.1%）。官方未公布 GPQA Diamond / HLE / AIME。",
+  "agent": "AutomationBench 51.3%、Agent's Last Exam 通过率 39.5%、OSWorld-2.0 离线子集 69.2%、PostTrainBench 45.3%（官方模型卡）。",
+  "multimodal": "Chartography 71.6%、LVBench 91.7%（官方模型卡，均为对比组第一）；输入支持文本 / 图像 / 音频 / 视频。",
+  "instruction": "官方称比以往任何 Gemini 都更贴合风格指令，回答更直接、少对冲、少重复、不堆陈词滥调；内部评测里「无正当理由的拒答」比 Gemini 3.1 Pro 降 9.60pp，拒答语气评分升 5.50%。",
+  "chinese": "官方未公布中文或多语评测分数；安全侧的多语评测相对 Gemini 3.1 Pro 改善 3.16pp。"
+ },
+ "ecosystem": {
+  "engines": [],
+  "finetune": "不支持",
+  "zh_docs": "有"
+ },
+ "complete": false
+}
