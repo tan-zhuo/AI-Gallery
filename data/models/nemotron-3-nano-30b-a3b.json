@@ -12,9 +12,10 @@
  "openness": "open-weights",
  "weights_available": true,
  "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
- "status": "current",
+ "status": "superseded",
+ "superseded_by": "nemotron-3-5-lightning-30b-a3b",
  "released_at": "2025-12-15",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-10-15",
  "modalities": [
   "text",
   "tools"

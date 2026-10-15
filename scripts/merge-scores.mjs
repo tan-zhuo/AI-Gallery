@@ -10,6 +10,7 @@ const AS_OCT10 = '2026-10-10'
 const AS_OCT12 = '2026-10-12'
 const AS_OCT13 = '2026-10-13'
 const AS_OCT14 = '2026-10-14'
+const AS_OCT15 = '2026-10-15'
 const SRC = {
   arena: { source: 'LMArena Text (style control)', url: 'https://lmarena.ai/leaderboard/text', evidence: 'independent' },
   aa: { source: 'Artificial Analysis Intelligence Index v3', url: 'https://artificialanalysis.ai/leaderboards/models', evidence: 'independent' },
@@ -142,9 +143,11 @@ const rowsOct12 = [
 // MCP Atlas / DeepSearch QA / Gaia2 / GDPVal-AA / WildClawBench / AA-LCR / SWE-bench Pro / IFBench 本站无对应列。
 // Muse Wonder 与 Muse Wonder Full 不列行：Meta 记分卡用的是 Terminal-Bench 4.0、DeepSWE v1.1、SWE-Marathon、
 // GDPval-AA、MemoryBench、OSWorld V2.1 等本站无对应列的口径；AA 智能指数 v4.3（52 / 56）与本站 aa 列的较早口径不可混比，均未并入。
-const rowsOct13 = [
-  ['muse-glimmer', null, null, 76.0, null, 83.5, 22.0, null, null, 51.7, null, 'Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）', 'https://huggingface.co/meta-models/Muse-Glimmer-30B'],
-]
+// 2026-10-15 更正：本层原有的 ['muse-glimmer', ...] 一行已撤。该行是 10-13 那次「补录 Muse Glimmer 30B」
+// 时误建的重复条目，本站早在 2026-08 的 rowsNew 层就有同一模型的 muse-glimmer-30b 行（数值完全相同，
+// 见上方 rowsNew）。重复的 data/models/muse-glimmer.json 条目同日删除，故本层清空而非改写 —— 不是撤回历史数据，
+// 是撤回一条本就不该存在的重复行。
+const rowsOct13 = []
 // ---- 2026-10-14 快照（新增层，不覆盖前六层）----
 // Inkling 取官方模型卡同管线对比表（effort=0.99）：只收与本站列同口径的四项。
 // 其 HLE 取纯文本列（本站 hle 列口径），Terminal Bench 2.1 取官方 Best Harness 列（官方注明被网搜污染的 rollout 计 0 分）。
@@ -159,8 +162,18 @@ const rowsOct14 = [
   ['inkling', null, null, 77.6, null, 87.2, 29.7, null, null, 63.8, null, 'Inkling 官方模型卡对比表（effort=0.99；HLE 纯文本、Terminal Bench 2.1 Best Harness）', 'https://thinkingmachines.ai/model-card/inkling/'],
   ['lfm2-5-24b-a2b', null, null, 51.0, null, 74.4, 7.4, null, null, null, null, 'LFM2.5-24B-A2B 官方发布博客评测表（vLLM；SWE-bench Verified 用 OpenCode harness）', 'https://www.liquid.ai/blog/lfm2-5-24b-a2b'],
 ]
+// ---- 2026-10-15 快照（新增层，不覆盖前七层）----
+// Nemotron 3.5 Lightning 取官方模型卡评测表（BF16 列）：NVIDIA 用 NeMo Gym / NeMo Evaluator 统一 harness 自测，
+// 官方注明该数值可能与各厂商自报口径不同。只收与本站列同口径的四项：
+// SWE-bench Verified、GPQA Diamond（无工具）、HLE（纯文本无工具）、Terminal-Bench 2.1。
+// 未并入的：MMLU Pro / AA-Omniscience / SciCode / SWE-bench Multilingual / PinchBench / BrowseComp /
+// GDPval-AA-V2 / IFBench / AA-LCR 本站无对应列；官方给的 τ³-bench (Banking) 9.28 与本站 tau2 列（τ²-bench）
+// 不是同一基准，不并入。Artificial Analysis 发布日智能指数读数 24 未标明版本口径，与本站 aa 列不可混比，未入榜。
+const rowsOct15 = [
+  ['nemotron-3-5-lightning-30b-a3b', null, null, 51.56, null, 75.44, 11.72, null, null, 24.58, null, 'Nemotron 3.5 Lightning 官方模型卡评测表（BF16 列，NeMo Gym / NeMo Evaluator 统一 harness）', 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16'],
+]
 // ---- 历史模型（2023–2025-08）：每行第 14 个元素为 as_of ----
-const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsOct10.map((r) => ({ r, as: AS_OCT10 })), ...rowsOct12.map((r) => ({ r, as: AS_OCT12 })), ...rowsOct13.map((r) => ({ r, as: AS_OCT13 })), ...rowsOct14.map((r) => ({ r, as: AS_OCT14 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
+const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsOct10.map((r) => ({ r, as: AS_OCT10 })), ...rowsOct12.map((r) => ({ r, as: AS_OCT12 })), ...rowsOct13.map((r) => ({ r, as: AS_OCT13 })), ...rowsOct14.map((r) => ({ r, as: AS_OCT14 })), ...rowsOct15.map((r) => ({ r, as: AS_OCT15 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
 const keys = ['arena_text', 'aa_index', 'swe_verified', 'livecodebench', 'gpqa_diamond', 'hle', 'aime_2025', 'tau2_bench', 'terminal_bench', 'mmmu']
 const units = { arena_text: 'elo', aa_index: 'index' }
 const out = []

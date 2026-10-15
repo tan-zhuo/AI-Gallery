@@ -3390,46 +3390,6 @@
   "evidence": "official"
  },
  {
-  "model_id": "muse-glimmer",
-  "key": "swe_verified",
-  "value": 76,
-  "unit": "percent",
-  "source": "Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）",
-  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
-  "as_of": "2026-10-13",
-  "evidence": "official"
- },
- {
-  "model_id": "muse-glimmer",
-  "key": "gpqa_diamond",
-  "value": 83.5,
-  "unit": "percent",
-  "source": "Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）",
-  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
-  "as_of": "2026-10-13",
-  "evidence": "official"
- },
- {
-  "model_id": "muse-glimmer",
-  "key": "hle",
-  "value": 22,
-  "unit": "percent",
-  "source": "Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）",
-  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
-  "as_of": "2026-10-13",
-  "evidence": "official"
- },
- {
-  "model_id": "muse-glimmer",
-  "key": "terminal_bench",
-  "value": 51.7,
-  "unit": "percent",
-  "source": "Muse Glimmer 官方模型卡评测表（High 推理档；GPQA Diamond / HLE Text 为 AA 口径，Terminal-Bench 2.1 用 terminus2 harness）",
-  "source_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
-  "as_of": "2026-10-13",
-  "evidence": "official"
- },
- {
   "model_id": "inkling",
   "key": "swe_verified",
   "value": 77.6,
@@ -3497,6 +3457,46 @@
   "source": "LFM2.5-24B-A2B 官方发布博客评测表（vLLM；SWE-bench Verified 用 OpenCode harness）",
   "source_url": "https://www.liquid.ai/blog/lfm2-5-24b-a2b",
   "as_of": "2026-10-14",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-lightning-30b-a3b",
+  "key": "swe_verified",
+  "value": 51.56,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Lightning 官方模型卡评测表（BF16 列，NeMo Gym / NeMo Evaluator 统一 harness）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+  "as_of": "2026-10-15",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-lightning-30b-a3b",
+  "key": "gpqa_diamond",
+  "value": 75.44,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Lightning 官方模型卡评测表（BF16 列，NeMo Gym / NeMo Evaluator 统一 harness）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+  "as_of": "2026-10-15",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-lightning-30b-a3b",
+  "key": "hle",
+  "value": 11.72,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Lightning 官方模型卡评测表（BF16 列，NeMo Gym / NeMo Evaluator 统一 harness）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+  "as_of": "2026-10-15",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-lightning-30b-a3b",
+  "key": "terminal_bench",
+  "value": 24.58,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Lightning 官方模型卡评测表（BF16 列，NeMo Gym / NeMo Evaluator 统一 harness）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+  "as_of": "2026-10-15",
   "evidence": "official"
  },
  {

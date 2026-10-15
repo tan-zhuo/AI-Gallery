@@ -16528,114 +16528,6 @@
   }
  },
  {
-  "id": "muse-glimmer",
-  "name": "Muse Glimmer 30B",
-  "name_zh": "Meta Muse Glimmer 30B",
-  "aliases": [
-   "Muse Glimmer",
-   "Muse-Glimmer-30B",
-   "meta-models/Muse-Glimmer-30B"
-  ],
-  "vendor": "Meta",
-  "family": "Muse Glimmer",
-  "license": "Apache 2.0",
-  "license_commercial": true,
-  "openness": "open-weights",
-  "weights_available": true,
-  "weights_url": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
-  "status": "current",
-  "released_at": "2026-08-10",
-  "updated_at": "2026-10-13",
-  "modalities": [
-   "text",
-   "image",
-   "tools"
-  ],
-  "reasoning_mode": "default-on",
-  "architecture": {
-   "type": "dense",
-   "total_params": "29.6B",
-   "total_params_b": 29.6,
-   "layers": 52,
-   "hidden_size": 6656,
-   "vocab_size": 202048,
-   "kv_heads": 2,
-   "attention": "GQA，32 Q 头 / 2 KV 头（16:1），head_dim 128；[局部 ×3 + 全局] 循环排布，滑动窗口 2,048，带门控注意力；RoPE θ=500,000 只用在局部层",
-   "notes": "稠密因果 Transformer + 独立感知编码器（约 1.8B 的 ViT-G/14，50 层、宽 1536、patch 14），29.6B 这个数字已含视觉编码器。FFN 为 SwiGLU、中间维 19,968；词表 202,048（200,000 BPE + 2,048 特殊 token）；单图最多 4,096 视觉 token；知识截止 2026-01-04。训练路径是从 Muse Spark 做 logit 蒸馏预训练 → 中期喂更长上下文与更重 agent 的数据 → 后训练把 SFT、on-policy 蒸馏与 RL 混着上。随权重一起放出的还有 DFlash 投机解码草稿头（5 层、每次预测 16 token 的块扩散模型）与感知编码器，全部 Apache 2.0。官方模型卡只写发布月份「August 2026」，HF 仓库与合集的日期为 2026-08-10。",
-   "undisclosed": false
-  },
-  "context": {
-   "max_tokens": 131072,
-   "display": "128K"
-  },
-  "memory": {
-   "weight_gb": {
-    "bf16": 60,
-    "q4": 17
-   },
-   "estimated": false,
-   "ref_hw_24gb": "可行：官方 K-Quant-17GB 就是按 24GB 显存做的档，17GB 权重之外还留得下 KV cache、感知编码器与草稿头；代价是官方自报平均精度损失 1.0%",
-   "ref_hw_80gb": "充裕：BF16 约 60GB 单卡装得下，官方给 64GB 显存作为全精度目标硬件",
-   "kv_note": "官方给三档：全精度（目标 64GB 显存）、K-Quant-Dynamic（32GB，损失 0.2%）、K-Quant-17GB（24GB，损失 1.0%），损失为 15 个常用基准准确率均值的差。BF16 体积取官方文档「约 60 GB」；官方博客另称全精度「超过 55 GB」。只装一个文件不够用 —— GGUF 路线还要单独下 mmproj 视觉投影与 dflash 草稿模型"
-  },
-  "links": {
-   "official": "https://research.meta.ai/blog/introducing-muse-glimmer-open-agentic-model",
-   "hf": "https://huggingface.co/meta-models/Muse-Glimmer-30B",
-   "paper": "https://research.meta.ai/static/muse-glimmer-methodology"
-  },
-  "copy": {
-   "one_liner": "Meta 用 Apache 2.0 放出的 30B 端侧 agent 模型：4-bit 压到 17GB，24GB 单卡就能跑。",
-   "highlights": [
-    "Apache 2.0，且不是只给一份权重：BF16 检查点、两档 4-bit 量化、DFlash 投机解码草稿头、感知编码器、预编译 ExecuTorch 导出，全在许可范围内",
-    "官方实测投机解码收益很实在：RTX 5090 从 74.9 tok/s 提到 233.4 tok/s（3.1×），M5 Max 26.6 → 50.2，M4 Max 23.7 → 37.8",
-    "同级里 agent 项领先：MCP Atlas 75.5、DeepSearch QA 74.6、SWE-bench Pro 51.2、AA-LCR 80.0 都高过 Gemma4-31B 与 Qwen3.6-27B",
-    "多模态是原生的（文本 + 图像交错输入），面向截图 / 图表 / 文档类 agent 任务，不是事后贴的"
-   ],
-   "pitfalls": [
-    "同级对比并非全胜：Qwen3.6-27B 在 OSWorld-Verified（75.6 对 65.9）、TerminalBench 2.1（60.7 对 51.7）、SWE-bench Verified（77.2 对 76.0）、SkillsBench（46.6 对 44.3）上更高，GDPVal-AA v2 更是 1141 对 953",
-    "24GB 那一档不是免费的：K-Quant-17GB 官方自报平均精度损失 1.0%，32GB 的 K-Quant-Dynamic 只损失 0.2%",
-    "隐私安全项有退步：CI Memories 违规率 26.4 高于 Gemma4-31B 的 12.1（覆盖率 64.8 对 53.0），Siren AgentDojo 攻击成功率 28.4 也略高于 Gemma4-31B 的 25.6",
-    "全部分数由 Meta 自测，目前无独立复测；官方自己也写明它不属于 Meta 先进 AI 框架定义的「前沿 AI」，因为整体弱于 Muse Spark",
-    "官方称训练覆盖 100+ 语言，但模型卡没有任何中文评测，中文能力未知"
-   ],
-   "logic_ability": "这是「把大模型蒸成能揣进兜里的 agent 工人」的一次完整交付：架构上用 [局部×3 + 全局] 的注意力循环加 2,048 滑窗把长上下文的 KV 压下来，工程上把 4-bit 量化和块扩散投机解码一起打包发布，所以 3 倍加速和 17GB 体积不是社区事后做的，是官方给的。能力形状偏「工具与 agent 流程」而不是峰值知识：MCP Atlas、DeepSearch QA、AA-LCR 这类流程型评测明显领先同级，但 GPQA Diamond 83.5 与 HLE Text 22.0 和 Gemma4-31B（85.7 / 23.6）、Qwen3.6-27B（84.2 / 23.1）基本同水位，没有优势。桌面操作和终端任务是明确短板（OSWorld-Verified、TerminalBench 2.1 都输给 Qwen3.6-27B）。AIME 2026 的 94.7 与 MMMU Pro 的 74 因为和本站列的口径（AIME 2025 / MMMU）不一致，没有并入总榜。",
-   "best_for": [
-    "离线 / 断网的本地 agent 与函数调用",
-    "24–32GB 消费级显卡或 Apple Silicon 上的个人助理",
-    "LLM-as-a-judge 与批量评测（权重自持，不计 token）",
-    "Apache 2.0 下做领域微调（官方点名可用 PyTorch TorchTitan）"
-   ],
-   "not_for": [
-    "桌面 GUI 操作与长时程终端任务（OSWorld / TerminalBench 均落后同级）",
-    "硬科学知识问答（GPQA / HLE 无同级优势）",
-    "中文负载（官方无中文评测）",
-    "对隐私越权敏感且不加外层护栏的部署（CI Memories 违规率偏高）"
-   ]
-  },
-  "capability_notes": {
-   "agent": "MCP Atlas（公开集）75.5、DeepSearch QA 74.6、τ³-Banking 23.5、WildClawBench 47.6、Gaia2 43.3、OSWorld-Verified 65.9（官方模型卡，High 推理档）。",
-   "coding": "SWE-bench Verified 76.0、SWE-bench Pro 51.2、TerminalBench 2.1 51.7（terminus2 harness）、SciCode 43.6（官方模型卡）。",
-   "reasoning": "AIME 2026 94.7、GPQA Diamond（AA 口径）83.5、HLE Text（AA 口径）22.0、AA-LCR 80.0、IFBench 77.0（官方模型卡）。AIME 为 2026 套题，与本站 aime25 列口径不同，未并入总榜。",
-   "multimodal": "Charxiv Reasoning 78.8、ScreenSpot Pro 75.4、OmniDocBench v1.5 75.8、MMMU Pro 74（官方模型卡）。MMMU Pro 与本站 mmmu 列口径不同，未并入总榜。",
-   "safety": "CI Memories 违规率 26.4 / 覆盖率 64.8；Siren AgentDojo 攻击成功率 28.4 / 效用 94.2（官方模型卡，违规与攻击成功率越低越好）。",
-   "chinese": "官方称训练数据覆盖 100+ 语言，模型卡无中文评测。"
-  },
-  "ecosystem": {
-   "engines": [
-    "vLLM",
-    "SGLang",
-    "llama.cpp",
-    "ExecuTorch",
-    "MLX",
-    "Ollama",
-    "LM Studio"
-   ],
-   "finetune": "可微调（Apache 2.0，官方点名 PyTorch TorchTitan）",
-   "zh_docs": "无"
-  },
-  "complete": false
- },
- {
   "id": "muse-spark-1-3",
   "name": "Muse Spark 1.3",
   "name_zh": "Meta Muse Spark 1.3",
@@ -17030,6 +16922,143 @@
   "complete": false
  },
  {
+  "id": "nemotron-3-5-lightning-30b-a3b",
+  "name": "Nemotron 3.5 Lightning 30B-A3B",
+  "name_zh": "NVIDIA Nemotron 3.5 Lightning · 30B A3B",
+  "aliases": [
+   "NVIDIA-Nemotron-3.5-Lightning-30B-A3B",
+   "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+   "NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
+   "Nemotron 3.5 Lightning"
+  ],
+  "vendor": "NVIDIA",
+  "vendor_zh": "NVIDIA（美国）",
+  "family": "Nemotron 3.5",
+  "license": "OpenMDW License Agreement, version 1.1",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
+  "status": "current",
+  "released_at": "2026-08-11",
+  "updated_at": "2026-10-15",
+  "modalities": [
+   "text",
+   "tools"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "hybrid",
+   "total_params": "31.6B",
+   "active_params": "3.6B",
+   "total_params_b": 31.6,
+   "active_params_b": 3.6,
+   "attention": "交错 Mamba-2 + MoE 层，夹少量注意力层的混合 MoE",
+   "notes": "官方模型卡把规格写成「30B（3B 激活）」的整数口径；按官方 BF16 仓库的 safetensors 元数据实测为 31,577,937,344 参数（31.6B），Artificial Analysis 与 the-decoder 的发布日读数同为 31.6B 总参 / 3.6B 激活，本站取后者。架构沿用 Nemotron 3 Nano 的 Mamba-Transformer 混合 MoE，网络标识为 Nemotron-3-Lightning + Multi-Token Prediction（MTP）。预训练 20T+ token、用 NVFP4 配方跑；之后单独做一段 MTP 续训，再 SFT，最后用 GRPO 在数学 / 代码 / 科学 / 指令遵循 / 多步工具调用 / 多轮对话 / 结构化输出七类环境做多环境 RL。官方同时说明它是从 Nemotron 3 Ultra 蒸馏而来，并针对 OpenClaw、Hermes Agent 这类 agent harness 做过训练。预训练数据截止 2025-09，后训练数据截止 2026-05。权重、训练数据与训练配方同步公开。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {
+    "bf16": 65.8,
+    "nvfp4": 21.6
+   },
+   "estimated": false,
+   "ref_hw_24gb": "可行：官方 NVFP4 权重实测 21.6GB，支持硬件列表含 DGX Spark（GB10）与 GeForce RTX 5090；Ampere 卡走 W4A16 计算路径",
+   "ref_hw_80gb": "BF16 可单卡 H100 80GB 跑，但官方注明单卡是显存瓶颈、验证上下文只到 256K",
+   "ref_hw_8x80gb": "8×H100（TP8 + EP）才是官方验证满 1M 上下文的 BF16 配置；NVFP4 单卡即可开满 1M",
+   "kv_note": "体积取官方两个仓库 safetensors 文件实测合计（BF16 65.8GB / NVFP4 21.6GB），非估算。官方另给 DFlash 与 DSpark 两种投机解码草稿头，社区 GGUF 在 ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF"
+  },
+  "links": {
+   "official": "https://developer.nvidia.com/blog/nvidia-nemotron-3-5-lightning-delivers-fast-accurate-specialized-task-execution-for-long-running-agents/",
+   "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16"
+  },
+  "variants": [
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-NVFP4",
+    "note": "官方 NVFP4，官方推荐的部署版本（数据中心与 DGX Spark 都用这一份）",
+    "sizes": {
+     "nvfp4": 21.6
+    }
+   },
+   {
+    "kind": "base",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Base-BF16",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-Base-BF16",
+    "note": "官方预训练基座版"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "ggml-org",
+    "repo": "ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
+    "url": "https://huggingface.co/ggml-org/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-GGUF",
+    "note": "官方模型卡在「Local AI」一节直接指向的 GGUF（RTX 5090 / DGX Spark / RTX 6000 Pro）"
+   }
+  ],
+  "copy": {
+   "one_liner": "从 Nemotron 3 Ultra 蒸出来的 3.6B 激活执行层模型，接 Nemotron 3 Nano 的班，1M 上下文。",
+   "highlights": [
+    "开放程度是同级里最彻底的一档：OpenMDW-1.1 许可、官方明写「ready for commercial use」，权重、训练数据集（nemotron-pre-training-datasets / nemotron-post-training-v3）与训练配方（NeMo Gym 里的可复现评测脚本）全部公开",
+    "官方定位就是「agent 的执行层」：从 Nemotron 3 Ultra 蒸馏而来，后训练专门针对 OpenClaw、Hermes Agent 这类 agent harness 与多轮工作流；相对上一代 Nemotron 3 Nano 的提升主要落在 agent 项上（Terminal-Bench 2.1 24.58 对 8.29、SWE-bench Verified 51.56 对 34.08、BrowseComp 36.97 对 13.74，官方同 harness 对比）",
+    "NVFP4 那份权重实测 21.6GB，是真能装进 24GB 的 30B 级 MoE：官方支持硬件列表含 DGX Spark（GB10）与 GeForce RTX 5090，Hopper 与 Ampere 走 W4A16 计算路径，官方模型卡直接给出 GGUF 的 Local AI 路径",
+    "三种投机解码一起放出（MTP、DFlash、DSpark），按部署场景分：DSpark 给 DGX Spark 与低并发数据中心，DFlash 给长上下文；AWS SageMaker JumpStart 上架公告引 NVIDIA 数据称约 4 倍吞吐（约 410 tokens/s）、任务完成快 30%"
+   ],
+   "pitfalls": [
+    "知识与推理明显落后同级：按 NVIDIA 自己那张统一 harness 的对比表，Qwen3.6 35B-A3B 在 14 项里赢 11 项 —— MMLU Pro 85.63 对 81.94、GPQA Diamond 83.40 对 75.44、HLE 19.56 对 11.72、SWE-bench Verified 70.12 对 51.56、Terminal-Bench 2.1 44.38 对 24.58。它赢的是 IFBench 与速度，不是智能",
+    "1M 上下文有部署前提：官方硬件矩阵里，BF16 单卡 H100 80GB 只验证到 256K（官方注明受显存限制），要满 1M 得上 8×H100 TP8+EP 或 GB200；NVFP4 版才是单卡能开满 1M 的那份",
+    "全表分数都是 NVIDIA 自己跑的：官方在表下明写用 NeMo Gym / NeMo Evaluator 统一 harness、数值「可能与各厂商自报口径不同」，对比组（Qwen3.6、Gemma 4、Nemotron 3 Nano / Super、GPT-OSS 20B）的分数也是 NVIDIA 代跑，无第三方复测这张表",
+    "BF16 那份不是给生产推理用的：官方把它定位成「做后训练、领域适配、自制量化版的起点」，要部署直接用 NVFP4；BF16 的 vLLM 启动命令还得带一串 Mamba 专用参数（--mamba-backend flashinfer、--mamba-ssm-cache-dtype float16、随机取整及其 philox 轮数），少一个就容易踩精度坑",
+    "无官方按 token 定价：托管只有 build.nvidia.com 的 NIM 与各云厂商 / 推理平台（DeepInfra、Fireworks、Nebius、Crusoe、SageMaker JumpStart 等），实际单价随渠道变，本站不记第三方渠道价",
+    "纯文本，且官方语言列表为英（含编程语言）、西、法、德、意、日，不含中文，也没有中文专项评测分数",
+    "3.5 这一代目前只有这一个 30B 档，Nemotron 3 的 Nano / Super / Ultra 三档阶梯在 3.5 里还没对应物；更高档的 Nemotron 3.5 Bolt 74B-A9B 官方公告的发布日是 2026-10-15，本站尚未收录"
+   ],
+   "logic_ability": "这台机器的设计目标写得很直白：不当最聪明的那个，当「一直在跑」的那个。官方把它放在「前沿模型做规划编排、小模型做高频执行」这套分层里，自己只负责下半截，连配套的路由库（NeMo Switchyard）都一起发了。分数分布完全符合这个定位 —— 在 NVIDIA 自己那张统一 harness 的表上，它对上一代 Nemotron 3 Nano 的提升几乎全在 agent 与编码项（Terminal-Bench 2.1 从 8.29 到 24.58 是三倍，SWE-bench Verified 从 34.08 到 51.56，BrowseComp 从 13.74 到 36.97，AA-LCR 从 32.75 到 52.00），而知识项只从 78.46 挪到 81.94（MMLU Pro）。换句话说，蒸馏 Nemotron 3 Ultra 加 agent harness 上的 RL，买到的是「会连续调工具、能跑完长任务」，不是「懂得更多」。代价也标在同一张表上：同级的 Qwen3.6 35B-A3B 在 14 项里赢 11 项，差距最大的恰恰是 SWE-bench Verified（70.12 对 51.56）与 Terminal-Bench 2.1（44.38 对 24.58）这两项 agent 能力 —— 所以「执行层最强」这个说法只在「同 3B 激活量 + 同速度档」的约束下成立，放开约束就不成立。真正难被替代的是另外三件事：3.6B 激活带来的速度（官方称约 4 倍吞吐）、NVFP4 版 21.6GB 真能进 24GB 卡、以及连训练数据和配方一起开放让你能把它后训成自己工具链的专用执行器。合理用法就是官方说的那个：拿它当子 agent 与工具调度器，难的判断往上路由给前沿模型。本站入榜的是官方表里与站内列同口径的四项：SWE-bench Verified、GPQA Diamond（无工具）、HLE（纯文本无工具）、Terminal-Bench 2.1。",
+   "best_for": [
+    "多模型 agent 架构里的执行层 / 子 agent（高频、范围明确的步骤）",
+    "本地与端侧常驻 agent（DGX Spark、RTX 5090、单卡 H100，走 NVFP4 或 GGUF）",
+    "需要把模型后训成自有工具与流程专用执行器的场景（权重、数据、配方全开）",
+    "长上下文检索与多文档聚合（1M 上下文，AA-LCR 52.00）"
+   ],
+   "not_for": [
+    "需要最强知识与推理的任务（GPQA 75.44、HLE 11.72、MMLU Pro 81.94 均落后同级 Qwen3.6 35B-A3B）",
+    "仓库级编码 agent 主力（SWE-bench Verified 51.56、Terminal-Bench 2.1 24.58）",
+    "中文任务（官方语言列表不含中文，无中文评测）",
+    "图像 / 音频输入（纯文本模型）",
+    "想要官方固定单价的采购（无官方按 token 定价，只能走 NIM 或第三方托管）"
+   ]
+  },
+  "capability_notes": {
+   "knowledge": "MMLU Pro 81.94、AA-Omniscience 17.50（官方模型卡，NVIDIA 用 NeMo Gym / NeMo Evaluator 统一 harness 自测）。",
+   "reasoning": "GPQA Diamond（无工具）75.44、HLE（纯文本无工具）11.72、SciCode 32.60（官方模型卡）。",
+   "coding": "SWE-bench Verified 51.56、SWE-bench Multilingual 39.33、Terminal-Bench 2.1 24.58（官方模型卡；NVFP4 版同口径为 52.80 / 36.47 / 23.46）。",
+   "agent": "PinchBench 85.37、BrowseComp 36.97、τ³-bench（Banking）9.28、GDPval-AA-V2 Elo 832（官方模型卡）。本站 tau2 列为 τ²-bench，与官方给的 τ³-bench 不同口径，未并入。",
+   "instruction": "IFBench（loose）71.88（官方模型卡）。",
+   "long_context": "AA-LCR 52.00（官方模型卡），官方验证上下文 1M（单卡 H100 BF16 受显存限制只验证到 256K）。",
+   "speed": "AWS SageMaker JumpStart 上架公告引 NVIDIA 数据：相比同级模型约 4 倍吞吐（约 410 tokens/s）、任务完成快 30%。官方另给 MTP / DFlash / DSpark 三种投机解码。",
+   "third_party": "Artificial Analysis 发布日（2026-08-11）给出智能指数 24，称比 Nemotron 3 Nano 的 15 高 9 分、与 gpt-oss-120b 持平而总参只有其约四分之一，Terminal-Bench v2.1 读数 24%、GDPval-AA v2 Elo 824。该指数未标明版本口径，与本站 aa 列不可混比，故未入榜。",
+   "chinese": "官方语言列表为英（含编程语言）、西、法、德、意、日，不含中文；无中文专项评测分数。"
+  },
+  "ecosystem": {
+   "engines": [
+    "vLLM",
+    "SGLang",
+    "llama.cpp",
+    "TensorRT-LLM",
+    "Transformers"
+   ],
+   "finetune": "可微调（官方开放权重、训练数据与配方，并提供 NeMo RL / NeMo Gym 的 SFT、RL、蒸馏路径；BF16 版官方定位就是「拿来做后训练的起点」）",
+   "zh_docs": "无"
+  },
+  "complete": false
+ },
+ {
   "id": "nemotron-3-nano-30b-a3b",
   "name": "Nemotron 3 Nano 30B-A3B",
   "aliases": [
@@ -17043,9 +17072,10 @@
   "openness": "open-weights",
   "weights_available": true,
   "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
-  "status": "current",
+  "status": "superseded",
+  "superseded_by": "nemotron-3-5-lightning-30b-a3b",
   "released_at": "2025-12-15",
-  "updated_at": "2026-08-28",
+  "updated_at": "2026-10-15",
   "modalities": [
    "text",
    "tools"
