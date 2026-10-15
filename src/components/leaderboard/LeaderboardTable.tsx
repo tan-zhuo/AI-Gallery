@@ -143,7 +143,7 @@ export function LeaderboardTable({ rows, selected, onToggle, showValue, cols: co
                     {has.has('mm') && <td className="px-2 py-2.5 n col-fit">{num(r.mm)}</td>}
                     <td className="px-2 py-2.5 n col-fit">{m.context.display}</td>
                     <td className="px-2 py-2.5 n col-fit">
-                      {priceLabel(m)}
+                      {t(priceLabel(m))}
                       {m.pricing?.source?.includes('第三方') && <span className="ml-1 text-[10px] text-muted" title={m.pricing.source}>{t('托管')}</span>}
                     </td>
                     {has.has('q4') && <td className="px-2 py-2.5 n col-fit">{formatGB(m.memory.weight_gb.q4)}</td>}

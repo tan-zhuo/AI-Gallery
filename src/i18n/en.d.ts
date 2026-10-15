@@ -56,4 +56,9 @@ export const en_d: Record<string, string> = {
   // 价格散点图
   'X：输入价格 USD / 百万 token（对数）· Y：综合参考分': 'X: input price USD / 1M tokens (log) · Y: composite reference score',
   '空心 = 第三方托管价': 'hollow = third-party hosted price',
+
+  // 首页
+  '综合榜 Top 30': 'Overall Top 30',
+  '数据快照 {d}。分数与价格为手工维护的静态快照，每条带来源、日期与证据等级。': 'Data snapshot {d}. Scores and prices are a hand-maintained static snapshot; each carries its source, date and evidence level.',
+  '本次更新了什么 →': 'What changed →',
 }

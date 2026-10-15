@@ -55,7 +55,7 @@ export default function Home() {
   const open = all.find((r) => isOpenWeights(r.m))
   const value = useMemo(() => buildRows('all', 'value')[0], [])
   const single = useMemo(() => buildRows('open', 'single-gpu')[0], [])
-  const recent = changelog.slice(0, 8)
+  const recent = changelog.slice(0, 20) // 多给几条把右栏填满；装不下的在面板内滚动
   const toggle = (id: string) => setIds(ids.includes(id) ? ids.filter((x) => x !== id) : [...ids, id])
   const currentCount = models.filter((m) => m.status === 'current' || m.status === 'preview').length
   return (
@@ -93,18 +93,19 @@ export default function Home() {
       </Section>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_320px] 2xl:grid-cols-[1fr_380px]">
-        <Section title={t('综合榜 Top 10')} sub={t('默认权重可在方法论页查看；勾选最多 4 个去对比。')} right={<Button to="/leaderboard" variant="outline">{t('查看完整榜单 →')}</Button>}>
-          <LeaderboardTable rows={all.slice(0, 10)} selected={ids} onToggle={toggle} cols={[]} desc={false} />
+        <Section title={t('综合榜 Top 30')} sub={t('默认权重可在方法论页查看；勾选最多 4 个去对比。')} right={<Button to="/leaderboard" variant="outline">{t('查看完整榜单 →')}</Button>}>
+          <LeaderboardTable rows={all.slice(0, 30)} selected={ids} onToggle={toggle} cols={[]} desc={false} />
           <Disclaimer />
         </Section>
-        <div className="space-y-6">
+        {/* 右栏跟着榜单一起拉伸：最近变动吃掉剩余高度，超出就自己滚，不会把页面撑长 */}
+        <div className="flex min-h-0 flex-col gap-6">
           <Section title={t('场景入口')}>
             <div className="flex flex-wrap gap-2">
               {SCENES.filter((s) => s.key !== 'overall').map((s) => <Chip key={s.key} to={`/leaderboard/${s.key}`}>{t(s.label)}</Chip>)}
             </div>
           </Section>
-          <Section title={t('最近变动')} right={<Link to="/changelog" className="text-xs link">{t('全部')}</Link>}>
-            <ul className="card divide-y divide-border text-sm">
+          <Section title={t('最近变动')} right={<Link to="/changelog" className="text-xs link">{t('全部')}</Link>} className="flex min-h-0 flex-1 flex-col">
+            <ul className="card min-h-0 flex-1 divide-y divide-border overflow-y-auto text-sm">
               {recent.map((c, i) => (
                 <li key={i} className="flex gap-3 px-3 py-2">
                   <span className={cx('num text-[10px] mt-1 w-8 shrink-0 font-semibold', c.type === 'up' ? 'text-up' : c.type === 'down' ? 'text-down' : c.type === 'new' ? 'text-accent' : 'text-muted')}>
@@ -112,7 +113,10 @@ export default function Home() {
                   </span>
                   <span className="min-w-0">
                     <span className="block text-xs text-muted num">{c.date}</span>
-                    {c.model_id ? <Link to={`/models/${c.model_id}`} className="hover:underline">{c.text}</Link> : c.text}
+                    {/* 每条正文都是长段落，这里只给两行，想看全文去更新日志 */}
+                    <span className="mt-0.5 line-clamp-2 leading-snug">
+                      {c.model_id ? <Link to={`/models/${c.model_id}`} className="hover:underline">{c.text}</Link> : c.text}
+                    </span>
                   </span>
                 </li>
               ))}
@@ -122,7 +126,10 @@ export default function Home() {
       </div>
 
       {ids.length > 0 && <CompareBar ids={ids} onClear={() => setIds([])} />}
-      <p className="text-xs text-muted">{t('数据快照 {d}。', { d: meta.data_cutoff })}{meta.note}</p>
+      <p className="text-xs text-muted">
+        {t('数据快照 {d}。分数与价格为手工维护的静态快照，每条带来源、日期与证据等级。', { d: meta.data_cutoff })}
+        <Link to="/changelog" className="link ml-1">{t('本次更新了什么 →')}</Link>
+      </p>
     </div>
   )
 }
