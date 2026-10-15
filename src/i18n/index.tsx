@@ -4,11 +4,13 @@ import { ja as jaCore } from './ja'
 import { en_a } from './en.a'
 import { en_b } from './en.b'
 import { en_c } from './en.c'
+import { en_d } from './en.d'
 import { ja_a } from './ja.a'
 import { ja_b } from './ja.b'
 import { ja_c } from './ja.c'
-const en = { ...enCore, ...en_a, ...en_b, ...en_c }
-const ja = { ...jaCore, ...ja_a, ...ja_b, ...ja_c }
+import { ja_d } from './ja.d'
+const en = { ...enCore, ...en_a, ...en_b, ...en_c, ...en_d }
+const ja = { ...jaCore, ...ja_a, ...ja_b, ...ja_c, ...ja_d }
 
 export type Lang = 'zh' | 'en' | 'ja'
 export const LANGS: Array<{ code: Lang; label: string; short: string }> = [

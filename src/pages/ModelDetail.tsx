@@ -16,12 +16,13 @@ import { DeploySection } from '@/components/model/DeploySection'
 import { CapabilityRadar } from '@/components/charts/Radar'
 import { radarFor } from '@/lib/capabilities'
 import { useCompareIds, MAX_COMPARE } from '@/hooks/useCompare'
+import { buildRows } from '@/lib/leaderboard'
 import { pickConfigs, fmtTok } from '@/lib/perf'
 import { useSeo } from '@/hooks/useSeo'
 import { useT } from '@/i18n'
 
 import { QUANT_LABEL } from '@/lib/vram'
-import type { CapabilityKey, Model } from '@/lib/types'
+import type { CapabilityKey, EvidenceLevel, Model, Tab } from '@/lib/types'
 
 const CAP_LABEL: Record<CapabilityKey, string> = { coding: '编程', reasoning: '推理', math: '数学', knowledge: '知识', instruction: '指令遵循', agent: 'Agent', multimodal: '多模态', chinese: '中文' }
 
@@ -50,6 +51,11 @@ function Detail({ m }: { m: Model }) {
   const family = models.filter((x) => x.id !== m.id && x.family && x.family === m.family)
   const succ = m.superseded_by ? getModel(m.superseded_by) : undefined
   const cfg = isOpenWeights(m) ? pickConfigs(m).minimal : undefined
+  // 名次与排行榜页默认视图口径一致（含已被替代的旧代），否则两页对不上
+  const ranks = useMemo<Array<[string, number | undefined]>>(() => {
+    const at = (tab: Tab) => buildRows(tab, 'overall', false, true).find((r) => r.m.id === m.id)?.rank
+    return [['综合榜', at('all')], [isOpenWeights(m) ? '开源榜' : '闭源榜', at(isOpenWeights(m) ? 'open' : 'closed')]]
+  }, [m])
   const ctaLinks = isOpenWeights(m)
     ? [['Hugging Face', m.links.hf ?? m.weights_url], ['GitHub', m.links.github], [t('技术报告'), m.links.paper], [t('官方'), m.links.official]]
     : [[t('官方模型页'), m.links.official], [t('定价'), m.links.pricing], [t('发布公告'), m.links.paper]]
@@ -58,7 +64,7 @@ function Detail({ m }: { m: Model }) {
     <div className="space-y-8">
       {/* A. 顶栏卡片 */}
       <div className="card glow p-5 md:p-7">
-        <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px]">
           <div className="space-y-4 min-w-0">
             <BadgeRow m={m} singleGpu={single} />
             <div className="flex items-start gap-4">
@@ -70,7 +76,7 @@ function Detail({ m }: { m: Model }) {
               </p>
               </div>
             </div>
-            <p className="text-base md:text-lg leading-relaxed">{c.one_liner}</p>
+            <p className="prose-w text-base md:text-lg leading-relaxed">{c.one_liner}</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 border-t border-border pt-4">
               <Stat label={t('参数')} value={<span className="text-base">{tParams(t, a.total_params, a.active_params)}</span>} sub={a.type !== 'unknown' ? a.type.toUpperCase() : undefined} />
               <Stat label={t('上下文')} value={m.context.display} sub={m.context.max_output ? t('输出 {n}K', { n: Math.round(m.context.max_output / 1024) }) : undefined} />
@@ -96,11 +102,21 @@ function Detail({ m }: { m: Model }) {
         </div>
       </div>
 
-      {/* B. 设计说明书 */}
-      <div className="grid gap-6 lg:grid-cols-[220px_1fr]">
-        <nav className="hidden lg:block sticky top-20 h-fit text-sm space-y-1">
-          {['架构', '参数与内存', '能力画像', '训练与推理行为', '亮点与坑', '生态与部署', '证据与榜单明细', '版本与家族'].map((s, i) => <a key={s} href={`#s${i + 1}`} className="block rounded-md px-2 py-1 text-muted hover:text-text hover:bg-surface-2">{i + 1}. {t(s)}</a>)}
-          {ref?.score != null && <div className="mt-4 rounded-lg border border-border p-3 text-xs"><div className="text-muted">{t('综合参考分')}</div><div className="num text-xl font-semibold">{ref.score.toFixed(1)}</div>{ref.partial && <div className="text-community">{t('部分数据')}</div>}<Link to="/methodology" className="link">{t('算法')}</Link></div>}
+      {/* B. 设计说明书 —— 左目录 / 中正文 / 右速查（超宽屏才出现） */}
+      <div className="grid gap-6 lg:grid-cols-[200px_minmax(0,1fr)] min-[106.25rem]:grid-cols-[200px_minmax(0,1fr)_300px]">
+        <nav className="hidden lg:block sticky top-20 h-fit text-sm" aria-label={t('本页目录')}>
+          <div className="eyebrow mb-2">{t('本页目录')}</div>
+          <ol className="border-l border-border">
+            {SECTIONS.map((sec, i) => (
+              <li key={sec}>
+                <a href={`#s${i + 1}`} className="-ml-px block border-l border-transparent py-1 pl-3 text-muted transition hover:border-accent hover:text-text">
+                  <span className="num mr-1.5 text-[11px] opacity-60">{i + 1}</span>{t(sec)}
+                </a>
+              </li>
+            ))}
+          </ol>
+          {/* 窄屏放不下右栏时，参考分退回目录下方 */}
+          <div className="mt-4 min-[106.25rem]:hidden"><ScoreCard score={ref?.score} partial={ref?.partial} ranks={ranks} /></div>
         </nav>
         <div className="space-y-4 min-w-0">
           <Sec id="s1" n={1} title={t('架构')} open>
@@ -114,7 +130,7 @@ function Detail({ m }: { m: Model }) {
                   <D k={t('隐藏维')} v={a.hidden_size ?? t('未披露')} />
                   <D k={t('词表')} v={a.vocab_size?.toLocaleString() ?? t('未披露')} />
                 </dl>
-                {a.notes && <p className="text-sm text-muted leading-relaxed">{a.notes}</p>}
+                {a.notes && <p className="prose-w text-sm text-muted leading-relaxed">{a.notes}</p>}
                 <Md md={m.sheet?.architecture_md} />
               </div>
               <div className="lg:hidden md:block"><ArchDiagram m={m} /></div>
@@ -219,8 +235,8 @@ function Detail({ m }: { m: Model }) {
                 <table className="w-full text-sm min-w-[520px]">
                   <thead className="text-[11px] uppercase tracking-wide text-muted"><tr className="border-b border-border"><th className="text-left py-1.5 pr-3">{t('基准')}</th><th className="text-right py-1.5 pr-3">{t('分数')}</th><th className="text-left py-1.5 pr-3">{t('来源')}</th><th className="text-left py-1.5 pr-3">{t('日期')}</th><th className="text-left py-1.5">{t('证据')}</th></tr></thead>
                   <tbody>
-                    {scores.map((s) => { const b = getBenchmark(s.key); return (
-                      <tr key={s.key} className="border-b border-border/60">
+                    {scores.map((s, i) => { const b = getBenchmark(s.key); return (
+                      <tr key={`${s.key}-${i}`} className="border-b border-border/60">
                         <td className="py-1.5 pr-3">{b?.name ?? s.key}{b?.name_zh && <span className="text-xs text-muted ml-1">{b.name_zh}</span>}</td>
                         <td className="py-1.5 pr-3 num text-right">{s.value}{s.unit === 'percent' ? '%' : ''}</td>
                         <td className="py-1.5 pr-3 text-xs">{s.source_url ? <a className="link" href={s.source_url} target="_blank" rel="noreferrer">{s.source}</a> : s.source}</td>
@@ -238,7 +254,72 @@ function Detail({ m }: { m: Model }) {
           </Sec>
           <p className="text-xs text-muted">{t('更新')} <span className="num">{m.updated_at}</span> · {t('排名供选型参考，基准会饱和、会泄漏、会过时。')}</p>
         </div>
+
+        <aside className="hidden min-[106.25rem]:block sticky top-20 h-fit space-y-3">
+          <ScoreCard score={ref?.score} partial={ref?.partial} ranks={ranks} />
+          <EvidenceCard scores={scores} />
+          {family.length > 0 && (
+            <div className="card p-3">
+              <div className="eyebrow mb-2">{t('同家族')}</div>
+              <ul className="space-y-1 text-sm">
+                {family.map((x) => (
+                  <li key={x.id} className="flex items-center justify-between gap-2">
+                    <Link to={`/models/${x.id}`} className="truncate hover:text-accent">{x.name}</Link>
+                    {x.status !== 'current' && <span className="tag tag-warn shrink-0">{x.status}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </aside>
       </div>
+    </div>
+  )
+}
+
+const SECTIONS = ['架构', '参数与内存', '能力画像', '训练与推理行为', '亮点与坑', '生态与部署', '证据与榜单明细', '版本与家族'] as const
+
+/** 参考分 + 它在几张榜上的名次。比孤零零一个分数更能说明「这分算高还是低」。 */
+function ScoreCard({ score, partial, ranks }: { score?: number; partial?: boolean; ranks: Array<[string, number | undefined]> }) {
+  const { t } = useT()
+  if (score == null) return null
+  return (
+    <div className="card p-3">
+      <div className="eyebrow">{t('综合参考分')}</div>
+      <div className="mt-1 flex items-baseline gap-2">
+        <span className="num text-3xl font-semibold leading-none">{score.toFixed(1)}</span>
+        <span className="text-[11px] text-muted">/ 100</span>
+      </div>
+      <div className="sparkbar mt-2"><i style={{ width: `${Math.max(4, Math.min(100, score))}%` }} /></div>
+      <dl className="mt-3 space-y-1 border-t border-border pt-2 text-xs">
+        {ranks.filter(([, r]) => r != null).map(([label, r]) => (
+          <div key={label} className="flex justify-between gap-2"><dt className="text-muted">{t(label)}</dt><dd className="num">#{r}</dd></div>
+        ))}
+      </dl>
+      {partial && <div className="mt-2 text-[11px] text-community">{t('部分数据')}</div>}
+      <Link to="/methodology" className="link mt-2 inline-block text-xs">{t('算法')} →</Link>
+    </div>
+  )
+}
+
+/** 证据构成：这页上的数字有多少是厂商自称、多少被第三方复测过。 */
+function EvidenceCard({ scores }: { scores: Array<{ evidence: EvidenceLevel }> }) {
+  const { t } = useT()
+  if (scores.length === 0) return null
+  const order: EvidenceLevel[] = ['independent', 'official', 'community', 'unknown']
+  const counts = order.map((lv) => [lv, scores.filter((s) => s.evidence === lv).length] as const).filter(([, n]) => n > 0)
+  return (
+    <div className="card p-3">
+      <div className="eyebrow mb-2">{t('证据构成')}</div>
+      <ul className="space-y-1.5 text-xs">
+        {counts.map(([lv, n]) => (
+          <li key={lv} className="flex items-center justify-between gap-2">
+            <EvidenceTag level={lv} />
+            <span className="num text-muted">{n}</span>
+          </li>
+        ))}
+      </ul>
+      <a href="#s7" className="link mt-2 inline-block text-xs">{t('逐条查看')} →</a>
     </div>
   )
 }

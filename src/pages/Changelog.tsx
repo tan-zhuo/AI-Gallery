@@ -9,7 +9,7 @@ export default function Changelog() {
   useSeo({ title: t('更新日志'), description: t('AI-Gallery 新模型收录、分数变动与文档修订记录。'), path: '/changelog' })
   const groups = changelog.reduce<Record<string, typeof changelog>>((acc, c) => { (acc[c.date] ??= []).push(c); return acc }, {})
   return (
-    <div className="max-w-3xl space-y-6">
+    <div className="mx-auto max-w-3xl space-y-6">
       <div><h1 className="text-2xl font-semibold tracking-tight">{t('更新日志')}</h1><p className="text-xs text-muted mt-1">{t('新模型、分数变动、文档修订。')}</p></div>
       {Object.entries(groups).map(([d, items]) => (
         <section key={d} className="grid gap-2 md:grid-cols-[120px_1fr]">

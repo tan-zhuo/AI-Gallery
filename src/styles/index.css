@@ -23,6 +23,9 @@
   --community: #d97706;
   --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --sans: "Inter", system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  /* 页面左右留白：窄屏 16px，宽屏按视口比例放大，最多 72px。全站唯一横向节奏来源。 */
+  --gutter: clamp(1rem, 2.6vw, 4.5rem);
+  --header-h: 3.5rem;
 }
 .dark {
   --bg: #0a0b0f;
@@ -117,7 +120,8 @@ table.tbl tbody tr:hover { background: color-mix(in srgb, var(--accent) 7%, tran
 .ctl-block { display: flex; width: 100%; }
 
 input.ctl::placeholder { color: var(--muted); }
-select.ctl { appearance: none; -webkit-appearance: none; padding-right: 2rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b93a5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .6rem center; cursor: pointer; }
+/* min-width:0 —— 否则 select 的固有宽度由最长 option 决定，窄屏会把整行撑出屏幕 */
+select.ctl { appearance: none; -webkit-appearance: none; min-width: 0; padding-right: 2rem; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238b93a5' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .6rem center; cursor: pointer; }
 input[type="number"].ctl { font-family: var(--mono); }
 /* 分段切换 */
 .seg { display: inline-flex; height: 2.25rem; align-items: stretch; gap: 2px; border-radius: .5rem; border: 1px solid var(--border); background: var(--surface); padding: 2px; }
@@ -144,3 +148,55 @@ th { position: relative; }
 .col-handle::after { content: ""; position: absolute; top: 25%; bottom: 25%; left: 3px; width: 1px; background: var(--border); transition: background .15s, width .15s; }
 .col-handle:hover::after, .col-handle:active::after { background: var(--accent); width: 2px; }
 table[style*="fixed"] td { overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- 全宽骨架 ---------- */
+/* .shell：页面唯一的横向容器。不设 max-width —— 内容铺满整屏，只靠 --gutter 留白。 */
+.shell { width: 100%; margin-inline: auto; padding-inline: var(--gutter); }
+/* .bleed：在 .shell 内部把某一块反向撑到屏幕两端（hero、整宽分隔条）。 */
+.bleed { margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); }
+/* 正文可读宽度：长段落不跟着屏幕一起变宽。 */
+.prose-w { max-width: 72ch; }
+
+/* ---------- 数据表（专业密度版） ---------- */
+/* .tbl 的通用部分在上方；这里是「数据表」皮肤：粘性表头、分组竖线、数值列。 */
+.tbl { border-collapse: separate; border-spacing: 0; }
+.tbl thead th {
+  position: sticky; top: 0; z-index: 2;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  color: var(--muted); white-space: nowrap;
+}
+.tbl thead th.sortable { cursor: pointer; }
+.tbl thead th.sortable:hover { color: var(--text); }
+.tbl thead th[aria-sort="ascending"], .tbl thead th[aria-sort="descending"] { color: var(--text); }
+.tbl tbody td { border-bottom: 1px solid color-mix(in srgb, var(--border) 60%, transparent); vertical-align: middle; }
+.tbl tbody tr:last-child td { border-bottom: 0; }
+/* 行背景：去掉斑马纹，改用悬停高亮 —— 列多时斑马纹反而更吵 */
+.tbl tbody tr:nth-child(even):not(.expand) { background: transparent; }
+.tbl tbody tr:not(.expand):hover { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.tbl tbody tr.is-sel { background: color-mix(in srgb, var(--accent) 9%, transparent); }
+/* 数值列右对齐 + 等宽数字 */
+.tbl .n { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+/* 排序中的列整列淡着色，一眼看出表按谁排 */
+.tbl td.sorted, .tbl th.sorted { background: color-mix(in srgb, var(--accent) 4%, transparent); }
+
+/* 分数微型条：数字下方一条按 0–100 归一的细线 */
+.sparkbar { display: block; height: 3px; border-radius: 3px; background: var(--surface-2); overflow: hidden; }
+.sparkbar > i { display: block; height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+
+/* 名次徽记 */
+.rankbox { display: inline-grid; place-items: center; min-width: 1.5rem; height: 1.5rem; padding: 0 .25rem; border-radius: .375rem; font-family: var(--mono); font-size: .6875rem; font-weight: 600; color: var(--muted); }
+.rankbox.top { color: var(--text); background: color-mix(in srgb, var(--accent) 16%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent); }
+
+/* 轻量能力标签：替代彩色药丸，密集表格里更安静 */
+.tag { display: inline-flex; align-items: center; height: 1.125rem; padding: 0 .3rem; border-radius: .25rem; font-size: 10px; font-weight: 500; line-height: 1; color: var(--muted); background: var(--surface-2); white-space: nowrap; }
+.tag-accent { color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.tag-warn { color: var(--community); background: color-mix(in srgb, var(--community) 12%, transparent); }
+
+/* 术语：带下划虚线的名词，hover 出原生 tooltip */
+.term { border-bottom: 1px dashed color-mix(in srgb, var(--muted) 55%, transparent); cursor: help; }
+/* auto 布局下让某列缩到内容宽度，把剩余空间留给文字列 */
+.tbl .col-fit { width: 1%; white-space: nowrap; }
+/* 说明书正文：全宽屏下段落不跟着屏幕一起变宽，表格和代码块不受限 */
+.md :is(p, li) { max-width: 78ch; }

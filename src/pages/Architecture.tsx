@@ -15,7 +15,7 @@ export default function Architecture() {
   if (topic) {
     if (!cur) return <Empty text={t('没有这个概念页')} action={<Button to="/architecture" variant="outline">{t('返回图鉴')}</Button>} />
     return (
-      <article className="max-w-3xl space-y-4">
+      <article className="mx-auto max-w-3xl space-y-4">
         <Link to="/architecture" className="text-xs link">← {t('架构图鉴')}</Link>
         <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">{cur.title[lang]}</h1>
         <p className="text-muted">{cur.summary[lang]}</p>
@@ -27,7 +27,7 @@ export default function Architecture() {
   return (
     <div className="space-y-5">
       <div><h1 className="text-2xl font-semibold tracking-tight">{t('架构图鉴')}</h1><p className="text-xs text-muted mt-1">{t('解释详情页里出现的术语，统一图例：实线 = 已公开，虚线 = 未披露。')}</p></div>
-      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 min-[112.5rem]:grid-cols-5">
         {TOPICS.map((x, i) => <Link key={x.slug} to={`/architecture/${x.slug}`} className="card card-hover p-5"><div className="num text-[11px] text-muted">0{i + 1}</div><div className="font-semibold mt-1">{x.title[lang]}</div><p className="text-sm text-muted mt-2 leading-relaxed">{x.summary[lang]}</p></Link>)}
       </div>
     </div>

@@ -2,9 +2,11 @@ import { useNavigate } from 'react-router-dom'
 import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, ZAxis } from 'recharts'
 import type { Row } from '@/lib/leaderboard'
 import { isOpenWeights } from '@/lib/scoring'
+import { useT } from '@/i18n'
 
 export function PriceScatter({ rows }: { rows: Row[] }) {
   const nav = useNavigate()
+  const { t } = useT()
   const pts = rows.filter((r) => r.refScore != null && r.m.pricing?.input_per_m).map((r) => ({
     id: r.m.id, name: r.m.name, x: r.m.pricing!.input_per_m!, y: r.refScore!, open: isOpenWeights(r.m), hosted: r.m.pricing?.source?.includes('第三方'),
   }))
@@ -16,11 +18,11 @@ export function PriceScatter({ rows }: { rows: Row[] }) {
   return (
     <div className="card p-3 md:p-4">
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-muted mb-2">
-        <span>X：输入价格 USD / 百万 token（对数）· Y：综合参考分</span>
+        <span>{t('X：输入价格 USD / 百万 token（对数）· Y：综合参考分')}</span>
         <span className="flex gap-3">
-          <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-full bg-open inline-block" />开源</span>
-          <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-full bg-closed inline-block" />闭源</span>
-          <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-full border-2 border-open inline-block" />空心 = 第三方托管价</span>
+          <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-full bg-open inline-block" />{t('开源')}</span>
+          <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-full bg-closed inline-block" />{t('闭源')}</span>
+          <span className="inline-flex items-center gap-1"><i className="h-2.5 w-2.5 rounded-full border-2 border-open inline-block" />{t('空心 = 第三方托管价')}</span>
         </span>
       </div>
       <div className="h-[300px] md:h-[360px]">

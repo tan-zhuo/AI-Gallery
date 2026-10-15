@@ -127,7 +127,7 @@ export default function About() {
   const { t, lang } = useT()
   useSeo({ title: t('关于'), description: t('AI-Gallery 是什么、数据来源声明、内容政策与贡献方式。作者谭卓。'), path: '/about' })
   return (
-    <article className="max-w-3xl space-y-4">
+    <article className="mx-auto max-w-3xl space-y-4">
       <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">{t('关于')}</h1>
       <div className="md text-sm md:text-[15px]"><ReactMarkdown remarkPlugins={[remarkGfm]}>{buildMd(lang)}</ReactMarkdown></div>
       <p className="text-xs text-muted pt-4 border-t border-border">{t('版本 {v} · 数据更新 {d}', { v: meta.version, d: meta.generated_at })}</p>

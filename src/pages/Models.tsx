@@ -4,10 +4,11 @@ import { models, scoreMap, vendors } from '@/lib/catalog'
 import { filterModels } from '@/lib/search'
 import { computeReferenceScores, getScore, isOpenWeights } from '@/lib/scoring'
 import { fitsIn } from '@/lib/vram'
-import { paramsB, priceLabel, tParams, formatGB, cx } from '@/lib/format'
-import { OpennessBadge, Badge } from '@/components/ui/Badge'
+import { paramsB, priceLabel, tParams, formatGB, cx, copyFor } from '@/lib/format'
+import { OpennessBadge } from '@/components/ui/Badge'
 import { ModelName } from '@/components/ui/ModelName'
 import { Empty, Button, Chip } from '@/components/ui/Misc'
+import { VendorLogo } from '@/components/ui/VendorLogo'
 import { useColResize } from '@/components/ui/useColResize'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import type { Model } from '@/lib/types'
@@ -44,7 +45,50 @@ const SORTS: Array<{ key: string; label: string; get: (m: Model, refs: Map<strin
   { key: 'name', label: '名称', get: (m) => m.name.toLowerCase(), dir: 'asc', group: '其它' },
   { key: 'vendor', label: '厂商', get: (m) => m.vendor, dir: 'asc', group: '其它' },
 ]
-const COL_SORT: Record<string, string> = { model: 'name', ref: 'ref', released: 'released', params: 'params', ctx: 'ctx', price: 'pin', q4: 'q4' }
+
+/**
+ * 表格列定义：label 是表头，help 是列的含义（鼠标悬停 + 图例里复用）。
+ * cls 控制响应式显隐，窄屏逐级让位；sort 为空的列不可点排序。
+ */
+const COLUMNS: Array<{
+  key: string; label: string; help: string
+  sort?: string            // SORTS 里的键，空 = 该列不可排序
+  n?: boolean              // 数值列：右对齐 + 等宽数字
+  fit?: boolean            // 缩到内容宽度，把剩余空间让给文字列
+  cls?: string             // 响应式显隐
+  cell: (ctx: CellCtx) => React.ReactNode
+}> = [
+  { key: 'idx', label: '#', help: '当前排序下的序号，不是榜单名次。', fit: true, cell: ({ i }) => <span className="num text-[11px] text-muted">{i}</span> },
+  {
+    key: 'model', label: '模型', help: '名称 · 中文名 · 厂商。点进去是完整说明书。', sort: 'name',
+    cell: ({ m }) => <div className="w-[clamp(180px,15vw,320px)]"><ModelName m={m} /><div className="mt-1 flex flex-wrap gap-1"><Tags m={m} max={4} /></div></div>,
+  },
+  {
+    key: 'desc', label: '定位', help: '一句话说明这个模型是什么、为谁而造。超宽屏才显示，窄屏请切「卡片」视图或点进详情页。', cls: 'hidden w-full min-[112.5rem]:table-cell',
+    cell: ({ m, lang }) => <span className="block min-w-[190px] text-[13px] leading-snug text-muted line-clamp-2">{copyFor(m, lang).one_liner}</span>,
+  },
+  { key: 'open', label: '开闭源', help: '开源 = 权重可下载且许可证允许自建；闭源 = 只有 API。', fit: true, cell: ({ m }) => <OpennessBadge m={m} /> },
+  {
+    key: 'ref', label: '参考分', help: '综合参考分（0–100）：AA 指数 35% · Arena 25% · 代码 20% · 推理 20%，缺项权重按现有项重分配。横条以当前列表最高分为满格，只用来看相对差距。',
+    sort: 'ref', n: true, fit: true,
+    cell: ({ score, top }) => score == null ? <span className="text-muted">—</span> : (
+      <span className="inline-block w-12 text-right align-middle">
+        <span className="block font-medium leading-none">{score.toFixed(1)}</span>
+        <span className="sparkbar mt-1.5"><i style={{ width: `${Math.max(4, Math.min(100, (score / top) * 100))}%` }} /></span>
+      </span>
+    ),
+  },
+  { key: 'released', label: '发布', help: '首次公开发布日期，不是本站数据更新日期。', sort: 'released', n: true, fit: true, cls: 'hidden sm:table-cell', cell: ({ m }) => <span className="text-xs">{m.released_at ?? '—'}</span> },
+  { key: 'params', label: '参数', help: 'MoE 模型写「总参数 / 每 token 激活参数」；闭源一律「未披露」。', sort: 'params', fit: true, cls: 'hidden lg:table-cell', cell: ({ m, t }) => <span className="text-xs">{tParams(t, m.architecture.total_params, m.architecture.active_params)}</span> },
+  { key: 'ctx', label: '上下文', help: '官方标称的最大输入窗口；长文实际可用长度通常更短。', sort: 'ctx', n: true, fit: true, cls: 'hidden md:table-cell', cell: ({ m }) => m.context.display },
+  { key: 'price', label: '价格', help: '官方 API 价，USD / 百万 token，输入 / 输出。开源模型没有官方价时写「自建」。', sort: 'pin', n: true, fit: true, cell: ({ m, t }) => t(priceLabel(m)) },
+  { key: 'q4', label: 'Q4 显存', help: 'Q4_K_M 或等效 4bit 量化后的权重体积，不含 KV Cache 与运行时开销。', sort: 'q4', n: true, fit: true, cls: 'hidden lg:table-cell', cell: ({ m }) => formatGB(m.memory.weight_gb.q4) },
+  {
+    key: 'license', label: '许可证', help: '逐字抄自官方；带附加限制或不可商用的标为橙色。', fit: true, cls: 'hidden min-[90rem]:table-cell',
+    cell: ({ m }) => <span className={cx('block max-w-[150px] truncate text-xs', m.license_commercial !== true && 'text-community')} title={m.license}>{m.license}</span>,
+  },
+]
+interface CellCtx { m: Model; i: number; score?: number; top: number; t: ReturnType<typeof useT>['t']; lang: ReturnType<typeof useT>['lang'] }
 
 interface Filters {
   open: 'all' | 'open' | 'closed' | 'weights' | 'api'
@@ -58,7 +102,7 @@ interface Filters {
 const DEF: Filters = { open: 'all', vendor: [], size: [], lic: 'all', mod: [], hw: 0, reasoning: 'any', arch: 'any', ctxMin: 0, year: [], status: 'all', sheet: 'any', priceMax: 0, evidence: 'any', fmt: [] }
 
 export default function Models() {
-  const { t } = useT()
+  const { t, lang } = useT()
   useSeo({ title: t('模型库'), description: t('按开闭源、厂商、体量、许可证、硬件筛选 {n} 个 AI 模型，含发布日期、参数、上下文、价格与 Q4 显存。', { n: models.length }), path: '/models' })
   const [q, setQ] = useState('')
   const [f, setF] = useState<Filters>(DEF)
@@ -66,13 +110,14 @@ export default function Models() {
   const tog = (k: 'vendor' | 'size' | 'mod' | 'year' | 'fmt', v: string) => set({ [k]: f[k].includes(v) ? f[k].filter((x) => x !== v) : [...f[k], v] } as Partial<Filters>)
   const [sortKey, setSortKey] = useLocalStorage<string>('mb_models_sort', 'ref')
   const [dir, setDir] = useLocalStorage<'asc' | 'desc'>('mb_models_dir', 'desc')
+  const [view, setView] = useLocalStorage<'table' | 'grid'>('mb_models_view', 'table')
+  const [legend, setLegend] = useState(false)
   const [page, setPage] = useState(1)
   const [PAGE, setPageSize] = useLocalStorage<number>('mb_page_size', 40)
-  const COLS = ['model', 'open', 'ref', 'released', 'params', 'ctx', 'price', 'q4', 'license']
-  const { ref: tref, thProps, Handle, tableStyle } = useColResize('models', COLS)
+  const { ref: tref, thProps, Handle, tableStyle, resetAll, active: resized } = useColResize('models2', COLUMNS.map((c) => c.key))
   const refs = useMemo(() => computeReferenceScores(models, scoreMap), [])
   const sortDef = SORTS.find((s) => s.key === sortKey) ?? SORTS[0]
-  const pickSort = (k: string) => { const d = SORTS.find((s) => s.key === k)!; if (k === sortKey) setDir(dir === 'asc' ? 'desc' : 'asc'); else { setSortKey(k); setDir(d.dir) } }
+  const pickSort = (k?: string) => { if (!k) return; const d = SORTS.find((s) => s.key === k)!; if (k === sortKey) setDir(dir === 'asc' ? 'desc' : 'asc'); else { setSortKey(k); setDir(d.dir) } }
 
   const list = useMemo(() => {
     let ms = filterModels(models, q)
@@ -122,22 +167,37 @@ export default function Models() {
   const reset = () => { setQ(''); setF(DEF) }
   const active = Object.keys(DEF).filter((k) => JSON.stringify(f[k as keyof Filters]) !== JSON.stringify(DEF[k as keyof Filters])).length
   const years = [...new Set(models.map((m) => (m.released_at ?? '').slice(0, 4)).filter((y) => y.length === 4))].sort().reverse()
+  // 参考分集中在 80–99，按 0–100 画条看不出差别；以当前列表最高分为满格（图例里写明）
+  const topScore = useMemo(() => Math.max(1, ...list.map((m) => refs.get(m.id)?.score ?? 0)), [list, refs])
   const groups = [...new Set(SORTS.map((s) => s.group))]
-  const SortIcon = ({ k }: { k: string }) => (sortKey === k ? <span className="ml-1 text-accent">{dir === 'asc' ? '↑' : '↓'}</span> : null)
 
   return (
     <div className="space-y-5">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div><h1 className="text-2xl font-semibold tracking-tight">{t('模型库')}</h1><p className="text-xs text-muted mt-1">{t('{a} / {b} 个模型', { a: list.length, b: models.length })}{active > 0 && <> · {t('{n} 个筛选生效', { n: active })}</>}</p></div>
-        <div className="flex items-center gap-2 text-xs">
-          <span className="text-muted">{t('排序')}</span>
-          <select value={sortKey} onChange={(e) => { const d = SORTS.find((s) => s.key === e.target.value)!; setSortKey(d.key); setDir(d.dir) }} className="ctl">
+      <header className="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
+        <div>
+          <h1 className="text-2xl font-semibold tracking-tight">{t('模型库')}</h1>
+          <p className="text-xs text-muted mt-1">
+            {t('{a} / {b} 个模型', { a: list.length, b: models.length })}{active > 0 && <> · {t('{n} 个筛选生效', { n: active })}</>} · {t('按 {key} {dir}', { key: t(sortDef.label), dir: dir === 'asc' ? t('升序') : t('降序') })}
+          </p>
+        </div>
+        <div className="flex flex-wrap items-center gap-2 text-xs">
+          <button type="button" onClick={() => setLegend((v) => !v)} className="ctl ctl-sm text-muted hover:text-text" aria-expanded={legend}>{t('怎么读这张表')} <span className="text-[10px]">{legend ? '▴' : '▾'}</span></button>
+          {resized && view === 'table' && <button type="button" onClick={resetAll} className="ctl ctl-sm text-muted hover:text-text">{t('重置列宽')}</button>}
+          <span className="text-muted ml-1">{t('排序')}</span>
+          <select value={sortKey} onChange={(e) => { const d = SORTS.find((s) => s.key === e.target.value)!; setSortKey(d.key); setDir(d.dir) }} className="ctl ctl-sm">
             {groups.map((gr) => <optgroup key={gr} label={t(gr)}>{SORTS.filter((s) => s.group === gr).map((s) => <option key={s.key} value={s.key}>{t(s.label)}</option>)}</optgroup>)}
           </select>
-          <button type="button" onClick={() => setDir(dir === 'asc' ? 'desc' : 'asc')} className="ctl w-9 justify-center px-0 num" title={dir === 'asc' ? t('升序') : t('降序')} aria-label={t('切换排序方向')}>{dir === 'asc' ? '↑' : '↓'}</button>
+          <button type="button" onClick={() => setDir(dir === 'asc' ? 'desc' : 'asc')} className="ctl ctl-sm w-8 justify-center px-0 num" title={dir === 'asc' ? t('升序') : t('降序')} aria-label={t('切换排序方向')}>{dir === 'asc' ? '↑' : '↓'}</button>
+          <div className="seg seg-sm ml-1" role="tablist" aria-label={t('视图')}>
+            <button type="button" role="tab" aria-selected={view === 'table'} onClick={() => setView('table')}>{t('表格')}</button>
+            <button type="button" role="tab" aria-selected={view === 'grid'} onClick={() => setView('grid')}>{t('卡片')}</button>
+          </div>
         </div>
-      </div>
-      <div className="grid gap-5 lg:grid-cols-[250px_1fr]">
+      </header>
+
+      {legend && <Legend />}
+
+      <div className="grid gap-5 lg:grid-cols-[240px_minmax(0,1fr)] 2xl:grid-cols-[264px_minmax(0,1fr)]">
         <aside className="card p-3 space-y-4 text-xs h-fit lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto">
           <input value={q} onChange={(e) => setQ(e.target.value)} placeholder={t('搜索…')} className="ctl ctl-block" aria-label={t('搜索模型')} />
           <F title={t('状态')}>{([['all', '全部'], ['current', '当前代'], ['preview', 'Preview'], ['superseded', '已被替代']] as const).map(([k, l]) => <Chip key={k} active={f.status === k} onClick={() => set({ status: k })}>{t(l)}</Chip>)}</F>
@@ -156,38 +216,53 @@ export default function Models() {
           <F title={t('数据')}><Chip active={f.sheet === 'complete'} onClick={() => set({ sheet: f.sheet === 'complete' ? 'any' : 'complete' })}>{t('有完整说明书')}</Chip><Chip active={f.evidence === 'independent'} onClick={() => set({ evidence: f.evidence === 'independent' ? 'any' : 'independent' })}>{t('有独立复测')}</Chip></F>
           <Button variant="outline" onClick={reset} className="w-full">{t('清空筛选')}{active > 0 && ` (${active})`}</Button>
         </aside>
-        <div>
-          {list.length === 0 ? <Empty text={t('没有匹配的模型')} action={<Button variant="outline" onClick={reset}>{t('清空筛选')}</Button>} /> : (
-            <div className="card overflow-x-auto">
-              <table ref={tref} style={tableStyle} className="tbl w-full text-sm">
-                <thead className="text-[11px] uppercase tracking-wide text-muted"><tr className="border-b border-border">
-                  {([['model', '模型', 'text-left px-3'], ['open', '开闭源', 'text-left'], ['ref', '参考分', 'text-right'], ['released', '发布', 'text-right num'], ['params', '参数', 'text-left hidden md:table-cell'], ['ctx', '上下文', 'text-right hidden sm:table-cell'], ['price', '价格', 'text-right'], ['q4', 'Q4', 'text-right hidden md:table-cell'], ['license', '许可证', 'text-left hidden lg:table-cell']] as const).map(([k, l, cls]) => (
-                    <th key={k} {...thProps(k)} className={cx('px-2 py-2 select-none', cls, COL_SORT[k] && 'cursor-pointer hover:text-text')} onClick={COL_SORT[k] ? () => pickSort(COL_SORT[k]) : undefined} title={COL_SORT[k] ? t('点击排序') : undefined}>
-                      {k === 'q4' ? 'Q4' : t(l)}{COL_SORT[k] && <SortIcon k={COL_SORT[k]} />}{k !== 'license' && <Handle k={k} />}
-                    </th>
-                  ))}
-                </tr></thead>
-                <tbody>
-                  {paged.map((m) => (
-                    <tr key={m.id} className={cx('border-b border-border/60', m.status === 'superseded' && 'opacity-70')}>
-                      <td className="px-3 py-2 min-w-[200px]">
-                        <ModelName m={m} />
-                        <div className="mt-1 flex flex-wrap gap-1">{m.complete ? <Badge tone="info">{t('完整说明书')}</Badge> : <Badge>{t('速览')}</Badge>}{m.status === 'superseded' && <Badge tone="warn">{t('已被替代')}</Badge>}{m.status === 'preview' && <Badge tone="warn">Preview</Badge>}{m.reasoning_mode !== 'none' && <Badge>{t('推理')}</Badge>}{m.modalities.includes('image') && <Badge>{t('视觉')}</Badge>}{m.architecture.type === 'moe' && <Badge>MoE</Badge>}</div>
-                      </td>
-                      <td className="px-2 py-2"><OpennessBadge m={m} /></td>
-                      <td className="px-2 py-2 text-right num">{refs.get(m.id)?.score?.toFixed(1) ?? <span className="text-muted">—</span>}</td>
-                      <td className="px-2 py-2 text-right num text-xs whitespace-nowrap">{m.released_at ?? '—'}</td>
-                      <td className="px-2 py-2 hidden md:table-cell text-xs">{tParams(t, m.architecture.total_params, m.architecture.active_params)}</td>
-                      <td className="px-2 py-2 text-right num hidden sm:table-cell">{m.context.display}</td>
-                      <td className="px-2 py-2 text-right num whitespace-nowrap">{t(priceLabel(m))}</td>
-                      <td className="px-2 py-2 text-right num hidden md:table-cell">{formatGB(m.memory.weight_gb.q4)}</td>
-                      <td className={cx('px-2 py-2 hidden lg:table-cell text-xs', m.license_commercial !== true && 'text-community')}>{m.license}</td>
+
+        <div className="min-w-0">
+          {list.length === 0 ? <Empty text={t('没有匹配的模型')} action={<Button variant="outline" onClick={reset}>{t('清空筛选')}</Button>} />
+            : view === 'grid' ? (
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 min-[125rem]:grid-cols-5">
+                {paged.map((m) => <ModelCard key={m.id} m={m} score={refs.get(m.id)?.score} />)}
+              </div>
+            ) : (
+              <div className="card overflow-x-auto">
+                <table ref={tref} style={tableStyle} className="tbl w-full text-sm">
+                  <thead>
+                    <tr>
+                      {COLUMNS.map((c) => {
+                        const sorted = !!c.sort && c.sort === sortKey
+                        return (
+                          <th
+                            key={c.key} {...thProps(c.key)} scope="col"
+                            aria-sort={sorted ? (dir === 'asc' ? 'ascending' : 'descending') : undefined}
+                            title={`${t(c.label)} — ${t(c.help)}${c.sort ? ` · ${t('点击排序')}` : ''}`}
+                            onClick={c.sort ? () => pickSort(c.sort) : undefined}
+                            className={cx('px-2 py-2.5 select-none', c.n ? 'text-right' : 'text-left', c.fit && 'col-fit', c.key === 'model' && 'pl-3', c.key === 'license' && 'pr-3', c.cls, c.sort && 'sortable', sorted && 'sorted')}
+                          >
+                            {t(c.label)}{sorted && <span className="ml-1 text-accent">{dir === 'asc' ? '↑' : '↓'}</span>}
+                            <Handle k={c.key} />
+                          </th>
+                        )
+                      })}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          )}
+                  </thead>
+                  <tbody>
+                    {paged.map((m, i) => {
+                      const ctx: CellCtx = { m, i: (cur - 1) * PAGE + i + 1, score: refs.get(m.id)?.score, top: topScore, t, lang }
+                      return (
+                        <tr key={m.id} className={cx(m.status === 'superseded' && 'opacity-70')}>
+                          {COLUMNS.map((c) => (
+                            <td key={c.key} className={cx('px-2 py-2.5', c.n && 'n', c.fit && 'col-fit', c.key === 'model' && 'pl-3', c.key === 'license' && 'pr-3', c.cls, !!c.sort && c.sort === sortKey && 'sorted')}>
+                              {c.cell(ctx)}
+                            </td>
+                          ))}
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+
           {list.length > 20 && (
             <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
               <div className="flex items-center gap-3">
@@ -206,6 +281,72 @@ export default function Models() {
           <p className="mt-3 text-xs text-muted">{t('「速览」模型只有顶栏、分数与链接，说明书缺节显示「完善中」。')}<Link to="/about" className="link">{t('如何贡献')}</Link></p>
         </div>
       </div>
+    </div>
+  )
+}
+
+/** 每行名称下的轻量标签：只标与选型相关的事实，不重复表里已有的列。 */
+function Tags({ m, max }: { m: Model; max?: number }) {
+  const { t } = useT()
+  const out: React.ReactNode[] = []
+  // 顺序 = 重要性，窄屏按 max 截断，所以把选型最在意的放前面
+  if (m.status === 'preview') out.push(<span key="p" className="tag tag-warn">Preview</span>)
+  if (m.status === 'superseded') out.push(<span key="s" className="tag tag-warn">{t('已被替代')}</span>)
+  if (m.complete) out.push(<span key="d" className="tag tag-accent">{t('完整说明书')}</span>)
+  if (m.architecture.type === 'moe') out.push(<span key="a" className="tag">MoE</span>)
+  else if (m.architecture.type === 'hybrid') out.push(<span key="a" className="tag">Hybrid</span>)
+  if (m.reasoning_mode !== 'none') out.push(<span key="r" className="tag">{t('推理')}</span>)
+  if (m.modalities.includes('image')) out.push(<span key="v" className="tag">{t('视觉')}</span>)
+  if (m.modalities.includes('computer-use')) out.push(<span key="c" className="tag">{t('计算机使用')}</span>)
+  return <>{max ? out.slice(0, max) : out}</>
+}
+
+/** 卡片视图：宽屏下用多列网格铺开，适合先看「这是什么」再看数字。 */
+function ModelCard({ m, score }: { m: Model; score?: number }) {
+  const { t, lang } = useT()
+  const c = copyFor(m, lang)
+  return (
+    <Link to={`/models/${m.id}`} className={cx('card card-hover p-4 flex flex-col gap-3 min-w-0', m.status === 'superseded' && 'opacity-75')}>
+      <div className="flex items-start gap-3 min-w-0">
+        <VendorLogo vendor={m.vendor} size={36} />
+        <div className="min-w-0 flex-1">
+          <div className="truncate font-semibold leading-tight">{m.name}</div>
+          <div className="truncate text-[11px] text-muted mt-0.5">{c.name_zh ? `${c.name_zh} · ` : ''}{m.vendor_zh ? `${m.vendor} ${m.vendor_zh}` : m.vendor}</div>
+        </div>
+        <div className="text-right shrink-0">
+          <div className="num text-lg font-semibold leading-none">{score?.toFixed(1) ?? '—'}</div>
+          <div className="text-[10px] text-muted mt-1">{t('参考分')}</div>
+        </div>
+      </div>
+      <p className="text-[13px] leading-relaxed text-muted line-clamp-2 min-h-[2.6em]">{c.one_liner}</p>
+      <div className="flex flex-wrap gap-1"><OpennessBadge m={m} /><Tags m={m} /></div>
+      <dl className="mt-auto grid grid-cols-3 gap-2 border-t border-border pt-3 text-[11px]">
+        <div className="min-w-0"><dt className="text-muted">{t('上下文')}</dt><dd className="num truncate">{m.context.display}</dd></div>
+        <div className="min-w-0"><dt className="text-muted">{t('价格')}</dt><dd className="num truncate">{t(priceLabel(m))}</dd></div>
+        <div className="min-w-0"><dt className="text-muted">{t('Q4 显存')}</dt><dd className="num truncate">{formatGB(m.memory.weight_gb.q4)}</dd></div>
+      </dl>
+    </Link>
+  )
+}
+
+/** 列含义图例：与 COLUMNS.help 同源，改一处两处都变。 */
+function Legend() {
+  const { t } = useT()
+  return (
+    <div className="card p-4 text-xs">
+      <div className="eyebrow mb-3">{t('列的含义')}</div>
+      <dl className="grid gap-x-8 gap-y-2.5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
+        {COLUMNS.filter((c) => c.key !== 'idx').map((c) => (
+          <div key={c.key} className="min-w-0">
+            <dt className="font-medium">{t(c.label)}</dt>
+            <dd className="text-muted leading-relaxed mt-0.5">{t(c.help)}</dd>
+          </div>
+        ))}
+      </dl>
+      <p className="mt-3 border-t border-border pt-3 text-muted leading-relaxed">
+        {t('所有分数都是手工维护的静态快照，每条都带来源、日期与证据等级，详情页可逐条核对。')}
+        <Link to="/methodology" className="link ml-1">{t('方法论 →')}</Link>
+      </p>
     </div>
   )
 }

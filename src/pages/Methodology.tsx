@@ -219,7 +219,7 @@ export default function Methodology() {
   useSeo({ title: t('方法论'), description: t('综合参考分算法、开源 / 闭源分列规则、证据等级、显存与吞吐估算假设、未披露政策。'), path: '/methodology' })
   const md = buildMd(lang, t)
   return (
-    <article className="max-w-3xl space-y-4">
+    <article className="mx-auto max-w-3xl space-y-4">
       <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">{t('方法论')}</h1>
       <p className="text-muted">{t('榜单没有方法论就没有信任。这里是全部规则，代码里的算法与本页一致。')}</p>
       <div className="md text-sm md:text-[15px]"><ReactMarkdown remarkPlugins={[remarkGfm]}>{md}</ReactMarkdown></div>

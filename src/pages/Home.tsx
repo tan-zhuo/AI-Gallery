@@ -60,9 +60,9 @@ export default function Home() {
   const currentCount = models.filter((m) => m.status === 'current' || m.status === 'preview').length
   return (
     <div className="space-y-12">
-      <section className="relative -mx-4 -mt-6 md:-mt-8 px-4 pt-12 pb-10 md:pt-16 md:pb-14 hero-bg overflow-hidden">
+      <section className="relative bleed -mt-6 md:-mt-8 pt-12 pb-10 md:pt-16 md:pb-14 hero-bg overflow-hidden">
         <div className="absolute inset-0 grid-bg pointer-events-none" aria-hidden />
-        <div className="relative mx-auto max-w-7xl grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+        <div className="relative grid gap-8 lg:grid-cols-[1.4fr_minmax(320px,0.7fr)] 2xl:grid-cols-[1.6fr_minmax(380px,0.5fr)] lg:items-end">
           <div className="space-y-5">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-3 py-1 text-xs text-muted backdrop-blur"><LogoMark size={16} />AI-Gallery · {t('数据快照')} <span className="num text-text">{meta.data_cutoff}</span></div>
             <h1 className="text-3xl md:text-5xl font-semibold tracking-tight leading-[1.15]">{t('模型选型，')}<br className="hidden md:block" />{t('先看')}<span className="gradient-text">{t('能不能跑')}</span>{t('，再看分数。')}</h1>
@@ -92,9 +92,9 @@ export default function Home() {
         <PriceScatter rows={all} />
       </Section>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_320px]">
+      <div className="grid gap-6 lg:grid-cols-[1fr_320px] 2xl:grid-cols-[1fr_380px]">
         <Section title={t('综合榜 Top 10')} sub={t('默认权重可在方法论页查看；勾选最多 4 个去对比。')} right={<Button to="/leaderboard" variant="outline">{t('查看完整榜单 →')}</Button>}>
-          <LeaderboardTable rows={all.slice(0, 10)} selected={ids} onToggle={toggle} cols={[]} />
+          <LeaderboardTable rows={all.slice(0, 10)} selected={ids} onToggle={toggle} cols={[]} desc={false} />
           <Disclaimer />
         </Section>
         <div className="space-y-6">

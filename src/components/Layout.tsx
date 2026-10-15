@@ -28,7 +28,7 @@ export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-40 border-b border-border bg-bg/75 backdrop-blur-md">
-        <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4">
+        <div className="shell flex h-14 items-center gap-4">
           <Link to="/" className="flex items-center" aria-label={t('AI-Gallery 首页')}><Logo /></Link>
           <nav className="hidden md:flex items-center gap-0.5 ml-4">
             {nav.map(([to, label]) => (
@@ -57,16 +57,16 @@ export default function Layout() {
           </div>
         </div>
         {menu && (
-          <nav className="md:hidden border-t border-border bg-bg px-4 py-2 grid grid-cols-2 gap-1">
+          <nav className="md:hidden border-t border-border bg-bg shell py-2 grid grid-cols-2 gap-1">
             {nav.map(([to, label]) => <NavLink key={to} to={to} className="rounded-md px-2.5 py-2 text-sm hover:bg-surface-2">{t(label)}</NavLink>)}
           </nav>
         )}
       </header>
-      <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-6 md:py-8">
+      <main className="shell flex-1 py-6 md:py-8">
         <Outlet />
       </main>
       <footer className="mt-16 border-t border-border bg-surface/40">
-        <div className="mx-auto max-w-7xl px-4 py-12 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+        <div className="shell py-12 grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.2fr] xl:grid-cols-[2fr_1fr_1fr_1.4fr]">
           <div className="space-y-4">
             <div className="flex items-center gap-2.5"><LogoMark size={26} /><Wordmark className="text-lg" /></div>
             <p className="text-sm text-muted leading-relaxed max-w-sm">{t('给工程师和选型者的模型决策站。排行榜当入口，说明书当核心资产；显存、价格与证据等级是一等公民。')}</p>
@@ -99,7 +99,7 @@ export default function Layout() {
           </div>
         </div>
         <div className="border-t border-border">
-          <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col md:flex-row gap-2 md:items-center justify-between text-[11px] text-muted">
+          <div className="shell py-4 flex flex-col md:flex-row gap-2 md:items-center justify-between text-[11px] text-muted">
             <span>{t('排名供选型参考，基准会饱和、会泄漏、会过时。所有规格以官方来源为准；闭源参数量一律「未披露」。')}</span>
             <span>© 2026 AI-Gallery · <a href={meta.repo_url} target="_blank" rel="noreferrer" className="hover:text-text">{t('开源 MIT')}</a> · {t('模型名称与 logo 归各厂商所有')}</span>
           </div>
