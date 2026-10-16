@@ -12669,6 +12669,118 @@
   "complete": false
  },
  {
+  "id": "ling-3-1-flash",
+  "name": "Ling-3.1-flash",
+  "name_zh": "蚂蚁 Ling-3.1-flash",
+  "aliases": [
+   "Ling-3.1-flash",
+   "inclusionAI/Ling-3.1-flash",
+   "inclusionai/ling-3.1-flash"
+  ],
+  "vendor": "inclusionAI (Ant Group)",
+  "vendor_zh": "蚂蚁集团 inclusionAI（中国）",
+  "family": "Ling 3",
+  "license": "MIT",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
+  "status": "current",
+  "released_at": "2026-10-15",
+  "updated_at": "2026-10-16",
+  "modalities": [
+   "text",
+   "tools"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "hybrid",
+   "total_params": "560B",
+   "active_params": "25B",
+   "total_params_b": 560,
+   "active_params_b": 25,
+   "experts": 512,
+   "active_experts": 8,
+   "shared_expert": true,
+   "layers": 72,
+   "hidden_size": 4096,
+   "vocab_size": 157184,
+   "attention": "混合线性 MoE：63 层 KDA + 9 层 Gated MLA（7:1 交错），64 个注意力头",
+   "notes": "官方模型卡写「Hybrid-linear MoE，总参 560B / 每 token 激活 25B」，自称是「原生混合推理模型」（chat template 以 enable_thinking 开关思考）。结构为 63 层 KDA 加 9 层 Gated MLA 按 7:1 交错，另有 4 层稠密层；每个 MoE 层 512 路由专家 + 1 共享专家，每 token 激活 8 个，专家中间维 1,280、稠密中间维 10,240，词表 157,184。模型标识为 bailing_hybrid，带 MTP（SGLang 里为 NEXTN）投机解码。上下文 1M —— 官方 9 月 30 日公布时的免费 API 试用只开到 256K，10 月 14 日试用结束转付费的同时放出权重并开满 1M。它建立在 7 月的 Ling-3.0-flash（124B / 5.1B 激活）之上，官方称架构与真实任务表现都有改进。官方未公布预训练 token 量与知识截止；另按 inclusionAI 的 AI-Transparency 仓库发布了训练内容披露摘要 PDF。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {
+    "fp8": 560
+   },
+   "estimated": true,
+   "ref_hw_24gb": "不可行",
+   "ref_hw_80gb": "不可行",
+   "ref_hw_8x80gb": "官方参考配置为 8×H200（TP8 + EP8）或 4×GB300（TP4 + EP4）；SGLang cookbook 另给 H800 / H100 / B200 的已验证配方",
+   "kv_note": "HF 仓库标 fp8，官方未给 safetensors 文件体积，560GB 为按 560B 参数 FP8 推算的估值。官方推荐 SGLang（day-0 镜像 lmsysorg/sglang:dev-ling-3.1-flash，含 MTP/NEXTN 投机解码与 Hopper 解码优化），另给 vLLM 配方（需从 vllm 分支源码装）。Hopper 上可用 SGLANG_ENABLE_FP8_BLOCK_GEMV=1 与 SGLANG_ENABLE_FUSED_KDA_OUTPUT_QUANT=1 再快约 10% 的 batch-1 解码"
+  },
+  "links": {
+   "official": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
+   "hf": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
+   "modelscope": "https://modelscope.cn/organization/inclusionAI",
+   "cookbook": "https://docs.sglang.io/cookbook/autoregressive/InclusionAI/Ling-3.1-flash"
+  },
+  "copy": {
+   "one_liner": "蚂蚁 560B / 25B 激活的混合线性 MoE，MIT 许可、1M 上下文，权重 10-15 开放。",
+   "highlights": [
+    "纯 MIT 许可的 560B 级模型：没有 MaaS 门槛、没有营收条款、没有署名要求 —— 和 Kimi K3、GLM-5.3、Qwen3.8 旗舰、Muse Spark Open 那类自定义许可不是一个档",
+    "架构是真的混合线性：63 层 KDA + 9 层 Gated MLA 按 7:1 交错，每层 512 路由 + 1 共享专家、每 token 激活 8 个 —— 25B 激活撑 1M 上下文，官方参考配置只要 8×H200 或 4×GB300",
+    "权重与 1M 窗口是同时放出的：9 月 30 日公布时免费 API 试用只给 256K，10 月 14 日试用结束转付费，10 月 15 日权重上 HF 与 ModelScope 并开满 1M",
+    "工程落地写得很具体：官方推荐 SGLang 并提供 day-0 镜像（含 MTP/NEXTN 投机解码与 Hopper 解码优化），cookbook 里有 H200 / GB300 / H800 / H100 / B200 的已验证配方加 HiCache（Mooncake L3）；官方点名在 Claude Code、Kilo Code、Qwen Code、Hermes Agent、OpenClaw 等框架里的实际体验",
+    "附了训练内容披露摘要 PDF（inclusionAI/AI-Transparency 仓库），说明覆盖的模型版本、训练内容范围与摘要版本"
+   ],
+   "pitfalls": [
+    "官方模型卡的评测一节只点名了基准清单（Terminal-Bench 4.0、SWE-bench Pro、FrontierSWE、GDPVal-AA V2.1、AutomationBench、MCP-Atlas、SkillsBench、HealthBench Professional），没有给出任何可引用的数值表 —— 本站因此一个分数都没法入库，总榜上它是空行",
+    "它自报强项的那几个基准（Terminal-Bench 4.0、FrontierSWE、GDPVal-AA V2.1、SWE-bench Pro）本站都没有对应列，即便将来给出数值也未必能并入总榜",
+    "官方把编码成绩和一个未开源的自研 harness 绑在一起：LingCode 基于开源 agent Pi 改造，官方称它在部分编码 agent 任务上带来「显著提升」，但同时只说「将来考虑开源」—— 所以用标准 harness 自测时未必能复现官方口径",
+    "纯文本模型。同族的多模态版本是 9 月的 Ling-3.0-flash-VL，不是这一代；本站无 Ling-3.0 系列条目，故它不替代任何现有条目",
+    "vLLM 路径还不在正式发行版里：官方要求从 vllm-project/vllm 的 vllm 分支源码安装（VLLM_USE_PRECOMPILED=1 可编辑安装），SGLang 才是官方推荐路径",
+    "无官方按 token 定价入库：蚂蚁的托管服务与 OpenRouter 等第三方渠道各有价目，本站用官方定价页，第三方渠道价不跟",
+    "官方未公布预训练 token 量、知识截止日期与最大输出长度"
+   ],
+   "logic_ability": "这条目前只能按「许可与架构」来评估，因为官方没给数。值得记的是它在开源阵营里的位置：560B 总参、25B 激活、1M 上下文、纯 MIT —— 这个组合在 2026 年 10 月的开源榜里相当稀缺，因为同量级的 Kimi K3（2.8T/104B）、GLM-5.3（744B/40B）、Qwen3.8 旗舰（2.4T/95B）全都带自定义许可的规模条款，而 MIT 这一档此前主要是 DeepSeek-V4.1-Flash（552B 骨干）和小米 MiMo-V2.6 系列在撑。架构上它走的是和 Nemotron 3.5 同一个方向但不同路线：NVIDIA 用 Mamba-2 交错注意力，蚂蚁用 63 层 KDA 加 9 层 Gated MLA 的 7:1 交错，目标都是把长上下文的显存与带宽成本压下来 —— 结果是 8×H200 就能跑 1M，这个部署曲线比参数量暗示的要友好得多。真正的空白是能力：官方评测一节把基准名字列了一长串（Terminal-Bench 4.0、FrontierSWE、GDPVal-AA V2.1、SWE-bench Pro、AutomationBench、MCP-Atlas、SkillsBench、HealthBench Professional），却没有给出任何数值表，而且它自称的编码提升与一个未开源的自研 harness（LingCode，基于 Pi 改造）绑在一起 —— 官方只说「将来考虑开源」。这种「列基准不给数、强项依赖自研 harness」的组合，意味着现在没法把它放进任何横向对比，本站的做法是先建速览条目把许可、规格与部署配方落下来，分数等官方或第三方给出可引用数值再补。另外要注意它和 Ling-3.0-flash 的关系：官方说「建立在 Ling-3.0-flash 之上」并有架构与真实任务改进，但本站此前无 Ling 系列条目，所以这次不产生任何 superseded 变更。",
+   "best_for": [
+    "需要 MIT 许可的 500B+ 级自建基座（无 MaaS 门槛与署名要求）",
+    "长上下文 agent 与长文档工作流（1M 上下文，25B 激活）",
+    "有 8×H200 / 4×GB300 级集群且走 SGLang 的团队（官方 day-0 镜像与多硬件已验证配方）",
+    "要在中文真实业务场景里做领域微调的基座候选"
+   ],
+   "not_for": [
+    "靠公开分数选型（官方未给任何可引用的评测数值）",
+    "多模态任务（纯文本模型；同族多模态版是上一代的 Ling-3.0-flash-VL）",
+    "单机单卡或消费级硬件部署",
+    "只用 vLLM 正式发行版的部署（官方 vLLM 路径需源码分支安装）",
+    "要官方固定单价的 API 采购（本站未入库其官方定价）"
+   ]
+  },
+  "capability_notes": {
+   "coding": "官方模型卡点名 Terminal-Bench 4.0、SWE-bench Pro、FrontierSWE 为其强项基准，但未给出任何数值。官方另称自研 harness LingCode（基于开源 agent Pi 改造，支持数百轮工具调用与反复上下文压缩）在部分编码 agent 任务上带来显著提升，该 harness 未开源。",
+   "agent": "官方点名 GDPVal-AA V2.1、AutomationBench、MCP-Atlas、SkillsBench，均未给数值。官方称在 Claude Code、Kilo Code、Qwen Code、Hermes Agent、OpenClaw 等框架里有良好实际体验。",
+   "knowledge": "官方点名 HealthBench Professional，并称在 STEM、医疗与金融等真实任务上表现强，另提到金融与材料科学等专门领域有改进 —— 均未给数值。",
+   "long_context": "官方上下文 1M。注意 9 月 30 日公布时的免费 API 试用只开放 256K，权重放出时才开满 1M。官方未给长上下文评测分数。",
+   "speed": "带 MTP 投机解码（SGLang 里为 NEXTN）。官方 day-0 SGLang 镜像含 Hopper 解码优化，开 SGLANG_ENABLE_FP8_BLOCK_GEMV=1 与 SGLANG_ENABLE_FUSED_KDA_OUTPUT_QUANT=1 可让 batch-1 解码再快约 10%。SGLang cookbook 另有实测精度与速度数据。",
+   "chinese": "中文原生（蚂蚁集团为中国厂商，模型卡与 ModelScope 均提供中文入口）。官方未公布中文评测分数。"
+  },
+  "ecosystem": {
+   "engines": [
+    "SGLang",
+    "vLLM"
+   ],
+   "finetune": "可微调（MIT 许可，权重完全开放；官方未提供专门的微调脚本或托管微调）",
+   "zh_docs": "有"
+  },
+  "complete": false
+ },
+ {
   "aliases": [
    "Llama-2-70b-chat-hf",
    "Llama 2 70B Chat"
@@ -16614,6 +16726,151 @@
   "complete": false
  },
  {
+  "id": "muse-spark-open-816b-a42b",
+  "name": "Muse Spark Open 816B-A42B",
+  "name_zh": "Meta Muse Spark Open · 816B A42B",
+  "aliases": [
+   "Muse-Spark-Open-816B-A42B",
+   "meta-models/Muse-Spark-Open-816B-A42B",
+   "Muse Spark Open"
+  ],
+  "vendor": "Meta",
+  "vendor_zh": "Meta 超级智能实验室（美国）",
+  "family": "Muse Spark",
+  "license": "Muse Model License（version: Muse Spark Open，2026-10-15）",
+  "license_commercial": "restricted",
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+  "status": "current",
+  "released_at": "2026-10-15",
+  "updated_at": "2026-10-16",
+  "modalities": [
+   "text",
+   "image",
+   "audio",
+   "video",
+   "tools"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "moe",
+   "total_params": "816B",
+   "active_params": "42B",
+   "total_params_b": 816,
+   "active_params_b": 42,
+   "experts": 256,
+   "active_experts": 8,
+   "layers": 62,
+   "hidden_size": 8192,
+   "vocab_size": 202048,
+   "head_dim": 64,
+   "kv_heads": 16,
+   "attention": "门控注意力（注意力块带输出门与输出 norm，开 QK-norm），128 个 Q 头 / 16 个 KV 头的 GQA，head_dim 64",
+   "notes": "MoE Transformer 加感知编码器（Perception Encoder）。62 层全部是 MoE 层，每层 256 专家、每 token top-8 路由；输入输出嵌入不共享（各约 16.6 亿参数 = 202,048 × 8192）。感知编码器为 18 亿参数、50 层、隐藏维 1536、16 头、14×14 patch、输出维 4096，位置编码用「可学习绝对 + 二维 RoPE」，FFN 为 LayerNorm + GELU，稀疏注意力 factor 4（每第 4 层与最后一层为全注意力）。vLLM 的 day-0 博客把权重分布拆开：256 专家/层合计 799B、注意力 13.5B、MoE latent 投影 4.2B、嵌入与输出层 3.3B，视觉塔另算 1.9B；并提到另有一个小音频编码器。Meta 与 PyTorch 官方均写明它与 Muse Spark 1.3 共用同一个基座模型，这一开源权重版额外做了安全后训练；官方另称 Muse Glimmer 30B 就是从它蒸馏来的。训练数据含文本、图像、音频与视频，覆盖 100 多种语言。官方未公布预训练 token 量与知识截止日期。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {
+    "bf16": 2000,
+    "nvfp4": 700
+   },
+   "estimated": false,
+   "ref_hw_24gb": "不可行",
+   "ref_hw_80gb": "不可行",
+   "ref_hw_8x80gb": "NVFP4 需聚合 ≥700GB 显存（8×B300 可覆盖，8×H200 的 1,128GB 亦可）；BF16 需 ≥2TB，8 卡 80GB 机器远不够",
+   "kv_note": "体积为官方模型卡给出的最低显存门槛（NVFP4 ≥700GB、BF16 ≥2TB），不是 safetensors 实测文件大小。官方另给一条非 GPU 路径：两台 M5 Ultra Mac Studio 用 MLX 跑 —— 官方解释 M5 Ultra 的集成 GPU 每台可用到 512GB 统一内存，两台合起来刚好装下整个模型，1.2TB/s 带宽足够读每个 token 需要的那一小片。AMD 另发了 MXFP4 权重；vLLM 为其训了 DSpark 投机解码草稿头（CUDA 与 ROCm 均支持）"
+  },
+  "links": {
+   "official": "https://research.meta.ai/blog/muse-spark-open",
+   "hf": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+   "eval_methodology": "https://research.meta.ai/static/muse-spark-open-evaluation-methodology",
+   "dev_docs": "https://dev.meta.ai/resources/blog/build-with-muse-spark-open"
+  },
+  "variants": [
+   {
+    "kind": "nvfp4",
+    "publisher": "meta-models",
+    "repo": "meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
+    "url": "https://huggingface.co/collections/meta-models/muse-spark-open",
+    "note": "官方 NVFP4，最低 700GB 显存；vLLM 官方示例用的是这一份",
+    "sizes": {
+     "nvfp4": 700
+    }
+   },
+   {
+    "kind": "other",
+    "publisher": "Inferact",
+    "repo": "Inferact/Muse-Spark-Open-DSpark",
+    "url": "https://huggingface.co/Inferact/Muse-Spark-Open-DSpark",
+    "note": "vLLM 团队训练的 DSpark 投机解码草稿头，CUDA 与 ROCm 均支持"
+   }
+  ],
+  "copy": {
+   "one_liner": "Meta 把 Muse Spark 的基座开源了：816B / 42B 激活、1M 上下文的原生多模态 MoE，Muse Model License。",
+   "highlights": [
+    "美国实验室目前最大的开源权重模型，且和闭源 Muse Spark 1.3 共用同一个基座（Meta 与 PyTorch 官方均明写）—— 等于把一个在售 API 旗舰的底座放出来了；Muse Glimmer 30B 也是从它蒸馏来的",
+    "原生四模态输入（文本 / 图像 / 音频 / 视频），靠的是和 Muse Glimmer 同一个感知编码器加额外音频编码器；多模态项上对同级开源模型优势明显（ZeroBench 带工具 50.0 对 Inkling 的 14.0、BabyVision 80.2 对 34.2、SimpleVQA 73.6 对 52.3）",
+    "官方同表对照里 agent 项领先一大截：JobBench 61.8 对 Inkling 31.1 与 Qwen3.8-2.4T-A95B 的 52.7、MCP-Atlas 89.2 为表内最高、OSWorld Verified 80.4、HLE-Diamond 无工具 26.1 对 Inkling 11.2",
+    "安全后训练是它的差异点而非附注：官方自测 StrongREJECT v2（自适应攻击，越低越好）0.5，而 Inkling 86.4、Kimi K3 66.6、GLM 5.3 62.9；FORTRESS 对抗 ARS 5.8 也是表内最低",
+    "生态一天内就齐了：Hugging Face / SageMaker / Google Cloud Model Garden / Microsoft Foundry 可下权重，Baseten / Fireworks / Groq / Modal / Nebius / OpenRouter / Together 提供托管，引擎覆盖 SGLang / vLLM / TensorRT-LLM / Transformers / MLX / llama.cpp / Unsloth，TorchTitan 当天加了模型定义"
+   ],
+   "pitfalls": [
+    "许可不是标准开源：Muse Model License 第 2 条要求在使用它的产品界面或文档里显著标注「Built with Muse Spark Open」；第 3 条规定若你或关联方做 MaaS（给第三方 API 式的推理或微调访问）且连续 12 个月合计营收超过 2,000 万美元，必须先通知 Meta 并单独签协议。内部使用、研究与「把它当成自家非 MaaS 产品的功能组件」不受第 3 条约束",
+    "下载要过表单：HF 仓库是门禁仓库，要求提交真实法定姓名、出生日期与完整机构名称（官方明示不接受缩写与特殊字符、提交后不可修改），并接受 Usage Policy",
+    "硬件门槛是本站开源条目里最高的一档：NVFP4 要聚合 ≥700GB 显存、BF16 要 ≥2TB。官方给的「桌面方案」是两台 M5 Ultra Mac Studio 跑 MLX —— 这条路径真实可用，但两台顶配 Mac Studio 不是通常意义上的「本地」",
+    "官方那张记分卡几乎没有本站列：SWE-bench Verified 一项都没给（只给 DeepSWE 1.1 60、SWE-Atlas-QnA 58，且都标「Preferred harness」—— 不同模型可能用了不同 harness），AA 智能指数 39 未标版本口径，HLE 给的是 Diamond 子集而非全集。本站只能入榜 GPQA Diamond 与 Terminal-Bench 2.1 两项",
+    "即便在官方自己挑的对照表里，中国开源模型在多项上仍领先：Terminal-Bench 2.1 76.4 落后 Kimi K3 的 85.0、GLM 5.3 的 83.9、Qwen3.8 的 82.0；GPQA Diamond 89.0 落后 Qwen3.8 与 Kimi K3 的 93.5、Beam 的 90.5；DeepSWE 1.1 的 60 落后 GLM 5.3 的 67 与 Kimi K3 的 68。它赢的是 agent、多模态与安全，不是编码与考试",
+    "默认推理档位是 xhigh（官方推荐复杂任务用 high 或 xhigh），按 token 计费时这是直接的成本乘数；reasoning_effort 传非法值会直接报错",
+    "vLLM 的支持在发布时还没并入正式发行版：官方注明代码要等 PR #61879 审完合并后才进 nightly wheel，约一周",
+    "无 Meta 官方按 token 定价（Meta Model API 上在售的是闭源 Muse Spark 1.3 与 Muse Wonder），托管价全部来自第三方推理平台，本站不记第三方渠道价"
+   ],
+   "logic_ability": "这次发布真正的信息量不在分数，在「同一个基座」这四个字：Meta 与 PyTorch 官方都明写 Muse Spark Open 与在售的闭源 Muse Spark 1.3 共用基座，差别是这一版多做了一轮安全后训练，使它在没有系统护栏时也足够稳。换句话说，Meta 开源的不是一个为开源另训的小弟，而是自家 API 档位的底座。能力形状很有意思：官方挑的对照表里，它在 agent 与多模态两条线上对开源同级是碾压级（JobBench 61.8、MCP-Atlas 89.2 表内最高、OSWorld Verified 80.4、ZeroBench 带工具 50.0 对 Inkling 的 14.0、BabyVision 80.2 对 34.2），在安全上更是数量级差距（StrongREJECT v2 自适应攻击 0.5，而 Inkling 86.4、Kimi K3 66.6）；但在编码与考试题上它老老实实落后中国开源头部 —— Terminal-Bench 2.1 76.4 对 Kimi K3 的 85.0、GPQA Diamond 89.0 对 Qwen3.8 与 Kimi K3 的 93.5、DeepSWE 1.1 的 60 对 GLM 5.3 的 67。这张表是 Meta 自己挑的对照组，而它仍然把这些落后项摆了出来，可信度因此反而更高。另一个要留意的点是基准选择：官方给的是 HLE-Diamond 而非 HLE 全集、DeepSWE 与 SWE-Atlas-QnA 而非 SWE-bench Verified，且 agent 项标注「Preferred harness」—— 不同模型可能跑在不同 harness 上，跨列比较要打折扣。AA 智能指数 39 未标版本口径，与本站 aa 列不可混比。部署上它刷新了本站开源条目的硬件上限（NVFP4 ≥700GB、BF16 ≥2TB），官方力推的两台 M5 Ultra Mac Studio + MLX 是条真路径，但那是 Apple 统一内存架构的特例而非普遍可及。本站入榜的是官方表里与站内列同口径的两项：GPQA Diamond 与 Terminal-Bench 2.1（Terminus 2 agent）。",
+   "best_for": [
+    "需要自建的多模态 agent（文本 + 图像 + 音频 + 视频输入，1M 上下文）",
+    "要在无系统护栏条件下直接暴露模型的场景（官方安全后训练数据是本站开源条目里最强的一档）",
+    "把闭源 Muse Spark 1.3 的能力搬进自有基础设施做定制（同基座，官方给 TorchTitan 与 PyTorch 微调路径）",
+    "合成数据生成与 LLM-as-a-judge（官方列为设计用途）",
+    "有 8×B300 / 8×H200 级集群或两台 M5 Ultra Mac Studio 的团队"
+   ],
+   "not_for": [
+    "营收超 2,000 万美元的 MaaS 业务（许可第 3 条要求先与 Meta 单独签协议）",
+    "不愿做「Built with Muse Spark Open」署名的产品（许可第 2 条强制要求）",
+    "编码 agent 主力选型（Terminal-Bench 2.1 与 DeepSWE 均落后中国开源头部）",
+    "常规本地部署（NVFP4 ≥700GB、BF16 ≥2TB 显存）",
+    "不愿提交真实身份信息过门禁表单的下载者",
+    "要官方固定单价的采购（Meta 不为这一版提供按 token 定价）"
+   ]
+  },
+  "capability_notes": {
+   "knowledge": "AA Omniscience 25（对照组 Inkling 2、Nemotron 3 Ultra 0、Beam 13、Kimi K3 20、GLM 5.3 14）、SciCode 58.5、HLE 带工具 61.0（官方模型卡对照表，xhigh 档）。",
+   "reasoning": "GPQA Diamond 89.0、HLE-Diamond 无工具 26.1（官方模型卡对照表，xhigh 档）。HLE-Diamond 是 HLE 的 Diamond 子集，与本站 hle 列（HLE 全集无工具）不是同一口径，故未并入总榜。",
+   "coding": "DeepSWE 1.1（Preferred harness）60、SWE-Atlas-QnA（Preferred harness）58、Terminal-Bench 2.1（Terminus 2 agent）76.4（官方模型卡对照表，xhigh 档）。官方未给 SWE-bench Verified 与 LiveCodeBench，本站这两列无数据。",
+   "agent": "JobBench 61.8、MCP-Atlas 89.2、GDPVal-AA v2 Elo 1401、OSWorld Verified 80.4、Toolathlon Verified 72.8（官方模型卡对照表，xhigh 档）。官方未给 τ²-bench，本站 tau2 列无数据。",
+   "multimodal": "ZeroBench（带工具）50.0、BabyVision（带工具）80.2、SimpleVQA（带工具）73.6、WorldVQA（带工具）49.4、IntPhys2 68.3、VideoMMEv2 61.5（官方模型卡对照表，xhigh 档）。输入含文本 + 图像 + 视频 + 音频，感知编码器与 Muse Glimmer 同源并加了音频编码器；官方未给 MMMU，本站 mmmu 列无数据。",
+   "safety": "FORTRESS 对抗（静态）ARS 5.8 / ORS 17.4、StrongREJECT v2（自适应）0.5，两项均为表内最佳（越低越好；对照组 Inkling ARS 25.0 / SR 86.4，Kimi K3 ARS 26.7 / SR 66.6，GLM 5.3 ARS 28.2 / SR 62.9）。官方另称内部越狱基准拒绝率 99.2%、聚合 PolyGuard 网安子集 / RedCode / CyberBench 2024 为 94.8%（同设定下 Kimi K3 为 75.5% 与 70.2%），生化类拒绝率均 >97%，MASK 诚实率 98.1%、Agentic Misalignment 失当率 0%。",
+   "third_party": "官方对照表引用的 Artificial Analysis 智能指数为 39（对照组 Qwen3.8 40、GLM 5.3 45、Kimi K3 44、Mistral Large 4 38、Inkling 26）。该读数未标明版本口径，与本站 aa 列不可混比，故未入榜。",
+   "chinese": "官方称训练数据覆盖 100 多种语言，未单列中文支持声明，也未公布任何中文评测分数。"
+  },
+  "ecosystem": {
+   "engines": [
+    "SGLang",
+    "vLLM",
+    "TensorRT-LLM",
+    "Transformers",
+    "llama.cpp",
+    "MLX"
+   ],
+   "finetune": "可微调（权重开放，官方给 PyTorch TorchTitan 路径，TorchTitan 发布当天加入模型定义；vLLM 支持 day-0 LoRA RL，以 Verl FSDP2 为训练端）",
+   "zh_docs": "无"
+  },
+  "complete": false
+ },
+ {
   "id": "muse-spark",
   "name": "Muse Spark 1.2",
   "name_zh": "Meta Muse Spark",
@@ -16922,6 +17179,143 @@
   "complete": false
  },
  {
+  "id": "nemotron-3-5-bolt-74b-a9b",
+  "name": "Nemotron 3.5 Bolt 74B-A9B 24GB",
+  "name_zh": "NVIDIA Nemotron 3.5 Bolt · 74B A9B 24GB",
+  "aliases": [
+   "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+   "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-BF16",
+   "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "Nemotron 3.5 Bolt"
+  ],
+  "vendor": "NVIDIA",
+  "vendor_zh": "NVIDIA（美国）",
+  "family": "Nemotron 3.5",
+  "license": "OpenMDW License Agreement, version 1.1",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+  "status": "current",
+  "released_at": "2026-10-15",
+  "updated_at": "2026-10-16",
+  "modalities": [
+   "text",
+   "image",
+   "video",
+   "tools"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "hybrid",
+   "total_params": "74B",
+   "active_params": "9B",
+   "total_params_b": 74,
+   "active_params_b": 9,
+   "attention": "Mamba-2 + Transformer 混合 LatentMoE（专家 top-K 固定为 9，父模型为 22），外挂 C-RADIO v4-H 视觉编码器经 MLP 投影器接入",
+   "notes": "从 Nemotron 3.5 Super VL 120B-A12B 压缩而来，用 NVIDIA 自研的 Star Elastic 做「预算约束下的路由器引导架构搜索 + 端到端压缩」：预算条件路由器按层异构选择路由专家数与 MoE 中间维，目标是 batch 1、128K 上下文下落在 24GB 以内（该预算已把后续量化与运行态精度算进去）。架构搜索在 8K 上下文跑，路由器在前 8B token 收敛，之后 8K 恢复训练至 72B token，再在 128K 上下文续训 48B token，合计 120B token。随后把父模型的视觉塔接回压缩后的语言骨干、只轻量微调视觉投影层（约 660 万图文样本 / 轮），再做视觉重 SFT、checkpoint 合并（SLERP）、agent 环境 E2E GRPO 与 RLHF，最后再合并一次得到 BF16 终版。量化阶段把全部路由与共享专家压到 IQ2-XXS（2.0625 bit/参数）并用量化感知蒸馏回收精度，Mamba 层保 NVFP4、嵌入与输出层保 Q8_0。模型日期 2025-12 至 2026-05，后训练数据截止 2026-05。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 262144,
+   "display": "256K"
+  },
+  "memory": {
+   "weight_gb": {
+    "iq2": 22.01,
+    "bf16": 148
+   },
+   "estimated": false,
+   "ref_hw_24gb": "可行，这正是设计目标：官方技术报告给出 24GB 档的逐项预算 —— 权重 22.01GB + 运行态 0.87GB（Mamba SSM 缓存 0.08 / KV 缓存 FP8 0.54 / 激活缓冲 0.25）= 22.87GB，余下 1.13GB 装 0.96GB 的投机草稿头。该预算覆盖纯文本服务，视觉编码器与投影器另算",
+   "ref_hw_80gb": "绰绰有余；BF16 那份官方定位是做后训练与自制量化版的起点，需 A100 / H100-80GB / Blackwell 上的 vLLM",
+   "ref_hw_8x80gb": "无需",
+   "kv_note": "IQ2 权重 22.01GB 为官方技术报告的分项合计（路由专家 IQ2_XXS 17.05 / 共享专家 0.45 / 注意力投影 Q8_0 0.30 / Latent MoE 投影 Q8_0 0.36 / Mamba 输入输出投影 NVFP4 2.47 / 词嵌入 Q8_0 0.57 / LM head Q8_0 0.57 / MoE 路由器 F32 0.23 / Mamba 卷积 F32 0.01）。BF16 体积未在官方模型卡给出，148GB 为按 74B 参数推算的估值。官方同时发 GGUF（含 mmproj 视觉投影器）与 LiLiCorr 草稿头的 HF 与 GGUF 两种格式"
+  },
+  "links": {
+   "official": "https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/",
+   "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+   "tech_report": "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-Technical-Report.pdf",
+   "tech_blog": "https://research.nvidia.com/labs/nemotron/Nemotron-3.5-Bolt-24GB/"
+  },
+  "variants": [
+   {
+    "kind": "gguf",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+    "note": "官方 GGUF（含 mmproj 视觉投影器），对应 llama.cpp / Ollama / LM Studio / Unsloth 路径"
+   },
+   {
+    "kind": "bf16",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-BF16",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-BF16",
+    "note": "官方全精度版，官方明写「主要用于定制与后训练，而非直接生产推理」"
+   },
+   {
+    "kind": "other",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-LiLiCorr",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-LiLiCorr",
+    "note": "官方 LiLiCorr 投机解码草稿头（经 Model Optimizer 量化为 NVFP4），vLLM 配方用 7 个投机 token；另有同名 GGUF 版"
+   }
+  ],
+  "copy": {
+   "one_liner": "从 Super VL 压出来的 74B / 9B 激活视觉语言模型，原生 2-bit 量化真塞进 24GB，256K 上下文。",
+   "highlights": [
+    "「24GB」不是约等于，是被当成约束条件训出来的：官方用 Star Elastic 让架构搜索直接以 batch 1、128K 上下文下低于 24GB 为目标，技术报告逐项列到小数点 —— 权重 22.01GB + 运行态 0.87GB + 草稿头 0.96GB，正好卡在 24GB 以内",
+    "同内存档位里它赢得相当干净（官方同 harness 对照）：BrowseComp 66.75 对 Qwen3.6-35B-A3B 的 48.74、GPQA Diamond 86.43 对 83.40、HLE 无工具 25.30 对 19.56、Terminal-Bench 2.1 50.98 对 44.38、GDPVal-AA-V2 28.47 对 25.75，同时对 Nemotron 3.5 Lightning 30B-A3B 全面领先",
+    "本地 agent 的配套给全了：官方同时放 HF、GGUF（含视觉投影器）与 LiLiCorr 草稿头，支持 llama.cpp / Ollama / LM Studio / Unsloth / vLLM，官方点名为 2026-10-16 开售的 RTX Spark 笔记本而做，也跑 GeForce RTX PC、DGX Spark / Station 与 RTX PRO 工作站",
+    "OpenMDW-1.1 可商用，权重、训练数据与配方延续 Nemotron 全开传统；视觉能力从父模型整塔搬回来，WebArena（视觉）50.86 对 Qwen3.6 的 36.60"
+   ],
+   "pitfalls": [
+    "上下文只有 256K，是 3.5 代里最短的 —— 同族 Super VL 与 Lightning 都是 1M。要长文档聚合就别选这一档",
+    "2-bit 的代价记在官方自己的表上：AA-Omniscience 准确率 16.90 低于 Qwen3.6-35B-A3B 的 19.47 与 Gemma4 26B-A4B 的 22.17，非幻觉率 61.27 也低于 Lightning 的 68.81、Qwen3.6 的 65.85 —— 知识密度与「不乱答」是它让出去的东西",
+    "官方那张表没有 SWE-bench Verified 与 LiveCodeBench，本站这两列对它是空的；别拿 Terminal-Bench 2.1 的 50.98 当仓库级编码能力的代理",
+    "官方承认一处打分口径冲突：Qwen3.6-35B-A3B 的 MCP-Atlas 自报为 62.8，NVIDIA 在 500 道公开任务子集上只测到 51.2 并以后者入表 —— 这张对照表的对比列是 NVIDIA 代跑的",
+    "部署挑得厉害：IQ2 这份只标注支持 Blackwell SM120 / SM121 微架构，vLLM 要指定 nightly 镜像、额外 pip install b12x 与 vllm download-kernels、手动 wget 一个 reasoning parser 插件，并带一长串 b12x 后端与 Mamba 参数",
+    "BF16 那份不是给生产推理用的（官方明写用于定制与后训练），而它本身也不是独立训练的模型 —— 是 Super VL 的压缩产物，能力天花板由父模型决定",
+    "无官方按 token 定价（本地部署为主）；语言支持为英、法、西、意、德、日、印地、韩、巴葡与中文，但无中文专项评测分数",
+    "同场发布的 Bolt E4B 4GB 官方排期是 2026-10-23，本站届时另立条目"
+   ],
+   "logic_ability": "这台机器的有趣之处不在分数，在约束。NVIDIA 没有先训一个模型再找量化方案，而是把「batch 1、128K 上下文、低于 24GB」写进架构搜索的目标函数 —— 预算条件路由器按层异构地砍路由专家数与 MoE 中间维，专家 top-K 从父模型的 22 降到 9，而且这个预算从一开始就把后续的 2-bit 专家权重与 16-bit SSM 状态算进去了。结果是一台「74B 总参但只有 22GB 权重」的视觉语言模型，官方技术报告把 24GB 的每一项都摊开给你看。能力形状符合「本地 agent 执行器」的定位：它赢的是浏览与终端（BrowseComp 66.75、Terminal-Bench 2.1 50.98、WebArena 视觉 50.86、PinchBench 87.82、MCP-Atlas 52.20），让出的是知识密度（AA-Omniscience 准确率 16.90 垫底、非幻觉率 61.27 也低于同级）。这个取舍在本地 agent 场景里说得通 —— 浏览器和终端就在手边，不需要模型自己记住事实。相对同族 Lightning 30B-A3B，它在 13 项里几乎全面领先（Terminal-Bench 2.1 50.98 对 23.46、BrowseComp 66.75 对 36.81、GPQA 86.43 对 75.57、HLE 25.30 对 10.47），但两者不是替代关系：Lightning 是 1M 上下文的纯文本高吞吐档，Bolt 是 256K 的 24GB 本地视觉档，NVIDIA 在发布博客里把 Lightning / Ultra / Super VL / Bolt 并列成四个共存档位。要留意的是这张对照表的对比列全由 NVIDIA 代跑，官方自己就标出了一处与厂商自报不符的数（Qwen3.6 的 MCP-Atlas 62.8 对实测 51.2）。本站入榜的是官方 IQ2 列里与站内列同口径的三项：GPQA Diamond、HLE（无工具）、Terminal-Bench 2.1。",
+   "best_for": [
+    "24GB 单卡上的本地 agent（RTX Spark 笔记本、GeForce RTX PC、DGX Spark / Station、RTX PRO 工作站）",
+    "需要读屏 / 读图的本地自动化：网页浏览、终端操作、GUI 任务（BrowseComp 66.75、WebArena 视觉 50.86）",
+    "数据不出本机的隐私敏感 agent 工作流",
+    "想要「比同内存稠密模型快、比同内存 MoE 聪明」这档平衡的本地部署"
+   ],
+   "not_for": [
+    "长上下文任务（仅 256K，同族 Super VL 与 Lightning 都是 1M）",
+    "知识问答与低幻觉要求（AA-Omniscience 准确率 16.90、非幻觉率 61.27，均为同级低位）",
+    "仓库级编码 agent 主力（官方未给 SWE-bench Verified 与 LiveCodeBench）",
+    "非 Blackwell 卡上跑 IQ2 那份（官方只标注 SM120 / SM121 支持）",
+    "中文任务选型（语言列表含中文但无中文评测分数）"
+   ]
+  },
+  "capability_notes": {
+   "knowledge": "AA-Omniscience 准确率 16.90、非幻觉率 61.27、SciCode 41.02、AA-LCR 64.06（官方模型卡 IQ2 列，与 Qwen3.6-35B-A3B BF16 / Gemma4 26B-A4B BF16 / Nemotron 3.5 Lightning 30B-A3B BF16 同表对照）。",
+   "reasoning": "GPQA Diamond 86.43、HLE（无工具）25.30（官方模型卡 IQ2 列）。",
+   "coding": "Terminal-Bench 2.1 50.98（官方模型卡 IQ2 列）。官方表未给 SWE-bench Verified 与 LiveCodeBench，本站这两列无数据；技术报告另称 SWE-RL 端到端训练在 PinchBench 上泛化到 10 次平均最高 90.4。",
+   "agent": "PinchBench 87.82、BrowseComp 66.75、MCP-Atlas 52.20、WebArena（视觉）50.86、GDPVal-AA-V2 28.47、Tau3 Banking 17.01（官方模型卡 IQ2 列）。Tau3 与本站 tau2 列（τ²-bench）不是同一基准，未并入。",
+   "multimodal": "视觉塔为 C-RADIO v4-H，从父模型 Super VL 整体搬回后只轻量微调投影层；输入支持 jpeg / png 图像与 ≤2 分钟 MP4 视频（1080p 建议 1 FPS / 128 帧，720p 可 2 FPS / 256 帧）。官方多模态分数见 WebArena（视觉）50.86；未给 MMMU，本站 mmmu 列无数据。",
+   "long_context": "官方上下文 256K，提示、视觉输入、对话历史、工具结果与输出共享该窗口；架构搜索的显存预算按 128K 上下文定。",
+   "speed": "官方定位为「比多数流行稠密模型快、比同内存足迹的多数 MoE 聪明」，靠 9B 激活与 LiLiCorr 投机解码（7 个投机 token）。官方称其为 PinchBench 同级开源第一、BrowseComp 同级开源第二。均为厂商自述，无第三方复测。",
+   "chinese": "官方语言列表含中文（另有英、法、西、意、德、日、印地、韩、巴葡）；视觉适配器训练用了约 250 万条中文文档 OCR 数据。无中文专项评测分数。"
+  },
+  "ecosystem": {
+   "engines": [
+    "vLLM",
+    "llama.cpp",
+    "Ollama",
+    "LM Studio"
+   ],
+   "finetune": "可微调（OpenMDW-1.1 下权重与配方开放，官方把 BF16 版定位为定制与后训练的起点，配 NVIDIA NeMo 管线）",
+   "zh_docs": "无"
+  },
+  "complete": false
+ },
+ {
   "id": "nemotron-3-5-lightning-30b-a3b",
   "name": "Nemotron 3.5 Lightning 30B-A3B",
   "name_zh": "NVIDIA Nemotron 3.5 Lightning · 30B A3B",
@@ -16941,7 +17335,7 @@
   "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
   "status": "current",
   "released_at": "2026-08-11",
-  "updated_at": "2026-10-15",
+  "updated_at": "2026-10-16",
   "modalities": [
    "text",
    "tools"
@@ -17017,7 +17411,7 @@
     "BF16 那份不是给生产推理用的：官方把它定位成「做后训练、领域适配、自制量化版的起点」，要部署直接用 NVFP4；BF16 的 vLLM 启动命令还得带一串 Mamba 专用参数（--mamba-backend flashinfer、--mamba-ssm-cache-dtype float16、随机取整及其 philox 轮数），少一个就容易踩精度坑",
     "无官方按 token 定价：托管只有 build.nvidia.com 的 NIM 与各云厂商 / 推理平台（DeepInfra、Fireworks、Nebius、Crusoe、SageMaker JumpStart 等），实际单价随渠道变，本站不记第三方渠道价",
     "纯文本，且官方语言列表为英（含编程语言）、西、法、德、意、日，不含中文，也没有中文专项评测分数",
-    "3.5 这一代目前只有这一个 30B 档，Nemotron 3 的 Nano / Super / Ultra 三档阶梯在 3.5 里还没对应物；更高档的 Nemotron 3.5 Bolt 74B-A9B 官方公告的发布日是 2026-10-15，本站尚未收录"
+    "3.5 代的阶梯已在 2026-10-15 补齐（Super VL 120B-A12B 与 Bolt 74B-A9B 24GB 同日发布，Bolt E4B 4GB 排期 10-23），它在其中是「1M 上下文、纯文本、高吞吐」的那一档 —— 不是最聪明的那档：同族 Bolt 74B-A9B 在 13 项官方同 harness 对照里几乎全面领先（Terminal-Bench 2.1 50.98 对 23.46、BrowseComp 66.75 对 36.81、GPQA 86.43 对 75.57、HLE 25.30 对 10.47），代价是上下文只有 256K"
    ],
    "logic_ability": "这台机器的设计目标写得很直白：不当最聪明的那个，当「一直在跑」的那个。官方把它放在「前沿模型做规划编排、小模型做高频执行」这套分层里，自己只负责下半截，连配套的路由库（NeMo Switchyard）都一起发了。分数分布完全符合这个定位 —— 在 NVIDIA 自己那张统一 harness 的表上，它对上一代 Nemotron 3 Nano 的提升几乎全在 agent 与编码项（Terminal-Bench 2.1 从 8.29 到 24.58 是三倍，SWE-bench Verified 从 34.08 到 51.56，BrowseComp 从 13.74 到 36.97，AA-LCR 从 32.75 到 52.00），而知识项只从 78.46 挪到 81.94（MMLU Pro）。换句话说，蒸馏 Nemotron 3 Ultra 加 agent harness 上的 RL，买到的是「会连续调工具、能跑完长任务」，不是「懂得更多」。代价也标在同一张表上：同级的 Qwen3.6 35B-A3B 在 14 项里赢 11 项，差距最大的恰恰是 SWE-bench Verified（70.12 对 51.56）与 Terminal-Bench 2.1（44.38 对 24.58）这两项 agent 能力 —— 所以「执行层最强」这个说法只在「同 3B 激活量 + 同速度档」的约束下成立，放开约束就不成立。真正难被替代的是另外三件事：3.6B 激活带来的速度（官方称约 4 倍吞吐）、NVFP4 版 21.6GB 真能进 24GB 卡、以及连训练数据和配方一起开放让你能把它后训成自己工具链的专用执行器。合理用法就是官方说的那个：拿它当子 agent 与工具调度器，难的判断往上路由给前沿模型。本站入榜的是官方表里与站内列同口径的四项：SWE-bench Verified、GPQA Diamond（无工具）、HLE（纯文本无工具）、Terminal-Bench 2.1。",
    "best_for": [
@@ -17054,6 +17448,154 @@
     "Transformers"
    ],
    "finetune": "可微调（官方开放权重、训练数据与配方，并提供 NeMo RL / NeMo Gym 的 SFT、RL、蒸馏路径；BF16 版官方定位就是「拿来做后训练的起点」）",
+   "zh_docs": "无"
+  },
+  "complete": false
+ },
+ {
+  "id": "nemotron-3-5-super-vl-120b-a12b",
+  "name": "Nemotron 3.5 Super VL 120B-A12B",
+  "name_zh": "NVIDIA Nemotron 3.5 Super VL · 120B A12B",
+  "aliases": [
+   "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B",
+   "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+   "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+   "nemotron-3.5-super-vl",
+   "Nemotron 3.5 Super VL"
+  ],
+  "vendor": "NVIDIA",
+  "vendor_zh": "NVIDIA（美国）",
+  "family": "Nemotron 3.5",
+  "license": "OpenMDW License Agreement, version 1.1",
+  "license_commercial": true,
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+  "status": "current",
+  "released_at": "2026-10-15",
+  "updated_at": "2026-10-16",
+  "modalities": [
+   "text",
+   "image",
+   "video",
+   "tools"
+  ],
+  "reasoning_mode": "optional",
+  "architecture": {
+   "type": "hybrid",
+   "total_params": "120B",
+   "active_params": "12B",
+   "total_params_b": 120,
+   "active_params_b": 12,
+   "experts": 512,
+   "attention": "交错 Mamba-2 + MoE + 注意力层的混合 MoE，外挂 C-RADIO 视觉编码器与视觉—语言连接器",
+   "notes": "官方模型卡写「120B 总参 / 12B 激活」，架构为 Nemotron Hybrid MoE：每个 MoE 层 512 路由专家，配 C-RADIO 视觉编码器与一个视觉—语言连接器，并带共享 Multi-Token Prediction（MTP）头做原生投机解码。训练分七段：语言骨干从 Nemotron 3 Super Base 初始化，先冻结骨干训 100B token 的 MTP 头，再从 Nemotron 3 Ultra Base 蒸馏 1T token；之后 100B token 印度语系续训、35B token 扩到 1M 上下文、67B token 软件工程中训（256K 上下文）、9B token 长上下文恢复；再接视觉—语言训练、两段 SFT（打包序列最长 524,288 token）、RLVR + RLHF + 多教师在线蒸馏、MTP 加训，最后量化与量化感知蒸馏。官方称全流程预训练与续训合计约 26T token，后训练约 380 万样本加数十个环境的 RL。权重、训练数据集与训练配方同步公开。",
+   "undisclosed": false
+  },
+  "context": {
+   "max_tokens": 1048576,
+   "display": "1M"
+  },
+  "memory": {
+   "weight_gb": {
+    "nvfp4": 75
+   },
+   "estimated": false,
+   "ref_hw_24gb": "不可行",
+   "ref_hw_80gb": "NVFP4 可单卡 H200 或单 GB200 跑满 1M 上下文；单 DGX Spark（GB10）为官方列出的本地配置（文本 + 图像，1M 上下文，MTP 5 草稿 token）",
+   "ref_hw_8x80gb": "远超需求；官方给出的最大配置是 2×H100（文本 + 图像 + 视频，1M 上下文）",
+   "kv_note": "NVFP4 体积取第三方（ByteForward）对官方 NVFP4 仓库 88 个权重文件的实测合计约 75GB，NVIDIA 未在模型卡给出文件体积，故此数非官方口径。官方部署矩阵：1×DGX Spark / 1×H200 / 2×H100 / 1×GB200（vLLM），1×GB200 或 2×H100（SGLang），1×GB200（TensorRT-LLM）。NVFP4 在 Blackwell 走 W4A4、非 Blackwell 走 W4A16；视觉编码器、连接器、Mamba 卷积与嵌入保持 BF16，MoE 路由器保持 FP32。DGX Spark 另有官方 LiLiCorr 投机解码草稿头"
+  },
+  "links": {
+   "official": "https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/",
+   "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+   "tech_report": "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Super-and-Lightning-Technical-Report.pdf"
+  },
+  "variants": [
+   {
+    "kind": "nvfp4",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+    "note": "官方 NVFP4，经量化感知蒸馏回收精度；官方部署示例全部围绕这一份",
+    "sizes": {
+     "nvfp4": 75
+    }
+   },
+   {
+    "kind": "bf16",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+    "note": "官方全精度版，vLLM 称其为「直观的部署基线」"
+   },
+   {
+    "kind": "other",
+    "publisher": "nvidia",
+    "repo": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4-LiLiCorr",
+    "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4-LiLiCorr",
+    "note": "DGX Spark 专用 LiLiCorr 投机解码草稿头，官方建议 DGX Spark 部署一律启用"
+   },
+   {
+    "kind": "gguf",
+    "publisher": "ggml-org",
+    "repo": "ggml-org/nvidia-nemotron-3.5-super-vl",
+    "url": "https://huggingface.co/collections/ggml-org/nvidia-nemotron-3.5-super-vl",
+    "note": "官方模型卡「Running on Local Hardware」一节直接指向的 llama.cpp 合集（DGX Spark / RTX Spark / RTX Pro 6000）"
+   }
+  ],
+  "copy": {
+   "one_liner": "NVIDIA 3.5 代的 Super 档，120B / 12B 激活的混合 Mamba-MoE 视觉语言模型，1M 上下文，接 Nemotron 3 Super 的班。",
+   "highlights": [
+    "开放程度与上一代同档：OpenMDW-1.1 许可、官方明写「ready for commercial or non-commercial use」，权重、预训练与后训练数据集（nemotron-pre-training-datasets / nemotron-post-training-v3）以及 NeMo Gym 里的 RL 环境与可复现评测配方全部公开",
+    "Nemotron 家族里第一个把视觉放进主线的档位：C-RADIO 视觉编码器 + 连接器，原生吃文本 / 图像 / 视频（MP4 ≤2 分钟），官方把 OCR、表格、图表与长文档理解列为设计目标，MMLongBench-Doc 62.82、OCRBench v2 英 68.12 / 中 59.15、CharXiv reasoning 80.82",
+    "分数比上一代 Nemotron 3 Super 整体上一个台阶（同站口径对照）：GPQA Diamond 89.52 对 79.23、SWE-bench Verified 71.10 对 60.47、LiveCodeBench 88.22 对 81.19、Terminal-Bench 2.1 60.67 对 31.00、tau2-bench 均值 72.98 对 61.15",
+    "部署门槛比参数量看起来低得多：官方 NVFP4 版在 1×H200、1×GB200 或 2×H100 上就能开满 1M 上下文，单台 DGX Spark（GB10）是官方列出的本地配置；带原生 MTP 头，无需额外下载草稿模型"
+   ],
+   "pitfalls": [
+    "整张评测表都是 NVIDIA 自己跑的：官方注明全部结果经 NeMo Gym 采集、对比组也由 NVIDIA 代跑，且有 8 项（BabyVision、CharXiv-RQ、MathVision、MMLongBench-Doc、OCR-Reasoning、OCRBench-v2、V*、Video-MME-v2）用的是官方实现或「计划将来开源」的内部脚手架，这几项外部无法复现",
+    "NVFP4 与 BF16 在少数项上差距不小，别把两列混着引用：WebVoyager（离线）BF16 77.72 对 NVFP4 66.31、DeepSWE（离线）24.65 对 18.2、MMLU-ProX 76.91 对 73.76；反过来 Terminal-Bench 2.1 是 NVFP4 更高（62.78 对 60.67）",
+    "视频理解是明显短板：官方自测 Video-MME v2 只有 32.85（BF16），BabyVision 29.60，和它在文档 / OCR 上的成绩不是一个水平 —— 「原生多模态」不等于视频能用",
+    "官方给的 Terminal Bench 4（离线）只有 1.0（NVFP4 1.5）、τ³-bench Banking 18.88，新一代更难的 agent 评测上几乎没有分数；别拿 Terminal-Bench 2.1 的 60.67 去推它在 4.0 口径下的位置",
+    "无官方按 token 定价：托管只有 build.nvidia.com 的 NIM、OpenRouter 与 ModelScope 社区等渠道，实际单价随渠道变，本站不记第三方渠道价",
+    "部署参数很挑：官方 vLLM 命令要带一长串 Mamba 与视频专用开关（--mamba-backend flashinfer、--mamba-ssm-cache-dtype float16、随机取整及其 philox 轮数、--video-pruning-rate 0.5、--media-io-kwargs 帧率与帧数），且需指定 nightly 镜像或 v0.32.0；少一个就容易踩精度或显存坑",
+    "官方未公布参数量之外的层数细节与知识截止日期（模型卡只给总参 / 激活参数、专家数与训练分段）"
+   ],
+   "logic_ability": "这一档的定位是「可私有化的企业 agent 主力」，官方卖点写得很直接：在多模态 agent 任务上「与 NVIDIA 最大的推理模型相当，而参数量约为其五分之一」，并自称同级最快的开源 agent 模型（吞吐为次优者的 5 倍）。从官方那张统一 harness 的表看，形状确实和上一代 Nemotron 3 Super 不同：知识与推理大幅前移（GPQA Diamond 89.52、HLE 纯文本 31.79、LiveCodeBench v6 88.22），编码与终端任务从「中游」挪到了开源第一梯队（SWE-bench Verified 71.10、SWE-bench Pro 51.78、Terminal-Bench 2.1 60.67），工具调用也站住了（tau2-bench 零售 69.24 / 航空 76.50 / 电信 73.19，BrowseComp 78）。真正的新东西是视觉这条线：C-RADIO 编码器带来的是文档类能力（MMLongBench-Doc 62.82、OCRBench v2、CharXiv reasoning 80.82、V* 85.60），而不是通用视频理解 —— Video-MME v2 32.85 与 BabyVision 29.60 这两项低得刺眼，说明「原生多模态」在这台机器上基本等于「能读图读 PDF」。需要清醒看待的是口径：全表由 NVIDIA 自测，8 项评测用的是未开源的内部脚手架，而官方自己给的 Terminal Bench 4（离线）只有 1.0 —— 换成 2026 下半年的新一代 agent 评测，它的排序会和 Terminal-Bench 2.1 上的位置完全不同。Artificial Analysis 在发布日称它是「智能指数 26 的美国开源权重第一」，但那是 v4.3.x 口径，与本站 aa 列不可混比。最难被替代的仍是老三样：OpenMDW 许可下可商用、权重数据配方全开所以能后训成自家专用模型、以及 12B 激活带来的单卡 H200 / 单台 DGX Spark 就能开满 1M 的部署曲线。本站入榜的是官方 BF16 列里与站内列同口径的六项：SWE-bench Verified、LiveCodeBench v6、GPQA Diamond、HLE（纯文本）、tau2-bench 三域均值、Terminal-Bench 2.1。",
+   "best_for": [
+    "要私有化部署且需要读图 / 读 PDF 的企业 agent（合规、数据驻留、离线环境）",
+    "文档密集型工作流：OCR、表格、图表、长文档问答（1M 上下文）",
+    "要在自有数据上后训练的场景（权重、数据集、RL 环境与配方全开，配 NeMo 管线）",
+    "单卡 H200 / 单台 DGX Spark 上的高吞吐 agent 服务（NVFP4 + 原生 MTP）"
+   ],
+   "not_for": [
+    "通用视频理解（Video-MME v2 32.85、BabyVision 29.60，均为官方自测低位）",
+    "要第三方复测数据再选型的采购（全表 NVIDIA 自测，8 项用未开源脚手架）",
+    "按最新一代 agent 评测口径选型（官方 Terminal Bench 4 离线仅 1.0）",
+    "24GB 消费卡本地部署（该档不可行，对应档位是 Nemotron 3.5 Bolt 74B-A9B 24GB）",
+    "想要官方固定单价的采购（无官方按 token 定价）"
+   ]
+  },
+  "capability_notes": {
+   "knowledge": "MMLU-ProX 76.91、AA-Omniscience 准确率 26.20 / 幻觉率 30.0 / 指数 4.03、WMT24++ 84.80（官方模型卡 BF16 列，NeMo Gym 统一 harness 自测；NVFP4 同口径为 73.76 / 25.86 / 27.7 / 5.3 / 84.76）。",
+   "reasoning": "GPQA Diamond 89.52、HLE 纯文本 31.79、HLE 全集 29.20、SciCode 子任务 47.13（官方模型卡 BF16 列；NVFP4 为 89.90 / 31.44 / 29.00 / 46.61）。",
+   "coding": "SWE-bench Verified 71.10、SWE-bench Multilingual 67.72、SWE-bench Pro 51.78、LiveCodeBench v6 88.22、APEX shortlist 88.36、Terminal-Bench 2.1 60.67（官方模型卡 BF16 列；NVFP4 为 71.07 / 67.00 / 51.30 / 87.41 / 89.36 / 62.78）。官方另给 DeepSWE（离线）24.65 与 Terminal Bench 4（离线）1.0，均为本站无对应列的口径。",
+   "agent": "tau2-bench 零售 69.24 / 航空 76.50 / 电信 73.19（均值 72.98）、BrowseComp 78、OSWorld-Verified 51.14、WebVoyager（离线）77.72、AutomationBench-AA（离线）32.44、GDPval-AA v2 Elo 1211、GraphWalks 89.71（官方模型卡 BF16 列）。官方给的 τ³-bench Banking 18.88 与本站 tau2 列（τ²-bench）不是同一基准，未并入。",
+   "multimodal": "MMLongBench-Doc 62.82、V* 85.60、OCR-Reasoning 65.08、MathVision 78.16、OCRBench v2 英 68.12 / 中 59.15、CharXiv reasoning 80.82、Video-MME v2 32.85、BabyVision 29.60（官方模型卡 BF16 列）。输入支持 jpeg / png 图像与 ≤2 分钟 MP4 视频，文档可按页图加文本一起送。官方未公布 MMMU 分数，本站 mmmu 列无数据。",
+   "instruction": "IFBench 70.86、LMArena v3 proxy 52.67（官方模型卡 BF16 列）。后者是官方自建的 LMArena 代理指标，不是 LMArena Elo，本站 arena 列未填。",
+   "long_context": "AA-LCR v1.1 68.62（官方模型卡 BF16 列）。官方上下文 1M，输入、视觉输入、对话历史、工具结果与输出共享该窗口；各部署配方可能用更小窗口以适配显存与并发。",
+   "speed": "官方称为同级最快的开源 agent 模型，吞吐为次优者的 5 倍；配合 NVIDIA Dynamo 称可多服务 8 倍用户、延迟降 85%。原生 MTP 投机解码，DGX Spark 另有 LiLiCorr 草稿头。以上均为厂商自述，无第三方复测。",
+   "third_party": "Artificial Analysis 在发布日（2026-10-15）称其以 26 分成为「领先的美国开源权重模型」。该读数为 AA v4.3.x 口径，与本站 aa 列的较早口径不可混比，故未入榜。",
+   "chinese": "官方训练含中文文档 OCR 数据，OCRBench v2 中文 59.15、WMT24++ 84.80；模型卡未给出中文语言支持清单与中文综合评测分数。"
+  },
+  "ecosystem": {
+   "engines": [
+    "vLLM",
+    "SGLang",
+    "TensorRT-LLM",
+    "llama.cpp"
+   ],
+   "finetune": "可微调（官方开放权重、数据集与配方，提供 NVIDIA NeMo 与 Python 管线；ModelScope 另支持 ms-swift 微调）",
    "zh_docs": "无"
   },
   "complete": false
@@ -17291,9 +17833,10 @@
   "openness": "open-weights",
   "weights_available": true,
   "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
-  "status": "current",
+  "status": "superseded",
+  "superseded_by": "nemotron-3-5-super-vl-120b-a12b",
   "released_at": "2026-03-11",
-  "updated_at": "2026-08-28",
+  "updated_at": "2026-10-16",
   "modalities": [
    "text",
    "tools"
@@ -20672,13 +21215,14 @@
   "vendor": "StepFun",
   "vendor_zh": "阶跃星辰（中国）",
   "family": "Step 5",
-  "license": "未公布（预览期按阶跃开放平台服务条款；官方称 2026-10-15 发布开源权重，许可名称与文本尚未公布）",
-  "license_commercial": true,
-  "openness": "api-only",
-  "weights_available": false,
+  "license": "StepFun Model License 1.0",
+  "license_commercial": "restricted",
+  "openness": "open-weights",
+  "weights_available": true,
+  "weights_url": "https://huggingface.co/stepfun-ai/Step-5-Preview",
   "status": "preview",
   "released_at": "2026-09-20",
-  "updated_at": "2026-10-12",
+  "updated_at": "2026-10-16",
   "modalities": [
    "text",
    "image",
@@ -20692,7 +21236,7 @@
    "active_params": "27B",
    "total_params_b": 600,
    "active_params_b": 27,
-   "notes": "官方发布页写「稀疏 MoE，600B 总参 / 每 token 激活 27B」，原生支持图像与视频输入、1M 上下文。官方未公布层数、专家数、注意力结构、预训练 token 量与知识截止。权重未发布：官方发布页写「将于 2026-10-15 以开源权重发布」，截至 2026-10-12 阶跃官方 Hugging Face 组织（stepfun-ai）无 Step 5 仓库 —— 站外有若干第三方账号上传的同名 BF16 仓库并自称「权重已可下载」，非官方发布，本站不采信也不记录。计费口径上官方把它归入「多模态推理模型」，输出 token 含思考过程。",
+   "notes": "官方发布页写「稀疏 MoE，600B 总参 / 每 token 激活 27B」，原生支持图像与视频输入、1M 上下文。官方未公布层数、专家数、注意力结构、预训练 token 量与知识截止。权重已于 2026-10-15 开放：官方 Hugging Face 组织 stepfun-ai 上线 Step-5-Preview（FP8）、Step-5-Preview-BF16 与 Step-5-Preview-NVFP4 三个仓库，ModelScope 同步提供 FP8 与 BF16，许可为 StepFun Model License 1.0。模型标识为 step5_vl。注意开源权重的模型卡与 API 文档口径有出入：模型卡规格表写「输入：文本、图像」「最大输出：最高 1M」（1M 窗口为输入输出合一），而 API 侧最大输出为 64k；模型卡正文仍称原生接受文本、图像与视频。计费口径上官方把它归入「多模态推理模型」，输出 token 含思考过程。",
    "undisclosed": false
   },
   "context": {
@@ -20703,7 +21247,7 @@
   "memory": {
    "weight_gb": {},
    "estimated": false,
-   "kv_note": "权重未发布，官方未给文件体积与部署配置；600B 总参即便 BF16 也是整机级负载"
+   "kv_note": "官方未给 safetensors 文件体积。官方部署矩阵（vLLM / SGLang / Transformers）：FP8 为单节点 4×B300（TP4 / TEP4 / DEP4）或单节点 8×H200（TP8 / TEP8 / DEP8）；BF16 为单节点 8×B300 或两节点 16×H200（TP16 / TEP16 / DEP16）。B300 上 TEP / DEP 走 MegaMoE（--moe-backend deep_gemm_mega_moe），H200 用默认 MoE 后端。官方提示这些配置只是能装下权重的起点，1M 单请求还要额外的 KV 缓存与运行态显存；另明确 BF16 部署必须用 BF16 checkpoint，对 FP8 checkpoint 加 --dtype bfloat16 不会还原权重。带 MTP 投机解码（--spec-method mtp --spec-tokens 3）。600B 总参即便 FP8 也是整机级负载"
   },
   "pricing": {
    "input_per_m": 1,
@@ -20715,22 +21259,29 @@
   },
   "links": {
    "official": "https://www.stepfun.com/step-5-preview",
-   "pricing": "https://platform.stepfun.ai/docs/en/guides/pricing/details"
+   "pricing": "https://platform.stepfun.ai/docs/en/guides/pricing/details",
+   "hf": "https://huggingface.co/stepfun-ai/Step-5-Preview",
+   "modelscope": "https://modelscope.ai/models/stepfun-ai/Step-5-Preview"
   },
   "copy": {
-   "one_liner": "阶跃 600B / 27B 激活的 agent 旗舰，$1 / $2.70，权重承诺 10-15 放。",
+   "one_liner": "阶跃 600B / 27B 激活的 agent 旗舰，$1 / $2.70，权重已于 10-15 开放。",
    "highlights": [
-    "稀疏 MoE 600B 总参 / 27B 激活，1M 上下文（最大输入 1M、最大输出 64k），原生吃文本 + 图像 + 视频",
+    "稀疏 MoE 600B 总参 / 27B 激活，1M 上下文，原生吃文本 + 图像 + 视频",
+    "权重已开放（2026-10-15）：官方 HF 与 ModelScope 同步上线 FP8 / BF16 / NVFP4 三份，许可为 StepFun Model License 1.0 —— Apache-2.0 风格，但加了署名与商用门槛条款（见坑）",
     "官方自测表（High 档）：GPQA Diamond 93.5%、Terminal-Bench v2.1 85.0%、DeepSWE v1.1 67.7%、AA-LCR v1.1 88.3%，自称与 Kimi K3、GLM-5.3 同档",
     "价格是同级里的低位：$1.00 / $2.70，缓存命中 $0.10（输入价的 10%），单一费率无长上下文加价",
+    "国产算力 Day-0 支持齐全：华为昇腾（vLLM Ascend，同日点亮 1024 卡 Atlas 950 SuperPoD 液冷超节点）、沐曦曦云 C 系列、壁仞壁砺系列、摩尔线程 MTT S5000 均官方宣布 0Day 适配",
     "工程接口齐全：OpenAI 兼容 + Anthropic Messages 兼容，effort 三档 low/medium/high，并行工具调用、JSON Schema 严格输出、提示缓存，官方给了 Claude Code 接入文档"
    ],
    "pitfalls": [
-    "权重现在拿不到：官方承诺 2026-10-15，截至 10-12 官方 HF 组织里没有 Step 5 仓库，许可名称与文本一个字没公布 —— 第三方上传的同名「BF16 权重」仓库不是官方发布，别当数据源",
+    "许可不是标准开源：StepFun Model License 1.0 虽是 Apache-2.0 风格，但第 2(b) 条规定任一自然月内若产品月活超 1 亿或营收超 2,000 万美元，此后必须在界面与用户协议里显著标注「Powered by StepFun AI」；第 2(c) 条规定两类情形必须先单独签商业协议 —— 一是硬件厂商 / 品牌方把模型能力作为设备或配套服务的功能首次商用，二是你或关联方在运营 MaaS 业务且合计营收 12 个月内超 2,000 万美元。纯内部使用与官方认证渠道取得的副本不受 2(c) 约束",
     "Preview 状态，官方未承诺行为与分数稳定；知识截止官方未公布",
+    "开源权重的模型卡与 API 文档口径不一致：模型卡规格表写「输入：文本、图像」且最大输出「最高 1M」（输入输出合一），而 API 侧最大输出是 64k，模型卡正文又说原生接受视频 —— 按哪套算要看你走 API 还是自建",
     "编码与 agent 分数全是厂商自测且 harness 不同口径：官方 DeepSWE 跑的是 SWE-agent，独立 DeepSWE 榜统一用 mini-swe-agent，不可直接对比；独立榜单当前只覆盖到 HLE、AA-AnalystAgent 与 Terminal-Bench 4.0 三项",
     "官方表里 HLE 46.5% 一行的工具设定有争议（有追踪方指出该行混了「带工具」与「纯文本子集」口径），故本站未把 HLE 并入总榜，只记在这里",
     "官方同时给 Terminal-Bench v2.1 85.0% 与 Terminal-Bench v4 33.3%，两套口径差距极大；本站 terminal 列是 2.x 口径，看 v4 的话它落在 GLM-5.3（41.9）之后",
+    "自建门槛高：FP8 要单节点 4×B300 或 8×H200，BF16 要 8×B300 或两节点 16×H200，且官方注明这些配置只够装下权重、不保证能跑满 1M 单请求；BF16 必须用 BF16 checkpoint，对 FP8 份加 --dtype bfloat16 不会还原",
+    "部署需专用构建：官方 vLLM 走 vllm/vllm-openai:step-5-preview 镜像，并要 --reasoning-parser step5 与 --tool-call-parser step5 这两个专用解析器",
     "两个平台两套账号与价格：国际站 api.stepfun.ai 与中国站 api.stepfun.com 的密钥互相拒绝，价目也各自独立，跨区部署要分别开通"
    ],
    "logic_ability": "定位是「低价 agent 旗舰」：官方主打软件工程、专业知识工作与金融，发布页把对比列直接摆成 GLM-5.3、Kimi K3、GPT-6 Astra、Claude Fable 5.1 与 Claude Opus 5，自我定位是追开源头部而非超越闭源前沿。从官方表看形状比较清楚：知识与长上下文是强项（GPQA Diamond 93.5 与 Kimi K3 并列、AA-LCR v1.1 88.3 反超表里所有闭源列），编码与终端任务则贴着开源同档（DeepSWE 67.7 对 Kimi K3 67.5、GLM-5.3 66.9，而 GPT-6 Astra 74.1；Terminal-Bench v2.1 85.0 对 Kimi K3 85.0、GLM-5.3 83.9，闭源列都在 88 以上），物理推理的 CritPt 20.9 是表里最低一档。真正要留意的是口径：同一张表里 Terminal-Bench v4 只有 33.3，被 GLM-5.3 的 41.9 反超，说明换成更难的新版终端评测后它的排序会变。独立侧目前只有 Artificial Analysis 与 vals.ai 覆盖了少数几项，AA 另外测到它输出极为冗长（评测期生成约 1.6 亿 token，对比中位数约 9400 万），按 token 计费时这是直接的成本乘数。阶跃把它定义为新旗舰而非 Step 3.7 Flash 的替代，后者仍在官方价目表上。",
@@ -20738,13 +21289,14 @@
     "预算敏感的长上下文 agent 与编码负载（$1 / $2.70 + 缓存命中 $0.10）",
     "需要原生视频理解的多模态分析（图像 ≤60 张 / 请求，视频 MP4 等 <128MB）",
     "中文场景下要 1M 上下文的文档与跨源问答",
-    "等 10-15 权重落地后的自建基座候选"
+    "要自建或做领域微调的 600B 级基座（权重已开放，国产算力 Day-0 适配齐全）"
    ],
    "not_for": [
-    "现在就要自建或要许可条款的场景（权重与许可都没出）",
+    "营收超 2,000 万美元的 MaaS 业务与硬件厂商的设备内置（许可第 2(c) 条要求先单独签商业协议）",
     "要稳定行为与稳定分数的生产主力（Preview 期）",
     "按输出 token 严格控本的高频负载（AA 实测输出远高于中位数）",
-    "依赖独立复测数据选型（绝大多数分数仍是厂商自测）"
+    "依赖独立复测数据选型（绝大多数分数仍是厂商自测）",
+    "整机规模以下的自建部署（FP8 最低单节点 4×B300 或 8×H200）"
    ]
   },
   "capability_notes": {
@@ -20755,11 +21307,38 @@
    "chinese": "中文原生（阶跃为中国厂商，另有中国站平台），但官方未公布任何中文评测分数，本站无中文榜数据。"
   },
   "ecosystem": {
-   "engines": [],
-   "finetune": "暂不支持自建微调（权重未发布）；官方未提供托管微调",
+   "engines": [
+    "vLLM",
+    "SGLang",
+    "Transformers"
+   ],
+   "finetune": "可自建微调（权重已开放，受 StepFun Model License 1.0 约束）；官方未提供托管微调与官方微调脚本",
    "zh_docs": "有"
   },
-  "complete": false
+  "complete": false,
+  "variants": [
+   {
+    "kind": "fp8",
+    "publisher": "stepfun-ai",
+    "repo": "stepfun-ai/Step-5-Preview",
+    "url": "https://huggingface.co/stepfun-ai/Step-5-Preview",
+    "note": "官方 FP8，官方部署示例的默认选择（单节点 4×B300 或 8×H200）"
+   },
+   {
+    "kind": "bf16",
+    "publisher": "stepfun-ai",
+    "repo": "stepfun-ai/Step-5-Preview-BF16",
+    "url": "https://huggingface.co/stepfun-ai/Step-5-Preview-BF16",
+    "note": "官方全精度版，需单节点 8×B300 或两节点 16×H200"
+   },
+   {
+    "kind": "nvfp4",
+    "publisher": "stepfun-ai",
+    "repo": "stepfun-ai/Step-5-Preview-NVFP4",
+    "url": "https://huggingface.co/stepfun-ai/Step-5-Preview-NVFP4",
+    "note": "官方 NVFP4（经 modelopt 量化），2026-10-14 建仓、10-15 随权重一同公开"
+   }
+  ]
  },
  {
   "aliases": [

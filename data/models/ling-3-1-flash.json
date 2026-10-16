@@ -1,0 +1,112 @@
+{
+ "id": "ling-3-1-flash",
+ "name": "Ling-3.1-flash",
+ "name_zh": "蚂蚁 Ling-3.1-flash",
+ "aliases": [
+  "Ling-3.1-flash",
+  "inclusionAI/Ling-3.1-flash",
+  "inclusionai/ling-3.1-flash"
+ ],
+ "vendor": "inclusionAI (Ant Group)",
+ "vendor_zh": "蚂蚁集团 inclusionAI（中国）",
+ "family": "Ling 3",
+ "license": "MIT",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
+ "status": "current",
+ "released_at": "2026-10-15",
+ "updated_at": "2026-10-16",
+ "modalities": [
+  "text",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "560B",
+  "active_params": "25B",
+  "total_params_b": 560,
+  "active_params_b": 25,
+  "experts": 512,
+  "active_experts": 8,
+  "shared_expert": true,
+  "layers": 72,
+  "hidden_size": 4096,
+  "vocab_size": 157184,
+  "attention": "混合线性 MoE：63 层 KDA + 9 层 Gated MLA（7:1 交错），64 个注意力头",
+  "notes": "官方模型卡写「Hybrid-linear MoE，总参 560B / 每 token 激活 25B」，自称是「原生混合推理模型」（chat template 以 enable_thinking 开关思考）。结构为 63 层 KDA 加 9 层 Gated MLA 按 7:1 交错，另有 4 层稠密层；每个 MoE 层 512 路由专家 + 1 共享专家，每 token 激活 8 个，专家中间维 1,280、稠密中间维 10,240，词表 157,184。模型标识为 bailing_hybrid，带 MTP（SGLang 里为 NEXTN）投机解码。上下文 1M —— 官方 9 月 30 日公布时的免费 API 试用只开到 256K，10 月 14 日试用结束转付费的同时放出权重并开满 1M。它建立在 7 月的 Ling-3.0-flash（124B / 5.1B 激活）之上，官方称架构与真实任务表现都有改进。官方未公布预训练 token 量与知识截止；另按 inclusionAI 的 AI-Transparency 仓库发布了训练内容披露摘要 PDF。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {
+   "fp8": 560
+  },
+  "estimated": true,
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "官方参考配置为 8×H200（TP8 + EP8）或 4×GB300（TP4 + EP4）；SGLang cookbook 另给 H800 / H100 / B200 的已验证配方",
+  "kv_note": "HF 仓库标 fp8，官方未给 safetensors 文件体积，560GB 为按 560B 参数 FP8 推算的估值。官方推荐 SGLang（day-0 镜像 lmsysorg/sglang:dev-ling-3.1-flash，含 MTP/NEXTN 投机解码与 Hopper 解码优化），另给 vLLM 配方（需从 vllm 分支源码装）。Hopper 上可用 SGLANG_ENABLE_FP8_BLOCK_GEMV=1 与 SGLANG_ENABLE_FUSED_KDA_OUTPUT_QUANT=1 再快约 10% 的 batch-1 解码"
+ },
+ "links": {
+  "official": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
+  "hf": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
+  "modelscope": "https://modelscope.cn/organization/inclusionAI",
+  "cookbook": "https://docs.sglang.io/cookbook/autoregressive/InclusionAI/Ling-3.1-flash"
+ },
+ "copy": {
+  "one_liner": "蚂蚁 560B / 25B 激活的混合线性 MoE，MIT 许可、1M 上下文，权重 10-15 开放。",
+  "highlights": [
+   "纯 MIT 许可的 560B 级模型：没有 MaaS 门槛、没有营收条款、没有署名要求 —— 和 Kimi K3、GLM-5.3、Qwen3.8 旗舰、Muse Spark Open 那类自定义许可不是一个档",
+   "架构是真的混合线性：63 层 KDA + 9 层 Gated MLA 按 7:1 交错，每层 512 路由 + 1 共享专家、每 token 激活 8 个 —— 25B 激活撑 1M 上下文，官方参考配置只要 8×H200 或 4×GB300",
+   "权重与 1M 窗口是同时放出的：9 月 30 日公布时免费 API 试用只给 256K，10 月 14 日试用结束转付费，10 月 15 日权重上 HF 与 ModelScope 并开满 1M",
+   "工程落地写得很具体：官方推荐 SGLang 并提供 day-0 镜像（含 MTP/NEXTN 投机解码与 Hopper 解码优化），cookbook 里有 H200 / GB300 / H800 / H100 / B200 的已验证配方加 HiCache（Mooncake L3）；官方点名在 Claude Code、Kilo Code、Qwen Code、Hermes Agent、OpenClaw 等框架里的实际体验",
+   "附了训练内容披露摘要 PDF（inclusionAI/AI-Transparency 仓库），说明覆盖的模型版本、训练内容范围与摘要版本"
+  ],
+  "pitfalls": [
+   "官方模型卡的评测一节只点名了基准清单（Terminal-Bench 4.0、SWE-bench Pro、FrontierSWE、GDPVal-AA V2.1、AutomationBench、MCP-Atlas、SkillsBench、HealthBench Professional），没有给出任何可引用的数值表 —— 本站因此一个分数都没法入库，总榜上它是空行",
+   "它自报强项的那几个基准（Terminal-Bench 4.0、FrontierSWE、GDPVal-AA V2.1、SWE-bench Pro）本站都没有对应列，即便将来给出数值也未必能并入总榜",
+   "官方把编码成绩和一个未开源的自研 harness 绑在一起：LingCode 基于开源 agent Pi 改造，官方称它在部分编码 agent 任务上带来「显著提升」，但同时只说「将来考虑开源」—— 所以用标准 harness 自测时未必能复现官方口径",
+   "纯文本模型。同族的多模态版本是 9 月的 Ling-3.0-flash-VL，不是这一代；本站无 Ling-3.0 系列条目，故它不替代任何现有条目",
+   "vLLM 路径还不在正式发行版里：官方要求从 vllm-project/vllm 的 vllm 分支源码安装（VLLM_USE_PRECOMPILED=1 可编辑安装），SGLang 才是官方推荐路径",
+   "无官方按 token 定价入库：蚂蚁的托管服务与 OpenRouter 等第三方渠道各有价目，本站用官方定价页，第三方渠道价不跟",
+   "官方未公布预训练 token 量、知识截止日期与最大输出长度"
+  ],
+  "logic_ability": "这条目前只能按「许可与架构」来评估，因为官方没给数。值得记的是它在开源阵营里的位置：560B 总参、25B 激活、1M 上下文、纯 MIT —— 这个组合在 2026 年 10 月的开源榜里相当稀缺，因为同量级的 Kimi K3（2.8T/104B）、GLM-5.3（744B/40B）、Qwen3.8 旗舰（2.4T/95B）全都带自定义许可的规模条款，而 MIT 这一档此前主要是 DeepSeek-V4.1-Flash（552B 骨干）和小米 MiMo-V2.6 系列在撑。架构上它走的是和 Nemotron 3.5 同一个方向但不同路线：NVIDIA 用 Mamba-2 交错注意力，蚂蚁用 63 层 KDA 加 9 层 Gated MLA 的 7:1 交错，目标都是把长上下文的显存与带宽成本压下来 —— 结果是 8×H200 就能跑 1M，这个部署曲线比参数量暗示的要友好得多。真正的空白是能力：官方评测一节把基准名字列了一长串（Terminal-Bench 4.0、FrontierSWE、GDPVal-AA V2.1、SWE-bench Pro、AutomationBench、MCP-Atlas、SkillsBench、HealthBench Professional），却没有给出任何数值表，而且它自称的编码提升与一个未开源的自研 harness（LingCode，基于 Pi 改造）绑在一起 —— 官方只说「将来考虑开源」。这种「列基准不给数、强项依赖自研 harness」的组合，意味着现在没法把它放进任何横向对比，本站的做法是先建速览条目把许可、规格与部署配方落下来，分数等官方或第三方给出可引用数值再补。另外要注意它和 Ling-3.0-flash 的关系：官方说「建立在 Ling-3.0-flash 之上」并有架构与真实任务改进，但本站此前无 Ling 系列条目，所以这次不产生任何 superseded 变更。",
+  "best_for": [
+   "需要 MIT 许可的 500B+ 级自建基座（无 MaaS 门槛与署名要求）",
+   "长上下文 agent 与长文档工作流（1M 上下文，25B 激活）",
+   "有 8×H200 / 4×GB300 级集群且走 SGLang 的团队（官方 day-0 镜像与多硬件已验证配方）",
+   "要在中文真实业务场景里做领域微调的基座候选"
+  ],
+  "not_for": [
+   "靠公开分数选型（官方未给任何可引用的评测数值）",
+   "多模态任务（纯文本模型；同族多模态版是上一代的 Ling-3.0-flash-VL）",
+   "单机单卡或消费级硬件部署",
+   "只用 vLLM 正式发行版的部署（官方 vLLM 路径需源码分支安装）",
+   "要官方固定单价的 API 采购（本站未入库其官方定价）"
+  ]
+ },
+ "capability_notes": {
+  "coding": "官方模型卡点名 Terminal-Bench 4.0、SWE-bench Pro、FrontierSWE 为其强项基准，但未给出任何数值。官方另称自研 harness LingCode（基于开源 agent Pi 改造，支持数百轮工具调用与反复上下文压缩）在部分编码 agent 任务上带来显著提升，该 harness 未开源。",
+  "agent": "官方点名 GDPVal-AA V2.1、AutomationBench、MCP-Atlas、SkillsBench，均未给数值。官方称在 Claude Code、Kilo Code、Qwen Code、Hermes Agent、OpenClaw 等框架里有良好实际体验。",
+  "knowledge": "官方点名 HealthBench Professional，并称在 STEM、医疗与金融等真实任务上表现强，另提到金融与材料科学等专门领域有改进 —— 均未给数值。",
+  "long_context": "官方上下文 1M。注意 9 月 30 日公布时的免费 API 试用只开放 256K，权重放出时才开满 1M。官方未给长上下文评测分数。",
+  "speed": "带 MTP 投机解码（SGLang 里为 NEXTN）。官方 day-0 SGLang 镜像含 Hopper 解码优化，开 SGLANG_ENABLE_FP8_BLOCK_GEMV=1 与 SGLANG_ENABLE_FUSED_KDA_OUTPUT_QUANT=1 可让 batch-1 解码再快约 10%。SGLang cookbook 另有实测精度与速度数据。",
+  "chinese": "中文原生（蚂蚁集团为中国厂商，模型卡与 ModelScope 均提供中文入口）。官方未公布中文评测分数。"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM"
+  ],
+  "finetune": "可微调（MIT 许可，权重完全开放；官方未提供专门的微调脚本或托管微调）",
+  "zh_docs": "有"
+ },
+ "complete": false
+}

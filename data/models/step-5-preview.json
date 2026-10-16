@@ -10,13 +10,14 @@
  "vendor": "StepFun",
  "vendor_zh": "阶跃星辰（中国）",
  "family": "Step 5",
- "license": "未公布（预览期按阶跃开放平台服务条款；官方称 2026-10-15 发布开源权重，许可名称与文本尚未公布）",
- "license_commercial": true,
- "openness": "api-only",
- "weights_available": false,
+ "license": "StepFun Model License 1.0",
+ "license_commercial": "restricted",
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/stepfun-ai/Step-5-Preview",
  "status": "preview",
  "released_at": "2026-09-20",
- "updated_at": "2026-10-12",
+ "updated_at": "2026-10-16",
  "modalities": [
   "text",
   "image",
@@ -30,7 +31,7 @@
   "active_params": "27B",
   "total_params_b": 600,
   "active_params_b": 27,
-  "notes": "官方发布页写「稀疏 MoE，600B 总参 / 每 token 激活 27B」，原生支持图像与视频输入、1M 上下文。官方未公布层数、专家数、注意力结构、预训练 token 量与知识截止。权重未发布：官方发布页写「将于 2026-10-15 以开源权重发布」，截至 2026-10-12 阶跃官方 Hugging Face 组织（stepfun-ai）无 Step 5 仓库 —— 站外有若干第三方账号上传的同名 BF16 仓库并自称「权重已可下载」，非官方发布，本站不采信也不记录。计费口径上官方把它归入「多模态推理模型」，输出 token 含思考过程。",
+  "notes": "官方发布页写「稀疏 MoE，600B 总参 / 每 token 激活 27B」，原生支持图像与视频输入、1M 上下文。官方未公布层数、专家数、注意力结构、预训练 token 量与知识截止。权重已于 2026-10-15 开放：官方 Hugging Face 组织 stepfun-ai 上线 Step-5-Preview（FP8）、Step-5-Preview-BF16 与 Step-5-Preview-NVFP4 三个仓库，ModelScope 同步提供 FP8 与 BF16，许可为 StepFun Model License 1.0。模型标识为 step5_vl。注意开源权重的模型卡与 API 文档口径有出入：模型卡规格表写「输入：文本、图像」「最大输出：最高 1M」（1M 窗口为输入输出合一），而 API 侧最大输出为 64k；模型卡正文仍称原生接受文本、图像与视频。计费口径上官方把它归入「多模态推理模型」，输出 token 含思考过程。",
   "undisclosed": false
  },
  "context": {
@@ -41,7 +42,7 @@
  "memory": {
   "weight_gb": {},
   "estimated": false,
-  "kv_note": "权重未发布，官方未给文件体积与部署配置；600B 总参即便 BF16 也是整机级负载"
+  "kv_note": "官方未给 safetensors 文件体积。官方部署矩阵（vLLM / SGLang / Transformers）：FP8 为单节点 4×B300（TP4 / TEP4 / DEP4）或单节点 8×H200（TP8 / TEP8 / DEP8）；BF16 为单节点 8×B300 或两节点 16×H200（TP16 / TEP16 / DEP16）。B300 上 TEP / DEP 走 MegaMoE（--moe-backend deep_gemm_mega_moe），H200 用默认 MoE 后端。官方提示这些配置只是能装下权重的起点，1M 单请求还要额外的 KV 缓存与运行态显存；另明确 BF16 部署必须用 BF16 checkpoint，对 FP8 checkpoint 加 --dtype bfloat16 不会还原权重。带 MTP 投机解码（--spec-method mtp --spec-tokens 3）。600B 总参即便 FP8 也是整机级负载"
  },
  "pricing": {
   "input_per_m": 1,
@@ -53,22 +54,29 @@
  },
  "links": {
   "official": "https://www.stepfun.com/step-5-preview",
-  "pricing": "https://platform.stepfun.ai/docs/en/guides/pricing/details"
+  "pricing": "https://platform.stepfun.ai/docs/en/guides/pricing/details",
+  "hf": "https://huggingface.co/stepfun-ai/Step-5-Preview",
+  "modelscope": "https://modelscope.ai/models/stepfun-ai/Step-5-Preview"
  },
  "copy": {
-  "one_liner": "阶跃 600B / 27B 激活的 agent 旗舰，$1 / $2.70，权重承诺 10-15 放。",
+  "one_liner": "阶跃 600B / 27B 激活的 agent 旗舰，$1 / $2.70，权重已于 10-15 开放。",
   "highlights": [
-   "稀疏 MoE 600B 总参 / 27B 激活，1M 上下文（最大输入 1M、最大输出 64k），原生吃文本 + 图像 + 视频",
+   "稀疏 MoE 600B 总参 / 27B 激活，1M 上下文，原生吃文本 + 图像 + 视频",
+   "权重已开放（2026-10-15）：官方 HF 与 ModelScope 同步上线 FP8 / BF16 / NVFP4 三份，许可为 StepFun Model License 1.0 —— Apache-2.0 风格，但加了署名与商用门槛条款（见坑）",
    "官方自测表（High 档）：GPQA Diamond 93.5%、Terminal-Bench v2.1 85.0%、DeepSWE v1.1 67.7%、AA-LCR v1.1 88.3%，自称与 Kimi K3、GLM-5.3 同档",
    "价格是同级里的低位：$1.00 / $2.70，缓存命中 $0.10（输入价的 10%），单一费率无长上下文加价",
+   "国产算力 Day-0 支持齐全：华为昇腾（vLLM Ascend，同日点亮 1024 卡 Atlas 950 SuperPoD 液冷超节点）、沐曦曦云 C 系列、壁仞壁砺系列、摩尔线程 MTT S5000 均官方宣布 0Day 适配",
    "工程接口齐全：OpenAI 兼容 + Anthropic Messages 兼容，effort 三档 low/medium/high，并行工具调用、JSON Schema 严格输出、提示缓存，官方给了 Claude Code 接入文档"
   ],
   "pitfalls": [
-   "权重现在拿不到：官方承诺 2026-10-15，截至 10-12 官方 HF 组织里没有 Step 5 仓库，许可名称与文本一个字没公布 —— 第三方上传的同名「BF16 权重」仓库不是官方发布，别当数据源",
+   "许可不是标准开源：StepFun Model License 1.0 虽是 Apache-2.0 风格，但第 2(b) 条规定任一自然月内若产品月活超 1 亿或营收超 2,000 万美元，此后必须在界面与用户协议里显著标注「Powered by StepFun AI」；第 2(c) 条规定两类情形必须先单独签商业协议 —— 一是硬件厂商 / 品牌方把模型能力作为设备或配套服务的功能首次商用，二是你或关联方在运营 MaaS 业务且合计营收 12 个月内超 2,000 万美元。纯内部使用与官方认证渠道取得的副本不受 2(c) 约束",
    "Preview 状态，官方未承诺行为与分数稳定；知识截止官方未公布",
+   "开源权重的模型卡与 API 文档口径不一致：模型卡规格表写「输入：文本、图像」且最大输出「最高 1M」（输入输出合一），而 API 侧最大输出是 64k，模型卡正文又说原生接受视频 —— 按哪套算要看你走 API 还是自建",
    "编码与 agent 分数全是厂商自测且 harness 不同口径：官方 DeepSWE 跑的是 SWE-agent，独立 DeepSWE 榜统一用 mini-swe-agent，不可直接对比；独立榜单当前只覆盖到 HLE、AA-AnalystAgent 与 Terminal-Bench 4.0 三项",
    "官方表里 HLE 46.5% 一行的工具设定有争议（有追踪方指出该行混了「带工具」与「纯文本子集」口径），故本站未把 HLE 并入总榜，只记在这里",
    "官方同时给 Terminal-Bench v2.1 85.0% 与 Terminal-Bench v4 33.3%，两套口径差距极大；本站 terminal 列是 2.x 口径，看 v4 的话它落在 GLM-5.3（41.9）之后",
+   "自建门槛高：FP8 要单节点 4×B300 或 8×H200，BF16 要 8×B300 或两节点 16×H200，且官方注明这些配置只够装下权重、不保证能跑满 1M 单请求；BF16 必须用 BF16 checkpoint，对 FP8 份加 --dtype bfloat16 不会还原",
+   "部署需专用构建：官方 vLLM 走 vllm/vllm-openai:step-5-preview 镜像，并要 --reasoning-parser step5 与 --tool-call-parser step5 这两个专用解析器",
    "两个平台两套账号与价格：国际站 api.stepfun.ai 与中国站 api.stepfun.com 的密钥互相拒绝，价目也各自独立，跨区部署要分别开通"
   ],
   "logic_ability": "定位是「低价 agent 旗舰」：官方主打软件工程、专业知识工作与金融，发布页把对比列直接摆成 GLM-5.3、Kimi K3、GPT-6 Astra、Claude Fable 5.1 与 Claude Opus 5，自我定位是追开源头部而非超越闭源前沿。从官方表看形状比较清楚：知识与长上下文是强项（GPQA Diamond 93.5 与 Kimi K3 并列、AA-LCR v1.1 88.3 反超表里所有闭源列），编码与终端任务则贴着开源同档（DeepSWE 67.7 对 Kimi K3 67.5、GLM-5.3 66.9，而 GPT-6 Astra 74.1；Terminal-Bench v2.1 85.0 对 Kimi K3 85.0、GLM-5.3 83.9，闭源列都在 88 以上），物理推理的 CritPt 20.9 是表里最低一档。真正要留意的是口径：同一张表里 Terminal-Bench v4 只有 33.3，被 GLM-5.3 的 41.9 反超，说明换成更难的新版终端评测后它的排序会变。独立侧目前只有 Artificial Analysis 与 vals.ai 覆盖了少数几项，AA 另外测到它输出极为冗长（评测期生成约 1.6 亿 token，对比中位数约 9400 万），按 token 计费时这是直接的成本乘数。阶跃把它定义为新旗舰而非 Step 3.7 Flash 的替代，后者仍在官方价目表上。",
@@ -76,13 +84,14 @@
    "预算敏感的长上下文 agent 与编码负载（$1 / $2.70 + 缓存命中 $0.10）",
    "需要原生视频理解的多模态分析（图像 ≤60 张 / 请求，视频 MP4 等 <128MB）",
    "中文场景下要 1M 上下文的文档与跨源问答",
-   "等 10-15 权重落地后的自建基座候选"
+   "要自建或做领域微调的 600B 级基座（权重已开放，国产算力 Day-0 适配齐全）"
   ],
   "not_for": [
-   "现在就要自建或要许可条款的场景（权重与许可都没出）",
+   "营收超 2,000 万美元的 MaaS 业务与硬件厂商的设备内置（许可第 2(c) 条要求先单独签商业协议）",
    "要稳定行为与稳定分数的生产主力（Preview 期）",
    "按输出 token 严格控本的高频负载（AA 实测输出远高于中位数）",
-   "依赖独立复测数据选型（绝大多数分数仍是厂商自测）"
+   "依赖独立复测数据选型（绝大多数分数仍是厂商自测）",
+   "整机规模以下的自建部署（FP8 最低单节点 4×B300 或 8×H200）"
   ]
  },
  "capability_notes": {
@@ -93,9 +102,36 @@
   "chinese": "中文原生（阶跃为中国厂商，另有中国站平台），但官方未公布任何中文评测分数，本站无中文榜数据。"
  },
  "ecosystem": {
-  "engines": [],
-  "finetune": "暂不支持自建微调（权重未发布）；官方未提供托管微调",
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "Transformers"
+  ],
+  "finetune": "可自建微调（权重已开放，受 StepFun Model License 1.0 约束）；官方未提供托管微调与官方微调脚本",
   "zh_docs": "有"
  },
- "complete": false
+ "complete": false,
+ "variants": [
+  {
+   "kind": "fp8",
+   "publisher": "stepfun-ai",
+   "repo": "stepfun-ai/Step-5-Preview",
+   "url": "https://huggingface.co/stepfun-ai/Step-5-Preview",
+   "note": "官方 FP8，官方部署示例的默认选择（单节点 4×B300 或 8×H200）"
+  },
+  {
+   "kind": "bf16",
+   "publisher": "stepfun-ai",
+   "repo": "stepfun-ai/Step-5-Preview-BF16",
+   "url": "https://huggingface.co/stepfun-ai/Step-5-Preview-BF16",
+   "note": "官方全精度版，需单节点 8×B300 或两节点 16×H200"
+  },
+  {
+   "kind": "nvfp4",
+   "publisher": "stepfun-ai",
+   "repo": "stepfun-ai/Step-5-Preview-NVFP4",
+   "url": "https://huggingface.co/stepfun-ai/Step-5-Preview-NVFP4",
+   "note": "官方 NVFP4（经 modelopt 量化），2026-10-14 建仓、10-15 随权重一同公开"
+  }
+ ]
 }

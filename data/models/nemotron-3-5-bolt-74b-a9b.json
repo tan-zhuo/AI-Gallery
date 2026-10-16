@@ -1,0 +1,137 @@
+{
+ "id": "nemotron-3-5-bolt-74b-a9b",
+ "name": "Nemotron 3.5 Bolt 74B-A9B 24GB",
+ "name_zh": "NVIDIA Nemotron 3.5 Bolt · 74B A9B 24GB",
+ "aliases": [
+  "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+  "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-BF16",
+  "NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+  "Nemotron 3.5 Bolt"
+ ],
+ "vendor": "NVIDIA",
+ "vendor_zh": "NVIDIA（美国）",
+ "family": "Nemotron 3.5",
+ "license": "OpenMDW License Agreement, version 1.1",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+ "status": "current",
+ "released_at": "2026-10-15",
+ "updated_at": "2026-10-16",
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "74B",
+  "active_params": "9B",
+  "total_params_b": 74,
+  "active_params_b": 9,
+  "attention": "Mamba-2 + Transformer 混合 LatentMoE（专家 top-K 固定为 9，父模型为 22），外挂 C-RADIO v4-H 视觉编码器经 MLP 投影器接入",
+  "notes": "从 Nemotron 3.5 Super VL 120B-A12B 压缩而来，用 NVIDIA 自研的 Star Elastic 做「预算约束下的路由器引导架构搜索 + 端到端压缩」：预算条件路由器按层异构选择路由专家数与 MoE 中间维，目标是 batch 1、128K 上下文下落在 24GB 以内（该预算已把后续量化与运行态精度算进去）。架构搜索在 8K 上下文跑，路由器在前 8B token 收敛，之后 8K 恢复训练至 72B token，再在 128K 上下文续训 48B token，合计 120B token。随后把父模型的视觉塔接回压缩后的语言骨干、只轻量微调视觉投影层（约 660 万图文样本 / 轮），再做视觉重 SFT、checkpoint 合并（SLERP）、agent 环境 E2E GRPO 与 RLHF，最后再合并一次得到 BF16 终版。量化阶段把全部路由与共享专家压到 IQ2-XXS（2.0625 bit/参数）并用量化感知蒸馏回收精度，Mamba 层保 NVFP4、嵌入与输出层保 Q8_0。模型日期 2025-12 至 2026-05，后训练数据截止 2026-05。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 262144,
+  "display": "256K"
+ },
+ "memory": {
+  "weight_gb": {
+   "iq2": 22.01,
+   "bf16": 148
+  },
+  "estimated": false,
+  "ref_hw_24gb": "可行，这正是设计目标：官方技术报告给出 24GB 档的逐项预算 —— 权重 22.01GB + 运行态 0.87GB（Mamba SSM 缓存 0.08 / KV 缓存 FP8 0.54 / 激活缓冲 0.25）= 22.87GB，余下 1.13GB 装 0.96GB 的投机草稿头。该预算覆盖纯文本服务，视觉编码器与投影器另算",
+  "ref_hw_80gb": "绰绰有余；BF16 那份官方定位是做后训练与自制量化版的起点，需 A100 / H100-80GB / Blackwell 上的 vLLM",
+  "ref_hw_8x80gb": "无需",
+  "kv_note": "IQ2 权重 22.01GB 为官方技术报告的分项合计（路由专家 IQ2_XXS 17.05 / 共享专家 0.45 / 注意力投影 Q8_0 0.30 / Latent MoE 投影 Q8_0 0.36 / Mamba 输入输出投影 NVFP4 2.47 / 词嵌入 Q8_0 0.57 / LM head Q8_0 0.57 / MoE 路由器 F32 0.23 / Mamba 卷积 F32 0.01）。BF16 体积未在官方模型卡给出，148GB 为按 74B 参数推算的估值。官方同时发 GGUF（含 mmproj 视觉投影器）与 LiLiCorr 草稿头的 HF 与 GGUF 两种格式"
+ },
+ "links": {
+  "official": "https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/",
+  "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+  "tech_report": "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-Technical-Report.pdf",
+  "tech_blog": "https://research.nvidia.com/labs/nemotron/Nemotron-3.5-Bolt-24GB/"
+ },
+ "variants": [
+  {
+   "kind": "gguf",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-GGUF",
+   "note": "官方 GGUF（含 mmproj 视觉投影器），对应 llama.cpp / Ollama / LM Studio / Unsloth 路径"
+  },
+  {
+   "kind": "bf16",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-BF16",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-BF16",
+   "note": "官方全精度版，官方明写「主要用于定制与后训练，而非直接生产推理」"
+  },
+  {
+   "kind": "other",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-LiLiCorr",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB-LiLiCorr",
+   "note": "官方 LiLiCorr 投机解码草稿头（经 Model Optimizer 量化为 NVFP4），vLLM 配方用 7 个投机 token；另有同名 GGUF 版"
+  }
+ ],
+ "copy": {
+  "one_liner": "从 Super VL 压出来的 74B / 9B 激活视觉语言模型，原生 2-bit 量化真塞进 24GB，256K 上下文。",
+  "highlights": [
+   "「24GB」不是约等于，是被当成约束条件训出来的：官方用 Star Elastic 让架构搜索直接以 batch 1、128K 上下文下低于 24GB 为目标，技术报告逐项列到小数点 —— 权重 22.01GB + 运行态 0.87GB + 草稿头 0.96GB，正好卡在 24GB 以内",
+   "同内存档位里它赢得相当干净（官方同 harness 对照）：BrowseComp 66.75 对 Qwen3.6-35B-A3B 的 48.74、GPQA Diamond 86.43 对 83.40、HLE 无工具 25.30 对 19.56、Terminal-Bench 2.1 50.98 对 44.38、GDPVal-AA-V2 28.47 对 25.75，同时对 Nemotron 3.5 Lightning 30B-A3B 全面领先",
+   "本地 agent 的配套给全了：官方同时放 HF、GGUF（含视觉投影器）与 LiLiCorr 草稿头，支持 llama.cpp / Ollama / LM Studio / Unsloth / vLLM，官方点名为 2026-10-16 开售的 RTX Spark 笔记本而做，也跑 GeForce RTX PC、DGX Spark / Station 与 RTX PRO 工作站",
+   "OpenMDW-1.1 可商用，权重、训练数据与配方延续 Nemotron 全开传统；视觉能力从父模型整塔搬回来，WebArena（视觉）50.86 对 Qwen3.6 的 36.60"
+  ],
+  "pitfalls": [
+   "上下文只有 256K，是 3.5 代里最短的 —— 同族 Super VL 与 Lightning 都是 1M。要长文档聚合就别选这一档",
+   "2-bit 的代价记在官方自己的表上：AA-Omniscience 准确率 16.90 低于 Qwen3.6-35B-A3B 的 19.47 与 Gemma4 26B-A4B 的 22.17，非幻觉率 61.27 也低于 Lightning 的 68.81、Qwen3.6 的 65.85 —— 知识密度与「不乱答」是它让出去的东西",
+   "官方那张表没有 SWE-bench Verified 与 LiveCodeBench，本站这两列对它是空的；别拿 Terminal-Bench 2.1 的 50.98 当仓库级编码能力的代理",
+   "官方承认一处打分口径冲突：Qwen3.6-35B-A3B 的 MCP-Atlas 自报为 62.8，NVIDIA 在 500 道公开任务子集上只测到 51.2 并以后者入表 —— 这张对照表的对比列是 NVIDIA 代跑的",
+   "部署挑得厉害：IQ2 这份只标注支持 Blackwell SM120 / SM121 微架构，vLLM 要指定 nightly 镜像、额外 pip install b12x 与 vllm download-kernels、手动 wget 一个 reasoning parser 插件，并带一长串 b12x 后端与 Mamba 参数",
+   "BF16 那份不是给生产推理用的（官方明写用于定制与后训练），而它本身也不是独立训练的模型 —— 是 Super VL 的压缩产物，能力天花板由父模型决定",
+   "无官方按 token 定价（本地部署为主）；语言支持为英、法、西、意、德、日、印地、韩、巴葡与中文，但无中文专项评测分数",
+   "同场发布的 Bolt E4B 4GB 官方排期是 2026-10-23，本站届时另立条目"
+  ],
+  "logic_ability": "这台机器的有趣之处不在分数，在约束。NVIDIA 没有先训一个模型再找量化方案，而是把「batch 1、128K 上下文、低于 24GB」写进架构搜索的目标函数 —— 预算条件路由器按层异构地砍路由专家数与 MoE 中间维，专家 top-K 从父模型的 22 降到 9，而且这个预算从一开始就把后续的 2-bit 专家权重与 16-bit SSM 状态算进去了。结果是一台「74B 总参但只有 22GB 权重」的视觉语言模型，官方技术报告把 24GB 的每一项都摊开给你看。能力形状符合「本地 agent 执行器」的定位：它赢的是浏览与终端（BrowseComp 66.75、Terminal-Bench 2.1 50.98、WebArena 视觉 50.86、PinchBench 87.82、MCP-Atlas 52.20），让出的是知识密度（AA-Omniscience 准确率 16.90 垫底、非幻觉率 61.27 也低于同级）。这个取舍在本地 agent 场景里说得通 —— 浏览器和终端就在手边，不需要模型自己记住事实。相对同族 Lightning 30B-A3B，它在 13 项里几乎全面领先（Terminal-Bench 2.1 50.98 对 23.46、BrowseComp 66.75 对 36.81、GPQA 86.43 对 75.57、HLE 25.30 对 10.47），但两者不是替代关系：Lightning 是 1M 上下文的纯文本高吞吐档，Bolt 是 256K 的 24GB 本地视觉档，NVIDIA 在发布博客里把 Lightning / Ultra / Super VL / Bolt 并列成四个共存档位。要留意的是这张对照表的对比列全由 NVIDIA 代跑，官方自己就标出了一处与厂商自报不符的数（Qwen3.6 的 MCP-Atlas 62.8 对实测 51.2）。本站入榜的是官方 IQ2 列里与站内列同口径的三项：GPQA Diamond、HLE（无工具）、Terminal-Bench 2.1。",
+  "best_for": [
+   "24GB 单卡上的本地 agent（RTX Spark 笔记本、GeForce RTX PC、DGX Spark / Station、RTX PRO 工作站）",
+   "需要读屏 / 读图的本地自动化：网页浏览、终端操作、GUI 任务（BrowseComp 66.75、WebArena 视觉 50.86）",
+   "数据不出本机的隐私敏感 agent 工作流",
+   "想要「比同内存稠密模型快、比同内存 MoE 聪明」这档平衡的本地部署"
+  ],
+  "not_for": [
+   "长上下文任务（仅 256K，同族 Super VL 与 Lightning 都是 1M）",
+   "知识问答与低幻觉要求（AA-Omniscience 准确率 16.90、非幻觉率 61.27，均为同级低位）",
+   "仓库级编码 agent 主力（官方未给 SWE-bench Verified 与 LiveCodeBench）",
+   "非 Blackwell 卡上跑 IQ2 那份（官方只标注 SM120 / SM121 支持）",
+   "中文任务选型（语言列表含中文但无中文评测分数）"
+  ]
+ },
+ "capability_notes": {
+  "knowledge": "AA-Omniscience 准确率 16.90、非幻觉率 61.27、SciCode 41.02、AA-LCR 64.06（官方模型卡 IQ2 列，与 Qwen3.6-35B-A3B BF16 / Gemma4 26B-A4B BF16 / Nemotron 3.5 Lightning 30B-A3B BF16 同表对照）。",
+  "reasoning": "GPQA Diamond 86.43、HLE（无工具）25.30（官方模型卡 IQ2 列）。",
+  "coding": "Terminal-Bench 2.1 50.98（官方模型卡 IQ2 列）。官方表未给 SWE-bench Verified 与 LiveCodeBench，本站这两列无数据；技术报告另称 SWE-RL 端到端训练在 PinchBench 上泛化到 10 次平均最高 90.4。",
+  "agent": "PinchBench 87.82、BrowseComp 66.75、MCP-Atlas 52.20、WebArena（视觉）50.86、GDPVal-AA-V2 28.47、Tau3 Banking 17.01（官方模型卡 IQ2 列）。Tau3 与本站 tau2 列（τ²-bench）不是同一基准，未并入。",
+  "multimodal": "视觉塔为 C-RADIO v4-H，从父模型 Super VL 整体搬回后只轻量微调投影层；输入支持 jpeg / png 图像与 ≤2 分钟 MP4 视频（1080p 建议 1 FPS / 128 帧，720p 可 2 FPS / 256 帧）。官方多模态分数见 WebArena（视觉）50.86；未给 MMMU，本站 mmmu 列无数据。",
+  "long_context": "官方上下文 256K，提示、视觉输入、对话历史、工具结果与输出共享该窗口；架构搜索的显存预算按 128K 上下文定。",
+  "speed": "官方定位为「比多数流行稠密模型快、比同内存足迹的多数 MoE 聪明」，靠 9B 激活与 LiLiCorr 投机解码（7 个投机 token）。官方称其为 PinchBench 同级开源第一、BrowseComp 同级开源第二。均为厂商自述，无第三方复测。",
+  "chinese": "官方语言列表含中文（另有英、法、西、意、德、日、印地、韩、巴葡）；视觉适配器训练用了约 250 万条中文文档 OCR 数据。无中文专项评测分数。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "llama.cpp",
+   "Ollama",
+   "LM Studio"
+  ],
+  "finetune": "可微调（OpenMDW-1.1 下权重与配方开放，官方把 BF16 版定位为定制与后训练的起点，配 NVIDIA NeMo 管线）",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

@@ -3500,6 +3500,116 @@
   "evidence": "official"
  },
  {
+  "model_id": "nemotron-3-5-super-vl-120b-a12b",
+  "key": "swe_verified",
+  "value": 71.1,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Super VL 官方模型卡评测表（BF16 列，NeMo Gym 统一 harness；HLE 为纯文本、tau2 为 τ²-bench 三域均值）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-super-vl-120b-a12b",
+  "key": "livecodebench",
+  "value": 88.22,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Super VL 官方模型卡评测表（BF16 列，NeMo Gym 统一 harness；HLE 为纯文本、tau2 为 τ²-bench 三域均值）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-super-vl-120b-a12b",
+  "key": "gpqa_diamond",
+  "value": 89.52,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Super VL 官方模型卡评测表（BF16 列，NeMo Gym 统一 harness；HLE 为纯文本、tau2 为 τ²-bench 三域均值）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-super-vl-120b-a12b",
+  "key": "hle",
+  "value": 31.79,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Super VL 官方模型卡评测表（BF16 列，NeMo Gym 统一 harness；HLE 为纯文本、tau2 为 τ²-bench 三域均值）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-super-vl-120b-a12b",
+  "key": "tau2_bench",
+  "value": 72.98,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Super VL 官方模型卡评测表（BF16 列，NeMo Gym 统一 harness；HLE 为纯文本、tau2 为 τ²-bench 三域均值）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-super-vl-120b-a12b",
+  "key": "terminal_bench",
+  "value": 60.67,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Super VL 官方模型卡评测表（BF16 列，NeMo Gym 统一 harness；HLE 为纯文本、tau2 为 τ²-bench 三域均值）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-bolt-74b-a9b",
+  "key": "gpqa_diamond",
+  "value": 86.43,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Bolt 74B-A9B 24GB 官方模型卡评测表（IQ2 列；HLE 无工具、Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-bolt-74b-a9b",
+  "key": "hle",
+  "value": 25.3,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Bolt 74B-A9B 24GB 官方模型卡评测表（IQ2 列；HLE 无工具、Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "nemotron-3-5-bolt-74b-a9b",
+  "key": "terminal_bench",
+  "value": 50.98,
+  "unit": "percent",
+  "source": "Nemotron 3.5 Bolt 74B-A9B 24GB 官方模型卡评测表（IQ2 列；HLE 无工具、Terminal-Bench 2.1）",
+  "source_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-spark-open-816b-a42b",
+  "key": "gpqa_diamond",
+  "value": 89,
+  "unit": "percent",
+  "source": "Muse Spark Open 官方模型卡对照表（xhigh 档；Terminal-Bench 2.1 用 Terminus 2 agent）",
+  "source_url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
+  "model_id": "muse-spark-open-816b-a42b",
+  "key": "terminal_bench",
+  "value": 76.4,
+  "unit": "percent",
+  "source": "Muse Spark Open 官方模型卡对照表（xhigh 档；Terminal-Bench 2.1 用 Terminus 2 agent）",
+  "source_url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+  "as_of": "2026-10-16",
+  "evidence": "official"
+ },
+ {
   "model_id": "gpt-4-turbo",
   "key": "gpqa_diamond",
   "value": 48,

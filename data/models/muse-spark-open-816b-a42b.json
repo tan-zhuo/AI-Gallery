@@ -1,0 +1,145 @@
+{
+ "id": "muse-spark-open-816b-a42b",
+ "name": "Muse Spark Open 816B-A42B",
+ "name_zh": "Meta Muse Spark Open · 816B A42B",
+ "aliases": [
+  "Muse-Spark-Open-816B-A42B",
+  "meta-models/Muse-Spark-Open-816B-A42B",
+  "Muse Spark Open"
+ ],
+ "vendor": "Meta",
+ "vendor_zh": "Meta 超级智能实验室（美国）",
+ "family": "Muse Spark",
+ "license": "Muse Model License（version: Muse Spark Open，2026-10-15）",
+ "license_commercial": "restricted",
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+ "status": "current",
+ "released_at": "2026-10-15",
+ "updated_at": "2026-10-16",
+ "modalities": [
+  "text",
+  "image",
+  "audio",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "moe",
+  "total_params": "816B",
+  "active_params": "42B",
+  "total_params_b": 816,
+  "active_params_b": 42,
+  "experts": 256,
+  "active_experts": 8,
+  "layers": 62,
+  "hidden_size": 8192,
+  "vocab_size": 202048,
+  "head_dim": 64,
+  "kv_heads": 16,
+  "attention": "门控注意力（注意力块带输出门与输出 norm，开 QK-norm），128 个 Q 头 / 16 个 KV 头的 GQA，head_dim 64",
+  "notes": "MoE Transformer 加感知编码器（Perception Encoder）。62 层全部是 MoE 层，每层 256 专家、每 token top-8 路由；输入输出嵌入不共享（各约 16.6 亿参数 = 202,048 × 8192）。感知编码器为 18 亿参数、50 层、隐藏维 1536、16 头、14×14 patch、输出维 4096，位置编码用「可学习绝对 + 二维 RoPE」，FFN 为 LayerNorm + GELU，稀疏注意力 factor 4（每第 4 层与最后一层为全注意力）。vLLM 的 day-0 博客把权重分布拆开：256 专家/层合计 799B、注意力 13.5B、MoE latent 投影 4.2B、嵌入与输出层 3.3B，视觉塔另算 1.9B；并提到另有一个小音频编码器。Meta 与 PyTorch 官方均写明它与 Muse Spark 1.3 共用同一个基座模型，这一开源权重版额外做了安全后训练；官方另称 Muse Glimmer 30B 就是从它蒸馏来的。训练数据含文本、图像、音频与视频，覆盖 100 多种语言。官方未公布预训练 token 量与知识截止日期。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {
+   "bf16": 2000,
+   "nvfp4": 700
+  },
+  "estimated": false,
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "不可行",
+  "ref_hw_8x80gb": "NVFP4 需聚合 ≥700GB 显存（8×B300 可覆盖，8×H200 的 1,128GB 亦可）；BF16 需 ≥2TB，8 卡 80GB 机器远不够",
+  "kv_note": "体积为官方模型卡给出的最低显存门槛（NVFP4 ≥700GB、BF16 ≥2TB），不是 safetensors 实测文件大小。官方另给一条非 GPU 路径：两台 M5 Ultra Mac Studio 用 MLX 跑 —— 官方解释 M5 Ultra 的集成 GPU 每台可用到 512GB 统一内存，两台合起来刚好装下整个模型，1.2TB/s 带宽足够读每个 token 需要的那一小片。AMD 另发了 MXFP4 权重；vLLM 为其训了 DSpark 投机解码草稿头（CUDA 与 ROCm 均支持）"
+ },
+ "links": {
+  "official": "https://research.meta.ai/blog/muse-spark-open",
+  "hf": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+  "eval_methodology": "https://research.meta.ai/static/muse-spark-open-evaluation-methodology",
+  "dev_docs": "https://dev.meta.ai/resources/blog/build-with-muse-spark-open"
+ },
+ "variants": [
+  {
+   "kind": "nvfp4",
+   "publisher": "meta-models",
+   "repo": "meta-models/Muse-Spark-Open-816B-A42B-NVFP4",
+   "url": "https://huggingface.co/collections/meta-models/muse-spark-open",
+   "note": "官方 NVFP4，最低 700GB 显存；vLLM 官方示例用的是这一份",
+   "sizes": {
+    "nvfp4": 700
+   }
+  },
+  {
+   "kind": "other",
+   "publisher": "Inferact",
+   "repo": "Inferact/Muse-Spark-Open-DSpark",
+   "url": "https://huggingface.co/Inferact/Muse-Spark-Open-DSpark",
+   "note": "vLLM 团队训练的 DSpark 投机解码草稿头，CUDA 与 ROCm 均支持"
+  }
+ ],
+ "copy": {
+  "one_liner": "Meta 把 Muse Spark 的基座开源了：816B / 42B 激活、1M 上下文的原生多模态 MoE，Muse Model License。",
+  "highlights": [
+   "美国实验室目前最大的开源权重模型，且和闭源 Muse Spark 1.3 共用同一个基座（Meta 与 PyTorch 官方均明写）—— 等于把一个在售 API 旗舰的底座放出来了；Muse Glimmer 30B 也是从它蒸馏来的",
+   "原生四模态输入（文本 / 图像 / 音频 / 视频），靠的是和 Muse Glimmer 同一个感知编码器加额外音频编码器；多模态项上对同级开源模型优势明显（ZeroBench 带工具 50.0 对 Inkling 的 14.0、BabyVision 80.2 对 34.2、SimpleVQA 73.6 对 52.3）",
+   "官方同表对照里 agent 项领先一大截：JobBench 61.8 对 Inkling 31.1 与 Qwen3.8-2.4T-A95B 的 52.7、MCP-Atlas 89.2 为表内最高、OSWorld Verified 80.4、HLE-Diamond 无工具 26.1 对 Inkling 11.2",
+   "安全后训练是它的差异点而非附注：官方自测 StrongREJECT v2（自适应攻击，越低越好）0.5，而 Inkling 86.4、Kimi K3 66.6、GLM 5.3 62.9；FORTRESS 对抗 ARS 5.8 也是表内最低",
+   "生态一天内就齐了：Hugging Face / SageMaker / Google Cloud Model Garden / Microsoft Foundry 可下权重，Baseten / Fireworks / Groq / Modal / Nebius / OpenRouter / Together 提供托管，引擎覆盖 SGLang / vLLM / TensorRT-LLM / Transformers / MLX / llama.cpp / Unsloth，TorchTitan 当天加了模型定义"
+  ],
+  "pitfalls": [
+   "许可不是标准开源：Muse Model License 第 2 条要求在使用它的产品界面或文档里显著标注「Built with Muse Spark Open」；第 3 条规定若你或关联方做 MaaS（给第三方 API 式的推理或微调访问）且连续 12 个月合计营收超过 2,000 万美元，必须先通知 Meta 并单独签协议。内部使用、研究与「把它当成自家非 MaaS 产品的功能组件」不受第 3 条约束",
+   "下载要过表单：HF 仓库是门禁仓库，要求提交真实法定姓名、出生日期与完整机构名称（官方明示不接受缩写与特殊字符、提交后不可修改），并接受 Usage Policy",
+   "硬件门槛是本站开源条目里最高的一档：NVFP4 要聚合 ≥700GB 显存、BF16 要 ≥2TB。官方给的「桌面方案」是两台 M5 Ultra Mac Studio 跑 MLX —— 这条路径真实可用，但两台顶配 Mac Studio 不是通常意义上的「本地」",
+   "官方那张记分卡几乎没有本站列：SWE-bench Verified 一项都没给（只给 DeepSWE 1.1 60、SWE-Atlas-QnA 58，且都标「Preferred harness」—— 不同模型可能用了不同 harness），AA 智能指数 39 未标版本口径，HLE 给的是 Diamond 子集而非全集。本站只能入榜 GPQA Diamond 与 Terminal-Bench 2.1 两项",
+   "即便在官方自己挑的对照表里，中国开源模型在多项上仍领先：Terminal-Bench 2.1 76.4 落后 Kimi K3 的 85.0、GLM 5.3 的 83.9、Qwen3.8 的 82.0；GPQA Diamond 89.0 落后 Qwen3.8 与 Kimi K3 的 93.5、Beam 的 90.5；DeepSWE 1.1 的 60 落后 GLM 5.3 的 67 与 Kimi K3 的 68。它赢的是 agent、多模态与安全，不是编码与考试",
+   "默认推理档位是 xhigh（官方推荐复杂任务用 high 或 xhigh），按 token 计费时这是直接的成本乘数；reasoning_effort 传非法值会直接报错",
+   "vLLM 的支持在发布时还没并入正式发行版：官方注明代码要等 PR #61879 审完合并后才进 nightly wheel，约一周",
+   "无 Meta 官方按 token 定价（Meta Model API 上在售的是闭源 Muse Spark 1.3 与 Muse Wonder），托管价全部来自第三方推理平台，本站不记第三方渠道价"
+  ],
+  "logic_ability": "这次发布真正的信息量不在分数，在「同一个基座」这四个字：Meta 与 PyTorch 官方都明写 Muse Spark Open 与在售的闭源 Muse Spark 1.3 共用基座，差别是这一版多做了一轮安全后训练，使它在没有系统护栏时也足够稳。换句话说，Meta 开源的不是一个为开源另训的小弟，而是自家 API 档位的底座。能力形状很有意思：官方挑的对照表里，它在 agent 与多模态两条线上对开源同级是碾压级（JobBench 61.8、MCP-Atlas 89.2 表内最高、OSWorld Verified 80.4、ZeroBench 带工具 50.0 对 Inkling 的 14.0、BabyVision 80.2 对 34.2），在安全上更是数量级差距（StrongREJECT v2 自适应攻击 0.5，而 Inkling 86.4、Kimi K3 66.6）；但在编码与考试题上它老老实实落后中国开源头部 —— Terminal-Bench 2.1 76.4 对 Kimi K3 的 85.0、GPQA Diamond 89.0 对 Qwen3.8 与 Kimi K3 的 93.5、DeepSWE 1.1 的 60 对 GLM 5.3 的 67。这张表是 Meta 自己挑的对照组，而它仍然把这些落后项摆了出来，可信度因此反而更高。另一个要留意的点是基准选择：官方给的是 HLE-Diamond 而非 HLE 全集、DeepSWE 与 SWE-Atlas-QnA 而非 SWE-bench Verified，且 agent 项标注「Preferred harness」—— 不同模型可能跑在不同 harness 上，跨列比较要打折扣。AA 智能指数 39 未标版本口径，与本站 aa 列不可混比。部署上它刷新了本站开源条目的硬件上限（NVFP4 ≥700GB、BF16 ≥2TB），官方力推的两台 M5 Ultra Mac Studio + MLX 是条真路径，但那是 Apple 统一内存架构的特例而非普遍可及。本站入榜的是官方表里与站内列同口径的两项：GPQA Diamond 与 Terminal-Bench 2.1（Terminus 2 agent）。",
+  "best_for": [
+   "需要自建的多模态 agent（文本 + 图像 + 音频 + 视频输入，1M 上下文）",
+   "要在无系统护栏条件下直接暴露模型的场景（官方安全后训练数据是本站开源条目里最强的一档）",
+   "把闭源 Muse Spark 1.3 的能力搬进自有基础设施做定制（同基座，官方给 TorchTitan 与 PyTorch 微调路径）",
+   "合成数据生成与 LLM-as-a-judge（官方列为设计用途）",
+   "有 8×B300 / 8×H200 级集群或两台 M5 Ultra Mac Studio 的团队"
+  ],
+  "not_for": [
+   "营收超 2,000 万美元的 MaaS 业务（许可第 3 条要求先与 Meta 单独签协议）",
+   "不愿做「Built with Muse Spark Open」署名的产品（许可第 2 条强制要求）",
+   "编码 agent 主力选型（Terminal-Bench 2.1 与 DeepSWE 均落后中国开源头部）",
+   "常规本地部署（NVFP4 ≥700GB、BF16 ≥2TB 显存）",
+   "不愿提交真实身份信息过门禁表单的下载者",
+   "要官方固定单价的采购（Meta 不为这一版提供按 token 定价）"
+  ]
+ },
+ "capability_notes": {
+  "knowledge": "AA Omniscience 25（对照组 Inkling 2、Nemotron 3 Ultra 0、Beam 13、Kimi K3 20、GLM 5.3 14）、SciCode 58.5、HLE 带工具 61.0（官方模型卡对照表，xhigh 档）。",
+  "reasoning": "GPQA Diamond 89.0、HLE-Diamond 无工具 26.1（官方模型卡对照表，xhigh 档）。HLE-Diamond 是 HLE 的 Diamond 子集，与本站 hle 列（HLE 全集无工具）不是同一口径，故未并入总榜。",
+  "coding": "DeepSWE 1.1（Preferred harness）60、SWE-Atlas-QnA（Preferred harness）58、Terminal-Bench 2.1（Terminus 2 agent）76.4（官方模型卡对照表，xhigh 档）。官方未给 SWE-bench Verified 与 LiveCodeBench，本站这两列无数据。",
+  "agent": "JobBench 61.8、MCP-Atlas 89.2、GDPVal-AA v2 Elo 1401、OSWorld Verified 80.4、Toolathlon Verified 72.8（官方模型卡对照表，xhigh 档）。官方未给 τ²-bench，本站 tau2 列无数据。",
+  "multimodal": "ZeroBench（带工具）50.0、BabyVision（带工具）80.2、SimpleVQA（带工具）73.6、WorldVQA（带工具）49.4、IntPhys2 68.3、VideoMMEv2 61.5（官方模型卡对照表，xhigh 档）。输入含文本 + 图像 + 视频 + 音频，感知编码器与 Muse Glimmer 同源并加了音频编码器；官方未给 MMMU，本站 mmmu 列无数据。",
+  "safety": "FORTRESS 对抗（静态）ARS 5.8 / ORS 17.4、StrongREJECT v2（自适应）0.5，两项均为表内最佳（越低越好；对照组 Inkling ARS 25.0 / SR 86.4，Kimi K3 ARS 26.7 / SR 66.6，GLM 5.3 ARS 28.2 / SR 62.9）。官方另称内部越狱基准拒绝率 99.2%、聚合 PolyGuard 网安子集 / RedCode / CyberBench 2024 为 94.8%（同设定下 Kimi K3 为 75.5% 与 70.2%），生化类拒绝率均 >97%，MASK 诚实率 98.1%、Agentic Misalignment 失当率 0%。",
+  "third_party": "官方对照表引用的 Artificial Analysis 智能指数为 39（对照组 Qwen3.8 40、GLM 5.3 45、Kimi K3 44、Mistral Large 4 38、Inkling 26）。该读数未标明版本口径，与本站 aa 列不可混比，故未入榜。",
+  "chinese": "官方称训练数据覆盖 100 多种语言，未单列中文支持声明，也未公布任何中文评测分数。"
+ },
+ "ecosystem": {
+  "engines": [
+   "SGLang",
+   "vLLM",
+   "TensorRT-LLM",
+   "Transformers",
+   "llama.cpp",
+   "MLX"
+  ],
+  "finetune": "可微调（权重开放，官方给 PyTorch TorchTitan 路径，TorchTitan 发布当天加入模型定义；vLLM 支持 day-0 LoRA RL，以 Verl FSDP2 为训练端）",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

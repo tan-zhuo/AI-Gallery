@@ -1,0 +1,148 @@
+{
+ "id": "nemotron-3-5-super-vl-120b-a12b",
+ "name": "Nemotron 3.5 Super VL 120B-A12B",
+ "name_zh": "NVIDIA Nemotron 3.5 Super VL · 120B A12B",
+ "aliases": [
+  "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B",
+  "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+  "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+  "nemotron-3.5-super-vl",
+  "Nemotron 3.5 Super VL"
+ ],
+ "vendor": "NVIDIA",
+ "vendor_zh": "NVIDIA（美国）",
+ "family": "Nemotron 3.5",
+ "license": "OpenMDW License Agreement, version 1.1",
+ "license_commercial": true,
+ "openness": "open-weights",
+ "weights_available": true,
+ "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+ "status": "current",
+ "released_at": "2026-10-15",
+ "updated_at": "2026-10-16",
+ "modalities": [
+  "text",
+  "image",
+  "video",
+  "tools"
+ ],
+ "reasoning_mode": "optional",
+ "architecture": {
+  "type": "hybrid",
+  "total_params": "120B",
+  "active_params": "12B",
+  "total_params_b": 120,
+  "active_params_b": 12,
+  "experts": 512,
+  "attention": "交错 Mamba-2 + MoE + 注意力层的混合 MoE，外挂 C-RADIO 视觉编码器与视觉—语言连接器",
+  "notes": "官方模型卡写「120B 总参 / 12B 激活」，架构为 Nemotron Hybrid MoE：每个 MoE 层 512 路由专家，配 C-RADIO 视觉编码器与一个视觉—语言连接器，并带共享 Multi-Token Prediction（MTP）头做原生投机解码。训练分七段：语言骨干从 Nemotron 3 Super Base 初始化，先冻结骨干训 100B token 的 MTP 头，再从 Nemotron 3 Ultra Base 蒸馏 1T token；之后 100B token 印度语系续训、35B token 扩到 1M 上下文、67B token 软件工程中训（256K 上下文）、9B token 长上下文恢复；再接视觉—语言训练、两段 SFT（打包序列最长 524,288 token）、RLVR + RLHF + 多教师在线蒸馏、MTP 加训，最后量化与量化感知蒸馏。官方称全流程预训练与续训合计约 26T token，后训练约 380 万样本加数十个环境的 RL。权重、训练数据集与训练配方同步公开。",
+  "undisclosed": false
+ },
+ "context": {
+  "max_tokens": 1048576,
+  "display": "1M"
+ },
+ "memory": {
+  "weight_gb": {
+   "nvfp4": 75
+  },
+  "estimated": false,
+  "ref_hw_24gb": "不可行",
+  "ref_hw_80gb": "NVFP4 可单卡 H200 或单 GB200 跑满 1M 上下文；单 DGX Spark（GB10）为官方列出的本地配置（文本 + 图像，1M 上下文，MTP 5 草稿 token）",
+  "ref_hw_8x80gb": "远超需求；官方给出的最大配置是 2×H100（文本 + 图像 + 视频，1M 上下文）",
+  "kv_note": "NVFP4 体积取第三方（ByteForward）对官方 NVFP4 仓库 88 个权重文件的实测合计约 75GB，NVIDIA 未在模型卡给出文件体积，故此数非官方口径。官方部署矩阵：1×DGX Spark / 1×H200 / 2×H100 / 1×GB200（vLLM），1×GB200 或 2×H100（SGLang），1×GB200（TensorRT-LLM）。NVFP4 在 Blackwell 走 W4A4、非 Blackwell 走 W4A16；视觉编码器、连接器、Mamba 卷积与嵌入保持 BF16，MoE 路由器保持 FP32。DGX Spark 另有官方 LiLiCorr 投机解码草稿头"
+ },
+ "links": {
+  "official": "https://blogs.nvidia.com/blog/nemotron-3-5-super-vl/",
+  "hf": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+  "tech_report": "https://research.nvidia.com/labs/nemotron/files/NVIDIA-Nemotron-3.5-Super-and-Lightning-Technical-Report.pdf"
+ },
+ "variants": [
+  {
+   "kind": "nvfp4",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+   "note": "官方 NVFP4，经量化感知蒸馏回收精度；官方部署示例全部围绕这一份",
+   "sizes": {
+    "nvfp4": 75
+   }
+  },
+  {
+   "kind": "bf16",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+   "note": "官方全精度版，vLLM 称其为「直观的部署基线」"
+  },
+  {
+   "kind": "other",
+   "publisher": "nvidia",
+   "repo": "nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4-LiLiCorr",
+   "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4-LiLiCorr",
+   "note": "DGX Spark 专用 LiLiCorr 投机解码草稿头，官方建议 DGX Spark 部署一律启用"
+  },
+  {
+   "kind": "gguf",
+   "publisher": "ggml-org",
+   "repo": "ggml-org/nvidia-nemotron-3.5-super-vl",
+   "url": "https://huggingface.co/collections/ggml-org/nvidia-nemotron-3.5-super-vl",
+   "note": "官方模型卡「Running on Local Hardware」一节直接指向的 llama.cpp 合集（DGX Spark / RTX Spark / RTX Pro 6000）"
+  }
+ ],
+ "copy": {
+  "one_liner": "NVIDIA 3.5 代的 Super 档，120B / 12B 激活的混合 Mamba-MoE 视觉语言模型，1M 上下文，接 Nemotron 3 Super 的班。",
+  "highlights": [
+   "开放程度与上一代同档：OpenMDW-1.1 许可、官方明写「ready for commercial or non-commercial use」，权重、预训练与后训练数据集（nemotron-pre-training-datasets / nemotron-post-training-v3）以及 NeMo Gym 里的 RL 环境与可复现评测配方全部公开",
+   "Nemotron 家族里第一个把视觉放进主线的档位：C-RADIO 视觉编码器 + 连接器，原生吃文本 / 图像 / 视频（MP4 ≤2 分钟），官方把 OCR、表格、图表与长文档理解列为设计目标，MMLongBench-Doc 62.82、OCRBench v2 英 68.12 / 中 59.15、CharXiv reasoning 80.82",
+   "分数比上一代 Nemotron 3 Super 整体上一个台阶（同站口径对照）：GPQA Diamond 89.52 对 79.23、SWE-bench Verified 71.10 对 60.47、LiveCodeBench 88.22 对 81.19、Terminal-Bench 2.1 60.67 对 31.00、tau2-bench 均值 72.98 对 61.15",
+   "部署门槛比参数量看起来低得多：官方 NVFP4 版在 1×H200、1×GB200 或 2×H100 上就能开满 1M 上下文，单台 DGX Spark（GB10）是官方列出的本地配置；带原生 MTP 头，无需额外下载草稿模型"
+  ],
+  "pitfalls": [
+   "整张评测表都是 NVIDIA 自己跑的：官方注明全部结果经 NeMo Gym 采集、对比组也由 NVIDIA 代跑，且有 8 项（BabyVision、CharXiv-RQ、MathVision、MMLongBench-Doc、OCR-Reasoning、OCRBench-v2、V*、Video-MME-v2）用的是官方实现或「计划将来开源」的内部脚手架，这几项外部无法复现",
+   "NVFP4 与 BF16 在少数项上差距不小，别把两列混着引用：WebVoyager（离线）BF16 77.72 对 NVFP4 66.31、DeepSWE（离线）24.65 对 18.2、MMLU-ProX 76.91 对 73.76；反过来 Terminal-Bench 2.1 是 NVFP4 更高（62.78 对 60.67）",
+   "视频理解是明显短板：官方自测 Video-MME v2 只有 32.85（BF16），BabyVision 29.60，和它在文档 / OCR 上的成绩不是一个水平 —— 「原生多模态」不等于视频能用",
+   "官方给的 Terminal Bench 4（离线）只有 1.0（NVFP4 1.5）、τ³-bench Banking 18.88，新一代更难的 agent 评测上几乎没有分数；别拿 Terminal-Bench 2.1 的 60.67 去推它在 4.0 口径下的位置",
+   "无官方按 token 定价：托管只有 build.nvidia.com 的 NIM、OpenRouter 与 ModelScope 社区等渠道，实际单价随渠道变，本站不记第三方渠道价",
+   "部署参数很挑：官方 vLLM 命令要带一长串 Mamba 与视频专用开关（--mamba-backend flashinfer、--mamba-ssm-cache-dtype float16、随机取整及其 philox 轮数、--video-pruning-rate 0.5、--media-io-kwargs 帧率与帧数），且需指定 nightly 镜像或 v0.32.0；少一个就容易踩精度或显存坑",
+   "官方未公布参数量之外的层数细节与知识截止日期（模型卡只给总参 / 激活参数、专家数与训练分段）"
+  ],
+  "logic_ability": "这一档的定位是「可私有化的企业 agent 主力」，官方卖点写得很直接：在多模态 agent 任务上「与 NVIDIA 最大的推理模型相当，而参数量约为其五分之一」，并自称同级最快的开源 agent 模型（吞吐为次优者的 5 倍）。从官方那张统一 harness 的表看，形状确实和上一代 Nemotron 3 Super 不同：知识与推理大幅前移（GPQA Diamond 89.52、HLE 纯文本 31.79、LiveCodeBench v6 88.22），编码与终端任务从「中游」挪到了开源第一梯队（SWE-bench Verified 71.10、SWE-bench Pro 51.78、Terminal-Bench 2.1 60.67），工具调用也站住了（tau2-bench 零售 69.24 / 航空 76.50 / 电信 73.19，BrowseComp 78）。真正的新东西是视觉这条线：C-RADIO 编码器带来的是文档类能力（MMLongBench-Doc 62.82、OCRBench v2、CharXiv reasoning 80.82、V* 85.60），而不是通用视频理解 —— Video-MME v2 32.85 与 BabyVision 29.60 这两项低得刺眼，说明「原生多模态」在这台机器上基本等于「能读图读 PDF」。需要清醒看待的是口径：全表由 NVIDIA 自测，8 项评测用的是未开源的内部脚手架，而官方自己给的 Terminal Bench 4（离线）只有 1.0 —— 换成 2026 下半年的新一代 agent 评测，它的排序会和 Terminal-Bench 2.1 上的位置完全不同。Artificial Analysis 在发布日称它是「智能指数 26 的美国开源权重第一」，但那是 v4.3.x 口径，与本站 aa 列不可混比。最难被替代的仍是老三样：OpenMDW 许可下可商用、权重数据配方全开所以能后训成自家专用模型、以及 12B 激活带来的单卡 H200 / 单台 DGX Spark 就能开满 1M 的部署曲线。本站入榜的是官方 BF16 列里与站内列同口径的六项：SWE-bench Verified、LiveCodeBench v6、GPQA Diamond、HLE（纯文本）、tau2-bench 三域均值、Terminal-Bench 2.1。",
+  "best_for": [
+   "要私有化部署且需要读图 / 读 PDF 的企业 agent（合规、数据驻留、离线环境）",
+   "文档密集型工作流：OCR、表格、图表、长文档问答（1M 上下文）",
+   "要在自有数据上后训练的场景（权重、数据集、RL 环境与配方全开，配 NeMo 管线）",
+   "单卡 H200 / 单台 DGX Spark 上的高吞吐 agent 服务（NVFP4 + 原生 MTP）"
+  ],
+  "not_for": [
+   "通用视频理解（Video-MME v2 32.85、BabyVision 29.60，均为官方自测低位）",
+   "要第三方复测数据再选型的采购（全表 NVIDIA 自测，8 项用未开源脚手架）",
+   "按最新一代 agent 评测口径选型（官方 Terminal Bench 4 离线仅 1.0）",
+   "24GB 消费卡本地部署（该档不可行，对应档位是 Nemotron 3.5 Bolt 74B-A9B 24GB）",
+   "想要官方固定单价的采购（无官方按 token 定价）"
+  ]
+ },
+ "capability_notes": {
+  "knowledge": "MMLU-ProX 76.91、AA-Omniscience 准确率 26.20 / 幻觉率 30.0 / 指数 4.03、WMT24++ 84.80（官方模型卡 BF16 列，NeMo Gym 统一 harness 自测；NVFP4 同口径为 73.76 / 25.86 / 27.7 / 5.3 / 84.76）。",
+  "reasoning": "GPQA Diamond 89.52、HLE 纯文本 31.79、HLE 全集 29.20、SciCode 子任务 47.13（官方模型卡 BF16 列；NVFP4 为 89.90 / 31.44 / 29.00 / 46.61）。",
+  "coding": "SWE-bench Verified 71.10、SWE-bench Multilingual 67.72、SWE-bench Pro 51.78、LiveCodeBench v6 88.22、APEX shortlist 88.36、Terminal-Bench 2.1 60.67（官方模型卡 BF16 列；NVFP4 为 71.07 / 67.00 / 51.30 / 87.41 / 89.36 / 62.78）。官方另给 DeepSWE（离线）24.65 与 Terminal Bench 4（离线）1.0，均为本站无对应列的口径。",
+  "agent": "tau2-bench 零售 69.24 / 航空 76.50 / 电信 73.19（均值 72.98）、BrowseComp 78、OSWorld-Verified 51.14、WebVoyager（离线）77.72、AutomationBench-AA（离线）32.44、GDPval-AA v2 Elo 1211、GraphWalks 89.71（官方模型卡 BF16 列）。官方给的 τ³-bench Banking 18.88 与本站 tau2 列（τ²-bench）不是同一基准，未并入。",
+  "multimodal": "MMLongBench-Doc 62.82、V* 85.60、OCR-Reasoning 65.08、MathVision 78.16、OCRBench v2 英 68.12 / 中 59.15、CharXiv reasoning 80.82、Video-MME v2 32.85、BabyVision 29.60（官方模型卡 BF16 列）。输入支持 jpeg / png 图像与 ≤2 分钟 MP4 视频，文档可按页图加文本一起送。官方未公布 MMMU 分数，本站 mmmu 列无数据。",
+  "instruction": "IFBench 70.86、LMArena v3 proxy 52.67（官方模型卡 BF16 列）。后者是官方自建的 LMArena 代理指标，不是 LMArena Elo，本站 arena 列未填。",
+  "long_context": "AA-LCR v1.1 68.62（官方模型卡 BF16 列）。官方上下文 1M，输入、视觉输入、对话历史、工具结果与输出共享该窗口；各部署配方可能用更小窗口以适配显存与并发。",
+  "speed": "官方称为同级最快的开源 agent 模型，吞吐为次优者的 5 倍；配合 NVIDIA Dynamo 称可多服务 8 倍用户、延迟降 85%。原生 MTP 投机解码，DGX Spark 另有 LiLiCorr 草稿头。以上均为厂商自述，无第三方复测。",
+  "third_party": "Artificial Analysis 在发布日（2026-10-15）称其以 26 分成为「领先的美国开源权重模型」。该读数为 AA v4.3.x 口径，与本站 aa 列的较早口径不可混比，故未入榜。",
+  "chinese": "官方训练含中文文档 OCR 数据，OCRBench v2 中文 59.15、WMT24++ 84.80；模型卡未给出中文语言支持清单与中文综合评测分数。"
+ },
+ "ecosystem": {
+  "engines": [
+   "vLLM",
+   "SGLang",
+   "TensorRT-LLM",
+   "llama.cpp"
+  ],
+  "finetune": "可微调（官方开放权重、数据集与配方，提供 NVIDIA NeMo 与 Python 管线；ModelScope 另支持 ms-swift 微调）",
+  "zh_docs": "无"
+ },
+ "complete": false
+}

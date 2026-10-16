@@ -18,7 +18,7 @@
  "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
  "status": "current",
  "released_at": "2026-08-11",
- "updated_at": "2026-10-15",
+ "updated_at": "2026-10-16",
  "modalities": [
   "text",
   "tools"
@@ -94,7 +94,7 @@
    "BF16 那份不是给生产推理用的：官方把它定位成「做后训练、领域适配、自制量化版的起点」，要部署直接用 NVFP4；BF16 的 vLLM 启动命令还得带一串 Mamba 专用参数（--mamba-backend flashinfer、--mamba-ssm-cache-dtype float16、随机取整及其 philox 轮数），少一个就容易踩精度坑",
    "无官方按 token 定价：托管只有 build.nvidia.com 的 NIM 与各云厂商 / 推理平台（DeepInfra、Fireworks、Nebius、Crusoe、SageMaker JumpStart 等），实际单价随渠道变，本站不记第三方渠道价",
    "纯文本，且官方语言列表为英（含编程语言）、西、法、德、意、日，不含中文，也没有中文专项评测分数",
-   "3.5 这一代目前只有这一个 30B 档，Nemotron 3 的 Nano / Super / Ultra 三档阶梯在 3.5 里还没对应物；更高档的 Nemotron 3.5 Bolt 74B-A9B 官方公告的发布日是 2026-10-15，本站尚未收录"
+   "3.5 代的阶梯已在 2026-10-15 补齐（Super VL 120B-A12B 与 Bolt 74B-A9B 24GB 同日发布，Bolt E4B 4GB 排期 10-23），它在其中是「1M 上下文、纯文本、高吞吐」的那一档 —— 不是最聪明的那档：同族 Bolt 74B-A9B 在 13 项官方同 harness 对照里几乎全面领先（Terminal-Bench 2.1 50.98 对 23.46、BrowseComp 66.75 对 36.81、GPQA 86.43 对 75.57、HLE 25.30 对 10.47），代价是上下文只有 256K"
   ],
   "logic_ability": "这台机器的设计目标写得很直白：不当最聪明的那个，当「一直在跑」的那个。官方把它放在「前沿模型做规划编排、小模型做高频执行」这套分层里，自己只负责下半截，连配套的路由库（NeMo Switchyard）都一起发了。分数分布完全符合这个定位 —— 在 NVIDIA 自己那张统一 harness 的表上，它对上一代 Nemotron 3 Nano 的提升几乎全在 agent 与编码项（Terminal-Bench 2.1 从 8.29 到 24.58 是三倍，SWE-bench Verified 从 34.08 到 51.56，BrowseComp 从 13.74 到 36.97，AA-LCR 从 32.75 到 52.00），而知识项只从 78.46 挪到 81.94（MMLU Pro）。换句话说，蒸馏 Nemotron 3 Ultra 加 agent harness 上的 RL，买到的是「会连续调工具、能跑完长任务」，不是「懂得更多」。代价也标在同一张表上：同级的 Qwen3.6 35B-A3B 在 14 项里赢 11 项，差距最大的恰恰是 SWE-bench Verified（70.12 对 51.56）与 Terminal-Bench 2.1（44.38 对 24.58）这两项 agent 能力 —— 所以「执行层最强」这个说法只在「同 3B 激活量 + 同速度档」的约束下成立，放开约束就不成立。真正难被替代的是另外三件事：3.6B 激活带来的速度（官方称约 4 倍吞吐）、NVFP4 版 21.6GB 真能进 24GB 卡、以及连训练数据和配方一起开放让你能把它后训成自己工具链的专用执行器。合理用法就是官方说的那个：拿它当子 agent 与工具调度器，难的判断往上路由给前沿模型。本站入榜的是官方表里与站内列同口径的四项：SWE-bench Verified、GPQA Diamond（无工具）、HLE（纯文本无工具）、Terminal-Bench 2.1。",
   "best_for": [

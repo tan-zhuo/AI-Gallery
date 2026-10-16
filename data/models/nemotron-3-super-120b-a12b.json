@@ -14,9 +14,10 @@
  "openness": "open-weights",
  "weights_available": true,
  "weights_url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Super-120B-A12B-BF16",
- "status": "current",
+ "status": "superseded",
+ "superseded_by": "nemotron-3-5-super-vl-120b-a12b",
  "released_at": "2026-03-11",
- "updated_at": "2026-08-28",
+ "updated_at": "2026-10-16",
  "modalities": [
   "text",
   "tools"

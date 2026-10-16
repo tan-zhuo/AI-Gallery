@@ -11,6 +11,7 @@ const AS_OCT12 = '2026-10-12'
 const AS_OCT13 = '2026-10-13'
 const AS_OCT14 = '2026-10-14'
 const AS_OCT15 = '2026-10-15'
+const AS_OCT16 = '2026-10-16'
 const SRC = {
   arena: { source: 'LMArena Text (style control)', url: 'https://lmarena.ai/leaderboard/text', evidence: 'independent' },
   aa: { source: 'Artificial Analysis Intelligence Index v3', url: 'https://artificialanalysis.ai/leaderboards/models', evidence: 'independent' },
@@ -172,8 +173,38 @@ const rowsOct14 = [
 const rowsOct15 = [
   ['nemotron-3-5-lightning-30b-a3b', null, null, 51.56, null, 75.44, 11.72, null, null, 24.58, null, 'Nemotron 3.5 Lightning 官方模型卡评测表（BF16 列，NeMo Gym / NeMo Evaluator 统一 harness）', 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16'],
 ]
+// ---- 2026-10-16 快照（新增层，不覆盖前八层）----
+// Nemotron 3.5 Super VL 取官方模型卡评测表的 BF16 列（NVIDIA 用 NeMo Gym 统一 harness 自测，
+// 对比组亦由 NVIDIA 代跑；官方注明其中 8 项用的是官方实现或未开源的内部脚手架）。
+// tau2 取官方给的 τ²-bench 三域均值（零售 69.24 / 航空 76.50 / 电信 73.19 → 72.98），
+// 与本站此前对 Nemotron 3 Super 的处理（tau2 均值 61.15）同口径。
+// 未并入的：MMLU-ProX / AA-Omniscience / APEX / SciCode / AA-LCR / GraphWalks / WMT24++ / IFBench /
+// GDPval-AA v2 / BrowseComp / SWE-bench Multilingual / SWE-bench Pro / OSWorld-Verified /
+// MMLongBench-Doc / V* / OCR-Reasoning / MathVision / OCRBench v2 / CharXiv / Video-MME v2 /
+// BabyVision 本站无对应列；官方 τ³-bench Banking 18.88 与本站 tau2 列（τ²-bench）不是同一基准，不并入；
+// LMArena v3 proxy 52.67 是官方自建代理指标而非 LMArena Elo，不入 arena 列；
+// 官方未给 MMMU 与 AIME，两列留空。
+// Nemotron 3.5 Bolt 取官方模型卡评测表的 IQ2 列（即 24GB 那份，官方对照组为 Qwen3.6-35B-A3B /
+// Gemma4 26B-A4B / Nemotron 3.5 Lightning 的 BF16）。官方表未给 SWE-bench Verified 与 LiveCodeBench，两列留空；
+// 其 Tau3 Banking 17.01 与本站 tau2 列不是同一基准，GDPVal-AA-V2 / PinchBench / MCP-Atlas / BrowseComp /
+// WebArena / SciCode / AA-LCR / AA-Omniscience 本站无对应列，均未并入。
+// Muse Spark Open 取官方模型卡对照表（xhigh 档）：只收 GPQA Diamond 与 Terminal-Bench 2.1（Terminus 2 agent）。
+// 其 HLE 给的是 HLE-Diamond 子集（无工具 26.1），与本站 hle 列（HLE 全集无工具）不是同一口径，不填；
+// 编码项只有 DeepSWE 1.1 与 SWE-Atlas-QnA 且标「Preferred harness」（各模型 harness 可能不同），无 SWE-bench Verified；
+// AA 智能指数 39 未标版本口径，与本站 aa 列不可混比；JobBench / MCP-Atlas / GDPVal-AA v2 / OSWorld /
+// Toolathlon / AA-Omniscience / SciCode / ZeroBench / BabyVision / SimpleVQA / WorldVQA / IntPhys2 /
+// VideoMMEv2 / FORTRESS / StrongREJECT 本站无对应列。
+// Ling-3.1-flash 不列行：官方模型卡的评测一节只点名基准清单（Terminal-Bench 4.0、SWE-bench Pro、
+// FrontierSWE、GDPVal-AA V2.1、AutomationBench、MCP-Atlas、SkillsBench、HealthBench Professional），
+// 未给出任何可引用的数值，且这些基准本站多数无对应列。
+// Step 5 Preview 本次不新增分数行：开源权重的模型卡未给新数值，其分数仍为 2026-10-12 层取自官方发布页的两项。
+const rowsOct16 = [
+  ['nemotron-3-5-super-vl-120b-a12b', null, null, 71.1, 88.22, 89.52, 31.79, null, 72.98, 60.67, null, 'Nemotron 3.5 Super VL 官方模型卡评测表（BF16 列，NeMo Gym 统一 harness；HLE 为纯文本、tau2 为 τ²-bench 三域均值）', 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4'],
+  ['nemotron-3-5-bolt-74b-a9b', null, null, null, null, 86.43, 25.3, null, null, 50.98, null, 'Nemotron 3.5 Bolt 74B-A9B 24GB 官方模型卡评测表（IQ2 列；HLE 无工具、Terminal-Bench 2.1）', 'https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Bolt-74B-A9B-24GB'],
+  ['muse-spark-open-816b-a42b', null, null, null, null, 89.0, null, null, null, 76.4, null, 'Muse Spark Open 官方模型卡对照表（xhigh 档；Terminal-Bench 2.1 用 Terminus 2 agent）', 'https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B'],
+]
 // ---- 历史模型（2023–2025-08）：每行第 14 个元素为 as_of ----
-const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsOct10.map((r) => ({ r, as: AS_OCT10 })), ...rowsOct12.map((r) => ({ r, as: AS_OCT12 })), ...rowsOct13.map((r) => ({ r, as: AS_OCT13 })), ...rowsOct14.map((r) => ({ r, as: AS_OCT14 })), ...rowsOct15.map((r) => ({ r, as: AS_OCT15 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
+const rows = [...rowsOld.map((r) => ({ r, as: AS_OLD })), ...rowsNew.map((r) => ({ r, as: AS_NEW })), ...rowsSep.map((r) => ({ r, as: AS_SEP })), ...rowsSep29.map((r) => ({ r, as: AS_SEP29 })), ...rowsOct10.map((r) => ({ r, as: AS_OCT10 })), ...rowsOct12.map((r) => ({ r, as: AS_OCT12 })), ...rowsOct13.map((r) => ({ r, as: AS_OCT13 })), ...rowsOct14.map((r) => ({ r, as: AS_OCT14 })), ...rowsOct15.map((r) => ({ r, as: AS_OCT15 })), ...rowsOct16.map((r) => ({ r, as: AS_OCT16 })), ...rowsHist.map((r) => ({ r: r.slice(0, 13), as: r[13] }))]
 const keys = ['arena_text', 'aa_index', 'swe_verified', 'livecodebench', 'gpqa_diamond', 'hle', 'aime_2025', 'tau2_bench', 'terminal_bench', 'mmmu']
 const units = { arena_text: 'elo', aa_index: 'index' }
 const out = []
